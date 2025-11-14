@@ -1,6 +1,8 @@
 <img src="../images/linux+postgresql.png" style="zoom:65%;" />
 
+
 <a id="postgresql-yonetimi"><a/>
+
 
 ## Linux Sistemlerde PostgreSQL Yönetimi
 
