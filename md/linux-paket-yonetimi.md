@@ -1,4 +1,4 @@
-<img src="../images/paket-yonetimi.webp" style="zoom:35%;" />
+<img src="../images/paket-yonetimi.webp" width="350" />
 
 # Linux Paket Yönetimi
 

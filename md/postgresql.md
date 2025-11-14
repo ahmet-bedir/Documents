@@ -1,10 +1,9 @@
-<img src="../images/linux+postgresql.png" style="zoom:65%;" />
-
+<img src="../images/linux+postgresql.png" width="620" />
 
 <a id="postgresql-yonetimi"><a/>
 
 
-## Linux Sistemlerde PostgreSQL Yönetimi
+# Linux Sistemlerde PostgreSQL Yönetimi
 
 ---
 
@@ -557,23 +556,23 @@ postgres=# SELECT ad,soyad FROM personel;
 (5 rows)
 ```
 
-Sütun Güncelleme:
+**Sütun Güncelleme:**
 
 ```sql
 postgres=# UPDATE ogrenciler SET email='ersin-dari@yahoo.com' WHERE id=7;
 UPDATE 1
 ```
 
-> Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün `email` sütunları güncellenir.
+> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün `email` sütunları güncellenir.**
 
-Satır silme:
+**Satır silme:**
 
 ```sql
 postgres=# DELETE FROM ogrenciler WHERE id=7;
 DELETE 1
 ```
 
-> Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün kayıtlar silinir.
+> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün kayıtlar silinir.**
 
 ---
 
