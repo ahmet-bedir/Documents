@@ -1,28 +1,32 @@
 ### ⚙️ **Bash Terminal Kısayolları**
 
-| Kısayol  | Açıklama                                           |
-| -------- | -------------------------------------------------- |
-| Ctrl + A | Satırın başına git                                 |
-| Ctrl + E | Satırın sonuna git                                 |
-| Ctrl + U | İmleçten önceki tüm metni sil                      |
-| Ctrl + K | İmleçten sonraki tüm metni sil                     |
-| Ctrl + W | İmleçten önceki kelimeyi sil                       |
-| Ctrl + Y | Son kesilen metni yapıştır (yank)                  |
-| Ctrl + H | Backspace (karakter sil)                           |
-| Ctrl + D | İmleç üzerindeki karakteri sil / boş satırda çıkış |
-| Ctrl + L | Ekranı temizle (clear)                             |
-| Ctrl + C | Mevcut işlemi durdur                               |
-| Ctrl + Z | Mevcut işlemi askıya al (suspend)                  |
-| fg       | Askıya alınan işi devam ettir                      |
-| bg       | Askıya alınan işi arka planda çalıştır             |
-| Ctrl + R | Geçmişte arama (reverse search)                    |
-| !!       | Son komutu yeniden çalıştır                        |
-| !komut   | En son “komut” ile başlayan komutu çalıştır        |
-| Tab      | Otomatik tamamlama                                 |
-| Ctrl + T | İki karakterin yerini değiştir                     |
-| Alt + B  | Bir kelime geri git                                |
-| Alt + F  | Bir kelime ileri git                               |
-| Alt + D  | İmleçten sonraki kelimeyi sil                      |
+#### İmleç Kısayolları
+
+| Kısayol  | Açıklama                                         |
+| -------- | ------------------------------------------------ |
+| Ctrl + A | İmleci satırın en başına götürür                 |
+| Ctrl + E | İmleci satırın en sonuna götürür                 |
+| Ctrl + B | Bir karakter sola yani geri (**b**ackward) gider |
+| Ctrl + F | Bir karakter sağa yani ileri (forward) gider     |
+| Alt + B  | Bir kelime sola yani geri (**b**ackward) gider   |
+| Alt + F  | Bir kelime sağa yani ileri (forward) gider       |
+| Ctrl + P | Önceki komutu gösterir (History Up)              |
+| Ctrl + N | Sonraki komutu gösterir (History Down)           |
+| Ctrl + U | İmleçten satır başına kadar kesme işlemi yapar   |
+| Ctrl + K | İmleçten satır sonuna kadar kesme işlemi yapar   |
+| Ctrl + W | İmlecin solundaki kelimeyi keser                 |
+| Ctrl + Y | Son kesilen metni yapıştırır                     |
+| Ctrl + L | Terminal ekranını temizler                       |
+
+#### Düzenleme Kısayolları
+
+| `Alt + Backspace` | İmleçten önceki kelimeleri silmek için kullanılır            |
+| ----------------- | ------------------------------------------------------------ |
+| `Alt + D`         | İmleçten sonraki kelimeleri silmek için kullanılır           |
+| `Ctrl + _`        | Silinen karakter veya kelime öbeklerini geri getirmek için kullanılır |
+| `Alt + T`         | Kelimelerin yerini değiştirmek için kullanılır               |
+
+
 
 ---
 

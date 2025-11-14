@@ -145,17 +145,17 @@ rpm -qa | less
 
 > **Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.**
 
-> **Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girebiliyoruz.**
+> **Depodan paket kurmak için** `dnf install <paket-adı>` **şeklinde komut girebiliyoruz.**
 
 > `dnf check-update`  :  **Sistemde kurulu paketlerin güncellemelerini kontrol etmek için kullanılır.  Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.**
 
-> **Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz.**
+> **Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak** `dnf update` **komutunu kullanabiliyoruz.**
 >
 > **Spesifik olarak tek bir paketi güncellemek istersek `sudo dnf install <paket-adı>` komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.**
 
 > `dnf remove paket-adı`  :  **Paket kaldırmak için bu komut kullanılır.**
 
-> **Gereksiz paketler Kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi için `sudo dnf clean all` komutunu kullanabiliyoruz.**
+> **Gereksiz paketler kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi için** `sudo dnf clean all` **komutunu kullanabiliyoruz.**
 
 ---
 
