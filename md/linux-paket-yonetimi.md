@@ -1,4 +1,6 @@
-<img src="../images/paket-yonetimi.webp" width="350" />
+<p align="center">
+  <img src="../images/paket-yonetimi.webp" width="350" />
+<p/>
 
 # Linux Paket Yönetimi
 
