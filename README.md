@@ -1,6 +1,6 @@
 ## Bu proje kapsamındaki belgeler aşağıdaki koşullarda kullanıma sunulmuştur:
 
-### Lisans: Creative Commons Zero v1.0 Universal (CC0 1.0)
+## Lisans: Creative Commons Zero v1.0 Universal (CC0 1.0)
 
 **1. Kopyalayabilir, değiştirebilir, dağıtabilir ve kullanabilirsiniz.** *(You can copy, modify, distribute, and use the file)*
 
@@ -14,7 +14,7 @@
 
 ---
 
-# Sık Kullanılan Git Komutları
+## Sık Kullanılan Git Komutları
 
 **Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
@@ -22,7 +22,7 @@
 
 ---
 
-# Linux Sistemlerde PostgreSQL Yönetimi
+## Linux Sistemlerde PostgreSQL Yönetimi
 
 **PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.**
 
@@ -30,7 +30,7 @@
 
 ---
 
-# Linux Paket Yönetimi
+## Linux Paket Yönetimi
 
 **Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
 
@@ -38,7 +38,7 @@
 
 ---
 
-# Linux Terminal, Nano ve Vim Kısayolları
+## Linux Terminal, Nano ve Vim Kısayolları
 
 **Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
