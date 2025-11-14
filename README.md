@@ -18,7 +18,7 @@
 
 **Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
-◈ [Git Komutları](md/git-komutlari.md)
+◈ [**Git Komutları**](md/git-komutlari.md)
 
 ---
 
@@ -26,7 +26,7 @@
 
 **PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.**
 
-◈ [PostgreSQL](md/postgresql.md)
+◈ [**PostgreSQL**](md/postgresql.md)
 
 ---
 
@@ -34,12 +34,12 @@
 
 **Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
 
-◈ [Linux Paket Yönetimi](md/linux-paket-yonetimi.md)
+◈ [**Linux Paket Yönetimi**](md/linux-paket-yonetimi.md)
 
 ---
 
 # Linux Terminal, Nano ve Vim Kısayolları
 
-**Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları. **
+**Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
-◈ [Linux Terminal, Nano ve Vim Kısayolları](md/linux-bash-nano-vim-kisayollari.md)
+◈ [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-kisayollari.md)
