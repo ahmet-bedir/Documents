@@ -18,7 +18,7 @@
 
 **Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
-◈ [**Git Komutları**](md/git-komutlari.md)
+◈ [**Git Komutları**](git-commands.md)
 
 ---
 
@@ -26,7 +26,7 @@
 
 **PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.**
 
-◈ [**PostgreSQL**](md/postgresql.md)
+◈ [**PostgreSQL**](md/postgresql-management.md)
 
 ---
 
@@ -34,7 +34,7 @@
 
 **Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
 
-◈ [**Linux Paket Yönetimi**](md/linux-paket-yonetimi.md)
+◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
 
 ---
 
