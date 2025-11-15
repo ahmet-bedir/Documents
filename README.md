@@ -18,7 +18,7 @@
 
 **Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
-◈ [**Git Komutları**](git-commands.md)
+◈ [**Git Komutları**](md/git-commands.md)
 
 ---
 
@@ -42,4 +42,4 @@
 
 **Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
-◈ [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)
+◈ [**Linux Bash / Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)

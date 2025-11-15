@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="./images/git-banner.png" width="405"/>
+	<img src="../images/git-banner.png" width="405"/>
 <p/>
+
 
 ---
 
@@ -30,8 +31,6 @@ git config --global user.email
 ```
 
 ###### Not : Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.
-
-
 
 ---
 
@@ -85,7 +84,7 @@ git config --global core.editor
 >
 >   `git add .`
 
-> - **Staging alanına eklenmeden önce dosyada yapılan son değişiklikleri geri almak için:**
+> - **Staging alanına eklemeden önce dosyada yapılan son değişiklikleri geri almak için:**
 >
 >   `git restore <file_name>`
 
@@ -174,22 +173,13 @@ git checkout <commit id> -- .
 
 
 > - `git branch`  **:  Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu gösterir.**
->
-> - `git branch --all`  **:  Yerelimizde ve uzak depodaki tüm dalları gösterir.**
-> 
+>- `git branch --all`  **:  Yerelimizde ve uzak depodaki tüm dalları gösterir.**
 > - `git branch -r`  **:  Uzak depodaki dalları gösterir.**
-> 
 > - `git branch --all`  **:  Yerelimizde ve uzak depodaki tüm dalları gösterir.**
->
-> - `git branch -r`  **:  Uzak depodaki dalları gösterir.**
-> 
 > - `git branch <branch_name>`  **:  Yeni dal (branch) oluşturmak için kullanılır.**
-> 
 > - `git branch -m <branch_name> <new_branch_name>`  **:  Dal adını değiştirir, ancak yeni isimde bir dal varsa hata verir.**
->
 > - `git branch -M <branch_name> <new_branch_name>`  **:  Dal adını değiştirir, yeni isimde bir dal varsa üzerine yazar (force).**
->
-> - `git branch -D <branch_name>`  **:  Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.**
+>- `git branch -D <branch_name>`  **:  Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.**
 
 
 
@@ -383,7 +373,11 @@ git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<git
 git push -u <remote_name> <branch_name>
 ```
 
-###### Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece git push komutu aynı işlemi yapabilirsiniz.
+###### Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece `git push` komutu ile aynı işlemi yapabilirsiniz.
+
+
+
+---
 
 > - **Fetch işlemi, uzak depodaki yeni değişiklikleri lokal depoya indirir ancak lokaldeki çalışma dizinine (working directory) birleştirmez. Bu işlem, uzak depodaki değişikliklerin var olup olmadığını kontrol etmek için kullanır.**
 
@@ -392,6 +386,8 @@ git fetch <remote_name> <branch_name>
 ```
 
 
+
+---
 
 > - **Pull işlemi, uzak depodaki yeni değişiklikleri hem indirir hem de lokaldeki değişikliklerle birleştirir. Bu işlem, uzak depodaki değişiklikleri lokaldeki çalışma dizinine (working directory) eklemek istediğinizde kullanılır.**
 >   **git pull = git fetch + git merge**
@@ -402,15 +398,13 @@ git pull <remote_name> <branch_name>
 
 
 
+---
+
 > - **Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı https protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.**
 
 ```shell
 git clone https://github.com/<github_username>/<repo_name>.git
 ```
-
-
-
-
 
 > - **Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı ssh protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.**
 
@@ -422,7 +416,7 @@ git clone git@github.com:<github_username>/<repo_name>.git
 
 
 
-
+---
 
 <h3 align="center">Git Sistemi (Git System)<h3/>
 
