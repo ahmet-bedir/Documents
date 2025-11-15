@@ -1,4 +1,4 @@
-<img src="../images/linux+postgresql.png" width="770" />
+<img src="../images/linux+postgresql.png" width="550" />
 
 
 <a id="postgresql-yonetimi"><a/>
@@ -197,9 +197,9 @@ sudo systemctl restart postgresql
 
 ---
 
-### Terminalden PostgreSQL sunucusuna bağlanmak için:
-
 <a id="postgresql"><a/>
+
+### Terminalden PostgreSQL sunucusuna bağlanmak için:
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -207,7 +207,7 @@ sudo systemctl restart postgresql
 > -  `root@pardus:~# su - postgres`  **Komutu ile postgres kullanıcısına geçilir.**
 > - `postgres@pardus:~$ psql`  **Komutu ile PosgreSQL sunucusuna bağlanılır.**
 
-<img src="./Bilgisayar Resimleri/psql.png" style="zoom: 85%;" />
+<img src="../images/psql.png" />
 
 > **Yada PostgreSQL oturumuna kısayoldan bağlanmak için:**
 >
@@ -219,9 +219,9 @@ sudo systemctl restart postgresql
 
 ---
 
-### Veritabanı İstemcisi / psql
-
 <a id="psql"><a/>
+
+### Veritabanı İstemcisi / psql
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -321,9 +321,9 @@ db_name=>
 
 ---
 
-### Temel Veritabanı İşlemleri
-
 <a id="temel-veritabani"><a/>
+
+### Temel Veritabanı İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -402,9 +402,9 @@ DROP DATABASE
 
 ---
 
-### Tablo İşlemleri
-
 <a id="tablo"><a/>
+
+### Tablo İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -506,9 +506,9 @@ RENAME COLUMN eski_isim TO yeni_isim;
 
 ---
 
-### Veri İşlemleri
-
 <a id="veri"><a/>
+
+### Veri İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -687,9 +687,9 @@ SET
 
 ---
 
-### PostgreSQL Tarih ve Zaman Fonksiyonları
-
 <a id="zaman"><a/>
+
+### PostgreSQL Tarih ve Zaman Fonksiyonları
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -809,9 +809,9 @@ AGE() Fonksiyonu: Eğer doğum tarihinden yaş hesaplamak isterseniz, AGE() fonk
 
 ---
 
-### PostgreSQL String (Metin) Fonksiyonları
-
 <a id="metin"><a/>
+
+### PostgreSQL Metin (String) Fonksiyonları
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -1077,9 +1077,9 @@ SELECT ad, TO_CHAR(dtarihi, 'DD.MM.YYYY') AS dogum_tarihi FROM ogrenciler;
 
 ---
 
-### PostgreSQL Kullanıcı Yönetimi
-
 <a id="kullanici"><a/>
+
+### PostgreSQL Kullanıcı Yönetimi
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
