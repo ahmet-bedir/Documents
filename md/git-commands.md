@@ -1,8 +1,6 @@
 <p align="center">
 	<img src="../images/git-banner.png" width="405"/>
 <p/>
-
-
 ---
 
 # Git Komutları (Git Commands)
@@ -129,11 +127,7 @@ git commit -m "commit_mesajı"
 > 
 > - `git log --oneline`  **:  Yapılan commitleri tek satır şeklinde gösterir.**
 
-
-
-**HEAD  :  Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.**
-
-
+###### HEAD  :  Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
 
 > - `.gitignore`  **:  Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
 > 
@@ -261,7 +255,9 @@ git checkout <commit id> -- .
 
 
 
----
+
+
+
 
 ![](../images/new-repo.png)
 
@@ -276,6 +272,10 @@ git checkout <commit id> -- .
 ![](../images/create-new-repo.png)
 
 ---
+
+
+
+
 
 
 
