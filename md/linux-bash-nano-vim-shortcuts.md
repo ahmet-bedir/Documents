@@ -4,24 +4,25 @@
 
 | Kısayol  | Açıklama                                         |
 | -------- | ------------------------------------------------ |
-| Ctrl + A | İmleci satırın en başına götürür                 |
-| Ctrl + E | İmleci satırın en sonuna götürür                 |
-| Ctrl + B | Bir karakter sola yani geri (**b**ackward) gider |
-| Ctrl + F | Bir karakter sağa yani ileri (forward) gider     |
-| Alt + B  | Bir kelime sola yani geri (**b**ackward) gider   |
-| Alt + F  | Bir kelime sağa yani ileri (forward) gider       |
-| Ctrl + P | Önceki komutu gösterir (History Up)              |
-| Ctrl + N | Sonraki komutu gösterir (History Down)           |
-| Ctrl + U | İmleçten satır başına kadar kesme işlemi yapar   |
-| Ctrl + K | İmleçten satır sonuna kadar kesme işlemi yapar   |
-| Ctrl + W | İmlecin solundaki kelimeyi keser                 |
-| Ctrl + Y | Son kesilen metni yapıştırır                     |
-| Ctrl + L | Terminal ekranını temizler                       |
+| `Ctrl + A` | İmleci satırın en başına götürür                 |
+| `Ctrl + E` | İmleci satırın en sonuna götürür                 |
+| `Ctrl + B` | Bir karakter sola yani geri (Backward) gider |
+| `Ctrl + F` | Bir karakter sağa yani ileri (Forward) gider     |
+| `Alt + B`  | Bir kelime sola yani geri (Backward) gider   |
+| `Alt + F`  | Bir kelime sağa yani ileri (Forward) gider       |
+| `Ctrl + P` | Önceki komutu gösterir (History Up)              |
+| `Ctrl + N` | Sonraki komutu gösterir (History Down)           |
+| `Ctrl + U` | İmleçten satır başına kadar kesme işlemi yapar   |
+| `Ctrl + K` | İmleçten satır sonuna kadar kesme işlemi yapar   |
+| `Ctrl + W` | İmlecin solundaki kelimeyi keser                 |
+| `Ctrl + Y` | Son kesilen metni yapıştırır                     |
+| `Ctrl + L` | Terminal ekranını temizler                       |
 
 #### Düzenleme Kısayolları
 
-| `Alt + Backspace` | İmleçten önceki kelimeleri silmek için kullanılır            |
+| Kısayol           | Açıklama                                         |
 | ----------------- | ------------------------------------------------------------ |
+| `Alt + Backspace` | İmleçten önceki kelimeleri silmek için kullanılır            |
 | `Alt + D`         | İmleçten sonraki kelimeleri silmek için kullanılır           |
 | `Ctrl + _`        | Silinen karakter veya kelime öbeklerini geri getirmek için kullanılır |
 | `Alt + T`         | Kelimelerin yerini değiştirmek için kullanılır               |
