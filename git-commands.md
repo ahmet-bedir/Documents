@@ -341,7 +341,6 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 ```shell
 git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
 ```
-**veya ilk push sırasında kullanıcı adı olarak GitHub kullanıcı adını, şifre olarak PAT’i girerek de kullanabilirsin.**
 
 ###### Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
 
