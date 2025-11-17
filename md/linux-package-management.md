@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="../images/paket-yonetimi.webp" width="310" />
+  <img src="../images/paket-yonetimi.webp" width="280" />
 <p/>
+
 
 
 # Linux Paket Yönetimi
@@ -20,9 +21,13 @@
 dpkg -L <paket_adı>
 ```
 
+
+
 > `dpkg -r <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi silmek istersek `dpkg` aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.**
 >
 > ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de aracın bozulması pahasına paketi kaldırmak istiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
+
+
 
 > `dpkg -P <paket_adı>`  :  **Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “purge” yani “arındırmak” anlamındaki `P` seçeneği kullanılır.**
 
