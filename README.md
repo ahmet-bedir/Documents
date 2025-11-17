@@ -38,7 +38,7 @@
 
 ---
 
-## Linux Terminal, Nano ve Vim Kısayolları
+## Linux Bash / Terminal, Nano ve Vim Kısayolları
 
 **Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
