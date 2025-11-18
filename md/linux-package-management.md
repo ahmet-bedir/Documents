@@ -11,7 +11,7 @@
 
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
-> `dpkg -i <paket_adı.deb>`  :  **Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için `dpkg` komutunun “install” yani “kurma” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
+> `dpkg -i <paket_adı.deb>`  :  **Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
 >
 > ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
 
@@ -23,7 +23,7 @@ dpkg -L <paket_adı>
 
 
 
-> `dpkg -r <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi silmek istersek `dpkg` aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.**
+> `dpkg -r <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.**
 >
 > ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de aracın bozulması pahasına paketi kaldırmak istiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
 
@@ -57,7 +57,7 @@ dpkg -L <paket_adı>
 
 > `apt-get upgrade` | `apt upgrade`  :  **Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
 >
-> ###### Not : Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere <code>apt install &lt;paket_adı&gt;</code> şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutuda  sadece tek bir paketi günceller.
+> ###### Not : Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncellenir.
 
 > `apt-cache search <paket_adı>` | `apt search <paket_adı>`  :  **Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.**
 
@@ -75,17 +75,17 @@ dpkg -L <paket_adı>
 
 > `apt-get dist-upgrade`  :  **Komutu ile sistemde yüklü bulunan bir paketin bağımlılıkları arttıysa veya azaldıysa güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.**
 >
-> ###### Not : `apt full-upgrade` komutu sayesde güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanıyor.
+> ###### Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
 
 ---
 
 ### Gereksiz Paketlerin Silinmesi
 
-> **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler `/var/cache/apt/archives/` dizini altında tutuluyor. Bunları silmek için de yine `apt` aracını kullanabiliriz. Eğer `apt-get clean` ya da `apt clean` komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
+> **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler** `/var/cache/apt/archives/` **dizini altında tutuluyor. Bunları silmek için de yine** `apt` **aracını kullanabiliriz. Eğer** `apt-get clean` **ya da** `apt clean` **komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
 
 ---
 
-> **Eğer indirmiş olduğumuz `.deb` uzantılı paketi `apt` aracı ile kurarsak, internet bağlantımız da olduğu için `apt` aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi `apt` aracı ile kurabiliyoruz.**
+> **Eğer indirmiş olduğumuz** `.deb` **uzantılı paketi** `apt` **aracı ile kurarsak, internet bağlantımız da olduğu için** `apt` **aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi** `apt` **aracı ile kurabiliyoruz.**
 
 ```bash
 apt install ~/Downloads/<paket_adı.deb>
@@ -103,8 +103,8 @@ apt install ~/Downloads/<paket_adı.deb>
 sudo apt-get install -f ./<paket_adı.deb> --dry-run
 ```
 
-- `--dry-run` : Kurulum yapmaz, sadece simülasyon yapar.
-- Eksik bağımlılıkları listeler.
+> - `--dry-run` : **Kurulum yapmaz, sadece simülasyon yapar.**
+> - **Eksik bağımlılıkları listeler.**
 
 ---
 
