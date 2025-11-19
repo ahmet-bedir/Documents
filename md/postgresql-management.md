@@ -110,7 +110,7 @@ sudo systemctl enable postgresql
 ```
 
 
-> - **Kaynaktan derlediysen (`make install`): Kurulum sırasında `initdb` çalıştırırken verdiğin `-D` parametresine göre belirlenir.**
+> - **Kaynaktan derlediysen (**`make install`**) kurulum sırasında** `initdb` **çalıştırırken verdiğin** `-D` **parametresine göre belirlenir.**
 
 ```bash
 initdb -D /usr/local/pgsql/data

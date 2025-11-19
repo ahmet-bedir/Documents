@@ -31,7 +31,7 @@
 
 > **Bash kabuğunda etkileşimli kabuk kullanımını kolaylaştırmak için “otomatik tamamlama” özelliği bulunuyor. Bu özellik sayesinde komutların ve dosya klasör isimlerinin tab tuşuna basıldığında otomatik olarak kabuk tarafından tamamlanması mümkün oluyor.**
 >
-> **Örneğin** `pwd` **komutunu yazarken yalnızca **pw** yazıp iki kez tab tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.**
+> **Örneğin** `pwd` **komutunu yazarken yalnızca "pw" yazıp iki kez tab tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.**
 
 ![](../images/tab.gif)
 
