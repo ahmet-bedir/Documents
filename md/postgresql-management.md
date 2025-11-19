@@ -30,31 +30,31 @@
 
 ### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
-> Paket indexlerini güncelle.
+> **Paket indexlerini güncelle.**
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-> PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:
+> **PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:**
 
 ```bash
 sudo apt install postgresql -y
 ```
 
-> PostgreSQL servisini kontrol etmek için terminale:
+> **PostgreSQL servisini kontrol etmek için terminale:**
 
 ```bash
 sudo systemctl status postgresql
 ```
 
-> Eğer çalışmıyorsa başlatmak için:
+> **Eğer çalışmıyorsa başlatmak için:**
 
 ```bash
 sudo systemctl start postgresql
 ```
 
-> Sistem açılışında otomatik olarak başlaması için:
+> **Sistem açılışında otomatik olarak başlaması için:**
 
 ```bash
 sudo systemctl enable postgresql
@@ -64,7 +64,7 @@ sudo systemctl enable postgresql
 
 ### PostgreSQL Veritabanı Kümesi
 
-> PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.
+> **PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
 
 ##### Ana klasörler
 
@@ -81,11 +81,11 @@ sudo systemctl enable postgresql
 
 ##### Önemli dosyalar
 
-- `PG_VERSION` **→ Bu kümenin hangi PostgreSQL sürümüne ait olduğunu gösterir (ör. `15`).**
-- `postgresql.conf` **→ Sunucunun ana yapılandırma dosyası. (Port, shared_buffers, logging vs. ayarlar).**
-- `pg_hba.conf` **→ Kimlik doğrulama kuralları (hangi IP’den kim, hangi yöntemle bağlanabilir).**
-- `pg_ident.conf` **→ Sistem kullanıcıları ile PostgreSQL kullanıcılarını eşleştirme.**
-- `postmaster.pid` **→ Sunucu çalışırken PID (process ID) bilgisini tutar.**
+> - `PG_VERSION` **→ Bu kümenin hangi PostgreSQL sürümüne ait olduğunu gösterir (ör. `15`).**
+> - `postgresql.conf` **→ Sunucunun ana yapılandırma dosyası. (Port, shared_buffers, logging vs. ayarlar).**
+> - `pg_hba.conf` **→ Kimlik doğrulama kuralları (hangi IP’den kim, hangi yöntemle bağlanabilir).**
+> - `pg_ident.conf` **→ Sistem kullanıcıları ile PostgreSQL kullanıcılarını eşleştirme.**
+> - `postmaster.pid` **→ Sunucu çalışırken PID (process ID) bilgisini tutar.**
 
 ---
 
