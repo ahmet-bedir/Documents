@@ -30,35 +30,31 @@
 
 ### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
-#### Paket indexlerini güncelle.
+> Paket indexlerini güncelle.
 
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
-#### PostgreSQL kur.
-
-**Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:**
+> PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:
 
 ```bash
 sudo apt install postgresql -y
 ```
 
-#### PostgreSQL servisini kontrol et.
-
-**Linux’ta kontrol için terminale:**
+> PostgreSQL servisini kontrol etmek için terminale:
 
 ```bash
 sudo systemctl status postgresql
 ```
 
-**Eğer çalışmıyorsa başlatmak için:**
+> Eğer çalışmıyorsa başlatmak için:
 
 ```bash
 sudo systemctl start postgresql
 ```
 
-**Sistem açılışında otomatik olarak başlaması için:**
+> Sistem açılışında otomatik olarak başlaması için:
 
 ```bash
 sudo systemctl enable postgresql
@@ -66,22 +62,24 @@ sudo systemctl enable postgresql
 
 ---
 
-##### PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.
+### PostgreSQL Veritabanı Kümesi
 
-#### Ana klasörler
+> PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.
 
-  - `base/` **→ Tüm veritabanlarının tabloları burada durur.**
-     **Her veritabanı için bir alt klasör vardır. Her tablo, index, sequence dosya olarak saklanır.**
-  - `global/` **→ Tüm cluster’a ait global veriler (ör. kullanıcılar, roller, transaction ID’ler).**
-  - `pg_wal/`(eski adı `pg_xlog`) **→ Write Ahead Log dosyaları; veri bütünlüğünü sağlamak için yapılan değişikliklerin günlükleri.**
-  - `pg_multixact/` **→ Çoklu transaction bilgileri.**
-  - `pg_tblspc/` **→ Tablespace’lere (farklı disklere/veri yollarına ayrılan alanlar) sembolik linkler.**
-  - `pg_stat/` **→ İstatistik bilgileri.**
-  - `pg_logical/` **→ Mantıksal replikasyon için kullanılan bilgiler.**
-  - `pg_commit_ts/` **→ Commit timestamp verileri.**
-  - `pg_subtrans/` **→ Transaction alt-id bilgileri.**
+##### Ana klasörler
 
-#### Önemli dosyalar
+>  - `base/` **→ Tüm veritabanlarının tabloları burada durur.**
+>     **Her veritabanı için bir alt klasör vardır. Her tablo, index, sequence dosya olarak saklanır.**
+>  - `global/` **→ Tüm cluster’a ait global veriler (ör. kullanıcılar, roller, transaction ID’ler).**
+>  - `pg_wal/`(eski adı `pg_xlog`) **→ Write Ahead Log dosyaları; veri bütünlüğünü sağlamak için yapılan değişikliklerin günlükleri.**
+>  - `pg_multixact/` **→ Çoklu transaction bilgileri.**
+>  - `pg_tblspc/` **→ Tablespace’lere (farklı disklere/veri yollarına ayrılan alanlar) sembolik linkler.**
+>  - `pg_stat/` **→ İstatistik bilgileri.**
+>  - `pg_logical/` **→ Mantıksal replikasyon için kullanılan bilgiler.**
+>  - `pg_commit_ts/` **→ Commit timestamp verileri.**
+>  - `pg_subtrans/` **→ Transaction alt-id bilgileri.**
+
+##### Önemli dosyalar
 
 - `PG_VERSION` **→ Bu kümenin hangi PostgreSQL sürümüne ait olduğunu gösterir (ör. `15`).**
 - `postgresql.conf` **→ Sunucunun ana yapılandırma dosyası. (Port, shared_buffers, logging vs. ayarlar).**
@@ -221,7 +219,7 @@ sudo systemctl restart postgresql
 
 <a id="psql"><a/>
 
-### Veritabanı İstemcisi / psql
+## Veritabanı İstemcisi / psql
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -323,7 +321,7 @@ db_name=>
 
 <a id="temel-veritabani"><a/>
 
-### Temel Veritabanı İşlemleri
+## Temel Veritabanı İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -402,9 +400,155 @@ DROP DATABASE
 
 ---
 
+## PostgreSQL’de Veri Türleri (Data Types)
+
+## 📌 1) SAYISAL (NUMERIC) TİPLER
+
+| Veri Türü                  | Kapladığı Boyut                   | Min / Max Değeri               | Örnek Kullanım            |
+| -------------------------- | --------------------------------- | ------------------------------ | ------------------------- |
+| **smallint**               | 2 byte                            | –32768 → 32767                 | `age smallint`            |
+| **integer (int)**          | 4 byte                            | –2,147,483,648 → 2,147,483,647 | `id int`                  |
+| **bigint**                 | 8 byte                            | –9,22e18 → 9,22e18             | `population bigint`       |
+| **decimal / numeric(p,s)** | Değişken (yakl. 2 byte / 4 digit) | Hassasiyet sınırsız            | `price numeric(12,2)`     |
+| **real**                   | 4 byte                            | ~6 hane hassasiyet             | `temperature real`        |
+| **double precision**       | 8 byte                            | ~15 hane hassasiyet            | `rating double precision` |
+| **serial**                 | 4 byte (int)                      | 1 → 2 milyar                   | `id serial`               |
+| **bigserial**              | 8 byte                            | 1 → 9e18                       | `id bigserial`            |
+
+------
+
+## 📌 2) METİN (TEXT) TİPLERİ
+
+| Veri Türü              | Boyut             | Max Uzunluk        | Örnek                                   |
+| ---------------------- | ----------------- | ------------------ | --------------------------------------- |
+| **text**               | Değişken (1B–1GB) | 1 GB (yaklaşık)    | `description text`                      |
+| **varchar(n)**         | Değişken          | n karakter         | `name varchar(255)`                     |
+| **char(n)**            | n byte            | n karakter (sabit) | `code char(10)`                         |
+| **varchar** (sınırsız) | Değişken          | 1 GB               | `name varchar`                          |
+| **citext**             | Değişken          | 1 GB               | `email citext` *(büyük/küçük duyarsız)* |
+
+------
+
+## 📌 3) BOOLEAN
+
+| Tür         | Boyut  | Açıklama     |
+| ----------- | ------ | ------------ |
+| **boolean** | 1 byte | true / false |
+
+Örnek:
+
+```
+is_active boolean
+```
+
+------
+
+## 📌 4) TARİH & SAAT TİPLERİ
+
+| Veri Türü               | Boyut   | Aralık               | Örnek                    |
+| ----------------------- | ------- | -------------------- | ------------------------ |
+| **date**                | 4 byte  | MÖ 4713 – MS 5874897 | `birthdate date`         |
+| **time**                | 8 byte  | 00:00 → 24:00        | `start_at time`          |
+| **time with time zone** | 12 byte |                      | `start_at timetz`        |
+| **timestamp**           | 8 byte  | MÖ 4713 – MS 294276  | `created_at timestamp`   |
+| **timestamptz**         | 8 byte  |                      | `created_at timestamptz` |
+| **interval**            | 16 byte | ±178 milyon yıl      | `duration interval`      |
+
+------
+
+## 📌 5) JSON TİPLERİ
+
+| Tür       | Boyut    | Max  | Örnek        |
+| --------- | -------- | ---- | ------------ |
+| **json**  | Değişken | 1 GB | `data json`  |
+| **jsonb** | Değişken | 1 GB | `meta jsonb` |
+
+------
+
+## 📌 6) ARRAY (DİZİ) TİPLERİ
+
+| Tür                            | Boyut    | Limit               | Örnek         |
+| ------------------------------ | -------- | ------------------- | ------------- |
+| **int[] , text[] , varchar[]** | Değişken | Her eleman max 1 GB | `tags text[]` |
+
+Dizi elemanları kendi veri türünün boyutuna bağlıdır.
+
+------
+
+## 📌 7) UUID
+
+| Tür      | Boyut   | Açıklama                | Örnek                               |
+| -------- | ------- | ----------------------- | ----------------------------------- |
+| **uuid** | 16 byte | Global benzersiz kimlik | `id uuid DEFAULT gen_random_uuid()` |
+
+------
+
+## 📌 8) PARA TİPİ
+
+| Tür       | Boyut  | Örnek          |
+| --------- | ------ | -------------- |
+| **money** | 8 byte | `amount money` |
+
+(Tavsiye edilen `numeric(12,2)`)
+
+------
+
+## 📌 9) BINARY / BYTEA
+
+| Tür       | Boyut    | Limit | Örnek        |
+| --------- | -------- | ----- | ------------ |
+| **bytea** | Değişken | 1 GB  | `file bytea` |
+
+Dosya, resim, video saklamak için.
+
+------
+
+## 📌 10) ÖZEL (SPECIAL) TİPLER
+
+| Tür          | Boyut     | Açıklama         |
+| ------------ | --------- | ---------------- |
+| **inet**     | 7–19 byte | IP adresi        |
+| **cidr**     | 7–19 byte | IP blokları      |
+| **macaddr**  | 6 byte    | MAC adresi       |
+| **macaddr8** | 8 byte    |                  |
+| **tsvector** | Değişken  | Full-text search |
+| **tsquery**  | Değişken  | Text search      |
+| **point**    | 16 byte   | (x,y)            |
+| **line**     | 32 byte   | Sonsuz çizgi     |
+| **lseg**     | 32 byte   | Çizgi parçası    |
+| **box**      | 32 byte   | Dikdörtgen       |
+| **circle**   | 24 byte   | Daire            |
+| **polygon**  | Değişken  | Çokgen           |
+| **enum**     | 4 byte    | Sabit değerler   |
+
+Örnek enum:
+
+```
+CREATE TYPE status AS ENUM ('active','passive');
+```
+
+------
+
+# 🟦 11) XML
+
+| Tür     | Boyut    | Limit |
+| ------- | -------- | ----- |
+| **xml** | Değişken | 1 GB  |
+
+------
+
+# 🟦 12) Object Identifier (OID) Türleri
+
+| Tür                                | Boyut  | Açıklama            |
+| ---------------------------------- | ------ | ------------------- |
+| **oid**                            | 4 byte | Sistem nesne ID’si  |
+| **regclass, regtype, regproc ...** | 4 byte | Sistem referansları |
+
+---
+
 <a id="tablo"><a/>
 
-### Tablo İşlemleri
+## Tablo İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -508,7 +652,7 @@ RENAME COLUMN eski_isim TO yeni_isim;
 
 <a id="veri"><a/>
 
-### Veri İşlemleri
+## Veri İşlemleri
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -579,31 +723,132 @@ DELETE 1
 
 ### İndeks İşlemleri
 
-**PostgreSQL Primary Key ya da Unique Constraint için indeksi otomatik olarak oluşturur.**
+PostgreSQL’de **index (indeks)** işlemleri; sorguları hızlandırmak, tablo içindeki belirli kolonlara göre hızlı arama yapabilmek için kullanılır.
+
+Index, bir tablo içinde belirli sütunlara göre **arama / filtreleme / sıralama** işlemlerini hızlandıran veri yapılarıdır. Bir nevi kitabın arka dizini gibi çalışır.
+
+------
+
+#### 🟩 1) Index Oluşturma (CREATE INDEX)
+
+##### **Temel kullanım**
 
 ```sql
-postgres=# \d personel
-          Table "public.personel"
- Column |         Type          | Modifiers
---------+-----------------------+-----------
- ad     | character varying(40) |
- soyad  | character varying(40) |
- kidem  | integer               |
- uid    | integer               | not null
-Indexes:
-    "personel_pkey" PRIMARY KEY, btree (uid)
+CREATE INDEX idx_adi ON tablo_adi (kolon_adi);
 ```
 
-**Standart indeks oluşturma:**
+##### Örnek:
 
-```sql
-postgres=# CREATE INDEX soyad_idx ON personel (soyad);
-CREATE INDEX
+```postgresql
+CREATE INDEX idx_users_email ON users (email);
 ```
+
+📌 *Bu, users tablosunda email üzerinden aramayı hızlandırır.*
+
+------
+
+#### 🟩 2) UNIQUE Index
+
+Aynı değerin iki kez girilmesini engeller.
+
+```postgresql
+CREATE UNIQUE INDEX idx_users_tc ON users (tc_kimlik);
+```
+
+------
+
+#### 🟩 3) Birden Fazla Kolonlu (Composite) Index
+
+```
+CREATE INDEX idx_orders_user_date ON orders (user_id, order_date);
+```
+
+📌 *Sorgu hem user_id hem de order_date içeriyorsa hızlanır.*
+
+------
+
+#### 🟩 4) Index Silme (DROP INDEX)
+
+```
+DROP INDEX idx_adi;
+```
+
+Örnek:
+
+```
+DROP INDEX idx_users_email;
+```
+
+------
+
+#### 🟩 5) Indexleri Listeleme
+
+Sadece açıklayıcı yapmak istersen:
+
+```
+\d tablo_adi
+```
+
+veya
+
+```
+SELECT * FROM pg_indexes WHERE tablename = 'users';
+```
+
+------
+
+#### 🟩 6) Index Çalışıyor mu? — EXPLAIN ANALYZE
+
+Sorgu index kullanıyor mu görmek için:
+
+```
+EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@b.com';
+```
+
+Çıktıda → `Index Scan` yazıyorsa index kullanılıyor demektir.
+
+------
+
+#### 🟩 7) En Yaygın Index Türleri
+
+| Index Türü | Açıklama                                      | Kullanım Alanı          |
+| ---------- | --------------------------------------------- | ----------------------- |
+| **B-Tree** | Varsayılan index                              | Eşitlik, <, >, ORDER BY |
+| **Hash**   | Sadece eşitlik için                           | WHERE id = 5            |
+| **GIN**    | JSONB, Array                                  | JSON içi arama          |
+| **GiST**   | Geometrik, tam metin                          | Konum / yakınlık        |
+| **BRIN**   | Çok büyük (milyonlarca satır), sıralı veriler | Zaman serisi            |
+
+------
+
+#### 🟦 8) JSONB için Index Örneği (GIN)
+
+```
+CREATE INDEX idx_products_data ON products USING GIN (data);
+```
+
+------
+
+#### 🟩 9) Partial (Koşullu) Index
+
+Tablonun tamamı yerine sadece belirli bir kısmında index oluşturur.
+
+```
+CREATE INDEX idx_active_users ON users (email)
+WHERE active = true;
+```
+
+------
+
+#### 🟦 10) Index Ne Zaman Kullanılmamalı?
+
+- Tablo çok küçükse (1–2 bin satır)
+- Kolon çok fazla tekrar eden değerler içeriyorsa (ör: cinsiyet)
+- Sürekli güncellenen kolonlar (index güncelleme maliyeti yüksek)
 
 ---
 
-### Referans Verme İşlemleri
+## Referans Verme İşlemleri
 
 **Bir tablodan başka bir tabloya o tablonun Primary Key alanı aracılığıyla referans verilir.**
 
@@ -642,6 +887,175 @@ Indexes:
     "orders_pkey" PRIMARY KEY, btree (no)
 Foreign-key constraints:
     "orders_item_code_fkey" FOREIGN KEY (item_code) REFERENCES items(code)
+```
+
+
+
+PostgreSQL’de **referans verme** işlemi, yani **FOREIGN KEY (yabancı anahtar)** tanımlamak; bir tablodaki bir kolonun başka bir tablodaki PRIMARY KEY/UNIQUE bir kolona bağlı olmasını sağlar. Bu, veri bütünlüğü için çok önemlidir.
+
+Aşağıda konuyu kısa–net–örneklerle anlatıyorum.
+
+------
+
+# 🟥 1) Temel FOREIGN KEY Kullanımı
+
+## ✔ İki tablo düşünelim:
+
+- **users** (ana tablo)
+- **orders** (users tablosunu referanslayan alt tablo)
+
+### **users tablosu**
+
+```
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+);
+```
+
+### **orders tablosu (FOREIGN KEY ile)**
+
+```
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+```
+
+🔹 Burada **orders.user_id → users.id** şeklinde referans verildi.
+
+------
+
+# 🟥 2) FOREIGN KEY Sonradan Ekleme
+
+Eğer tabloyu önceden oluşturduysan:
+
+```
+ALTER TABLE orders
+ADD CONSTRAINT fk_orders_user
+FOREIGN KEY (user_id) REFERENCES users(id);
+```
+
+------
+
+# 🟥 3) FOREIGN KEY Silme
+
+```
+ALTER TABLE orders
+DROP CONSTRAINT fk_orders_user;
+```
+
+------
+
+# 🟥 4) ON DELETE / ON UPDATE Kuralları
+
+Referans verilen veride değişiklik veya silme olunca ne yapılacağını belirler.
+
+------
+
+## ✔ **ON DELETE CASCADE**
+
+Ana tablo silinince alt tablodaki ilgili kayıtlar da otomatik silinir.
+
+```
+FOREIGN KEY (user_id)
+REFERENCES users(id)
+ON DELETE CASCADE;
+```
+
+------
+
+## ✔ **ON DELETE SET NULL**
+
+Ana tablo silinince alt tablodaki değer NULL olur.
+
+```
+FOREIGN KEY (user_id)
+REFERENCES users(id)
+ON DELETE SET NULL;
+```
+
+------
+
+## ✔ **ON DELETE RESTRICT / NO ACTION**
+
+Silme *engellenir*.
+
+```
+ON DELETE RESTRICT;
+```
+
+------
+
+# 🟥 5) Composite (Çoklu kolon) FOREIGN KEY
+
+Eğer tabloda iki kolon birlikte PRIMARY KEY ise:
+
+### Ana tablo
+
+```
+CREATE TABLE cities (
+    country_code TEXT,
+    city_code TEXT,
+    PRIMARY KEY(country_code, city_code)
+);
+```
+
+### Referans veren tablo
+
+```
+CREATE TABLE people (
+    id SERIAL PRIMARY KEY,
+    country_code TEXT,
+    city_code TEXT,
+    FOREIGN KEY (country_code, city_code)
+        REFERENCES cities(country_code, city_code)
+);
+```
+
+------
+
+# 🟥 6) FOREIGN KEY ile Index İlişkisi
+
+PostgreSQL, referans veren kolonlara **otomatik index oluşturmaz**.
+
+Örnek:
+
+```
+ALTER TABLE orders
+ADD FOREIGN KEY (user_id) REFERENCES users(id);
+```
+
+📌 Bu durumda **orders.user_id** için index önerilir:
+
+```
+CREATE INDEX idx_orders_user_id ON orders(user_id);
+```
+
+------
+
+#### 🟥 7) Tabloları Listeleme + Foreign Key’leri Görme
+
+```
+\d orders
+```
+
+veya:
+
+```
+SELECT
+    tc.table_name,
+    kcu.column_name,
+    ccu.table_name AS foreign_table,
+    ccu.column_name AS foreign_column
+FROM 
+    information_schema.table_constraints AS tc
+JOIN information_schema.key_column_usage AS kcu
+    ON tc.constraint_name = kcu.constraint_name
+JOIN information_schema.constraint_column_usage AS ccu
+    ON ccu.constraint_name = tc.constraint_name
+WHERE constraint_type = 'FOREIGN KEY';
 ```
 
 ---
