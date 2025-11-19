@@ -16,9 +16,15 @@
 
 ▸ [**Temel Veritabanı İşlemleri...**](#temel-veritabani)
 
+▸ [**Veri Türleri...**](#veri-turleri)
+
 ▸ [**Tablo İşlemleri...**](#tablo)
 
 ▸ [**Veri İşlemleri...**](#veri)
+
+▸ [**İndex İşlemleri...**](#index)
+
+▸ [**Referans işlemleri...**](#referans)
 
 ▸ [**Tarih ve Zaman Fonksiyonları...**](#zaman)
 
@@ -99,7 +105,7 @@ sudo systemctl enable postgresql
 
 > - **RedHat / CentOS / Fedora dağıtımlarında  (yum/dnf ile kurulum):**
 
-```
+```bash
 /var/lib/pgsql/<version>/data
 ```
 
@@ -400,9 +406,13 @@ DROP DATABASE
 
 ---
 
+<a id="veri-turleri"><a/>
+
 ## PostgreSQL’de Veri Türleri (Data Types)
 
-## 📌 1) SAYISAL (NUMERIC) TİPLER
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+
+#### 📌 1) SAYISAL (NUMERIC) TİPLER
 
 | Veri Türü                  | Kapladığı Boyut                   | Min / Max Değeri               | Örnek Kullanım            |
 | -------------------------- | --------------------------------- | ------------------------------ | ------------------------- |
@@ -417,7 +427,7 @@ DROP DATABASE
 
 ------
 
-## 📌 2) METİN (TEXT) TİPLERİ
+#### 📌 2) METİN (TEXT) TİPLERİ
 
 | Veri Türü              | Boyut             | Max Uzunluk        | Örnek                                   |
 | ---------------------- | ----------------- | ------------------ | --------------------------------------- |
@@ -429,7 +439,7 @@ DROP DATABASE
 
 ------
 
-## 📌 3) BOOLEAN
+#### 📌 3) BOOLEAN
 
 | Tür         | Boyut  | Açıklama     |
 | ----------- | ------ | ------------ |
@@ -437,13 +447,13 @@ DROP DATABASE
 
 Örnek:
 
-```
+```postgresql
 is_active boolean
 ```
 
 ------
 
-## 📌 4) TARİH & SAAT TİPLERİ
+#### 📌 4) TARİH & SAAT TİPLERİ
 
 | Veri Türü               | Boyut   | Aralık               | Örnek                    |
 | ----------------------- | ------- | -------------------- | ------------------------ |
@@ -456,7 +466,7 @@ is_active boolean
 
 ------
 
-## 📌 5) JSON TİPLERİ
+#### 📌 5) JSON TİPLERİ
 
 | Tür       | Boyut    | Max  | Örnek        |
 | --------- | -------- | ---- | ------------ |
@@ -465,17 +475,17 @@ is_active boolean
 
 ------
 
-## 📌 6) ARRAY (DİZİ) TİPLERİ
+#### 📌 6) ARRAY (DİZİ) TİPLERİ
 
 | Tür                            | Boyut    | Limit               | Örnek         |
 | ------------------------------ | -------- | ------------------- | ------------- |
 | **int[] , text[] , varchar[]** | Değişken | Her eleman max 1 GB | `tags text[]` |
 
-Dizi elemanları kendi veri türünün boyutuna bağlıdır.
+**Dizi elemanları kendi veri türünün boyutuna bağlıdır.**
 
 ------
 
-## 📌 7) UUID
+#### 📌 7) UUID
 
 | Tür      | Boyut   | Açıklama                | Örnek                               |
 | -------- | ------- | ----------------------- | ----------------------------------- |
@@ -483,7 +493,7 @@ Dizi elemanları kendi veri türünün boyutuna bağlıdır.
 
 ------
 
-## 📌 8) PARA TİPİ
+#### 📌 8) PARA TİPİ
 
 | Tür       | Boyut  | Örnek          |
 | --------- | ------ | -------------- |
@@ -493,17 +503,17 @@ Dizi elemanları kendi veri türünün boyutuna bağlıdır.
 
 ------
 
-## 📌 9) BINARY / BYTEA
+#### 📌 9) BINARY / BYTEA
 
 | Tür       | Boyut    | Limit | Örnek        |
 | --------- | -------- | ----- | ------------ |
 | **bytea** | Değişken | 1 GB  | `file bytea` |
 
-Dosya, resim, video saklamak için.
+**Dosya, resim, video saklamak için.**
 
 ------
 
-## 📌 10) ÖZEL (SPECIAL) TİPLER
+#### 📌 10) ÖZEL (SPECIAL) TİPLER
 
 | Tür          | Boyut     | Açıklama         |
 | ------------ | --------- | ---------------- |
@@ -523,13 +533,13 @@ Dosya, resim, video saklamak için.
 
 Örnek enum:
 
-```
+```postgresql
 CREATE TYPE status AS ENUM ('active','passive');
 ```
 
 ------
 
-# 🟦 11) XML
+#### 🟦 11) XML
 
 | Tür     | Boyut    | Limit |
 | ------- | -------- | ----- |
@@ -537,7 +547,7 @@ CREATE TYPE status AS ENUM ('active','passive');
 
 ------
 
-# 🟦 12) Object Identifier (OID) Türleri
+#### 🟦 12) Object Identifier (OID) Türleri
 
 | Tür                                | Boyut  | Açıklama            |
 | ---------------------------------- | ------ | ------------------- |
@@ -721,23 +731,27 @@ DELETE 1
 
 ---
 
-### İndeks İşlemleri
+<a id="index"><a/>
 
-PostgreSQL’de **index (indeks)** işlemleri; sorguları hızlandırmak, tablo içindeki belirli kolonlara göre hızlı arama yapabilmek için kullanılır.
+## İndeks İşlemleri
 
-Index, bir tablo içinde belirli sütunlara göre **arama / filtreleme / sıralama** işlemlerini hızlandıran veri yapılarıdır. Bir nevi kitabın arka dizini gibi çalışır.
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+
+**PostgreSQL’de index işlemleri; sorguları hızlandırmak, tablo içindeki belirli kolonlara göre hızlı arama yapabilmek için kullanılır.**
+
+**Index, bir tablo içinde belirli sütunlara göre arama / filtreleme / sıralama işlemlerini hızlandıran veri yapılarıdır. Bir nevi kitabın arka dizini gibi çalışır.**
 
 ------
 
 #### 🟩 1) Index Oluşturma (CREATE INDEX)
 
-##### **Temel kullanım**
+**Temel kullanım**
 
-```sql
+```postgresql
 CREATE INDEX idx_adi ON tablo_adi (kolon_adi);
 ```
 
-##### Örnek:
+**Örnek:**
 
 ```postgresql
 CREATE INDEX idx_users_email ON users (email);
@@ -749,7 +763,7 @@ CREATE INDEX idx_users_email ON users (email);
 
 #### 🟩 2) UNIQUE Index
 
-Aynı değerin iki kez girilmesini engeller.
+**Aynı değerin iki kez girilmesini engeller.**
 
 ```postgresql
 CREATE UNIQUE INDEX idx_users_tc ON users (tc_kimlik);
@@ -773,7 +787,7 @@ CREATE INDEX idx_orders_user_date ON orders (user_id, order_date);
 DROP INDEX idx_adi;
 ```
 
-Örnek:
+**Örnek:**
 
 ```
 DROP INDEX idx_users_email;
@@ -783,15 +797,15 @@ DROP INDEX idx_users_email;
 
 #### 🟩 5) Indexleri Listeleme
 
-Sadece açıklayıcı yapmak istersen:
+**Sadece açıklayıcı yapmak istersen:**
 
-```
+```postgresql
 \d tablo_adi
 ```
 
 veya
 
-```
+```postgresql
 SELECT * FROM pg_indexes WHERE tablename = 'users';
 ```
 
@@ -799,13 +813,13 @@ SELECT * FROM pg_indexes WHERE tablename = 'users';
 
 #### 🟩 6) Index Çalışıyor mu? — EXPLAIN ANALYZE
 
-Sorgu index kullanıyor mu görmek için:
+**Sorgu index kullanıyor mu görmek için:**
 
-```
+```postgresql
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@b.com';
 ```
 
-Çıktıda → `Index Scan` yazıyorsa index kullanılıyor demektir.
+**Çıktıda →** `Index Scan` **yazıyorsa index kullanılıyor demektir.**
 
 ------
 
@@ -823,7 +837,7 @@ EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@b.com';
 
 #### 🟦 8) JSONB için Index Örneği (GIN)
 
-```
+```postgresql
 CREATE INDEX idx_products_data ON products USING GIN (data);
 ```
 
@@ -831,9 +845,9 @@ CREATE INDEX idx_products_data ON products USING GIN (data);
 
 #### 🟩 9) Partial (Koşullu) Index
 
-Tablonun tamamı yerine sadece belirli bir kısmında index oluşturur.
+**Tablonun tamamı yerine sadece belirli bir kısmında index oluşturur.**
 
-```
+```postgresql
 CREATE INDEX idx_active_users ON users (email)
 WHERE active = true;
 ```
@@ -842,13 +856,17 @@ WHERE active = true;
 
 #### 🟦 10) Index Ne Zaman Kullanılmamalı?
 
-- Tablo çok küçükse (1–2 bin satır)
-- Kolon çok fazla tekrar eden değerler içeriyorsa (ör: cinsiyet)
-- Sürekli güncellenen kolonlar (index güncelleme maliyeti yüksek)
+- **Tablo çok küçükse (1–2 bin satır)**
+- **Kolon çok fazla tekrar eden değerler içeriyorsa (ör: cinsiyet)**
+- **Sürekli güncellenen kolonlar (index güncelleme maliyeti yüksek)**
 
 ---
 
+<a id="referans"><a/>
+
 ## Referans Verme İşlemleri
+
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
 **Bir tablodan başka bir tabloya o tablonun Primary Key alanı aracılığıyla referans verilir.**
 
@@ -891,31 +909,29 @@ Foreign-key constraints:
 
 
 
-PostgreSQL’de **referans verme** işlemi, yani **FOREIGN KEY (yabancı anahtar)** tanımlamak; bir tablodaki bir kolonun başka bir tablodaki PRIMARY KEY/UNIQUE bir kolona bağlı olmasını sağlar. Bu, veri bütünlüğü için çok önemlidir.
-
-Aşağıda konuyu kısa–net–örneklerle anlatıyorum.
+**PostgreSQL’de referans verme işlemi, yani FOREIGN KEY (yabancı anahtar) tanımlamak; bir tablodaki bir kolonun başka bir tablodaki PRIMARY KEY/UNIQUE bir kolona bağlı olmasını sağlar. Bu, veri bütünlüğü için çok önemlidir.**
 
 ------
 
-# 🟥 1) Temel FOREIGN KEY Kullanımı
+#### 🟥 1) Temel FOREIGN KEY Kullanımı
 
-## ✔ İki tablo düşünelim:
+**✔ İki tablo düşünelim:**
 
 - **users** (ana tablo)
 - **orders** (users tablosunu referanslayan alt tablo)
 
-### **users tablosu**
+**users tablosu**
 
-```
+```postgresql
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     name TEXT
 );
 ```
 
-### **orders tablosu (FOREIGN KEY ile)**
+**orders tablosu (FOREIGN KEY ile)**
 
-```
+```postgresql
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     user_id INT,
@@ -927,11 +943,11 @@ CREATE TABLE orders (
 
 ------
 
-# 🟥 2) FOREIGN KEY Sonradan Ekleme
+#### 🟥 2) FOREIGN KEY Sonradan Ekleme
 
-Eğer tabloyu önceden oluşturduysan:
+**Eğer tabloyu önceden oluşturduysan:**
 
-```
+```postgresql
 ALTER TABLE orders
 ADD CONSTRAINT fk_orders_user
 FOREIGN KEY (user_id) REFERENCES users(id);
@@ -939,26 +955,24 @@ FOREIGN KEY (user_id) REFERENCES users(id);
 
 ------
 
-# 🟥 3) FOREIGN KEY Silme
+#### 🟥 3) FOREIGN KEY Silme
 
-```
+```postgresql
 ALTER TABLE orders
 DROP CONSTRAINT fk_orders_user;
 ```
 
 ------
 
-# 🟥 4) ON DELETE / ON UPDATE Kuralları
+#### 🟥 4) ON DELETE / ON UPDATE Kuralları
 
-Referans verilen veride değişiklik veya silme olunca ne yapılacağını belirler.
+**Referans verilen veride değişiklik veya silme olunca ne yapılacağını belirler.**
 
-------
+**✔ ON DELETE CASCADE**
 
-## ✔ **ON DELETE CASCADE**
+**Ana tablo silinince alt tablodaki ilgili kayıtlar da otomatik silinir.**
 
-Ana tablo silinince alt tablodaki ilgili kayıtlar da otomatik silinir.
-
-```
+```postgresql
 FOREIGN KEY (user_id)
 REFERENCES users(id)
 ON DELETE CASCADE;
@@ -966,11 +980,11 @@ ON DELETE CASCADE;
 
 ------
 
-## ✔ **ON DELETE SET NULL**
+**✔ ON DELETE SET NULL**
 
-Ana tablo silinince alt tablodaki değer NULL olur.
+**Ana tablo silinince alt tablodaki değer NULL olur.**
 
-```
+```postgresql
 FOREIGN KEY (user_id)
 REFERENCES users(id)
 ON DELETE SET NULL;
@@ -978,33 +992,32 @@ ON DELETE SET NULL;
 
 ------
 
-## ✔ **ON DELETE RESTRICT / NO ACTION**
+**✔ ON DELETE RESTRICT / NO ACTION**
 
 Silme *engellenir*.
 
-```
+```postgresql
 ON DELETE RESTRICT;
 ```
 
 ------
 
-# 🟥 5) Composite (Çoklu kolon) FOREIGN KEY
+#### 🟥 5) Composite (Çoklu kolon) FOREIGN KEY
 
-Eğer tabloda iki kolon birlikte PRIMARY KEY ise:
+**Eğer tabloda iki kolon birlikte PRIMARY KEY ise:**
 
-### Ana tablo
+**Ana tablo**
 
-```
+```postgresql
 CREATE TABLE cities (
     country_code TEXT,
     city_code TEXT,
     PRIMARY KEY(country_code, city_code)
 );
 ```
+**Referans veren tablo**
 
-### Referans veren tablo
-
-```
+```postgresql
 CREATE TABLE people (
     id SERIAL PRIMARY KEY,
     country_code TEXT,
@@ -1016,20 +1029,20 @@ CREATE TABLE people (
 
 ------
 
-# 🟥 6) FOREIGN KEY ile Index İlişkisi
+#### 🟥 6) FOREIGN KEY ile Index İlişkisi
 
-PostgreSQL, referans veren kolonlara **otomatik index oluşturmaz**.
+**PostgreSQL, referans veren kolonlara otomatik index oluşturmaz.**
 
-Örnek:
+**Örnek:**
 
-```
+```postgresql
 ALTER TABLE orders
 ADD FOREIGN KEY (user_id) REFERENCES users(id);
 ```
 
 📌 Bu durumda **orders.user_id** için index önerilir:
 
-```
+```postgresql
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 ```
 
@@ -1037,13 +1050,13 @@ CREATE INDEX idx_orders_user_id ON orders(user_id);
 
 #### 🟥 7) Tabloları Listeleme + Foreign Key’leri Görme
 
-```
+```postgresql
 \d orders
 ```
 
 veya:
 
-```
+```postgresql
 SELECT
     tc.table_name,
     kcu.column_name,
