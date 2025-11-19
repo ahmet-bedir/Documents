@@ -1,6 +1,7 @@
 <p align="center">
 	<img src="../images/git-banner.png" width="405"/>
 <p/>
+
 ---
 
 # Git Komutları (Git Commands)
@@ -29,6 +30,8 @@ git config --global user.email
 ```
 
 ###### Not : Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.
+
+
 
 ---
 
@@ -121,21 +124,21 @@ git commit -m "commit_mesajı"
 > 
 > - `git commit --amend -m "yeni commit mesajı"`  **:  En son yapılan commit mesajını değiştirmek için kullanılır.**
 
-
-
 > - `git log`  **:  Yapılan commitleri gösterir.**
-> 
+>
 > - `git log --oneline`  **:  Yapılan commitleri tek satır şeklinde gösterir.**
 
+
+
 ###### HEAD  :  Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
+
+
 
 > - `.gitignore`  **:  Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
 > 
 > - `dizin/*`        **:  Dizin klasöründeki tüm dosyaları kapsar.**
 > 
 > - `!dizin/b`      **:  Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
-
-
 
 > - **Zamanı geri alma yani git deposunda geçmiş tarihli bir commit'e geri gitmemiz için:**
 ```shell
