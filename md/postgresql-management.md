@@ -24,11 +24,13 @@
 
 ▸ [**İndex İşlemleri...**](#index)
 
-▸ [**Referans işlemleri...**](#referans)
+▸ [**Referans İşlemleri...**](#referans)
 
 ▸ [**Tarih ve Zaman Fonksiyonları...**](#zaman)
 
 ▸ [**Metin (String) Fonksiyonları...**](#metin)
+
+▸ [**Transaction İşlemleri...**](#transaction)
 
 ▸ [**Kullanıcı Yönetimi...**](#kullanici)
 
@@ -70,9 +72,9 @@ sudo systemctl enable postgresql
 
 ### PostgreSQL Veritabanı Kümesi
 
-> **PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
+**PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
 
-##### Ana klasörler
+#### Ana klasörler
 
 >  - `base/` **→ Tüm veritabanlarının tabloları burada durur.**
 >     **Her veritabanı için bir alt klasör vardır. Her tablo, index, sequence dosya olarak saklanır.**
@@ -85,7 +87,7 @@ sudo systemctl enable postgresql
 >  - `pg_commit_ts/` **→ Commit timestamp verileri.**
 >  - `pg_subtrans/` **→ Transaction alt-id bilgileri.**
 
-##### Önemli dosyalar
+#### Önemli dosyalar
 
 > - `PG_VERSION` **→ Bu kümenin hangi PostgreSQL sürümüne ait olduğunu gösterir (ör. `15`).**
 > - `postgresql.conf` **→ Sunucunun ana yapılandırma dosyası. (Port, shared_buffers, logging vs. ayarlar).**
@@ -1504,9 +1506,158 @@ SELECT ad, TO_CHAR(dtarihi, 'DD.MM.YYYY') AS dogum_tarihi FROM ogrenciler;
 
 ---
 
+<a id="transaction"><a/>
+
+## 🧱 PostgreSQL’de Transaction (İşlem) Nedir?
+
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+
+Transaction, bir grup SQL işleminin **tamamının başarıyla yapılması** veya **hiç yapılmaması** demektir.
+ Yani **atomicity (bölünmezlik)** ilkesini sağlar.
+
+💡 Özetle:
+ **Ya hepsi olur, ya hiçbiri olmaz.**
+
+------
+
+#### 🔑 Temel Transaction Komutları
+
+##### ▶️ 1. `BEGIN`
+
+Transaction başlatır.
+
+##### ▶️ 2. `COMMIT`
+
+Transaction içindeki tüm işlemleri kalıcı yapar.
+
+##### ▶️ 3. `ROLLBACK`
+
+Transaction içindeki tüm işlemleri iptal eder.
+
+------
+
+#### 🎯 Basit Transaction Örneği
+
+```
+BEGIN;
+
+UPDATE hesab SET bakiye = bakiye - 500 WHERE id = 1;
+UPDATE hesab SET bakiye = bakiye + 500 WHERE id = 2;
+
+COMMIT;
+```
+
+İki sorgudan biri başarısız olursa işlem:
+
+```
+ROLLBACK;
+```
+
+ile geri alınır ve bakiyeler değişmez.
+
+------
+
+#### ⚠️ Hata Olunca Otomatik Rollback
+
+PostgreSQL şunu yapar:
+
+- Transaction içinde bir hata olursa transaction **ERROR** durumuna geçer.
+- Bundan sonra COMMIT edemezsin.
+- Mutlaka ROLLBACK yapman gerekir.
+
+Örnek:
+
+```
+BEGIN;
+
+UPDATE users SET age = 'abc';  -- hata
+-- ERROR: invalid input syntax for type integer
+
+ROLLBACK;  -- mecburi
+```
+
+------
+
+#### 🧩 Savepoint (Ara Nokta) Kullanımı
+
+Transaction içinde küçük geri dönüş noktaları.
+
+✔ Savepoint Oluştur
+
+```
+BEGIN;
+
+UPDATE table1 SET x = 1;
+
+SAVEPOINT s1;
+
+UPDATE table2 SET y = 'aaa';  -- hata olabilir
+```
+
+✔ Hata olursa savepointe dön
+
+```
+ROLLBACK TO s1;
+```
+
+✔ Devam edeilirsin
+
+```
+COMMIT;
+```
+
+------
+
+#### ⚙️ Transaction Isolation Levels (İzolasyon Seviyeleri)
+
+PostgreSQL’de 4 seviye vardır:
+
+| Seviye               | Açıklama                                                    |
+| -------------------- | ----------------------------------------------------------- |
+| **READ UNCOMMITTED** | PostgreSQL desteklemez (otomatik READ COMMITTED olur)       |
+| **READ COMMITTED**   | 🟢 Varsayılan. Yalnızca commit edilmiş veriyi görür.         |
+| **REPEATABLE READ**  | Aynı transaction içinde tekrar sorguda aynı sonucu alırsın. |
+| **SERIALIZABLE**     | En güvenli ama en yavaş. Çakışmaları engeller.              |
+
+Seviye seçimi:
+
+```
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+```
+
+------
+
+#### 🛠 Transaction ile Fonksiyon Örneği
+
+PL/pgSQL fonksiyonları da otomatik olarak bir transaction içinde çalışır.
+
+```
+CREATE OR REPLACE FUNCTION para_transfer(a int, b int, miktar int)
+RETURNS void AS $$
+BEGIN
+    UPDATE hesap SET bakiye = bakiye - miktar WHERE id = a;
+    UPDATE hesap SET bakiye = bakiye + miktar WHERE id = b;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+Fonksiyon hata alırsa otomatik rollback olur.
+
+------
+
+#### 📌 Transaction Kullanım Senaryoları
+
+- Banka işlemleri
+- Sipariş oluşturma
+- Çoklu tablo güncellemeleri
+- Kritik log kayıtları
+- Veri bütünlüğünün önemli olduğu her şey
+
+---
+
 <a id="kullanici"><a/>
 
-### PostgreSQL Kullanıcı Yönetimi
+## PostgreSQL Kullanıcı Yönetimi
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
