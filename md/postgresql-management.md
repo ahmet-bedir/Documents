@@ -416,16 +416,16 @@ DROP DATABASE
 
 #### 📌 1) SAYISAL (NUMERIC) TİPLER
 
-| Veri Türü                  | Kapladığı Boyut                   | Min / Max Değeri               | Örnek Kullanım            |
-| -------------------------- | --------------------------------- | ------------------------------ | ------------------------- |
-| **smallint**               | 2 byte                            | –32768 → 32767                 | `age smallint`            |
-| **integer (int)**          | 4 byte                            | –2,147,483,648 → 2,147,483,647 | `id int`                  |
-| **bigint**                 | 8 byte                            | –9,22e18 → 9,22e18             | `population bigint`       |
-| **decimal / numeric(p,s)** | Değişken (yakl. 2 byte / 4 digit) | Hassasiyet sınırsız            | `price numeric(12,2)`     |
-| **real**                   | 4 byte                            | ~6 hane hassasiyet             | `temperature real`        |
-| **double precision**       | 8 byte                            | ~15 hane hassasiyet            | `rating double precision` |
-| **serial**                 | 4 byte (int)                      | 1 → 2 milyar                   | `id serial`               |
-| **bigserial**              | 8 byte                            | 1 → 9e18                       | `id bigserial`            |
+| Veri Türü                                  | Kapladığı Boyut                   | Min / Max Değeri                  | Örnek Kullanım            |
+| ------------------------------------------ | --------------------------------- | --------------------------------- | ------------------------- |
+| **smallint**                               | 2 byte                            | –32768 → 32767                    | `age smallint`            |
+| **integer (int)**                          | 4 byte                            | –2,147,483,648 → 2,147,483,647    | `id int`                  |
+| **bigint**                                 | 8 byte                            | –9,22e18 → 9,22e18                | `population bigint`       |
+| **decimal / numeric(p,s)**                 | Değişken (yakl. 2 byte / 4 digit) | Hassasiyet sınırsız               | `price numeric(12,2)`     |
+| **real (kayan noktalı) sayı**              | 4 byte                            | ~6 hane hassasiyet                | `temperature real`        |
+| **double precision  (kayan noktalı) sayı** | 8 byte                            | ~15 hane hassasiyet               | `rating double precision` |
+| **serial**                                 | 4 byte (int)                      | Otomatik artan tamsayı            | `id serial`               |
+| **bigserial**                              | 8 byte                            | Daha büyük otomatik artan tamsayı | `id bigserial`            |
 
 ------
 
