@@ -1541,19 +1541,13 @@ Transaction içindeki tüm işlemleri iptal eder.
 ```
 BEGIN;
 
-UPDATE hesab SET bakiye = bakiye - 500 WHERE id = 1;
-UPDATE hesab SET bakiye = bakiye + 500 WHERE id = 2;
+UPDATE hesap SET bakiye = bakiye - 500 WHERE id = 1;
+UPDATE hesap SET bakiye = bakiye + 500 WHERE id = 2;
 
 COMMIT;
 ```
 
-İki sorgudan biri başarısız olursa işlem:
-
-```
-ROLLBACK;
-```
-
-ile geri alınır ve bakiyeler değişmez.
+İki sorgudan biri başarısız olursa işlem `ROLLBACK;` ile geri alınır ve bakiyeler değişmez.
 
 ------
 
