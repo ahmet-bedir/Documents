@@ -69,7 +69,102 @@ dpkg -L <paket_adı>
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
-> `apt-get autoremove --purge <paket_adı>`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırma.**
+> `apt-get autoremove --purge <paket_adı>`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için. 
+
+
+🧨 apt remove ne yapar?
+Sadece paketin kendisini kaldırır.
+Ama ayar dosyalarını bırakır.
+
+Örnek:
+
+sudo apt remove paketadi
+→ Paket silinir
+→ /etc/paketadi/ gibi ayar dosyaları kalır
+
+🧹 apt remove --purge ne yapar? (Tam Temizleme)
+Bu komut, paketi ve tüm ayar/config dosyalarını beraber siler.
+
+sudo apt remove --purge paketadi
+Yani:
+
+✔ Paket kaldırılır
+✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir
+✔ Kullanıcı ayar dosyalarının çoğu silinir
+✔ Sistem o paket yüklenmemiş haline döner
+
+🔥 purge neden önemli?
+Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.
+
+Örneğin:
+
+Bozuk GNOME eklentileri
+
+Yanlış tema paketleri
+
+Config bozan programlar
+
+Kalan ayarlar nedeniyle tekrar kurulamayan paketler
+
+Bu durumda:
+
+sudo apt purge paketadi
+→ tüm sorunları sıfırlar.
+
+🛑 Dikkat etmen gereken tek şey:
+purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.
+Yani güvenlidir, ama şu paketleri purge etme:
+
+❌ systemd
+❌ kali-desktop-*
+❌ linux-image-* (kernel)
+❌ apt veya dpkg
+❌ python3 (sistem bileşeni)
+
+✔️ Özet:
+Komut	Ne yapar
+apt remove paket	Paketi kaldırır, ayarlar kalır
+apt purge paket	Paket + config dosyaları tamamen silinir
+apt remove --purge paket	Remove + Purge birlikte (tam temizlik)
+
+
+🔍 Detaylı Açıklama
+✔️ apt purge paket
+
+Paketi kaldırır
+
+Konfigürasyon dosyalarını da siler
+
+Ama kullanılmayan bağımlılıklara dokunmaz
+
+🧹 Kullanılmayan bağımlılıkları silmek için
+
+Bunun için gerekli komut:
+
+sudo apt autoremove
+
+
+Bu komut:
+
+Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler
+
+Gereksiz kütüphaneleri siler
+
+Sistemi hafifletir
+
+🎯 Genelde önerilen sıralama:
+
+Bir paketi tamamen temizlemek istiyorsan:
+
+sudo apt remove --purge paketadi
+sudo apt autoremove
+
+
+Bu 2 adım:
+
+✔ Paket silinir
+✔ Ayar dosyaları temizlenir
+✔ Gereksiz bağımlılıklar da silinir
 
 > `apt --fix-broken install` | `apt-get install -f`  :  **APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
 
