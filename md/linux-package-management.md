@@ -65,6 +65,19 @@ dpkg -L <paket_adı>
 
 > `apt-get install <paket_adı>` | `apt install <paket_adı>`  :  **Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
+🛡️ Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir. 
+
+```bash
+apt policy paket-adi
+```
+
+Eğer:
+
+✔ Origin: Kali
+✔ Archive: kali-rolling
+diyorsa güvenlidir.
+
+
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
