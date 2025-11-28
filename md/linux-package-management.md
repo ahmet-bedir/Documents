@@ -65,16 +65,16 @@ dpkg -L <paket_adı>
 
 > `apt-get install <paket_adı>` | `apt install <paket_adı>`  :  **Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
-🛡️ Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir. 
+🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
 
 ```bash
-apt policy paket-adi
+apt policy <paket_adı>
 ```
 
 Eğer:
 
-✔ Origin: Kali
-✔ Archive: kali-rolling
+**✔ Origin**: Kali
+**✔ Archive**: kali-rolling
 diyorsa güvenlidir.
 
 
@@ -85,26 +85,25 @@ diyorsa güvenlidir.
 > `apt-get autoremove --purge <paket_adı>`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için. 
 
 
-🧨 apt remove ne yapar?
-Sadece paketin kendisini kaldırır.
-Ama ayar dosyalarını bırakır.
+🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
-Örnek:
+```basg
+sudo apt remove <paket_adı>
+```
 
-sudo apt remove paketadi
-→ Paket silinir
-→ /etc/paketadi/ gibi ayar dosyaları kalır
+**→ Paket silinir**
+**→ /etc/paketadi/ gibi ayar dosyaları kalır**
 
-🧹 apt remove --purge ne yapar? (Tam Temizleme)
-Bu komut, paketi ve tüm ayar/config dosyalarını beraber siler.
+🧹 `apt remove --purge` komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
 
-sudo apt remove --purge paketadi
-Yani:
+```bash
+sudo apt remove --purge <paket_adı>
+```
 
-✔ Paket kaldırılır
-✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir
-✔ Kullanıcı ayar dosyalarının çoğu silinir
-✔ Sistem o paket yüklenmemiş haline döner
+**✔ Paket kaldırılır**
+**✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir**
+**✔ Kullanıcı ayar dosyalarının çoğu silinir**
+**✔ Sistem o paket yüklenmemiş haline döner**
 
 🔥 purge neden önemli?
 Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.
