@@ -65,7 +65,7 @@ dpkg -L <paket_adı>
 
 > `apt-get install <paket_adı>` | `apt install <paket_adı>`  :  **Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
-🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
+> 🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
 
 ```bash
 apt policy <paket_adı>
@@ -73,9 +73,11 @@ apt policy <paket_adı>
 
 Eğer:
 
-**✔ Origin**: Kali
-**✔ Archive**: kali-rolling
+✔ **Origin**: Kali
+✔ **Archive**: kali-rolling
 diyorsa güvenlidir.
+
+---
 
 
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
@@ -100,8 +102,8 @@ sudo apt remove <paket_adı>
 sudo apt remove --purge <paket_adı>
 ```
 
-**✔ Paket kaldırılır**
-**✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir**
+✔ **Paket kaldırılır**
+✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
 **✔ Kullanıcı ayar dosyalarının çoğu silinir**
 **✔ Sistem o paket yüklenmemiş haline döner**
 
@@ -128,8 +130,8 @@ purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.
 Yani güvenlidir, ama şu paketleri purge etme:
 
 ❌ systemd
-❌ kali-desktop-*
-❌ linux-image-* (kernel)
+❌ **kali-desktop-***
+❌ **linux-image-* (kernel)**
 ❌ apt veya dpkg
 ❌ python3 (sistem bileşeni)
 
