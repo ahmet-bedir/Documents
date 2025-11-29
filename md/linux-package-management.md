@@ -127,65 +127,47 @@ sudo apt remove --purge <paket_adı>
 - **Config bozan programlar**
 - **Kalan ayarlar nedeniyle tekrar kurulamayan paketler**
 
-Bu durumda:
+**Bu durumda:**
 
-sudo apt purge paketadi
-→ tüm sorunları sıfırlar.
+```bash
+sudo apt purge <paket_adı>
+```
 
-🛑 Dikkat etmen gereken tek şey:
-purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.
-Yani güvenlidir, ama şu paketleri purge etme:
+**→ tüm sorunları sıfırlar.**
 
-❌ systemd
+🛑 **Dikkat etmen gereken tek şey purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.**
+**Yani güvenlidir, ama şu paketleri purge etme:**
+
+❌ **systemd**
 ❌ **kali-desktop-***
 ❌ **linux-image-* (kernel)**
-❌ apt veya dpkg
-❌ python3 (sistem bileşeni)
-
-✔️ Özet:
-Komut	Ne yapar
-apt remove paket	Paketi kaldırır, ayarlar kalır
-apt purge paket	Paket + config dosyaları tamamen silinir
-apt remove --purge paket	Remove + Purge birlikte (tam temizlik)
+❌ **apt veya dpkg**
+❌ **python3 (sistem bileşeni)**
 
 
-🔍 Detaylı Açıklama
-✔️ apt purge paket
+🧹 **Kullanılmayan bağımlılıkları silmek için:**
 
-Paketi kaldırır
-
-Konfigürasyon dosyalarını da siler
-
-Ama kullanılmayan bağımlılıklara dokunmaz
-
-🧹 Kullanılmayan bağımlılıkları silmek için
-
-Bunun için gerekli komut:
-
+```bash
 sudo apt autoremove
+```
+- **Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler**
+- **Gereksiz kütüphaneleri siler**
+- **Sistemi hafifletir**
 
+🎯 **Genelde önerilen sıralama:**
 
-Bu komut:
+**Bir paketi tamamen temizlemek istiyorsan:**
 
-Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler
-
-Gereksiz kütüphaneleri siler
-
-Sistemi hafifletir
-
-🎯 Genelde önerilen sıralama:
-
-Bir paketi tamamen temizlemek istiyorsan:
-
-sudo apt remove --purge paketadi
+```bash
+sudo apt remove --purge <paket_adı>
 sudo apt autoremove
+```
 
+**Bu 2 adım:**
 
-Bu 2 adım:
-
-✔ Paket silinir
-✔ Ayar dosyaları temizlenir
-✔ Gereksiz bağımlılıklar da silinir
+✔ **Paket silinir**
+✔ **Ayar dosyaları temizlenir**
+✔ **Gereksiz bağımlılıklar da silinir**
 
 ### 📌 Özet
 
