@@ -87,36 +87,33 @@ diyorsa güvenlidir.
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
-```basg
+```bash
 sudo apt remove <paket_adı>
 ```
 
 **→ Paket silinir**
-**→ /etc/paketadi/ gibi ayar dosyaları kalır**
+**→ /etc/paket_adı/ gibi ayar dosyaları kalır**
 
-🧹 `apt remove --purge` komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
+🧹 `apt remove --purge` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
 
 ```bash
 sudo apt remove --purge <paket_adı>
 ```
 
-**✔ Paket kaldırılır**
-**✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir**
-**✔ Kullanıcı ayar dosyalarının çoğu silinir**
-**✔ Sistem o paket yüklenmemiş haline döner**
+✔ **Paket kaldırılır**
+✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
+✔ **Kullanıcı ayar dosyalarının çoğu silinir**
+✔ **Sistem o paket yüklenmemiş haline döner**
 
-🔥 purge neden önemli?
-Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.
+🔥 `purge` **neden önemli?**
+**Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.**
 
-Örneğin:
+**Örneğin:**
 
-Bozuk GNOME eklentileri
-
-Yanlış tema paketleri
-
-Config bozan programlar
-
-Kalan ayarlar nedeniyle tekrar kurulamayan paketler
+- **Bozuk GNOME eklentileri**
+- **Yanlış tema paketleri**
+- **Config bozan programlar**
+- **Kalan ayarlar nedeniyle tekrar kurulamayan paketler**
 
 Bu durumda:
 
