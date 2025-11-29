@@ -15,6 +15,8 @@
 >
 > ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
 
+
+
 > **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
 
 ```bash
@@ -84,23 +86,16 @@ diyorsa güvenlidir.
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
-> `apt-get autoremove --purge <paket_adı>`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için. 
+> `apt-get autoremove --purge`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için.**
+
 
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
-```basg
-sudo apt remove <paket_adı>
-```
-
 **→ Paket silinir**
 **→ /etc/paketadi/ gibi ayar dosyaları kalır**
 
-🧹 `apt remove --purge` komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
-
-```bash
-sudo apt remove --purge <paket_adı>
-```
+🧹 `apt remove --purge <paket_adı>` | `apt p`urge <paket_adı>`  komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
 
 ✔ **Paket kaldırılır**
 ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
@@ -179,6 +174,15 @@ Bu 2 adım:
 ✔ Paket silinir
 ✔ Ayar dosyaları temizlenir
 ✔ Gereksiz bağımlılıklar da silinir
+
+### 📌 Özet
+
+| Komut                          | Anlamı                                                 |
+| ------------------------------ | ------------------------------------------------------ |
+| `apt-get remove paket`         | Paketi kaldırır, config kalır                          |
+| `apt-get remove --purge paket` | Paket + config dosyaları silinir                       |
+| `apt-get autoremove`           | Artık kullanılmayan bağımlılıkları siler               |
+| `apt-get autoremove --purge`   | Kullanılmayan bağımlılıkları config dosyalarıyla siler |
 
 > `apt --fix-broken install` | `apt-get install -f`  :  **APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
 
