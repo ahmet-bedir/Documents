@@ -15,6 +15,8 @@
 >
 > ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
 
+
+
 > **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
 
 ```bash
@@ -65,7 +67,7 @@ dpkg -L <paket_adı>
 
 > `apt-get install <paket_adı>` | `apt install <paket_adı>`  :  **Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
-🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
+> 🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
 
 ```bash
 apt policy <paket_adı>
@@ -73,16 +75,19 @@ apt policy <paket_adı>
 
 Eğer:
 
-**✔ Origin**: Kali
-**✔ Archive**: kali-rolling
+✔ **Origin**: Kali
+✔ **Archive**: kali-rolling
 diyorsa güvenlidir.
+
+---
 
 
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
-> `apt-get autoremove --purge <paket_adı>`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için. 
+> `apt-get autoremove --purge`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için.**
+
 
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
@@ -99,6 +104,13 @@ sudo apt remove <paket_adı>
 ```bash
 sudo apt remove --purge <paket_adı>
 ```
+
+✔ **Paket kaldırılır**
+✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
+✔ **Kullanıcı ayar dosyalarının çoğu silinir**
+✔ **Sistem o paket yüklenmemiş haline döner**
+
+🧹 `apt remove --purge <paket_adı>` | `apt purge <paket_adı>` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
 
 ✔ **Paket kaldırılır**
 ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
@@ -125,8 +137,8 @@ purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.
 Yani güvenlidir, ama şu paketleri purge etme:
 
 ❌ systemd
-❌ kali-desktop-*
-❌ linux-image-* (kernel)
+❌ **kali-desktop-***
+❌ **linux-image-* (kernel)**
 ❌ apt veya dpkg
 ❌ python3 (sistem bileşeni)
 
@@ -174,6 +186,15 @@ Bu 2 adım:
 ✔ Paket silinir
 ✔ Ayar dosyaları temizlenir
 ✔ Gereksiz bağımlılıklar da silinir
+
+### 📌 Özet
+
+| Komut                          | Anlamı                                                 |
+| ------------------------------ | ------------------------------------------------------ |
+| `apt-get remove paket`         | Paketi kaldırır, config kalır                          |
+| `apt-get remove --purge paket` | Paket + config dosyaları silinir                       |
+| `apt-get autoremove`           | Artık kullanılmayan bağımlılıkları siler               |
+| `apt-get autoremove --purge`   | Kullanılmayan bağımlılıkları config dosyalarıyla siler |
 
 > `apt --fix-broken install` | `apt-get install -f`  :  **APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
 
