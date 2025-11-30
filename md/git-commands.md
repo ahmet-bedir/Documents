@@ -5,7 +5,7 @@
 
 # Git Komutları (Git Commands)
 
-###### Güncelleme : 08/2025
+###### Güncelleme : 11/2025
 
 ---
 
@@ -92,30 +92,16 @@ git config --global core.editor
 
 ---
 
+| Dosya İşlemleri                                       |                                                    |
+| ----------------------------------------------------- | -------------------------------------------------- |
+| `git rm <file_name>`                                  | Dosya silmek için kullanılır                       |
+| `git rm -r <directory_name>/`                         | Dizin silmek için kullanılır                       |
+| `git mv <file_name> <new_file_name>`                  | Dosya adı değiştirmek için kullanılır              |
+| `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
+| `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
+| `git config --global alias.<kısayol> <komut_adı>`     | Komutları kısaltmak için kullanılır                |
 
-
----
-
-| Silme İşlemleri                      |                                       |
-| ------------------------------------ | ------------------------------------- |
-| `git rm <file_name>`                 | Dosya silmek için kullanılır          |
-| `git rm -r <directory_name>/`        | Dizin silmek için kullanılır          |
-| `git mv <file_name> <new_file_name>` | Dosya adı değiştirmek için kullanılır |
-|                                      |                                       |
-|                                      |                                       |
-|                                      |                                       |
-
- 
-
-> - `git mv <file_name> <directory_name>/`  **:  Dosyayı taşımak için kullanılır.**
-
-> - `git mv <file_name> <directory_name>/<new_file_name>`  **:  Dosyayı adını değiştirerek taşımak için kullanılır.**
-
-> - `git config --global alias.<kısayol> <komut_adı>`  **:  Komutları kısaltmak için kullanılır.**
-
----
-
-
+ ---
 
 > - **Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir zamanda geriye dönülerek değişiklikler eski haline getirilebilir.**
 ```shell
@@ -220,82 +206,81 @@ git checkout <commit id> -- .
 
 ---
 
-> - `git rebase`, bir dalın (branch) tabanını başka bir dalın en son commit’ine *taşıyarak*, commit geçmişini daha temiz ve lineer hâle getiren bir Git komutudur.
+> - `git rebase`, bir dalın (branch) tabanını başka bir dalın en son commit’ine *taşıyarak*, commit geçmişini daha temiz ve lineer hâle getiren bir git komutudur.
 >
 >   ------
 >
->   # 🔍 Git Rebase Ne İşe Yarar?
+>   ##### 🔍 Git Rebase Ne İşe Yarar?
 >
 >   `git rebase` iki temel amaç için kullanılır:
 >
 >   ------
 >
->   ## **1) Commit geçmişini düzenlemek**
+>   ##### **1) Commit geçmişini düzenlemek**
 >
 >   Rebase, commit’leri *başka bir tabana* taşıyarak geçmişi kronolojik ve düz bir çizgi hâline getirir.
 >
->   ### Örnek:
+>   ##### Örnek:
 >
 >   - `feature` branch’inde çalışıyorsun.
 >   - Bu sırada `main` branch’inde yeni commit’ler geldi.
 >   - Sen kendi branch’ini `main`’in son haline göre güncellemek istiyorsun.
 >
->   ### Komut:
+>   ##### Komut:
 >
->   ```
->     
->   git checkout feature
+>   ```bash
+>       git checkout feature
 >   git rebase main
 >   ```
->
->   ### Sonuç:
->
->   - Sanki `feature` dalına *main güncellenmişken başlamışsın gibi* temiz bir commit tarihi oluşur.
+>   
+>  ##### Sonuç:
+>   
+>  - Sanki `feature` dalına *main güncellenmişken başlamışsın gibi* temiz bir commit tarihi oluşur.
 >   - Merge commit oluşmaz → **daha temiz bir commit geçmişi.**
->
->   ------
->
->   ## **2) Commit’leri düzenlemek, birleştirmek veya mesajlarını değiştirmek**
->
->   **Interactive rebase** ile commit’leri düzenleyebilirsin:
->
+>   
+>  ------
+>   
+>  ##### **2) Commit’leri düzenlemek, birleştirmek veya mesajlarını değiştirmek**
+>   
+>  **Interactive rebase** ile commit’leri düzenleyebilirsin:
+>   
+>  ```
+>   
+>       git rebase -i HEAD~5
 >   ```
->     
->   git rebase -i HEAD~5
->   ```
->
->   Bu şekilde:
->
->   - commit silme,
+>   
+>  Bu şekilde:
+>   
+>  - commit silme,
 >   - commit birleştirme (squash),
 >   - commit mesajı değiştirme (reword),
 >   - commit sırasını değiştirme
->
->   gibi işler yapılır.
->
->   ------
->
->   # 🧠 Rebase ile Merge Arasındaki Fark
->
->   | Özellik  | `git merge`                                           | `git rebase`                   |
+>   
+>  gibi işler yapılır.
+>   
+>  ------
+>   
+>  ##### 🧠 Rebase ile Merge Arasındaki Fark
+>   
+>  | Özellik  | `git merge`                                           | `git rebase`                   |
 >   | -------- | ----------------------------------------------------- | ------------------------------ |
 >   | Geçmiş   | Tüm commitler olduğu gibi kalır, merge commit eklenir | Geçmiş yeniden yazılır         |
 >   | Yapı     | Dal birleşmesi görülür                                | Tek çizgi halinde temiz geçmiş |
 >   | Güvenlik | Daha güvenli (tarih değişmez)                         | Ortak dallarda risklidir       |
 >   | Kullanım | Paylaşılan branch’lerde                               | Kişisel / feature branch’lerde |
->
->   ------
->
->   # ⚠️ Ne zaman **kullanılmamalı?**
->
->   > **Paylaşılan (push yapılmış) branch’lerde rebase tehlikelidir.**
+>   
+>  ------
+>   
+>  ##### ⚠️ Ne zaman **kullanılmamalı?**
+>   
+>  > **Paylaşılan (push yapılmış) branch’lerde rebase tehlikelidir.**
 >   >  Çünkü commit geçmişini değiştirir → başkalarının reposu ile uyuşmazlık çıkar.
->
->   ------
->
->   # ✔️ Ne zaman kullanılmalı?
->
->   - Kendi geliştirme dalını güncellemek istediğinde
+>   
+>  ------
+>   
+>  ##### ✔️ Ne zaman kullanılmalı?
+>   
+>  - Kendi geliştirme dalını güncellemek istediğinde
 >   - Commit geçmişini temizlemek istediğinde
 >   - PR açmadan önce commit’leri düzenlemek için
 

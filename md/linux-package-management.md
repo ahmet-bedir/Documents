@@ -53,23 +53,22 @@ dpkg -L <paket_adı>
 
 ---
 
-#### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
+### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
 #### 🔍 1. Bozuk Paket Var mı Kontrol Et.
 >
-> ```bash
-> sudo apt --fix-broken install
-> ```
+>```bash
+>sudo apt --fix-broken install
+>```
 >
-> **➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
+>**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
 >
+>---
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
 > ```bash
 > sudo dpkg --configure -a
 > ```
-> ------
->
 > **➡ Yarım kalan kurulumları tamamlar.**
 >
 > ------
@@ -125,7 +124,7 @@ dpkg -L <paket_adı>
 >
 > ------
 
-#### APT Komutu İle Paket Listesinin Güncellenmesi
+### APT Komutu İle Paket Listesinin Güncellenmesi
 
 > `apt-get update` | `apt update`  :  **Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.**
 
@@ -147,17 +146,15 @@ apt policy <paket_adı>
 ➡ Örnek:
 `sudo apt policy gpaste`
 
-### 📌 1. "Kurulu: 45.3-2"
+##### 📌 1. "Kurulu: 45.3-2"
 
 Sistemde şu an yüklü olan sürüm.
 
-### 📌 2. "Aday: 45.3-2"
+##### 📌 2. "Aday: 45.3-2"
 
 Depoda yüklenebilecek sürüm de aynı → güncel versiyon.
 
-### 📌 3. "500 http://http.kali.org/kali
-
-###  kali-rolling/main"
+##### 📌 3. "500 http://http.kali.org/kali kali-rolling/main"
 
 Bu gösteriyor ki:
 
@@ -165,13 +162,13 @@ Bu gösteriyor ki:
 - **main** deposunda → resmi, güvenilir yazılımlar
 - **kali-rolling** sürümü için uygun
 
-### 📌 4. "100 /var/lib/dpkg/status"
+##### 📌 4. "100 /var/lib/dpkg/status"
 
 Bu, paketin sistemde kayıtlı olduğunu gösteriyor, sorun değil.
 
 ------
 
-# 📌 Sonuç
+##### 📌 Sonuç
 
 `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
  Kali’de clipboard geçmişi isteyen GNOME kullanıcılarında yaygın bir paket.
@@ -180,27 +177,14 @@ Sistemi bozacak türden bir paket değil.
 
 ------
 
-# ❗ Eğer clipboard paketleri yüzünden sistem bozulduğunu düşünüyorsan
-
-İstersen sana **GNOME’da güvenilir clipboard geçmişi yazılımlarının listesini** verebilirim:
-
-- gpaste
-- gnome-shell-extension-gpaste
-- clipboard-indicator
-- xclip veya xsel (terminal için, güvenilir)
-
-------
-
 **`apt policy gnome-shell-extension-gpaste`** çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:
 
-------
-
-# ✔ Paket Güvenli mi?
+##### ✔ Paket Güvenli mi?
 
 **Evet, %100 güvenli.**
  Çünkü:
 
-### 📌 1. "Kurulu: (hiçbiri)"
+##### 📌 1. "Kurulu: (hiçbiri)"
 
 Sende şu an yüklü değil.
 
