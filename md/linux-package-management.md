@@ -51,11 +51,11 @@ dpkg -L <paket_adı>
 
 > `dpkg-reconfigure <paket_adı>`  :  **Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
 
-
+---
 
 #### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-##### 🔍 1. Bozuk Paket Var mı? (En Güvenli Test)
+#### 🔍 1. Bozuk Paket Kontrol.
 >
 > ```bash
 > sudo apt --fix-broken install
@@ -63,7 +63,7 @@ dpkg -L <paket_adı>
 >
 > **➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
 >
-##### 🔎 2. Kırık Bağımlılıkları Kontrol Et
+#### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
 > ```bash
 > sudo dpkg --configure -a
@@ -73,7 +73,7 @@ dpkg -L <paket_adı>
 >
 > ------
 >
-##### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
+#### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
 >
 > ```bash
 > sudo apt install -f
@@ -83,14 +83,13 @@ dpkg -L <paket_adı>
 >
 > ------
 >
-> # 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
+#### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
 >
-> ```
-> 
+> ```bash
 > apt-mark showhold
 > ```
 >
-> ➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.
+> **➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.**
 >
 > ------
 >
