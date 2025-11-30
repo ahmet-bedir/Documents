@@ -96,11 +96,16 @@ git config --global core.editor
 
 ---
 
-> - `git rm <file_name>`  **:  Dosya silmek için kullanılır.**
+| Silme İşlemleri                      |                                       |
+| ------------------------------------ | ------------------------------------- |
+| `git rm <file_name>`                 | Dosya silmek için kullanılır          |
+| `git rm -r <directory_name>/`        | Dizin silmek için kullanılır          |
+| `git mv <file_name> <new_file_name>` | Dosya adı değiştirmek için kullanılır |
+|                                      |                                       |
+|                                      |                                       |
+|                                      |                                       |
 
-> - `git rm -r <directory_name>/`  **:  Dizin silmek için kullanılır.**
-
-> - `git mv <file_name> <new_file_name>`  **:  Dosya adı değiştirmek için kullanılır.**
+ 
 
 > - `git mv <file_name> <directory_name>/`  **:  Dosyayı taşımak için kullanılır.**
 
@@ -238,7 +243,7 @@ git checkout <commit id> -- .
 >   ### Komut:
 >
 >   ```
->   
+>     
 >   git checkout feature
 >   git rebase main
 >   ```
@@ -255,7 +260,7 @@ git checkout <commit id> -- .
 >   **Interactive rebase** ile commit’leri düzenleyebilirsin:
 >
 >   ```
->   
+>     
 >   git rebase -i HEAD~5
 >   ```
 >
