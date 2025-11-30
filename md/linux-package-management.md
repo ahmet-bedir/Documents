@@ -55,7 +55,7 @@ dpkg -L <paket_adı>
 
 #### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-#### 🔍 1. Bozuk Paket Kontrol.
+#### 🔍 1. Bozuk Paket Var mı Kontrol Et.
 >
 > ```bash
 > sudo apt --fix-broken install
@@ -68,6 +68,7 @@ dpkg -L <paket_adı>
 > ```bash
 > sudo dpkg --configure -a
 > ```
+> ------
 >
 > **➡ Yarım kalan kurulumları tamamlar.**
 >
@@ -93,61 +94,36 @@ dpkg -L <paket_adı>
 >
 > ------
 >
-> # 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
+#### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
 >
-> ```
-> 
+> ```bash
 > sudo apt autoremove --purge
 > ```
 >
-> ➡ Bu kaldırma işlemi yapar ama **listelemeden kaldırmaz**, önce liste görmek istersen:
+> **➡ Bu kaldırma işlemi yapar ama listelemeden kaldırmaz, önce liste görmek istersen:**
 >
-> ```
-> 
+> ```bash
 > sudo apt autoremove --dry-run
 > ```
 >
 > ------
 >
-> # 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
+#### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
 >
-> ```
-> 
+> ```bash
 > sudo apt update --fix-missing
 > ```
 >
 > ------
 >
-> # 🧰 7. APT’nin Cache’inde bozuk .deb dosyası var mı?
+#### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
 >
-> ```
-> 
+> ```bash
 > sudo apt clean
 > sudo apt update
 > ```
 >
 > ------
->
-> # 📌 İstersen sana **GNOME için güvenli clipboard/pano paketlerinin** listesini de verebilirim:
->
-> - gpaste
-> - gnome-shell-extension-gpaste
-> - clipboard-indicator
-> - xclip / xsel
->    Deyince hemen yazarım.
->
-> ------
->
-> Ahmet, istersen **şu anda sisteminde bozuk paket var mı** tam teşhis edelim.
->
-> ```
-> 
-> sudo apt --fix-broken install
-> ```
->
-> komutunun çıktısını gönderirsen analiz eder
-
----
 
 #### APT Komutu İle Paket Listesinin Güncellenmesi
 
@@ -168,6 +144,8 @@ dpkg -L <paket_adı>
 ```bash
 apt policy <paket_adı>
 ```
+➡ Örnek:
+`sudo apt policy gpaste`
 
 ### 📌 1. "Kurulu: 45.3-2"
 
@@ -195,7 +173,7 @@ Bu, paketin sistemde kayıtlı olduğunu gösteriyor, sorun değil.
 
 # 📌 Sonuç
 
-**gpaste-2 paketinin kaynağı ve sürümü tamamen temiz.**
+`gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
  Kali’de clipboard geçmişi isteyen GNOME kullanıcılarında yaygın bir paket.
 
 Sistemi bozacak türden bir paket değil.
