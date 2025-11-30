@@ -268,7 +268,7 @@ sudo apt purge <paket_adı>
 
 ❌ **kali-desktop-***
 
-❌ **linux-image-* (kernel)**
+❌ **linux-image-*(kernel)**
 
 ❌ **apt veya dpkg**
 
