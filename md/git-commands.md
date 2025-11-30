@@ -211,36 +211,34 @@ git checkout <commit id> -- .
 
 ---
 
-> - `git rebase` komutu, Git’te branch  (dal) yönetiminde kullanılır ve commit geçmişini düzenlemeye yarar.  Temel amacı, bir branch’in temelini başka bir branch’in en son haliyle  değiştirmek ve daha "düzgün" bir commit geçmişi oluşturmaktır.
+> - `git rebase` **komutu, git’te branch  (dal) yönetiminde kullanılır ve commit geçmişini düzenlemeye yarar.  Temel amacı, bir branch’in temelini başka bir branch’in en son haliyle  değiştirmek ve daha "düzgün" bir commit geçmişi oluşturmaktır.**
 >
 >   **Yani:**
 >
->   - Branch’inizdeki commitleri, hedef branch’in en güncel commitlerinin üstüne "taşır".
->   - Genellikle `git merge` ile benzer problemlere çözüm getirir ama geçmişi daha lineer hale getirir.
+>   - **Branch’inizdeki commitleri, hedef branch’in en güncel commitlerinin üstüne "taşır".**
+>   - **Genellikle** `git merge` **ile benzer problemlere çözüm getirir ama geçmişi daha lineer hale getirir.**
 >
 >   **En yaygın kullanım:**
 >
->   bash
->
->   ```
+>   ```bash
 >   git checkout feature-branch
 >   git rebase main
 >   ```
 >
->   Bu komut, `feature-branch` dalındaki değişiklikleri, `main` dalının en güncel halinin üzerine taşır.
+>   **Bu komut,** `feature-branch` **dalındaki değişiklikleri,** `main` **dalının en güncel halinin üzerine taşır.**
 >
 >   **Faydaları:**
 >
->   - Commit geçmişi daha temiz ve düz olur.
->   - Ortak bir temel üzerinde çalışmayı kolaylaştırır.
->   - Merge commitleri oluşturmaz (tüm commitler tek bir çizgide görünür).
+>   - **Commit geçmişi daha temiz ve düz olur.**
+>   - **Ortak bir temel üzerinde çalışmayı kolaylaştırır.**
+>   - **Merge commitleri oluşturmaz (tüm commitler tek bir çizgide görünür).**
 >
 >   **Dikkat edilmesi gereken noktalar:**
 >
->   - Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde kullanırken dikkatli olunmalıdır.
->   - Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.
+>   - **Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde kullanırken dikkatli olunmalıdır.**
+>   - **Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.**
 >
->   Kısaca, `git rebase`, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.
+>   **Kısaca,** `git rebase`**, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.**
 
 ---
 
