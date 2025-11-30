@@ -149,15 +149,15 @@ apt policy <paket_adı>
 
 `sudo apt policy gpaste`
 
-##### 📌 1. "Kurulu: 45.3-2"
+#### 📌 1. "Kurulu: 45.3-2"
 
 **Sistemde şu an yüklü olan sürüm.**
 
-##### 📌 2. "Aday: 45.3-2"
+#### 📌 2. "Aday: 45.3-2"
 
 **Depoda yüklenebilecek sürüm de aynı → güncel versiyon.**
 
-##### 📌 3. "500 http://http.kali.org/kali kali-rolling/main"
+#### 📌 3. "500 http://http.kali.org/kali kali-rolling/main"
 
 **Bu gösteriyor ki:**
 
@@ -165,11 +165,11 @@ apt policy <paket_adı>
 - **main deposunda → resmi, güvenilir yazılımlar**
 - **kali-rolling sürümü için uygun**
 
-##### 📌 4. "100 /var/lib/dpkg/status"
+#### 📌 4. "100 /var/lib/dpkg/status"
 
 **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
 
-##### 📌 Sonuç
+#### 📌 Sonuç
 
 `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
 
@@ -179,27 +179,26 @@ apt policy <paket_adı>
 
 `sudo apt policy gnome-shell-extension-gpaste` **çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:**
 
-##### ✔ Paket Güvenli mi?
+#### ✔ Paket Güvenli mi?
 
 **Evet, %100 güvenli, Çünkü:**
 
-##### 📌 1. "Kurulu: (hiçbiri)"
+#### 📌 1. "Kurulu: (hiçbiri)"
 
 **Sende şu an yüklü değil.**
 
-##### 📌 2. "Aday: 45.3-2"
+#### 📌 2. "Aday: 45.3-2"
 
 **Depoda yüklenebilir olan güncel sürüm bu.**
 
-##### 📌 3. "http://http.kali.org/kali kali-rolling/main"
+#### 📌 3. "http://http.kali.org/kali kali-rolling/main"
 
 **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
 **main deposu = test edilip onaylanmış paketler.**
 
 ------
 
-> `apt-get 
-remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
+> `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
