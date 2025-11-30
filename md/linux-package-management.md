@@ -64,6 +64,7 @@ dpkg -L <paket_adı>
 >**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
 >
 >---
+
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
 > ```bash
@@ -72,7 +73,7 @@ dpkg -L <paket_adı>
 > **➡ Yarım kalan kurulumları tamamlar.**
 >
 > ------
->
+
 #### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
 >
 > ```bash
@@ -82,7 +83,7 @@ dpkg -L <paket_adı>
 > **➡ Eksik bağımlılık varsa otomatik kurar.**
 >
 > ------
->
+
 #### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
 >
 > ```bash
@@ -92,7 +93,7 @@ dpkg -L <paket_adı>
 > **➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.**
 >
 > ------
->
+
 #### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
 >
 > ```bash
@@ -106,7 +107,7 @@ dpkg -L <paket_adı>
 > ```
 >
 > ------
->
+
 #### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
 >
 > ```bash
@@ -114,7 +115,7 @@ dpkg -L <paket_adı>
 > ```
 >
 > ------
->
+
 #### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
 >
 > ```bash
@@ -143,97 +144,62 @@ dpkg -L <paket_adı>
 ```bash
 apt policy <paket_adı>
 ```
-➡ Örnek:
+
+**➡ Örnek:**
+
 `sudo apt policy gpaste`
 
 ##### 📌 1. "Kurulu: 45.3-2"
 
-Sistemde şu an yüklü olan sürüm.
+**Sistemde şu an yüklü olan sürüm.**
 
 ##### 📌 2. "Aday: 45.3-2"
 
-Depoda yüklenebilecek sürüm de aynı → güncel versiyon.
+**Depoda yüklenebilecek sürüm de aynı → güncel versiyon.**
 
 ##### 📌 3. "500 http://http.kali.org/kali kali-rolling/main"
 
-Bu gösteriyor ki:
+**Bu gösteriyor ki:**
 
-- Paket **resmi Kali deposundan** geliyor
-- **main** deposunda → resmi, güvenilir yazılımlar
-- **kali-rolling** sürümü için uygun
+- **Paket resmi kali deposundan geliyor**
+- **main deposunda → resmi, güvenilir yazılımlar**
+- **kali-rolling sürümü için uygun**
 
 ##### 📌 4. "100 /var/lib/dpkg/status"
 
-Bu, paketin sistemde kayıtlı olduğunu gösteriyor, sorun değil.
-
-------
+**Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
 
 ##### 📌 Sonuç
 
 `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
- Kali’de clipboard geçmişi isteyen GNOME kullanıcılarında yaygın bir paket.
-
-Sistemi bozacak türden bir paket değil.
 
 ------
 
-**`apt policy gnome-shell-extension-gpaste`** çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:
+**➡ Örnek:**
+
+`sudo apt policy gnome-shell-extension-gpaste` **çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:**
 
 ##### ✔ Paket Güvenli mi?
 
-**Evet, %100 güvenli.**
- Çünkü:
+**Evet, %100 güvenli, Çünkü:**
 
 ##### 📌 1. "Kurulu: (hiçbiri)"
 
-Sende şu an yüklü değil.
+**Sende şu an yüklü değil.**
 
-### 📌 2. "Aday: 45.3-2"
+##### 📌 2. "Aday: 45.3-2"
 
-Depoda yüklenebilir olan güncel sürüm bu.
+**Depoda yüklenebilir olan güncel sürüm bu.**
 
-### 📌 3. "http://http.kali.org/kali
+##### 📌 3. "http://http.kali.org/kali kali-rolling/main"
 
-###  kali-rolling/main"
-
-Bu da paketin **resmi Kali deposundan** geldiğini gösteriyor.
- Main deposu = test edilip onaylanmış paketler.
+**Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
+**main deposu = test edilip onaylanmış paketler.**
 
 ------
 
-# 📦 Bu paket ne?
-
-**GNOME Shell için GPaste uzantısıdır.**
- GPaste yüklüyse bununla GNOME paneline bir pano simgesi eklenir.
-
-------
-
-# ✔ Yüklemek istersen komut:
-
-```
-
-sudo apt install gnome-shell-extension-gpaste
-```
-
-Kurulduktan sonra GNOME Shell’i yeniden başlat:
-
-```
-
-Alt + F2 → r → Enter
-```
-
-(Sadece X11 oturumda çalışır; Wayland’da çıkış–giriş yapman gerekir.)
-
-------
-
-# İstersen diğer clipboard/pano paketleri için de aynı kontrolü yapabilirim.
-
-Hangi paketleri merak ediyorsan söyle yeter 👍
-
----
-
-
-> `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
+> `apt-get 
+remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
