@@ -53,9 +53,9 @@ dpkg -L <paket_adı>
 
 
 
-##### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
+#### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-###### 🔍 1. Bozuk Paket Var mı? (En Güvenli Test)
+##### 🔍 1. Bozuk Paket Var mı? (En Güvenli Test)
 >
 > ```bash
 > sudo apt --fix-broken install
@@ -63,7 +63,7 @@ dpkg -L <paket_adı>
 >
 > **➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
 >
-###### 🔎 2. Kırık Bağımlılıkları Kontrol Et
+##### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
 > ```bash
 > sudo dpkg --configure -a
@@ -73,14 +73,13 @@ dpkg -L <paket_adı>
 >
 > ------
 >
-> # 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
+##### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
 >
-> ```
-> 
+> ```bash
 > sudo apt install -f
 > ```
 >
-> ➡ Eksik bağımlılık varsa otomatik kurar.
+> **➡ Eksik bağımlılık varsa otomatik kurar.**
 >
 > ------
 >
