@@ -213,7 +213,9 @@ sudo apt remove <paket_adı>
 ```
 
 **→ Paket silinir**
+
 **→ /etc/paket_adı/ gibi ayar dosyaları kalır**
+
 
 🧹 `apt remove --purge` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
 
@@ -222,16 +224,24 @@ sudo apt remove --purge <paket_adı>
 ```
 
 ✔ **Paket kaldırılır**
+
 ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
+
 ✔ **Kullanıcı ayar dosyalarının çoğu silinir**
+
 ✔ **Sistem o paket yüklenmemiş haline döner**
+
 
 🧹 `apt remove --purge <paket_adı>` | `apt purge <paket_adı>` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
 
 ✔ **Paket kaldırılır**
+
 ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
+
 ✔ **Kullanıcı ayar dosyalarının çoğu silinir**
+
 ✔ **Sistem o paket yüklenmemiş haline döner**
+
 
 🔥 `purge` **neden önemli?**
 **Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.**
@@ -255,9 +265,13 @@ sudo apt purge <paket_adı>
 **Yani güvenlidir, ama şu paketleri purge etme:**
 
 ❌ **systemd**
+
 ❌ **kali-desktop-***
+
 ❌ **linux-image-* (kernel)**
+
 ❌ **apt veya dpkg**
+
 ❌ **python3 (sistem bileşeni)**
 
 
@@ -282,7 +296,9 @@ sudo apt autoremove
 **Bu 2 adım:**
 
 ✔ **Paket silinir**
+
 ✔ **Ayar dosyaları temizlenir**
+
 ✔ **Gereksiz bağımlılıklar da silinir**
 
 ### 📌 Özet
