@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="405"/>
+	<img src="../images/git-banner.png" width="385"/>
 <p/>
+
 
 
 # Git Komutları (Git Commands)
@@ -92,6 +93,8 @@ git config --global core.editor
 
 ---
 
+
+
 | Dosya İşlemleri                                       |                                                    |
 | ----------------------------------------------------- | -------------------------------------------------- |
 | `git rm <file_name>`                                  | Dosya silmek için kullanılır                       |
@@ -101,7 +104,9 @@ git config --global core.editor
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 | `git config --global alias.<kısayol> <komut_adı>`     | Komutları kısaltmak için kullanılır                |
 
- ---
+
+
+---
 
 > - **Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir zamanda geriye dönülerek değişiklikler eski haline getirilebilir.**
 ```shell
@@ -206,83 +211,36 @@ git checkout <commit id> -- .
 
 ---
 
-> - `git rebase`, bir dalın (branch) tabanını başka bir dalın en son commit’ine *taşıyarak*, commit geçmişini daha temiz ve lineer hâle getiren bir git komutudur.
+> - `git rebase` komutu, Git’te branch  (dal) yönetiminde kullanılır ve commit geçmişini düzenlemeye yarar.  Temel amacı, bir branch’in temelini başka bir branch’in en son haliyle  değiştirmek ve daha "düzgün" bir commit geçmişi oluşturmaktır.
 >
->   ------
+>   **Yani:**
 >
->   ##### 🔍 Git Rebase Ne İşe Yarar?
+>   - Branch’inizdeki commitleri, hedef branch’in en güncel commitlerinin üstüne "taşır".
+>   - Genellikle `git merge` ile benzer problemlere çözüm getirir ama geçmişi daha lineer hale getirir.
 >
->   `git rebase` iki temel amaç için kullanılır:
+>   **En yaygın kullanım:**
 >
->   ------
+>   bash
 >
->   ##### **1) Commit geçmişini düzenlemek**
->
->   Rebase, commit’leri *başka bir tabana* taşıyarak geçmişi kronolojik ve düz bir çizgi hâline getirir.
->
->   ##### Örnek:
->
->   - `feature` branch’inde çalışıyorsun.
->   - Bu sırada `main` branch’inde yeni commit’ler geldi.
->   - Sen kendi branch’ini `main`’in son haline göre güncellemek istiyorsun.
->
->   ##### Komut:
->
->   ```bash
->       git checkout feature
+>   ```
+>   git checkout feature-branch
 >   git rebase main
 >   ```
->   
->  ##### Sonuç:
->   
->  - Sanki `feature` dalına *main güncellenmişken başlamışsın gibi* temiz bir commit tarihi oluşur.
->   - Merge commit oluşmaz → **daha temiz bir commit geçmişi.**
->   
->  ------
->   
->  ##### **2) Commit’leri düzenlemek, birleştirmek veya mesajlarını değiştirmek**
->   
->  **Interactive rebase** ile commit’leri düzenleyebilirsin:
->   
->  ```
->   
->       git rebase -i HEAD~5
->   ```
->   
->  Bu şekilde:
->   
->  - commit silme,
->   - commit birleştirme (squash),
->   - commit mesajı değiştirme (reword),
->   - commit sırasını değiştirme
->   
->  gibi işler yapılır.
->   
->  ------
->   
->  ##### 🧠 Rebase ile Merge Arasındaki Fark
->   
->  | Özellik  | `git merge`                                           | `git rebase`                   |
->   | -------- | ----------------------------------------------------- | ------------------------------ |
->   | Geçmiş   | Tüm commitler olduğu gibi kalır, merge commit eklenir | Geçmiş yeniden yazılır         |
->   | Yapı     | Dal birleşmesi görülür                                | Tek çizgi halinde temiz geçmiş |
->   | Güvenlik | Daha güvenli (tarih değişmez)                         | Ortak dallarda risklidir       |
->   | Kullanım | Paylaşılan branch’lerde                               | Kişisel / feature branch’lerde |
->   
->  ------
->   
->  ##### ⚠️ Ne zaman **kullanılmamalı?**
->   
->  > **Paylaşılan (push yapılmış) branch’lerde rebase tehlikelidir.**
->   >  Çünkü commit geçmişini değiştirir → başkalarının reposu ile uyuşmazlık çıkar.
->   
->  ------
->   
->  ##### ✔️ Ne zaman kullanılmalı?
->   
->  - Kendi geliştirme dalını güncellemek istediğinde
->   - Commit geçmişini temizlemek istediğinde
->   - PR açmadan önce commit’leri düzenlemek için
+>
+>   Bu komut, `feature-branch` dalındaki değişiklikleri, `main` dalının en güncel halinin üzerine taşır.
+>
+>   **Faydaları:**
+>
+>   - Commit geçmişi daha temiz ve düz olur.
+>   - Ortak bir temel üzerinde çalışmayı kolaylaştırır.
+>   - Merge commitleri oluşturmaz (tüm commitler tek bir çizgide görünür).
+>
+>   **Dikkat edilmesi gereken noktalar:**
+>
+>   - Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde kullanırken dikkatli olunmalıdır.
+>   - Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.
+>
+>   Kısaca, `git rebase`, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.
 
 ---
 
@@ -327,10 +285,6 @@ git checkout <commit id> -- .
 
 
 
-
-
-
-
 ![](../images/new-repo.png)
 
 
@@ -344,12 +298,6 @@ git checkout <commit id> -- .
 ![](../images/create-new-repo.png)
 
 ---
-
-
-
-
-
-
 
 
 
@@ -386,6 +334,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 **4. Generate new token butonuna tıkla.**
 
 **5. Açılan formda:**
+
    - **Token'a bir isim ver (ör: "CLI erişimi için")**
    - **Erişim süresi (expiration) belirle**
    - **Hangi izinlere sahip olacağını seç (repo, workflow, user, vs.)**
