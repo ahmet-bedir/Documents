@@ -171,12 +171,12 @@ sudo apt autoremove
 
 ### 📌 Özet
 
-| Komut                          | Anlamı                                                 |
-| ------------------------------ | ------------------------------------------------------ |
-| `apt-get remove paket`         | Paketi kaldırır, config kalır                          |
-| `apt-get remove --purge paket` | Paket + config dosyaları silinir                       |
-| `apt-get autoremove`           | Artık kullanılmayan bağımlılıkları siler               |
-| `apt-get autoremove --purge`   | Kullanılmayan bağımlılıkları config dosyalarıyla siler |
+| Komut                                | Anlamı                                                 |
+| ------------------------------------ | ------------------------------------------------------ |
+| `apt-get remove <paket_adı>`         | Paketi kaldırır, config kalır                          |
+| `apt-get remove --purge <paket_adı>` | Paket + config dosyaları silinir                       |
+| `apt-get autoremove`                 | Artık kullanılmayan bağımlılıkları siler               |
+| `apt-get autoremove --purge`         | Kullanılmayan bağımlılıkları config dosyalarıyla siler |
 
 > `apt --fix-broken install` | `apt-get install -f`  :  **APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
 

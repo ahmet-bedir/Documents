@@ -5,8 +5,6 @@
 
 # Git Komutları (Git Commands)
 
-
-
 ###### Güncelleme : 08/2025
 
 ---
@@ -120,24 +118,24 @@ git commit -m "commit_mesajı"
 ```
 
 > - `git commit -a`  **:  Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.**
-> 
+>
 > - `git commit --amend -m "yeni commit mesajı"`  **:  En son yapılan commit mesajını değiştirmek için kullanılır.**
+
+
 
 > - `git log`  **:  Yapılan commitleri gösterir.**
 >
 > - `git log --oneline`  **:  Yapılan commitleri tek satır şeklinde gösterir.**
 
-
-
 ###### HEAD  :  Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
 
-
-
 > - `.gitignore`  **:  Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
-> 
+>
 > - `dizin/*`        **:  Dizin klasöründeki tüm dosyaları kapsar.**
-> 
+>
 > - `!dizin/b`      **:  Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
+
+
 
 > - **Zamanı geri alma yani git deposunda geçmiş tarihli bir commit'e geri gitmemiz için:**
 ```shell
@@ -217,7 +215,89 @@ git checkout <commit id> -- .
 
 ---
 
+> - `git rebase`, bir dalın (branch) tabanını başka bir dalın en son commit’ine *taşıyarak*, commit geçmişini daha temiz ve lineer hâle getiren bir Git komutudur.
+>
+>   ------
+>
+>   # 🔍 Git Rebase Ne İşe Yarar?
+>
+>   `git rebase` iki temel amaç için kullanılır:
+>
+>   ------
+>
+>   ## **1) Commit geçmişini düzenlemek**
+>
+>   Rebase, commit’leri *başka bir tabana* taşıyarak geçmişi kronolojik ve düz bir çizgi hâline getirir.
+>
+>   ### Örnek:
+>
+>   - `feature` branch’inde çalışıyorsun.
+>   - Bu sırada `main` branch’inde yeni commit’ler geldi.
+>   - Sen kendi branch’ini `main`’in son haline göre güncellemek istiyorsun.
+>
+>   ### Komut:
+>
+>   ```
+>   
+>   git checkout feature
+>   git rebase main
+>   ```
+>
+>   ### Sonuç:
+>
+>   - Sanki `feature` dalına *main güncellenmişken başlamışsın gibi* temiz bir commit tarihi oluşur.
+>   - Merge commit oluşmaz → **daha temiz bir commit geçmişi.**
+>
+>   ------
+>
+>   ## **2) Commit’leri düzenlemek, birleştirmek veya mesajlarını değiştirmek**
+>
+>   **Interactive rebase** ile commit’leri düzenleyebilirsin:
+>
+>   ```
+>   
+>   git rebase -i HEAD~5
+>   ```
+>
+>   Bu şekilde:
+>
+>   - commit silme,
+>   - commit birleştirme (squash),
+>   - commit mesajı değiştirme (reword),
+>   - commit sırasını değiştirme
+>
+>   gibi işler yapılır.
+>
+>   ------
+>
+>   # 🧠 Rebase ile Merge Arasındaki Fark
+>
+>   | Özellik  | `git merge`                                           | `git rebase`                   |
+>   | -------- | ----------------------------------------------------- | ------------------------------ |
+>   | Geçmiş   | Tüm commitler olduğu gibi kalır, merge commit eklenir | Geçmiş yeniden yazılır         |
+>   | Yapı     | Dal birleşmesi görülür                                | Tek çizgi halinde temiz geçmiş |
+>   | Güvenlik | Daha güvenli (tarih değişmez)                         | Ortak dallarda risklidir       |
+>   | Kullanım | Paylaşılan branch’lerde                               | Kişisel / feature branch’lerde |
+>
+>   ------
+>
+>   # ⚠️ Ne zaman **kullanılmamalı?**
+>
+>   > **Paylaşılan (push yapılmış) branch’lerde rebase tehlikelidir.**
+>   >  Çünkü commit geçmişini değiştirir → başkalarının reposu ile uyuşmazlık çıkar.
+>
+>   ------
+>
+>   # ✔️ Ne zaman kullanılmalı?
+>
+>   - Kendi geliştirme dalını güncellemek istediğinde
+>   - Commit geçmişini temizlemek istediğinde
+>   - PR açmadan önce commit’leri düzenlemek için
+
+---
+
 ### Remote
+
 **Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:**                                       `git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git` **komutunda** `<remote_name>` **kısmına istediğiniz ismi verebilirsiniz. Yani** `<remote_name>` **dediğimizde** `https://github.com/<github_username>/<repo_name>.git` **bu url temsil edilmektedir.**
 
 ---
