@@ -49,7 +49,7 @@ dpkg -L <paket_adı>
 >
 > `dpkg -l | grep <paket_adı>` : `grep` **komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.**
 
-> `dpkg-reconfigure <paket_adı>`  :  **Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
+> `dpkg-reconfigure <paket_adı>` **: Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
 
 ---
 
@@ -131,17 +131,17 @@ dpkg -L <paket_adı>
 
 ### APT Komutu İle Paket Listesinin Güncellenmesi
 
-> `apt-get update` | `apt update`  :  **Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.**
+> `apt-get update` | `apt update` **: Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.**
 
-> `apt-get upgrade` | `apt upgrade`  :  **Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
+> `apt-get upgrade` | `apt upgrade` **: Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
 >
-> ###### Not : Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncellenir.
+> ###### Not : Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.
 
-> `apt-cache search <paket_adı>` | `apt search <paket_adı>`  :  **Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.**
+> `apt-cache search <paket_adı>` | `apt search <paket_adı>` **: Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.**
 
-> `apt-cache show <paket_adı>` | `apt show <paket_adı>`  :  **Paket hakkında ayrıntılı bilgi almamızı sağlar.**
+> `apt-cache show <paket_adı>` | `apt show <paket_adı>` **: Paket hakkında ayrıntılı bilgi almamızı sağlar.**
 
-> `apt-get install <paket_adı>` | `apt install <paket_adı>`  :  **Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
+> `apt-get install <paket_adı>` | `apt install <paket_adı>` **: Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
 
 
@@ -181,8 +181,6 @@ apt policy <paket_adı>
 
 ------
 
-
-
 **➡ Örnek:**
 
 `sudo apt policy gnome-shell-extension-gpaste` **çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:**
@@ -204,19 +202,15 @@ apt policy <paket_adı>
 **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
 **main deposu = test edilip onaylanmış paketler.**
 
-
-
 ------
 
-> `apt-get remove <paket_adı>` | `apt remove <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
+> `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
 
-> `apt-get autoremove --purge`  :  **Paketi konfigürasyon dosyaları ve kullanılmayan bağımlılıklarıda dahil tüm dosyaları sistemden tamamen kaldırmak için.**
+> `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
 
 ---
-
-
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
@@ -244,21 +238,6 @@ sudo apt remove --purge <paket_adı>
 ✔ **Sistem o paket yüklenmemiş haline döner**
 
 
-
-
-🧹 `apt remove --purge <paket_adı>` | `apt purge <paket_adı>` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
-
-✔ **Paket kaldırılır**
-
-✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
-
-✔ **Kullanıcı ayar dosyalarının çoğu silinir**
-
-✔ **Sistem o paket yüklenmemiş haline döner**
-
-
-
-
 🔥 `purge` **neden önemli?**
 **Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.**
 
@@ -278,7 +257,6 @@ sudo apt purge <paket_adı>
 **→ tüm sorunları sıfırlar.**
 
 
-
 🛑 **Dikkat etmen gereken tek şey purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.**
 **Yani güvenlidir, ama şu paketleri purge etme:**
 
@@ -291,8 +269,6 @@ sudo apt purge <paket_adı>
 ❌ **apt veya dpkg**
 
 ❌ **python3 (sistem bileşeni)**
-
-
 
 
 🧹 **Kullanılmayan bağımlılıkları silmek için:**
@@ -336,14 +312,13 @@ sudo apt autoremove
 
 ---
 
-> `apt --fix-broken install` | `apt-get install -f`  :  **APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
+> `apt --fix-broken install` | `apt-get install -f` **: APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
 
-> `apt-get dist-upgrade`  :  **Komutu ile sistemde yüklü bulunan bir paketin bağımlılıkları arttıysa veya azaldıysa güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.**
+> `apt-get dist-upgrade` **: Komutu ile sistemde yüklü bulunan bir paketin bağımlılıkları arttıysa veya azaldıysa güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.**
 >
 > ###### Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
 
 ---
-
 
 
 ### Gereksiz Paketlerin Silinmesi
@@ -360,7 +335,7 @@ apt install ~/Downloads/<paket_adı.deb>
 
 ---
 
-> `apt-cache depends <paket_adı>`  :  **Paketin çalışması için gerekli olan bağımlılıkları listeler.**
+> `apt-cache depends <paket_adı>` **: Paketin çalışması için gerekli olan bağımlılıkları listeler.**
 
 ---
 
@@ -381,28 +356,26 @@ sudo apt-get install -f ./<paket_adı.deb> --dry-run
 debtree ./<paket_adı.deb>
 ```
 
-> `apt list` | `apt-cache pkgnames`  :  **Depodaki mevcut tüm paketleri listeler.**
-> `apt list --upgradable`  :  **Sistemdeki güncellenebilir paketleri listeler.**
+> `apt list` | `apt-cache pkgnames` **: Depodaki mevcut tüm paketleri listeler.**
+> `apt list --upgradable` **: Sistemdeki güncellenebilir paketleri listeler.**
 
-> `apt download <paket_adı>`  :  **Depodan ismi verilen paketi kurmadan indirme işlemi yapar.**
+> `apt download <paket_adı>` **: Depodan ismi verilen paketi kurmadan indirme işlemi yapar.**
 
 ---
 
 
-
 ### Kaynak Listesi
 
-> **APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo adreslerini biliyor olması lazım. İşte bizler bu repo adreslerini sistem üzerindeki “sources.list” yani “kaynak listesi” dosyasında belirtiliyoruz. APT aracı bu kaynak listesine bakıp sorgulama yapacağı repo adreslerini öğreniyor.**
+> **APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo adreslerini biliyor olması gerekir. İşte bu repo adresleri sistem üzerindeki “sources.list” yani “kaynak listesi” dosyasında belirtiliyor. APT aracı bu kaynak listesine bakıp sorgulama yapacağı repo adreslerini öğreniyor.**
 
-> **Debian tabanlı dağıtımlarda kaynak listesi `/etc/apt` dizini altındaki `sources.list` isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu `sources.list` dosyası içinde tanımlanmıştır.**
+> **Debian tabanlı dağıtımlarda kaynak listesi** `/etc/apt` **dizini altındaki** `sources.list` **isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu** `sources.list` **dosyası içinde tanımlanmıştır.**
 
 ----
 
 
-
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
 
-> **Debian tabanlı dağıtımlarda kullandığımız `dpkg` ve `apt` araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla `rpm` ve `yum` araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler `.deb` uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler `.rpm` uzantılıdır. `.rpm` uzantılı paketleri yönetmek için de `rpm` aracını kullanıyoruz. `rpm` aracı tıpkı `dpkg` aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor. `yum` aracı ise tıpkı `apt` aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor. `yum` aracı da aslında arkaplanda `rpm` aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
+> **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **uzantılıdır.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
 
 > **Kurulu tüm paketleri görmek için:**
 
@@ -410,36 +383,36 @@ debtree ./<paket_adı.deb>
 rpm -qa | less
 ```
 
-> `rpm -i <paket_adı.rpm>`  :  **Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.**
+> `rpm -i <paket_adı.rpm>` **: Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.**
 
-> **Sistemde kurulu olan bir paketi kaldırmak için `rpm` komutunun `-e` seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki `e` seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.**
+> **Sistemde kurulu olan bir paketi kaldırmak için** `rpm` **komutunun** `-e` **seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki** `e` **seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.**
 
-> **Eğer işlemler hakkında detaylıca çıktı almak istersek “verbose” ifadesinin kısaltması olan `v` seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.**
+> **Eğer işlemler hakkında detaylıca çıktı almak istersek “verbose” ifadesinin kısaltması olan** `v` **seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.**
 
 
 
 ### YUM ve DNF
 
-> `yum` **aracı tıpkı `apt` aracı gibi paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması gibi paket yönetimi işlerini bizler için kolay hale getiren Red Hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan `dnf` aracını öğrenmek daha makul bir yaklaşım olacaktır.**
+> `yum` **aracı tıpkı** `apt` **aracı gibi paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması gibi paket yönetimi işlerini bizler için kolay hale getiren Red Hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan** `dnf` **aracını öğrenmek daha makul bir yaklaşım olacaktır.**
 
-> **Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.**
+> **Repolardaki paketlerde araştırma yapmak için** `dnf search <paket-adı>` **komutu kullanılır.**
 
 > **Depodan paket kurmak için** `dnf install <paket-adı>` **şeklinde komut girebiliyoruz.**
 
-> `dnf check-update`  :  **Sistemde kurulu paketlerin güncellemelerini kontrol etmek için kullanılır.  Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.**
+> `dnf check-update` **: Sistemde kurulu paketlerin güncellemelerini kontrol etmek için kullanılır. Tüm paketleri kontrol etmek yerine dilersek** `check-update` **komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.**
 
 > **Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak** `dnf update` **komutunu kullanabiliyoruz.**
 >
-> **Spesifik olarak tek bir paketi güncellemek istersek `sudo dnf install <paket-adı>` komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.**
+> **Spesifik olarak tek bir paketi güncellemek istersek** `sudo dnf install <paket-adı>` **komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.**
 
-> `dnf remove paket-adı`  :  **Paket kaldırmak için bu komut kullanılır.**
+> `dnf remove <paket-adı>` **: Paket kaldırmak için bu komut kullanılır.**
 
 > **Gereksiz paketler kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi için** `sudo dnf clean all` **komutunu kullanabiliyoruz.**
 
 ---
 
 > **Alien komutu ile deb/rpm paket dönüşümü yapılabilmektedir.**
-> **Bir yazılımın `rpm` paketi var fakat `deb` formatında paketi yoksa `alien` komutu sayesinde `rpm` paketinden `deb` paketine dönüşüm yapılabilir. Tam tersi olarak `deb` paketinden de `rpm` paketi yapılabilmektedir.**
+> **Bir yazılımın** `rpm` **paketi var fakat** `deb` **formatında paketi yoksa** `alien` **komutu sayesinde** `rpm` **paketinden** `deb` **paketine dönüşüm yapılabilir. Tam tersi olarak** `deb` **paketinden de** `rpm` **paketi yapılabilmektedir.**
 
 | İşlem                      | Komut                                                        | Açıklama                               |
 | -------------------------- | ------------------------------------------------------------ | -------------------------------------- |
@@ -452,9 +425,9 @@ rpm -qa | less
 
 ### Kaynak Koddan Derleyerek Kurulum
 
-> **Kuracak olduğumuz yazılımın `.tar.gz` uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu doküman ve `install` veya `readme` gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan `configure` dosyası ve kurulum işlemini kolaylaştıran genellikle `install.sh` isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için `configure` dosyasını çalıştırıyoruz. Ayrıca buradaki `makefile` dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.**
+> **Kuracak olduğumuz yazılımın** `.tar.gz` **uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu** `install` **veya** `readme` **gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan** `configure` **dosyası ve kurulum işlemini kolaylaştıran genellikle** `install.sh` **isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için** `configure` **dosyasını çalıştırıyoruz. Ayrıca buradaki** `makefile` **dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.**
 
-> - **İlk olarak sıkıştırılmış dosyayı açıyoruz. Açılan klasörün içine girip, orada ilk olarak `./configure` komutu ile "configure" dosyasını çalıştırıyoruz.**
+> - **İlk olarak sıkıştırılmış dosyayı açıyoruz. Açılan klasörün içine girip, orada ilk olarak** `./configure` **komutu ile "configure" dosyasını çalıştırıyoruz.**
 >   - **İlk olarak konfigürasyon dosyasını çalıştırdığımız için mevcut sistemin derleme işlemine uygun olup olmadığı kontrol ediliyor. Dolayısıyla uyumlu değilse hata çıktısında belirtilen uyarıları araştırıp çözdükten sonra derleme adımlarına devam etmelisiniz.**
 >   - **Bu işlem sonucunda bulunulan dizinde inşa işleminin nasıl yürüyeceğini tarif eden `Makefile` adlı bir dosya oluşur.**
 > - `make` **komutu ile derleme işlemini gerçekleştiyoruz.**
