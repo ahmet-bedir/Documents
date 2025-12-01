@@ -4,6 +4,7 @@
 
 
 
+
 # Git Komutları (Git Commands)
 
 ###### Güncelleme : 11/2025
@@ -223,7 +224,7 @@ git checkout <commit id> -- .
 >
 >   **En yaygın kullanım:**
 >
->   ```bash
+>   ```shell
 >   git checkout feature-branch
 >   git rebase main
 >   ```
@@ -284,7 +285,7 @@ git checkout <commit id> -- .
    git clone https://github.com/<github_username>/<repo_name>.git
    ```
 
-
+---
 
 ![](../images/new-repo.png)
 
@@ -297,11 +298,6 @@ git checkout <commit id> -- .
 ---
 
 ![](../images/create-new-repo.png)
-
----
-
-
-
 
 ---
 
@@ -322,6 +318,8 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 - **Komut satırı veya uygulamalar üzerinden kimlik doğrulama yapmak**
 - **Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak**
 - **Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek**
+
+
 
 ---
 
@@ -344,6 +342,8 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 **6. Generate token diyerek token'ı oluştur.**
    **Oluşan token'ı güvenli bir yere kopyala (çünkü bir daha gösterilmez).**
 
+
+
 ---
 
 ### Komut Satırında PAT ile Kimlik Doğrulama
@@ -351,7 +351,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 > - **PAT’i kullanarak HTTPS ile push/pull işlemi yapmak için:**
 
 ```shell
-git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
+<git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
 ```
 
 ###### Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
@@ -382,6 +382,8 @@ git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<git
 
 **6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:**
 `git remote set-url <remote_name> git@github.com:<github_username>/<repo_name>.git`
+
+
 
 ---
 
