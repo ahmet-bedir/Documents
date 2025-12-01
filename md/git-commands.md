@@ -109,6 +109,7 @@ git config --global core.editor
 ---
 
 > - **Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir zamanda geriye dönülerek değişiklikler eski haline getirilebilir.**
+
 ```shell
 git commit -m "commit_mesajı"
 ```
@@ -134,6 +135,7 @@ git commit -m "commit_mesajı"
 
 
 > - **Zamanı geri alma yani git deposunda geçmiş tarihli bir commit'e geri gitmemiz için:**
+
 ```shell
 git checkout <commit_id>
 ```
@@ -145,6 +147,7 @@ git checkout master || git switch master
 ```
 
 > - **Git versiyon değiştirme (silinen tüm dosyaları geri getirmek) için:**
+
 ```shell
 git checkout <commit id> -- .
 ```
@@ -303,6 +306,7 @@ git checkout <commit id> -- .
 ---
 
 > - **Yereldeki repoya uzak sunucudaki repoyu  ilişkilendirmek için uzak repo adresini https protokolü ile ekliyoruz.**
+
 ```shell
 git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git
 ```
