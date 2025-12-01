@@ -10,13 +10,11 @@
 
 ---
 
-
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
-> `dpkg -i <paket_adı.deb>`  :  **Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
+> `dpkg -i <paket_adı.deb>`  :  **Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen** `i` **seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
 >
 > ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
-
 
 
 > **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
@@ -27,17 +25,17 @@ dpkg -L <paket_adı>
 
 
 
-> `dpkg -r <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.**
+> `dpkg -r <paket_adı>`  :  **Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen** `r` **seçeneği kullanılır.**
 >
-> ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de aracın bozulması pahasına paketi kaldırmak istiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
+> ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak istiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
 
 
 
-> `dpkg -P <paket_adı>`  :  **Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “purge” yani “arındırmak” anlamındaki `P` seçeneği kullanılır.**
+> `dpkg -P <paket_adı>`  :  **Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “purge” yani “arındırmak” anlamındaki** `P` **seçeneği kullanılır.**
 
 
 
-> `dpkg -I <paket_adı.deb>`  :  **Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “info” ifadesinin kısaltmasından gelen `I` karakteri kullanır.**
+> `dpkg -I <paket_adı.deb>`  :  **Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “info” ifadesinin kısaltmasından gelen** `I` **karakteri kullanır.**
 
 > `dpkg -S dosya_yolu` **(veya uzun haliyle `dpkg --search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.**
 >
