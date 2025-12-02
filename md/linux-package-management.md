@@ -6,7 +6,7 @@
 
 # Linux Paket Yönetimi
 
-###### Güncelleme : 11/2025
+###### Güncelleme : 12/2025
 
 ---
 
@@ -218,9 +218,9 @@ apt policy <paket_adı>
 sudo apt remove <paket_adı>
 ```
 
-**→ Paket silinir**
+> **→ Paket silinir**
 
-**→ /etc/paket_adı/ gibi ayar dosyaları kalır**
+> **→ /etc/paket_adı/ gibi ayar dosyaları kalır**
 
 
 🧹 `apt remove --purge` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
@@ -229,32 +229,32 @@ sudo apt remove <paket_adı>
 sudo apt remove --purge <paket_adı>
 ```
 
-✔ **Paket kaldırılır**
-
-✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
-
-✔ **Kullanıcı ayar dosyalarının çoğu silinir**
-
-✔ **Sistem o paket yüklenmemiş haline döner**
+> ✔ **Paket kaldırılır**
+>
+> ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
+>
+> ✔ **Kullanıcı ayar dosyalarının çoğu silinir**
+>
+> ✔ **Sistem o paket yüklenmemiş haline döner**
 
 
 🔥 `purge` **neden önemli?**
 **Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.**
 
-**Örneğin:**
+> **Örneğin:**
+>
+> - **Bozuk GNOME eklentileri**
+> - **Yanlış tema paketleri**
+> - **Config bozan programlar**
+> - **Kalan ayarlar nedeniyle tekrar kurulamayan paketler**
 
-- **Bozuk GNOME eklentileri**
-- **Yanlış tema paketleri**
-- **Config bozan programlar**
-- **Kalan ayarlar nedeniyle tekrar kurulamayan paketler**
-
-**Bu durumda:**
-
-```bash
-sudo apt purge <paket_adı>
-```
-
-**→ tüm sorunları sıfırlar.**
+> **Bu durumda:**
+>
+> ```bash
+> sudo apt purge <paket_adı>
+> ```
+>
+> **→ tüm sorunları sıfırlar.**
 
 
 🛑 **Dikkat etmen gereken tek şey purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.**
@@ -276,9 +276,9 @@ sudo apt purge <paket_adı>
 ```bash
 sudo apt autoremove
 ```
-- **Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler**
-- **Gereksiz kütüphaneleri siler**
-- **Sistemi hafifletir**
+> - **Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler**
+> - **Gereksiz kütüphaneleri siler**
+> - **Sistemi hafifletir**
 
 
 
@@ -291,13 +291,13 @@ sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
-**Bu 2 adım:**
-
-✔ **Paket silinir**
-
-✔ **Ayar dosyaları temizlenir**
-
-✔ **Gereksiz bağımlılıklar da silinir**
+> **Bu 2 adım:**
+>
+> ✔ **Paket silinir**
+>
+> ✔ **Ayar dosyaları temizlenir**
+>
+> ✔ **Gereksiz bağımlılıklar da silinir**
 
 
 
