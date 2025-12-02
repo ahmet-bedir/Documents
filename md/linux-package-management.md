@@ -175,7 +175,8 @@ apt policy <paket_adı>
 >
 > **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
 
-> 📌 Sonuç
+> 📌 **Sonuç olarak:**
+> 
 > `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
 
 ------
@@ -183,6 +184,7 @@ apt policy <paket_adı>
 > **➡ Örnek:**
 >
 > `sudo apt policy gnome-shell-extension-gpaste`
+> 
 > ✔ **Paket Güvenli mi?**
 >
 > **Evet, %100 güvenli, Çünkü:**
