@@ -151,56 +151,54 @@ dpkg -L <paket_adı>
 apt policy <paket_adı>
 ```
 
-**➡ Örnek:**
+> **➡ Örnek:**
+>
+> `sudo apt policy gpaste`
+>
+> 📌 **1. "Kurulu: 45.3-2"**
+>
+> **Sistemde şu an yüklü olan sürüm.**
 
-`sudo apt policy gpaste`
+> 📌 **2. "Aday: 45.3-2"**
+>
+> **Depoda yüklenebilecek sürüm de aynı
+> → güncel versiyon.**
 
-#### 📌 1. "Kurulu: 45.3-2"
+> 📌 **3. "500 http://http.kali.org/kali kali-rolling/main"**
+>
+> **Bu gösteriyor ki:**
+> - **Paket resmi kali deposundan geliyor**
+> - **main deposunda → resmi, güvenilir yazılımlar**
+> - **kali-rolling sürümü için uygun**
 
-**Sistemde şu an yüklü olan sürüm.**
+> 📌 **4. "100 /var/lib/dpkg/status"**
+>
+> **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
 
-#### 📌 2. "Aday: 45.3-2"
-
-**Depoda yüklenebilecek sürüm de aynı → güncel versiyon.**
-
-#### 📌 3. "500 http://http.kali.org/kali kali-rolling/main"
-
-**Bu gösteriyor ki:**
-
-- **Paket resmi kali deposundan geliyor**
-- **main deposunda → resmi, güvenilir yazılımlar**
-- **kali-rolling sürümü için uygun**
-
-#### 📌 4. "100 /var/lib/dpkg/status"
-
-**Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
-
-#### 📌 Sonuç
-
-`gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
+> 📌 Sonuç
+> `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
 
 ------
 
-**➡ Örnek:**
+> **➡ Örnek:**
+>
+> `sudo apt policy gnome-shell-extension-gpaste`
+> ✔ **Paket Güvenli mi?**
+>
+> **Evet, %100 güvenli, Çünkü:**
 
-`sudo apt policy gnome-shell-extension-gpaste` **çıktısına göre paket tamamen temiz ve resmi. İşte kısa analiz:**
+> 📌 **1. "Kurulu: (hiçbiri)"**
+>
+> **Sende şu an yüklü değil.**
+>
+> 📌 **2. "Aday: 45.3-2"**
+>
+> **Depoda yüklenebilir olan güncel sürüm bu.**
 
-#### ✔ Paket Güvenli mi?
-
-**Evet, %100 güvenli, Çünkü:**
-
-#### 📌 1. "Kurulu: (hiçbiri)"
-
-**Sende şu an yüklü değil.**
-
-#### 📌 2. "Aday: 45.3-2"
-
-**Depoda yüklenebilir olan güncel sürüm bu.**
-
-#### 📌 3. "http://http.kali.org/kali kali-rolling/main"
-
-**Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
-**main deposu = test edilip onaylanmış paketler.**
+> 📌 **3. "http://http.kali.org/kali kali-rolling/main"**
+>
+> **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
+> **main deposu = test edilip onaylanmış paketler.**
 
 ------
 
