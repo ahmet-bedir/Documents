@@ -299,17 +299,64 @@ sudo apt autoremove
 >
 > ✔ **Gereksiz bağımlılıklar da silinir**
 
+---
+
+Kısa cevap: autopurge kullanmak çoğu durumda güvenlidir ve autoremove + purge ile aynı işi tek adımda yapar.
+Ama her zaman birebir aynı değildir, bazı küçük farkları bilmek önemli.
+
+✔ Farkları net şekilde anlatayım
+1) sudo apt remove --purge paket
+
+Paketin kendisini + paketin kendi config dosyalarını siler.
+Ancak bağımlılıkları silmez.
+
+2) sudo apt autoremove
+
+Artık kullanılmayan bağımlılık paketlerini siler fakat:
+
+Bu bağımlılıkların ayar dosyaları kalır (yani sadece remove yapar, purge değil).
+
+Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.
+
+✔ 3) sudo apt autopurge
+
+Bu komut, autoremove + purge birleşimidir.
+
+Yani:
+
+Artık kullanılmayan bağımlılıkları kaldırır
+
+Onların config dosyalarını da siler
+
+Tek fark:
+autopurge yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar.
+Bu yüzden yanlış paketi silmez, tıpkı autoremove gibi güvenlidir.
+
+✔ Sonuç: Hangisini kullanmalı?
+Güvenli tercih
+sudo apt remove --purge paket_adı
+sudo apt autoremove
+
+Temiz sistem isteyenler
+sudo apt remove --purge paket_adı
+sudo apt autopurge
 
 
-### 📌 Özet
+Bu daha temiz bir kaldırma yapar ve kalıntıları azaltır.
 
-| Komut                                | Anlamı                                                 |
-| ------------------------------------ | ------------------------------------------------------ |
-| `apt-get remove <paket_adı>`         | Paketi kaldırır, config kalır                          |
-| `apt-get remove --purge <paket_adı>` | Paket + config dosyaları silinir                       |
-| `apt-get autoremove`                 | Artık kullanılmayan bağımlılıkları siler               |
-| `apt-get autoremove --purge`         | Kullanılmayan bağımlılıkları config dosyalarıyla siler |
+✔ **“Yan etkisi olur mu?”**
 
+**Hayır,** `autopurge` **ekstra bir risk oluşturmaz.**
+`autoremove`**'ün sileceği şeyleri silip sadece onların ayarlarını da temizler.**
+
+✔ **Tavsiye (En pratik yöntem)**
+
+```bash
+sudo apt remove --purge paket_adı
+sudo apt autopurge
+```
+
+**Temiz ve güvenli.**
 ---
 
 > `apt --fix-broken install` | `apt-get install -f` **: APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
@@ -431,15 +478,15 @@ rpm -qa | less
 >   - **İlk olarak konfigürasyon dosyasını çalıştırdığımız için mevcut sistemin derleme işlemine uygun olup olmadığı kontrol ediliyor. Dolayısıyla uyumlu değilse hata çıktısında belirtilen uyarıları araştırıp çözdükten sonra derleme adımlarına devam etmelisiniz.**
 >   - **Bu işlem sonucunda bulunulan dizinde inşa işleminin nasıl yürüyeceğini tarif eden `Makefile` adlı bir dosya oluşur.**
 > - `make` **komutu ile derleme işlemini gerçekleştiyoruz.**
->   - **Burada aslında `./configure` komutu ile oluşan `Makefile` adlı dosyayı `make` adlı bir program aracılığıyla çalıştırmış oluyoruz. `make` bir sistem komutudur. Bu komutu yukarıdaki gibi parametresiz olarak çalıştırdığımızda `make` komutu, o anda içinde bulunduğumuz dizinde bir `Makefile` dosyası arar ve eğer böyle bir dosya varsa onu çalıştırır. Eğer bir önceki adımda çalıştırdığımız `./configure` komutu başarısız olduysa, dizinde bir `Makefile` dosyası oluşmayacağı için yukarıdaki `make` komutu da çalışmayacaktır. O yüzden derleme işlemi sırasında verdiğimiz komutların çıktılarını takip edip, bir sonraki aşamaya geçmeden önce komutun düzgün sonlanıp sonlanmadığından emin olmamız gerekiyor.**
+>   - **Burada aslında** `./configure` **komutu ile oluşan** `Makefile` **adlı dosyayı** `make` **adlı bir program aracılığıyla çalıştırmış oluyoruz.** `make` **bir sistem komutudur. Bu komutu yukarıdaki gibi parametresiz olarak çalıştırdığımızda** `make` **komutu, o anda içinde bulunduğumuz dizinde bir** `Makefile` **dosyası arar ve eğer böyle bir dosya varsa onu çalıştırır. Eğer bir önceki adımda çalıştırdığımız** `./configure` **komutu başarısız olduysa, dizinde bir** `Makefile` **dosyası oluşmayacağı için yukarıdaki** `make` **komutu da çalışmayacaktır. O yüzden derleme işlemi sırasında verdiğimiz komutların çıktılarını takip edip, bir sonraki aşamaya geçmeden önce komutun düzgün sonlanıp sonlanmadığından emin olmamız gerekiyor.**
 >   - `make` **komutunun yaptığı iş, programın sisteminize kurulması esnasında sistemin çeşitli yerlerine kopyalanacak olan dosyaları inşa edip oluşturmaktır.**
-> - **Şimdi derlenmiş olanları kurmak için `sudo make install` komutunu girmeliyiz.**
->   - **Kuracak olduğumuz programın eski sürümü de sistemde kalsın istiyorsak `make install` yerine `make altinstall` komutu kullanılır. `make altinstall` komutu, program kurulurken klasör ve dosyalara sürüm numarasının da eklenmesini sağlar. Böylece yeni kurduğunuz program, sistemdeki eski sürümü silip üzerine yazmamış olur ve iki farklı sürüm yan yana varolabilir. Eğer `make altinstall` yerine `make install` komutunu verirseniz sisteminizde zaten varolan eski bir sürüme ait dosya ve dizinlerin üzerine yazıp silerek o sürümü kullanılamaz hale getirebilirsiniz.**
-> - **Kurulum için derlenmiş ama artık ihtiyaç duymadığımız dosyaları `make clean` komutu ile temizleyebiliriz.**
+> - **Şimdi derlenmiş olanları kurmak için** `sudo make install` **komutunu girmeliyiz.**
+>   - **Kuracak olduğumuz programın eski sürümü de sistemde kalsın istiyorsak** `make install` **yerine** `make altinstall` **komutu kullanılır.** `make altinstall` **komutu, program kurulurken klasör ve dosyalara sürüm numarasının da eklenmesini sağlar. Böylece yeni kurduğunuz program, sistemdeki eski sürümü silip üzerine yazmamış olur ve iki farklı sürüm yan yana varolabilir. Eğer** `make altinstall` **yerine** `make install` **komutunu verirseniz sisteminizde zaten varolan eski bir sürüme ait dosya ve dizinlerin üzerine yazıp silerek o sürümü kullanılamaz hale getirebilirsiniz.**
+> - **Kurulum için derlenmiş ama artık ihtiyaç duymadığımız dosyaları** `make clean` **komutu ile temizleyebiliriz.**
 
 ---
 
-> **Kaynak koddan kurulum yaparken `--prefix` parametresiyle programı istediğin yere kurabilirsiniz:**
+> **Kaynak koddan kurulum yaparken** `--prefix` **parametresiyle programı istediğin yere kurabilirsiniz:**
 
 ```bash
 ./configure --prefix = $HOME/
@@ -484,7 +531,7 @@ sudo apt remove <paket_adı>
 sudo dpkg -i <paket_adı.deb>
 ```
 
-🔹 `.deb` **paketleri de aynı dizin yapısını kullanır, çünkü `dpkg` sistemin kendi paket yöneticisidir. Yani genelde yine şu klasörler kullanılır:**
+🔹 `.deb` **paketleri de aynı dizin yapısını kullanır, çünkü** `dpkg` **sistemin kendi paket yöneticisidir. Yani genelde yine şu klasörler kullanılır:**
 
 - `/usr/bin/` → çalıştırılabilir dosyalar
 - `/usr/share/` → ikonlar, dil dosyaları
@@ -522,7 +569,7 @@ sudo make install
 | Ayarlar                   | `/usr/local/etc/`   |                                                   |
 | Veri / kaynak dosyaları   | `/usr/local/share/` |                                                   |
 
-🔹 **Kurulum dizininde `uninstall` varsa yani `Makefile` içinde bir `uninstall` hedefi varsa kurulan dosyaları sistemden kaldırır.**
+🔹 **Kurulum dizininde** `uninstall` **varsa yani** `Makefile` **içinde bir** `uninstall` **hedefi varsa kurulan dosyaları aşağıdaki komut sistemden kaldırır.**
 
 ```bash
 sudo make uninstall
@@ -530,7 +577,7 @@ sudo make uninstall
 
 ------
 
-> 📁 **Genellikle kaynak koddan derlenen programlar `/usr/local/` altına kurulur. Kurarken hangi dosyalar nereye gittiğini görmek için:**
+> 📁 **Genellikle kaynak koddan derlenen programlar** `/usr/local/` **altına kurulur. Kurarken hangi dosyalar nereye gittiğini görmek için:**
 
 ```
 sudo make install > install.log
@@ -538,7 +585,7 @@ sudo make install > install.log
 
 ------
 
-🧠 **Eğer program `sudo make checkinstall` komutuyla kurulduysa (yani `.deb` paketi oluşturup yükler dolayısıyla aşağıdaki komutla kaldırabilirsiniz):**
+🧠 **Eğer program** `sudo make checkinstall` **komutuyla kurulduysa (yani** `.deb` **paketi oluşturup yükler dolayısıyla aşağıdaki komutla kaldırabilirsiniz):**
 
 ```
 sudo apt remove <paket_adı>
