@@ -154,8 +154,10 @@ apt policy <paket_adı>
 > **➡ Örnek:**
 >
 > `sudo apt policy gpaste-2`
+>
+> ![](/home/ahmet/Masaüstü/Documents/images/apt-policy.png)
 
-![](../images/apt-policy.png)
+
 
 > 📌 **1. "Kurulu: 45.3-2"**
 >
@@ -178,8 +180,10 @@ apt policy <paket_adı>
 > **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
 
 > 📌 **Sonuç olarak:**
-> 
+>
 > `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
+
+
 
 ------
 
@@ -203,6 +207,10 @@ apt policy <paket_adı>
 >
 > **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
 > **main deposu = test edilip onaylanmış paketler.**
+
+
+
+
 
 ------
 
@@ -354,7 +362,10 @@ sudo apt remove --purge paket_adı
 sudo apt autopurge
 ```
 
-**Temiz ve güvenli.**
+#### **Temiz ve güvenli.**
+
+
+
 ---
 
 > `apt --fix-broken install` | `apt-get install -f` **: APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
@@ -364,6 +375,7 @@ sudo apt autopurge
 > ###### Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
 
 ---
+
 
 
 ### Gereksiz Paketlerin Silinmesi
@@ -503,8 +515,6 @@ Eğer istersen indirdiği paketlerin listesini nasıl göreceğini veya bunları
 > **APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo adreslerini biliyor olması gerekir. İşte bu repo adresleri sistem üzerindeki “sources.list” yani “kaynak listesi” dosyasında belirtiliyor. APT aracı bu kaynak listesine bakıp sorgulama yapacağı repo adreslerini öğreniyor.**
 
 > **Debian tabanlı dağıtımlarda kaynak listesi** `/etc/apt` **dizini altındaki** `sources.list` **isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu** `sources.list` **dosyası içinde tanımlanmıştır.**
-
----
 
 
 
