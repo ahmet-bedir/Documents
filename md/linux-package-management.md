@@ -301,48 +301,44 @@ sudo apt autoremove
 
 ---
 
-Kısa cevap: autopurge kullanmak çoğu durumda güvenlidir ve autoremove + purge ile aynı işi tek adımda yapar.
-Ama her zaman birebir aynı değildir, bazı küçük farkları bilmek önemli.
+`autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
+**Ama her zaman birebir aynı değildir, bazı küçük farkları bilmek önemli.**
 
-✔ Farkları net şekilde anlatayım
-1) sudo apt remove --purge paket
+✔ **Farkları** `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
 
-Paketin kendisini + paketin kendi config dosyalarını siler.
-Ancak bağımlılıkları silmez.
+✔ `sudo apt autoremove` **komutu artık kullanılmayan bağımlılık paketlerini siler fakat bu bağımlılıkların ayar dosyaları kalır (yani sadece remove yapar, purge değil).**
 
-2) sudo apt autoremove
+**Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.**
 
-Artık kullanılmayan bağımlılık paketlerini siler fakat:
+✔ `sudo apt autopurge`
 
-Bu bağımlılıkların ayar dosyaları kalır (yani sadece remove yapar, purge değil).
+**Bu komut, autoremove + purge birleşimidir.**
 
-Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.
+**Yani:**
 
-✔ 3) sudo apt autopurge
+**Artık kullanılmayan bağımlılıkları kaldırır**
 
-Bu komut, autoremove + purge birleşimidir.
+**Onların config dosyalarını da siler**
 
-Yani:
+**Tek fark:**
+`autopurge` **yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı** `autoremove` **gibi güvenlidir.**
 
-Artık kullanılmayan bağımlılıkları kaldırır
+✔ **Sonuç: Hangisini kullanmalı?**
+**Güvenli tercih**
 
-Onların config dosyalarını da siler
-
-Tek fark:
-autopurge yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar.
-Bu yüzden yanlış paketi silmez, tıpkı autoremove gibi güvenlidir.
-
-✔ Sonuç: Hangisini kullanmalı?
-Güvenli tercih
+```bash
 sudo apt remove --purge paket_adı
 sudo apt autoremove
+```
 
-Temiz sistem isteyenler
+**Temiz sistem isteyenler**
+
+```bash
 sudo apt remove --purge paket_adı
 sudo apt autopurge
+```
 
-
-Bu daha temiz bir kaldırma yapar ve kalıntıları azaltır.
+**Bu daha temiz bir kaldırma yapar ve kalıntıları azaltır.**
 
 ✔ **“Yan etkisi olur mu?”**
 
@@ -406,7 +402,75 @@ debtree ./<paket_adı.deb>
 > `apt list` | `apt-cache pkgnames` **: Depodaki mevcut tüm paketleri listeler.**
 > `apt list --upgradable` **: Sistemdeki güncellenebilir paketleri listeler.**
 
-> `apt download <paket_adı>` **: Depodan ismi verilen paketi kurmadan indirme işlemi yapar.**
+> `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
+
+
+> `apt install <paket_adı> -d`
+
+✅ apt install <paket_adı> -d ne yapar?
+
+Bu komut:
+
+✔ Paketi ve tüm bağımlılıklarını sadece indirir
+
+.deb dosyalarını /var/cache/apt/archives/ klasörüne koyar
+
+Fakat kurulum yapmaz
+
+Sistemde hiçbir dosya değişmez
+
+Yani offline kurulum için paketleri önceden indirme komutudur.
+
+📌 Kullanım örneği
+sudo apt install golang-go -d
+
+
+Bu:
+
+golang-go paketini
+
+Bağımlılıklarını
+
+Gerekirse ekstra önerilen paketleri
+
+sadece indirir.
+
+🔍 Nereye indiriyor?
+
+📁 Her şey şu klasöre gider:
+
+/var/cache/apt/archives/
+
+
+Bu klasörde .deb dosyaları durur.
+
+▶️ Peki sonra nasıl kurarım?
+
+İki yol var:
+
+1) İnternet yokken apt kurar:
+sudo apt install golang-go
+
+
+Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
+
+2) Direkt .deb ile kurarsın:
+sudo apt install ./golang-go_*.deb
+
+🚫 Ne yapmaz?
+
+-d şunları yapmaz:
+
+Paketi kurmaz
+
+Config dosyası yazmaz
+
+Hizmet başlatmaz
+
+Sisteme hiçbir şey eklemez
+
+🎯 Sonuç
+apt install paket -d = “Paketi depodan indir ama kurma.”
 
 ---
 
@@ -417,7 +481,21 @@ debtree ./<paket_adı.deb>
 
 > **Debian tabanlı dağıtımlarda kaynak listesi** `/etc/apt` **dizini altındaki** `sources.list` **isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu** `sources.list` **dosyası içinde tanımlanmıştır.**
 
-----
+---
+
+Aşağıda Debian/Kali/Ubuntu için tamamen çalışan, en sade ve en doğru “LOCAL REPO (yerel depo)” oluşturma adımlarını veriyorum.
+İki farklı yöntem var:
+
+Basit Yerel Depo (dpkg-scanpackages ile)
+
+Tam APT Deposu (apt-ftparchive ile)
+
+Senin ihtiyacına %99 1. yöntem yeterlidir.
+Hem kolaydır hem de paketleri apt ile kurabilirsin.
+
+
+
+---
 
 
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
