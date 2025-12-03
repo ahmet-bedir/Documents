@@ -155,7 +155,7 @@ apt policy <paket_adı>
 >
 > `sudo apt policy gpaste-2`
 >
-> ![](/home/ahmet/Masaüstü/Documents/images/apt-policy.png)
+> ![](../images/apt-policy.png)
 
 
 
