@@ -145,7 +145,7 @@ dpkg -L <paket_adı>
 
 
 
-🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı şu komutla kontrol edilebilinir.**
+🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
 
 ```bash
 apt policy <paket_adı>
@@ -314,7 +314,7 @@ sudo apt autoremove
 `autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
 **Ama her zaman birebir aynı değildir, bazı küçük farkları bilmek önemli.**
 
-✔ **Farkları** `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
+✔ `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
 
 ✔ `sudo apt autoremove` **komutu artık kullanılmayan bağımlılık paketlerini siler fakat bu bağımlılıkların ayar dosyaları kalır (yani sadece remove yapar, purge değil).**
 
@@ -337,14 +337,14 @@ sudo apt autoremove
 **Güvenli tercih**
 
 ```bash
-sudo apt remove --purge paket_adı
+sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
 **Temiz sistem isteyenler**
 
 ```bash
-sudo apt remove --purge paket_adı
+sudo apt remove --purge <paket_adı>
 sudo apt autopurge
 ```
 
@@ -358,7 +358,7 @@ sudo apt autopurge
 ✔ **Tavsiye (En pratik yöntem)**
 
 ```bash
-sudo apt remove --purge paket_adı
+sudo apt remove --purge <paket_adı>
 sudo apt autopurge
 ```
 
@@ -418,13 +418,9 @@ debtree ./<paket_adı.deb>
 
 > `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
 
-
-
-`apt install <paket_adı> -d` komutu çok basittir ama tam olarak ne yaptığını bilmek önemli. İşte en doğru ve net açıklama:
-
 ------
 
-#### ✅ **`apt install <paket_adı> -d` ne yapar?**
+#### ✅ **`apt install <paket_adı> -d` komutu ne yapar?**
 
 Bu komut:
 
@@ -455,12 +451,9 @@ sadece indirir.
 
 ------
 
-#### 🔍 **Nereye indiriyor?**
+#### 📁 Her şey şu klasöre gider:
 
-Her şey şu klasöre gider:
-
-```
-
+```bash
 /var/cache/apt/archives/
 ```
 
@@ -474,8 +467,7 @@ Bu klasörde .deb dosyaları durur.
 
 #### 1) İnternet yokken apt kurar:
 
-```
-
+```bash
 sudo apt install golang-go
 ```
 
@@ -483,8 +475,7 @@ Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 
 #### 2) Direkt .deb ile kurarsın:
 
-```
-
+```bash
 sudo apt install ./golang-go_*.deb
 ```
 
@@ -503,9 +494,7 @@ sudo apt install ./golang-go_*.deb
 
 #### 🎯 Sonuç
 
-**`apt install paket -d` = “Paketi depodan indir ama kurma.”**
-
-Eğer istersen indirdiği paketlerin listesini nasıl göreceğini veya bunları USB’ye atıp offline repo yapmayı da gösterebilirim
+**`apt install <paket_adı> -d` = “Paketi depodan indir ama kurmaz.”**
 
 ---
 
@@ -518,28 +507,20 @@ Eğer istersen indirdiği paketlerin listesini nasıl göreceğini veya bunları
 
 
 
-**Debian/Kali/Ubuntu için tamamen çalışan, en sade ve en doğru “LOCAL REPO (yerel depo)” oluşturma adımlarını** veriyorum.
- İki farklı yöntem var:
-
-1. **Basit Yerel Depo (dpkg-scanpackages ile)**
-2. **Tam APT Deposu (apt-ftparchive ile)**
-
-Senin ihtiyacına %99 **1. yöntem** yeterlidir.
- Hem kolaydır hem de paketleri apt ile kurabilirsin.
+**Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları**
 
 ------
 
 #### ✅ **LOCAL REPO (dpkg-scanpackages)**
 
 Bu yöntem APT’nin anlayacağı basit bir depo oluşturur.
- İstediğin `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
+İstediğin `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
 
 ------
 
 #### ➤ **1. Klasör oluştur**
 
-```
-
+```bash
 mkdir -p ~/localrepo
 ```
 
@@ -549,8 +530,7 @@ mkdir -p ~/localrepo
 
 Örnek:
 
-```
-
+```bash
 cp paket1.deb paket2.deb ~/localrepo/
 ```
 
@@ -558,8 +538,7 @@ cp paket1.deb paket2.deb ~/localrepo/
 
 #### ➤ **3. Depoyu oluşturmak için gerekli araçları yükle**
 
-```
-
+```bash
 sudo apt install dpkg-dev
 ```
 
@@ -567,8 +546,7 @@ sudo apt install dpkg-dev
 
 #### ➤ **4. Packages dosyasını oluştur (APT’nin okuduğu index)**
 
-```
-
+```bash
 cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
@@ -582,16 +560,14 @@ Sonuç:
 
 Bir repo kaynağı dosyası oluştur:
 
-```
-
+```bash
 sudo nano /etc/apt/sources.list.d/localrepo.list
 ```
 
 İçine şunu yaz:
 
-```
-
-deb [trusted=yes] file:/home/ahmet/localrepo ./
+```bash
+deb [trusted=yes] file:///home/ahmet/localrepo ./
 ```
 
 > `[trusted=yes]` → GPG imzası gerekmesin diye.
@@ -602,8 +578,7 @@ Kaydet.
 
 #### ➤ **6. APT’yi güncelle**
 
-```
-
+```bash
 sudo apt update
 ```
 
@@ -615,8 +590,7 @@ Ve artık sistem senin klasörü **depo gibi** görüyor.
 
 Örneğin:
 
-```
-
+```bash
 sudo apt install paket1
 ```
 
@@ -628,15 +602,12 @@ APT artık `.deb` dosyasını **internet yerine yerel repo’dan** alır.
 
 Her yeni .deb eklediğinde tekrar şu komutu çalıştırırsın:
 
-```
-
+```bash
 cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
 APT listeyi günceller ve yeni paketi görür.
-
-
 
 ---
 
