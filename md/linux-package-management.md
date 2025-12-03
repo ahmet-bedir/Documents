@@ -153,8 +153,10 @@ apt policy <paket_adı>
 
 > **➡ Örnek:**
 >
-> `sudo apt policy gpaste`
->
+> `sudo apt policy gpaste-2`
+
+![](../images/apt-policy.png)
+
 > 📌 **1. "Kurulu: 45.3-2"**
 >
 > **Sistemde şu an yüklü olan sürüm.**
@@ -405,72 +407,93 @@ debtree ./<paket_adı.deb>
 > `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
 
 
-> `apt install <paket_adı> -d`
 
-✅ apt install <paket_adı> -d ne yapar?
+`apt install <paket_adı> -d` komutu çok basittir ama tam olarak ne yaptığını bilmek önemli. İşte en doğru ve net açıklama:
+
+------
+
+#### ✅ **`apt install <paket_adı> -d` ne yapar?**
 
 Bu komut:
 
-✔ Paketi ve tüm bağımlılıklarını sadece indirir
+#### ✔ **Paketi ve tüm bağımlılıklarını sadece indirir**
 
-.deb dosyalarını /var/cache/apt/archives/ klasörüne koyar
+- `.deb` dosyalarını **/var/cache/apt/archives/** klasörüne koyar
+- Fakat **kurulum yapmaz**
+- Sistemde hiçbir dosya değişmez
 
-Fakat kurulum yapmaz
+Yani **offline kurulum için paketleri önceden indirme komutudur**.
 
-Sistemde hiçbir dosya değişmez
+------
 
-Yani offline kurulum için paketleri önceden indirme komutudur.
+#### 📌 Kullanım örneği
 
-📌 Kullanım örneği
+```
+
 sudo apt install golang-go -d
-
+```
 
 Bu:
 
-golang-go paketini
-
-Bağımlılıklarını
-
-Gerekirse ekstra önerilen paketleri
+- `golang-go` paketini
+- Bağımlılıklarını
+- Gerekirse ekstra önerilen paketleri
 
 sadece indirir.
 
-🔍 Nereye indiriyor?
+------
 
-📁 Her şey şu klasöre gider:
+#### 🔍 **Nereye indiriyor?**
+
+Her şey şu klasöre gider:
+
+```
 
 /var/cache/apt/archives/
-
+```
 
 Bu klasörde .deb dosyaları durur.
 
-▶️ Peki sonra nasıl kurarım?
+------
+
+#### ▶️ **Peki sonra nasıl kurarım?**
 
 İki yol var:
 
-1) İnternet yokken apt kurar:
-sudo apt install golang-go
+#### 1) İnternet yokken apt kurar:
 
+```
+
+sudo apt install golang-go
+```
 
 Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 
-2) Direkt .deb ile kurarsın:
+#### 2) Direkt .deb ile kurarsın:
+
+```
+
 sudo apt install ./golang-go_*.deb
+```
 
-🚫 Ne yapmaz?
+------
 
--d şunları yapmaz:
+#### 🚫 **Ne yapmaz?**
 
-Paketi kurmaz
+`-d` şunları yapmaz:
 
-Config dosyası yazmaz
+- Paketi kurmaz
+- Config dosyası yazmaz
+- Hizmet başlatmaz
+- Sisteme hiçbir şey eklemez
 
-Hizmet başlatmaz
+------
 
-Sisteme hiçbir şey eklemez
+#### 🎯 Sonuç
 
-🎯 Sonuç
-apt install paket -d = “Paketi depodan indir ama kurma.”
+**`apt install paket -d` = “Paketi depodan indir ama kurma.”**
+
+Eğer istersen indirdiği paketlerin listesini nasıl göreceğini veya bunları USB’ye atıp offline repo yapmayı da gösterebilirim
 
 ---
 
@@ -483,15 +506,125 @@ apt install paket -d = “Paketi depodan indir ama kurma.”
 
 ---
 
-Aşağıda Debian/Kali/Ubuntu için tamamen çalışan, en sade ve en doğru “LOCAL REPO (yerel depo)” oluşturma adımlarını veriyorum.
-İki farklı yöntem var:
 
-Basit Yerel Depo (dpkg-scanpackages ile)
 
-Tam APT Deposu (apt-ftparchive ile)
+**Debian/Kali/Ubuntu için tamamen çalışan, en sade ve en doğru “LOCAL REPO (yerel depo)” oluşturma adımlarını** veriyorum.
+ İki farklı yöntem var:
 
-Senin ihtiyacına %99 1. yöntem yeterlidir.
-Hem kolaydır hem de paketleri apt ile kurabilirsin.
+1. **Basit Yerel Depo (dpkg-scanpackages ile)**
+2. **Tam APT Deposu (apt-ftparchive ile)**
+
+Senin ihtiyacına %99 **1. yöntem** yeterlidir.
+ Hem kolaydır hem de paketleri apt ile kurabilirsin.
+
+------
+
+#### ✅ **LOCAL REPO (dpkg-scanpackages)**
+
+Bu yöntem APT’nin anlayacağı basit bir depo oluşturur.
+ İstediğin `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
+
+------
+
+#### ➤ **1. Klasör oluştur**
+
+```
+
+mkdir -p ~/localrepo
+```
+
+------
+
+#### ➤ **2. Eklemek istediğin .deb dosyalarını bu klasöre koy**
+
+Örnek:
+
+```
+
+cp paket1.deb paket2.deb ~/localrepo/
+```
+
+------
+
+#### ➤ **3. Depoyu oluşturmak için gerekli araçları yükle**
+
+```
+
+sudo apt install dpkg-dev
+```
+
+------
+
+#### ➤ **4. Packages dosyasını oluştur (APT’nin okuduğu index)**
+
+```
+
+cd ~/localrepo
+dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+```
+
+Sonuç:
+ `~/localrepo/` içinde **Packages.gz** oluşur → APT’nin görmek istediği şey.
+
+------
+
+#### ➤ **5. Bu repo’yu APT kaynaklarına ekle**
+
+Bir repo kaynağı dosyası oluştur:
+
+```
+
+sudo nano /etc/apt/sources.list.d/localrepo.list
+```
+
+İçine şunu yaz:
+
+```
+
+deb [trusted=yes] file:/home/ahmet/localrepo ./
+```
+
+> `[trusted=yes]` → GPG imzası gerekmesin diye.
+
+Kaydet.
+
+------
+
+#### ➤ **6. APT’yi güncelle**
+
+```
+
+sudo apt update
+```
+
+Ve artık sistem senin klasörü **depo gibi** görüyor.
+
+------
+
+#### ➤ **7. Paketi normal apt komutu ile kur**
+
+Örneğin:
+
+```
+
+sudo apt install paket1
+```
+
+APT artık `.deb` dosyasını **internet yerine yerel repo’dan** alır.
+
+------
+
+#### ⛳ EN ÖNEMLİ NOT
+
+Her yeni .deb eklediğinde tekrar şu komutu çalıştırırsın:
+
+```
+
+cd ~/localrepo
+dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
+```
+
+APT listeyi günceller ve yeni paketi görür.
 
 
 
@@ -500,7 +633,7 @@ Hem kolaydır hem de paketleri apt ile kurabilirsin.
 
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
 
-> **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **uzantılıdır.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
+> **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
 
 > **Kurulu tüm paketleri görmek için:**
 
