@@ -129,9 +129,9 @@ git commit -m "commit_mesajı"
 
 > - `.gitignore` **: Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
 >
-> - `dizin/*`    **: Dizin klasöründeki tüm dosyaları kapsar.**
+> - `dizin/*`      **: Dizin klasöründeki tüm dosyaları kapsar.**
 >
-> - `!dizin/b`   **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
+> - `!dizin/b`    **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
 
 
 
