@@ -115,23 +115,23 @@ git config --global core.editor
 git commit -m "commit_mesajı"
 ```
 
-> - `git commit -a`  **:  Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.**
+> - `git commit -a` **: Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.**
 >
-> - `git commit --amend -m "yeni commit mesajı"`  **:  En son yapılan commit mesajını değiştirmek için kullanılır.**
+> - `git commit --amend -m "yeni commit mesajı"` **: En son yapılan commit mesajını değiştirmek için kullanılır.**
 
 
 
-> - `git log`  **:  Yapılan commitleri gösterir.**
+> - `git log` **: Yapılan commitleri gösterir.**
 >
-> - `git log --oneline`  **:  Yapılan commitleri tek satır şeklinde gösterir.**
+> - `git log --oneline` **: Yapılan commitleri tek satır şeklinde gösterir.**
 
-###### HEAD  :  Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
+###### HEAD : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
 
-> - `.gitignore`  **:  Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
+> - `.gitignore` **: Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
 >
-> - `dizin/*`        **:  Dizin klasöründeki tüm dosyaları kapsar.**
+> - `dizin/*`    **: Dizin klasöründeki tüm dosyaları kapsar.**
 >
-> - `!dizin/b`      **:  Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
+> - `!dizin/b`   **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
 
 
 
@@ -157,61 +157,61 @@ git checkout <commit id> -- .
 
 ---
 
-> - `git diff`  **:  Staging alanına eklenmeden önce tüm dosyalarda yapılan değişiklikleri gösterir.**
+> - `git diff` **: Staging alanına eklenmeden önce tüm dosyalarda yapılan değişiklikleri gösterir.**
 >
-> - `git diff <file_name>`  **:  Staging alanına eklenmeden önce ismi verilen tek bir dosyada yapılan değişiklikleri gösterir.**
+> - `git diff <file_name>` **: Staging alanına eklenmeden önce ismi verilen tek bir dosyada yapılan değişiklikleri gösterir.**
 > 
-> - `git diff --staged`  **:  Git deposu ile staging alanındaki değişiklikleri gösterir.**
+> - `git diff --staged` **: Git deposu ile staging alanındaki değişiklikleri gösterir.**
 
 
 
 
-> - `git branch`  **:  Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu gösterir.**
->- `git branch --all`  **:  Yerelimizde ve uzak depodaki tüm dalları gösterir.**
-> - `git branch -r`  **:  Uzak depodaki dalları gösterir.**
+> - `git branch` **: Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu gösterir.**
+> - `git branch --all` **: Yerelimizde ve uzak depodaki tüm dalları gösterir.**
+> - `git branch -r` **: Uzak depodaki dalları gösterir.**
 > - `git branch <branch_name>`  **:  Yeni dal (branch) oluşturmak için kullanılır.**
-> - `git branch -m <branch_name> <new_branch_name>`  **:  Dal adını değiştirir, ancak yeni isimde bir dal varsa hata verir.**
-> - `git branch -M <branch_name> <new_branch_name>`  **:  Dal adını değiştirir, yeni isimde bir dal varsa üzerine yazar (force).**
-> - `git branch -D <branch_name>`  **:  Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.**
+> - `git branch -m <branch_name> <new_branch_name>` **: Dal adını değiştirir, ancak yeni isimde bir dal varsa hata verir.**
+> - `git branch -M <branch_name> <new_branch_name>` **: Dal adını değiştirir, yeni isimde bir dal varsa üzerine yazar (force).**
+> - `git branch -D <branch_name>` **: Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.**
 
 
 
 
-> - `git switch <branch_name>`  **:  Girilen branch'a  geçiş yapar.**
+> - `git switch <branch_name>` **: Girilen branch'a  geçiş yapar.**
 >
-> - `git checkout <branch_name>`  **:  Uzak depodan yerel depoya indirilen branch'a geçiş yapar.**
+> - `git checkout <branch_name>` **: Uzak depodan yerel depoya indirilen branch'a geçiş yapar.**
 
 
-> - `git merge <branch_name>`  **:  Master branch'ındayken ismi verilen diğer branch'ı master branch'ıyla birleştirmek için kullanılır.**
+> - `git merge <branch_name>` **: Master branch'ındayken ismi verilen diğer branch'ı master branch'ıyla birleştirmek için kullanılır.**
 
 
 ---
 
-> - `git stash`  **:  Git versiyon kontrol sistemi kullanılarak yapılan değişiklikleri geçici olarak kaydetmenizi sağlayan bir özelliktir. Bu, henüz tamamlanmayan bir iş üzerinde çalışırken veya bir dal üzerinde çalışırken aniden başka bir acil işle ilgilenmeniz gerektiğinde özellikle kullanışlıdır.**
+> - `git stash` **: Git versiyon kontrol sistemi kullanılarak yapılan değişiklikleri geçici olarak kaydetmenizi sağlayan bir özelliktir. Bu, henüz tamamlanmayan bir iş üzerinde çalışırken veya bir dal üzerinde çalışırken aniden başka bir acil işle ilgilenmeniz gerektiğinde özellikle kullanışlıdır.**
 
-> - `git stash list`  **:  Kaydedilen tüm stash'leri listeler.**
+> - `git stash list` **: Kaydedilen tüm stash'leri listeler.**
 > 
-> - `stash@{0}`  **:  Git stash listesi içerisindeki ilk yani en son eklenen geçici değişiklikler listesindeki kaydedilmiş çalışma dizininin (working directory) saklandığı referans adıdır.**
+> - `stash@{0}` **: Git stash listesi içerisindeki ilk yani en son eklenen geçici değişiklikler listesindeki kaydedilmiş çalışma dizininin (working directory) saklandığı referans adıdır.**
 
-> - `git stash apply`  **:  En son kaydedilen stash'i geri yükler.**
+> - `git stash apply` **: En son kaydedilen stash'i geri yükler.**
 > 
-> - `git stash apply stash@{n}`  **:  Belirtilen numaralı stash'i geri yükler.**
+> - `git stash apply stash@{n}` **: Belirtilen numaralı stash'i geri yükler.**
 
-> - `git stash drop`  **:  En son kaydedilen stash'i siler.**
+> - `git stash drop` **: En son kaydedilen stash'i siler.**
 > 
-> - `git stash drop stash@{n}`  **:  Belirtilen numaralı stash'i siler.**
+> - `git stash drop stash@{n}` **: Belirtilen numaralı stash'i siler.**
 
-> - `git stash pop`  **:  Komutu, en son kaydedilen stash girdisini alır ve bu değişiklikleri uygular (apply) ve stash havuzundan (stash pool) kaldırır. Yani, pop işlemi stash havuzundan en son eklenen stash girdisini çıkarır ve çalışma dizinindeki değişiklikleri bu girdiye göre günceller.**
+> - `git stash pop` **: Komutu, en son kaydedilen stash girdisini alır ve bu değişiklikleri uygular (apply) ve stash havuzundan (stash pool) kaldırır. Yani, pop işlemi stash havuzundan en son eklenen stash girdisini çıkarır ve çalışma dizinindeki değişiklikleri bu girdiye göre günceller.**
 
-> - `git stash clear`  **:  Komutu ise stash havuzundaki tüm stash girdilerini siler.**
+> - `git stash clear` **: Komutu ise stash havuzundaki tüm stash girdilerini siler.**
 
 ---
 
-> - `git reset <commit_id>`  **:  Belirtilen bir commit'e geri dönmeyi sağlar ve bu işlem esnasında commit'ler silinir değişiklikler kalır.**
+> - `git reset <commit_id>` **: Belirtilen bir commit'e geri dönmeyi sağlar ve bu işlem esnasında commit'ler silinir değişiklikler kalır.**
 > 
-> - `git reset --hard <commit_id>`  **:  Belirtilen bir commit'e geri dönmeyi sağlar ve bu işlem esnasında commit'ler ve değişiklikler silinir.**
+> - `git reset --hard <commit_id>` **: Belirtilen bir commit'e geri dönmeyi sağlar ve bu işlem esnasında commit'ler ve değişiklikler silinir.**
 
-> - `git revert <commit_id>`  **:  Belirli bir commit'i geri alırsınız ve bu işlem sonucunda yeni bir commit oluşur. Bu sayede, Git geçmişi değiştirilmez, ancak istenmeyen değişiklikler geri alınmış olur.**
+> - `git revert <commit_id>` **: Belirli bir commit'i geri alırsınız ve bu işlem sonucunda yeni bir commit oluşur. Bu sayede, Git geçmişi değiştirilmez, ancak istenmeyen değişiklikler geri alınmış olur.**
 
 ---
 
@@ -242,7 +242,7 @@ git checkout <commit id> -- .
 >   - **Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde kullanırken dikkatli olunmalıdır.**
 >   - **Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.**
 >
->   **Kısaca,** `git rebase`**, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.**
+>   **Kısaca,** `git rebase` **, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.**
 
 ---
 
@@ -387,7 +387,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 
 ---
 
-> - `git remote -v`  **:  Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için kullanılır.**
+> - `git remote -v` **: Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için kullanılır.**
 
 ---
 
