@@ -70,20 +70,20 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 
 ### 🧩 Nano Kısayolları
 
-| Kısayol    | Açıklama                     |
-| ---------- | ---------------------------- |
-| `Ctrl + O` | Dosyayı kaydet (write out)   |
-| `Ctrl + X` | Çıkış (exit)                 |
-| `Ctrl + G` | Yardım menüsünü aç           |
-| `Ctrl + K` | Satırı kes                   |
-| `Ctrl + U` | Kesilen satırı yapıştır      |
-| `Ctrl + W` | Arama yap                    |
-| `Ctrl + \` | Metin değiştirme (replace)   |
-| `Ctrl + C` | İmleç konumunu göster        |
-| `Ctrl + J` | Paragrafı hizala (justify)   |
-| `Ctrl + T` | Yazım denetimi (spell check) |
-| `Alt + 6`  | Satır kopyala                |
-| `Ctrl + _` | Belirli bir satıra git       |
+| Kısayol                 | Açıklama                     |
+| ----------------------- | ---------------------------- |
+| `Ctrl + O`              | Dosyayı kaydet (write out)   |
+| `Ctrl + X`              | Çıkış (exit)                 |
+| `Ctrl + G`              | Yardım menüsünü aç           |
+| `Ctrl + K`              | Satırı kes                   |
+| `Ctrl + U`              | Kesilen satırı yapıştır      |
+| `Ctrl + W` | `Ctrl + F` | Arama yap                    |
+| `Ctrl + \`              | Metin değiştirme (replace)   |
+| `Ctrl + C`              | İmleç konumunu göster        |
+| `Ctrl + J`              | Paragrafı hizala (justify)   |
+| `Ctrl + T`              | Yazım denetimi (spell check) |
+| `Alt + 6`               | Satır kopyala                |
+| `Ctrl + _`              | Belirli bir satıra git       |
 
 ------
 
