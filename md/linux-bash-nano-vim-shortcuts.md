@@ -77,15 +77,26 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 | `Ctrl + G`              | Yardım menüsünü aç           |
 | `Ctrl + K`              | Satırı kes                   |
 | `Ctrl + U`              | Kesilen satırı yapıştır      |
-| `Ctrl + W` | `Ctrl + F` | Arama yap                    |
+| `Ctrl + W` | `Ctrl + F` | Metinde arama işlemi yapar |
+| `Ctrl + R` | Mevcut dosyaya başka bir dosyanın içeriğini ekleme |
 | `Ctrl + \`              | Metin değiştirme (replace)   |
+| `Alt + U` | Yaptığımız değişiklikleri geri almak için |
+| `Alt + E` | Geri aldığımız bir değişikliği tekrar ileri almak için |
+| `Alt + N` | Satırları numaralandırır |
 | `Ctrl + C`              | İmleç konumunu göster        |
 | `Ctrl + J`              | Paragrafı hizala (justify)   |
 | `Ctrl + T`              | Yazım denetimi (spell check) |
 | `Alt + 6`               | Satır kopyala                |
+| `Alt + A` | Panodan yapıştırır |
 | `Ctrl + _`              | Belirli bir satıra git       |
 
-------
+###### Not : Nano aracından çıkmadan dosyayı kaydedeceğimiz dizini belirlemek için dosya sistemi hiyerarşisinde `Ctrl + T` tuşuna basıp gezinebiliriz. Bunun için öncelikle dosyayı kaydetmek istediğimizi `Ctrl + O` tuşu ile belirtmemiz gerekir.
+
+![](../images/nano-save.webp)
+
+###### Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, `Ctrl + T` tuşu ile dosya sistemi üzerinde gezinebiliriz.
+
+---
 
 ### 🧠 Vim / Vi Kısayolları
 

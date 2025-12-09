@@ -153,9 +153,10 @@ apt policy <paket_adı>
 
 > **➡ Örnek:**
 >
-> `sudo apt policy gpaste-2`
 >
-> ![](../images/apt-policy.png)
+> `sudo apt policy gpaste-2`
+
+![](../images/apt-policy.png)
 
 
 
