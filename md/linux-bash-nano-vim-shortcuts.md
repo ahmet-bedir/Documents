@@ -77,7 +77,7 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 | `Ctrl + G`              | Yardım menüsünü aç           |
 | `Ctrl + K`              | Satırı kes                   |
 | `Ctrl + U`              | Kesilen satırı yapıştır      |
-| `Ctrl + W` | `Ctrl + F` | Metinde arama işlemi yapar |
+| `Ctrl + W` | `Ctrl + F` | Metinde arama yap |
 | `Ctrl + R` | Mevcut dosyaya başka bir dosyanın içeriğini ekleme |
 | `Ctrl + \`              | Metin değiştirme (replace)   |
 | `Alt + U` | Yaptığımız değişiklikleri geri almak için |
@@ -85,8 +85,7 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 | `Alt + N` | Satırları numaralandırır |
 | `Ctrl + C`              | İmleç konumunu göster        |
 | `Ctrl + J`              | Paragrafı hizala (justify)   |
-| `Ctrl + T`              | Yazım denetimi (spell check) |
-| `Alt + 6`               | Satır kopyala                |
+| `Ctrl + T`              | Komut çalıştırmak için |
 | `Alt + A` | Panodan yapıştırır |
 | `Ctrl + _`              | Belirli bir satıra git       |
 
@@ -96,6 +95,8 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 
 ###### Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, `Ctrl + T` tuşu ile dosya sistemi üzerinde gezinebiliriz.
 
+Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kullanablirsiniz.
+
 ---
 
 ### 🧠 Vim / Vi Kısayolları
@@ -104,6 +105,10 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 >
 > - **Normal mod:** Komutlar için
 > - **Insert mod:** Yazı yazmak için (`i` ile girilir, `Esc` ile çıkılır)
+
+İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen Ctrl + f kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen Ctrl + b kısayolunu kullanabiliyoruz.
+
+###### Komut modundayken dosya içeriğine yeni veri girişi yapamıyoruz. Metin içerisine yeni veri eklemek için “insert” yani “ekleme moduna” geçiş yapmalıyız. Bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli.
 
 | Kısayol         | Açıklama                  |
 | --------------- | ------------------------- |
