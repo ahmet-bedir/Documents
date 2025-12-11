@@ -77,7 +77,7 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 | `Ctrl + G`              | Yardım menüsünü aç           |
 | `Ctrl + K`              | Satırı kes                   |
 | `Ctrl + U`              | Kesilen satırı yapıştır      |
-| `Ctrl + W` | `Ctrl + F` | Metinde arama yap |
+| `Ctrl + W` | `Ctrl + F` | Arama işlemi yapar |
 | `Ctrl + R` | Mevcut dosyaya başka bir dosyanın içeriğini ekleme |
 | `Ctrl + \`              | Metin değiştirme (replace)   |
 | `Alt + U` | Yaptığımız değişiklikleri geri almak için |
