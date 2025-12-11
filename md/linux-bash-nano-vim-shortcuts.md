@@ -106,7 +106,7 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 > - **Normal mod:** Komutlar için
 > - **Insert mod:** Yazı yazmak için (`i` ile girilir, `Esc` ile çıkılır)
 
-İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen Ctrl + f kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen Ctrl + b kısayolunu kullanabiliyoruz.
+İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen `Ctrl + f` kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen `Ctrl + b` kısayolunu kullanabiliyoruz.
 
 ###### Komut modundayken dosya içeriğine yeni veri girişi yapamıyoruz. Metin içerisine yeni veri eklemek için “insert” yani “ekleme moduna” geçiş yapmalıyız. Bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli.
 
