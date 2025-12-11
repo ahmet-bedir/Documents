@@ -1,4 +1,6 @@
-<img src="../images/linux+postgresql.png" width="650" />
+<p align="center">
+    <img src="../images/linux+postgresql.png" width="650" />
+<p/>
 
 
 <a id="postgresql-yonetimi"><a/>
