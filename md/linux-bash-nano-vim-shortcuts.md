@@ -110,24 +110,26 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 
 ###### Komut modundayken dosya içeriğine yeni veri girişi yapamıyoruz. Metin içerisine yeni veri eklemek için “insert” yani “ekleme moduna” geçiş yapmalıyız. Bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli.
 
-| Kısayol         | Açıklama                  |
-| --------------- | ------------------------- |
-| `i`             | Insert moduna geç         |
-| `Esc`           | Normal moda dön           |
-| `:w`            | Dosyayı kaydet            |
-| `:q`            | Çıkış                     |
-| `:wq`           | Kaydet ve çık             |
-| `:q!`           | Kaydetmeden çık           |
-| `dd`            | Satırı sil                |
-| `yy`            | Satırı kopyala (yank)     |
-| `p`             | Yapıştır                  |
-| `/kelime`       | Metin içinde ara          |
-| `n`             | Sonraki eşleşmeye git     |
-| `u`             | Geri al (undo)            |
-| `Ctrl + r`      | Yeniden yap (redo)        |
-| `:set number`   | Satır numaralarını göster |
-| `:set nonumber` | Satır numaralarını gizle  |
-| `gg`            | Dosyanın başına git       |
-| `G`             | Dosyanın sonuna git       |
+| Kısayol           | Açıklama                                                     |
+| ----------------- | ------------------------------------------------------------ |
+| `i`               | Insert moduna geç                                            |
+| `Esc`             | Normal moda dön                                              |
+| `:w`              | Dosyayı kaydet                                               |
+| `:q`              | Çıkış                                                        |
+| `:wq`             | Kaydet ve çık                                                |
+| `:q!`             | Kaydetmeden çık                                              |
+| `x`               | İmlecin üzerinde bulunduğu tek bir karakteri silmek için     |
+| `dw`              | İmlecin sağında kalan kelimeyi veya kelime parçası silmek için |
+| `dd`              | İmlecin üzerinde durduğu satırın tamamını silmek için        |
+| `yy`              | Satırı kopyala (yank)                                        |
+| `p`               | Yapıştır                                                     |
+| `/kelime`         | Metin içinde ara                                             |
+| `n` / `shift + N` | Bulunan eşleşmelerde ileri geri geçiş yapmak için            |
+| `u`               | Geri al (undo)                                               |
+| `Ctrl + r`        | Yeniden yap (redo)                                           |
+| `:set number`     | Satır numaralarını göster                                    |
+| `:set nonumber`   | Satır numaralarını gizle                                     |
+| `gg`              | Dosyanın başına git                                          |
+| `G`               | Dosyanın sonuna git                                          |
 
 ---
