@@ -132,4 +132,6 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 | `gg`              | Dosyanın başına git                                          |
 | `G`               | Dosyanın sonuna git                                          |
 
+###### Not : Seçtiğin kısmı kopyalamak için 
+
 ---

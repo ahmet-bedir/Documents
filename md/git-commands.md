@@ -1,7 +1,6 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="430"/>
+	<img src="../images/git-banner.png" width="415"/>
 <p/>
-
 
 
 
@@ -29,8 +28,6 @@ git config --global user.email
 ```
 
 ###### Not : Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.
-
-
 
 ---
 
@@ -94,8 +91,6 @@ git config --global core.editor
 
 ---
 
-
-
 | Dosya İşlemleri                                       |                                                    |
 | ----------------------------------------------------- | -------------------------------------------------- |
 | `git rm <file_name>`                                  | Dosya silmek için kullanılır                       |
@@ -104,8 +99,6 @@ git config --global core.editor
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 | `git config --global alias.<kısayol> <komut_adı>`     | Komutları kısaltmak için kullanılır                |
-
-
 
 ---
 
@@ -246,6 +239,8 @@ git checkout <commit id> -- .
 
 ---
 
+
+
 ### Remote
 
 **Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:**                                       `git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git` **komutunda** `<remote_name>` **kısmına istediğiniz ismi verebilirsiniz. Yani** `<remote_name>` **dediğimizde** `https://github.com/<github_username>/<repo_name>.git` **bu url temsil edilmektedir.**
@@ -285,6 +280,8 @@ git checkout <commit id> -- .
    git clone https://github.com/<github_username>/<repo_name>.git
    ```
 
+
+
 ---
 
 ![](../images/new-repo.png)
@@ -298,6 +295,8 @@ git checkout <commit id> -- .
 ---
 
 ![](../images/create-new-repo.png)
+
+
 
 ---
 
@@ -319,11 +318,12 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 - **Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak**
 - **Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek**
 
-
-
 ---
 
+
+
 ### PAT Nasıl Oluşturulur?
+
 **1. GitHub hesabına giriş yap**
    **Sağ üstteki profil fotoğrafına tıkla** → *Settings* **menüsüne gir.**
 
@@ -355,6 +355,8 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 ```
 
 ###### Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
+
+
 
 
 ---
