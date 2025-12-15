@@ -16,6 +16,8 @@
 > ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
 
 
+
+
 > **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
 
 ```bash
@@ -35,6 +37,8 @@ dpkg -L <paket_adı>
 
 
 > `dpkg -I <paket_adı.deb>` **: Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “info” ifadesinin kısaltmasından gelen** `I` **karakteri kullanır.**
+
+
 
 > `dpkg -S dosya_yolu` **(veya uzun haliyle** `dpkg --search`**) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.**
 >
@@ -233,6 +237,7 @@ sudo apt remove <paket_adı>
 > **→ /etc/paket_adı/ gibi ayar dosyaları kalır**
 
 
+
 🧹 `apt remove --purge` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
 
 ```bash
@@ -246,6 +251,7 @@ sudo apt remove --purge <paket_adı>
 > ✔ **Kullanıcı ayar dosyalarının çoğu silinir**
 >
 > ✔ **Sistem o paket yüklenmemiş haline döner**
+
 
 
 🔥 `purge` **neden önemli?**
@@ -267,6 +273,7 @@ sudo apt remove --purge <paket_adı>
 > **→ tüm sorunları sıfırlar.**
 
 
+
 🛑 **Dikkat etmen gereken tek şey purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.**
 **Yani güvenlidir, ama şu paketleri purge etme:**
 
@@ -279,6 +286,7 @@ sudo apt remove --purge <paket_adı>
 ❌ **apt veya dpkg**
 
 ❌ **python3 (sistem bileşeni)**
+
 
 
 🧹 **Kullanılmayan bağımlılıkları silmek için:**
@@ -311,8 +319,9 @@ sudo apt autoremove
 
 ---
 
+
+
 `autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
-**Ama her zaman birebir aynı değildir, bazı küçük farkları bilmek önemli.**
 
 ✔ `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
 
@@ -362,7 +371,7 @@ sudo apt remove --purge <paket_adı>
 sudo apt autopurge
 ```
 
-#### **Temiz ve güvenli.**
+##### **Temiz ve güvenli.**
 
 
 
@@ -771,7 +780,7 @@ sudo make uninstall
 
 > 📁 **Genellikle kaynak koddan derlenen programlar** `/usr/local/` **altına kurulur. Kurarken hangi dosyalar nereye gittiğini görmek için:**
 
-```
+```bash
 sudo make install > install.log
 ```
 
@@ -779,7 +788,7 @@ sudo make install > install.log
 
 🧠 **Eğer program** `sudo make install` **komutu yerine** `sudo checkinstall` **komutu ile kurulduysa (yani** `.deb` **paketi oluşturup yükler dolayısıyla yazılım paket yöneticisine kayıt olur, aşağıdaki komutla kaldırabilirsiniz):**
 
-```
+```shell
 sudo apt remove <paket_adı>
 ```
 
