@@ -132,6 +132,6 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 | `gg`              | Dosyanın başına git                                          |
 | `G`               | Dosyanın sonuna git                                          |
 
-###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçip kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştiriyoruz.
+###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştiriyoruz.
 
 ---
