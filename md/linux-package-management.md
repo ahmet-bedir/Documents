@@ -777,7 +777,7 @@ sudo make install > install.log
 
 ------
 
-🧠 **Eğer program** `sudo make checkinstall` **komutuyla kurulduysa (yani** `.deb` **paketi oluşturup yükler dolayısıyla aşağıdaki komutla kaldırabilirsiniz):**
+🧠 **Eğer program** `sudo make install` **komutu yerine** `sudo checkinstall` **komutu ile kurulduysa (yani** `.deb` **paketi oluşturup yükler dolayısıyla yazılım paket yöneticisine kayıt olur, aşağıdaki komutla kaldırabilirsiniz):**
 
 ```
 sudo apt remove <paket_adı>
