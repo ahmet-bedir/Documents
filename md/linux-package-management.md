@@ -221,6 +221,8 @@ apt policy <paket_adı>
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 >
 > ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
+>
+> 
 
 > `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
 
@@ -738,6 +740,8 @@ sudo dpkg -i <paket_adı.deb>
 - `/usr/share/` → ikonlar, dil dosyaları
 - `/usr/lib/` → kütüphaneler
 - `/etc/` → ayarlar
+
+
 
 > 💡 `.deb` **dosyası sistemde hangi dosyaları nereye koyduğunu görmek için:**
 >

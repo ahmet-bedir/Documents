@@ -307,28 +307,37 @@ db_name=>
 > $ echo '\c db_name \\ SELECT * FROM table_name;' | psql
 > ```
 
+
+
 > **Dosyayı girdi olarak kullanma:**
 >
+> 
+
 > ```bash
 > $ psql -U user db_name < sorgu.sql
 > ```
 
+
+
 > **Öntanımlı olarak sql sorgularının çıktıları sql biçeminde gelir psql üzerinden csv biçiminde çıktı almak için:**
 >
+> 
+
 > ```bash
 > $ psql -U user -d db_name -A -F"," -c "select * from table_name;" > dosya.csv
 > ```
 
 #### `psql` istemci temel komutları:
 
-| \l            | Veritabananlarını listeleme        | \q             | Çıkış                           |
+| Komut         | Açıklama                           | Komut          | Açıklama                        |
 | ------------- | ---------------------------------- | -------------- | ------------------------------- |
-| \c            | Belirtilen veritabanına geçme      | \help (\?)     | Yardım                          |
-| \dt           | Tabloları listeleme                | \copyright | Lisans bilgileri                |
-| \dT       | Veri tiplerini listeleme           | \conninfo  | Sunucu bağlantı bilgileri       |
-| \du (\dg) | Veritabanı rol/kullanıcı listeleme | \password  | Rol parolası belirleme          |
-| \dx           | Yüklü olan eklentileri listeleme   | \encoding  | Tanımlı olan karakter kodlaması |
-| \dn           | Mevcut şemaları listeleme          | \s             | Geçmiş komutları listeleme      |
+| `\l`          | Veritabananlarını listeleme        | `\q`           | Çıkış                           |
+| `\c`          | Belirtilen veritabanına geçme      | `\help` (`\?`) | Yardım                          |
+| `\dt`         | Tabloları listeleme                | `\copyright` | Lisans bilgileri                |
+| `\dT`     | Veri tiplerini listeleme           | `\conninfo` | Sunucu bağlantı bilgileri       |
+| `\du` (`\dg`) | Veritabanı rol/kullanıcı listeleme | `\password` | Rol parolası belirleme          |
+| `\dx`         | Yüklü olan eklentileri listeleme   | `\encoding` | Tanımlı olan karakter kodlaması |
+| `\dn`         | Mevcut şemaları listeleme          | `\s`           | Geçmiş komutları listeleme      |
 
 ---
 
