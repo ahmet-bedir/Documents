@@ -464,7 +464,7 @@ DROP DATABASE
 Örnek:
 
 ```postgresql
-is_active boolean
+is_active boolean	
 ```
 
 ------
@@ -716,6 +716,7 @@ postgres=# SELECT * FROM personel;
  Fred    | Bloggs |     7 |   4
  Juan    | Perez  |    11 |   5
 (5 rows)
+
 postgres=# SELECT ad,soyad FROM personel;
    ad    | soyad
 ---------+--------
@@ -726,6 +727,225 @@ postgres=# SELECT ad,soyad FROM personel;
  Juan    | Perez  
 (5 rows)
 ```
+
+PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
+
+------
+
+##### 1. Kolon (Column) Alias Kullanımı
+
+##### Temel Sözdizimi
+
+```
+
+SELECT kolon_adi AS alias_adi
+FROM tablo_adi;
+```
+
+> `AS` **opsiyoneldir**, yazılmasa da çalışır.
+
+##### Örnekler
+
+```
+
+SELECT
+    first_name AS ad,
+    last_name  AS soyad
+FROM users;
+
+SELECT
+    salary * 12 aylik_maas
+FROM employees;
+```
+
+------
+
+##### 2. Tablo (Table) Alias Kullanımı
+
+##### Temel Sözdizimi
+
+```
+
+SELECT *
+FROM tablo_adi AS t;
+```
+
+##### Örnek
+
+```
+
+SELECT u.username, u.email
+FROM users AS u;
+```
+
+➡️ Bundan sonra `users.username` yerine **`u.username`** kullanılır.
+
+#### `WHERE` kullanımı
+
+PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
+
+1. Temel Kullanım
+
+```sql
+SELECT * FROM table_name
+WHERE kosul;
+```
+
+**Örnek:**
+
+```sql
+SELECT * FROM users
+WHERE age = 25;
+```
+
+→ Yaşı 25 olan kayıtları getirir.
+
+------
+
+##### 2. Karşılaştırma Operatörleri
+
+| Operatör       | Açıklama   |
+| -------------- | ---------- |
+| `=`            | Eşittir    |
+| `!=` veya `<>` | Eşit değil |
+| `>`            | Büyük      |
+| `<`            | Küçük      |
+| `>=`           | Büyük eşit |
+| `<=`           | Küçük eşit |
+
+**Örnek:**
+
+```sql
+SELECT name, salary FROM employees
+WHERE salary >= 50000;
+```
+
+------
+
+##### 3. Mantıksal Operatörler (`AND`, `OR`, `NOT`)
+
+```sql
+SELECT * FROM orders
+WHERE status = 'paid' AND total_amount > 1000;
+
+SELECT * FROM users
+WHERE city = 'Ankara' OR city = 'İstanbul';
+
+SELECT * FROM users
+WHERE NOT is_active;
+```
+
+------
+
+##### 4. `IN` Kullanımı
+
+Birden fazla değeri kontrol etmek için:
+
+```postgresql
+SELECT * FROM products
+WHERE category IN ('Elektronik', 'Bilgisayar', 'Telefon');
+```
+
+------
+
+##### 5. `BETWEEN` Kullanımı
+
+Belirli bir aralık için:
+
+```postgresql
+SELECT * FROM orders
+WHERE order_date BETWEEN '2024-01-01' AND '2024-12-31';
+```
+
+------
+
+##### 6. `LIKE` ve `ILIKE` (Metin Arama)
+
+- `%` → herhangi bir karakter dizisi
+- `_` → tek karakter
+
+```postgresql
+SELECT * FROM users
+WHERE username LIKE 'ahmet%';
+```
+
+- **`ILIKE`** → büyük/küçük harf duyarsızdır
+
+```postgresql
+SELECT * FROM users
+WHERE email ILIKE '%gmail.com';
+```
+
+------
+
+##### 7. `IS NULL` / `IS NOT NULL`
+
+```
+
+SELECT *
+FROM users
+WHERE phone IS NULL;
+
+SELECT *
+FROM users
+WHERE phone IS NOT NULL;
+```
+
+------
+
+##### 8. Tarih ve Saat ile `WHERE`
+
+```
+
+SELECT *
+FROM logs
+WHERE created_at >= NOW() - INTERVAL '7 days';
+```
+
+------
+
+##### 9. Sayısal Fonksiyonlarla Kullanım
+
+```
+SELECT *
+FROM products
+WHERE price * quantity > 1000;
+```
+
+------
+
+##### 10. Subquery ile `WHERE`
+
+```sql
+SELECT *
+FROM employees
+WHERE department_id IN (
+    SELECT id
+    FROM departments
+    WHERE name = 'IT'
+);
+```
+
+------
+
+##### 11. Performans Notu (Önemli)
+
+- `WHERE` koşulunda kullanılan kolonlara **index** eklemek performansı ciddi artırır.
+
+```sql
+CREATE INDEX idx_users_email ON users(email);
+```
+
+------
+
+##### Kısa Özet
+
+- `WHERE` → filtreleme
+- `AND / OR / NOT` → mantık
+- `IN / BETWEEN / LIKE / IS NULL` → sık kullanılan yardımcılar
+- `ILIKE` → case-insensitive arama (PostgreSQL’e özgü)
+
+---
 
 **Sütun Güncelleme:**
 
