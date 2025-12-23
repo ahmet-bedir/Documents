@@ -736,18 +736,18 @@ PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olar
 
 ##### Temel Sözdizimi
 
-```
-
-SELECT kolon_adi AS alias_adi
-FROM tablo_adi;
+```postgresql
+SELECT kolon_adı AS alias_adı
+FROM tablo_adı;
 ```
 
 > `AS` **opsiyoneldir**, yazılmasa da çalışır.
+>
+> `alias_adı` boşluk içerecek ise **çift tırnaklar** arasına yazılmalıdır.
 
 ##### Örnekler
 
-```
-
+```postgresql
 SELECT
     first_name AS ad,
     last_name  AS soyad
@@ -764,16 +764,13 @@ FROM employees;
 
 ##### Temel Sözdizimi
 
-```
-
-SELECT *
-FROM tablo_adi AS t;
+```postgresql
+SELECT * FROM tablo_adı AS t;
 ```
 
 ##### Örnek
 
-```
-
+```postgresql
 SELECT u.username, u.email
 FROM users AS u;
 ```
