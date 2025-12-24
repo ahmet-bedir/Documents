@@ -781,7 +781,7 @@ FROM users AS u;
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
 
-1. Temel Kullanım
+##### Temel Kullanım
 
 ```sql
 SELECT * FROM table_name
@@ -799,7 +799,7 @@ WHERE age = 25;
 
 ------
 
-##### 2. Karşılaştırma Operatörleri
+##### Karşılaştırma Operatörleri
 
 | Operatör       | Açıklama   |
 | -------------- | ---------- |
@@ -819,7 +819,7 @@ WHERE salary >= 50000;
 
 ------
 
-##### 3. Mantıksal Operatörler (`AND`, `OR`, `NOT`)
+##### Mantıksal Operatörler (`AND`, `OR`, `NOT`)
 
 ```sql
 SELECT * FROM orders
@@ -834,7 +834,21 @@ WHERE NOT is_active;
 
 ------
 
-##### 4. `IN` Kullanımı
+```sql
+=== Syntax ===
+SELECT *, Distinct(Tekrarsız Veriler), Top(istenilen sayıda Listeleme), Min,Max,Avg(Ortalama),Sum, Count
+FROM `databaseAdi`.`tabloAdi`
+WHERE (BIL - Between, In, Like)
+ORDER BY (Sıralama)
+JOIN (Birden fazla tabloda ortak vb yapıları listelemek)
+GROUP BY (Belli kolon için gruplama yapmak içindir)
+HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
+
+```
+
+
+
+##### `IN` Kullanımı
 
 Birden fazla değeri kontrol etmek için:
 
@@ -845,7 +859,7 @@ WHERE category IN ('Elektronik', 'Bilgisayar', 'Telefon');
 
 ------
 
-##### 5. `BETWEEN` Kullanımı
+##### `BETWEEN` Kullanımı
 
 Belirli bir aralık için:
 
@@ -856,7 +870,7 @@ WHERE order_date BETWEEN '2024-01-01' AND '2024-12-31';
 
 ------
 
-##### 6. `LIKE` ve `ILIKE` (Metin Arama)
+##### `LIKE` ve `ILIKE` (Metin Arama)
 
 - `%` → herhangi bir karakter dizisi
 - `_` → tek karakter
@@ -875,37 +889,36 @@ WHERE email ILIKE '%gmail.com';
 
 ------
 
-##### 7. `IS NULL` / `IS NOT NULL`
+##### `IS NULL` / `IS NOT NULL`
 
-```
-
-SELECT *
-FROM users
+```postgresql
+SELECT * FROM users
 WHERE phone IS NULL;
 
-SELECT *
-FROM users
+SELECT * FROM users
 WHERE phone IS NOT NULL;
 ```
 
 ------
 
-##### 8. Tarih ve Saat ile `WHERE`
+##### Tarih ve Saat ile `WHERE`
 
-```
-
-SELECT *
-FROM logs
+```postgresql
+SELECT * FROM logs
 WHERE created_at >= NOW() - INTERVAL '7 days';
 ```
 
 ------
 
-##### 9. Sayısal Fonksiyonlarla Kullanım
+##### Sayısal Fonksiyonlarla Kullanım
 
-```
-SELECT *
-FROM products
+```postgresql
+-- fiyat beşyüzden küçük olan ürünler listelenir.
+SELECT * FROM products
+WHERE price < 500;
+--------------------------------------------------------------
+-- fiyat * miktar binden büyük olan ürünler listelenir.
+SELECT * FROM products
 WHERE price * quantity > 1000;
 ```
 
