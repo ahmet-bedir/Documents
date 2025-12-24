@@ -187,8 +187,6 @@ apt policy <paket_adı>
 >
 > `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
 
-
-
 ------
 
 > **➡ Örnek:**
@@ -214,8 +212,6 @@ apt policy <paket_adı>
 
 
 
-
-
 ------
 
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
@@ -227,6 +223,8 @@ apt policy <paket_adı>
 > `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
 
 ---
+
+
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
@@ -323,7 +321,7 @@ sudo apt autoremove
 
 
 
-`autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
+⚡ `autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
 
 ✔ `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
 
@@ -352,7 +350,7 @@ sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
-**Temiz sistem isteyenler**
+🌿 **Temiz sistem isteyenler**
 
 ```bash
 sudo apt remove --purge <paket_adı>
@@ -389,7 +387,7 @@ sudo apt autopurge
 
 
 
-### Gereksiz Paketlerin Silinmesi
+### 🧹 Gereksiz Paketlerin Silinmesi
 
 > **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler** `/var/cache/apt/archives/` **dizini altında tutuluyor. Bunları silmek için de yine** `apt` **aracını kullanabiliriz. Eğer** `apt-get clean` **ya da** `apt clean` **komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
 
@@ -430,6 +428,8 @@ debtree ./<paket_adı.deb>
 > `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
 
 ------
+
+
 
 #### ✅ **`apt install <paket_adı> -d` komutu ne yapar?**
 
@@ -621,6 +621,7 @@ dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 APT listeyi günceller ve yeni paketi görür.
 
 ---
+
 
 
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
