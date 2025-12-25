@@ -728,9 +728,11 @@ postgres=# SELECT ad,soyad FROM personel;
 (5 rows)
 ```
 
-PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
+---
 
-------
+#### `ALIAS` kullanımı
+
+PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
 ##### 1. Kolon (Column) Alias Kullanımı
 
@@ -924,11 +926,10 @@ WHERE price * quantity > 1000;
 
 ------
 
-##### 10. Subquery ile `WHERE`
+##### Subquery ile `WHERE`
 
 ```sql
-SELECT *
-FROM employees
+SELECT * FROM employees
 WHERE department_id IN (
     SELECT id
     FROM departments
@@ -938,7 +939,7 @@ WHERE department_id IN (
 
 ------
 
-##### 11. Performans Notu (Önemli)
+##### Performans Notu (Önemli)
 
 - `WHERE` koşulunda kullanılan kolonlara **index** eklemek performansı ciddi artırır.
 
