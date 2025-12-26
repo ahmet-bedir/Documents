@@ -6,7 +6,7 @@
 
 # Git Komutları (Git Commands)
 
-###### Güncelleme : 11/2025
+###### Son güncelleme : 12/2025
 
 ---
 
@@ -118,7 +118,11 @@ git commit -m "commit_mesajı"
 >
 > - `git log --oneline` **: Yapılan commitleri tek satır şeklinde gösterir.**
 
-###### HEAD : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
+
+
+###### `HEAD` : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
+
+
 
 > - `.gitignore` **: Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
 >
@@ -245,6 +249,8 @@ git checkout <commit id> -- .
 
 **Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:**                                       `git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git` **komutunda** `<remote_name>` **kısmına istediğiniz ismi verebilirsiniz. Yani** `<remote_name>` **dediğimizde** `https://github.com/<github_username>/<repo_name>.git` **bu url temsil edilmektedir.**
 
+
+
 ---
 
 ### GitHub’da yeni bir repo (depo) oluşturmak için aşağıdaki adımları takip edebilirsiniz:
@@ -312,9 +318,9 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 - **Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak**
 - **Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek**
 
+
+
 ---
-
-
 
 ### PAT Nasıl Oluşturulur?
 
@@ -345,7 +351,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 > - **PAT’i kullanarak HTTPS ile push/pull işlemi yapmak için:**
 
 ```shell
-<git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
+git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
 ```
 
 ###### Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
@@ -418,6 +424,8 @@ git pull <remote_name> <branch_name>
 
 
 
+
+
 ---
 
 > - **Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı https protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.**
@@ -431,8 +439,6 @@ git clone https://github.com/<github_username>/<repo_name>.git
 ```shell
 git clone git@github.com:<github_username>/<repo_name>.git
 ```
-
-
 
 
 
