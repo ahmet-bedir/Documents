@@ -1,5 +1,5 @@
 
-### 📅 Tarihçe
+## 📅 Tarihçe
 
 Linux'un nasıl ortaya çıktığını öğrenmek için, 1969'a, Ken Thompson ve Dennis Ritchie'nin Bell Laboratuvarlarında UNIX işletim sistemini geliştirdikleri zamana dönelim. Daha sonra taşınabilirliği artırmak için C dilinde yeniden yazıldı ve sonunda yaygın olarak kullanılan bir işletim sistemi haline geldi.
 
@@ -13,7 +13,7 @@ Ardından 1991'de Linus Torvalds adında genç bir adam, bugün bildiğimiz Linu
 
 Sonuç olarak GNU yazılımları ve linux çekirdeğinin birleşimi ile ortaya açık kaynak, özgür bi işletim sistemi çıkmıştır.
 
-### 🔥 Linux Dağıtımları
+## 🔥 Linux Dağıtımları
 
 Bir Linux sistemi üç ana bölümden oluşur:
 
@@ -25,7 +25,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
 
-#### ➤ Debian
+### ➤ Debian
 
 **Genel Bakış**
 
@@ -48,7 +48,7 @@ Debian en son güncellemeleri almasa da son derece kararlıdır. İyi bir "temel
 
 Debian, her platform için genel olarak harika bir işletim sistemidir.
 
-#### ➤ Red Hat Enterprise Linux
+### ➤ Red Hat Enterprise Linux
 
 **Genel Bakış**
 
@@ -66,7 +66,7 @@ RHEL tabanlı işletim sistemleri, Debian tabanlı işletim sistemlerinden biraz
 
 Adından da anlaşılacağı gibi, çoğunlukla kurumsal alanda kullanılır, bu nedenle sağlam bir sunucu işletim sistemine ihtiyacınız varsa bu iyi bir tercih olacaktır.
 
-#### ➤ Ubuntu
+### ➤ Ubuntu
 
 **Genel Bakış**
 
@@ -84,7 +84,7 @@ Linux'a başlamak isteyen yeni başlayanlar için Ubuntu harika bir seçimdir. U
 
 Masaüstü, dizüstü bilgisayar ve sunucu dahil olmak üzere her platform için uygundur.
 
-#### ➤ Fedora
+### ➤ Fedora
 
 **Genel Bakış**
 
@@ -102,7 +102,7 @@ Red Hat tabanlı bir işletim sistemi kullanmak istiyorsanız, bu kullanıcı do
 
 Fedora, Red Hat tabanlı bir işletim sistemini fiyat etiketi olmadan kullanmak istiyorsanız harika bir seçimdir. Masaüstü ve dizüstü bilgisayarlar için önerilir.
 
-#### ➤ Linux Mint
+### ➤ Linux Mint
 
 **Genel Bakış**
 
@@ -120,7 +120,7 @@ Harika bir kullanıcı arayüzü sunar, yeni başlayanlar için uygundur ve Ubun
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur.
 
-#### ➤ Arch Linux
+### ➤ Arch Linux
 
 **Genel Bakış**
 
@@ -138,7 +138,7 @@ Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız A
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur. Ayrıca Raspberry Pi gibi küçük bir cihazınız varsa ve üzerine hafif bir işletim sistemi kurmanız gerekiyorsa, Arch'ı tercih edebilirsiniz.
 
-#### ➤ openSUSE
+### ➤ openSUSE
 
 **Genel Bakış**
 
@@ -158,7 +158,7 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 ---
 
-### ⌨️ Kabuk (Shell)
+## ⌨️ Kabuk (Shell)
 
 Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine göndererek gerçekleştirilmesini sağlayan bir programdır. Daha önce bir GUI (grafiksel arayüz) kullandıysanız, "Terminal" veya "Konsol" gibi progralları görmüşsünüzdür. Bunlar sizin için bir kabuk başlatan programlardır.
 
