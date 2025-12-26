@@ -286,12 +286,6 @@ git checkout <commit id> -- .
 
 ![](../images/new-repo.png)
 
-
-
-
-
-
-
 ---
 
 ![](../images/create-new-repo.png)
