@@ -1,3 +1,13 @@
+<p align="center">
+    <img src="../images/linux-mascot.png" style="zoom:67%;" />
+</p>
+
+
+# Linux İşletim Sistemi
+
+###### Son güncelleme : 12/2025
+
+---
 
 ## 📅 Tarihçe
 
@@ -14,6 +24,8 @@ Ardından 1991'de Linus Torvalds adında genç bir adam, bugün bildiğimiz Linu
 Sonuç olarak GNU yazılımları ve linux çekirdeğinin birleşimi ile ortaya açık kaynak, özgür bi işletim sistemi çıkmıştır.
 
 ## 🔥 Linux Dağıtımları
+
+<img src="../images/linux-distributions.png" style="zoom: 37%;" />
 
 Bir Linux sistemi üç ana bölümden oluşur:
 
@@ -198,6 +210,8 @@ $ pwd
 
 **Göreli yol:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `vergiler/` dizinine gidebilirim.
 
+<img src="/home/ahmet/Masaüstü/Documents/images/parent-sub-directory2.jpg" style="zoom: 67%;" />
+
 Artık yolların nasıl çalıştığını bildiğinize göre, istediğimiz dizine geçmemize yardımcı olacak bir şeye ihtiyacımız var. Neyse ki, bunu yapmak için `cd` "dizin değiştir" komutu kullanılır.
 
 ```bash
@@ -232,6 +246,8 @@ $ cd ~ # ana dizine git
 
 $ cd - # önceki dizine git
 ```
+
+<img src="/home/ahmet/Masaüstü/Documents/images/parent-sub-directory.jpg" style="zoom: 50%;" />
 
 # ls (List Directories)
 

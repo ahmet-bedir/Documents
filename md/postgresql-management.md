@@ -9,7 +9,7 @@
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 
-###### Güncelleme : 11/2025
+###### Son güncelleme : 12/2025
 
 ---
 

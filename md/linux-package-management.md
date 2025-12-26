@@ -5,7 +5,7 @@
 
 # Linux Sistemlerde Paket Yönetimi
 
-###### Güncelleme : 12/2025
+###### Son güncelleme : 12/2025
 
 ---
 
