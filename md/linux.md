@@ -713,3 +713,7 @@ Linux komutlarının temellerini öğrenmekte harika bir iş çıkardınız! Bu 
 Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabilirsiniz.
 
 Linux dünyasında başarılar!
+
+
+
+![](/home/ahmet/Masaüstü/Documents/images/yapım-asaması-gimp.png)
