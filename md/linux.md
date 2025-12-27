@@ -25,7 +25,7 @@ Sonuç olarak GNU yazılımları ve linux çekirdeğinin birleşimi ile ortaya a
 
 ## 🔥 Linux Dağıtımları
 
-<img src="../images/linux-distributions.png" style="zoom: 37%;" />
+<img src="../images/linux-distributions.png" width="300"  />
 
 Bir Linux sistemi üç ana bölümden oluşur:
 
@@ -210,7 +210,7 @@ $ pwd
 
 **Göreli yol:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `vergiler/` dizinine gidebilirim.
 
-<img src="../images/parent-sub-directory2.jpg" style="width:10px;" />
+<img src="../images/parent-sub-directory2.jpg" width="300"  />
 
 Artık yolların nasıl çalıştığını bildiğinize göre, istediğimiz dizine geçmemize yardımcı olacak bir şeye ihtiyacımız var. Neyse ki, bunu yapmak için `cd` "dizin değiştir" komutu kullanılır.
 
@@ -247,7 +247,7 @@ $ cd ~ # ana dizine git
 $ cd - # önceki dizine git
 ```
 
-<img src="../images/parent-sub-directory.jpg" style="zoom: 10%;" />
+<img src="../images/parent-sub-directory.jpg" width="300"  />
 
 # ls (List Directories)
 
