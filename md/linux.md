@@ -210,7 +210,7 @@ $ pwd
 
 **Göreli yol:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `vergiler/` dizinine gidebilirim.
 
-<img src="/home/ahmet/Masaüstü/Documents/images/parent-sub-directory2.jpg" style="zoom: 67%;" />
+<img src="../images/parent-sub-directory2.jpg" style="width:10px;" />
 
 Artık yolların nasıl çalıştığını bildiğinize göre, istediğimiz dizine geçmemize yardımcı olacak bir şeye ihtiyacımız var. Neyse ki, bunu yapmak için `cd` "dizin değiştir" komutu kullanılır.
 
@@ -247,7 +247,7 @@ $ cd ~ # ana dizine git
 $ cd - # önceki dizine git
 ```
 
-<img src="/home/ahmet/Masaüstü/Documents/images/parent-sub-directory.jpg" style="zoom: 50%;" />
+<img src="../images/parent-sub-directory.jpg" style="zoom: 10%;" />
 
 # ls (List Directories)
 
