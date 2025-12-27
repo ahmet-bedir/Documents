@@ -716,4 +716,4 @@ Linux dünyasında başarılar!
 
 
 
-![](/home/ahmet/Masaüstü/Documents/images/yapım-asaması-gimp.png)
+![](../images/yapım-asaması-gimp.png)
