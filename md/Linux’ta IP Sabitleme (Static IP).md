@@ -38,16 +38,15 @@ IP sabitlemeden önce aşağıdaki bilgiler bilinmelidir:
 
 ### Komut Satırı (nmcli)
 
-```
-
-nmcli con show
-nmcli con mod "Wired connection 1" \
+```shell
+$ nmcli con show
+$ nmcli con mod "bağlantı_adı" \
   ipv4.method manual \
   ipv4.addresses 192.168.1.50/24 \
   ipv4.gateway 192.168.1.1 \
   ipv4.dns "1.1.1.1 8.8.8.8"
 
-nmcli con up "Wired connection 1"
+$ nmcli con up "bağlantı_adı"
 ```
 
 ------
