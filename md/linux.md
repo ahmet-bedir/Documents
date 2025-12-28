@@ -14,7 +14,8 @@
 **İçindekiler**
 
 ► [Kabuk](#kabuk)
-►
+
+► 
 
 
 
@@ -269,32 +270,32 @@ $ cd - # önceki dizine git
 
 Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
 
-```
+```bash
 $ ls
 ```
 
-```
-$ ls /home/pete
+```bash
+$ ls /home/ali
 ```
 
 `ls` oldukça kullanışlı bir araçtır, aynı zamanda baktığınız dosyalar ve dizinler hakkında size ayrıntılı bilgi gösterir.
 
-Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları ls komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
+Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları `ls` komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
 
-```
+```bash
 $ ls -a
 ```
 
-Bir başka yararlı`ls` işareti daha vardır, `-l` (uzun) uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
+Bir başka `ls` işareti `-l` uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
 
-```
+```bash
 $ ls -l
 ```
 
 Şimdi daha fazlasını görelim:
 
-```
-pete@icebox:~$ ls -l
+```bash
+ali@pc:~$ ls -l
 
 total 80
 
@@ -317,15 +318,15 @@ drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Videos
 
 Komutların daha fazla işlevsellik eklemek için işaretleri (veya argümanları veya seçenekleri, nasıl adlandırmak isterseniz) vardır. `-a` ve `-l` nasıl eklediğimizi gördük, her ikisini de birlikte `-la` ile ekleyebilirsiniz. İşaretlerin sırası hangi sırada gittiğini belirler, çoğu zaman bu gerçekten önemli değildir, bu nedenle `ls -al` yapabilirsiniz ve yine de çalışır.
 
-```
+```bash
 $ ls -la
 ```
 
-# touch
+#### touch
 
-Şimdi bazı dosyaların nasıl oluşturulacağını öğrenelim. Çok basit bir yol, `touch`komutunu kullanmaktır. Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
+Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
 
-```
+```bash
 $ touch superdosyam
 ```
 
