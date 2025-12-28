@@ -11,6 +11,14 @@
 
 ---
 
+İçindekiler
+
+▸ [Kabuk](#kabuk)
+
+
+
+
+
 ## 📅 Tarihçe
 
 Linux'un nasıl ortaya çıktığını öğrenmek için, 1969'a, Ken Thompson ve Dennis Ritchie'nin Bell Laboratuvarlarında UNIX işletim sistemini geliştirdikleri zamana dönelim. Daha sonra taşınabilirliği artırmak için C dilinde yeniden yazıldı ve sonunda yaygın olarak kullanılan bir işletim sistemi haline geldi.
@@ -169,6 +177,8 @@ openSUSE, yeni bir Linux kullanıcısı için harika bir seçimdir. Kullanımı 
 **Kullanım Alanları**
 
 openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygundur.
+
+<a id="kabuk"><a/>
 
 ---
 
