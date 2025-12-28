@@ -38,7 +38,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
 
-### ➤ Debian
+### ➤ Debian Dağıtımı
 
 **Genel Bakış**
 
@@ -61,7 +61,7 @@ Debian en son güncellemeleri almasa da son derece kararlıdır. İyi bir "temel
 
 Debian, her platform için genel olarak harika bir işletim sistemidir.
 
-### ➤ Red Hat Enterprise Linux
+### ➤ Red Hat Enterprise Linux  Dağıtımı
 
 **Genel Bakış**
 
@@ -79,7 +79,7 @@ RHEL tabanlı işletim sistemleri, Debian tabanlı işletim sistemlerinden biraz
 
 Adından da anlaşılacağı gibi, çoğunlukla kurumsal alanda kullanılır, bu nedenle sağlam bir sunucu işletim sistemine ihtiyacınız varsa bu iyi bir tercih olacaktır.
 
-### ➤ Ubuntu
+### ➤ Ubuntu Dağıtımı
 
 **Genel Bakış**
 
@@ -97,7 +97,7 @@ Linux'a başlamak isteyen yeni başlayanlar için Ubuntu harika bir seçimdir. U
 
 Masaüstü, dizüstü bilgisayar ve sunucu dahil olmak üzere her platform için uygundur.
 
-### ➤ Fedora
+### ➤ Fedora Dağıtımı
 
 **Genel Bakış**
 
@@ -115,7 +115,7 @@ Red Hat tabanlı bir işletim sistemi kullanmak istiyorsanız, bu kullanıcı do
 
 Fedora, Red Hat tabanlı bir işletim sistemini fiyat etiketi olmadan kullanmak istiyorsanız harika bir seçimdir. Masaüstü ve dizüstü bilgisayarlar için önerilir.
 
-### ➤ Linux Mint
+### ➤ Linux Mint Dağıtımı
 
 **Genel Bakış**
 
@@ -133,7 +133,7 @@ Harika bir kullanıcı arayüzü sunar, yeni başlayanlar için uygundur ve Ubun
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur.
 
-### ➤ Arch Linux
+### ➤ Arch Linux Dağıtımı
 
 **Genel Bakış**
 
@@ -151,7 +151,7 @@ Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız A
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur. Ayrıca Raspberry Pi gibi küçük bir cihazınız varsa ve üzerine hafif bir işletim sistemi kurmanız gerekiyorsa, Arch'ı tercih edebilirsiniz.
 
-### ➤ openSUSE
+### ➤ openSUSE Dağıtımı
 
 **Genel Bakış**
 
@@ -232,8 +232,11 @@ Sadece klasörün adını nasıl kullandığımı fark ettiniz mi? Çünkü zate
 Her zaman mutlak ve göreli yollarla gezinmek oldukça yorucu olabilir, Neyse ki, size yardımcı olacak bazı kısayollar var.
 
 ► **. (geçerli dizin)**: Şu anda bulunduğunuz dizindir.
+
 ► **.. (üst dizin)**: Sizi şu anki konumunuzun bir üst dizinine götürür.
+
 ► **\~ (ana dizin)**: Bu dizin varsayılan olarak "ana dizininize" (`~/home/kullanıcı_adı`) gider.
+
 ► **- (önceki dizin)**: Bu sizi az önce bulunduğunuz önceki dizine götürür.
 
 Örnekler:
@@ -250,9 +253,9 @@ $ cd - # önceki dizine git
 
 <img src="../images/parent-sub-directory.jpg" width="300"  />
 
-# ls (List Directories)
+#### ls (List Directories)
 
-Şimdi sistemde nasıl hareket edeceğimizi öğrendik, peki bize neler sunulduğunu nasıl öğreniriz? Şu an karanlıkta dolaşıyor gibiyiz. Neyse ki, dizin içeriklerini listelemek için harika `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
+Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
 
 ```
 $ ls
