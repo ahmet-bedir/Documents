@@ -11,9 +11,10 @@
 
 ---
 
-İçindekiler
+**İçindekiler**
 
-▸ [Kabuk](#kabuk)
+► [Kabuk](#kabuk)
+►
 
 
 
