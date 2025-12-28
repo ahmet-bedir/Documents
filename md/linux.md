@@ -14,9 +14,8 @@
 **İçindekiler**
 
 ► [Kabuk](#kabuk)
-►
 
-
+► 
 
 
 
