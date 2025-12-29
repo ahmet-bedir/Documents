@@ -3,8 +3,6 @@
 </p>
 
 
-
-
 # Linux İşletim Sistemi
 
 ###### Son güncelleme : 12/2025
@@ -13,9 +11,13 @@
 
 **İçindekiler**
 
-► [Komut Satırı](#komut_satiri)
+► [**Komut Satırı**](#komut_satiri)
 
-►
+► 
+
+
+
+---
 
 
 ## 📅 Tarihçe
@@ -153,7 +155,7 @@ Paketleri kurmak, güncellemek ve yönetmek için kendi paket yöneticisi Pacman
 
 **Yapılandırılabilirlik**
 
-Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız Arch'ı kullanın! Biraz öğrenme eğrisi olsa da, hardcore Linux kullanıcıları için harika bir seçimdir.
+Hafif bir işletim sistemi istiyor ve Linux'u gerçekt► en anlamak istiyorsanız Arch'ı kullanın! Biraz öğrenme eğrisi olsa da, hardcore Linux kullanıcıları için harika bir seçimdir.
 
 **Kullanım Alanları**
 
@@ -276,6 +278,207 @@ $ ls
 $ ls /home/ali
 ```
 
+Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları ls komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
+
+```
+$ ls -a
+```
+
+Bir başka yararlı`ls` işareti daha vardır, `-l` (uzun) uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
+
+```
+$ ls -l
+```
+
+Şimdi daha fazlasını görelim:
+
+```
+pete@icebox:~$ ls -l
+
+total 80
+
+drwxr-x--- 7 pete penguingroup   4096 Nov 20 16:37 Desktop
+
+drwxr-x--- 2 pete penguingroup   4096 Oct 19 10:46  Documents
+
+drwxr-x--- 4 pete penguingroup   4096 Nov 20 09:30 Downloads
+
+drwxr-x--- 2 pete penguingroup   4096 Oct  7 13:13   Music
+
+drwxr-x--- 2 pete penguingroup   4096 Sep 21 14:02 Pictures
+
+drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Public
+
+drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Templates
+
+drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Videos
+```
+
+##### Sık kullanılan argümanlar
+
+**`-l`**
+   Uzun listeleme formatı (izinler, sahip, grup, boyut, tarih). 
+
+```bash
+ls -l
+```
+
+**`-h`**
+   Dosya boyutlarını insan okunabilir biçimde gösterir (KB, MB, GB).
+   Genellikle `-l` ile birlikte kullanılır.
+
+```
+ls -lh
+```
+
+**`-a`**
+   Gizli dosyaları da listeler (`.` ile başlayanlar).
+
+```
+ls -a
+```
+
+**`-A`**
+   Gizli dosyaları listeler ancak `.` ve `..` hariç tutar.
+
+```
+ls -A
+```
+
+------
+
+## Sıralama Seçenekleri
+
+- **`-t`**
+   Dosyaları son değiştirilme zamanına göre sıralar.
+
+```
+ls -lt
+```
+
+**`-S`**
+ Dosyaları boyutlarına göre sıralar.
+
+```
+
+ls -lS
+```
+
+**`-r`**
+ Ters sıralama yapar.
+
+```
+ls -ltr
+```
+
+------
+
+## Dosya Türleri ve Ayırt Etme
+
+- **`-F`**
+   Dosya türünü sonuna ek işaretle belirtir:
+
+  - `/` → dizin
+  - `*` → çalıştırılabilir dosya
+  - `@` → sembolik link
+
+  ```
+  
+  ```
+
+```
+ls -F
+```
+
+**`--color=auto`**
+ Dosya türlerine göre renklendirerek gösterir (çoğu dağıtımda varsayılan).
+
+```
+
+```
+
+- ```
+  ls --color=auto
+  ```
+
+------
+
+## Dizin ve Alt Dizin İşlemleri
+
+- **`-d`**
+   Dizinin içeriğini değil, dizinin kendisini listeler.
+
+  ```
+  
+  ```
+
+```
+ls -ld /etc
+```
+
+**`-R`**
+ Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
+
+```
+
+```
+
+- ```
+  ls -R
+  ```
+
+------
+
+## Zaman Bilgileri
+
+- **`-u`**
+   Son erişim zamanına göre listeler.
+
+  ```
+  
+  ```
+
+```
+ls -lu
+```
+
+**`-c`**
+ Son durum değişikliği zamanına göre listeler.
+
+```
+
+```
+
+- ```
+  ls -lc
+  ```
+
+------
+
+## Yaygın Kullanım Kombinasyonları
+
+- **`ls -lah`**
+   Tüm dosyalar, detaylı liste, okunabilir boyutlar.
+- **`ls -ltrh`**
+   En eski dosyalar üstte olacak şekilde detaylı ve okunabilir liste.
+- **`ls -ld */`**
+   Sadece dizinleri uzun formatta listeler.
+
+------
+
+## Kısa Özet Tablosu
+
+| Argüman | Açıklama                   |
+| ------- | -------------------------- |
+| `-l`    | Detaylı liste              |
+| `-a`    | Gizli dosyalar             |
+| `-h`    | Okunabilir boyut           |
+| `-t`    | Zamana göre sıralama       |
+| `-r`    | Ters sıralama              |
+| `-S`    | Boyuta göre sıralama       |
+| `-R`    | Alt dizinlerle             |
+| `-F`    | Dosya türü işareti         |
+| `-d`    | Dizinin kendisini gösterir |
 
 ### touch
 
