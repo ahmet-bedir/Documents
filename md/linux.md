@@ -13,12 +13,9 @@
 
 **İçindekiler**
 
-► [Kabuk](#kabuk)
+► [Komut Satırı](#komut_satiri)
 
-► 
-
-
-
+►
 
 
 ## 📅 Tarihçe
@@ -49,7 +46,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
 
-### ➤ Debian Dağıtımı
+### ► Debian Dağıtımı
 
 **Genel Bakış**
 
@@ -57,10 +54,10 @@ Debian, tamamen özgür ve açık kaynaklı yazılımlardan oluşan bir işletim
 
 **Sürümler**
 
-► **Stable:** Genel olarak kullanılması iyi olan bir sürüm. Sisteminizde kararlılık ve güvenlik öncelikliyse bu sürümü tercih edebilirsiniz.
-► **Testing ve Unstable:** Sürekli güncelleme (rolling release) alan dallardır. Bu, bu dallardaki aşamalı değişikliklerin sonunda Stable sürümüne dahil olacağı anlamına gelir. Örneğin, Windows XP'den Windows 10'a yükseltme yapmak istiyorsanız, tam bir Windows 10 kurulumu yapmanız gerekir. Ancak Testing sürümünü kullanıyorsanız, tam bir kurulum yapmadan bir sonraki işletim sistemi sürümü olana kadar otomatik olarak güncellemeleri alacaksınız.
+**Stable:** Genel olarak kullanılması iyi olan bir sürüm. Sisteminizde kararlılık ve güvenlik öncelikliyse bu sürümü tercih edebilirsiniz.
+**Testing ve Unstable:** Sürekli güncelleme (rolling release) alan dallardır. Bu, bu dallardaki aşamalı değişikliklerin sonunda Stable sürümüne dahil olacağı anlamına gelir. Örneğin, Windows XP'den Windows 10'a yükseltme yapmak istiyorsanız, tam bir Windows 10 kurulumu yapmanız gerekir. Ancak Testing sürümünü kullanıyorsanız, tam bir kurulum yapmadan bir sonraki işletim sistemi sürümü olana kadar otomatik olarak güncellemeleri alacaksınız.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 Debian, kendi paket yönetim (APT) araçlarını kullanır. Her Linux dağıtımı paketleri farklı şekilde kurar, yönetir ve farklı paket yönetim araçları kullanır.
 
@@ -72,13 +69,13 @@ Debian en son güncellemeleri almasa da son derece kararlıdır. İyi bir "temel
 
 Debian, her platform için genel olarak harika bir işletim sistemidir.
 
-### ➤ Red Hat Enterprise Linux  Dağıtımı
+### ► Red Hat Enterprise Linux  Dağıtımı
 
 **Genel Bakış**
 
 Red Hat Enterprise Linux, genellikle RHEL olarak adlandırılır ve Red Hat tarafından geliştirilir. RHEL, ücretsiz yeniden dağıtımı kısıtlamak için katı kurallara sahiptir, ancak yine de kaynak kodunu ücretsiz olarak sağlar.
 
-**📦 Paket Yönetimi**
+**Paket Yönetimi**
 
 RHEL, Debian'dan farklı bir paket yöneticisi olan RPM paket yöneticisini kullanır.
 
@@ -90,13 +87,13 @@ RHEL tabanlı işletim sistemleri, Debian tabanlı işletim sistemlerinden biraz
 
 Adından da anlaşılacağı gibi, çoğunlukla kurumsal alanda kullanılır, bu nedenle sağlam bir sunucu işletim sistemine ihtiyacınız varsa bu iyi bir tercih olacaktır.
 
-### ➤ Ubuntu Dağıtımı
+### ► Ubuntu Dağıtımı
 
 **Genel Bakış**
 
 Kişisel bilgisayarlar için en popüler Linux dağıtımlarından biri Ubuntu'dur. Ubuntu ayrıca varsayılan olarak kendi masaüstü ortamı yöneticisi Unity'yi yayınlar.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 Ubuntu, Canonical tarafından geliştirilen Debian tabanlı bir işletim sistemidir. Dolayısıyla temel olarak Debian paket yönetim sistemini kullanır.
 
@@ -108,13 +105,13 @@ Linux'a başlamak isteyen yeni başlayanlar için Ubuntu harika bir seçimdir. U
 
 Masaüstü, dizüstü bilgisayar ve sunucu dahil olmak üzere her platform için uygundur.
 
-### ➤ Fedora Dağıtımı
+### ► Fedora Dağıtımı
 
 **Genel Bakış**
 
 Red Hat tarafından desteklenen Fedora Projesi, açık kaynaklı ve ücretsiz yazılımları içeren, topluluk odaklı bir projedir. Red Hat Enterprise Linux, Fedora'dan dallanarak geliştirilir, bu nedenle Fedora'yı bir upstream RHEL işletim sistemi olarak düşünebilirsiniz. Sonuç olarak, Red Hat Enterprise Linux, kapsamlı test ve kalite güvencesinden sonra Fedora'dan güncellemeler alacaktır. Fedora'yı, Debian yerine Red Hat altyapısı kullanan bir Ubuntu eşdeğeri olarak düşünebilirsiniz.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 Fedora, Red Hat paket yöneticisini kullanır.
 
@@ -126,13 +123,13 @@ Red Hat tabanlı bir işletim sistemi kullanmak istiyorsanız, bu kullanıcı do
 
 Fedora, Red Hat tabanlı bir işletim sistemini fiyat etiketi olmadan kullanmak istiyorsanız harika bir seçimdir. Masaüstü ve dizüstü bilgisayarlar için önerilir.
 
-### ➤ Linux Mint Dağıtımı
+### ► Linux Mint Dağıtımı
 
 **Genel Bakış**
 
 Linux Mint, Ubuntu tabanlı bir işletim sistemidir. Ubuntu'nun yazılım depolarını kullanır, böylece her iki dağıtımda da aynı paketler kullanılabilir. Ubuntu'dan daha hafif bir dağıtım tercih ediyorsanız, Linux Mint ilginizi çekebilir.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 Linux Mint, Ubuntu tabanlı olduğundan Debian paket yöneticisini kullanır.
 
@@ -144,13 +141,13 @@ Harika bir kullanıcı arayüzü sunar, yeni başlayanlar için uygundur ve Ubun
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur.
 
-### ➤ Arch Linux Dağıtımı
+### ► Arch Linux Dağıtımı
 
 **Genel Bakış**
 
 Arch Linux, %100 topluluk tarafından yönetilen, hafif ve esnek bir Linux dağıtımdır. Debian'a benzer şekilde, Arch da sürekli güncelleme modelini (rolling release) kullanır, bu nedenle kademeli güncellemeler sonunda Stable (kararlı) sürüm haline gelir. Sistemi ve işlevlerini anlamak için gerçekten uygulamalı olarak öğrenmeniz gerekir, ancak karşılığında sisteminiz üzerinde tam ve eksiksiz kontrol elde edersiniz.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 Paketleri kurmak, güncellemek ve yönetmek için kendi paket yöneticisi Pacman'ı kullanır.
 
@@ -162,13 +159,13 @@ Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız A
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur. Ayrıca Raspberry Pi gibi küçük bir cihazınız varsa ve üzerine hafif bir işletim sistemi kurmanız gerekiyorsa, Arch'ı tercih edebilirsiniz.
 
-### ➤ openSUSE Dağıtımı
+### ► openSUSE Dağıtımı
 
 **Genel Bakış**
 
 openSUSE Linux, tüm dünyadaki Özgür ve Açık Kaynaklı Yazılım topluluğunun bir parçası olarak açık, şeffaf ve dostça bir şekilde birlikte çalışan openSUSE Projesi tarafından yaratılmıştır. openSUSE, halen çalışmakta olan ikinci en eski Linux dağıtımıdır ve ödüllü SUSE Linux Enterprise ürünleriyle taban sistemini paylaşır.
 
-📦 **Paket Yönetimi**
+**Paket Yönetimi**
 
 RPM paket yöneticisini kullanır.
 
@@ -180,11 +177,12 @@ openSUSE, yeni bir Linux kullanıcısı için harika bir seçimdir. Kullanımı 
 
 openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygundur.
 
-<a id="kabuk"><a/>
+<a id="komut_satiri"><a/>
 
 ---
+## 💻 Komut Satırı
 
-## ⌨️ Kabuk (Shell)
+### Kabuk (Shell)
 
 Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine göndererek gerçekleştirilmesini sağlayan bir programdır. Daha önce bir GUI (grafiksel arayüz) kullandıysanız, "Terminal" veya "Konsol" gibi progralları görmüşsünüzdür. Bunlar sizin için bir kabuk başlatan programlardır.
 
@@ -205,7 +203,7 @@ Basit bir komut olan echo ile başlayalım. echo komutu, metin argümanlarını 
 $ echo Merhaba Dünya
 ```
 
-#### pwd (Print Working Directory / Çalışma Dizini Yazdır)
+### pwd (Print Working Directory / Çalışma Dizini Yazdır)
 
 Linux'ta her şey bir dosyadır, Linux'u derinlemesine öğrendikçe bunu anlayacaksınız, ancak şimdilik sadece bunu aklınızda bulundurun. Her dosya, hiyerarşik bir dizin ağacında organize edilir. Dosya sistemindeki ilk dizin, kök dizin olarak adlandırılır. Kök dizinde, daha fazla klasör ve dosya depolayabileceğiniz birçok klasör ve dosya bulunur.
 Bu dosya ve dizinlerin konumları yollar olarak adlandırılır.
@@ -216,7 +214,7 @@ Dosya sisteminde gezinmek, tıpkı gerçek hayatta olduğu gibi, nerede olduğun
 $ pwd
 ```
 
-#### cd (Change Directory / Dizin Değiştir)
+### cd (Change Directory / Dizin Değiştir)
 
 Şimdi nerede olduğunuzu öğrendiğinize göre, dosya sisteminde biraz dolaşabileceğimize bakalım. Dosya sisteminde gezinmek için yolları kullanmamız gerektiğini unutmayın. Yol belirtmenin mutlak ve göreli olmak üzere iki farklı yolu vardır.
 
@@ -266,7 +264,7 @@ $ cd - # önceki dizine git
 
 <img src="../images/parent-sub-directory.jpg" width="300"  />
 
-#### ls (List Directories)
+### ls (List Directories)
 
 Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
 
@@ -278,51 +276,8 @@ $ ls
 $ ls /home/ali
 ```
 
-`ls` oldukça kullanışlı bir araçtır, aynı zamanda baktığınız dosyalar ve dizinler hakkında size ayrıntılı bilgi gösterir.
 
-Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları `ls` komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
-
-```bash
-$ ls -a
-```
-
-Bir başka `ls` işareti `-l` uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
-
-```bash
-$ ls -l
-```
-
-Şimdi daha fazlasını görelim:
-
-```bash
-ali@pc:~$ ls -l
-
-total 80
-
-drwxr-x--- 7 pete penguingroup   4096 Nov 20 16:37 Desktop
-
-drwxr-x--- 2 pete penguingroup   4096 Oct 19 10:46  Documents
-
-drwxr-x--- 4 pete penguingroup   4096 Nov 20 09:30 Downloads
-
-drwxr-x--- 2 pete penguingroup   4096 Oct  7 13:13   Music
-
-drwxr-x--- 2 pete penguingroup   4096 Sep 21 14:02 Pictures
-
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Public
-
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Templates
-
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Videos
-```
-
-Komutların daha fazla işlevsellik eklemek için işaretleri (veya argümanları veya seçenekleri, nasıl adlandırmak isterseniz) vardır. `-a` ve `-l` nasıl eklediğimizi gördük, her ikisini de birlikte `-la` ile ekleyebilirsiniz. İşaretlerin sırası hangi sırada gittiğini belirler, çoğu zaman bu gerçekten önemli değildir, bu nedenle `ls -al` yapabilirsiniz ve yine de çalışır.
-
-```bash
-$ ls -la
-```
-
-#### touch
+### touch
 
 Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
 
