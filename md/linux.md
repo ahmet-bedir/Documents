@@ -482,47 +482,29 @@ Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesin
 $ cat dogfile birdfile
 ```
 
-Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır. Bir sonraki derste ele alacağımız daha büyük metin dosyalarını görüntülemek için kullandığımız başka araçlar vardır.
+Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır.
 
-# less
+### less
 
-Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az daha fazladır" (ironik bir şekilde, aslında benzer bir şey yapan `more` adında bir komut vardır). Metin, sayfa sayfa görüntülenir, böylece bir metin dosyasında sayfa sayfa gezinebilirsiniz.
-
-Devam edin ve bir dosyanın içeriğine `less` komutu ile bakın. `less` komutundayken, dosyada gezinmek için diğer klavye komutlarını kullanabilirsiniz.
-
-```bash
-$ less /home/pete/Dökümanlar/metin1
-```
-
-`less` içinde gezinmek için aşağıdaki komutları kullanın:
-
-* **q** - `less` programından çıkıp komut satırına geri dönmek için kullanılır.
-* **Sayfa yukarı, Sayfa aşağı, Yukarı ve Aşağı okları** - Ok tuşları ve sayfa tuşlarını kullanarak gezinin.
-* **g** - Metin dosyasının başına gitmek için kullanılır.
-* **G** - Metin dosyasının sonuna gitmek için kullanılır.
-* **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
-* **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
-
-# less
-
-Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az daha fazladır" (ironik bir şekilde, aslında benzer bir şey yapan `more` adında bir komut vardır). Metin, sayfa sayfa görüntülenir, böylece bir metin dosyasında sayfa sayfa gezinebilirsiniz.
+Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az daha fazladır" (aslında benzer bir şey yapan `more` adında bir komut vardır ancak `more` komutunda geri gidemezsiniz). Metin, sayfa sayfa görüntülenir, böylece bir metin dosyasında sayfa sayfa gezinebilirsiniz.
 
 Devam edin ve bir dosyanın içeriğine `less` komutu ile bakın. `less` komutundayken, dosyada gezinmek için diğer klavye komutlarını kullanabilirsiniz.
 
 ```bash
-$ less /home/pete/Dökümanlar/metin1
+$ less /home/ali/Dökümanlar/metin1
 ```
 
 `less` içinde gezinmek için aşağıdaki komutları kullanın:
 
-* **q** - `less` programından çıkıp komut satırına geri dönmek için kullanılır.
-* **Sayfa yukarı, Sayfa aşağı, Yukarı ve Aşağı okları** - Ok tuşları ve sayfa tuşlarını kullanarak gezinin.
-* **g** - Metin dosyasının başına gitmek için kullanılır.
-* **G** - Metin dosyasının sonuna gitmek için kullanılır.
-* **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
-* **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
+- **q** - `less` programından çıkıp komut satırına geri dönmek için kullanılır.
+- **Sayfa yukarı, Sayfa aşağı, Yukarı ve Aşağı okları** - Ok tuşları ve sayfa tuşlarını kullanarak gezinin.
+- **g** - Metin dosyasının başına gitmek için kullanılır.
+- **G** - Metin dosyasının sonuna gitmek için kullanılır.
+- **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
+- **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
 
-# history
+
+### history
 
 Kabukta, daha önce girdiğiniz komutların bir geçmişi vardır, aslında bu komutlara göz atabilirsiniz. Bu, daha önce kullandığınız bir komutu yeniden yazmadan bulup çalıştırmak istediğinizde oldukça faydalıdır.
 
@@ -541,7 +523,7 @@ $ history
 
 Örneğin, `cat dosya1` yazdıysanız ve tekrar çalıştırmak istiyorsanız, sadece `!!` yazıp Enter'a basabilirsiniz. Bu, en son çalıştırdığınız komutu çalıştıracaktır.
 
-* **Ters arama:** Ctrl-R tuşlarına birlikte basın. Bu, ters arama komutudur. Ctrl-R'ye basıp aradığınız komutun bir kısmını yazmaya başlarsanız, size eşleşmeleri gösterecektir. Ctrl-R tuşuna tekrar basarak bunlar arasında gezinebilirsiniz. Kullanmak istediğiniz komutu bulduktan sonra Enter tuşuna basmanız yeterlidir.
+* **Ters arama:** `Ctrl-R` tuşlarına birlikte basın. Bu, ters arama komutudur. `Ctrl-R`'ye basıp aradığınız komutun bir kısmını yazmaya başlarsanız, size eşleşmeleri gösterecektir. `Ctrl-R` tuşuna tekrar basarak bunlar arasında gezinebilirsiniz. Kullanmak istediğiniz komutu bulduktan sonra Enter tuşuna basmanız yeterlidir.
 * **Ekranı temizleme:**
 
 ```bash
@@ -550,14 +532,14 @@ $ clear
 
 * **Tab tuşu ile tamamlama:** Komut satırı ortamında en kullanışlı özelliklerden biri tab tuşu ile tamamlamadır. Bir komutun, dosyanın, dizinin vb. başlangıcını yazmaya başlarsanız ve Tab tuşuna basarsanız, arama yaptığınız dizinde bulduğu şeye göre otomatik tamamlama yapacaktır. Örneğin, `chrome` komutunu çalıştırmaya çalışıyorsanız, `chr` yazıp Tab tuşuna basabilirsiniz, otomatik olarak `chrome` tamamlanacaktır.
 
-# cp (Copy)
+### cp (Copy)
 
 Dosyaları diğer işletim sistemlerinde kopyalayıp yapıştırmaya benzer şekilde, kabuk bize bunu yapmanın daha da basit bir yolunu sunar.
 
 * **Tek bir dosya kopyalama:**
 
 ```bash
-$ cp kopyalanacak_dosya hedef_konum
+$ cp <kopyalanacak_dosya> <hedef_konum>
 ```
 
 `kopyalanacak_dosya` kopyalamak istediğiniz dosyadır ve `hedef_konum` dosyayı kopyaladığınız yerdir.
@@ -565,41 +547,39 @@ $ cp kopyalanacak_dosya hedef_konum
 Örnek:
 
 ```bash
-$ cp superdosyam /home/pete/Dökümanlar/harika_dosyalar
+$ cp metin.txt /home/ali/Dökümanlar/
 ```
 
-Bu komut, `süperdosyam` adlı dosyayı `/home/pete/Dökümanlar/harika_dosyalar` dizinine kopyalar.
+Bu komut, `metin.txt` adlı dosyayı `/home/ali/Dökümanlar/` dizinine kopyalar.
 
 * **Çoklu dosya ve dizin kopyalama:**
 
 Birden fazla dosya ve dizini kopyalayabilirsiniz ve ayrıca joker karakterleri de kullanabilirsiniz. Joker karakter, arama daha fazla esneklik kazandıran bir desen tabanlı seçimi temsil eden bir karakterdir. Daha fazla esneklik için her komutta joker karakterleri kullanabilirsiniz.
 
-* **Joker karakterler:**
-  * `*`: Tüm tek karakterleri veya herhangi bir dizeyi temsil eder.
-  * `?`: Tek bir karakteri temsil eder.
-  * `[]`: Köşeli parantez içinde yer alan herhangi bir karakteri temsil eder.
+**Joker karakterler:**
+  - `*`: Tüm tek karakterleri veya herhangi bir dizeyi temsil eder.
+  - `?`: Tek bir karakteri temsil eder.
+  - `[]`: Köşeli parantez içinde yer alan herhangi bir karakteri temsil eder.
 
 Örnek:
 
 ```bash
-$ cp *.jpg /home/pete/Resimler
+$ cp *.jpg /home/ali/Resimler
 ```
 
-Bu komut, geçerli dizininizdeki tüm .jpg uzantılı dosyaları `Resimler` dizinine kopyalar.
+Bu komut, geçerli dizininizdeki tüm `.jpg` uzantılı dosyaları `Resimler` dizinine kopyalar.
 
 * **Yinelenen dizin kopyalama:**
 
-Yararlı bir komut, -r (recursive, yinelenen) işaretini kullanmaktır. Bu, bir dizin içindeki dosyaları ve dizinleri yinelemeli olarak kopyalar.
-
-Dökümanlar dizinize birkaç dosya içeren bir dizini kopyalamaya çalışın. İşe yaramadı mı? Bunun nedeni, -r komutu ile birlikte içerideki dosyaları ve dizinleri de kopyalamanız gerektiğindendir.
+Yararlı bir komut, `-r` (recursive, yinelenen) işaretini kullanmaktır. Bu, bir dizin içindeki dosyaları ve dizinleri yinelemeli olarak kopyalar.
 
 Örnek:
 
 ```bash
-$ cp -r Kabak /home/pete/Dökümanlar
+$ cp -r Kabak /home/ali/Dökümanlar
 ```
 
-Bir not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i`(interactive, etkileşimli) işaretini kullanabilirsiniz.
+Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i`(interactive, etkileşimli) işaretini kullanabilirsiniz.
 
 Örnek:
 
@@ -607,7 +587,7 @@ Bir not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığın
 $ cp -i süperdosyam /home/pete/Resimler
 ```
 
-# mv (Move)
+### mv (Move)
 
 `mv` komutu, dosyaları taşımak ve yeniden adlandırmak için kullanılır. `cp` komutuna benzer şekilde çalışır ancak dosyaları kopyalamak yerine taşır.
 
@@ -616,7 +596,7 @@ $ cp -i süperdosyam /home/pete/Resimler
 Dosyaları şu şekilde yeniden adlandırabilirsiniz:
 
 ```bash
-$ mv eski_dosya yeni_dosya
+$ mv <eski_dosya> <yeni_dosya>
 ```
 
 **Dosya Taşıma**
@@ -640,7 +620,7 @@ $ mv dosya_1 dosya_2 /bir_dizin
 Dizinleri de şu şekilde yeniden adlandırabilirsiniz:
 
 ```bash
-$ mv dizin1 dizin2
+$ mv <dizin1> <dizin2>
 ```
 
 **Üzerine Yazma**
@@ -659,7 +639,7 @@ Taşıma işlemini gerçekleştirmek ve üzerine yazmak istediğinizi varsayalı
 $ mv -b dizin1 dizin2
 ```
 
-# mkdir (Make Directory)
+### mkdir (Make Directory)
 
 Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur. Aynı anda birden fazla dizin bile oluşturabilirsiniz.
 
@@ -673,21 +653,7 @@ Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşt
 $ mkdir -p kitaplar/hemingway/favoriler
 ```
 
-# mkdir (Make Directory)
-
-Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur. Aynı anda birden fazla dizin bile oluşturabilirsiniz.
-
-```bash
-$ mkdir kitaplar resimler
-```
-
-Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
-
-```bash
-$ mkdir -p kitaplar/hemingway/favoriler
-```
-
-# rm (Remove)
+### rm (Remove)
 
 Birçok dosya oluşturduk, şimdi bazılarını silelim. Dosyaları silmek için `rm` komutunu kullanabilirsiniz. `rm` (remove) komutu, dosya ve dizinleri silmek için kullanılır.
 
@@ -698,8 +664,6 @@ $ rm dosya1
 **Dikkat:** `rm` komutunu kullanırken dikkatli olun. Silinen dosyaları geri getirmek için sihirli bir çöp kutusu yoktur. Silindikten sonra sonsuza kadar kaybolurlar. Bu yüzden dikkatli olun.
 
 Neyse ki, ortalama bir kullanıcının önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri alınmıştır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
-
-Artık bunların hiçbirini önemsemiyorsanız, kesinlikle bir sürü dosya silebilirsiniz.
 
 * **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
 
@@ -725,7 +689,7 @@ $ rm -r dizin
 $ rmdir dizin
 ```
 
-# find
+### find
 
 Sistemde bu kadar çok dosya varken, belirli bir dosyayı bulmaya çalışmak biraz zor olabilir. Neyse ki, bunun için kullanabileceğimiz bir komut var: `find`
 
@@ -749,7 +713,7 @@ Bu komutta, aradığımız dosya türünü `(d)` (dizin) olarak ayarladık ve yi
 
 **Önemli Not:** `find` komutu yalnızca aradığınız dizinde arama yapmaz, aynı zamanda o dizinin içinde olabilecek alt dizinlerin içine de bakar.
 
-# help
+### help
 
 Linux, bir komutu nasıl kullanacağınızı öğrenmenize veya bir komut için hangi işaretlerin (flag) mevcut olduğunu denetlemenize yardımcı olacak harika yerleşik araçlara sahiptir.
 
