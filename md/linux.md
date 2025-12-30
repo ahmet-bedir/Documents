@@ -9,6 +9,8 @@
 
 ---
 
+<a id="basa_don"><a/>
+
 **İçindekiler**
 
 ► [**Komut Satırı**](#komut_satiri)
@@ -155,7 +157,7 @@ Paketleri kurmak, güncellemek ve yönetmek için kendi paket yöneticisi Pacman
 
 **Yapılandırılabilirlik**
 
-Hafif bir işletim sistemi istiyor ve Linux'u gerçekt► en anlamak istiyorsanız Arch'ı kullanın! Biraz öğrenme eğrisi olsa da, hardcore Linux kullanıcıları için harika bir seçimdir.
+Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız Arch'ı kullanın! Biraz öğrenme eğrisi olsa da, hardcore Linux kullanıcıları için harika bir seçimdir.
 
 **Kullanım Alanları**
 
@@ -182,7 +184,10 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 <a id="komut_satiri"><a/>
 
 ---
+
 ## 💻 Komut Satırı
+
+[🔼 **Başa Dön**](#basa_don)
 
 ### Kabuk (Shell)
 
@@ -280,38 +285,32 @@ $ ls /home/ali
 
 Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları ls komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
 
-```
+```bash
 $ ls -a
 ```
 
-Bir başka yararlı`ls` işareti daha vardır, `-l` (uzun) uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
+Bir başka `ls` işareti, `-l` uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
 
-```
-$ ls -l
-```
-
-Şimdi daha fazlasını görelim:
-
-```
-pete@icebox:~$ ls -l
+```bash
+ali@pc:~$ ls -l
 
 total 80
 
-drwxr-x--- 7 pete penguingroup   4096 Nov 20 16:37 Desktop
+drwxr-x--- 7 ali ali   4096 Nov 20 16:37 Desktop
 
-drwxr-x--- 2 pete penguingroup   4096 Oct 19 10:46  Documents
+drwxr-x--- 2 ali ali   4096 Oct 19 10:46  Documents
 
-drwxr-x--- 4 pete penguingroup   4096 Nov 20 09:30 Downloads
+drwxr-x--- 4 ali ali   4096 Nov 20 09:30 Downloads
 
-drwxr-x--- 2 pete penguingroup   4096 Oct  7 13:13   Music
+drwxr-x--- 2 ali ali   4096 Oct  7 13:13   Music
 
-drwxr-x--- 2 pete penguingroup   4096 Sep 21 14:02 Pictures
+drwxr-x--- 2 ali ali   4096 Sep 21 14:02 Pictures
 
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Public
+drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Public
 
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Templates
+drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Templates
 
-drwxr-x--- 2 pete penguingroup   4096 Jul 27 12:41   Videos
+drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Videos
 ```
 
 ##### Sık kullanılan argümanlar
@@ -327,53 +326,52 @@ ls -l
    Dosya boyutlarını insan okunabilir biçimde gösterir (KB, MB, GB).
    Genellikle `-l` ile birlikte kullanılır.
 
-```
+```bash
 ls -lh
 ```
 
 **`-a`**
    Gizli dosyaları da listeler (`.` ile başlayanlar).
 
-```
+```bash
 ls -a
 ```
 
 **`-A`**
    Gizli dosyaları listeler ancak `.` ve `..` hariç tutar.
 
-```
+```bash
 ls -A
 ```
 
 ------
 
-## Sıralama Seçenekleri
+##### Sıralama Seçenekleri
 
 - **`-t`**
    Dosyaları son değiştirilme zamanına göre sıralar.
 
-```
+```bash
 ls -lt
 ```
 
 **`-S`**
  Dosyaları boyutlarına göre sıralar.
 
-```
-
+```bash
 ls -lS
 ```
 
 **`-r`**
  Ters sıralama yapar.
 
-```
+```bash
 ls -ltr
 ```
 
 ------
 
-## Dosya Türleri ve Ayırt Etme
+##### Dosya Türleri ve Ayırt Etme
 
 - **`-F`**
    Dosya türünü sonuna ek işaretle belirtir:
@@ -382,80 +380,56 @@ ls -ltr
   - `*` → çalıştırılabilir dosya
   - `@` → sembolik link
 
-  ```
-  
-  ```
-
-```
+```bash
 ls -F
 ```
 
 **`--color=auto`**
  Dosya türlerine göre renklendirerek gösterir (çoğu dağıtımda varsayılan).
 
-```
-
-```
-
-- ```
+```bash
   ls --color=auto
-  ```
+```
 
 ------
 
-## Dizin ve Alt Dizin İşlemleri
+##### Dizin ve Alt Dizin İşlemleri
 
 - **`-d`**
    Dizinin içeriğini değil, dizinin kendisini listeler.
 
-  ```
-  
-  ```
-
-```
+```bash
 ls -ld /etc
 ```
 
 **`-R`**
  Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
 
-```
-
-```
-
-- ```
+```bash
   ls -R
-  ```
+```
 
 ------
 
-## Zaman Bilgileri
+##### Zaman Bilgileri
 
 - **`-u`**
    Son erişim zamanına göre listeler.
 
-  ```
-  
-  ```
-
-```
+```bash
 ls -lu
 ```
 
 **`-c`**
  Son durum değişikliği zamanına göre listeler.
 
-```
-
-```
-
-- ```
+```bash
   ls -lc
-  ```
+```
 
 ------
 
-## Yaygın Kullanım Kombinasyonları
+##### Yaygın Kullanım Kombinasyonları
 
 - **`ls -lah`**
    Tüm dosyalar, detaylı liste, okunabilir boyutlar.
@@ -466,7 +440,7 @@ ls -lu
 
 ------
 
-## Kısa Özet Tablosu
+##### Kısa Özet Tablosu
 
 | Argüman | Açıklama                   |
 | ------- | -------------------------- |
@@ -485,32 +459,26 @@ ls -lu
 Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
 
 ```bash
-$ touch superdosyam
+$ touch <dosya>
 ```
-
-İşte bu kadar, yeni dosya!
 
 Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Deneyin, bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch`komutunu uygulayın, zaman damgası güncellenecektir.
 
-yönlendirme ve metin editörleri gibi başka şeyleri içeren dosya oluşturmanın başka birçok yolu vardır, ancak bunlara Metin İşleme kursunda değineceğiz.
+### file
 
-# file
-
-Önceki derste `touch` komutunu öğrendik, biraz ona geri dönelim. Diğer işletim sistemlerinde (Windows gibi) gördüğünüz gibi, dosya adının standart isimlendirmeye uymadığını fark ettiniz mi? Normalde banana.jpeg adlı bir dosyadan ve bir JPEG resim dosyası beklemek normaldir.
-
-Linux'ta, dosya adlarının dosyanın içeriğini temsil etmesi gerekmez. Aslında GIF olmayan `komik.gif` adında bir dosya oluşturabilirsiniz.
+Linux'ta, dosya adlarının dosyanın içeriğini temsil etmesi gerekmez. Aslında GIF olmayan `komik.gif` adında bir dosya oluşturabilirsiniz. Bu onun bi GIF dosyası olduğu anlamına gelmez.
 
 Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabilirsiniz. Bu komut, dosyanın içeriğinin bir açıklamasını size gösterecektir.
 
-```
-$ file banana.jpg
+```bash
+$ file komik.gif
 ```
 
-# cat
+### cat
 
-Dosya yönetimi konusunu neredeyse bitirdik, ancak önce bir dosyanın nasıl okunacağını öğrenelim. Kullanılacak basit bir komut `cat` komutudur. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
+Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
 
-```
+```bash
 $ cat dogfile birdfile
 ```
 
@@ -522,7 +490,7 @@ Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az d
 
 Devam edin ve bir dosyanın içeriğine `less` komutu ile bakın. `less` komutundayken, dosyada gezinmek için diğer klavye komutlarını kullanabilirsiniz.
 
-```
+```bash
 $ less /home/pete/Dökümanlar/metin1
 ```
 
@@ -541,7 +509,7 @@ Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az d
 
 Devam edin ve bir dosyanın içeriğine `less` komutu ile bakın. `less` komutundayken, dosyada gezinmek için diğer klavye komutlarını kullanabilirsiniz.
 
-```
+```bash
 $ less /home/pete/Dökümanlar/metin1
 ```
 
@@ -560,14 +528,14 @@ Kabukta, daha önce girdiğiniz komutların bir geçmişi vardır, aslında bu k
 
 * **Komut geçmişinizi görmek:**
 
-```
+```bash
 $ history
 ```
 
 * **Önceki komutu tekrar çalıştırmak:** Yukarı ok tuşuna basın.
 * **Son komutu tekrar çalıştırmak:**
 
-```
+```bash
 !!
 ```
 
@@ -576,7 +544,7 @@ $ history
 * **Ters arama:** Ctrl-R tuşlarına birlikte basın. Bu, ters arama komutudur. Ctrl-R'ye basıp aradığınız komutun bir kısmını yazmaya başlarsanız, size eşleşmeleri gösterecektir. Ctrl-R tuşuna tekrar basarak bunlar arasında gezinebilirsiniz. Kullanmak istediğiniz komutu bulduktan sonra Enter tuşuna basmanız yeterlidir.
 * **Ekranı temizleme:**
 
-```
+```bash
 $ clear
 ```
 
@@ -588,7 +556,7 @@ Dosyaları diğer işletim sistemlerinde kopyalayıp yapıştırmaya benzer şek
 
 * **Tek bir dosya kopyalama:**
 
-```
+```bash
 $ cp kopyalanacak_dosya hedef_konum
 ```
 
@@ -596,7 +564,7 @@ $ cp kopyalanacak_dosya hedef_konum
 
 Örnek:
 
-```
+```bash
 $ cp superdosyam /home/pete/Dökümanlar/harika_dosyalar
 ```
 
@@ -613,7 +581,7 @@ Birden fazla dosya ve dizini kopyalayabilirsiniz ve ayrıca joker karakterleri d
 
 Örnek:
 
-```
+```bash
 $ cp *.jpg /home/pete/Resimler
 ```
 
@@ -627,7 +595,7 @@ Dökümanlar dizinize birkaç dosya içeren bir dizini kopyalamaya çalışın. 
 
 Örnek:
 
-```
+```bash
 $ cp -r Kabak /home/pete/Dökümanlar
 ```
 
@@ -635,7 +603,7 @@ Bir not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığın
 
 Örnek:
 
-```
+```bash
 $ cp -i süperdosyam /home/pete/Resimler
 ```
 
@@ -647,7 +615,7 @@ $ cp -i süperdosyam /home/pete/Resimler
 
 Dosyaları şu şekilde yeniden adlandırabilirsiniz:
 
-```
+```bash
 $ mv eski_dosya yeni_dosya
 ```
 
@@ -655,7 +623,7 @@ $ mv eski_dosya yeni_dosya
 
 Bir dosyayı farklı bir dizine şu şekilde taşıyabilirsiniz:
 
-```
+```bash
 $ mv dosya2 /home/pete/Dökümanlar
 ```
 
@@ -663,7 +631,7 @@ $ mv dosya2 /home/pete/Dökümanlar
 
 Birden fazla dosyayı şu şekilde taşıyabilirsiniz:
 
-```
+```bash
 $ mv dosya_1 dosya_2 /bir_dizin
 ```
 
@@ -671,7 +639,7 @@ $ mv dosya_1 dosya_2 /bir_dizin
 
 Dizinleri de şu şekilde yeniden adlandırabilirsiniz:
 
-```
+```bash
 $ mv dizin1 dizin2
 ```
 
@@ -679,7 +647,7 @@ $ mv dizin1 dizin2
 
 Bir dosyayı veya dizini `mv` ile taşırsanız, aynı dizindeki herhangi bir şeyin üzerine yazar. Bu davranışı değiştirmek için `-i` işaretini kullanabilirsiniz.
 
-```
+```bash
 $ mv -i dizin1 dizin2
 ```
 
@@ -687,7 +655,7 @@ $ mv -i dizin1 dizin2
 
 Taşıma işlemini gerçekleştirmek ve üzerine yazmak istediğinizi varsayalım. Ayrıca o dosyanın bir yedeğini oluşturabilir ve eski sürümü yalnızca bir \~ ile yeniden adlandırabilirsiniz.
 
-```
+```bash
 $ mv -b dizin1 dizin2
 ```
 
@@ -695,13 +663,13 @@ $ mv -b dizin1 dizin2
 
 Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur. Aynı anda birden fazla dizin bile oluşturabilirsiniz.
 
-```
+```bash
 $ mkdir kitaplar resimler
 ```
 
 Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
 
-```
+```bash
 $ mkdir -p kitaplar/hemingway/favoriler
 ```
 
@@ -709,13 +677,13 @@ $ mkdir -p kitaplar/hemingway/favoriler
 
 Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur. Aynı anda birden fazla dizin bile oluşturabilirsiniz.
 
-```
+```bash
 $ mkdir kitaplar resimler
 ```
 
 Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
 
-```
+```bash
 $ mkdir -p kitaplar/hemingway/favoriler
 ```
 
@@ -723,7 +691,7 @@ $ mkdir -p kitaplar/hemingway/favoriler
 
 Birçok dosya oluşturduk, şimdi bazılarını silelim. Dosyaları silmek için `rm` komutunu kullanabilirsiniz. `rm` (remove) komutu, dosya ve dizinleri silmek için kullanılır.
 
-```
+```bash
 $ rm dosya1
 ```
 
@@ -735,25 +703,25 @@ Artık bunların hiçbirini önemsemiyorsanız, kesinlikle bir sürü dosya sile
 
 * **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
 
-```
+```bash
 $ rm -f dosya1
 ```
 
 * Diğer birçok komutta olduğu gibi `-i` işaretini eklemek, dosyaları veya dizinleri gerçekten silmek isteyip istemediğinizi soran bir uyarı görüntüler.
 
-```
+```bash
 $ rm -i dosya
 ```
 
 * Varsayılan olarak `rm` ile bir dizini silemezsiniz. İçerdiği tüm dosyaları ve alt dizinleri silmek için `-r` (recursive, yinelemeli) işaretini eklemeniz gerekir.
 
-```
+```bash
 $ rm -r dizin
 ```
 
 * `rmdir` komutuyla boş bir dizini silebilirsiniz.
 
-```
+```bash
 $ rmdir dizin
 ```
 
