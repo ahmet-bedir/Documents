@@ -876,8 +876,13 @@ WHERE order_date BETWEEN '2024-01-01' AND '2024-12-31';
 - `_` → tek karakter
 
 ```postgresql
+-- kullanıcı ismi `ahmet` ile başlayan kayıtlar
 SELECT * FROM users
 WHERE username LIKE 'ahmet%';
+
+-- kullanıcı ismi `can` ile bitmeyen kayıtlar
+SELECT * FROM users
+WHERE username NOT LIKE '%can';
 ```
 
 - **`ILIKE`** → büyük/küçük harf duyarsızdır
@@ -916,7 +921,7 @@ WHERE created_at >= NOW() - INTERVAL '7 days';
 -- fiyat beşyüzden küçük olan ürünler listelenir.
 SELECT * FROM products
 WHERE price < 500;
---------------------------------------------------------------
+
 -- fiyat * miktar binden büyük olan ürünler listelenir.
 SELECT * FROM products
 WHERE price * quantity > 1000;
@@ -965,8 +970,7 @@ CREATE INDEX idx_users_email ON users(email);
 ##### Temel Sözdizimi
 
 ```sql
-SELECT kolon1, kolon2
-FROM tablo_adı
+SELECT kolon1, kolon2 FROM tablo_adı
 ORDER BY kolon_adı;
 ```
 
@@ -978,13 +982,11 @@ Varsayılan olarak sıralama **artan (ASC)** şeklindedir.
 
 ```sql
 -- Artan sıralama (varsayılan)
-SELECT *
-FROM users
+SELECT * FROM users
 ORDER BY age ASC;
 
 -- Azalan sıralama
-SELECT *
-FROM users
+SELECT * FROM users
 ORDER BY age DESC;
 ```
 
@@ -995,8 +997,7 @@ ORDER BY age DESC;
 Önce `department`, aynı department içindekileri ise `salary`'e göre sıralar:
 
 ```sql
-SELECT *
-FROM employees
+SELECT * FROM employees
 ORDER BY department ASC, salary DESC;
 ```
 
@@ -1007,8 +1008,7 @@ ORDER BY department ASC, salary DESC;
 `SELECT` listesindeki kolonların **sıra numarası** kullanılabilir:
 
 ```sql
-SELECT name, age, city
-FROM users
+SELECT name, age, city FROM users
 ORDER BY 2 DESC;  -- age kolonu
 ```
 
@@ -1019,8 +1019,7 @@ ORDER BY 2 DESC;  -- age kolonu
 ##### Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama
 
 ```sql
-SELECT *
-FROM users
+SELECT * FROM users
 ORDER BY LOWER(username);
 ```
 
@@ -1037,13 +1036,11 @@ PostgreSQL'de varsayılan davranış:
 
 ```sql
 -- NULL'ları en sona at
-SELECT *
-FROM products
+SELECT * FROM products
 ORDER BY price ASC NULLS LAST;
 
 -- NULL'ları en başa al
-SELECT *
-FROM products
+SELECT * FROM products
 ORDER BY price DESC NULLS FIRST;
 ```
 
@@ -1052,8 +1049,7 @@ ORDER BY price DESC NULLS FIRST;
 ##### Hesaplanan Değer ile Sıralama
 
 ```sql
-SELECT name, price, quantity, price * quantity AS total
-FROM orders
+SELECT name, price, quantity, price * quantity AS total FROM orders
 ORDER BY total DESC;
 ```
 
@@ -1065,8 +1061,7 @@ En sık kullanılan senaryolardan biri:
 
 ```sql
 -- En pahalı 5 ürün
-SELECT *
-FROM products
+SELECT * FROM products
 ORDER BY price DESC
 LIMIT 5;
 ```
