@@ -15,7 +15,7 @@
 
 ► [**Komut Satırı**](#komut_satiri)
 
-► 
+► [**Metin İşlemleri**](#metin)
 
 
 
@@ -210,6 +210,8 @@ Basit bir komut olan echo ile başlayalım. echo komutu, metin argümanlarını 
 $ echo Merhaba Dünya
 ```
 
+
+
 ### pwd (Print Working Directory / Çalışma Dizini Yazdır)
 
 Linux'ta her şey bir dosyadır, Linux'u derinlemesine öğrendikçe bunu anlayacaksınız, ancak şimdilik sadece bunu aklınızda bulundurun. Her dosya, hiyerarşik bir dizin ağacında organize edilir. Dosya sistemindeki ilk dizin, kök dizin olarak adlandırılır. Kök dizinde, daha fazla klasör ve dosya depolayabileceğiniz birçok klasör ve dosya bulunur.
@@ -220,6 +222,8 @@ Dosya sisteminde gezinmek, tıpkı gerçek hayatta olduğu gibi, nerede olduğun
 ```bash
 $ pwd
 ```
+
+
 
 ### cd (Change Directory / Dizin Değiştir)
 
@@ -270,6 +274,8 @@ $ cd - # önceki dizine git
 ```
 
 <img src="../images/parent-sub-directory.jpg" width="300"  />
+
+
 
 ### ls (List Directories)
 
@@ -454,6 +460,8 @@ ls -lu
 | `-F`    | Dosya türü işareti         |
 | `-d`    | Dizinin kendisini gösterir |
 
+
+
 ### touch
 
 Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
@@ -463,6 +471,8 @@ $ touch <dosya>
 ```
 
 Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Deneyin, bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch`komutunu uygulayın, zaman damgası güncellenecektir.
+
+
 
 ### file
 
@@ -474,6 +484,8 @@ Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabi
 $ file komik.gif
 ```
 
+
+
 ### cat
 
 Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
@@ -483,6 +495,8 @@ $ cat dogfile birdfile
 ```
 
 Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır.
+
+
 
 ### less
 
@@ -502,6 +516,7 @@ $ less /home/ali/Dökümanlar/metin1
 - **G** - Metin dosyasının sonuna gitmek için kullanılır.
 - **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
 - **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
+
 
 
 ### history
@@ -531,6 +546,8 @@ $ clear
 ```
 
 * **Tab tuşu ile tamamlama:** Komut satırı ortamında en kullanışlı özelliklerden biri tab tuşu ile tamamlamadır. Bir komutun, dosyanın, dizinin vb. başlangıcını yazmaya başlarsanız ve Tab tuşuna basarsanız, arama yaptığınız dizinde bulduğu şeye göre otomatik tamamlama yapacaktır. Örneğin, `chrome` komutunu çalıştırmaya çalışıyorsanız, `chr` yazıp Tab tuşuna basabilirsiniz, otomatik olarak `chrome` tamamlanacaktır.
+
+
 
 ### cp (Copy)
 
@@ -587,6 +604,8 @@ Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız 
 $ cp -i süperdosyam /home/pete/Resimler
 ```
 
+
+
 ### mv (Move)
 
 `mv` komutu, dosyaları taşımak ve yeniden adlandırmak için kullanılır. `cp` komutuna benzer şekilde çalışır ancak dosyaları kopyalamak yerine taşır.
@@ -639,6 +658,8 @@ Taşıma işlemini gerçekleştirmek ve üzerine yazmak istediğinizi varsayalı
 $ mv -b dizin1 dizin2
 ```
 
+
+
 ### mkdir (Make Directory)
 
 Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur. Aynı anda birden fazla dizin bile oluşturabilirsiniz.
@@ -652,6 +673,8 @@ Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşt
 ```bash
 $ mkdir -p kitaplar/hemingway/favoriler
 ```
+
+
 
 ### rm (Remove)
 
@@ -689,6 +712,8 @@ $ rm -r dizin
 $ rmdir dizin
 ```
 
+
+
 ### find
 
 Sistemde bu kadar çok dosya varken, belirli bir dosyayı bulmaya çalışmak biraz zor olabilir. Neyse ki, bunun için kullanabileceğimiz bir komut var: `find`
@@ -697,7 +722,7 @@ Sistemde bu kadar çok dosya varken, belirli bir dosyayı bulmaya çalışmak bi
 
 * **Dosya adına göre arama:**
 
-```
+```bash
 $ find /home -name puppies.jpg
 ```
 
@@ -705,7 +730,7 @@ $ find /home -name puppies.jpg
 
 Aradığınız dosyanın türünü de belirtebilirsiniz. Örneğin, bir klasör aramak için `-type d` seçeneğini kullanabilirsiniz.
 
-```
+```bash
 $ find /home -type d -name MyFolder
 ```
 
@@ -713,15 +738,17 @@ Bu komutta, aradığımız dosya türünü `(d)` (dizin) olarak ayarladık ve yi
 
 **Önemli Not:** `find` komutu yalnızca aradığınız dizinde arama yapmaz, aynı zamanda o dizinin içinde olabilecek alt dizinlerin içine de bakar.
 
+
+
 ### help
 
-Linux, bir komutu nasıl kullanacağınızı öğrenmenize veya bir komut için hangi işaretlerin (flag) mevcut olduğunu denetlemenize yardımcı olacak harika yerleşik araçlara sahiptir.
+Linux, bir komutu nasıl kullanacağınızı öğrenmenize veya bir komut için hangi işaretlerin (flag) mevcut olduğunu denetlemenize yardımcı olacak yerleşik araçlara sahiptir.
 
 * **help komutu:**
 
 `help` komutu, diğer bash komutları (echo, logout, pwd, vb.) hakkında yardım sağlayan yerleşik bir bash komutudur. Kullanmak istediğiniz komut hakkında bilgi almak için aşağıdaki gibi yazabilirsiniz:
 
-```
+```bash
 $ help echo
 ```
 
@@ -729,45 +756,45 @@ Bu komut, `echo` komutunu çalıştırmak istediğinizde kullanabileceğiniz aç
 
 * **--help seçeneği:**
 
-Diğer yürütülebilir programlar için, genellikle `--help` veya benzeri bir seçenek kullanmak bir gelenektir.
-
-```
-$ echo --help
+```bash
+$ ls --help
 ```
 
-Yürütülebilir dosyaları dağıtan tüm geliştiriciler bu standarda uymayacaktır, ancak bir program hakkında yardım bulmak için muhtemelen en iyi seçeneğinizdir.
-
-# man
+### man
 
 Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, `man` komutunu kullanarak man sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir.
 
 Örneğin, `ls` komutu hakkında daha fazla bilgi edinmek için:
 
-```
+```bash
 $ man ls
 ```
 
 Man sayfaları bazen teknik olabilir, ancak bir komutun tüm özelliklerini öğrenmek için harika bir kaynaktır.
 
-# whatis
+
+
+### whatis
 
 Bir komutun ne işe yaradığından şüphe duyuyorsanız, `whatis` komutunu kullanarak kısa bir açıklama alabilirsiniz. `whatis` komutu, komut satırı programları hakkında özlü bilgiler sağlar.
 
 **Kullanım:**
 
-```
-$ whatis komut_adı
+```bash
+$ whatis <komut_adı>
 ```
 
 **Örnek:**
 
-```
+```bash
 $ whatis cat
 ```
 
 Bu örnekte, `cat` komutunun ne işe yaradığı hakkında kısa bir açıklama görürsünüz. Açıklama, komutun man sayfasından alınır.
 
-# alias
+
+
+### alias
 
 Uzun komutları yazmaktan yoruldunuz mu? Belki de aynı komutu tekrar tekrar mı kullanıyorsunuz?
 
@@ -777,48 +804,201 @@ Linux size, sık kullandığınız komutlar için takma adlar oluşturma imkanı
 
 Bir takma ad oluşturmak için `alias` komutunu kullanın. Takma adın ismini istediğiniz gibi seçebilirsiniz, ardından eşittir işaretini (`=`) yazın ve takma adın hangi komutu çalıştırmasını istediğinizi belirtin.
 
-Örneğin, `ls -la` komutunu sık sık kullanıyorsanız, bunun için `foobar` adında bir takma ad oluşturabilirsiniz:
+Örneğin, `ls -la` komutunu sık sık kullanıyorsanız, bunun için `la` adında bir takma ad oluşturabilirsiniz:
 
-```
-$ alias foobar='ls -la'
+```bash
+$ alias la='ls -la'
 ```
 
-Bundan sonra, `ls -la` yazmak yerine `foobar` yazabilirsiniz. `foobar` yazdığınızda, aslında `ls -la` komutu çalıştırılacaktır.
+Bundan sonra, `ls -la` yazmak yerine `la` yazabilirsiniz. `la` yazdığınızda, aslında `ls -la` komutu çalıştırılacaktır.
 
 **Kalıcı Takma Adlar:**
 
 Bu komutla oluşturduğunuz takma adlar, terminal oturumunu kapattığınızda kaybolur. Eğer takma adın sürekli olarak kullanılabilir olmasını istiyorsanız, onu konfigürasyon dosyalarından birine eklemeniz gerekir.
 
-Genellikle bash kullanıcıları için takma adlar `.bashrc` dosyasına eklenir. Bu dosyayı bir metin editörü ile açıp, takma adınızı şu şekilde ekleyebilirsiniz:
+Genellikle bash kullanıcıları için takma adlarl `/home/` dizinindeki `.bashrc` dosyasına eklenir. Bu dosyayı bir metin editörü ile açıp, takma adınızı şu şekilde ekleyebilirsiniz:
 
-```
-alias foobar='ls -la'
+```bash
+alias la='ls -la'
 ```
 
-Daha sonra dosyayı kaydedin. Artık terminal oturumunu kapatıp açsanız bile `foobar` takma adını kullanmaya devam edebilirsiniz.
+Daha sonra dosyayı kaydedin. Artık terminal oturumunu kapatıp açsanız bile `la` takma adını kullanmaya devam edebilirsiniz.
 
 **Takma Ad Silme:**
 
 Oluşturduğunuz bir takma ada artık ihtiyacınız yoksa, `unalias` komutunu kullanarak silebilirsiniz.
 
+```bash
+$ unalias la
 ```
-$ unalias foobar
-```
 
-Bu komuttan sonra `foobar` takma adını kullanamazsınız.
+Bu komuttan sonra `la` takma adını kullanamazsınız.
 
-# exit
 
-Linux komutlarının temellerini öğrenmekte harika bir iş çıkardınız! Bu sadece başlangıçtı, emeklemeyi öğrendiniz, şimdi bir sonraki aşamaya geçebilirsiniz. Gelecek derslerde size yürümeyi öğreteceğim.
 
-Şimdilik kendinizi arkanıza yaslanıp biraz dinlenebilirsiniz. Shell'den çıkmak için aşağıdaki komutlardan birini kullanabilirsiniz:
+### exit
 
-* `exit`: Bu en yaygın çıkış komutudur.
-* `logout`: `exit` komutuyla aynı işlevi görür.
+Shell'den çıkmak için aşağıdaki komutlardan birini kullanabilirsiniz:
+
+- `exit`: Bu en yaygın çıkış komutudur.
+- `logout`: `exit` komutuyla aynı işlevi görür.
 
 Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabilirsiniz.
 
-Linux dünyasında başarılar!
+<a id="metin"><a/>
+
+---
+
+## Metin İşlemleri
+
+[🔼 **Başa Dön**](#basa_don)
+
+### stdout (Standard Out)
+
+Komutların nasıl çalıştığını ve çıktı ürettiklerini öğrendik. Şimdi bir sonraki konuya, yani **girdi/çıktı akışları (I/O)** konusuna geçelim. Aşağıdaki komutu çalıştırarak nasıl işlediğini görelim:
+
+```bash
+$ echo Hello World > peanuts.txt
+```
+
+**Ne Oldu?**
+
+Bu komutu çalıştırdığınız dizine gidin ve orada `peanuts.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Hello World" yazısını göreceksiniz. Tek bir komutta birçok şey oldu, hadi gelin bunları parçalara ayıralım.
+
+**echo Komutu**
+
+İlk olarak komutun ilk kısmını ele alalım:
+
+```bash
+$ echo Hello World
+```
+
+Bu komutun "Hello World" yazısını ekrana yazdırdığını biliyoruz. Peki nasıl oluyor? İşlemler, giriş almak ve çıktı döndürmek için **girdi/çıktı akışları (I/O)** kullanır. Varsayılan olarak, `echo` komutu klavyeden **standart girdi (stdin)** alır ve **standart çıktı (stdout)** olarak ekrana yazdırır. Bu nedenle, `echo Hello World` yazdığınızda ekranda "Hello World" görürsünüz.
+
+**Yönlendirme Operatörü**
+
+Ancak I/O yönlendirme, bize daha fazla esneklik sağlayarak bu varsayılan davranışı değiştirmemize izin verir. Komutun `>` sembolünden sonraki kısmına bakalım:
+
+```bash
+>
+```
+
+`>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Hello World` komutunun çıktısını ekrana yazdırmak yerine bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
+
+**Standart Çıktı Yönlendirme**
+
+Yani standart çıktı yönlendirme böyle çalışır!
+
+**Dosyaya Ekleme**
+
+Peki ya `peanuts.txt` dosyasının üzerine yazmak istemezsek? Neyse ki, bunun için de bir yönlendirme operatörü var: >>
+
+```bash
+$ echo Hello World >> peanuts.txt
+```
+
+Bu komut, "Hello World" yazısını `peanuts.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
+
+
+
+### stdin (Standard In)
+
+Önceki derste standart çıktı (stdout) akışlarını farklı şekillerde kullanabileceğimizi öğrendik (örneğin ekran veya bir dosya). Aynı şekilde standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. Klavyeden gelen veriler varsayılan standart giriş kaynağı olsa da, dosyaları, diğer işlemlerin çıktılarını ve terminali de stdin olarak kullanabiliriz.
+
+**Örnek: stdin Yönlendirme ile Dosya Kopyalama**
+
+Önceki derste oluşturduğumuz `peanuts.txt` dosyasını kullanalım. Bu dosyanın içinde "Hello World" yazısı olduğunu hatırlayın.
+
+```bash
+$ cat < peanuts.txt > banana.txt
+```
+
+Standart çıktı yönlendirmede `>` sembolünü nasıl kullandık, aynı şekilde standart giriş yönlendirmede de `<` sembolünü kullanıyoruz.
+
+Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş (stdin) haline gelir. Bu örnekte, `peanuts.txt` dosyasını standart giriş olarak kullanmak için yönlendirdik. Daha sonra, `cat peanuts.txt` komutunun çıktısı olan "Hello World" metni, `banana.txt` adında yeni bir dosyaya yönlendirildi.
+
+**Açıklama:**
+
+* `cat` komutu, varsayılan olarak standart girişten (stdin) okuyup standart çıktıyı (stdout) ekrana yazar.
+* `< peanuts.txt` kısmı, `peanuts.txt` dosyasının içeriğini standart giriş akışına yönlendirir. Yani, `cat` komutu sanki klavyeden "Hello World" yazmışız gibi davranır.
+* `> banana.txt` kısmı ise standart çıktı akışını `banana.txt` dosyasına yönlendirir. Böylece, `cat` komutunun "Hello World" çıktısı bu dosyaya yazılır.
+
+**Sonuç:**
+
+Bu komutu çalıştırdığınızda, `banana.txt` adında yeni bir dosya oluşur ve içinde "Hello World" yazısı yer alır. Özetle, bu komut `peanuts.txt` dosyasının içeriğini `banana.txt` dosyasına kopyalamış olur.
+
+
+### stderr (Standard Error)
+
+Şimdi biraz farklı bir şey deneyelim. Sisteminizde olmayan bir dizinin içeriğini listelemeye çalışalım ve çıktıyı yine `peanuts.txt` dosyasına yönlendirelim.
+
+```bash
+$ ls /fake/directory > peanuts.txt
+```
+
+Bu komutu çalıştırdığınızda ekranda aşağıdaki gibi bir mesaj görmelisiniz:
+
+```bash
+ls: cannot access /fake/directory: No such file or directory
+```
+
+Muhtemelen şu anda, bu mesajın dosyaya yazdırılması gerektiğini düşünüyorsunuz. Aslında burada devreye giren başka bir I/O akışı var: **standart hata (stderr)**. Standart çıktı (stdout) akışından tamamen farklı olan standart hata akışı, varsayılan olarak çıktısını da ekrana gönderir. Yani, standart hata çıktısını farklı bir şekilde yönlendirmeniz gerekir.
+
+Ne yazık ki, standart hata yönlendirme sembolleri (`<` veya `>`) kadar kolay değildir, ancak dosya tanımlayıcıları kullanılarak yapılabilir. Bir **dosya tanımlayıcısı**, bir dosyaya veya akışa erişmek için kullanılan negatif olmayan bir sayıdır. Dosya tanımlayıcıları hakkında daha sonra daha ayrıntılı bilgi edineceğiz, ancak şimdilik standart giriş (stdin), standart çıktı (stdout) ve standart hata (stderr) için dosya tanımlayıcılarının sırasıyla 0, 1 ve 2 olduğunu bilmeniz yeterli.
+
+Şimdi standart hata çıktısını dosyaya yönlendirmek istiyorsak şöyle yapabiliriz:
+
+```bash
+$ ls /fake/directory 2> peanuts.txt
+```
+
+Bu komutta, standart hata mesajlarını `peanuts.txt` dosyasına yazdırmış olduk.
+
+Peki hem standart hata hem de standart çıktıyı `peanuts.txt` dosyasına yazdırmak istersek ne yapabiliriz? Bunu da dosya tanımlayıcıları ile yapabiliriz:
+
+```bash
+$ ls /fake/directory > peanuts.txt 2>&1
+```
+
+Bu komut, `ls /fake/directory` komutunun sonuçlarını `peanuts.txt` dosyasına gönderir ve ardından 2>&1 ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. 2>&1, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, 2>&1 de standart hatayı bir dosyaya gönderir. Yani `peanuts.txt` dosyasını açarsanız, hem standart hata hem de standart çıktı mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
+
+Hem standart hata hem de standart çıktıyı bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
+
+```bash
+$ ls /fake/directory &> peanuts.txt
+```
+
+Peki tüm bu gereksiz hata mesajlarından kurtulmak ve standart hata mesajlarını tamamen yok saymak istersek ne yapabiliriz? Çıktıyı `/dev/null` adlı özel bir dosyaya yönlendirebilirsiniz. Bu dosya, herhangi bir girişi yok sayar.
+
+```bash
+$ ls /fake/directory 2> /dev/null
+```
+
+
+### pipe ve tee
+
+Komut deneyelim:
+
+```bash
+$ ls -la /etc
+```
+
+Çok uzun bir öğeler listesi göreceksiniz, aslında okuması biraz zor. Bu çıktıyı bir dosyaya yönlendirmek yerine, çıktıyı `less` gibi başka bir komutta görebilsek harika olmaz mı? Evet yapabiliriz!
+
+```bash
+$ ls -la /etc | less
+```
+
+Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı `(stdout)` verisini alıp başka bir işlemin standart girdi `(stdin)` verisi haline getirmemizi sağlar. Bu durumda, `ls -la /etc` komutunun standart çıktısını alıp `less` komutuna aktardık. Pipe komutu son derece kullanışlıdır ve onu sonsuza kadar kullanmaya devam edeceğiz.
+
+Peki ya komut çıktımı iki farklı akışa yazmak istersem? Bu, `tee` komutu ile mümkündür:
+
+```bash
+$ ls | tee fıstık.txt
+```
+
+Ekranda `ls` komutunun çıktısını görmelisiniz ve `fıstık.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
+
 
 
 
