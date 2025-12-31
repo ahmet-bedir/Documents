@@ -849,7 +849,7 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ---
 
-## Metin İşlemleri
+## 🧾 Metin İşlemleri
 
 [🔼 **Başa Dön**](#basa_don)
 
