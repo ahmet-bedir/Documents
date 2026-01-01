@@ -21,7 +21,6 @@
 
 ---
 
-
 ## 📅 Tarihçe
 
 Linux'un nasıl ortaya çıktığını öğrenmek için, 1969'a, Ken Thompson ve Dennis Ritchie'nin Bell Laboratuvarlarında UNIX işletim sistemini geliştirdikleri zamana dönelim. Daha sonra taşınabilirliği artırmak için C dilinde yeniden yazıldı ve sonunda yaygın olarak kullanılan bir işletim sistemi haline geldi.
@@ -181,9 +180,9 @@ openSUSE, yeni bir Linux kullanıcısı için harika bir seçimdir. Kullanımı 
 
 openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygundur.
 
-<a id="komut_satiri"><a/>
-
 ---
+
+<a id="komut_satiri"><a/>
 
 ## 💻 Komut Satırı
 
@@ -845,9 +844,9 @@ Shell'den çıkmak için aşağıdaki komutlardan birini kullanabilirsiniz:
 
 Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabilirsiniz.
 
-<a id="metin"><a/>
-
 ---
+
+<a id="metin"><a/>
 
 ## 🧾 Metin İşlemleri
 
