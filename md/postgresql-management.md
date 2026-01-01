@@ -778,6 +778,21 @@ FROM users AS u;
 
 ➡️ Bundan sonra `users.username` yerine **`u.username`** kullanılır.
 
+---
+
+```sql
+=== Syntax ===
+SELECT *, distinct(tekrarsız veriler), top(istenilen sayıda kayıt), min,max,avg(ortalama),sum, count
+FROM tablo_adı
+WHERE (BIL - Between, In, Like)
+ORDER BY (Sıralama)
+JOIN (Birden fazla tabloda ortak vb yapıları listelemek)
+GROUP BY (Belli kolon için gruplama yapmak içindir)
+HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
+```
+
+---
+
 #### `WHERE` kullanımı
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
@@ -834,18 +849,6 @@ WHERE NOT is_active;
 ```
 
 ------
-
-```sql
-=== Syntax ===
-SELECT *, Distinct(Tekrarsız Veriler), Top(istenilen sayıda Listeleme), Min,Max,Avg(Ortalama),Sum, Count
-FROM `databaseAdi`.`tabloAdi`
-WHERE (BIL - Between, In, Like)
-ORDER BY (Sıralama)
-JOIN (Birden fazla tabloda ortak vb yapıları listelemek)
-GROUP BY (Belli kolon için gruplama yapmak içindir)
-HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
-
-```
 
 ##### `IN` Kullanımı
 
@@ -1093,9 +1096,72 @@ LIMIT ...;
 
 ---
 
+#### Aggregate Fonksiyonları
 
+| Fonksiyon | Açıklama       |
+| --------- | -------------- |
+| `COUNT()` | Satır sayısı   |
+| `SUM()`   | Toplam         |
+| `AVG()`   | Ortalama       |
+| `MIN()`   | En küçük değer |
+| `MAX()`   | En büyük değer |
 
+------
 
+#### COUNT Kullanımı
+
+##### Tüm satırlar
+
+```postgresql
+SELECT COUNT(*) FROM users;
+```
+
+##### NULL hariç sayım
+
+```postgresql
+SELECT COUNT(*) FROM users
+WHERE email IS NOT NULL;
+```
+
+##### Koşullu sayım
+
+```postgresql
+SELECT COUNT(*) FROM users
+WHERE active = true;
+```
+
+------
+
+#### SUM
+
+```
+
+SELECT SUM(amount) FROM orders;
+```
+
+⚠️ `NULL` değerler otomatik olarak yok sayılır.
+
+------
+
+## 4. AVG (Ortalama)
+
+```
+
+SELECT AVG(price) FROM products;
+```
+
+📌 Sonuç `numeric` döner.
+
+------
+
+## 5. MIN / MAX
+
+```
+
+SELECT MIN(created_at), MAX(created_at) FROM users; 
+```
+
+---
 
 **Sütun Güncelleme:**
 
