@@ -3,15 +3,14 @@
 <p/>
 
 
-<a id="postgresql-yonetimi"><a/>
-
-
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 
 ###### Son güncelleme : 12/2025
 
 ---
+
+<a id="postgresql-yonetimi"><a/>
 
 **İçindekiler**
 
