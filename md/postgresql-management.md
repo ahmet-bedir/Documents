@@ -960,7 +960,7 @@ CREATE INDEX idx_users_email ON users(email);
 
 ---
 
-#### PostgreSQL `ORDER BY` Kullanımı
+#### `ORDER BY` Kullanımı
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
 
