@@ -40,6 +40,101 @@
 
 ---
 
+## Initialize (initdb) Nedir?
+
+`initdb` şunu yapar:
+
+- PostgreSQL **data directory** (veri kümesi) oluşturur
+- `postgres`, `template0`, `template1` gibi **sistem veritabanlarını** oluşturur
+- Sistem kataloglarını ve varsayılan ayarları hazırlar
+
+➡️ PostgreSQL **çalışabilir hale gelmez** initdb yapılmadan.
+
+------
+
+## Depodan (apt/yum/pacman) Kurulumda:
+
+- `postgresql` paketi kurulduğunda
+- **initdb otomatik yapılır**
+- Data dizini hazır gelir
+
+Örnek:
+
+```
+/var/lib/postgresql/15/main
+```
+
+------
+
+## Kaynaktan (source) Kurulumda:
+
+```
+./configure
+make
+sudo make install
+```
+
+Bu adımlar:
+
+- **sadece binary’leri kurar**
+- data directory **oluşturmaz**
+
+Bu yüzden **manuel initdb şarttır**:
+
+```
+initdb -D /usr/local/pgsql/data
+```
+
+veya
+
+```
+/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+```
+
+------
+
+|                          | initdb gerekir mi?   |
+| ------------------------ | -------------------- |
+| Depodan kurulum          | ❌ (otomatik yapılır) |
+| Kaynaktan kurulum        | ✅                    |
+| Docker image             | ❌ (entrypoint yapar) |
+| Yeni data dizini         | ✅                    |
+| Mevcut cluster kullanımı | ❌                    |
+
+------
+
+## Pratik Kontrol
+
+Bir sistemde init edilmiş mi?
+
+```
+
+ls /var/lib/postgresql
+```
+
+veya
+
+```
+
+psql -l
+```
+
+Çalışıyorsa → initdb yapılmıştır.
+
+------
+
+## Net Sonuç
+
+- `initialize` = PostgreSQL’in **çalışmasının ön koşulu**
+- Eski/yeni sürüm farkı yok
+- Fark **kurulum yöntemi** ile ilgilidir
+- Paket yöneticileri bunu otomatik yapar
+- Kaynaktan kurulumda **sorumluluk sizdedir**
+
+------
+
+
+
 ### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
 > **Paket indexlerini güncelle.**
@@ -76,7 +171,7 @@ sudo systemctl enable postgresql
 
 ### PostgreSQL Veritabanı Kümesi
 
-**PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
+**PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
 
 #### Ana klasörler
 
@@ -129,20 +224,22 @@ initdb -D /usr/local/pgsql/data
 **PostgreSQL’de veritabanı (DB) ve tablo (nesne) kimliklerini (OID) öğrenmek için:**
 
 ```sql
-postgres=# SELECT datname, oid FROM pg_database WHERE datname = 'db';
- datname  |  oid  
-----------+-------
- db       | 16448	
-(1 row)
+postgres=# SELECT datname, oid FROM pg_database;
+  datname  | oid 
+-----------+-----
+ postgres  |   5
+ template1 |   1
+ template0 |   4
+(3 satır)
 
 -- PostgreSQL’in sistem kataloğu olan pg_database tablosundan bilgi çeker. pg_database tüm veritabanlarının kayıtlarını tutar.
 -- /var/lib/postgresql/<version>/main/base/ konumunda ilgili veritabanın oid numarası ile ilgili klasörde veritabanı bilgileri bulunur.
 
-postgres=# SELECT relname, oid FROM pg_class WHERE relname = 'tablo';
+postgres=# SELECT relname, oid FROM pg_class WHERE relname = 'tablo1';
   relname  |  oid  
 -----------+-------
- tablo     | 16449
-(1 row)
+ tablo1    | 16449
+(1 satır)
 
 -- pg_class adlı sistem kataloğunda sorgulama yapar. pg_class tabloların, görünümlerin, dizinlerin vs. meta verilerini tutar.
 ```
