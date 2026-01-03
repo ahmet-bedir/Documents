@@ -51,3 +51,4 @@
 **Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
 ◈ [**Linux Bash / Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)
+
