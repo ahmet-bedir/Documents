@@ -135,3 +135,5 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 ###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştiriyoruz.
 
 ---
+
+###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.

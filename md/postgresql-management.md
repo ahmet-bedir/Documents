@@ -40,7 +40,7 @@
 
 ---
 
-## Initialize (initdb)
+### Initialize (initdb)
 
 `initdb` şunu yapar:
 
@@ -52,7 +52,7 @@
 
 ------
 
-## Depodan (apt/yum/pacman) Kurulumda
+### Depodan (apt/yum/pacman) Kurulumda
 
 - `postgresql` paketi kurulduğunda
 - **initdb otomatik yapılır**
@@ -66,7 +66,7 @@
 
 ------
 
-## Kaynaktan (source) Kurulumda
+### Kaynaktan (source) Kurulumda
 
 ```bash
 ./configure
@@ -270,15 +270,11 @@ hba_file = '/srv/postgresql/pg_hba.conf'
 ident_file = '/srv/postgresql/pg_ident.conf'
 ```
 
-
-
 PostgreSQL sunucu varsayılan olarak loopback (127.0.0.1) IP’sinden servis verir. Dışarıdan erişilebilmesi için:
 
 ```
 listen_addresses = '*'
 ```
-
-
 
 Hiç TCP/IP hizmeti vermemesi için:
 
@@ -286,25 +282,11 @@ Hiç TCP/IP hizmeti vermemesi için:
 listen_addresses = ''
 ```
 
-
-
-Servisin unix soketiyle ilgili ayarlarıyla ilgili şunlar değiştirilebilir:
-
-```
-#unix_socket_directories = '/var/run/postgresql, /tmp'
-#unix_socket_group = ''
-#unix_socket_permissions = 0777
-```
-
-
-
 PostgreSQL sunucunun aynı anda kaç bağlantı isteği kabul edeceği:
 
 ```
 max_connections = 100
 ```
-
-
 
 Bu değer bir süre izlenip, sunucu kaynaklarına göre düzenlenmelidir!
 
@@ -314,17 +296,15 @@ PostgreSQL’in sistemin zaman bilgilerini kullanması için `--with-system-tzda
 
 ```
 postgres=# show timezone;
- TimeZone
-----------
- Turkey
+    TimeZone
+   ----------
+ Europe/Istanbul
 
 postgres=# select current_time;
     current_time
 --------------------
  14:25:00.358229+03
 ```
-
-
 
 PostgreSQL’in sistem zamanından farklı bir zaman kullanması istenirse ayarlardan değiştirilebilir.
 
@@ -337,46 +317,56 @@ lc_numeric = 'en_US.UTF-8'
 lc_time = 'en_US.UTF-8'
 ```
 
-#### `pg_hba.conf`
+#### `pg_hba.conf` dosyası
 
-```sql
-postgres=# \c vt ahmetp
-connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: 
-FATAL:  Peer authentication failed for user "ahmetp"
-Previous connection kept
+**`Parola Şifreleme`**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
+
+**`Ağ Üzerindeki Verileri Şifreleme`**: SSL, ağ üzerinden gönderilen verileri şifreler: parola, sorgu ve döndürülen veriler. Hangi host’un şifrelenmemiş bağlantıları kullanacağı, hangisinin SSL şifreli bağlantılar gerektirdiği `pg_hba.conf` dosyasında belirtilir.
+
+PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vardır: **Sunucunun şu anki ayarını** görmek veya **kullanıcıların mevcut şifrelerinin** hangi formatta saklandığını kontrol etmek.
+
+İşte bu sorguları yapabileceğiniz yöntemler:
+
+### 1. Sunucunun Varsayılan Ayarını Sorgulama
+
+Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
+
+```postgresql
+SHOW password_encryption;
 ```
 
-###### Not : Bu hata peer authentication (kimlik doğrulama) seçeneği ile ilgilidir.
+- **Çıktı `scram-sha-256` ise:** Yeni şifreler güvenli SCRAM yöntemiyle kaydedilecektir.
+- **Çıktı `md5` ise:** Yeni şifreler eski MD5 yöntemiyle kaydedilecektir.
 
-**PostgreSQL’de pg_hba.conf dosyası bağlantıların nasıl doğrulanacağını belirler. Bu durumda "ahmetp" kullanıcısı için peer yöntemi geçerli.**
+------
 
-**Eğer peer aktifse: PostgreSQL, sistemde oturum açtığın Linux kullanıcısı adı ile PostgreSQL kullanıcı adının aynı olmasını ister.**
+### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
 
-**Linux’ta "ahmet" kullanıcısıyla, ama PostgreSQL’de "ahmetp" ile bağlanmak istiyorsun → eşleşme yok → FATAL: Peer authentication failed.**
+Sunucu ayarı SCRAM olsa bile, bazı eski kullanıcıların şifreleri hala MD5 formatında kalmış olabilir. Hangi kullanıcının hangi yöntemi kullandığını görmek için `pg_authid` sistem tablosuna bakabilirsiniz:
 
-**Bağlanabilmek için `pg_hba.conf` dosyasını düzenlemiz gerekir.**
-
-**Dosya genelde bu konumda olur:**
-
-`/etc/postgresql/<sürüm>/main/pg_hba.conf`
-
-**İçinde şuna benzer satır vardır:**
-
- ```bash
- local		all		all		peer
- ```
-
-**Bunu şu şekilde değiştir:**
-
-```
-local		all		all		md5
+```postgresql
+SELECT rolname, 
+       CASE 
+         WHEN rolpassword LIKE 'SCRAM-SHA-256$%' THEN 'SCRAM-SHA-256'
+         WHEN rolpassword LIKE 'md5%' THEN 'MD5'
+         ELSE 'Şifre Belirlenmemiş veya Diğer'
+       END AS sifreleme_yontemi
+FROM pg_authid;
 ```
 
-**Sonra PostgreSQL’i yeniden başlat:**
+------
 
-```bash
-sudo systemctl restart postgresql
-```
+### 💡 Önemli İpuçları
+
+- **Ayarı Değiştirme:** Eğer yöntemi SCRAM'e çekmek isterseniz `	` komutunu kullanabilirsiniz. Ancak bu ayar sadece **yeni** belirlenen şifreleri etkiler.
+
+- **Şifreleri Güncelleme:** Bir kullanıcının şifreleme yöntemini MD5'ten SCRAM'e yükseltmek için, ayarı değiştirdikten sonra o kullanıcının şifresini yeniden tanımlamanız gerekir:
+
+  ```postgresql
+  ALTER ROLE kullanıcı_adı WITH PASSWORD 'yeni_sifre';
+  ```
+
+- **pg_hba.conf:** Sadece veritabanı içinde şifreleme yöntemini değiştirmek yetmez; istemcilerin bağlanabilmesi için `pg_hba.conf` dosyasındaki `method` kısmının da (örneğin `md5` yerine `scram-sha-256`) bu ayarla uyumlu olması gerekir.
 
 ---
 
@@ -392,7 +382,7 @@ sudo systemctl restart postgresql
 
 <img src="../images/psql.png" />
 
-> **Yada PostgreSQL oturumuna kısayoldan bağlanmak için:**
+> **Yada PostgreSQL oturumuna kendi kullanıcı hesabınızdan bağlanmak için:**
 >
 > ```bash
 > ahmet@pardus:~$ sudo -u postgres psql
