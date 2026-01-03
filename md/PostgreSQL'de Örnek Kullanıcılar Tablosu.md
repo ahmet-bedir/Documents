@@ -1,7 +1,6 @@
-## Önerilen Kullanıcılar Tablosu
+## Örnek Kullanıcılar Tablosu
 
-```
-
+```postgresql
 CREATE TABLE kullanicilar (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     ad VARCHAR(50) NOT NULL,
@@ -37,8 +36,7 @@ CREATE TABLE kullanicilar (
 
 ## Örnek INSERT
 
-```
-
+```postgresql
 INSERT INTO kullanicilar (ad, soyad, kullanici_adi, e_posta, sifre)
 VALUES ('Ahmet', 'Bedir', 'ahmetb', 'ahmet@mail.com', 'hashli_sifre');
 ```
@@ -49,8 +47,7 @@ VALUES ('Ahmet', 'Bedir', 'ahmetb', 'ahmet@mail.com', 'hashli_sifre');
 
 PostgreSQL bunu kabul eder, **ama önerilmez**:
 
-```
-
+```postgresql
 CREATE TABLE "kullanıcılar" (
     "id" SERIAL PRIMARY KEY,
     "ad" TEXT,
@@ -60,8 +57,7 @@ CREATE TABLE "kullanıcılar" (
 
 Bu durumda **her sorguda çift tırnak kullanmak zorunda kalırsın**:
 
-```
-
+```postgresql
 SELECT "şifre" FROM "kullanıcılar";
 ```
 
@@ -76,36 +72,17 @@ SELECT "şifre" FROM "kullanıcılar";
 
 ------
 
-İstersen:
-
-- **foreign key’li rol tablosu**
-- **login / audit log tasarımı**
-- **index önerileri**
-
-üzerinden devam edebiliriz.
-
-bu tablo için 1000 den fazla kayıt csv
-
-İstediğiniz tablo yapısına uygun **1200 adet kayıt içeren CSV dosyasını** oluşturdum.
-
-**Dosya:**
- CSV dosyasını indir – kullanicilar_1200_kayit.csv
-
-------
-
 ## CSV İçeriği (Kolonlar)
 
 Dosya, daha önce oluşturduğumuz tabloyla **birebir uyumludur**:
 
 ```
-
 ad, soyad, kullanici_adi, e_posta, sifre, telefon,
 dogum_tarihi, aktif, kayit_tarihi
 ```
 
 - `id` kolonu **bilinçli olarak yok**
    → PostgreSQL `IDENTITY / SERIAL` otomatik üretecek
-- Türkçe isimler
 - UNIQUE alanlar (`kullanici_adi`, `e_posta`) çakışmaz
 - `BOOLEAN`, `DATE`, `TIMESTAMP` uyumlu
 
@@ -115,8 +92,7 @@ dogum_tarihi, aktif, kayit_tarihi
 
 ### 1. Sunucu Tarafında (COPY)
 
-```
-
+```postgresql
 COPY kullanicilar (
     ad, soyad, kullanici_adi, e_posta, sifre,
     telefon, dogum_tarihi, aktif, kayit_tarihi
@@ -128,8 +104,7 @@ CSV HEADER;
 
 ### 2. Client Tarafında (psql → \copy)
 
-```
-
+```postgresql
 \copy kullanicilar (
     ad, soyad, kullanici_adi, e_posta, sifre,
     telefon, dogum_tarihi, aktif, kayit_tarihi
@@ -138,12 +113,4 @@ FROM 'kullanicilar_1200_kayit.csv'
 CSV HEADER;
 ```
 
-------
-
-## DBeaver ile Import
-
-1. Tabloya sağ tık → **Import Data**
-2. CSV seç
-3. Kolon eşleşmelerini kontrol et
-4. `id` kolonunu **skip** et
-5. Finish
+## 

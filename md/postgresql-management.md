@@ -40,7 +40,7 @@
 
 ---
 
-## Initialize (initdb) Nedir?
+## Initialize (initdb)
 
 `initdb` şunu yapar:
 
@@ -52,7 +52,7 @@
 
 ------
 
-## Depodan (apt/yum/pacman) Kurulumda:
+## Depodan (apt/yum/pacman) Kurulumda
 
 - `postgresql` paketi kurulduğunda
 - **initdb otomatik yapılır**
@@ -60,15 +60,15 @@
 
 Örnek:
 
-```
-/var/lib/postgresql/15/main
+```bash
+/var/lib/postgresql/<sürüm>/main
 ```
 
 ------
 
-## Kaynaktan (source) Kurulumda:
+## Kaynaktan (source) Kurulumda
 
-```
+```bash
 ./configure
 make
 sudo make install
@@ -81,59 +81,33 @@ Bu adımlar:
 
 Bu yüzden **manuel initdb şarttır**:
 
-```
+```bash
 initdb -D /usr/local/pgsql/data
 ```
 
 veya
 
-```
+```bash
 /usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
 ```
 
 ------
 
-|                          | initdb gerekir mi?   |
-| ------------------------ | -------------------- |
-| Depodan kurulum          | ❌ (otomatik yapılır) |
-| Kaynaktan kurulum        | ✅                    |
-| Docker image             | ❌ (entrypoint yapar) |
-| Yeni data dizini         | ✅                    |
-| Mevcut cluster kullanımı | ❌                    |
+**Bir sistemde init edilmiş mi kontrol için:**
 
-------
-
-## Pratik Kontrol
-
-Bir sistemde init edilmiş mi?
-
-```
-
+```bash
 ls /var/lib/postgresql
 ```
 
-veya
+**veya**
 
-```
-
+```bash
 psql -l
 ```
 
-Çalışıyorsa → initdb yapılmıştır.
+**Çalışıyorsa → initdb yapılmıştır.**
 
 ------
-
-## Net Sonuç
-
-- `initialize` = PostgreSQL’in **çalışmasının ön koşulu**
-- Eski/yeni sürüm farkı yok
-- Fark **kurulum yöntemi** ile ilgilidir
-- Paket yöneticileri bunu otomatik yapar
-- Kaynaktan kurulumda **sorumluluk sizdedir**
-
-------
-
-
 
 ### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
@@ -219,6 +193,16 @@ initdb -D /usr/local/pgsql/data
 
 ###### Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir.
 
+yada postgresql oturumunda:
+
+```postgresql
+postgres=# show data_directory;
+       data_directory        
+-----------------------------
+ /var/lib/postgresql/18/main
+(1 satır)
+```
+
 ---
 
 **PostgreSQL’de veritabanı (DB) ve tablo (nesne) kimliklerini (OID) öğrenmek için:**
@@ -254,12 +238,104 @@ sudo ss -ltnp | grep 5432
 
 ###### Not : Bu çıktı LISTEN eden adresleri gösterir. Örneğin: `127.0.0.1:5432` gibi olmalı. Eğer hiç çıkmıyorsa PostgreSQL çalışmıyor demektir.
 
- 
+---
 
-#### `postgresql.conf` ayar dosyası 
+###  PostgreSQL Sunucu Ayarları
 
-###### Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/data/postgresql.conf` konumunda bulunur:
+##### `postgresql.conf` dosyası 
 
+###### Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
+
+Ayarların çoğu **reload** ile aktifleşir, **restart** gerektirenler dosyada belirtilmiştir. PostgreSQL *reload* edildiğinde servis kesintisi yapılmadan ayar dosyasındaki değişiklikler tekrar okunur. Mevcut bağlantıların düşmesine neden olmayacağı için *restart* gerektiren özel parametrelerin değişimi hariç tüm durumlarda *reload* tercih edilmelidir.
+
+```bash
+sudo systemctl reload postgresql
+```
+
+Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin öntanımlı değerlerini gösterir:
+
+```
+#port = 5432                                # (change requires restart)
+#superuser_reserved_connections = 3         # (change requires restart)
+#unix_socket_directories = '/var/run/postgresql, /tmp'  #(comma-separated list of directories)
+```
+
+### PostgreSQL Ayarları: Dosya Yerleri
+
+PostgreSQL veri dizini ile yetkilendirme ayar dosyalarının yerleri özel olarak belirtilebilir. Özel olarak belirlenmezse varsayılan olarak PostgreSQL sürecini başlatırken verilen `-D` parametresinden veya **PGDATA** çevresel değişkeninden alınır. Değiştirmek istenirse:
+
+```
+data_directory = '/srv/postgresql'
+hba_file = '/srv/postgresql/pg_hba.conf'
+ident_file = '/srv/postgresql/pg_ident.conf'
+```
+
+
+
+PostgreSQL sunucu varsayılan olarak loopback (127.0.0.1) IP’sinden servis verir. Dışarıdan erişilebilmesi için:
+
+```
+listen_addresses = '*'
+```
+
+
+
+Hiç TCP/IP hizmeti vermemesi için:
+
+```
+listen_addresses = ''
+```
+
+
+
+Servisin unix soketiyle ilgili ayarlarıyla ilgili şunlar değiştirilebilir:
+
+```
+#unix_socket_directories = '/var/run/postgresql, /tmp'
+#unix_socket_group = ''
+#unix_socket_permissions = 0777
+```
+
+
+
+PostgreSQL sunucunun aynı anda kaç bağlantı isteği kabul edeceği:
+
+```
+max_connections = 100
+```
+
+
+
+Bu değer bir süre izlenip, sunucu kaynaklarına göre düzenlenmelidir!
+
+### PostgreSQL Ayarları: Zaman
+
+PostgreSQL’in sistemin zaman bilgilerini kullanması için `--with-system-tzdata` parametresiyle derlenmiş olması gerekir (rpm kurulumunda bu şekildedir). Veritabanının kullandığı zaman ve yerellik bilgileri ilklendirme sırasında sunucudan alınır.
+
+```
+postgres=# show timezone;
+ TimeZone
+----------
+ Turkey
+
+postgres=# select current_time;
+    current_time
+--------------------
+ 14:25:00.358229+03
+```
+
+
+
+PostgreSQL’in sistem zamanından farklı bir zaman kullanması istenirse ayarlardan değiştirilebilir.
+
+```
+datestyle = 'iso, mdy'
+timezone = 'Turkey'
+lc_messages = 'en_US.UTF-8'
+lc_monetary = 'en_US.UTF-8'
+lc_numeric = 'en_US.UTF-8'
+lc_time = 'en_US.UTF-8'
+```
 
 #### `pg_hba.conf`
 
