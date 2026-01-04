@@ -1575,3 +1575,5 @@ Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmeli
 
 
 ![](../images/yapım-asaması-gimp.png)
+
+###### Referans ve Katkılar: Bu belgedeki bilgiler [Türkçe Linux](https://turkce-linux.gitbook.io/anasayfa) üzerinden referans alınarak derlenmiştir.
