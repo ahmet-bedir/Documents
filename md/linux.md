@@ -17,7 +17,7 @@
 
 ► [**Metin İşlemleri**](#metin)
 
-► 
+► [**Gelişmiş Metin İşlemleri**](#gelismis_metin)
 
 ► 
 
@@ -691,6 +691,110 @@ $ rm dosya1
 
 Neyse ki, ortalama bir kullanıcının önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri alınmıştır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
 
+chattr (change attribute) komutu, Linux dosya sistemlerinde (özellikle ext4 / ext3 / ext2) dosya ve dizinlere özel nitelikler (attributes) atamak veya kaldırmak için kullanılır. Bu nitelikler klasik chmod izinlerinden daha düşük seviyede çalışır ve çoğu durumda yalnızca root tarafından değiştirilebilir.
+
+Temel Sözdizimi
+chattr [seçenekler] [+-=][nitelik] dosya_veya_dizin
+
+
++ : Niteliği ekler
+
+- : Niteliği kaldırır
+
+= : Sadece belirtilen nitelikleri ayarlar (diğerlerini temizler)
+
+En Sık Kullanılan Nitelikler
+🔒 i — Immutable (Değiştirilemez)
+
+Dosya silinemez, değiştirilemez, yeniden adlandırılamaz.
+
+sudo chattr +i dosya.txt
+
+
+Kaldırmak için:
+
+sudo chattr -i dosya.txt
+
+
+Kullanım senaryosu:
+
+Sistem dosyalarını korumak
+
+Yanlışlıkla silinmesini önlemek
+
+🛡️ a — Append Only (Sadece Ekleme)
+
+Dosyaya sadece ekleme yapılabilir, mevcut içerik değiştirilemez.
+
+sudo chattr +a log.txt
+
+
+Kullanım senaryosu:
+
+Log dosyaları (/var/log/*)
+
+⚡ S — Senkron Yazım
+
+Dosyaya yapılan değişiklikler anında diske yazılır.
+
+sudo chattr +S dosya.txt
+
+🗑️ u — Undelete
+
+Silinen dosya kurtarılabilir (dosya sistemi destekliyse).
+
+sudo chattr +u dosya.txt
+
+🧩 d — No Dump
+
+dump yedekleme aracının bu dosyayı yedeklememesini sağlar.
+
+sudo chattr +d dosya.txt
+
+🚀 A — No Atime Update
+
+Dosyaya erişimde atime güncellenmez (performans için).
+
+sudo chattr +A dosya.txt
+
+Dizinler Üzerinde Kullanım
+
+Bir dizini ve içindeki tüm dosyaları etkilemek için -R (recursive):
+
+sudo chattr -R +i /kritik_dizin
+
+Mevcut Nitelikleri Görüntüleme (lsattr)
+
+chattr ile verilen nitelikleri görmek için:
+
+lsattr dosya.txt
+
+
+Dizin için:
+
+lsattr -R /dizin
+
+
+Örnek çıktı:
+
+----i-------- dosya.txt
+
+Önemli Notlar
+
+chattr her dosya sisteminde çalışmaz (ext* ailesi önerilir).
+
+i veya a verilen dosyalar root tarafından bile silinemez (önce attribute kaldırılmalıdır).
+
+chmod 777 bile chattr +i verilen dosyada etkisizdir.
+
+Pratik Örnek (Kali / Linux)
+sudo touch test.txt
+sudo chattr +i test.txt
+rm test.txt        # ❌ Silinmez
+sudo chattr -i test.txt
+rm test.txt        # ✅ Silinir
+
+
 * **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
 
 ```bash
@@ -880,11 +984,7 @@ Bu komutun "Hello World" yazısını ekrana yazdırdığını biliyoruz. Peki na
 
 **Yönlendirme Operatörü**
 
-Ancak I/O yönlendirme, bize daha fazla esneklik sağlayarak bu varsayılan davranışı değiştirmemize izin verir. Komutun `>` sembolünden sonraki kısmına bakalım:
-
-```bash
->
-```
+Ancak I/O yönlendirme, bize daha fazla esneklik sağlayarak bu varsayılan davranışı değiştirmemize izin verir.
 
 `>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Hello World` komutunun çıktısını ekrana yazdırmak yerine bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
 
@@ -906,7 +1006,7 @@ Bu komut, "Hello World" yazısını `peanuts.txt` dosyasının sonuna ekler. Dos
 
 ### stdin (Standard In)
 
-Önceki derste standart çıktı (stdout) akışlarını farklı şekillerde kullanabileceğimizi öğrendik (örneğin ekran veya bir dosya). Aynı şekilde standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. Klavyeden gelen veriler varsayılan standart giriş kaynağı olsa da, dosyaları, diğer işlemlerin çıktılarını ve terminali de stdin olarak kullanabiliriz.
+Standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. Klavyeden gelen veriler varsayılan standart giriş kaynağı olsa da, dosyaları, diğer işlemlerin çıktılarını ve terminali de stdin olarak kullanabiliriz.
 
 **Örnek: stdin Yönlendirme ile Dosya Kopyalama**
 
@@ -980,8 +1080,6 @@ $ ls /fake/directory 2> /dev/null
 
 ### pipe ve tee
 
-Komut deneyelim:
-
 ```bash
 $ ls -la /etc
 ```
@@ -992,7 +1090,7 @@ $ ls -la /etc
 $ ls -la /etc | less
 ```
 
-Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı `(stdout)` verisini alıp başka bir işlemin standart girdi `(stdin)` verisi haline getirmemizi sağlar. Bu durumda, `ls -la /etc` komutunun standart çıktısını alıp `less` komutuna aktardık. Pipe komutu son derece kullanışlıdır ve onu sonsuza kadar kullanmaya devam edeceğiz.
+Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı `(stdout)` verisini alıp başka bir işlemin standart girdi `(stdin)` verisi haline getirmemizi sağlar. Bu durumda, `ls -la /etc` komutunun standart çıktısını alıp `less` komutuna aktardık.
 
 Peki ya komut çıktımı iki farklı akışa yazmak istersem? Bu, `tee` komutu ile mümkündür:
 
@@ -1001,6 +1099,477 @@ $ ls | tee fıstık.txt
 ```
 
 Ekranda `ls` komutunun çıktısını görmelisiniz ve `fıstık.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
+
+
+
+### env (Environment)
+
+Aşağıdaki komutu çalıştırın:
+
+```bash
+$ echo $HOME
+```
+
+Ana dizininize giden yolu görmelisiniz, benimki /home/kullanıcı gibi görünüyor.
+
+Peki ya şu komut:
+
+```bash
+$ echo $USER
+```
+
+Kullanıcı adınızı görmelisiniz!
+
+Bu bilgiler nereden geliyor? Bunlar ortam değişkenlerinizden geliyor. Bunları yazarak görebilirsiniz:
+
+```bash
+$ env
+```
+
+Bu komut, şu anda ayarladığınız ortam değişkenleri hakkında bir sürü bilgi verir. Bu değişkenler, kabuğun ve diğer işlemlerin kullanabileceği faydalı bilgiler içerir.
+
+İşte kısa bir örnek:
+
+```bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/bin
+
+PWD=/home/kullanıcı
+
+USER=kullanıcı
+```
+
+Özellikle önemli bir değişken PATH değişkenidir. Bu değişkenlere, değişken adının önüne bir $ işareti koyarak erişebilirsiniz:
+
+```bash
+$ echo $PATH
+
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/bin
+```
+
+Bu, sisteminiz bir komut çalıştırdığında aradığı yolların, iki nokta ile ayrılmış listesini döndürür. İnternetten manuel olarak bir paket indirip yüklediğinizi ve standart olmayan bir dizine koyduğunuzu ve bu komutu çalıştırmak istediğinizi varsayalım, `komut` yazıyorsunuz ve komut bulunamadı diyor. İkili dosyayı bir klasörde görüyorsunuz ve var olduğunu biliyorsunuz. Olan şey, $PATH değişkeninin bu ikili dosyayı aramak için o dizini kontrol etmemesi ve bu nedenle bir hata vermesidir.
+
+Çalıştırmak istediğiniz birçok ikili dosyanın bulunduğu bir dizininiz olduğunu varsayalım, PATH ortam değişkeninizi bu dizini içerecek şekilde değiştirmeniz yeterlidir.
+
+
+
+### cut
+
+Metin işlemek için kullanabileceğiniz birkaç faydalı komut öğreneceğiz. Başlamadan önce, üzerinde çalışacağımız bir dosya oluşturalım. Aşağıdaki komutu kopyalayıp yapıştırın, bunu yaptıktan sonra "lazy" ve "dog" arasına bir TAB ekleyin (Ctrl-v + TAB tuşlarına basılı tutun).
+
+```bash
+$ echo 'The quick brown; fox jumps over the lazy  dog' > sample.txt
+```
+
+Öğreneceğimiz ilk komut `cut` komutudur. Bu komut, bir dosyadan metin parçalarını ayıklar.
+
+Karakter listesine göre içerik çıkarmak için:
+
+```bash
+$ cut -c 5 sample.txt
+```
+
+Bu, dosyadaki her satırın 5. karakterini çıktı olarak verir. Bu durumda "q" dır, boşluk da bir karakter olarak sayılır.
+
+İçeriği bir alana göre çıkarmak için biraz değişiklik yapmamız gerekiyor:
+
+```bash
+$ cut -f 2 sample.txt
+```
+
+`-f` veya alan bayrağı, metni alanlara göre ayıklar, varsayılan olarak ayırıcı olarak TAB'ları kullanır, bu nedenle TAB ile ayrılmış her şey bir alan olarak kabul edilir. Çıktı olarak "dog" görmelisiniz.
+
+Alan bayrağını, ayırıcı bayrağıyla birlikte kullanarak içeriği özel bir ayırıcıya göre ayırabilirsiniz:
+
+```bash
+$ cut -f 1 -d ";" sample.txt
+```
+
+Bu, TAB ayırıcıyı ";" ayırıcıya değiştirecek ve ilk alanı kestiğimiz için sonuç "The quick brown" olmalıdır.
+
+
+
+### paste
+
+`paste` komutu, `cat` komutuna benzer şekilde bir dosyadaki satırları birleştirir. Aşağıdaki içerikle yeni bir dosya oluşturalım:
+
+sample2.txt
+
+The
+
+quick
+
+brown
+
+fox
+
+Tüm bu satırları tek bir satırda birleştirelim:
+
+```bash
+$ paste -s sample2.txt
+```
+
+`paste` komutu için varsayılan ayırıcı TAB'dır, bu nedenle şimdi her kelimeyi ayıran TAB'lar içeren tek bir satır var.
+
+Hadi bu ayırıcıyı (`-d`) biraz daha okunaklı bir şeyle değiştirelim:
+
+```
+$ paste -d ' ' -s sample2.txt
+```
+
+Şimdi her şey tek bir satırda olmalı ve boşluklarla ayrılmalıdır.
+
+
+
+### head
+
+Metin dosyalarında, özellikle sistem günlükleri gibi çok uzun dosyalarda, genellikle yalnızca ilk birkaç satıra bakmak istersiniz. Bunu yapmak için `head` komutunu kullanabilirsiniz.
+
+`head` komutu varsayılan olarak bir dosyanın ilk 10 satırını görüntüler. Aşağıdaki komut, sistem günlüklerinden (/var/log/syslog) ilk 10 satırı görüntüleyecektir:
+
+```bash
+$ head /var/log/syslog
+```
+
+İlk kaç satırı görmek istediğinizi belirtmek için `-n` bayrağını kullanabilirsiniz. Örneğin, ilk 15 satırı görmek istiyorsanız:
+
+```bash
+$ head -n 15 /var/log/syslog
+```
+
+`-n` bayrağı ile birlikte satır sayısını belirterek, uzun dosyalarda hızlı bir şekilde özet bilgi edinebilirsiniz.
+
+
+
+### tail
+
+`head` komutuna benzer şekilde, `tail` komutu da varsayılan olarak bir dosyanın son 10 satırını görüntülemenizi sağlar. Sistem günlüklerine (`/var/log/syslog`) bakalım:
+
+```bash
+$ tail /var/log/syslog
+```
+
+`head` komutunda olduğu gibi, görmek istediğiniz satır sayısını da değiştirebilirsiniz:
+
+```bash
+$ tail -n 10 /var/log/syslog
+```
+
+`tail` komutunun gerçekten faydalı bir özelliği de, dosya içeriği güncellendikçe onu takip edebilmesidir. Bunu yapmak için `-f` (takip) bayrağını kullanabilirsiniz. Deneyin ve neler olduğunu görün:
+
+```bash
+$ tail -f /var/log/syslog
+```
+
+Sisteminizle etkileşim kurarken syslog dosyanız sürekli değişecektir. `tail -f` kullanarak, bu dosyaya eklenen her şeyi görebilirsiniz. Bu, sisteminizde neler olup bittiğini gerçek zamanlı olarak takip etmek için kullanışlıdır.
+
+
+
+### expand ve unexpand
+
+Önceki derste kullandığımız `sample.txt` dosyası bir tab içeriyordu. Normalde tablar genellikle boşluk bırakır ancak bazı metin editörleri bunu net göstermeyebilir. Bir metin dosyasındaki tablar istediğiniz aralığı sağlamayabilir. Sekmeleri boşluklara dönüştürmek için `expand` komutunu kullanabilirsiniz.
+
+```bash
+$ expand sample.txt
+```
+
+Bu komut, her taksimi bir grup boşluğa dönüştürerek çıktıyı yazdıracaktır. Bu çıktıyı bir dosyaya kaydetmek için aşağıdaki gibi çıktı yönlendirmeyi kullanın.
+
+```bash
+$ expand sample.txt > sonuc.txt
+```
+
+`expand` komutunun tersi olarak, boşluk gruplarını `unexpand` komutuyla tek bir tab'a dönüştürebilirsiniz:
+
+```bash
+$ unexpand -a sonuc.txt
+```
+
+Bu, özellikle metin dosyaları farklı programlar arasında paylaşılırken veya bir metin dosyasının biçimini korumak istediğinizde kullanışlıdır.
+
+
+
+### join ve split
+
+Birleştirme ve ayırma işlemleri için kullanışlı komutlar vardır:
+
+Bu komut, ortak bir alanı temel alan birden fazla dosyayı birleştirebilir.
+
+Örneğin, iki dosyayı birleştirmek istediğinizi varsayalım:
+
+```bash
+dosya1.txt
+
+1 John 
+2 Jane 
+3 Mary
+
+dosya2.txt
+
+1 Doe 
+2 Doe 
+3 Sue
+
+
+$ join dosya1.txt dosya2.txt
+
+1 John Doe
+2 Jane Doe
+3 Mary Sue
+```
+
+Gördüğünüz gibi, dosyalar varsayılan olarak ilk alana göre birleştirilir ve alanların aynı olması gerekir. Aksi halde dosyaları sıralayabilirsiniz. Bu örnekte dosyalar 1, 2, 3 üzerinden birleştirildi.
+
+Farklı alanları birleştirmek için hangi alanları kullanacağınızı belirtmeniz gerekir. Örneğin, `dosya1.txt`'de 2. alanı ve `dosya2.txt`'de 1. alanı birleştirmek istiyorsanız, komut şöyle görünür:
+
+```bash
+$ join -1 2 -2 1 dosya1.txt dosya2.txt
+
+1 John Doe
+2 Jane Doe
+3 Mary Sue
+```
+
+`-1` `dosya1.txt`'yi, `-2` ise `dosya2.txt`'yi temsil eder.
+
+* **split:** Bu komut, tek bir dosyayı birden fazla dosyaya böler.
+
+```bash
+$ split bazıdosya
+```
+
+Bu komut, satır sayısı 1000'e ulaştığında dosyayı birden fazla dosyaya böler. Oluşan dosyalar varsayılan olarak `x**` şeklinde adlandırılır.
+
+
+
+### sort
+
+Bu komut, bir dosyadaki satırları alfabetik sıraya göre sıralar.
+
+Örneğin, `dosya1.txt` adlı bir dosyanız olduğunu varsayalım:
+
+**dosya1.txt**
+
+köpek inek kedi fil kuş
+
+```bash
+$ sort dosya1.txt
+
+fil
+inek
+kedi
+köpek
+kuş
+```
+
+Gördüğünüz gibi, `sort` komutu satırları alfabetik sıraya göre sıraladı.
+
+* **Ters Sıralama:**
+
+Ters sıralama yapmak için `-r` seçeneğini kullanabilirsiniz:
+
+```bash
+$ sort -r dosya1.txt
+
+kuş
+köpek
+fil
+inek
+kedi
+```
+
+* **Sayısal Sıralama:**
+
+Sayısal değer içeren metinleri sıralamak için `-n` seçeneğini kullanabilirsiniz:
+
+```bash
+$ sort -n dosya1.txt
+
+kuş
+kedi
+inek
+fil
+köpek
+```
+
+Bu örnekte, sayılar metin içinde yer almasına rağmen, `sort` komutu -n seçeneği sayesinde sayısal olarak sıraladı.
+
+
+
+### tr (Translate)
+
+Bu komut, bir metin içindeki karakterleri başka karakterlere dönüştürmek için kullanılır.
+
+Örneğin, tüm küçük harfleri büyük harflere dönüştürmek için:
+
+```bash
+$ tr a-z A-Z
+
+hello
+
+HELLO
+```
+
+Komutta `a-z` küçük harflerin aralığını, `A-Z` ise büyük harflerin aralığını belirtir. Böylece, `tr` komutu yazdığınız tüm küçük harfleri büyük harfe dönüştürür.
+
+
+
+### uniq (Unique)
+
+uniq (unique) komutu, metin ayrıştırmak için kullanışlı bir başka araçtır.
+
+Çok sayıda yinelenen öğe içeren bir dosyanız olduğunu varsayalım:
+
+```bash
+reading.txt
+kitap
+kitap
+kağıt
+kağıt
+makale
+makale
+dergi
+```
+
+Yinelenen öğeleri kaldırmak istiyorsanız, uniq komutunu kullanabilirsiniz:
+
+```bash
+$ uniq reading.txt
+kitap
+kağıt
+makale
+dergi
+```
+
+Bir satırın kaç kez tekrar ettiğini görelim:
+
+```bash
+$ uniq -c reading.txt
+2 kitap
+2 kağıt
+2 makale
+1 dergi
+```
+
+Yalnızca tekil değerleri görelim:
+
+```bash
+$ uniq -u reading.txt
+dergi
+```
+
+Yalnızca yinelenen değerleri görelim:
+
+```bash
+$ uniq -d reading.txt
+kitap
+kağıt
+makale
+```
+
+**Dikkat:** uniq komutu, yan yana olmayan yinelenen satırları algılamaz. Örneğin, reading.txt dosyanız aşağıdaki gibi olsun:
+
+```bash
+reading.txt
+kitap
+kağıt
+kitap
+kağıt
+makale
+dergi
+makale
+```
+
+Bu durumda `uniq reading.txt` komutu tüm satırları döndürür.
+
+uniq komutunun bu sınırlamasını aşmak için `sort` komutuyla birlikte kullanabilirsiniz:
+
+```bash
+$ sort reading.txt | uniq
+makale
+kitap
+dergi
+kağıt
+```
+
+Bu şekilde, tüm yinelenen satırlar, konumlarından bağımsız olarak kaldırılır.
+
+
+
+### wc ve nl
+
+Bu komut, bir dosyadaki toplam kelime sayısını görüntüler.
+
+```bash
+$ wc /etc/passwd
+  96  265  5925 /etc/passwd
+```
+
+Bu çıktı satırları, sırasıyla kelime sayısı, karakter sayısı ve dosya boyutunu göstermektedir.
+
+* Belirli bir alanı saydırmak için -l, -w veya -c seçeneklerini kullanabilirsiniz.
+
+```bash
+$ wc -l /etc/passwd
+96
+```
+
+* Bir dosyadaki satır sayısını görmek için nl (satır numaralandırma) komutunu da kullanabilirsiniz.
+
+```bash
+dosya1.txt
+ben
+adana'yı
+seviyorum
+```
+
+```bash
+$ nl dosya1.txt
+1. ben
+2. istanbul'u
+3. seviyorum
+```
+
+
+
+### grep
+
+grep, muhtemelen en sık kullanacağınız metin işleme komutlarından biridir. Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
+
+Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek isterseniz? Elbette her satırı tek tek incelemezsiniz, grep kullanırsınız!
+
+Örnek olarak `sample.txt` dosyamızı kullanalım:
+
+```bash
+$ grep fox sample.txt
+```
+
+grep komutu, sample.txt dosyasında "fox" kelimesini bulduğunu göstermelidir.
+
+* **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
+
+-i bayrağı ile büyük/küçük harfe duyarlı olmayan aramalar yapabilirsiniz:
+
+```bash
+$ grep -i somepattern somefile
+```
+
+* **Diğer Komutlarla Kombinasyon:**
+
+grep komutunu, | sembolü ile diğer komutlarla birleştirebilirsiniz. Bu sayede daha esnek aramalar yapabilirsiniz:
+
+```bash
+$ env | grep -i User
+```
+
+Gördüğünüz gibi, grep oldukça çok yönlüdür. Kalıplarınızda hatta **düzenli ifadeler** bile kullanabilirsiniz:
+
+```bash
+$ ls /somedir | grep '.txt$'
+```
+
+Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmelidir.
+
+
 
 
 
