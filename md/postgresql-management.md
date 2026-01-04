@@ -40,6 +40,75 @@
 
 ---
 
+### Initialize (initdb)
+
+`initdb` şunu yapar:
+
+- PostgreSQL **data directory** (veri kümesi) oluşturur
+- `postgres`, `template0`, `template1` gibi **sistem veritabanlarını** oluşturur
+- Sistem kataloglarını ve varsayılan ayarları hazırlar
+
+➡️ PostgreSQL **çalışabilir hale gelmez** initdb yapılmadan.
+
+------
+
+### Depodan (apt/yum/pacman) Kurulumda
+
+- `postgresql` paketi kurulduğunda
+- **initdb otomatik yapılır**
+- Data dizini hazır gelir
+
+Örnek:
+
+```bash
+/var/lib/postgresql/<sürüm>/main
+```
+
+------
+
+### Kaynaktan (source) Kurulumda
+
+```bash
+./configure
+make
+sudo make install
+```
+
+Bu adımlar:
+
+- **sadece binary’leri kurar**
+- data directory **oluşturmaz**
+
+Bu yüzden **manuel initdb şarttır**:
+
+```bash
+initdb -D /usr/local/pgsql/data
+```
+
+veya
+
+```bash
+/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data
+```
+
+------
+
+**Bir sistemde init edilmiş mi kontrol için:**
+
+```bash
+ls /var/lib/postgresql
+```
+
+**veya**
+
+```bash
+psql -l
+```
+
+**Çalışıyorsa → initdb yapılmıştır.**
+
+------
+
 ### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
 > **Paket indexlerini güncelle.**
@@ -76,7 +145,7 @@ sudo systemctl enable postgresql
 
 ### PostgreSQL Veritabanı Kümesi
 
-**PostgreSQL’in veritabanı kümesi (database cluster) dediğimiz şey aslında PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
+**PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
 
 #### Ana klasörler
 
@@ -124,25 +193,37 @@ initdb -D /usr/local/pgsql/data
 
 ###### Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir.
 
+yada postgresql oturumunda:
+
+```postgresql
+postgres=# show data_directory;
+       data_directory        
+-----------------------------
+ /var/lib/postgresql/18/main
+(1 satır)
+```
+
 ---
 
 **PostgreSQL’de veritabanı (DB) ve tablo (nesne) kimliklerini (OID) öğrenmek için:**
 
 ```sql
-postgres=# SELECT datname, oid FROM pg_database WHERE datname = 'db';
- datname  |  oid  
-----------+-------
- db       | 16448	
-(1 row)
+postgres=# SELECT datname, oid FROM pg_database;
+  datname  | oid 
+-----------+-----
+ postgres  |   5
+ template1 |   1
+ template0 |   4
+(3 satır)
 
 -- PostgreSQL’in sistem kataloğu olan pg_database tablosundan bilgi çeker. pg_database tüm veritabanlarının kayıtlarını tutar.
 -- /var/lib/postgresql/<version>/main/base/ konumunda ilgili veritabanın oid numarası ile ilgili klasörde veritabanı bilgileri bulunur.
 
-postgres=# SELECT relname, oid FROM pg_class WHERE relname = 'tablo';
+postgres=# SELECT relname, oid FROM pg_class WHERE relname = 'tablo1';
   relname  |  oid  
 -----------+-------
- tablo     | 16449
-(1 row)
+ tablo1    | 16449
+(1 satır)
 
 -- pg_class adlı sistem kataloğunda sorgulama yapar. pg_class tabloların, görünümlerin, dizinlerin vs. meta verilerini tutar.
 ```
@@ -157,53 +238,135 @@ sudo ss -ltnp | grep 5432
 
 ###### Not : Bu çıktı LISTEN eden adresleri gösterir. Örneğin: `127.0.0.1:5432` gibi olmalı. Eğer hiç çıkmıyorsa PostgreSQL çalışmıyor demektir.
 
- 
+---
 
-#### `postgresql.conf` ayar dosyası 
+###  PostgreSQL Sunucu Ayarları
 
-###### Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/data/postgresql.conf` konumunda bulunur:
+##### `postgresql.conf` dosyası 
 
+###### Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
 
-#### `pg_hba.conf`
-
-```sql
-postgres=# \c vt ahmetp
-connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: 
-FATAL:  Peer authentication failed for user "ahmetp"
-Previous connection kept
-```
-
-###### Not : Bu hata peer authentication (kimlik doğrulama) seçeneği ile ilgilidir.
-
-**PostgreSQL’de pg_hba.conf dosyası bağlantıların nasıl doğrulanacağını belirler. Bu durumda "ahmetp" kullanıcısı için peer yöntemi geçerli.**
-
-**Eğer peer aktifse: PostgreSQL, sistemde oturum açtığın Linux kullanıcısı adı ile PostgreSQL kullanıcı adının aynı olmasını ister.**
-
-**Linux’ta "ahmet" kullanıcısıyla, ama PostgreSQL’de "ahmetp" ile bağlanmak istiyorsun → eşleşme yok → FATAL: Peer authentication failed.**
-
-**Bağlanabilmek için `pg_hba.conf` dosyasını düzenlemiz gerekir.**
-
-**Dosya genelde bu konumda olur:**
-
-`/etc/postgresql/<sürüm>/main/pg_hba.conf`
-
-**İçinde şuna benzer satır vardır:**
-
- ```bash
- local		all		all		peer
- ```
-
-**Bunu şu şekilde değiştir:**
-
-```
-local		all		all		md5
-```
-
-**Sonra PostgreSQL’i yeniden başlat:**
+Ayarların çoğu **reload** ile aktifleşir, **restart** gerektirenler dosyada belirtilmiştir. PostgreSQL *reload* edildiğinde servis kesintisi yapılmadan ayar dosyasındaki değişiklikler tekrar okunur. Mevcut bağlantıların düşmesine neden olmayacağı için *restart* gerektiren özel parametrelerin değişimi hariç tüm durumlarda *reload* tercih edilmelidir.
 
 ```bash
-sudo systemctl restart postgresql
+sudo systemctl reload postgresql
 ```
+
+Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin öntanımlı değerlerini gösterir:
+
+```
+#port = 5432                                # (change requires restart)
+#superuser_reserved_connections = 3         # (change requires restart)
+#unix_socket_directories = '/var/run/postgresql, /tmp'  #(comma-separated list of directories)
+```
+
+### PostgreSQL Ayarları: Dosya Yerleri
+
+PostgreSQL veri dizini ile yetkilendirme ayar dosyalarının yerleri özel olarak belirtilebilir. Özel olarak belirlenmezse varsayılan olarak PostgreSQL sürecini başlatırken verilen `-D` parametresinden veya **PGDATA** çevresel değişkeninden alınır. Değiştirmek istenirse:
+
+```
+data_directory = '/srv/postgresql'
+hba_file = '/srv/postgresql/pg_hba.conf'
+ident_file = '/srv/postgresql/pg_ident.conf'
+```
+
+PostgreSQL sunucu varsayılan olarak loopback (127.0.0.1) IP’sinden servis verir. Dışarıdan erişilebilmesi için:
+
+```
+listen_addresses = '*'
+```
+
+Hiç TCP/IP hizmeti vermemesi için:
+
+```
+listen_addresses = ''
+```
+
+PostgreSQL sunucunun aynı anda kaç bağlantı isteği kabul edeceği:
+
+```
+max_connections = 100
+```
+
+Bu değer bir süre izlenip, sunucu kaynaklarına göre düzenlenmelidir!
+
+### PostgreSQL Ayarları: Zaman
+
+PostgreSQL’in sistemin zaman bilgilerini kullanması için `--with-system-tzdata` parametresiyle derlenmiş olması gerekir (rpm kurulumunda bu şekildedir). Veritabanının kullandığı zaman ve yerellik bilgileri ilklendirme sırasında sunucudan alınır.
+
+```
+postgres=# show timezone;
+    TimeZone
+   ----------
+ Europe/Istanbul
+
+postgres=# select current_time;
+    current_time
+--------------------
+ 14:25:00.358229+03
+```
+
+PostgreSQL’in sistem zamanından farklı bir zaman kullanması istenirse ayarlardan değiştirilebilir.
+
+```
+datestyle = 'iso, mdy'
+timezone = 'Turkey'
+lc_messages = 'en_US.UTF-8'
+lc_monetary = 'en_US.UTF-8'
+lc_numeric = 'en_US.UTF-8'
+lc_time = 'en_US.UTF-8'
+```
+
+#### `pg_hba.conf` dosyası
+
+**`Parola Şifreleme`**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
+
+**`Ağ Üzerindeki Verileri Şifreleme`**: SSL, ağ üzerinden gönderilen verileri şifreler: parola, sorgu ve döndürülen veriler. Hangi host’un şifrelenmemiş bağlantıları kullanacağı, hangisinin SSL şifreli bağlantılar gerektirdiği `pg_hba.conf` dosyasında belirtilir.
+
+PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vardır: **Sunucunun şu anki ayarını** görmek veya **kullanıcıların mevcut şifrelerinin** hangi formatta saklandığını kontrol etmek.
+
+İşte bu sorguları yapabileceğiniz yöntemler:
+
+### 1. Sunucunun Varsayılan Ayarını Sorgulama
+
+Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
+
+```postgresql
+SHOW password_encryption;
+```
+
+- **Çıktı `scram-sha-256` ise:** Yeni şifreler güvenli SCRAM yöntemiyle kaydedilecektir.
+- **Çıktı `md5` ise:** Yeni şifreler eski MD5 yöntemiyle kaydedilecektir.
+
+------
+
+### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
+
+Sunucu ayarı SCRAM olsa bile, bazı eski kullanıcıların şifreleri hala MD5 formatında kalmış olabilir. Hangi kullanıcının hangi yöntemi kullandığını görmek için `pg_authid` sistem tablosuna bakabilirsiniz:
+
+```postgresql
+SELECT rolname, 
+       CASE 
+         WHEN rolpassword LIKE 'SCRAM-SHA-256$%' THEN 'SCRAM-SHA-256'
+         WHEN rolpassword LIKE 'md5%' THEN 'MD5'
+         ELSE 'Şifre Belirlenmemiş veya Diğer'
+       END AS sifreleme_yontemi
+FROM pg_authid;
+```
+
+------
+
+### 💡 Önemli İpuçları
+
+- **Ayarı Değiştirme:** Eğer yöntemi SCRAM'e çekmek isterseniz `	` komutunu kullanabilirsiniz. Ancak bu ayar sadece **yeni** belirlenen şifreleri etkiler.
+
+- **Şifreleri Güncelleme:** Bir kullanıcının şifreleme yöntemini MD5'ten SCRAM'e yükseltmek için, ayarı değiştirdikten sonra o kullanıcının şifresini yeniden tanımlamanız gerekir:
+
+  ```postgresql
+  ALTER ROLE kullanıcı_adı WITH PASSWORD 'yeni_sifre';
+  ```
+
+- **pg_hba.conf:** Sadece veritabanı içinde şifreleme yöntemini değiştirmek yetmez; istemcilerin bağlanabilmesi için `pg_hba.conf` dosyasındaki `method` kısmının da (örneğin `md5` yerine `scram-sha-256`) bu ayarla uyumlu olması gerekir.
 
 ---
 
@@ -219,7 +382,7 @@ sudo systemctl restart postgresql
 
 <img src="../images/psql.png" />
 
-> **Yada PostgreSQL oturumuna kısayoldan bağlanmak için:**
+> **Yada PostgreSQL oturumuna kendi kullanıcı hesabınızdan bağlanmak için:**
 >
 > ```bash
 > ahmet@pardus:~$ sudo -u postgres psql
