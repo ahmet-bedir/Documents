@@ -447,8 +447,7 @@ Yani **offline kurulum için paketleri önceden indirme komutudur**.
 
 #### 📌 Kullanım örneği
 
-```
-
+```bash
 sudo apt install golang-go -d
 ```
 
