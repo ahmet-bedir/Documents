@@ -17,7 +17,7 @@
 
 ► [**Metin İşlemleri**](#metin)
 
-► [**Gelişmiş Metin İşlemleri**](#gelismis_metin)
+► [**Gelişmiş Metin İşlemleri**](#metin2)
 
 ► 
 
@@ -192,6 +192,8 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 [🔼 **Başa Dön**](#basa_don)
 
+---
+
 ### Kabuk (Shell)
 
 Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine göndererek gerçekleştirilmesini sağlayan bir programdır. Daha önce bir GUI (grafiksel arayüz) kullandıysanız, "Terminal" veya "Konsol" gibi progralları görmüşsünüzdür. Bunlar sizin için bir kabuk başlatan programlardır.
@@ -213,7 +215,7 @@ Basit bir komut olan echo ile başlayalım. echo komutu, metin argümanlarını 
 $ echo Merhaba Dünya
 ```
 
-
+---
 
 ### pwd (Print Working Directory / Çalışma Dizini Yazdır)
 
@@ -226,7 +228,7 @@ Dosya sisteminde gezinmek, tıpkı gerçek hayatta olduğu gibi, nerede olduğun
 $ pwd
 ```
 
-
+---
 
 ### cd (Change Directory / Dizin Değiştir)
 
@@ -278,7 +280,7 @@ $ cd - # önceki dizine git
 
 <img src="../images/parent-sub-directory.jpg" width="300"  />
 
-
+---
 
 ### ls (List Directories)
 
@@ -357,7 +359,7 @@ ls -A
 
 ##### Sıralama Seçenekleri
 
-- **`-t`**
+**`-t`**
    Dosyaları son değiştirilme zamanına göre sıralar.
 
 ```bash
@@ -365,14 +367,14 @@ ls -lt
 ```
 
 **`-S`**
- Dosyaları boyutlarına göre sıralar.
+   Dosyaları boyutlarına göre sıralar.
 
 ```bash
 ls -lS
 ```
 
 **`-r`**
- Ters sıralama yapar.
+   Ters sıralama yapar.
 
 ```bash
 ls -ltr
@@ -384,7 +386,6 @@ ls -ltr
 
 - **`-F`**
    Dosya türünü sonuna ek işaretle belirtir:
-
   - `/` → dizin
   - `*` → çalıştırılabilir dosya
   - `@` → sembolik link
@@ -397,14 +398,14 @@ ls -F
  Dosya türlerine göre renklendirerek gösterir (çoğu dağıtımda varsayılan).
 
 ```bash
-  ls --color=auto
+ls --color=auto
 ```
 
 ------
 
 ##### Dizin ve Alt Dizin İşlemleri
 
-- **`-d`**
+**`-d`**
    Dizinin içeriğini değil, dizinin kendisini listeler.
 
 ```bash
@@ -412,7 +413,7 @@ ls -ld /etc
 ```
 
 **`-R`**
- Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
+   Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
 
 ```bash
   ls -R
@@ -422,7 +423,7 @@ ls -ld /etc
 
 ##### Zaman Bilgileri
 
-- **`-u`**
+**`-u`**
    Son erişim zamanına göre listeler.
 
 ```bash
@@ -430,7 +431,7 @@ ls -lu
 ```
 
 **`-c`**
- Son durum değişikliği zamanına göre listeler.
+   Son durum değişikliği zamanına göre listeler.
 
 ```bash
   ls -lc
@@ -463,7 +464,7 @@ ls -lu
 | `-F`    | Dosya türü işareti         |
 | `-d`    | Dizinin kendisini gösterir |
 
-
+---
 
 ### touch
 
@@ -473,9 +474,9 @@ Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
 $ touch <dosya>
 ```
 
-Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Deneyin, bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch`komutunu uygulayın, zaman damgası güncellenecektir.
+Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch`komutunu uygulayın, zaman damgası güncellenecektir.
 
-
+---
 
 ### file
 
@@ -487,28 +488,28 @@ Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabi
 $ file komik.gif
 ```
 
-
+---
 
 ### cat
 
 Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
 
 ```bash
-$ cat dogfile birdfile
+$ cat dogfile birdfile > newfile
 ```
 
 Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır.
 
-
+---
 
 ### less
 
-Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az daha fazladır" (aslında benzer bir şey yapan `more` adında bir komut vardır ancak `more` komutunda geri gidemezsiniz). Metin, sayfa sayfa görüntülenir, böylece bir metin dosyasında sayfa sayfa gezinebilirsiniz.
+Basit çıktılardan daha büyük metin dosyaları görüntüleyecekseniz, "az daha fazladır" (aslında benzer bir şey yapan `more` adında bir komut vardır). Metin, sayfa sayfa görüntülenir, böylece bir metin dosyasında sayfa sayfa gezinebilirsiniz.
 
 Devam edin ve bir dosyanın içeriğine `less` komutu ile bakın. `less` komutundayken, dosyada gezinmek için diğer klavye komutlarını kullanabilirsiniz.
 
 ```bash
-$ less /home/ali/Dökümanlar/metin1
+$ less /home/ali/Dökümanlar/metin1		
 ```
 
 `less` içinde gezinmek için aşağıdaki komutları kullanın:
@@ -520,7 +521,7 @@ $ less /home/ali/Dökümanlar/metin1
 - **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
 - **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
 
-
+---
 
 ### history
 
@@ -550,7 +551,7 @@ $ clear
 
 * **Tab tuşu ile tamamlama:** Komut satırı ortamında en kullanışlı özelliklerden biri tab tuşu ile tamamlamadır. Bir komutun, dosyanın, dizinin vb. başlangıcını yazmaya başlarsanız ve Tab tuşuna basarsanız, arama yaptığınız dizinde bulduğu şeye göre otomatik tamamlama yapacaktır. Örneğin, `chrome` komutunu çalıştırmaya çalışıyorsanız, `chr` yazıp Tab tuşuna basabilirsiniz, otomatik olarak `chrome` tamamlanacaktır.
 
-
+---
 
 ### cp (Copy)
 
@@ -607,7 +608,7 @@ Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız 
 $ cp -i süperdosyam /home/pete/Resimler
 ```
 
-
+---
 
 ### mv (Move)
 
@@ -661,7 +662,7 @@ Taşıma işlemini gerçekleştirmek ve üzerine yazmak istediğinizi varsayalı
 $ mv -b dizin1 dizin2
 ```
 
-
+---
 
 ### mkdir (Make Directory)
 
@@ -677,7 +678,7 @@ Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşt
 $ mkdir -p kitaplar/hemingway/favoriler
 ```
 
-
+---
 
 ### rm (Remove)
 
@@ -691,108 +692,142 @@ $ rm dosya1
 
 Neyse ki, ortalama bir kullanıcının önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri alınmıştır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
 
-chattr (change attribute) komutu, Linux dosya sistemlerinde (özellikle ext4 / ext3 / ext2) dosya ve dizinlere özel nitelikler (attributes) atamak veya kaldırmak için kullanılır. Bu nitelikler klasik chmod izinlerinden daha düşük seviyede çalışır ve çoğu durumda yalnızca root tarafından değiştirilebilir.
+Linux'ta `chattr` (Change Attribute) komutu, dosyaların ve dizinlerin **özniteliklerini** (attributes) değiştirmek için kullanılır. Bu komut, standart `chmod` (izinler) komutundan farklıdır; çünkü dosya izinleri yazma yetkisi verse bile, `chattr` ile korunan bir dosya silinemez veya değiştirilemez.
 
-Temel Sözdizimi
-chattr [seçenekler] [+-=][nitelik] dosya_veya_dizin
+Özellikle sistem güvenliğini sağlamak ve kritik dosyaların yanlışlıkla silinmesini önlemek için çok güçlü bir araçtır.
+
+##### Temel Kullanım Sözdizimi
+
+```bash
+chattr [operatör] [öznitelik] [dosya_adı]
+```
+
+- **+** : Belirtilen özniteliği ekler.
+- **-** : Belirtilen özniteliği kaldırır.
+- **=** : Dosyanın sadece belirtilen özniteliklere sahip olmasını sağlar.
+
+------
+
+##### En Çok Kullanılan Öznitelikler
+
+Aşağıdaki tabloda en yaygın kullanılan `chattr` parametrelerini bulabilirsiniz:
+
+| **Öznitelik**       | **Açıklama**                                                 |
+| ------------------- | ------------------------------------------------------------ |
+| **i** (immutable)   | Dosya **değiştirilemez**, **silinemez**, ismi değiştirilemez ve bağ oluşturulamaz. Root kullanıcısı bile bu korumayı kaldırmadan dosyayı silemez. |
+| **a** (append-only) | Dosya silinemez veya içeriği değiştirilemez; ancak sonuna **yeni veri eklenebilir** (Log dosyaları için idealdir). |
+| **c** (compressed)  | Dosyanın disk üzerinde kernel tarafından otomatik olarak sıkıştırılmasını sağlar. |
+| **u** (undeletable) | Dosya silindiğinde verileri saklanır, böylece geri getirilmesi (undelete) kolaylaşır. |
+
+------
+
+#### Örnek Senaryolar
+
+##### 1. Dosyayı Tamamen Korumaya Almak (Silinemez/Değiştirilemez)
+
+Bir dosyayı root dahil kimsenin silememesi veya düzenleyememesi için `i` özniteliğini kullanırız:
+
+Bash
+
+```bash
+sudo chattr +i onemli_dosya.txt
+```
+
+*Bu aşamadan sonra `rm` veya `nano` ile dosyaya müdahale edilemez.*
+
+##### 2. Sadece Veri Eklenmesine İzin Vermek
+
+Bir log dosyasının geçmişinin silinmesini istemiyor, sadece yeni satırlar eklenmesini istiyorsanız:
+
+Bash
+
+```bash
+sudo chattr +a sistem.log
+```
+
+##### 3. Korumayı Kaldırmak
+
+Özniteliği devre dışı bırakmak için `-` operatörü kullanılır:
+
+```bash
+sudo chattr -i onemli_dosya.txt
+```
+
+------
+
+##### Öznitelikleri Nasıl Kontrol Edilir? (`lsattr`)
+
+Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:
+
+Bash
+
+```bash
+lsattr onemli_dosya.txt
+```
+
+Çıktı örneği:
+
+----i---------e---- onemli_dosya.txt (Buradaki i, dosyanın kilitli olduğunu gösterir.)
+
+------
+
+##### Dikkat Edilmesi Gerekenler
+
+- `chattr` komutunu kullanmak için genellikle **root** veya **sudo** yetkisi gerekir.
+- Bu komut genellikle **ext2, ext3, ext4, XFS** gibi Linux dosya sistemlerinde çalışır.
+  - `i` özniteliği atanmış bir dosyayı düzenlemeye çalışırsanız, "Permission Denied" (Erişim Engellendi) hatası alırsınız; bu hata dosya izinlerinden (`chmod`) değil, öznitelikten kaynaklıdır.
 
 
-+ : Niteliği ekler
+Dizinlerde kullanım için iki temel yöntem vardır:
 
-- : Niteliği kaldırır
+##### 1. Sadece Dizinin Kendisini Korumak
 
-= : Sadece belirtilen nitelikleri ayarlar (diğerlerini temizler)
+Eğer komutu doğrudan dizin ismiyle çalıştırırsanız, öznitelik sadece o klasörün kendisine uygulanır.
 
-En Sık Kullanılan Nitelikler
-🔒 i — Immutable (Değiştirilemez)
+```bash
+sudo chattr +i /home/kullanici/ozel_dizin
+```
 
-Dosya silinemez, değiştirilemez, yeniden adlandırılamaz.
+**Bu ne sağlar?**
 
-sudo chattr +i dosya.txt
+- Klasörün adı değiştirilemez.
+- Klasör silinemez.
+- Klasörün içine **yeni dosya eklenemez** ve içindeki mevcut **dosyalar silinemez**.
+- *Ancak:* Klasörün içindeki mevcut bir dosyanın içeriği (eğer dosyanın kendi `i` özniteliği yoksa) hala değiştirilebilir.
 
+------
 
-Kaldırmak için:
+##### 2. Alt Dosya ve Dizinlerle Birlikte Korumak (Rekürsif)
 
-sudo chattr -i dosya.txt
+Eğer klasörün içindeki her şeyin (tüm alt dosyalar ve klasörler) aynı korumaya sahip olmasını istiyorsanız `-R` (recursive) parametresini kullanmalısınız.
 
+```bash
+sudo chattr -R +i /home/kullanici/ozel_dizin
+```
 
-Kullanım senaryosu:
+**Bu ne sağlar?**
 
-Sistem dosyalarını korumak
+- Ana klasör kilitlenir.
+- İçindeki tüm mevcut dosyalar ve alt klasörler de tek tek `+i` özniteliğini alır. Artık ne klasör ne de içindeki herhangi bir dosya silinebilir veya içeriği değiştirilebilir.
 
-Yanlışlıkla silinmesini önlemek
+------
 
-🛡️ a — Append Only (Sadece Ekleme)
+##### Önemli Bir Fark: `i` ve `a` Öznitelikleri
 
-Dosyaya sadece ekleme yapılabilir, mevcut içerik değiştirilemez.
+Dizinler söz konusu olduğunda şu farkı bilmek çok faydalıdır:
 
-sudo chattr +a log.txt
+| **Komut**          | **Klasör İçindeki Etkisi**                                   |
+| ------------------ | ------------------------------------------------------------ |
+| `chattr +i dizin/` | İçine yeni dosya eklenemez, mevcut dosyalar silinemez.       |
+| `chattr +a dizin/` | Mevcut dosyalar silinemez ama **yeni dosyalar oluşturulabilir**. |
 
+##### Kontrol Etmek İçin
 
-Kullanım senaryosu:
+Dizine uygulanan özniteliği görmek için `lsattr` komutuna `-d` (directory) parametresini eklemeniz gerekir:
 
-Log dosyaları (/var/log/*)
-
-⚡ S — Senkron Yazım
-
-Dosyaya yapılan değişiklikler anında diske yazılır.
-
-sudo chattr +S dosya.txt
-
-🗑️ u — Undelete
-
-Silinen dosya kurtarılabilir (dosya sistemi destekliyse).
-
-sudo chattr +u dosya.txt
-
-🧩 d — No Dump
-
-dump yedekleme aracının bu dosyayı yedeklememesini sağlar.
-
-sudo chattr +d dosya.txt
-
-🚀 A — No Atime Update
-
-Dosyaya erişimde atime güncellenmez (performans için).
-
-sudo chattr +A dosya.txt
-
-Dizinler Üzerinde Kullanım
-
-Bir dizini ve içindeki tüm dosyaları etkilemek için -R (recursive):
-
-sudo chattr -R +i /kritik_dizin
-
-Mevcut Nitelikleri Görüntüleme (lsattr)
-
-chattr ile verilen nitelikleri görmek için:
-
-lsattr dosya.txt
-
-
-Dizin için:
-
-lsattr -R /dizin
-
-
-Örnek çıktı:
-
-----i-------- dosya.txt
-
-Önemli Notlar
-
-chattr her dosya sisteminde çalışmaz (ext* ailesi önerilir).
-
-i veya a verilen dosyalar root tarafından bile silinemez (önce attribute kaldırılmalıdır).
-
-chmod 777 bile chattr +i verilen dosyada etkisizdir.
-
-Pratik Örnek (Kali / Linux)
-sudo touch test.txt
-sudo chattr +i test.txt
-rm test.txt        # ❌ Silinmez
-sudo chattr -i test.txt
-rm test.txt        # ✅ Silinir
+```bash
+lsattr -d /home/kullanici/ozel_dizin
+```
 
 
 * **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
@@ -819,7 +854,7 @@ $ rm -r dizin
 $ rmdir dizin
 ```
 
-
+---
 
 ### find
 
@@ -845,7 +880,7 @@ Bu komutta, aradığımız dosya türünü `(d)` (dizin) olarak ayarladık ve yi
 
 **Önemli Not:** `find` komutu yalnızca aradığınız dizinde arama yapmaz, aynı zamanda o dizinin içinde olabilecek alt dizinlerin içine de bakar.
 
-
+---
 
 ### help
 
@@ -867,6 +902,8 @@ Bu komut, `echo` komutunu çalıştırmak istediğinizde kullanabileceğiniz aç
 $ ls --help
 ```
 
+---
+
 ### man
 
 Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, `man` komutunu kullanarak man sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir.
@@ -879,7 +916,7 @@ $ man ls
 
 Man sayfaları bazen teknik olabilir, ancak bir komutun tüm özelliklerini öğrenmek için harika bir kaynaktır.
 
-
+---
 
 ### whatis
 
@@ -899,7 +936,7 @@ $ whatis cat
 
 Bu örnekte, `cat` komutunun ne işe yaradığı hakkında kısa bir açıklama görürsünüz. Açıklama, komutun man sayfasından alınır.
 
-
+---
 
 ### alias
 
@@ -941,7 +978,7 @@ $ unalias la
 
 Bu komuttan sonra `la` takma adını kullanamazsınız.
 
-
+---
 
 ### exit
 
@@ -956,9 +993,11 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 <a id="metin"><a/>
 
-## 🧾 Metin İşlemleri
+## 📃 Metin İşlemleri
 
 [🔼 **Başa Dön**](#basa_don)
+
+---
 
 ### stdout (Standard Out)
 
@@ -1002,7 +1041,7 @@ $ echo Hello World >> peanuts.txt
 
 Bu komut, "Hello World" yazısını `peanuts.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
 
-
+---
 
 ### stdin (Standard In)
 
@@ -1573,7 +1612,11 @@ Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmeli
 
 ---
 
-## Gelişmiş Metin İşlemleri
+<a id="gelismis_metin"><a/>
+
+## 🧾 Gelişmiş Metin İşlemleri
+
+
 
 ### regex (Regular Expressions)
 
