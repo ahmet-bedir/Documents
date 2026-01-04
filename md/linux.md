@@ -1571,6 +1571,81 @@ Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmeli
 
 
 
+---
+
+## Gelişmiş Metin İşlemleri
+
+### regex (Regular Expressions)
+
+Düzenli ifadeler, daha önce karşılaştığımız yıldız (\*) gibi özel semboller kullanarak desenlere göre metin seçimi yapan güçlü bir araçtır. Bu ifadeler hemen hemen tüm programlama dillerinde kullanılabilir.
+
+Örnek metnimiz olarak şunu ele alalım:
+
+```
+alican deniz kabukları satıyor
+
+sahile göre
+```
+
+1. ^ ile Satırın Başı
+
+```
+^sahile
+
+ifadesi sadece "sahile göre" satırını seçer.
+```
+
+2. $ ile Satırın Sonu
+
+```
+sahile$
+
+ifadesi sadece "sahile göre" satırını seçer.
+```
+
+3. . ile Tek Karakter Eşleşmesi
+
+```
+s.
+
+ifadesi "sahile" ile eşleşir.
+```
+
+4. \[] ile Köşeli Ayraç Kullanımı
+
+Bu biraz kafa karıştırıcı olabilir. Köşeli ayraçlar, içinde belirtilen karakterlerden herhangi biriyle eşleşmeyi sağlar.
+
+```
+k[ıaö]z
+
+Bu ifade "kız", "kaz" ve "köz" ile eşleşir.
+```
+
+Daha önce gördüğümüz ^ sembolü, köşeli ayraç içinde kullanıldığında ayraç içindeki karakterler HARİÇ herhangi bir karakteri temsil eder.
+
+```
+k[^ı]z
+
+Bu ifade "kaz" ve "köz" ile eşleşir ancak "kız" ile eşleşmez.
+```
+
+Köşeli ayraçlar ayrıca aralıklarla birden fazla karakteri temsil edebilir.
+
+```
+k[a-c]z
+
+Bu ifade "kaz", "kbz" ve "kcz" gibi desenlerle eşleşir.
+```
+
+Dikkatli olun, köşeli ayraçlar büyük/küçük harfe duyarlıdır:
+
+```
+k[A-C]z
+
+Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir ancak "kaz", "kbz" ve "kcz" ile eşleşmez.
+```
+
+İşte bazı temel düzenli ifade örnekleri böyledir.
 
 
 
