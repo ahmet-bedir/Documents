@@ -34,7 +34,7 @@
 
 **Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.**
 
-◈ [**Linux**](md/linux.md)
+◈ [**Linux İşletim Sistemi**](md/linux-operating-system.md)
 
 ---
 
