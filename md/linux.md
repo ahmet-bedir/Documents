@@ -1625,9 +1625,35 @@ Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmeli
 
 Düzenli ifadeler, daha önce karşılaştığımız yıldız (\*) gibi özel semboller kullanarak desenlere göre metin seçimi yapan güçlü bir araçtır. Bu ifadeler hemen hemen tüm programlama dillerinde kullanılabilir.
 
+Regex’in temel karakterleri:
+
+`.` - Herhangi bir tek karakteri temsil eder (satır sonu karakteri hariç).
+
+`*` - Bir önceki karakterin sıfır veya daha fazla tekrarını temsil eder.
+
+`+` - Bir önceki karakterin bir veya daha fazla tekrarını temsil eder.
+
+`?` - Bir önceki karakterin sıfır veya bir kez tekrarını temsil eder.
+
+`^` - Dizinin başlangıcını temsil eder.
+
+`$` - Dizinin sonunu temsil eder.
+
+`[]` - Bir karakter kümesini belirtir. Bu kümedeki herhangi bir karakterle eşleşir.
+
+`[a-z]` - Küçük harflerin olduğu bir karakter aralığını belirtir.
+
+`[A-Z]` - Büyük harflerin olduğu bir karakter aralığını belirtir.
+
+`[0-9]` - Rakamların olduğu bir karakter aralığını belirtir.
+
+`\` - Özel karakterlerin (örneğin . ) özel anlamlarını iptal eder.
+
+`|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
+
 Örnek metnimiz olarak şunu ele alalım:
 
-```
+```bash
 alican deniz kabukları satıyor
 
 sahile göre
@@ -1635,7 +1661,7 @@ sahile göre
 
 1. ^ ile Satırın Başı
 
-```
+```bash
 ^sahile
 
 ifadesi sadece "sahile göre" satırını seçer.
@@ -1643,7 +1669,7 @@ ifadesi sadece "sahile göre" satırını seçer.
 
 2. $ ile Satırın Sonu
 
-```
+```bash
 sahile$
 
 ifadesi sadece "sahile göre" satırını seçer.
@@ -1651,7 +1677,7 @@ ifadesi sadece "sahile göre" satırını seçer.
 
 3. . ile Tek Karakter Eşleşmesi
 
-```
+```bash
 s.
 
 ifadesi "sahile" ile eşleşir.
@@ -1659,9 +1685,9 @@ ifadesi "sahile" ile eşleşir.
 
 4. \[] ile Köşeli Ayraç Kullanımı
 
-Bu biraz kafa karıştırıcı olabilir. Köşeli ayraçlar, içinde belirtilen karakterlerden herhangi biriyle eşleşmeyi sağlar.
+Köşeli ayraçlar, içinde belirtilen karakterlerden herhangi biriyle eşleşmeyi sağlar.
 
-```
+```bash
 k[ıaö]z
 
 Bu ifade "kız", "kaz" ve "köz" ile eşleşir.
@@ -1669,7 +1695,7 @@ Bu ifade "kız", "kaz" ve "köz" ile eşleşir.
 
 Daha önce gördüğümüz ^ sembolü, köşeli ayraç içinde kullanıldığında ayraç içindeki karakterler HARİÇ herhangi bir karakteri temsil eder.
 
-```
+```bash
 k[^ı]z
 
 Bu ifade "kaz" ve "köz" ile eşleşir ancak "kız" ile eşleşmez.
@@ -1677,7 +1703,7 @@ Bu ifade "kaz" ve "köz" ile eşleşir ancak "kız" ile eşleşmez.
 
 Köşeli ayraçlar ayrıca aralıklarla birden fazla karakteri temsil edebilir.
 
-```
+```bash
 k[a-c]z
 
 Bu ifade "kaz", "kbz" ve "kcz" gibi desenlerle eşleşir.
@@ -1685,7 +1711,7 @@ Bu ifade "kaz", "kbz" ve "kcz" gibi desenlerle eşleşir.
 
 Dikkatli olun, köşeli ayraçlar büyük/küçük harfe duyarlıdır:
 
-```
+```bash
 k[A-C]z
 
 Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir ancak "kaz", "kbz" ve "kcz" ile eşleşmez.
