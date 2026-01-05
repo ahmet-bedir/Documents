@@ -190,7 +190,7 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 ## 💻 Komut Satırı
 
-[🔼 **Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa_don)
 
 ---
 
@@ -995,7 +995,7 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ## 📃 Metin İşlemleri
 
-[🔼 **Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa_don)
 
 ---
 
@@ -1069,6 +1069,8 @@ Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş 
 
 Bu komutu çalıştırdığınızda, `banana.txt` adında yeni bir dosya oluşur ve içinde "Hello World" yazısı yer alır. Özetle, bu komut `peanuts.txt` dosyasının içeriğini `banana.txt` dosyasına kopyalamış olur.
 
+----
+
 
 ### stderr (Standard Error)
 
@@ -1116,6 +1118,7 @@ Peki tüm bu gereksiz hata mesajlarından kurtulmak ve standart hata mesajların
 $ ls /fake/directory 2> /dev/null
 ```
 
+---
 
 ### pipe ve tee
 
@@ -1139,7 +1142,7 @@ $ ls | tee fıstık.txt
 
 Ekranda `ls` komutunun çıktısını görmelisiniz ve `fıstık.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
 
-
+---
 
 ### env (Environment)
 
@@ -1189,7 +1192,7 @@ Bu, sisteminiz bir komut çalıştırdığında aradığı yolların, iki nokta 
 
 Çalıştırmak istediğiniz birçok ikili dosyanın bulunduğu bir dizininiz olduğunu varsayalım, PATH ortam değişkeninizi bu dizini içerecek şekilde değiştirmeniz yeterlidir.
 
-
+---
 
 ### cut
 
@@ -1225,7 +1228,7 @@ $ cut -f 1 -d ";" sample.txt
 
 Bu, TAB ayırıcıyı ";" ayırıcıya değiştirecek ve ilk alanı kestiğimiz için sonuç "The quick brown" olmalıdır.
 
-
+---
 
 ### paste
 
@@ -1257,7 +1260,7 @@ $ paste -d ' ' -s sample2.txt
 
 Şimdi her şey tek bir satırda olmalı ve boşluklarla ayrılmalıdır.
 
-
+---
 
 ### head
 
@@ -1277,7 +1280,7 @@ $ head -n 15 /var/log/syslog
 
 `-n` bayrağı ile birlikte satır sayısını belirterek, uzun dosyalarda hızlı bir şekilde özet bilgi edinebilirsiniz.
 
-
+---
 
 ### tail
 
@@ -1301,7 +1304,7 @@ $ tail -f /var/log/syslog
 
 Sisteminizle etkileşim kurarken syslog dosyanız sürekli değişecektir. `tail -f` kullanarak, bu dosyaya eklenen her şeyi görebilirsiniz. Bu, sisteminizde neler olup bittiğini gerçek zamanlı olarak takip etmek için kullanışlıdır.
 
-
+---
 
 ### expand ve unexpand
 
@@ -1325,7 +1328,7 @@ $ unexpand -a sonuc.txt
 
 Bu, özellikle metin dosyaları farklı programlar arasında paylaşılırken veya bir metin dosyasının biçimini korumak istediğinizde kullanışlıdır.
 
-
+---
 
 ### join ve split
 
@@ -1378,7 +1381,7 @@ $ split bazıdosya
 
 Bu komut, satır sayısı 1000'e ulaştığında dosyayı birden fazla dosyaya böler. Oluşan dosyalar varsayılan olarak `x**` şeklinde adlandırılır.
 
-
+---
 
 ### sort
 
@@ -1432,7 +1435,7 @@ köpek
 
 Bu örnekte, sayılar metin içinde yer almasına rağmen, `sort` komutu -n seçeneği sayesinde sayısal olarak sıraladı.
 
-
+---
 
 ### tr (Translate)
 
@@ -1450,7 +1453,7 @@ HELLO
 
 Komutta `a-z` küçük harflerin aralığını, `A-Z` ise büyük harflerin aralığını belirtir. Böylece, `tr` komutu yazdığınız tüm küçük harfleri büyük harfe dönüştürür.
 
-
+---
 
 ### uniq (Unique)
 
@@ -1532,7 +1535,7 @@ kağıt
 
 Bu şekilde, tüm yinelenen satırlar, konumlarından bağımsız olarak kaldırılır.
 
-
+---
 
 ### wc ve nl
 
@@ -1568,7 +1571,7 @@ $ nl dosya1.txt
 3. seviyorum
 ```
 
-
+---
 
 ### grep
 
@@ -1608,15 +1611,15 @@ $ ls /somedir | grep '.txt$'
 
 Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmelidir.
 
-
-
 ---
 
-<a id="gelismis_metin"><a/>
+<a id="metin2"><a/>
 
 ## 🧾 Gelişmiş Metin İşlemleri
 
+🔼 [**Başa Dön**](#basa_don)
 
+---
 
 ### regex (Regular Expressions)
 

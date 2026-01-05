@@ -14,8 +14,6 @@
 
 **İçindekiler**
 
-▸ [**PostgreSQL Sunucusuna Bağlanma...**](#postgresql)
-
 ▸ [**Veritabanı İstemcisi / psql...**](#psql)
 
 ▸ [**Temel Veritabanı İşlemleri...**](#temel-veritabani)
@@ -327,7 +325,7 @@ PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vard
 
 İşte bu sorguları yapabileceğiniz yöntemler:
 
-### 1. Sunucunun Varsayılan Ayarını Sorgulama
+##### 1. Sunucunun Varsayılan Ayarını Sorgulama
 
 Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
 
@@ -340,7 +338,7 @@ SHOW password_encryption;
 
 ------
 
-### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
+##### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
 
 Sunucu ayarı SCRAM olsa bile, bazı eski kullanıcıların şifreleri hala MD5 formatında kalmış olabilir. Hangi kullanıcının hangi yöntemi kullandığını görmek için `pg_authid` sistem tablosuna bakabilirsiniz:
 
@@ -370,11 +368,7 @@ FROM pg_authid;
 
 ---
 
-<a id="postgresql"><a/>
-
 ### Terminalden PostgreSQL sunucusuna bağlanmak için:
-
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
 > - `ahmet@pardus:~$ sudo su`  **Komutu ile root kullanıcısına geçilir.**
 > -  `root@pardus:~# su - postgres`  **Komutu ile postgres kullanıcısına geçilir.**
@@ -396,7 +390,7 @@ FROM pg_authid;
 
 ## Veritabanı İstemcisi / psql
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu çalıştırma, sorgu sonuçlarını görüntüleme, kabuk parametreleri ile dosya veya komut gönderme, betik içerisinde kullanarak otomatik işlemler yaptırabilir.**
 
@@ -507,7 +501,7 @@ db_name=>
 
 ## Temel Veritabanı İşlemleri
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **Mevcut veritabanlarını listeleme:**
 
@@ -588,7 +582,7 @@ DROP DATABASE
 
 ## PostgreSQL’de Veri Türleri (Data Types)
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 #### 📌 1) SAYISAL (NUMERIC) TİPLER
 
@@ -738,7 +732,7 @@ CREATE TYPE status AS ENUM ('active','passive');
 
 ## Tablo İşlemleri
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **Bir veritabanı içinde yeni bir tablo oluşturma:**
 
@@ -842,7 +836,7 @@ RENAME COLUMN eski_isim TO yeni_isim;
 
 ## Veri İşlemleri
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **Tabloya bir satır ekleme:**
 
@@ -1350,7 +1344,7 @@ DELETE 1
 
 ## İndeks İşlemleri
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **PostgreSQL’de index işlemleri; sorguları hızlandırmak, tablo içindeki belirli kolonlara göre hızlı arama yapabilmek için kullanılır.**
 
@@ -1481,7 +1475,7 @@ WHERE active = true;
 
 ## Referans Verme İşlemleri
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 **Bir tablodan başka bir tabloya o tablonun Primary Key alanı aracılığıyla referans verilir.**
 
@@ -1733,7 +1727,7 @@ SET
 
 ### PostgreSQL Tarih ve Zaman Fonksiyonları
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 #### 🔹Zaman Bilgisi Alma
 
@@ -1855,7 +1849,7 @@ AGE() Fonksiyonu: Eğer doğum tarihinden yaş hesaplamak isterseniz, AGE() fonk
 
 ### PostgreSQL Metin (String) Fonksiyonları
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 #### 🔹Temel Fonksiyonlar
 
@@ -2123,7 +2117,7 @@ SELECT ad, TO_CHAR(dtarihi, 'DD.MM.YYYY') AS dogum_tarihi FROM ogrenciler;
 
 ## 🧱 PostgreSQL’de Transaction (İşlem) Nedir?
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 Transaction, bir grup SQL işleminin **tamamının başarıyla yapılması** veya **hiç yapılmaması** demektir.
  Yani **atomicity (bölünmezlik)** ilkesini sağlar.
@@ -2266,7 +2260,7 @@ Fonksiyon hata alırsa otomatik rollback olur.
 
 ## PostgreSQL Kullanıcı Yönetimi
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 > ```sql
 > postgres=# ALTER USER postgres PASSWORD 'parola';
