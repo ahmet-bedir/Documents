@@ -13,7 +13,7 @@
 
 **İçindekiler**
 
-► [**Komut Satırı**](#komut_satiri)
+► [**Komut Satırı**](#komut_satiri) [pwd cd ls touch file cat less history cp mv mkdir rm find help whatis alias]
 
 ► [**Metin İşlemleri**](#metin)
 
@@ -727,8 +727,6 @@ Aşağıdaki tabloda en yaygın kullanılan `chattr` parametrelerini bulabilirsi
 
 Bir dosyayı root dahil kimsenin silememesi veya düzenleyememesi için `i` özniteliğini kullanırız:
 
-Bash
-
 ```bash
 sudo chattr +i onemli_dosya.txt
 ```
@@ -738,8 +736,6 @@ sudo chattr +i onemli_dosya.txt
 ##### 2. Sadece Veri Eklenmesine İzin Vermek
 
 Bir log dosyasının geçmişinin silinmesini istemiyor, sadece yeni satırlar eklenmesini istiyorsanız:
-
-Bash
 
 ```bash
 sudo chattr +a sistem.log
@@ -757,9 +753,7 @@ sudo chattr -i onemli_dosya.txt
 
 ##### Öznitelikleri Nasıl Kontrol Edilir? (`lsattr`)
 
-Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:
-
-Bash
+Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:p
 
 ```bash
 lsattr onemli_dosya.txt
@@ -904,20 +898,6 @@ $ ls --help
 
 ---
 
-### man
-
-Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, `man` komutunu kullanarak man sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir.
-
-Örneğin, `ls` komutu hakkında daha fazla bilgi edinmek için:
-
-```bash
-$ man ls
-```
-
-Man sayfaları bazen teknik olabilir, ancak bir komutun tüm özelliklerini öğrenmek için harika bir kaynaktır.
-
----
-
 ### whatis
 
 Bir komutun ne işe yaradığından şüphe duyuyorsanız, `whatis` komutunu kullanarak kısa bir açıklama alabilirsiniz. `whatis` komutu, komut satırı programları hakkında özlü bilgiler sağlar.
@@ -977,17 +957,6 @@ $ unalias la
 ```
 
 Bu komuttan sonra `la` takma adını kullanamazsınız.
-
----
-
-### exit
-
-Shell'den çıkmak için aşağıdaki komutlardan birini kullanabilirsiniz:
-
-- `exit`: Bu en yaygın çıkış komutudur.
-- `logout`: `exit` komutuyla aynı işlevi görür.
-
-Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabilirsiniz.
 
 ---
 
