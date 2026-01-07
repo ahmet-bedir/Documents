@@ -13,9 +13,9 @@
 
 **İçindekiler**
 
-► [**Komut Satırı**](#komut_satiri) [pwd cd ls touch file cat less history cp mv mkdir rm find help whatis alias]
+► [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `find` `help` `whatis` `alias`]
 
-► [**Metin İşlemleri**](#metin)
+► [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee`]
 
 ► [**Gelişmiş Metin İşlemleri**](#metin2)
 
