@@ -5,7 +5,7 @@
 
 # Linux İşletim Sistemi
 
-###### Son güncelleme : 12/2025
+###### Son güncelleme : 01/2026
 
 ---
 
@@ -13,11 +13,11 @@
 
 **İçindekiler**
 
-► [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `find` `help` `whatis` `alias`]
+► [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
 
-► [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee`]
+► [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
 
-► [**Gelişmiş Metin İşlemleri**](#metin2)
+► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
 ► 
 
@@ -896,6 +896,11 @@ Bu komut, `echo` komutunu çalıştırmak istediğinizde kullanabileceğiniz aç
 $ ls --help
 ```
 
+Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, man komutunu kullanarak man sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir. Kullanımı `man <komut_adı>` şeklindedir.
+
+Örneğin, ls komutu hakkında daha fazla bilgi edinmek için:
+`man ls`
+
 ---
 
 ### whatis
@@ -976,13 +981,9 @@ Komutların nasıl çalıştığını ve çıktı ürettiklerini öğrendik. Şi
 $ echo Hello World > peanuts.txt
 ```
 
-**Ne Oldu?**
-
-Bu komutu çalıştırdığınız dizine gidin ve orada `peanuts.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Hello World" yazısını göreceksiniz. Tek bir komutta birçok şey oldu, hadi gelin bunları parçalara ayıralım.
+Bu komutu çalıştırdığınız dizine gidin ve orada `peanuts.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Hello World" yazısını göreceksiniz. Bu komutu incelediğimizde:
 
 **echo Komutu**
-
-İlk olarak komutun ilk kısmını ele alalım:
 
 ```bash
 $ echo Hello World
@@ -1002,7 +1003,7 @@ Yani standart çıktı yönlendirme böyle çalışır!
 
 **Dosyaya Ekleme**
 
-Peki ya `peanuts.txt` dosyasının üzerine yazmak istemezsek? Neyse ki, bunun için de bir yönlendirme operatörü var: >>
+Peki ya `peanuts.txt` dosyasının üzerine yazmak istemezsek `>>` operatörü kullanılır.
 
 ```bash
 $ echo Hello World >> peanuts.txt
@@ -1299,6 +1300,50 @@ Bu, özellikle metin dosyaları farklı programlar arasında paylaşılırken ve
 
 ---
 
+### wc ve nl
+
+Bu komut, bir dosyadaki toplam kelime sayısını görüntüler.
+
+```bash
+$ wc /etc/passwd
+  96  265  5925 /etc/passwd
+```
+
+Bu çıktı satırları, sırasıyla kelime sayısı, karakter sayısı ve dosya boyutunu göstermektedir.
+
+* Belirli bir alanı saydırmak için -l, -w veya -c seçeneklerini kullanabilirsiniz.
+
+```bash
+$ wc -l /etc/passwd
+96
+```
+
+* Bir dosyadaki satır sayısını görmek için nl (satır numaralandırma) komutunu da kullanabilirsiniz.
+
+```bash
+dosya1.txt
+ben
+adana'yı
+seviyorum
+```
+
+```bash
+$ nl dosya1.txt
+1. ben
+2. istanbul'u
+3. seviyorum
+```
+
+---
+
+<a id="metin2"><a/>
+
+## 🧾 Gelişmiş Metin İşlemleri
+
+🔼 [**Başa Dön**](#basa_don)
+
+---
+
 ### join ve split
 
 Birleştirme ve ayırma işlemleri için kullanışlı komutlar vardır:
@@ -1506,42 +1551,6 @@ Bu şekilde, tüm yinelenen satırlar, konumlarından bağımsız olarak kaldır
 
 ---
 
-### wc ve nl
-
-Bu komut, bir dosyadaki toplam kelime sayısını görüntüler.
-
-```bash
-$ wc /etc/passwd
-  96  265  5925 /etc/passwd
-```
-
-Bu çıktı satırları, sırasıyla kelime sayısı, karakter sayısı ve dosya boyutunu göstermektedir.
-
-* Belirli bir alanı saydırmak için -l, -w veya -c seçeneklerini kullanabilirsiniz.
-
-```bash
-$ wc -l /etc/passwd
-96
-```
-
-* Bir dosyadaki satır sayısını görmek için nl (satır numaralandırma) komutunu da kullanabilirsiniz.
-
-```bash
-dosya1.txt
-ben
-adana'yı
-seviyorum
-```
-
-```bash
-$ nl dosya1.txt
-1. ben
-2. istanbul'u
-3. seviyorum
-```
-
----
-
 ### grep
 
 grep, muhtemelen en sık kullanacağınız metin işleme komutlarından biridir. Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
@@ -1579,14 +1588,6 @@ $ ls /somedir | grep '.txt$'
 ```
 
 Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmelidir.
-
----
-
-<a id="metin2"><a/>
-
-## 🧾 Gelişmiş Metin İşlemleri
-
-🔼 [**Başa Dön**](#basa_don)
 
 ---
 
@@ -1688,8 +1689,175 @@ Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir ancak "kaz", "kbz" ve "kcz" ile eş
 
 İşte bazı temel düzenli ifade örnekleri böyledir.
 
+---
 
+### Vim (Vi Improved)
+
+Vim, adından da anlaşılacağı gibi, vi metin editörü komutunun geliştirilmiş versiyonu anlamına gelen "vi ( geliştirilmiş)" kelimelerinin kısaltmasıdır.
+
+Çok hafiftir, vim ile bir dosya açmak ve düzenlemek hızlı ve kolaydır. Aynı zamanda neredeyse her zaman kullanılabilir, rastgele bir Linux dağıtımı başlattıysanız, büyük ihtimalle vim varsayılan olarak kuruludur.
+
+Vim'i çalıştırmak için sadece şunu yazın:
+
+```bash
+vim
+```
+
+Denemenize rağmen bir şey yazamadığınızı fark etmiş olabilirsiniz. Bunun nedeni, komut modunda olmanızdır. Bu özellikle sadece bir dosya açıp metin girmek istiyorsanız oldukça kafa karıştırıcı olabilir. Komut modu, h, j, k, l vb. gibi komutları girdiğinizde kullanılır. Metin eklemek için öncelikle ekleme moduna girmeniz gerekir.
+
+`i`- İmlecin önüne metin ekler
+
+`O` - Önceki satıra metin ekler
+
+`o` - Sonraki satıra metin ekler
+
+`a` - İmlecin sonuna metin ekler
+
+`A` - Satırın sonuna metin ekler
+
+Bu ekleme modlarından herhangi birini yazdığınızda, vim'in ekranın alt kısmında ekleme moduna geçtiğini göreceksiniz. Ekleme modundan çıkmak ve komut moduna geri dönmek için sadece `Esc` tuşuna basın.
+
+Vim'den çıkıp dosyayı kaydetmek için:
+
+`:w` - Dosyayı yazar veya kaydeder.
+
+`:q` - Vim'den çıkar.
+
+`:wq` - Kaydedip çıkar (write and quit).
+
+`:q!` - Dosyayı kaydetmeden vim'den çıkar.
+
+`ZZ` - :wq ile aynı işlevi görür, ancak bir tuş daha kısadır.
+
+`u` - Son eylemi geri alır (undo).
+
+`Ctrl-r` - Son eylemi yeniden yapar (redo)
+
+---
+
+### Emacs
+
+Emacs, son derece güçlü bir metin editörü arayan kullanıcılar içindir. Bu aslında bir yetersiz ifade bile olabilir, çünkü emacs'ın içinde yaşarsınız. Tüm kod düzenlemelerinizi, dosya işlemlerinizi vb. her şeyi emacs içinde yapabilirsiniz. Vim'e göre biraz daha yavaş açılır ve öğrenme eğrisi biraz daha diktir, ancak son derece genişletilebilir güçlü bir editör istiyorsanız, emacs tam size göre. Genişletilebilir derken, işlevselliğini genişleten emacs için script'ler yazabileceğinizi kastediyorum.
+
+Emacs'ı başlatmak için:
+
+```bash
+emacs
+```
+
+komutunu kullanın. Varsayılan karşılama tamponuyla karşılanmalısınız.
+
+Emacs'ta metinlerinizin bulunduğu yer tamponlardır. Yani bir dosya açarsanız, o dosyanın içeriğini depolamak için bir tampon kullanılır. Aynı anda birden fazla tampon açabilir ve tamponlar arasında kolayca geçiş yapabilirsiniz.
+
+#### Emacs Dosyaları Manipüle Etme
+
+Emacs dokümantasyonunun çoğunda (hatta hepsinde) **C-\[harf]** sözdizimini göreceksiniz. Bu sadece **Ctrl** tuşuna basıp ardından belirtilen **harf**e basmak anlamına gelir, ancak kısaltma amacıyla **Ctrl** tuşuna **C** diyeceğiz. Eğer **M-\[harf]** gibi bir sözdizimi görürseniz, bu genellikle **Alt** tuşu olan **Meta** tuşunu kullanmanız gerektiğini belirtir.
+
+**Dosya Kaydetme**
+
+```bash
+C-x C-s - Bir dosyayı kaydeder.
+
+C-x C-w - Dosyayı farklı kaydet (farklı isim vermek için).
+
+C-x s - Tüm dosyaları kaydeder.
+```
+
+Dosya kaydetme seçenekleri her dosyayı kaydetmek isteyip istemediğinizi soracaktır.
+
+**Dosya Açma**
+
+```bash
+C-x C-f
+```
+
+Bu sizi açmak için bir dosya adı yazmaya yönlendirecektir. Zaten var olan bir dosyanız yoksa, yeni bir dosya oluşturacaktır. Ayrıca bir dizini de yükleyebilirsiniz.
+
+#### Emacs Buffer Navigasyonu
+
+Tamponlar (veya ziyaret ettiğiniz dosyalar) arasında gezinmek için aşağıdaki komutları kullanın:
+
+**Buffer Değiştirme**
+
+```bash
+C-x b - Tampon değiştirir.
+
+C-x sağ ok - Tamponlar arasında sağa doğru dolaşır.
+
+C-x sol ok - Tamponlar arasında sola doğru dolaşır.
+```
+
+**Buffer Kapatma**
+
+```bash
+C-x k
+```
+
+**Geçerli Buffer Bölme**
+
+```bash
+C-x 2
+```
+
+Bu, tek bir ekran üzerinde birden fazla tampon görmenizi sağlar. Bu tamponlar arasında gezinmek için: **C-x o** kullanın.
+
+**Tek Bir Buffer Ekran Olarak Ayarlama**
+
+```bash
+C-x 1
+```
+
+Eğer terminal multiplexer ( ekran ve tmux gibi ) kullandıysanız, tampon komutları size oldukça tanıdık gelecektir.
+
+#### Emacs Düzenleme
+
+**Metin Gezinme**
+
+```bash
+C-yukarı ok : Bir paragraf yukarı git.
+C-aşağı ok : Bir paragraf aşağı git.
+C-sol ok : Bir kelime sola git.
+C-sağ ok : Bir kelime sağa git.
+M-> : Tamponun sonuna git.
+```
+
+Metin gezinmesinde, normal metin tuşlarınız olması gerektiği gibi çalışır; Home, End, Page Up, Page Down ve ok tuşları vb.
+
+**Kesme ve Yapıştırma**
+
+Emacs'ta metni kesmek (kill) veya yapıştırmak (yank) için öncelikle metni seçmeniz gerekir. Metni seçmek için, imlecinizi kesmek veya yapıştırmak istediğiniz yere getirin ve ardından **C-space** tuşuna basın. Ardından istediğiniz metni seçmek için gezinme tuşlarını kullanabilirsiniz. Şimdi kesme ve yapıştırmayı aşağıdaki gibi yapabilirsiniz:
+
+```bash
+C-w : Kes.
+C-y : Yapıştır.
+```
+
+**Emacs'ten Çıkış**
+
+```bash
+C-x C-c
+```
+
+Emacs'ten çıkmadan önce herhangi bir açık tamponunuz varsa, kaydetmek isteyip istemediğinizi soracaktır.
+
+```bash
+C-h C-h : yardım menüsü
+```
+
+**Geri Al**
+
+```bash
+C-x u
+```
+
+Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nedenle öğrenme eğrisi biraz daha zorlu. Ancak bunun karşılığında, çok güçlü bir metin editörü elde edersiniz.
+
+---
 
 ![](../images/yapım-asaması.png)
 
+---
+
 ###### Referans ve Katkılar: Bu belgedeki bilgiler [Türkçe Linux](https://turkce-linux.gitbook.io/anasayfa) üzerinden referans alınarak derlenmiştir.
+
+###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.
