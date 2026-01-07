@@ -19,7 +19,9 @@
 
 ► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-► 
+► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar`]
+
+
 
 
 
@@ -198,7 +200,17 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine göndererek gerçekleştirilmesini sağlayan bir programdır. Daha önce bir GUI (grafiksel arayüz) kullandıysanız, "Terminal" veya "Konsol" gibi progralları görmüşsünüzdür. Bunlar sizin için bir kabuk başlatan programlardır.
 
-Bu belgede kabuk programı bash (Bourne Again SHell) kullanacağız, hemen hemen tüm Linux dağıtımları varsayılan olarak bash kabuğunu kullanır. Ksh, zsh, tsch gibi başka kabuklar da mevcuttur, ancak en çok kullanılan kabuk programı bash'dir.
+Bu belgede kabuk programı bash (Bourne Again SHell) kullanacağız, hemen hemen tüm Linux dağıtımları varsayılan olarak bash kabuğunu kullanır. Ksh, zsh, tsch gibi başka kabuklar da mevcuttur, ancak en çok kullanılan kabuk programı bash'dir. `chsh -s [kabuk-adı]` komutu ile kabuğu değiştirebiliriz. (örneğin `chsh -s /usr/bin/bash`)
+
+Temelde bizler kabuğa iki tür komut girebiliyoruz. Bu türler “dahili” ve “harici” olarak gruplanmış olan komutlardır.
+
+##### Dahili Komutlar(Built-ins)
+
+Dahili komutlar, kabuk programında yerleşik olan araçları çalıştırmak üzere kullanılan komutlardır. Bash üzerinde yer alan tüm dahili komutları görmek için `compgen -b` komutunu kullanabiliriz.
+
+##### Harici Komutlar(External)
+
+Harici komutlar ise, mevcut sistem üzerinde yüklü bulunan araçları çalıştırmamızı sağlayan komutlardır. Tabii ki bu tür komutlar harici olan araçları temsil eden komutlar olduğu için kullanmakta olduğunuz sisteme göre harici komutlar değişiklik gösterir. Örneğin siz komut satırı üzerinden metinleri düzenleyebilmenizi sağlayacak olan nano aracını çalıştırmak üzere kabuğa aracın ismini girdiğinizde eğer araç sistemde yüklü ise açılır. Eğer yüklü değilse komut yok hatası alırsınız. İşte burada girdiğiniz `nano` komutu harici bir komut olarak kabul ediliyor. Çünkü nano aracı bash kabuğunun içinde yüklü gelen bir araç değil, nano aracı harici olarak sisteme yüklenmiş olan bir metin editörü yazılımıdır.
 
 Genel görünümü (promt) aşağıdaki gibidir.
 
@@ -1851,6 +1863,82 @@ C-x u
 ```
 
 Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nedenle öğrenme eğrisi biraz daha zorlu. Ancak bunun karşılığında, çok güçlü bir metin editörü elde edersiniz.
+
+---
+
+<a id="kullanici"><a/>
+
+## 🧑‍🧒‍🧒 Kullanıcı Yönetimi
+
+🔼 [**Başa Dön**](#basa_don)
+
+---
+
+# Kullanıcılar ve Gruplar
+
+Geleneksel tüm işletim sistemlerinde kullanıcılar ve gruplar bulunur. Bunlar yalnızca erişim ve izinleri yönetmek için vardır. Bir işlem çalıştırıldığında, ister Jane ister Bob olsun, bu işlemin sahibi olarak çalışır. Dosya erişimi ve sahipliği de izinlere bağlıdır. Jane'in Bob'un belgelerini görmesini istemezsiniz ve bunun tersi de geçerlidir.
+
+Her kullanıcının kullanıcıya özgü dosyalarının saklandığı kendi ana dizini vardır. Bu genellikle /home/kullanıcıadı konumunda bulunur, ancak farklı dağıtımlarda değişebilir.
+
+Sistem, kullanıcıları yönetmek için kullanıcı kimlikleri (UID) kullanır. Kullanıcı adları, kullanıcıları tanımlama ile ilişkilendirmenin kolay yoludur, ancak sistem kullanıcıları UID'lerine göre tanımlar. Sistem ayrıca izinleri yönetmek için gruplar kullanır. Gruplar, izin seti o grup tarafından belirlenen kullanıcı kümeleridir ve sistem tarafından grup kimliği (GID) ile tanımlanır.
+
+Linux'ta, sistemi kullanan normal insanlara ek olarak kullanıcılarınız da olacaktır. Bazen bu kullanıcılar, sistemi çalışır durumda tutmak için sürekli olarak işlemleri çalıştıran sistem hizmetleridir (daemon). En önemli kullanıcılardan biri root veya süper kullanıcıdır. Root, sistemdeki en güçlü kullanıcıdır, root herhangi bir dosyaya erişebilir ve herhangi bir işlemi başlatabilir veya sonlandırabilir. Bu nedenle, her zaman root olarak çalışmak tehlikeli olabilir, potansiyel olarak sistem için kritik öneme sahip dosyaları silebilirsiniz. Neyse ki, root erişimine ihtiyaç duyulursa ve bir kullanıcının root erişimi varsa, sudo komutuyla bir komutu root olarak çalıştırabilir. Sudo komutu (superuser do), bir komutu root erişimiyle çalıştırmak için kullanılır. Bir kullanıcının root erişimini nasıl aldığı konusunda daha sonraki bir derste daha ayrıntılı olarak ele alacağız.
+
+Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
+
+```
+$ cat /etc/shadow
+```
+
+İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
+
+```
+$ ls -la /etc/shadow
+```
+
+-rw-r----- 1 root shadow 1134 Dec 1 11:45 /etc/shadow
+
+İzinlerden henüz bahsetmedik, ancak burada olan şu: root dosyanın sahibi ve içeriği okumak için root erişimine sahip olmanız veya shadow grubunun bir parçası olmanız gerekiyor. Şimdi komutu sudo ile çalıştırın:
+
+```
+$ sudo cat /etc/shadow
+```
+
+Artık dosyanın içeriğini görebileceksiniz!
+
+Geleneksel tüm işletim sistemlerinde kullanıcılar ve gruplar bulunur. Bunlar yalnızca erişim ve izinleri yönetmek için vardır. Bir işlem çalıştırıldığında, ister Jane ister Bob olsun, bu işlemin sahibi olarak çalışır. Dosya erişimi ve sahipliği de izinlere bağlıdır. Jane'in Bob'un belgelerini görmesini istemezsiniz ve bunun tersi de geçerlidir.
+
+Her kullanıcının kullanıcıya özgü dosyalarının saklandığı kendi ana dizini vardır. Bu genellikle /home/kullanıcıadı konumunda bulunur, ancak farklı dağıtımlarda değişebilir.
+
+Sistem, kullanıcıları yönetmek için kullanıcı kimlikleri (UID) kullanır. Kullanıcı adları, kullanıcıları tanımlama ile ilişkilendirmenin kolay yoludur, ancak sistem kullanıcıları UID'lerine göre tanımlar. Sistem ayrıca izinleri yönetmek için gruplar kullanır. Gruplar, izin seti o grup tarafından belirlenen kullanıcı kümeleridir ve sistem tarafından grup kimliği (GID) ile tanımlanır.
+
+Linux'ta, sistemi kullanan normal insanlara ek olarak kullanıcılarınız da olacaktır. Bazen bu kullanıcılar, sistemi çalışır durumda tutmak için sürekli olarak işlemleri çalıştıran sistem hizmetleridir (daemon). En önemli kullanıcılardan biri root veya süper kullanıcıdır. Root, sistemdeki en güçlü kullanıcıdır, root herhangi bir dosyaya erişebilir ve herhangi bir işlemi başlatabilir veya sonlandırabilir. Bu nedenle, her zaman root olarak çalışmak tehlikeli olabilir, potansiyel olarak sistem için kritik öneme sahip dosyaları silebilirsiniz. Neyse ki, root erişimine ihtiyaç duyulursa ve bir kullanıcının root erişimi varsa, sudo komutuyla bir komutu root olarak çalıştırabilir. Sudo komutu (superuser do), bir komutu root erişimiyle çalıştırmak için kullanılır. Bir kullanıcının root erişimini nasıl aldığı konusunda daha sonraki bir derste daha ayrıntılı olarak ele alacağız.
+
+Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
+
+```
+$ cat /etc/shadow
+```
+
+İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
+
+```
+$ ls -la /etc/shadow
+```
+
+-rw-r----- 1 root shadow 1134 Dec 1 11:45 /etc/shadow
+
+İzinlerden henüz bahsetmedik, ancak burada olan şu: root dosyanın sahibi ve içeriği okumak için root erişimine sahip olmanız veya shadow grubunun bir parçası olmanız gerekiyor. Şimdi komutu sudo ile çalıştırın:
+
+```
+$ sudo cat /etc/shadow
+```
+
+Artık dosyanın içeriğini görebileceksiniz!
+
+
+
+
 
 ---
 
