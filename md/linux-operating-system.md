@@ -19,7 +19,7 @@
 
 ► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root`]
+► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` ]
 
 
 
@@ -1899,7 +1899,6 @@ Sistemi yönetirken, yetki gerektiren işlemler yapmamız gerebilir. Sistemde en
 Buna karşın root hesabı aktif olmasa bile yetki gerektiren işlerimiz için geçici olarak root yetkileri ile hareket edebilmemizi sağlayan `sudo` komutunu kullanabiliyoruz. `sudo` sayesinde root hesabı aktif değilken veya root aktifse bile root hesabının şifresini bilmeden yönetici ayrıcalıkları ile işlerimizi yürütmemiz mümkün oluyor.
 
 
-
 Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
 
 ```bash
@@ -1921,22 +1920,6 @@ $ sudo cat /etc/shadow
 ```
 
 Artık dosyanın içeriğini görebileceksiniz!
-
-Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
-
-```bash
-$ cat /etc/shadow
-```
-
-İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
-
-```bash
-$ ls -la /etc/shadow
-```
-
--rw-r----- 1 root shadow 1134 Dec 1 11:45 /etc/shadow
-
-İzinlerden henüz bahsetmedik, ancak burada olan şu: root dosyanın sahibi ve içeriği okumak için root erişimine sahip olmanız veya shadow grubunun bir parçası olmanız gerekiyor.
 
 ---
 
@@ -1979,6 +1962,81 @@ Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellik
 Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, /etc/passwd'ın diğer kullanıcıları da içerdiğini fark edeceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
 
 Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız /etc/passwd dosyasını manuel olarak vipw aracıyla düzenleyebileceğinizi de unutmayın, ancak daha sonraki bir derste tartışacağımız useradd ve userdel gibi araçlara bırakmak en iyisidir.
+
+---
+
+### /etc/shadow
+
+/etc/shadow dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
+
+```
+$ sudo cat /etc/shadow
+```
+
+İçeriği /etc/passwd dosyasına oldukça benziyor ancak şifre alanında şifreli bir şifre göreceksiniz. Alanlar şöyle noktalarla ayrılır:
+
+* Kullanıcı adı
+* Şifreli şifre
+* Son şifre değiştirme tarihi - 1 Ocak 1970'ten itibaren geçen gün sayısı olarak ifade edilir. 0 varsa bu, kullanıcının bir sonraki oturum açışında şifresini değiştirmesi gerektiği anlamına gelir
+* Minimum şifre yaşı - Bir kullanıcının şifresini tekrar değiştirebilmesi için beklemesi gereken gün sayısı
+* Maksimum şifre yaşı - Bir kullanıcının şifresini değiştirmesi gerekene kadar geçecek maksimum gün sayısı
+* Şifre uyarı süresi - Şifrenin süresi dolmadan önceki gün sayısı
+* Şifre etkinsizlik süresi - Şifresi süresi dolmuş bir kullanıcının şifresiyle oturum açmasına izin verilen gün sayısı
+* Hesap son kullanma tarihi - Kullanıcının oturum açamayacağı tarih
+* Gelecekte kullanılmak üzere ayrılmış alan
+
+Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca /etc/shadow dosyasına güvenmez, kimlik doğrulamayı değiştiren PAM (Pluggable Authentication Modules) gibi başka mekanizmalar da vardır.
+
+---
+
+### /etc/group
+
+Kullanıcı yönetiminde kullanılan bir diğer dosya ise /etc/group dosyasıdır. Bu dosya, farklı izinlere sahip farklı gruplar oluşturulmasını sağlar.
+
+```
+$ cat /etc/group
+```
+
+/etc/passwd dosyasına benzer şekilde, /etc/group dosyası alanları aşağıdaki gibidir:
+
+* Grup adı
+* Grup şifresi - grup şifresi belirlemeye gerek yoktur, sudo gibi yükseltilmiş bir ayrıcalık kullanmak standarttır. Varsayılan değer olarak "\*" yerleştirilir.
+* Grup kimliği (GID)
+* Kullanıcı listesi - Belirli bir grupta istediğiniz kullanıcıları manuel olarak belirleyebilirsiniz.
+
+---
+
+### Kullanıcı Yönetim Araçları
+
+Kurumsal ortamların çoğu kullanıcı, hesap ve şifre yönetimi için yönetim sistemleri kullanır. Ancak tek bir bilgisayarda kullanıcıları yönetmek için çalıştırabileceğiniz faydalı komutlar vardır.
+
+#### Kullanıcı Ekleme
+
+Kullanıcı eklemek için `adduser` veya `useradd` komutunu kullanabilirsiniz. `adduser` komutu, ana dizin oluşturma gibi daha kullanışlı özelliklere sahiptir. Yeni kullanıcılara ne atamak istediğinize bağlı olarak özelleştirilebilen kullanıcı ekleme için yapılandırma dosyaları vardır.
+
+```
+sudo useradd ali
+```
+
+Yukarıdaki komut, ali için /etc/passwd'de bir giriş oluşturur, varsayılan grupları ayarlar ve /etc/shadow dosyasına bir giriş ekler.
+
+#### Kullanıcı Silme
+
+Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
+
+```
+sudo userdel ali
+```
+
+Bu komut, temel olarak useradd tarafından yapılan dosya değişikliklerini geri almaya çalışır.
+
+#### Şifre Değiştirme
+
+Aşağıdaki komut size veya başka bir kullanıcıya (root yetkisine sahipseniz) şifreyi değiştirme izni verir.
+
+```
+passwd ali
+```
 
 ---
 
