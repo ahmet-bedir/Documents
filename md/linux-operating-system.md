@@ -1939,13 +1939,15 @@ Artık hangi komutları süper kullanıcı olarak çalıştıracağınızı bili
 
 Kullanıcı adları aslında kullanıcılar için gerçek tanımlayıcılar değildir. Sistem, bir kullanıcıyı tanımlamak için bir kullanıcı kimliği (UID) kullanır. Hangi kullanıcının hangi kimliğe eşleştiğini bulmak için /etc/passwd dosyasına bakın.
 
-```
+```bash
 $ cat /etc/passwd
 ```
 
+![](../images/passwd.jpg)
+
 Bu dosya size bir kullanıcı listesi ve onlar hakkında detaylı bilgiler gösterir. Örneğin, bu dosyadaki ilk satır muhtemelen şöyle görünür:
 
-```
+```bash
 root:x:0:0:root:/root:/bin/bash
 ```
 
@@ -1969,7 +1971,7 @@ Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız /etc/passw
 
 /etc/shadow dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
 
-```
+```bash
 $ sudo cat /etc/shadow
 ```
 
@@ -1993,7 +1995,7 @@ Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca /
 
 Kullanıcı yönetiminde kullanılan bir diğer dosya ise /etc/group dosyasıdır. Bu dosya, farklı izinlere sahip farklı gruplar oluşturulmasını sağlar.
 
-```
+```bash
 $ cat /etc/group
 ```
 
@@ -2014,7 +2016,7 @@ Kurumsal ortamların çoğu kullanıcı, hesap ve şifre yönetimi için yöneti
 
 Kullanıcı eklemek için `adduser` veya `useradd` komutunu kullanabilirsiniz. `adduser` komutu, ana dizin oluşturma gibi daha kullanışlı özelliklere sahiptir. Yeni kullanıcılara ne atamak istediğinize bağlı olarak özelleştirilebilen kullanıcı ekleme için yapılandırma dosyaları vardır.
 
-```
+```bash
 sudo useradd ali
 ```
 
@@ -2024,7 +2026,7 @@ Yukarıdaki komut, ali için /etc/passwd'de bir giriş oluşturur, varsayılan g
 
 Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
 
-```
+```bash
 sudo userdel ali
 ```
 
@@ -2034,7 +2036,7 @@ Bu komut, temel olarak useradd tarafından yapılan dosya değişikliklerini ger
 
 Aşağıdaki komut size veya başka bir kullanıcıya (root yetkisine sahipseniz) şifreyi değiştirme izni verir.
 
-```
+```bash
 passwd ali
 ```
 
