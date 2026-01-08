@@ -5,7 +5,7 @@
 
 # Linux Sistemlerde Paket Yönetimi
 
-###### Son güncelleme : 12/2025
+###### Son güncelleme : 01/2026
 
 ---
 
@@ -799,5 +799,76 @@ sudo apt remove <paket_adı>
 > 🔹 **Bu yöntem Debian/Pardus/Ubuntu tabanlı sistemlerde çok daha kontrollüdür, çünkü sistem paket yöneticisine kaydedilir.**
 
 ------
+
+**Linux’ta kurulu bir programın hangi paket yöneticisi / paket ile kurulduğu çoğu durumda öğrenilebilir.** Ancak yöntem, **dağıtıma ve kurulum şekline** göre değişir. Aşağıda bunu sistematik biçimde açıklıyorum.
+
+------
+
+##### 1. Programın Yolu Bulma
+
+```
+which program_adı
+```
+
+veya
+
+```
+whereis program_adı
+```
+
+Örnek:
+
+```
+which nginx
+# /usr/sbin/nginx
+```
+
+Bu yol, paketi bulmak için ana girdidir.
+
+------
+
+##### 2. Debian / Ubuntu / Kali (apt / dpkg)
+
+###### Dosya Hangi Pakete Ait?
+
+```
+dpkg -S /usr/sbin/nginx
+```
+
+Çıktı:
+
+```
+nginx-core: /usr/sbin/nginx
+```
+
+##### Paket Kurulu mu?
+
+```
+dpkg -l | grep nginx
+```
+
+##### Paket Bilgisi
+
+```
+apt show nginx
+```
+
+------
+
+##### 3. Red Hat / CentOS / Fedora (dnf / rpm)
+
+```
+rpm -qf /usr/sbin/nginx
+```
+
+Paket detayları:
+
+```
+rpm -qi nginx 
+```
+
+
+
+---
 
 ###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.
