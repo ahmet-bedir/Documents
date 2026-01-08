@@ -19,7 +19,7 @@
 
 ► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar`]
+► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root`]
 
 
 
@@ -1874,7 +1874,7 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 ---
 
-# Kullanıcılar ve Gruplar
+### Kullanıcılar ve Gruplar
 
 Geleneksel tüm işletim sistemlerinde kullanıcılar ve gruplar bulunur. Bunlar yalnızca erişim ve izinleri yönetmek için vardır. Bir işlem çalıştırıldığında, ister Jane ister Bob olsun, bu işlemin sahibi olarak çalışır. Dosya erişimi ve sahipliği de izinlere bağlıdır. Jane'in Bob'un belgelerini görmesini istemezsiniz ve bunun tersi de geçerlidir.
 
@@ -1886,13 +1886,13 @@ Linux'ta, sistemi kullanan normal insanlara ek olarak kullanıcılarınız da ol
 
 Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
 
-```
+```bash
 $ cat /etc/shadow
 ```
 
 İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
 
-```
+```bash
 $ ls -la /etc/shadow
 ```
 
@@ -1900,7 +1900,7 @@ $ ls -la /etc/shadow
 
 İzinlerden henüz bahsetmedik, ancak burada olan şu: root dosyanın sahibi ve içeriği okumak için root erişimine sahip olmanız veya shadow grubunun bir parçası olmanız gerekiyor. Şimdi komutu sudo ile çalıştırın:
 
-```
+```bash
 $ sudo cat /etc/shadow
 ```
 
@@ -1916,13 +1916,13 @@ Linux'ta, sistemi kullanan normal insanlara ek olarak kullanıcılarınız da ol
 
 Korunan bir dosyayı, örneğin /etc/shadow'u görüntülemeye çalışın:
 
-```
+```bash
 $ cat /etc/shadow
 ```
 
 İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
 
-```
+```bash
 $ ls -la /etc/shadow
 ```
 
@@ -1936,7 +1936,19 @@ $ sudo cat /etc/shadow
 
 Artık dosyanın içeriğini görebileceksiniz!
 
+---
 
+### Root
+
+Süper kullanıcı erişimi elde etmenin sudo komutunu kullanmanın dışında bir yolu daha vardır. Bu işlem için su komutunu da kullanabilirsiniz. Bu komut herhangi bir kullanıcı adı belirtilmediğinde "kullanıcıları değiştirir" ve bir root kabuğu açar. Parolayı bildiğiniz sürece bu komutu herhangi bir kullanıcıya geçmek için kullanabilirsiniz.
+
+```bash
+$ su
+```
+
+Bu yöntemin bazı dezavantajları vardır: her şeyi root olarak çalıştırmak kritik bir hata yapmayı çok daha kolaylaştırır, sistem konfigürasyonlarını değiştirmek için kullandığınız komutların kayıtlarını tutmaz vb. Temel olarak, süper kullanıcı olarak komut çalıştırmanız gerekiyorsa, sadece sudo kullanın.
+
+Artık hangi komutları süper kullanıcı olarak çalıştıracağınızı biliyorsunuz, soru şu: bunu kimin yapabileceğini nasıl biliyorsunuz? Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, peki bunu nasıl biliyor? /etc/sudoers adlı bir dosya var, bu dosya sudo çalıştırabilen kullanıcıları listeler. Bu dosyayı visudo komutuyla düzenleyebilirsiniz.
 
 
 
