@@ -13,13 +13,15 @@
 
 **İçindekiler**
 
-► [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
+➤ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
 
-► [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
+➤ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
 
-► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
+➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-► [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` ]
+➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` ]
+
+➤
 
 
 
@@ -55,7 +57,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
 
-### ► Debian Dağıtımı
+### ►Debian Dağıtımı
 
 **Genel Bakış**
 
@@ -1935,7 +1937,7 @@ Bu yöntemin bazı dezavantajları vardır: her şeyi root olarak çalıştırma
 
 Artık hangi komutları süper kullanıcı olarak çalıştıracağınızı biliyorsunuz, soru şu: bunu kimin yapabileceğini nasıl biliyorsunuz? Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, peki bunu nasıl biliyor? /etc/sudoers adlı bir dosya var, bu dosya sudo çalıştırabilen kullanıcıları listeler. Bu dosyayı visudo komutuyla düzenleyebilirsiniz.
 
-### /etc/passwd
+### `/etc/passwd` dosyası
 
 Kullanıcı adları aslında kullanıcılar için gerçek tanımlayıcılar değildir. Sistem, bir kullanıcıyı tanımlamak için bir kullanıcı kimliği (UID) kullanır. Hangi kullanıcının hangi kimliğe eşleştiğini bulmak için /etc/passwd dosyasına bakın.
 
@@ -1967,7 +1969,7 @@ Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız /etc/passw
 
 ---
 
-### /etc/shadow
+### `/etc/shadow` dosyası
 
 /etc/shadow dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
 
@@ -1991,7 +1993,7 @@ Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca /
 
 ---
 
-### /etc/group
+### `/etc/group` dosyası
 
 Kullanıcı yönetiminde kullanılan bir diğer dosya ise /etc/group dosyasıdır. Bu dosya, farklı izinlere sahip farklı gruplar oluşturulmasını sağlar.
 
