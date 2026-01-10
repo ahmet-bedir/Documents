@@ -19,7 +19,7 @@
 
 ➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` ]
+➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `sudo` `root` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group`]
 
 ➤
 
@@ -1894,7 +1894,7 @@ Linux’ta “**süper(Super User)**”, “**sistem(System User)**” ve “**n
 
 **Normal Kullanıcı:** Normal olarak geçen kullanıcı hesapları, kök kullanıcısının oluşturduğu standart kullanıcı hesaplarıdır. Standart kullanıcıların temel görevleri yerine getirebilmeleri için oluşturulan hesaplardır. Bu tür hesapları standart insanlar kullanacağı için normal kullanıcılar kendi ev dizinlere sahiptir. Yani genellikle **/home** dizini altında kullanıcı isimleriyle oluşturulmuş olan bir klasörde, kişisel dosyalarını barındırmaları için bir ev dizinleri vardır. Ev dizini, insanların kişisel dosyalarını düzenli şekilde tutabilmeleri ve kendi kullanıcı hesaplarına yönelik kişiselleştirilmiş çalışma ortamına sahip olabilmeleri için önemli bir yaklaşım. Ev dizini kavramının ne olduğunu biliyorsunuz zaten. Ev dizinleri dışında tabii ki normal kullanıcılar da sahip oldukları yetkiler dahilinde sistemdeki araçları kullanabilirler. Yetkilerinin düşük veya yüksek olmasına göre sistem üzerinde yetkileri dahilinde hareket edebilirler.
 
-#### `sudo` Komutu
+### `sudo` Komutu
 
 Sistemi yönetirken, yetki gerektiren işlemler yapmamız gerebilir. Sistemde en yetkili kullanıcının **root** olduğunu öğrendik. Bu durumda ilgili görevleri yerine getirmek için root hesabına geçiş yapabiliriz. Ancak root hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Çünkü root hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten root hesabını kullanmak tehlikeli olabileceği için çoğu sistemde root hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece root hesabı kullanılamaz.
 
@@ -1936,6 +1936,12 @@ $ su
 Bu yöntemin bazı dezavantajları vardır: her şeyi root olarak çalıştırmak kritik bir hata yapmayı çok daha kolaylaştırır, sistem konfigürasyonlarını değiştirmek için kullandığınız komutların kayıtlarını tutmaz vb. Temel olarak, süper kullanıcı olarak komut çalıştırmanız gerekiyorsa, sadece sudo kullanın.
 
 Artık hangi komutları süper kullanıcı olarak çalıştıracağınızı biliyorsunuz, soru şu: bunu kimin yapabileceğini nasıl biliyorsunuz? Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, peki bunu nasıl biliyor? /etc/sudoers adlı bir dosya var, bu dosya sudo çalıştırabilen kullanıcıları listeler. Bu dosyayı visudo komutuyla düzenleyebilirsiniz.
+
+### Kullanıcı Hesabı Oluşturmak
+
+Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluşturabilecek yetkimizin olması gerekiyor. Dolayısıyla bu işlem için en yetkili kullanıcı olan root kullanıcı hesabına ihtiyacımız var. Fakat bu durumun bir istisnası bulunuyor. Eğer normal bir kullanıcı root hesabının bulunduğu yetki grubuna dahil edildiyse bu kullanıcı, root gibi davranarak yetki gerektiren işlemleri yapabilir. Biz yetkili gruba dahil olduğumuzu kanıtlamak için `sudo` komutunu kullanıyoruz. 
+
+Yeni bir hesap oluşturmak için, “`adduser`” ya da “`useradd`” komutlarından herhangi birini kullanabiliyoruz.
 
 ### `/etc/passwd` dosyası
 
