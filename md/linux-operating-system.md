@@ -1934,6 +1934,53 @@ Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluştu
 
 Yeni bir hesap oluşturmak için, “`adduser`” ya da “`useradd`” komutlarından herhangi birini kullanabiliyoruz.
 
+```bash
+sudo adduser nil
+```
+
+çıktı:
+
+ ```
+ Yeni parola: 
+ Yeni parolayı tekrar girin: 
+ passwd: şifre başarıyla güncellendi
+ nil için kullanıcı bilgileri değiştiriliyor
+ Yeni değeri girin, veya varsayılan değer için ENTER'a basın
+         Tam İsim []: 
+         Oda Numarası []: 
+         İş Telefonu []: 
+         Ev Telefonu []: 
+         Diğer []: 
+ Is the information correct? [Y/n] y
+ ```
+
+
+
+```
+[sudo] password for taylan: 
+Adding user `nil' ...
+Adding new group `nil' (1002) ...
+Adding new user `nil' (1001) with group `nil' ...
+Creating home directory `/home/nil' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password: 
+passwd: password updated successfully
+Changing the user information for nil
+```
+
+Çıktıları inceleyecek olursak:
+
+- Belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendiği,
+- “**nil**” isimli yeni bir grup oluşturulduğu,
+- “**nil**” kullanıcısının bu gruba eklendiği,
+- **nil**’in ev dizinin `/home/nil` dizininde oluşturulduğu,
+- ev dizinine ***/etc/skel\*** dizinindeki dosyaların kopyalandığı belirtilmiş
+
+
+
+
+
 ### `/etc/passwd` dosyası
 
 Kullanıcı adları aslında kullanıcılar için gerçek tanımlayıcılar değildir. Sistem, bir kullanıcıyı tanımlamak için bir kullanıcı kimliği (UID) kullanır. Hangi kullanıcının hangi kimliğe eşleştiğini bulmak için /etc/passwd dosyasına bakın.
