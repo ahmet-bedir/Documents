@@ -19,9 +19,9 @@
 
 ➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `sudo` `root` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group`]
+➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group`]
 
-➤
+➤ 
 
 
 
@@ -1940,7 +1940,7 @@ sudo adduser nil
 
 çıktı:
 
- ```
+ ```bash
  Yeni parola: 
  Yeni parolayı tekrar girin: 
  passwd: şifre başarıyla güncellendi
@@ -1954,30 +1954,13 @@ sudo adduser nil
  Is the information correct? [Y/n] y
  ```
 
+Arkaplanda gerçekleşen işlemler:
 
-
-```
-[sudo] password for taylan: 
-Adding user `nil' ...
-Adding new group `nil' (1002) ...
-Adding new user `nil' (1001) with group `nil' ...
-Creating home directory `/home/nil' ...
-Copying files from `/etc/skel' ...
-New password:
-Retype new password: 
-passwd: password updated successfully
-Changing the user information for nil
-```
-
-Çıktıları inceleyecek olursak:
-
-- Belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendiği,
-- “**nil**” isimli yeni bir grup oluşturulduğu,
+- Belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendi,
+- “**nil**” isimli yeni bir grup oluşturuldu,
 - “**nil**” kullanıcısının bu gruba eklendiği,
-- **nil**’in ev dizinin `/home/nil` dizininde oluşturulduğu,
-- ev dizinine ***/etc/skel\*** dizinindeki dosyaların kopyalandığı belirtilmiş
-
-
+- **nil**’in ev dizinin `/home/nil` dizininde oluşturuldu,
+- ev dizinine `/etc/skel` dizinindeki dosyaların kopyalandı.
 
 
 
