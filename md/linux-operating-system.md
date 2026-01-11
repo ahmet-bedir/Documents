@@ -1958,41 +1958,60 @@ Arkaplanda gerçekleşen işlemler:
 
 - Belirttiğim isimde yani “**nil**” ismiyle kullanıcını eklendi,
 - “**nil**” isimli yeni bir grup oluşturuldu,
-- “**nil**” kullanıcısının bu gruba eklendiği,
+- “**nil**” kullanıcısı bu gruba eklendi,
 - **nil**’in ev dizinin `/home/nil` dizininde oluşturuldu,
-- ev dizinine `/etc/skel` dizinindeki dosyaların kopyalandı.
+- ev dizinine `/etc/skel` dizinindeki dosyalar kopyalandı.
 
+```bash
+sudo useradd -m ali
+```
 
+Bu kullanıcı hesabına parola tanımlamak için de `passwd` komutunu kullanabiliriz.
+
+```bash
+$ sudo passwd ali
+
+New password: 
+Retype new password: 
+passwd: password updated successfully
+```
 
 ### `/etc/passwd` dosyası
 
-Kullanıcı adları aslında kullanıcılar için gerçek tanımlayıcılar değildir. Sistem, bir kullanıcıyı tanımlamak için bir kullanıcı kimliği (UID) kullanır. Hangi kullanıcının hangi kimliğe eşleştiğini bulmak için /etc/passwd dosyasına bakın.
+Kullanıcı adları aslında kullanıcılar için gerçek tanımlayıcılar değildir. Sistem, bir kullanıcıyı tanımlamak için bir kullanıcı kimliği (UID) kullanır. Hangi kullanıcının hangi kimliğe eşleştiğini bulmak için `/etc/passwd` dosyasına bakın.
 
 ```bash
 $ cat /etc/passwd
+
+root:x:0:0:root:/root:/usr/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+.
+.
+.
+king-phisher:x:133:141::/var/lib/king-phisher:/usr/sbin/nologin
+taylan:x:1000:1000:,,,:/home/taylan:/usr/bin/bash
+nil:x:1001:1002:,,,:/home/nil:/bin/bash
+ali:x:1002:1004::/home/ali:/bin/sh
 ```
 
 ![](../images/passwd.jpg)
 
-Bu dosya size bir kullanıcı listesi ve onlar hakkında detaylı bilgiler gösterir. Örneğin, bu dosyadaki ilk satır muhtemelen şöyle görünür:
-
-```bash
-root:x:0:0:root:/root:/bin/bash
-```
-
-Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellikle ilk satırda root kullanıcısını görürsünüz. Size kullanıcı hakkında ek bilgiler veren noktalarla ayrılmış birçok alan vardır, hadi hepsine bir bakalım:
+Bu dosya size bir kullanıcı listesi ve onlar hakkında detaylı bilgiler gösterir.
+Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellikle ilk satırda `root` kullanıcısını görürsünüz. Size kullanıcı hakkında ek bilgiler veren noktalarla ayrılmış birçok alan vardır.
 
 * Kullanıcı adı
-* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, genellikle /etc/shadow dosyasında saklanır. /etc/shadow hakkında bir sonraki derste daha fazla bilgi edineceğiz, ancak şimdilik şifrelenmiş kullanıcı şifrelerini içerdiğini bilin. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin /etc/shadow dosyasında saklandığı anlamına gelir, "\*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
+* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, `/etc/shadow` dosyasında saklanır. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin `/etc/shadow` dosyasında saklandığı anlamına gelir, "\*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
 * Kullanıcı kimliği (UID) - gördüğünüz gibi root'un UID'si 0'dır
 * Grup kimliği
 * GECOS alanı - Bu genellikle kullanıcının gerçek adı veya telefon numarası gibi kullanıcı veya hesap hakkında yorum bırakmak için kullanılır, virgülle ayrılır.
 * Kullanıcının ana dizini
-* Kullanıcının kabuğu - muhtemelen birçok kullanıcının kabuğu olarak varsayılan olarak bash'ı göreceksiniz
+* Kullanıcının kabuğu - muhtemelen birçok kullanıcının kabuğu olarak varsayılan olarak `bash`'ı göreceksiniz
 
-Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, /etc/passwd'ın diğer kullanıcıları da içerdiğini fark edeceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
+Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, `/etc/passwd`'ın diğer kullanıcıları da içerdiğini fark edeceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
 
-Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız /etc/passwd dosyasını manuel olarak vipw aracıyla düzenleyebileceğinizi de unutmayın, ancak daha sonraki bir derste tartışacağımız useradd ve userdel gibi araçlara bırakmak en iyisidir.
+Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/passwd` dosyasını manuel olarak `vipw` aracıyla düzenleyebilirsiniz.
 
 ---
 
