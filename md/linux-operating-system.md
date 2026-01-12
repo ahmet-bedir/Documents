@@ -2006,7 +2006,7 @@ Bu dosya size bir kullanıcı listesi ve onlar hakkında detaylı bilgiler göst
 Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellikle ilk satırda `root` kullanıcısını görürsünüz. Size kullanıcı hakkında ek bilgiler veren noktalarla ayrılmış birçok alan vardır.
 
 * Kullanıcı adı
-* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, `/etc/shadow` dosyasında hash'li şekilde saklanır. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin `/etc/shadow` dosyasında saklandığı anlamına gelir, "\*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
+* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, `/etc/shadow` dosyasında hash'li şekilde saklanır. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin `/etc/shadow` dosyasında saklandığı anlamına gelir, "*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
 * Kullanıcı kimliği (UID) - gördüğünüz gibi root'un UID'si 0'dır
 * Grup kimliği
 * GECOS alanı - Bu genellikle kullanıcının gerçek adı veya telefon numarası gibi kullanıcı veya hesap hakkında yorum bırakmak için kullanılır, virgülle ayrılır.
@@ -2023,13 +2023,13 @@ Bir kullanıcının oturum açmasını reddetmek için buraya kabuk yerine bu do
 
 Ben **ali** kullanıcısının oturum açmasını engellemek için buradaki kabuğu `/usr/sbin/nologin` şeklinde giriyorum.
 
-```
+```bash
 ali:x:1002:1004::/home/ali:/usr/sbin/nologin
 ```
 
 Mevcut konsolumuz üzerinden yeni bir kullanıcı hesabına geçiş yapmak için `su` komutunun ardından geçiş yapmak istediğimiz hesabın ismini girmemiz yeterli oluyor.
 
-```
+```bash
 $ su ali
 Parola: 
 This account is currently not available.
@@ -2063,36 +2063,22 @@ Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca `
 
 ### `/etc/group` dosyası
 
-Kullanıcı yönetiminde kullanılan bir diğer dosya ise /etc/group dosyasıdır. Bu dosya, farklı izinlere sahip farklı gruplar oluşturulmasını sağlar.
+Kullanıcı yönetiminde kullanılan bir diğer dosya ise `/etc/group` dosyasıdır. Bu dosya, farklı izinlere sahip farklı gruplar oluşturulmasını sağlar.
 
 ```bash
 $ cat /etc/group
 ```
 
-/etc/passwd dosyasına benzer şekilde, /etc/group dosyası alanları aşağıdaki gibidir:
+`/etc/passwd` dosyasına benzer şekilde, `/etc/group` dosyası alanları aşağıdaki gibidir:
 
 * Grup adı
-* Grup şifresi - grup şifresi belirlemeye gerek yoktur, sudo gibi yükseltilmiş bir ayrıcalık kullanmak standarttır. Varsayılan değer olarak "\*" yerleştirilir.
+* Grup şifresi - grup şifresi belirlemeye gerek yoktur, sudo gibi yükseltilmiş bir ayrıcalık kullanmak standarttır. Varsayılan değer olarak "*" yerleştirilir.
 * Grup kimliği (GID)
 * Kullanıcı listesi - Belirli bir grupta istediğiniz kullanıcıları manuel olarak belirleyebilirsiniz.
 
 ---
 
-### Kullanıcı Yönetim Araçları
-
-Kurumsal ortamların çoğu kullanıcı, hesap ve şifre yönetimi için yönetim sistemleri kullanır. Ancak tek bir bilgisayarda kullanıcıları yönetmek için çalıştırabileceğiniz faydalı komutlar vardır.
-
-#### Kullanıcı Ekleme
-
-Kullanıcı eklemek için `adduser` veya `useradd` komutunu kullanabilirsiniz. `adduser` komutu, ana dizin oluşturma gibi daha kullanışlı özelliklere sahiptir. Yeni kullanıcılara ne atamak istediğinize bağlı olarak özelleştirilebilen kullanıcı ekleme için yapılandırma dosyaları vardır.
-
-```bash
-sudo useradd ali
-```
-
-Yukarıdaki komut, ali için /etc/passwd'de bir giriş oluşturur, varsayılan grupları ayarlar ve /etc/shadow dosyasına bir giriş ekler.
-
-#### Kullanıcı Silme
+### Kullanıcı Silme
 
 Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
 
@@ -2102,7 +2088,7 @@ sudo userdel ali
 
 Bu komut, temel olarak useradd tarafından yapılan dosya değişikliklerini geri almaya çalışır.
 
-#### Şifre Değiştirme
+### Şifre Değiştirme
 
 Aşağıdaki komut size veya başka bir kullanıcıya (root yetkisine sahipseniz) şifreyi değiştirme izni verir.
 
