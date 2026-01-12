@@ -39,8 +39,7 @@
 ---
 
 ## Sık Kullanılan Git Komutları
-
-<span><img src="./images/git-icon.png" style="vertical-align: middle;" /><span/><span style="vertical-align: middle;">Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.<span/>
+**Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
 ◈ [**Git Komutları**](md/git-commands.md)
 
