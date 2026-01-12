@@ -18,9 +18,6 @@
 
 **Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.**
 
-**Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
-
-**Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
 
 ◈ [**Linux İşletim Sistemi**](md/linux-operating-system.md)
 
