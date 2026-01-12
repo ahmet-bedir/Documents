@@ -1960,7 +1960,11 @@ Arkaplanda gerçekleşen işlemler:
 - “**nil**” isimli yeni bir grup oluşturuldu,
 - “**nil**” kullanıcısı bu gruba eklendi,
 - **nil**’in ev dizinin `/home/nil` dizininde oluşturuldu,
-- ev dizinine `/etc/skel` dizinindeki dosyalar kopyalandı.
+- **ev** dizinine `/etc/skel` dizinindeki dosyalar kopyalandı.
+
+
+
+`useradd` komutu ile kullanıcı oluşturma:
 
 ```bash
 sudo useradd -m ali
@@ -2002,7 +2006,7 @@ Bu dosya size bir kullanıcı listesi ve onlar hakkında detaylı bilgiler göst
 Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellikle ilk satırda `root` kullanıcısını görürsünüz. Size kullanıcı hakkında ek bilgiler veren noktalarla ayrılmış birçok alan vardır.
 
 * Kullanıcı adı
-* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, `/etc/shadow` dosyasında saklanır. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin `/etc/shadow` dosyasında saklandığı anlamına gelir, "\*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
+* Kullanıcının şifresi - şifre gerçekte bu dosyada saklanmaz, `/etc/shadow` dosyasında hash'li şekilde saklanır. Bu alanda birçok farklı sembol görebilirsiniz, eğer bir "x" görürseniz şifrenin `/etc/shadow` dosyasında saklandığı anlamına gelir, "\*" sembolü kullanıcının oturum açma erişimine sahip olmadığı ve boş bir alan varsa kullanıcının şifresinin olmadığı anlamına gelir.
 * Kullanıcı kimliği (UID) - gördüğünüz gibi root'un UID'si 0'dır
 * Grup kimliği
 * GECOS alanı - Bu genellikle kullanıcının gerçek adı veya telefon numarası gibi kullanıcı veya hesap hakkında yorum bırakmak için kullanılır, virgülle ayrılır.
@@ -2011,13 +2015,13 @@ Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellik
 
 Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, `/etc/passwd`'ın diğer kullanıcıları da içerdiğini fark edeceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
 
-Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/passwd` dosyasını manuel olarak `vipw` aracıyla düzenleyebilirsiniz.
+Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/passwd` dosyasını manuel olarak `vipw` aracıyla düzenleyebilirsiniz. Ancak `useradd` , `adduser` ve `userdel` gibi araçları kullanmak en iyisidir.
 
 ---
 
 ### `/etc/shadow` dosyası
 
-/etc/shadow dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
+`/etc/shadow` dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
 
 ```bash
 $ sudo cat /etc/shadow

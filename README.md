@@ -14,11 +14,19 @@
 
 ---
 
-## Sık Kullanılan Git Komutları
+## Linux İşletim Sistemi
 
-**Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
+**Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.**
 
-◈ [**Git Komutları**](md/git-commands.md)
+**Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
+
+**Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
+
+◈ [**Linux İşletim Sistemi**](md/linux-operating-system.md)
+
+◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
+
+◈ [**Linux Bash / Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)
 
 ---
 
@@ -30,24 +38,10 @@
 
 ---
 
-## Linux İşletim Sistemi
+## Sık Kullanılan Git Komutları
 
-**Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.**
+**Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
-◈ [**Linux İşletim Sistemi**](md/linux-operating-system.md)
-
----
-
-## Linux Paket Yönetimi
-
-**Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri gerçekleştirir.**
-
-◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
+◈ [**Git Komutları**](md/git-commands.md)
 
 ---
-
-## Linux Bash / Terminal, Nano ve Vim Kısayolları
-
-**Sistem üzerinde gerekli hakimiyeti sağlamada bizlere kolaylıklar sunan bash kabuk kısayolları ve terminal editörleri olan nano ve vim kısayolları.**
-
-◈ [**Linux Bash / Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)
