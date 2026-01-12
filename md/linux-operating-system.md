@@ -2017,6 +2017,24 @@ Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları 
 
 Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/passwd` dosyasını manuel olarak `vipw` aracıyla düzenleyebilirsiniz. Ancak `useradd` , `adduser` ve `userdel` gibi araçları kullanmak en iyisidir.
 
+Eğer bir kullanıcı hesabının bilgilerini silmeden o kullanıcı hesabını deaktif halde getirmek istersek; ilgili kullanıcının varsayılan kabuk programı yerine, kullanıcının oturum açmasını reddeden `/usr/sbin/nologin` dosyasını yazabiliriz.
+
+Bir kullanıcının oturum açmasını reddetmek için buraya kabuk yerine bu dosyayı ekleyebiliriz.
+
+Ben **ali** kullanıcısının oturum açmasını engellemek için buradaki kabuğu `/usr/sbin/nologin` şeklinde giriyorum.
+
+```
+ali:x:1002:1004::/home/ali:/usr/sbin/nologin
+```
+
+Mevcut konsolumuz üzerinden yeni bir kullanıcı hesabına geçiş yapmak için `su` komutunun ardından geçiş yapmak istediğimiz hesabın ismini girmemiz yeterli oluyor.
+
+```
+$ su ali
+Parola: 
+This account is currently not available.
+```
+
 ---
 
 ### `/etc/shadow` dosyası
@@ -2024,10 +2042,10 @@ Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/pass
 `/etc/shadow` dosyası, kullanıcı kimlik doğrulaması hakkında bilgi depolamak için kullanılır. Bu dosyayı okumak için süper kullanıcı izinleri gerekir.
 
 ```bash
-$ sudo cat /etc/shadow
+sudo cat /etc/shadow
 ```
 
-İçeriği /etc/passwd dosyasına oldukça benziyor ancak şifre alanında şifreli bir şifre göreceksiniz. Alanlar şöyle noktalarla ayrılır:
+İçeriği `/etc/passwd` dosyasına oldukça benziyor ancak şifre alanında şifreli bir şifre göreceksiniz. Alanlar şöyle noktalarla ayrılır:
 
 * Kullanıcı adı
 * Şifreli şifre
@@ -2039,7 +2057,7 @@ $ sudo cat /etc/shadow
 * Hesap son kullanma tarihi - Kullanıcının oturum açamayacağı tarih
 * Gelecekte kullanılmak üzere ayrılmış alan
 
-Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca /etc/shadow dosyasına güvenmez, kimlik doğrulamayı değiştiren PAM (Pluggable Authentication Modules) gibi başka mekanizmalar da vardır.
+Günümüzdeki çoğu dağıtımda, kullanıcı kimlik doğrulaması yalnızca `/etc/shadow` dosyasına güvenmez, kimlik doğrulamayı değiştiren PAM (Pluggable Authentication Modules) gibi başka mekanizmalar da vardır.
 
 ---
 
