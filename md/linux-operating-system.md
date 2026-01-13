@@ -21,11 +21,7 @@
 
 ➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
 
-➤ 
-
-
-
-
+➤ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
 
 ---
 
@@ -1904,13 +1900,13 @@ Buna karşın `root` hesabı aktif olmasa bile yetki gerektiren işlerimiz için
 Korunan bir dosyayı, örneğin `/etc/shadow` dosyasını görüntülemeye çalışın:
 
 ```bash
-$ cat /etc/shadow
+cat /etc/shadow
 ```
 
 İzin reddedildi hatası aldığınıza dikkat edin. İzinlere şu komutla bakın:
 
 ```bash
-$ ls -la /etc/shadow
+ls -la /etc/shadow
 ```
 çıktı:
 
@@ -1921,7 +1917,7 @@ $ ls -la /etc/shadow
 İzinlerden henüz bahsetmedik, ancak burada olan `root` dosyanın sahibi ve içeriği okumak için `root` erişimine sahip olmanız veya `shadow` grubunun bir parçası olmanız gerekiyor. Şimdi komutu `sudo` ile çalıştırın:
 
 ```bash
-$ sudo cat /etc/shadow
+sudo cat /etc/shadow
 ```
 
 Artık dosyanın içeriğini görebileceksiniz!
@@ -2107,7 +2103,31 @@ $ groups ali
 ali : ali yeni-grup
 ```
 
-Gruptan kullanıcı silmek için `gpasswd` aracının `-d` seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz.`yeni-grup` grubuna eklediğimiz ali kullanıcısını silmek için `sudo gpasswd -d ali yeni-grup` şeklinde komut giriyoruz.
+Gruptan kullanıcı silmek için `gpasswd` aracının `-d` seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz.`yeni-grup` grubuna eklediğimiz ali kullanıcısını silmek için:
+
+```bash
+$ sudo gpasswd -d ali yeni-grup 
+Removing user ali from group yeni-grup
+```
+
+Teyid etmek için:
+
+```bash
+$ groups ali
+ali : ali
+```
+
+Grup silmek için `groupdel` aracı kullanılır.
+
+```bash
+sudo groupdel yeni-grup
+```
+
+Teyid etmek için:
+
+```bash
+grep "yeni-grup" /etc/group
+```
 
 **Kullanıcı Silme**
 
@@ -2117,15 +2137,54 @@ Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
 sudo userdel ali
 ```
 
-Bu komut, temel olarak useradd tarafından yapılan dosya değişikliklerini geri almaya çalışır.
+Bu komut, temel olarak `useradd` tarafından yapılan dosya değişikliklerini geri almaya çalışır.
 
 **Şifre Değiştirme**
 
 Aşağıdaki komut size veya başka bir kullanıcıya (root yetkisine sahipseniz) şifreyi değiştirme izni verir.
 
 ```bash
-passwd ali
+sudo passwd ali
 ```
+
+---
+
+<a id="izinler"><a/>
+
+## 🗂️ İzinler
+
+🔼 [**Başa Dön**](#basa_don)
+
+---
+
+### Dosya İzinleri
+
+Daha önce öğrendiğimiz gibi, dosyaların farklı izinleri veya dosya modları vardır. Bir örneğe bakalım:
+
+```bash
+ls -l Desktop/
+```
+
+```
+drwxr-xr-x 2 kullanıcı pinguenler 4096 Ara 1 11:45 .
+```
+
+Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk karakterle gösterilen dosya türüdür. Bizim durumumuzda bir dizine baktığımız için dosya türü için `d` gösterir. Çoğunlukla normal bir dosya için `-` görürsünüz.
+
+Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için boru sembolü (`|`) ekledim.
+
+```bash
+d | rwx | r-x | r-x
+```
+
+Her karakter farklı bir izni temsil eder:
+
+* r: okunabilir
+* w: yazılabilir
+* x: yürütülebilir (temel olarak yürütülebilir bir program)
+* \-: boş
+
+Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. `pinguenler` grubunun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
 
 ---
 
