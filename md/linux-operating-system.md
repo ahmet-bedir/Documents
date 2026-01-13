@@ -19,7 +19,7 @@
 
 ➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group`]
+➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
 
 ➤ 
 
@@ -1935,12 +1935,8 @@ Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluştu
 Yeni bir hesap oluşturmak için, “`adduser`” ya da “`useradd`” komutlarından herhangi birini kullanabiliyoruz.
 
 ```bash
-sudo adduser nil
-```
+$ sudo adduser nil
 
-çıktı:
-
- ```bash
  Yeni parola: 
  Yeni parolayı tekrar girin: 
  passwd: şifre başarıyla güncellendi
@@ -2067,18 +2063,53 @@ Kullanıcı yönetiminde kullanılan bir diğer dosya ise `/etc/group` dosyasıd
 
 ```bash
 $ cat /etc/group
+
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:root,taylan
+.
+.
+.
+vboxsf:x:142:
+kaboxer:x:143:root,taylan
+taylan:x:1000:
+nil:x:1002:
+ali:x:1004:
 ```
 
 `/etc/passwd` dosyasına benzer şekilde, `/etc/group` dosyası alanları aşağıdaki gibidir:
 
 * Grup adı
-* Grup şifresi - grup şifresi belirlemeye gerek yoktur, sudo gibi yükseltilmiş bir ayrıcalık kullanmak standarttır. Varsayılan değer olarak "*" yerleştirilir.
+* Grup şifresi - grup şifresi belirlemeye gerek yoktur, sudo gibi yükseltilmiş bir ayrıcalık kullanmak standarttır. Varsayılan değer olarak "x" yerleştirilir.
 * Grup kimliği (GID)
 * Kullanıcı listesi - Belirli bir grupta istediğiniz kullanıcıları manuel olarak belirleyebilirsiniz.
 
+
 ---
 
-### Kullanıcı Silme
+### Kullanıcı Yönetim Araçları
+
+Bir kullanıcının gruplarını öğrenmek için `groups` komutu kullanılır. (örn. `groups ali`)
+
+Yeni bir grup oluşturmak için `groupadd` aracını kullanabiliriz. (örn. `sudo groupadd yeni-grup`)
+
+Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. (örn. `sudo gpasswd -a ali yeni-grup`)
+
+teyid etmek için:
+
+```bash
+$ tail -1 /etc/group                                                                   
+yeni-grup:x:1005:ali
+
+$ groups ali
+ali : ali yeni-grup
+```
+
+Gruptan kullanıcı silmek için gpasswd aracının -d seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz. Ben eklediğim ali kullanıcısını silmek için sudo gpasswd -d ali yeni-grup şeklinde komutumu giriyorum.
+
+**Kullanıcı Silme**
 
 Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
 
@@ -2088,7 +2119,7 @@ sudo userdel ali
 
 Bu komut, temel olarak useradd tarafından yapılan dosya değişikliklerini geri almaya çalışır.
 
-### Şifre Değiştirme
+**Şifre Değiştirme**
 
 Aşağıdaki komut size veya başka bir kullanıcıya (root yetkisine sahipseniz) şifreyi değiştirme izni verir.
 
