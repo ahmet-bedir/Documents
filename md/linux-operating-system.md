@@ -19,7 +19,7 @@
 
 ➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturmak` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
+➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
 
 ➤ 
 
@@ -1928,7 +1928,7 @@ Artık dosyanın içeriğini görebileceksiniz!
 
 Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, peki bunu nasıl biliyor? `/etc/sudoers` adlı bir dosya var, bu dosya sudo çalıştırabilen kullanıcıları listeler. Bu dosyayı `visudo` komutuyla düzenleyebilirsiniz
 
-### Kullanıcı Hesabı Oluşturmak
+### Kullanıcı Hesabı Oluşturma
 
 Yeni bir kullanıcı hesabı oluşturmak istiyorsak, kullanıcı hesabı oluşturabilecek yetkimizin olması gerekiyor. Dolayısıyla bu işlem için en yetkili kullanıcı olan root kullanıcı hesabına ihtiyacımız var. Fakat bu durumun bir istisnası bulunuyor. Eğer normal bir kullanıcı root hesabının bulunduğu yetki grubuna dahil edildiyse bu kullanıcı, root gibi davranarak yetki gerektiren işlemleri yapabilir. Biz yetkili gruba dahil olduğumuzu kanıtlamak için `sudo` komutunu kullanıyoruz. 
 
@@ -1948,7 +1948,7 @@ $ sudo adduser nil
          Ev Telefonu []: 
          Diğer []: 
  Is the information correct? [Y/n] y
- ```
+```
 
 Arkaplanda gerçekleşen işlemler:
 
@@ -2097,7 +2097,7 @@ Yeni bir grup oluşturmak için `groupadd` aracını kullanabiliriz. (örn. `sud
 
 Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. (örn. `sudo gpasswd -a ali yeni-grup`)
 
-teyid etmek için:
+Teyid etmek için:
 
 ```bash
 $ tail -1 /etc/group                                                                   
@@ -2107,7 +2107,7 @@ $ groups ali
 ali : ali yeni-grup
 ```
 
-Gruptan kullanıcı silmek için gpasswd aracının -d seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz. Ben eklediğim ali kullanıcısını silmek için sudo gpasswd -d ali yeni-grup şeklinde komutumu giriyorum.
+Gruptan kullanıcı silmek için `gpasswd` aracının `-d` seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz.`yeni-grup` grubuna eklediğimiz ali kullanıcısını silmek için `sudo gpasswd -d ali yeni-grup` şeklinde komut giriyoruz.
 
 **Kullanıcı Silme**
 
