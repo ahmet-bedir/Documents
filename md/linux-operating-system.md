@@ -2165,7 +2165,7 @@ Daha önce öğrendiğimiz gibi, dosyaların farklı izinleri veya dosya modlar�
 ls -l Desktop/
 ```
 
-```
+```bash
 drwxr-xr-x 2 kullanıcı pinguenler 4096 Ara 1 11:45 .
 ```
 
@@ -2185,6 +2185,240 @@ Her karakter farklı bir izni temsil eder:
 * \-: boş
 
 Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. `pinguenler` grubunun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
+
+---
+
+### İzinlerin Değiştirilmesi
+
+İzinleri değiştirmek `chmod` komutu ile kolayca yapılabilir.
+
+Öncelikle hangi izin setini değiştirmek istediğinizi seçin: kullanıcı, grup veya diğer. İzinleri `+` veya `-` ile ekleyebilir veya kaldırabilirsiniz, bazı örneklere bakalım.
+
+**Dosyaya İzin Eklenme**
+
+```bash
+chmod u+x benimdosyam
+```
+
+Yukarıdaki komut şöyle okunur: `benimdosyam` üzerindeki izinleri değiştirerek kullanıcı setine yürütülebilir izin biti ekleyin. Bu sayede artık kullanıcının bu dosya üzerinde yürütme izni var!
+
+**Dosyadan İzin Kaldırma**
+
+```bash
+chmod u-x benimdosyam
+```
+
+**Dosyaya Birden Fazla İzin Eklenme**
+
+```bash
+chmod ug+w
+```
+
+İzinleri sayısal biçimde değiştirmenin başka bir yolu daha vardır. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
+
+Sayısal gösterimler aşağıda verilmiştir:
+
+* 4: okuma izni
+* 2: yazma izni
+* 1: yürütme izni
+
+Bir örneğe bakalım:
+
+```bash
+chmod 755 benimdosyam
+```
+
+Bu dosyaya hangi izinleri verdiğimizi tahmin edebilir misiniz? Açıklayalım, 755 artık tüm setler için izinleri kapsar. İlk sayı (7) kullanıcı izinlerini, ikinci sayı (5) grup izinlerini ve son 5 ise diğer izinleri temsil eder.
+
+Bir dakika durun, 7 ve 5 yukarıda listelenmemişti, bu sayıları nereden buluyoruz? Artık tüm izinleri tek bir sayıda birleştiriyoruz, bu nedenle biraz matematik yapmanız gerekecek.
+
+7 = 4 + 2 + 1, yani 7 kullanıcı izinleri ve okuma, yazma ve yürütme izinlerine sahip 5 = 4 + 1, grubun okuma ve yürütme izni var 5 = 4 + 1 ve diğer tüm kullanıcıların okuma ve yürütme izni var
+
+Dikkat edilmesi gereken bir nokta: izinleri gelişigüzel değiştirmek iyi bir fikir değildir, hassas bir dosyayı herkesin değiştirmesine izin verebilirsiniz, ancak izinleri gerçekten değiştirmek istediğiniz birçok durumda, `chmod` komutunu kullanırken önlem alın.
+
+---
+
+### Sahiplik İzinleri
+
+Dosya izinlerini değiştirmenin yanı sıra, dosyanın grup ve kullanıcı sahipliğini de değiştirebilirsiniz.
+
+**Kullanıcı sahipliğini değiştirme**
+
+```bash
+sudo chown patty myfile
+```
+
+Bu komut, myfile dosyasının sahibini patty olarak ayarlayacaktır.
+
+**Grup sahipliğini değiştirme**
+
+```bash
+sudo chgrp whales myfile
+```
+
+Bu komut, myfile dosyasının grubunu whales olarak ayarlayacaktır.
+
+**Kullanıcı ve grup sahipliğini aynı anda değiştirme**
+
+Kullanıcı adından sonra bir iki nokta (:) ve grup adı eklerseniz, kullanıcı ve grubu aynı anda ayarlayabilirsiniz.
+
+```bash
+sudo chown patty:whales myfile
+```
+
+---
+
+### Umask
+
+Herhangi bir dosya oluşturulduğunda, varsayılan izinlerle birlikte gelir. Bu varsayılan izin setini değiştirmek isterseniz, umask komutunu kullanabilirsiniz. Bu komut, sayısal izinlerde gördüğümüz 3 bitlik izin setini alır.
+
+Ancak umask bu izinleri eklemek yerine kaldırır.
+
+```bash
+umask 021
+```
+
+Yukarıdaki örnekte, yeni dosyaların varsayılan izinlerinin kullanıcılara her şeye erişim izni vermesini istediğimizi, ancak gruplar için yazma iznini ve diğerleri için yürütme iznini kaldırmak istediğimizi belirtiyoruz. Çoğu dağıtımda varsayılan umask 022'dir, yani tüm kullanıcı erişimi vardır, ancak grup ve diğer kullanıcılar için yazma erişimi yoktur.
+
+umask komutunu çalıştırdığınızda, oluşturduğunuz herhangi bir yeni dosyada varsayılan izin setini verir. Ancak, bunun devam etmesini istiyorsanız, başlangıç dosyanızı (.profile) değiştirmeniz gerekir, ancak bunu sonraki bir derste ele alacağız.
+
+---
+
+### Setuid
+
+Normal kullanıcıların bazı durumlarda işleri tamamlamak için yetki yükseltmesine ihtiyaçları vardır. Sistem yöneticisi, her seferinde bir kullanıcı korunan bir dosyaya erişmek istediğinde kök parola girmek için her zaman orada olamaz, bu nedenle bu davranışa izin vermek için özel dosya izin bitimleri vardır.
+
+**Set Kullanıcı Kimliği (SUID)**, bir kullanıcının programı kendisinin yerine program dosyasının sahibi olarak çalıştırmasına izin verir.
+
+Bir örneğe bakalım:
+
+Diyelim ki şifremi değiştirmek istiyorum, basit değil mi? Sadece passwd komutunu kullanıyorum:
+
+```bash
+passwd
+```
+
+passwd komutu ne yapıyor? Birkaç dosyayı değiştiriyor, ancak en önemlisi /etc/shadow dosyasını değiştiriyor. Bir saniyeliğine bu dosyaya bakalım:
+
+```bash
+$ ls -l /etc/shadow
+
+-rw-r----- 1 root shadow 1134 Dec 1 11:45 /etc/shadow
+```
+
+Bir dakika bekle, bu dosya root'a ait? Root'a ait bir dosyayı nasıl değiştirebiliriz?
+
+Bu sefer çalıştırdığımız komutun izin setine bakalım:
+
+```bash
+$ ls -l /usr/bin/passwd
+
+-rwsr-xr-x 1 root root 47032 Dec 1 11:45 /usr/bin/passwd
+```
+
+Burada yeni bir izin biti s gördünüz mü? Bu izin biti SUID'dir. Bir dosyada bu izin seti olduğunda, programı başlatan kullanıcılara dosya sahibi izinlerinin yanı sıra yürütme izni de verir, bu durumda root. Yani aslında bir kullanıcı passwd komutunu çalıştırırken root olarak çalışır.
+
+Bu nedenle, passwd komutunu çalıştırdığımızda /etc/shadow gibi korunan bir dosyaya erişebiliyoruz. Şimdi bu biti kaldırırsanız, /etc/shadow'u değiştiremeyeceğiniz ve dolayısıyla şifrenizi değiştiremeyeceğinizi göreceksiniz.
+
+**SUID'yi Değiştirme**
+
+Normal izinler gibi, SUID izinlerini değiştirmenin iki yolu vardır.
+
+Sembolik yol:
+
+```bash
+sudo chmod u+s myfile
+```
+
+Sayısal yol:
+
+```bash
+sudo chmod 4755 myfile
+```
+
+Gördüğünüz gibi, SUID bir 4 ile gösterilir ve izin setine eklenir. SUID'yi büyük S olarak görebilirsiniz, bu hala aynı şeyi yaptığı anlamına gelir, ancak yürütme izinleri yoktur.
+
+---
+
+### Setgid
+
+Absolutely, here is the translation of the text you provided:
+
+**Set Grup Kimliği (SGID) izni**
+
+Kullanıcı kimliği (SUID) izin bitine benzer şekilde, bir set grup kimliği (SGID) izin biti de vardır. Bu bit, bir programın sanki o grubun bir üyesiymiş gibi çalışmasına izin verir.
+
+Bir örneğe bakalım:
+
+```bash
+$ ls -l /usr/bin/wall
+
+-rwxr-sr-x 1 root tty 19024 Dec 14 11:45 /usr/bin/wall// Some code
+```
+
+Artık izin bitinin grup izin seti içinde olduğunu görebiliyoruz.
+
+**SGID'yi Değiştirme**
+
+```bash
+$ sudo chmod g+s myfile
+
+$ sudo chmod 2555 myfile
+```
+
+SGID için sayısal gösterim 2'dir.
+
+---
+
+### İşlem İzinleri
+
+Size daha önce SUID izin biti etkinleştirilmiş passwd komutunu çalıştırdığınızda programı root olarak çalıştıracağınızı söylemiştim, değil mi? Bu doğru, ancak siz geçici olarak root olduğunuz için diğer kullanıcıların şifrelerini değiştirebileceğiniz anlamına mı geliyor? Neyse ki hayır!
+
+Bu, Linux'un uyguladığı birçok UID nedeniyledir. Her işlemle ilişkili üç UID vardır:
+
+Bir işlemi başlattığınızda, onu çalıştıran kullanıcı veya grubun izinleriyle aynı izinlerle çalışır, bu **etkin kullanıcı kimliği (effective user ID)** olarak bilinir. Bu UID, bir işleme erişim hakkı vermek için kullanılır. Bu nedenle, Bob touch komutunu çalıştırdıysa, işlem onun kimliğiyle çalışır ve oluşturduğu tüm dosyalar onun sahipliğinde olur.
+
+**Gerçek kullanıcı kimliği (real user ID)** olarak adlandırılan başka bir UID vardır, bu, işlemi başlatan kullanıcının kimliğidir. Bunlar, işlemi başlatan kullanıcının kimliğini takip etmek için kullanılır.
+
+Son bir UID ise \*\*kayıtlı kullanıcı kimliği (saved user ID)\*\*dir, bu bir işlemin etkin kullanıcı kimliği ile gerçek kullanıcı kimliği arasında geçiş yapmasına izin verir. Bu yararlıdır çünkü işlemimizin her zaman yüksek ayrıcalıklarla çalışmasını istemeyiz, yalnızca belirli zamanlarda özel ayrıcalıklar kullanmak iyi bir uygulamadır.
+
+Şimdi bunların hepsini bir araya getirmek için passwd komutuna bir kez daha bakalım.
+
+passwd komutunu çalıştırırken, etkin kullanıcı kimliğiniz sizin kullanıcı kimliğinizdir, şimdilik 500 olduğunu varsayalım. Ancak bir dakika bekleyin, passwd komutunun SUID izni etkinleştirilmişti, değil mi? Dolayısıyla siz çalıştırdığınızda, etkin kullanıcı kimliğiniz artık 0'dır (0, root'un UID'sidir). Artık bu program dosyalara root olarak erişebilir.
+
+Diyelim ki biraz güç zevki aldınız ve Sally'nin şifresini değiştirmek istiyorsunuz, Sally'nin UID'si 600. Neyse ki şansınız yok, çünkü işlem aynı zamanda sizin gerçek kullanıcı kimliğinize de sahip, bu durumda 500. İşlem sizin UID'nizin 500 olduğunu biliyor ve bu nedenle 600 UID'li kullanıcının şifresini değiştiremezsiniz. (Tabii ki, bir bilgisayarda süper kullanıcıysanız ve her şeyi kontrol edip değiştirebiliyorsanız, bu her zaman atlanır).
+
+passwd'ı çalıştırdığınızdan beri, işlemi gerçek kullanıcı kimliğinizi kullanarak başlatacak ve dosyanın sahibinin UID'sini (etkin kullanıcı kimliği) kaydedecektir, böylece ikisi arasında geçiş yapabilirsiniz. Gerekli değilse tüm dosyaları root erişimiyle değiştirmeye gerek yok.
+
+Çoğu zaman gerçek kullanıcı kimliği ve etkin kullanıcı kimliği aynıdır, ancak passwd komutu gibi durumlarda değişirler.
+
+---
+
+### Sticky Bit
+
+Bahsetmek istediğim son bir özel izin biti ise sticky bit'tir. Bu izin biti, "dosyayı/dizinizi yapıştırır" anlamına gelir, bu da yalnızca sahip veya root kullanıcının dosyayı silebileceği veya değiştirebileceği anlamına gelir. Bu, ortak dizinler için çok faydalıdır. Aşağıdaki örneğe bir göz atın:
+
+```bash
+$ ls -ld /tmp
+
+drwxrwxrwxt 6 root root 4096 Dec 15 11:45 /tmp
+```
+
+Burada sondaki t sembolünü göreceksiniz, bu herkesin /tmp dizinine dosya ekleyebileceği, yazabileceği, değiştirebileceği ancak yalnızca root kullanıcının /tmp dizinini silebileceği anlamına gelir.
+
+**Sticky Biti Değiştirme**
+
+```bash
+$ sudo chmod +t mydir
+
+$ sudo chmod 1755 mydir
+```
+
+Sticky bit için sayısal gösterim ise 1'dir.
+
+
+---
+
 
 ---
 
