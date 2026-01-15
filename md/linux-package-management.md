@@ -11,14 +11,17 @@
 
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
-> `dpkg -i <paket_adı.deb>` **: Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen** `i` **seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
->
-> ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekiyor.
+**Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen** `i` **seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
+
+```bash
+dpkg -i <paket_adı.deb>
+```
+
+###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekir.
 
 
 
-
-> **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
+**Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
 
 ```bash
 dpkg -L <paket_adı>
@@ -51,12 +54,10 @@ dpkg -L <paket_adı>
 > `dpkg -l <paket_adı>` **: Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.**
 >
 > `dpkg -l | grep <paket_adı>` : `grep` **komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.**
-
+>
 > `dpkg-reconfigure <paket_adı>` **: Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
 
 ---
-
-
 
 ### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
@@ -130,8 +131,6 @@ dpkg -L <paket_adı>
 >
 > ------
 
-
-
 ### APT Komutu İle Paket Listesinin Güncellenmesi
 
 > `apt-get update` | `apt update` **: Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.**
@@ -146,7 +145,7 @@ dpkg -L <paket_adı>
 
 > `apt-get install <paket_adı>` | `apt install <paket_adı>` **: Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
 
-
+---
 
 🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
 
@@ -160,8 +159,6 @@ apt policy <paket_adı>
 > `sudo apt policy gpaste-2`
 
 ![](../images/apt-policy.png)
-
-
 
 > 📌 **1. "Kurulu: 45.3-2"**
 >
@@ -210,8 +207,6 @@ apt policy <paket_adı>
 > **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
 > **main deposu = test edilip onaylanmış paketler.**
 
-
-
 ------
 
 > `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
@@ -223,8 +218,6 @@ apt policy <paket_adı>
 > `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
 
 ---
-
-
 
 🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
 
@@ -319,8 +312,6 @@ sudo apt autoremove
 
 ---
 
-
-
 ⚡ `autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
 
 ✔ `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
@@ -371,10 +362,6 @@ sudo apt remove --purge <paket_adı>
 sudo apt autopurge
 ```
 
-##### **Temiz ve güvenli.**
-
-
-
 ---
 
 > `apt --fix-broken install` | `apt-get install -f` **: APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.**
@@ -384,8 +371,6 @@ sudo apt autopurge
 > ###### Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
 
 ---
-
-
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
@@ -428,8 +413,6 @@ debtree ./<paket_adı.deb>
 > `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
 
 ------
-
-
 
 #### ✅ **`apt install <paket_adı> -d` komutu ne yapar?**
 
@@ -515,13 +498,9 @@ sudo apt install ./golang-go_*.deb
 
 > **Debian tabanlı dağıtımlarda kaynak listesi** `/etc/apt` **dizini altındaki** `sources.list` **isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu** `sources.list` **dosyası içinde tanımlanmıştır.**
 
+### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları
 
-
-**Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları**
-
-------
-
-#### ✅ **LOCAL REPO (dpkg-scanpackages)**
+### ✅ **LOCAL REPO (dpkg-scanpackages)**
 
 Bu yöntem APT’nin anlayacağı basit bir depo oluşturur.
 İstediğin `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
@@ -621,8 +600,6 @@ APT listeyi günceller ve yeni paketi görür.
 
 ---
 
-
-
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
 
 > **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
@@ -639,7 +616,7 @@ rpm -qa | less
 
 > **Eğer işlemler hakkında detaylıca çıktı almak istersek “verbose” ifadesinin kısaltması olan** `v` **seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.**
 
-
+---
 
 ### YUM ve DNF
 
@@ -671,8 +648,6 @@ rpm -qa | less
 
 ---
 
-
-
 ### Kaynak Koddan Derleyerek Kurulum
 
 > **Kuracak olduğumuz yazılımın** `.tar.gz` **uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu** `install` **veya** `readme` **gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan** `configure` **dosyası ve kurulum işlemini kolaylaştıran genellikle** `install.sh` **isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için** `configure` **dosyasını çalıştırıyoruz. Ayrıca buradaki** `makefile` **dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.**
@@ -699,12 +674,10 @@ sudo make install
 
 ---
 
+### Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.
 
 
-## Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.
-
-
-### 🧩 1.Depodan (APT, DNF vs.) Kurulan Programlar:
+#### 🧩 1.Depodan (APT, DNF vs.) Kurulan Programlar:
 
 ```bash
 sudo apt install <paket_adı>
@@ -728,7 +701,7 @@ sudo apt remove <paket_adı>
 
 ------
 
-### 📦 2.`.deb` Dosyasından Kurulan Programlar:
+#### 📦 2.`.deb` Dosyasından Kurulan Programlar:
 
 ```bash
 sudo dpkg -i <paket_adı.deb>
@@ -757,7 +730,7 @@ sudo dpkg -i <paket_adı.deb>
 
 ------
 
-### ⚙️ 3.Kaynak koddan (örneğin `./configure && make && make install` adımlarıyla) derleyip kurduğun programlar:
+#### ⚙️ 3.Kaynak koddan (örneğin `./configure && make && make install` adımlarıyla) derleyip kurduğun programlar:
 
 ```bash
 ./configure
@@ -800,25 +773,23 @@ sudo apt remove <paket_adı>
 
 ------
 
-**Linux’ta kurulu bir programın hangi paket yöneticisi / paket ile kurulduğu çoğu durumda öğrenilebilir.** Ancak yöntem, **dağıtıma ve kurulum şekline** göre değişir. Aşağıda bunu sistematik biçimde açıklıyorum.
+#### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
 
-------
+##### Programın Yolunu Bulma
 
-##### 1. Programın Yolu Bulma
-
-```
+```bash
 which program_adı
 ```
 
 veya
 
-```
+```bash
 whereis program_adı
 ```
 
 Örnek:
 
-```
+```bash
 which nginx
 # /usr/sbin/nginx
 ```
@@ -827,7 +798,7 @@ Bu yol, paketi bulmak için ana girdidir.
 
 ------
 
-##### 2. Debian / Ubuntu / Kali (apt / dpkg)
+##### Debian / Ubuntu / Kali (apt / dpkg)
 
 ###### Dosya Hangi Pakete Ait?
 
@@ -855,7 +826,7 @@ apt show nginx
 
 ------
 
-##### 3. Red Hat / CentOS / Fedora (dnf / rpm)
+##### Red Hat / CentOS / Fedora (dnf / rpm)
 
 ```
 rpm -qf /usr/sbin/nginx
@@ -867,8 +838,8 @@ Paket detayları:
 rpm -qi nginx 
 ```
 
-
-
 ---
+
+
 
 ###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.

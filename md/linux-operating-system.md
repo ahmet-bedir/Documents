@@ -2162,14 +2162,26 @@ sudo passwd ali
 Daha önce öğrendiğimiz gibi, dosyaların farklı izinleri veya dosya modları vardır. Bir örneğe bakalım:
 
 ```bash
-ls -l Desktop/
-```
-
-```bash
-drwxr-xr-x 2 kullanıcı pinguenler 4096 Ara 1 11:45 .
+┌──(taylan㉿kali)-[~]
+└─$ ls -l                                                                                
+total 52
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 10:58 'bu bir deneme metnidir'
+-rw-r--r-- 1 taylan taylan   59 Jul  2 10:29  deneme
+drwxr-xr-x 2 taylan taylan 4096 Jul  4 01:45  Desktop
+drwxr-xr-x 3 taylan taylan 4096 Jul  3 12:10  Documents
+drwxr-xr-x 2 taylan taylan 4096 Jul  5 10:25  Downloads
+-rw-r--r-- 1 taylan taylan 7751 Jul  2 14:38  isimler.txt
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 10:59  Music
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 07:47  Pictures
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 01:35  Public
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 01:35  Templates
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 12:30  test
+drwxr-xr-x 2 taylan taylan 4096 Jun 28 01:35  Videos
 ```
 
 Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk karakterle gösterilen dosya türüdür. Bizim durumumuzda bir dizine baktığımız için dosya türü için `d` gösterir. Çoğunlukla normal bir dosya için `-` görürsünüz.
+
+<img src="../images/permission-first-column.webp" width="405" />
 
 Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için boru sembolü (`|`) ekledim.
 
