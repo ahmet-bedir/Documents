@@ -2199,7 +2199,7 @@ Her karakter farklı bir izni temsil eder:
 * x: yürütülebilir (temel olarak yürütülebilir bir program)
 * \-: boş
 
-Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. `pinguenler` grubunun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
+Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. Grubun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
 
 ---
 
@@ -2207,26 +2207,26 @@ Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzer
 
 İzinleri değiştirmek `chmod` komutu ile kolayca yapılabilir.
 
-Öncelikle hangi izin setini değiştirmek istediğinizi seçin: kullanıcı, grup veya diğer. İzinleri `+` veya `-` ile ekleyebilir veya kaldırabilirsiniz, bazı örneklere bakalım.
+Öncelikle hangi izin setini değiştirmek istediğinizi seçin: kullanıcı(u), grup(g) veya diğer(o). İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
 
 **Dosyaya İzin Eklenme**
 
 ```bash
-chmod u+x benimdosyam
+chmod u+x metin.txt
 ```
 
-Yukarıdaki komut şöyle okunur: `benimdosyam` üzerindeki izinleri değiştirerek kullanıcı setine yürütülebilir izin biti ekleyin. Bu sayede artık kullanıcının bu dosya üzerinde yürütme izni var!
+Yukarıdaki komut şöyle okunur: `metin.txt` üzerindeki izinleri değiştirerek kullanıcı setine yürütülebilir izin biti ekleyin. Bu sayede artık kullanıcının bu dosya üzerinde yürütme izni var!
 
 **Dosyadan İzin Kaldırma**
 
 ```bash
-chmod u-x benimdosyam
+chmod u-x metin.txt
 ```
 
 **Dosyaya Birden Fazla İzin Eklenme**
 
 ```bash
-chmod ug+w
+chmod ug+w metin.txt
 ```
 
 İzinleri sayısal biçimde değiştirmenin başka bir yolu daha vardır. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
@@ -2237,17 +2237,16 @@ Sayısal gösterimler aşağıda verilmiştir:
 * 2: yazma izni
 * 1: yürütme izni
 
-Bir örneğe bakalım:
 
 ```bash
-chmod 755 benimdosyam
+chmod 755 metin.txt
 ```
 
-Bu dosyaya hangi izinleri verdiğimizi tahmin edebilir misiniz? Açıklayalım, 755 artık tüm setler için izinleri kapsar. İlk sayı (7) kullanıcı izinlerini, ikinci sayı (5) grup izinlerini ve son 5 ise diğer izinleri temsil eder.
+Bu dosyaya, 755 artık tüm setler için izinleri kapsar. İlk sayı (7) kullanıcı izinlerini, ikinci sayı (5) grup izinlerini ve son 5 ise diğer izinleri temsil eder.
 
-Bir dakika durun, 7 ve 5 yukarıda listelenmemişti, bu sayıları nereden buluyoruz? Artık tüm izinleri tek bir sayıda birleştiriyoruz, bu nedenle biraz matematik yapmanız gerekecek.
-
-7 = 4 + 2 + 1, yani 7 kullanıcı izinleri ve okuma, yazma ve yürütme izinlerine sahip 5 = 4 + 1, grubun okuma ve yürütme izni var 5 = 4 + 1 ve diğer tüm kullanıcıların okuma ve yürütme izni var
+7 = 4 + 2 + 1 yani 7 kullanıcı(sahibi) izinleri okuma, yazma ve yürütme izinlerine sahip, 
+5 = 4 + 1 grubun okuma ve yürütme izinlerine sahip,
+5 = 4 + 1 diğer tüm kullanıcıların okuma ve yürütme izni var.
 
 Dikkat edilmesi gereken bir nokta: izinleri gelişigüzel değiştirmek iyi bir fikir değildir, hassas bir dosyayı herkesin değiştirmesine izin verebilirsiniz, ancak izinleri gerçekten değiştirmek istediğiniz birçok durumda, `chmod` komutunu kullanırken önlem alın.
 
@@ -2260,25 +2259,25 @@ Dosya izinlerini değiştirmenin yanı sıra, dosyanın grup ve kullanıcı sahi
 **Kullanıcı sahipliğini değiştirme**
 
 ```bash
-sudo chown patty myfile
+sudo chown ahmet metin.txt
 ```
 
-Bu komut, myfile dosyasının sahibini patty olarak ayarlayacaktır.
+Bu komut, metin.txt dosyasının sahibini ahmet olarak ayarlayacaktır.
 
 **Grup sahipliğini değiştirme**
 
 ```bash
-sudo chgrp whales myfile
+sudo chgrp yeni-grup metin.txt
 ```
 
-Bu komut, myfile dosyasının grubunu whales olarak ayarlayacaktır.
+Bu komut, metin.txt dosyasının grubunu yeni-grup olarak ayarlayacaktır.
 
 **Kullanıcı ve grup sahipliğini aynı anda değiştirme**
 
 Kullanıcı adından sonra bir iki nokta (:) ve grup adı eklerseniz, kullanıcı ve grubu aynı anda ayarlayabilirsiniz.
 
 ```bash
-sudo chown patty:whales myfile
+sudo chown ahmet:yeni-grup metin.txt
 ```
 
 ---
