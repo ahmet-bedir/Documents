@@ -14,27 +14,27 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql...**](#psql)
+▸ [**Veritabanı İstemcisi / psql**](#psql)
 
-▸ [**Temel Veritabanı İşlemleri...**](#temel-veritabani)
+▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)
 
-▸ [**Veri Türleri...**](#veri-turleri)
+▸ [**Veri Türleri**](#veri-turleri)
 
-▸ [**Tablo İşlemleri...**](#tablo)
+▸ [**Tablo İşlemleri**](#tablo)
 
-▸ [**Veri İşlemleri...**](#veri)
+▸ [**Veri İşlemleri**](#veri)
 
-▸ [**İndex İşlemleri...**](#index)
+▸ [**İndex İşlemleri**](#index)
 
-▸ [**Referans İşlemleri...**](#referans)
+▸ [**Referans İşlemleri**](#referans)
 
-▸ [**Tarih ve Zaman Fonksiyonları...**](#zaman)
+▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)
 
-▸ [**Metin (String) Fonksiyonları...**](#metin)
+▸ [**Metin (String) Fonksiyonları**](#metin)
 
-▸ [**Transaction İşlemleri...**](#transaction)
+▸ [**Transaction İşlemleri**](#transaction)
 
-▸ [**Kullanıcı Yönetimi...**](#kullanici)
+▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
