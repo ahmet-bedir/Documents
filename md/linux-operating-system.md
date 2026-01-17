@@ -198,7 +198,7 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine göndererek gerçekleştirilmesini sağlayan bir programdır. Daha önce bir GUI (grafiksel arayüz) kullandıysanız, "Terminal" veya "Konsol" gibi progralları görmüşsünüzdür. Bunlar sizin için bir kabuk başlatan programlardır.
 
-Bu belgede kabuk programı bash (Bourne Again SHell) kullanacağız, hemen hemen tüm Linux dağıtımları varsayılan olarak bash kabuğunu kullanır. Ksh, zsh, tsch gibi başka kabuklar da mevcuttur, ancak en çok kullanılan kabuk programı bash'dir. `chsh -s [kabuk-adı]` komutu ile kabuğu değiştirebiliriz. (örneğin `chsh -s /usr/bin/bash`)
+Bu belgede kabuk programı `bash` (Bourne Again SHell) kullanacağız, hemen hemen tüm Linux dağıtımları varsayılan olarak `bash` kabuğunu kullanır. `ksh`, `zsh`, `tsch` gibi başka kabuklar da mevcuttur, ancak en çok kullanılan kabuk programı `bash`'dir. `chsh -s [kabuk-adı]` komutu ile kabuğu değiştirebiliriz. (örneğin `chsh -s /usr/bin/bash`)
 
 Temelde bizler kabuğa iki tür komut girebiliyoruz. Bu türler “dahili” ve “harici” olarak gruplanmış olan komutlardır.
 
@@ -208,21 +208,32 @@ Dahili komutlar, kabuk programında yerleşik olan araçları çalıştırmak ü
 
 ##### Harici Komutlar(External)
 
-Harici komutlar ise, mevcut sistem üzerinde yüklü bulunan araçları çalıştırmamızı sağlayan komutlardır. Tabii ki bu tür komutlar harici olan araçları temsil eden komutlar olduğu için kullanmakta olduğunuz sisteme göre harici komutlar değişiklik gösterir. Örneğin siz komut satırı üzerinden metinleri düzenleyebilmenizi sağlayacak olan nano aracını çalıştırmak üzere kabuğa aracın ismini girdiğinizde eğer araç sistemde yüklü ise açılır. Eğer yüklü değilse komut yok hatası alırsınız. İşte burada girdiğiniz `nano` komutu harici bir komut olarak kabul ediliyor. Çünkü nano aracı bash kabuğunun içinde yüklü gelen bir araç değil, nano aracı harici olarak sisteme yüklenmiş olan bir metin editörü yazılımıdır.
+Harici komutlar ise, mevcut sistem üzerinde yüklü bulunan araçları çalıştırmamızı sağlayan komutlardır. Tabii ki bu tür komutlar harici olan araçları temsil eden komutlar olduğu için kullanmakta olduğunuz sisteme göre harici komutlar değişiklik gösterir. Örneğin siz komut satırı üzerinden metinleri düzenleyebilmenizi sağlayacak olan `nano` aracını çalıştırmak üzere kabuğa aracın ismini girdiğinizde eğer araç sistemde yüklü ise açılır. Eğer yüklü değilse komut yok hatası alırsınız. İşte burada girdiğiniz `nano` komutu harici bir komut olarak kabul ediliyor. Çünkü nano aracı `bash` kabuğunun içinde yüklü gelen bir araç değil, `nano` aracı harici olarak sisteme yüklenmiş olan bir metin editörü yazılımıdır.
 
 Genel görünümü (promt) aşağıdaki gibidir.
 
 ```bash
-kullanıcı_adı@bilgisayar_adı:su_anki_dizin
-ali@pc:/home/ali $
+kullanıcı_adı@bilgisayar_adı:su_anki_dizin $
+
+ali@pc:/home/ali/İndirilenler $
 ```
 
-Promptun sonunda $ sembolünü gördünüz mü? Farklı kabukların farklı promptları olacaktır, bizim durumumuzda $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal bir kullanıcı içindir, komutu yazarken bu sembolü eklemeyin.
-
-Basit bir komut olan echo ile başlayalım. echo komutu, metin argümanlarını ekrana yazdırır.
+Kullandığınız dağıtıma göre promt görünümü değişebilir.Örneğin kali linux dağıtımında promt görünümü aşağıdaki gibidir: 
 
 ```bash
-$ echo Merhaba Dünya
+┌──(ahmet㉿kali)-[/home/ali/İndirilenler]
+└─$ 
+```
+
+Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal bir kullanıcı içindir, komutu yazarken bu sembol eklenmez.
+
+`echo` komutu, kendisine verilen metin argümanlarını ekrana yazdırır. 
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ echo Linux İşletim Sistemi
+
+Linux İşletim Sistemi
 ```
 
 ---
@@ -235,7 +246,10 @@ Bu dosya ve dizinlerin konumları yollar olarak adlandırılır.
 Dosya sisteminde gezinmek, tıpkı gerçek hayatta olduğu gibi, nerede olduğunuzu ve nereye gideceğinizi bilmeniz yararlıdır. Nerede olduğunuzu görmek için pwd komutunu kullanabilirsiniz, bu komut "çalışma dizinini yazdır" anlamına gelir ve yalnızca hangi dizinde olduğunuzu gösterir, yolun kök dizinden geldiğini unutmayın.
 
 ```bash
-$ pwd
+┌──(ahmet㉿kali)-[~]
+└─$ pwd
+
+/home/ahmet
 ```
 
 ---
@@ -250,21 +264,29 @@ $ pwd
 
 <img src="../images/parent-sub-directory2.jpg" width="400"  />
 
-Artık yolların nasıl çalıştığını bildiğinize göre, istediğimiz dizine geçmemize yardımcı olacak bir şeye ihtiyacımız var. Neyse ki, bunu yapmak için `cd` "dizin değiştir" komutu kullanılır.
+İstediğimiz dizine geçmek için `cd` "dizin değiştir" komutuna gitmek istediğimiz dizin adını argüman olarak verilir.
 
 ```bash
-$ cd /home/ali/Pictures
+┌──(ahmet㉿kali)-[~]
+└─$ cd /home/ali/Resimler/
+
+┌──(ahmet㉿kali)-[/home/ali/Resimler]
+└─$ 
 ```
 
-Böylece şimdi dizin konumumu `/home/ali/Pictures` olarak değiştirdim.
+Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdim.
 
-Şimdi bu dizinden Hawaii adında bir klasörüm var, şu şekilde o klasöre gidebilirim:
+Şimdi bu dizinden **Linux** adında bir klasörüm var, şu şekilde o klasöre gidebilirim:
 
 ```bash
-ali@pc:/home/ali/Pictures $ cd Hawaii
+┌──(ahmet㉿kali)-[/home/ali/Resimler]
+└─$ cd Linux/
+
+┌──(ahmet㉿kali)-[/home/ali/Resimler/Linux]
+└─$ 
 ```
 
-Sadece klasörün adını nasıl kullandığımı fark ettiniz mi? Çünkü zaten `/home/ali/Pictures` konumundaydım.
+Sadece klasörün adını nasıl kullandığımı fark ettiniz mi? Çünkü zaten `/home/ali/Resimler` konumundaydım.
 
 Her zaman mutlak ve göreli yollarla gezinmek oldukça yorucu olabilir, Neyse ki, size yardımcı olacak bazı kısayollar var.
 
@@ -272,7 +294,7 @@ Her zaman mutlak ve göreli yollarla gezinmek oldukça yorucu olabilir, Neyse ki
 
 ► **.. (üst dizin)**: Sizi şu anki konumunuzun bir üst dizinine götürür.
 
-► **\~ (ana dizin)**: Bu dizin varsayılan olarak "ana dizininize" (`~/home/kullanıcı_adı`) gider.
+► **\~ (ana dizin)**: Bu dizin varsayılan olarak "ana dizininize" (`/home/kullanıcı_adı`) gider.
 
 ► **- (önceki dizin)**: Bu sizi az önce bulunduğunuz önceki dizine götürür.
 
@@ -283,7 +305,7 @@ $ cd . # geçerli dizinde kal
 
 $ cd .. # bir üst dizine git
 
-$ cd ~ # ana dizine git
+$ cd ~ # ana dizine git (sadece cd komutuda yeterlidir)
 
 $ cd - # önceki dizine git
 ```
