@@ -316,44 +316,60 @@ $ cd - # önceki dizine git
 
 ### ls (List Directories)
 
-Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
+Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, 
 
 ```bash
-$ ls
+┌──(ahmet㉿kali)-[~/Resimler]
+└─$ ls
+'Ekran Görüntüleri'  'Git Resimleri'   linux-distribution.png   source-code.jpg   veritabanı.jpg
 ```
 
+Ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
+
 ```bash
-$ ls /home/ali
+
+┌──(ahmet㉿kali)-[~/Resimler]
+└─$ ls /home/ali/
+Belgeler  Genel  İndirilenler  Masaüstü  Müzik  Resimler  Şablonlar  Videolar
 ```
 
-Ayrıca bir dizindeki tüm dosyaların görünmeyeceğini de unutmayın. Nokta ile başlayan dosya adları gizlidir, ancak bunları ls komutuyla görebilirsiniz ve `-a` (tümü için a) işaretini ekleyebilirsiniz.
+Nokta ile başlayan dosya adları gizlidir, ancak bunları `ls` komutuyla görebilirsiniz ve `-a` (tümü için all) işaretini ekleyebilirsiniz.
 
 ```bash
-$ ls -a
+┌──(ahmet㉿kali)-[~]
+└─$ ls -a
+ .                    .cache       .gtkrc-2.0     .pki                        .swt
+ ..                   .codeintel   İndirilenler   .profile                    Şablonlar
+ .atom                .config      .ipython       .psql_history               .var
+ .bash_history        .eclipse     .java          pycharm-2025.3              Videolar
+ .bash_logout         .face        .junie         PyCharmMiscProject          .viminfo
+ .bashrc              .face.icon   .local         Python-3.14.2               .zoom
+ .bashrc.original     Genel        Masaüstü       .python_history             .zprofile
+ Belgeler             .gitconfig   metin.txt      Resimler                    .zsh_history
+ .biglybt             .gnupg       .mozilla       .ssh                        .zshrc
+'BiglyBT Downloads'   GNUstep      Müzik
 ```
 
 Bir başka `ls` işareti, `-l` uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
 
 ```bash
-ali@pc:~$ ls -l
-
-total 80
-
-drwxr-x--- 7 ali ali   4096 Nov 20 16:37 Desktop
-
-drwxr-x--- 2 ali ali   4096 Oct 19 10:46  Documents
-
-drwxr-x--- 4 ali ali   4096 Nov 20 09:30 Downloads
-
-drwxr-x--- 2 ali ali   4096 Oct  7 13:13   Music
-
-drwxr-x--- 2 ali ali   4096 Sep 21 14:02 Pictures
-
-drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Public
-
-drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Templates
-
-drwxr-x--- 2 ali ali   4096 Jul 27 12:41   Videos
+┌──(ahmet㉿kali)-[~]
+└─$ ls -l
+toplam 56
+drwxr-xrwx  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
+drwxrwxrwx  2 ahmet ahmet 4096 Ara  1 12:28 'BiglyBT Downloads'
+drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Genel
+drwxrwxr-x  4 ahmet ahmet 4096 Ara  1 13:08  GNUstep
+drwxr-xrwx  3 ahmet ahmet 4096 Oca 15 17:26  İndirilenler
+drwxr-xrwx 13 ahmet ahmet 4096 Oca 16 21:53  Masaüstü
+-rw-rw-r--  1 ahmet ahmet   24 Oca 16 22:28  metin.txt
+drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Müzik
+drwxr-xr-x 10 ahmet ahmet 4096 Oca 21  1970  pycharm-2025.3
+drwxrwxr-x  4 ahmet ahmet 4096 Ara 16 12:38  PyCharmMiscProject
+drwxrwxr-x  6 ahmet ahmet 4096 Oca 14 21:02  Python-3.14.2
+drwxr-xrwx  4 ahmet ahmet 4096 Oca 17 16:55  Resimler
+drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Şablonlar
+drwxr-xrwx  3 ahmet ahmet 4096 Ara  5 22:23  Videolar
 ```
 
 ##### Sık kullanılan argümanlar
@@ -466,7 +482,7 @@ ls -lu
    Son durum değişikliği zamanına göre listeler.
 
 ```bash
-  ls -lc
+ls -lc
 ```
 
 ------
@@ -506,7 +522,7 @@ Touch, yeni boş dosyalar oluşturmanıza olanak tanır.
 $ touch <dosya>
 ```
 
-Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch`komutunu uygulayın, zaman damgası güncellenecektir.
+Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için kullanılır. Bir dosyada`ls -l` komutunu kullanın ve zaman damgasını not edin, ardından o dosyaya `touch` komutunu uygulayın, zaman damgası güncellenecektir.
 
 ---
 
@@ -517,7 +533,9 @@ Linux'ta, dosya adlarının dosyanın içeriğini temsil etmesi gerekmez. Aslın
 Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabilirsiniz. Bu komut, dosyanın içeriğinin bir açıklamasını size gösterecektir.
 
 ```bash
-$ file komik.gif
+┌──(ahmet㉿kali)-[~/Resimler]
+└─$ file komik.gif 
+komik.gif: GIF image data, version 89a, 807 x 662
 ```
 
 ---
@@ -527,7 +545,8 @@ $ file komik.gif
 Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
 
 ```bash
-$ cat dogfile birdfile > newfile
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat Komutlar.txt Notlar.txt > Hepsi.txt
 ```
 
 Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır.
