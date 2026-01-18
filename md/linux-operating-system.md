@@ -23,6 +23,7 @@
 
 ➤ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
 
+
 ---
 
 ## 📅 Tarihçe
@@ -39,6 +40,7 @@ Ardından 1991'de Linus Torvalds adında genç bir adam, bugün bildiğimiz Linu
 
 Sonuç olarak Linux çekirdeğinin GPL lisansına geçişiyle birlikte, GNU projesinin halihazırda sahip olduğu açık kaynaklı özgür yazılım araçları ve topluluk desteği, ortaya açık kaynaklı ve özgür bir işletim sistemi olan “GNU Linux” işletim sistemini çıkarmıştı. GNU’nun eksik olan çekirdeği, Linux çekirdeğinin de eksik olan işletim sistemi araçları birbirini tamamlayarak açık kaynaklı özgür bir işletim sistemi oluşturdu.
 
+
 ## 🔥 Linux Dağıtımları
 
 <img src="../images/linux-distributions.png" width="500"  />
@@ -49,9 +51,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 * **Linux Çekirdeği:** Yukarıda belirttiğimiz gibi, çekirdek işletim sisteminin merkezidir. Donanımı yönetir ve sistemle nasıl etkileşim kuracağını söyler.
 * **Kullanıcı Alanı:** Bu, bizler gibi kullanıcıların çeşitli yazımlar ile doğrudan sistemle etkileşim kuracağı yerdir.
 
-
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
-
 
 ### ►Debian Dağıtımı
 
@@ -632,6 +632,7 @@ $ history
 Örneğin, `cat dosya1` yazdıysanız ve tekrar çalıştırmak istiyorsanız, sadece `!!` yazıp Enter'a basabilirsiniz. Bu, en son çalıştırdığınız komutu çalıştıracaktır.
 
 * **Ters arama:** `Ctrl-R` tuşlarına birlikte basın. Bu, ters arama komutudur. `Ctrl-R`'ye basıp aradığınız komutun bir kısmını yazmaya başlarsanız, size eşleşmeleri gösterecektir. `Ctrl-R` tuşuna tekrar basarak bunlar arasında gezinebilirsiniz. Kullanmak istediğiniz komutu bulduktan sonra Enter tuşuna basmanız yeterlidir.
+
 * **Ekranı temizleme:**
 
 ```bash
@@ -716,7 +717,7 @@ $ mv <eski_dosya> <yeni_dosya>
 Bir dosyayı farklı bir dizine şu şekilde taşıyabilirsiniz:
 
 ```bash
-$ mv dosya2 /home/pete/Dökümanlar
+$ mv dosya2 /home/ali/Dökümanlar
 ```
 
 **Çoklu Dosya Taşıma**
@@ -777,9 +778,9 @@ Birçok dosya oluşturduk, şimdi bazılarını silelim. Dosyaları silmek için
 $ rm dosya1
 ```
 
-**Dikkat:** `rm` komutunu kullanırken dikkatli olun. Silinen dosyaları geri getirmek için sihirli bir çöp kutusu yoktur. Silindikten sonra sonsuza kadar kaybolurlar. Bu yüzden dikkatli olun.
+**Dikkat:** `rm` komutu ile silinen dosyaları geri getirmek için bir çöp kutusu yoktur. Silindikten sonra sonsuza kadar kaybolurlar. Bu yüzden dikkatli olun.
 
-Neyse ki, ortalama bir kullanıcının önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri alınmıştır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
+Önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri vardır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
 
 Linux'ta `chattr` (Change Attribute) komutu, dosyaların ve dizinlerin **özniteliklerini** (attributes) değiştirmek için kullanılır. Bu komut, standart `chmod` (izinler) komutundan farklıdır; çünkü dosya izinleri yazma yetkisi verse bile, `chattr` ile korunan bir dosya silinemez veya değiştirilemez.
 
@@ -799,7 +800,7 @@ chattr [operatör] [öznitelik] [dosya_adı]
 
 ##### En Çok Kullanılan Öznitelikler
 
-Aşağıdaki tabloda en yaygın kullanılan `chattr` parametrelerini bulabilirsiniz:
+Aşağıdaki tabloda en yaygın kullanılan `chattr` parametreleri:
 
 | **Öznitelik**       | **Açıklama**                                                 |
 | ------------------- | ------------------------------------------------------------ |
@@ -838,6 +839,8 @@ sudo chattr +a sistem.log
 sudo chattr -i onemli_dosya.txt
 ```
 
+Bu aşamadan sonra dosya silinebilir.
+
 ------
 
 ##### Öznitelikleri Nasıl Kontrol Edilir? (`lsattr`)
@@ -863,7 +866,6 @@ Buradaki i, dosyanın kilitli olduğunu gösterir.
 - `chattr` komutunu kullanmak için genellikle **root** veya **sudo** yetkisi gerekir.
 - Bu komut genellikle **ext2, ext3, ext4, XFS** gibi Linux dosya sistemlerinde çalışır.
   - `i` özniteliği atanmış bir dosyayı düzenlemeye çalışırsanız, "Permission Denied" (Erişim Engellendi) hatası alırsınız; bu hata dosya izinlerinden (`chmod`) değil, öznitelikten kaynaklıdır.
-
 
 Dizinlerde kullanım için iki temel yöntem vardır:
 
@@ -916,8 +918,7 @@ Dizine uygulanan özniteliği görmek için `lsattr` komutuna `-d` (directory) p
 lsattr -d /home/kullanici/ozel_dizin
 ```
 
-
-* **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
+* **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
 
 ```bash
 $ rm -f dosya
