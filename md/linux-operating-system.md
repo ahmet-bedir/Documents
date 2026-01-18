@@ -232,7 +232,6 @@ Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal b
 ```bash
 ┌──(ahmet㉿kali)-[~]
 └─$ echo Linux İşletim Sistemi
-
 Linux İşletim Sistemi
 ```
 
@@ -248,7 +247,6 @@ Dosya sisteminde gezinmek, tıpkı gerçek hayatta olduğu gibi, nerede olduğun
 ```bash
 ┌──(ahmet㉿kali)-[~]
 └─$ pwd
-
 /home/ahmet
 ```
 
@@ -327,7 +325,6 @@ Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsay�
 Ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
 
 ```bash
-
 ┌──(ahmet㉿kali)-[~/Resimler]
 └─$ ls /home/ali/
 Belgeler  Genel  İndirilenler  Masaüstü  Müzik  Resimler  Şablonlar  Videolar
@@ -528,25 +525,66 @@ Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için
 
 ### file
 
-Linux'ta, dosya adlarının dosyanın içeriğini temsil etmesi gerekmez. Aslında GIF olmayan `komik.gif` adında bir dosya oluşturabilirsiniz. Bu onun bi GIF dosyası olduğu anlamına gelmez.
-
 Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabilirsiniz. Bu komut, dosyanın içeriğinin bir açıklamasını size gösterecektir.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Resimler]
-└─$ file komik.gif 
-komik.gif: GIF image data, version 89a, 807 x 662
+└─$ file man-image.gif 
+man-image.gif: GIF image data, version 89a, 807 x 662
+```
+
+Linux'ta, dosya adlarının dosyanın içeriğini temsil etmesi gerekmez. Aslında GIF olmayan `linux-distribution.gif` adında bir dosya oluşturabilirsiniz. Bu onun bi GIF dosyası olduğu anlamına gelmez.
+
+```bash
+┌──(ahmet㉿kali)-[~/Resimler]
+└─$ file linux-distribution.gif 
+linux-distribution.gif: PNG image data, 2000 x 2416, 8-bit/color RGBA, non-interlaced
 ```
 
 ---
 
 ### cat
 
-Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır, yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
+Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Komutlar.txt Notlar.txt > Hepsi.txt
+└─$ cat Notlar.txt 
+==== NOTLAR ===
+Python'u öğrenirken ilerlemenin en iyi yolları.
+
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat Komutlar.txt 
+=== Komutlar ===
+[#] pwd : Bulunduğumuz dizinin tam adresini yazdırır.
+[#] ls : Dizin içeriklerini listelemek için kullanılır.
+```
+
+Yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
+
+```bash
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat Notlar.txt Komutlar.txt                                           
+==== NOTLAR ===
+Python'u öğrenirken ilerlemenin en iyi yolları.
+=== Komutlar ===
+[#] pwd : Bulunduğumuz dizinin tam adresini yazdırır.
+[#] ls : Dizin içeriklerini listelemek için kullanılır.
+```
+
+Dosyaları birleştirmek ve içeriği dosyaya yazdırmak içinde kullanabilirsiniz.
+
+```bash
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat Notlar.txt Komutlar.txt > Birlesimi.txt                           
+
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat Birlesimi.txt                                                     
+==== NOTLAR ===
+Python'u öğrenirken ilerlemenin en iyi yolları.
+=== Komutlar ===
+[#] pwd : Bulunduğumuz dizinin tam adresini yazdırır.
+[#] ls : Dizin içeriklerini listelemek için kullanılır.
 ```
 
 Ancak büyük dosyaları görüntülemek için pek uygun değildir ve yalnızca kısa içerikler için kullanılır.
@@ -570,7 +608,7 @@ $ less /home/ali/Dökümanlar/metin1
 - **g** - Metin dosyasının başına gitmek için kullanılır.
 - **G** - Metin dosyasının sonuna gitmek için kullanılır.
 - **/arama** - Metin belgesinin içinde belirli metinleri arayabilirsiniz. Aramak istediğiniz kelimelerin öncesine / işareti ekleyin.
-- **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` komutunu kullanarak yardım ekranına erişebilirsiniz.
+- **h** - `less` programını kullanırken nasıl kullanılacağı hakkında biraz yardıma ihtiyacınız varsa, `h` özniteliğini kullanarak yardım ekranına erişebilirsiniz.
 
 ---
 
@@ -648,15 +686,15 @@ Yararlı bir komut, `-r` (recursive, yinelenen) işaretini kullanmaktır. Bu, bi
 Örnek:
 
 ```bash
-$ cp -r Kabak /home/ali/Dökümanlar
+$ cp -r Belgeler/home/ali/Dökümanlar
 ```
 
-Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i`(interactive, etkileşimli) işaretini kullanabilirsiniz.
+Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i` (interactive, etkileşimli) işaretini kullanabilirsiniz.
 
 Örnek:
 
 ```bash
-$ cp -i süperdosyam /home/pete/Resimler
+$ cp -i dosya /home/ali/Resimler
 ```
 
 ---
@@ -726,7 +764,7 @@ $ mkdir kitaplar resimler
 Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
 
 ```bash
-$ mkdir -p kitaplar/hemingway/favoriler
+$ mkdir -p kitaplar/yerli/favoriler
 ```
 
 ---
@@ -804,7 +842,7 @@ sudo chattr -i onemli_dosya.txt
 
 ##### Öznitelikleri Nasıl Kontrol Edilir? (`lsattr`)
 
-Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:p
+Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:
 
 ```bash
 lsattr onemli_dosya.txt
@@ -812,7 +850,11 @@ lsattr onemli_dosya.txt
 
 Çıktı örneği:
 
-----i---------e---- onemli_dosya.txt (Buradaki i, dosyanın kilitli olduğunu gösterir.)
+```bash
+----i---------e---- onemli_dosya.txt 
+```
+
+Buradaki i, dosyanın kilitli olduğunu gösterir.
 
 ------
 
@@ -878,7 +920,7 @@ lsattr -d /home/kullanici/ozel_dizin
 * **-f** veya **force** seçeneği, `rm` komutuna tüm dosyaları silmesini (yazma korumalı olsalar bile) kullanıcıya sormadan silmesini söyler (tabii ki gerekli izinlere sahipseniz).
 
 ```bash
-$ rm -f dosya1
+$ rm -f dosya
 ```
 
 * Diğer birçok komutta olduğu gibi `-i` işaretini eklemek, dosyaları veya dizinleri gerçekten silmek isteyip istemediğinizi soran bir uyarı görüntüler.
