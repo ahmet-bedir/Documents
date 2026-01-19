@@ -43,12 +43,12 @@ Sonuç olarak Linux çekirdeğinin GPL lisansına geçişiyle birlikte, GNU proj
 
 ## 🔥 Linux Dağıtımları
 
-<img src="../images/linux-distributions.png" width="500"  />
+<img src="../images/linux-distributions.png" width="500" />
 
 Bir Linux sistemi üç ana bölümden oluşur:
 
 * **Donanım:** Bu, sisteminizin çalıştığı tüm donanımları, bellek, CPU, diskler vb. içerir.
-* **Linux Çekirdeği:** Yukarıda belirttiğimiz gibi, çekirdek işletim sisteminin merkezidir. Donanımı yönetir ve sistemle nasıl etkileşim kuracağını söyler.
+* **Linux Çekirdeği:** Yukarıda belirttiğimiz gibi, çekirdek işletim sisteminin merkezidir. Donanımı yönetir ve sistemle nasıl etkileşim kuracağını söyler. Çekirdek dediğimiz yapının, yazılım olduğu unutulmamalıdır.
 * **Kullanıcı Alanı:** Bu, bizler gibi kullanıcıların çeşitli yazımlar ile doğrudan sistemle etkileşim kuracağı yerdir.
 
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
@@ -200,6 +200,16 @@ Kabuk, temelde klavyenizden komutlarınızı alıp bunları işletim sistemine g
 
 Bu belgede kabuk programı `bash` (Bourne Again SHell) kullanacağız, hemen hemen tüm Linux dağıtımları varsayılan olarak `bash` kabuğunu kullanır. `ksh`, `zsh`, `tsch` gibi başka kabuklar da mevcuttur, ancak en çok kullanılan kabuk programı `bash`'dir. `chsh -s [kabuk-adı]` komutu ile kabuğu değiştirebiliriz. (örneğin `chsh -s /usr/bin/bash`)
 
+Varsayılan kabuk programını öğrenmek için konsola `echo $SHELL` komutunu girmeniz yeterli. Bu komutta yer alan `echo` ifadesi varsayılan kabuğun değerini tutan `SHELL` değişkenini konsola bastırmanızı sağlıyor.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ echo $SHELL
+/usr/bin/bash
+```
+
+
+
 Temelde bizler kabuğa iki tür komut girebiliyoruz. Bu türler “dahili” ve “harici” olarak gruplanmış olan komutlardır.
 
 ##### Dahili Komutlar(Built-ins)
@@ -209,6 +219,8 @@ Dahili komutlar, kabuk programında yerleşik olan araçları çalıştırmak ü
 ##### Harici Komutlar(External)
 
 Harici komutlar ise, mevcut sistem üzerinde yüklü bulunan araçları çalıştırmamızı sağlayan komutlardır. Tabii ki bu tür komutlar harici olan araçları temsil eden komutlar olduğu için kullanmakta olduğunuz sisteme göre harici komutlar değişiklik gösterir. Örneğin siz komut satırı üzerinden metinleri düzenleyebilmenizi sağlayacak olan `nano` aracını çalıştırmak üzere kabuğa aracın ismini girdiğinizde eğer araç sistemde yüklü ise açılır. Eğer yüklü değilse komut yok hatası alırsınız. İşte burada girdiğiniz `nano` komutu harici bir komut olarak kabul ediliyor. Çünkü nano aracı `bash` kabuğunun içinde yüklü gelen bir araç değil, `nano` aracı harici olarak sisteme yüklenmiş olan bir metin editörü yazılımıdır.
+
+
 
 Genel görünümü (promt) aşağıdaki gibidir.
 
@@ -235,6 +247,12 @@ Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal b
 Linux İşletim Sistemi
 ```
 
+Kabuğun bizim girdiğimiz komutları nasıl algıladığından bahsedecek olursak:
+
+Örnek olması için sistem üzerinde dosyaları ve klasörleri bulma konusunda bize yardımcı olan `find` aracını kullanarak bash kabuğunun bizim girdiğimiz komutları nasıl ele aldığın.
+
+<img src="/home/ahmet/Masaüstü/Documents/images/find.webp" width="600" />
+
 Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
 
 ### PATH Yolu
@@ -244,8 +262,11 @@ PATH, kabuk (bash, zsh vb.) tarafından çalıştırılabilir dosyaların aranac
 Örnek:
 
 ```bash
-echo $PATH
+$ echo $PATH
+/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games
 ```
+
+
 
 PATH’e Geçici Dizin Ekleme (oturumluk)
 
@@ -288,7 +309,7 @@ sudo nano /etc/profile
 Ekleme örneği:
 
 ```bash
-PATH="$PATH:/opt/myapp/bin"
+PATH="$PATH:/home/ali/Belgeler/bin"
 ```
 
 Özet
@@ -300,6 +321,11 @@ export PATH=...: PATH güncelleme
 `~/.bashrc`: Kullanıcıya özel
 
 `/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli
+
+```bash
+$ echo $PATH
+/home/ali/Belgeler/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games
+```
 
 ---
 
