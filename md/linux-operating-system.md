@@ -235,6 +235,72 @@ Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal b
 Linux İşletim Sistemi
 ```
 
+Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
+
+### PATH Yolu
+
+PATH, kabuk (bash, zsh vb.) tarafından çalıştırılabilir dosyaların aranacağı dizinleri tutan ortam değişkenidir. Bir komutu tam yolunu yazmadan çalıştırabilmenizi sağlar.
+
+Örnek:
+
+```bash
+echo $PATH
+```
+
+PATH’e Geçici Dizin Ekleme (oturumluk)
+
+Sadece açık terminal oturumu için geçerlidir.
+
+```bash
+export PATH="$PATH:/home/ali/Belgeler/bin"
+```
+
+Terminal kapandığında geçersiz olur.
+
+PATH’e Kalıcı Dizin Ekleme (kullanıcı bazlı)
+
+Kullanıcının her oturumunda geçerli olur.
+
+```bash
+nano ~/.bashrc
+```
+
+Dosyanın sonuna ekle:
+
+```bash
+export PATH="$PATH:/home/ali/Belgeler/bin"
+```
+
+Ardından:
+
+```bash
+source ~/.bashrc
+```
+
+Sistem Geneli PATH Ekleme (tüm kullanıcılar)
+
+Tüm kullanıcılar için geçerli olur.
+
+```bash
+sudo nano /etc/profile
+```
+
+Ekleme örneği:
+
+```bash
+PATH="$PATH:/opt/myapp/bin"
+```
+
+Özet
+
+PATH: Komutların arandığı dizinler listesi
+
+export PATH=...: PATH güncelleme
+
+`~/.bashrc`: Kullanıcıya özel
+
+`/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli
+
 ---
 
 ### pwd (Print Working Directory / Çalışma Dizini Yazdır)
@@ -687,7 +753,7 @@ Yararlı bir komut, `-r` (recursive, yinelenen) işaretini kullanmaktır. Bu, bi
 Örnek:
 
 ```bash
-$ cp -r Belgeler/home/ali/Dökümanlar
+$ cp -r Belgeler /home/ali/Dökümanlar
 ```
 
 Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i` (interactive, etkileşimli) işaretini kullanabilirsiniz.
@@ -948,12 +1014,12 @@ $ rmdir dizin
 
 Sistemde bu kadar çok dosya varken, belirli bir dosyayı bulmaya çalışmak biraz zor olabilir. Neyse ki, bunun için kullanabileceğimiz bir komut var: `find`
 
-`find` komutunu kullanarak hangi dizinde arama yapacağınızı ve ne aradığınızı belirtmeniz gerekir. Bu örnekte, `puppies.jpg` adlı bir dosya aramaya çalışıyoruz.
+`find` komutunu kullanarak hangi dizinde arama yapacağınızı ve ne aradığınızı belirtmeniz gerekir. Bu örnekte, `software.jpg` adlı bir dosya aramaya çalışıyoruz.
 
 * **Dosya adına göre arama:**
 
 ```bash
-$ find /home -name puppies.jpg
+$ find /home -name software.jpg
 ```
 
 * **Dosya türüne göre arama:**
