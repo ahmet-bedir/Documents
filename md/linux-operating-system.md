@@ -249,9 +249,9 @@ Linux İşletim Sistemi
 
 Kabuğun bizim girdiğimiz komutları nasıl algıladığından bahsedecek olursak:
 
-Örnek olması için sistem üzerinde dosyaları ve klasörleri bulma konusunda bize yardımcı olan `find` aracını kullanarak bash kabuğunun bizim girdiğimiz komutları nasıl ele aldığın.
+Sistem üzerinde dosyaları ve klasörleri bulma konusunda bize yardımcı olan `find` aracının PATH yolundaki dizinlerde bulunup bulunmadığı kontrol edilir.
 
-<img src="/home/ahmet/Masaüstü/Documents/images/find.webp" width="600" />
+<img src="../images/find.webp" width="600" />
 
 Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
 
@@ -259,16 +259,14 @@ Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
 
 PATH, kabuk (bash, zsh vb.) tarafından çalıştırılabilir dosyaların aranacağı dizinleri tutan ortam değişkenidir. Bir komutu tam yolunu yazmadan çalıştırabilmenizi sağlar.
 
-Örnek:
-
 ```bash
 $ echo $PATH
 /usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games
 ```
 
+Burada gördüğümüz iki nokta işareti ile ayrılmış olan her bir dizin adresi, kabuğun bir aracın çalıştırılabilir dosyasını ararken soldan sağa doğru sırasıyla bakacağı dizinlerin adresidir.
 
-
-PATH’e Geçici Dizin Ekleme (oturumluk)
+**PATH’e Geçici Dizin Ekleme (oturumluk)**
 
 Sadece açık terminal oturumu için geçerlidir.
 
@@ -278,7 +276,7 @@ export PATH="$PATH:/home/ali/Belgeler/bin"
 
 Terminal kapandığında geçersiz olur.
 
-PATH’e Kalıcı Dizin Ekleme (kullanıcı bazlı)
+**PATH’e Kalıcı Dizin Ekleme (kullanıcı bazlı)**
 
 Kullanıcının her oturumunda geçerli olur.
 
@@ -286,7 +284,7 @@ Kullanıcının her oturumunda geçerli olur.
 nano ~/.bashrc
 ```
 
-Dosyanın sonuna ekle:
+Dosyanın sonuna aşağıdaki kodu ekle:
 
 ```bash
 export PATH="$PATH:/home/ali/Belgeler/bin"
@@ -298,7 +296,7 @@ Ardından:
 source ~/.bashrc
 ```
 
-Sistem Geneli PATH Ekleme (tüm kullanıcılar)
+**Sistem Geneli PATH Ekleme (tüm kullanıcılar)**
 
 Tüm kullanıcılar için geçerli olur.
 
@@ -321,6 +319,8 @@ export PATH=...: PATH güncelleme
 `~/.bashrc`: Kullanıcıya özel
 
 `/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli
+
+Eklenen dizini kontrol etmek için:
 
 ```bash
 $ echo $PATH
