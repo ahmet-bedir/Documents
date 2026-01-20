@@ -352,11 +352,11 @@ Gördüğünüz gibi tüm dizinler / işareti ile temsil edilen kök dizinin alt
 
 ### cd (Change Directory / Dizin Değiştir)
 
-Şimdi nerede olduğunuzu öğrendiğinize göre, dosya sisteminde biraz dolaşabileceğimize bakalım. Dosya sisteminde gezinmek için yolları kullanmamız gerektiğini unutmayın. Yol belirtmenin mutlak ve göreli olmak üzere iki farklı yolu vardır.
+Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” ifadesinin kısaltmasından gelen `cd` komutunu kullanabiliyoruz. Dizin değiştirmek için yapmamız gereken `cd` komutundan sonra gitmek istediğimiz dizinin tam adresini belirtmek. Dosya sisteminde gezinmek için yolları kullanmamız gerekiyor. Yol belirtmenin mutlak ve göreli olmak üzere iki farklı yolu vardır.
 
-**Mutlak yol:** Bu, kök dizinden itibaren olan yoldur. Kök dizin en önemli dizindir. Kök dizin genellikle bir eğik çizgi "/" olarak gösterilir. Yolunuz her zaman "/" ile başladığında, kök dizinden başladığınız anlamına gelir. Örneğin, `/home/ali/Masaüstü`
+**Kesin yol “absolute path”:** Bu, kök dizinden itibaren olan yoldur. Kök dizin en önemli dizindir. Kök dizin genellikle bir eğik çizgi "/" olarak gösterilir. Yolunuz her zaman "/" ile başladığında, kök dizinden başladığınız anlamına gelir. Örneğin, `/home/ali/Masaüstü`
 
-**Göreli yol:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `vergiler/` dizinine gidebilirim.
+**Göreli yol “relative path”:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `cd` komutuna `vergiler/` argümanını verip ilgili dizinine gidebilirim.
 
 <img src="../images/parent-sub-directory2.jpg" width="400"  />
 
@@ -370,7 +370,7 @@ Gördüğünüz gibi tüm dizinler / işareti ile temsil edilen kök dizinin alt
 └─$ 
 ```
 
-Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdim.
+Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 
 Şimdi bu dizinden **Linux** adında bir klasörüm var, şu şekilde o klasöre gidebilirim:
 
