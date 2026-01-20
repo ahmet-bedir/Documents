@@ -251,7 +251,7 @@ Kabuğun bizim girdiğimiz komutları nasıl algıladığından bahsedecek olurs
 
 Sistem üzerinde dosyaları ve klasörleri bulma konusunda bize yardımcı olan `find` aracının PATH yolundaki dizinlerde bulunup bulunmadığı kontrol edilir.
 
-<img src="../images/find.webp" width="600" />
+<img src="../images/find.webp" width="500" />
 
 Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
 
@@ -310,15 +310,17 @@ Ekleme örneği:
 PATH="$PATH:/home/ali/Belgeler/bin"
 ```
 
-Özet
+**Özet:**
 
-PATH: Komutların arandığı dizinler listesi
+PATH: Komutların arandığı dizinlerin listesi
 
-export PATH=...: PATH güncelleme
+`export PATH=$PATH: ...` güncelleme,
 
-`~/.bashrc`: Kullanıcıya özel
+`~/.bashrc`: Kullanıcıya özel,
 
-`/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli
+`/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli için.
+
+
 
 Eklenen dizini kontrol etmek için:
 
@@ -342,9 +344,9 @@ Nerede olduğunuzu görmek için `pwd` komutunu kullanabilirsiniz, bu komut "ça
 /home/ahmet
 ```
 
-Linux’ta tüm dosya ve dizinler “root” olarak ifade edilen “kök” dizini altında hiyerarşik şekilde tutuluyor. Kök dizin de slash / işareti ile temsil ediliyor.
+Linux’ta tüm dosya ve dizinler “root” olarak ifade edilen “kök” dizini altında hiyerarşik şekilde tutuluyor. Kök dizin de "/ (slash)" işareti ile temsil ediliyor.
 
-<img src="../images/hiyerarsi.webp" width="450" />
+<img src="../images/hiyerarsi.webp" />
 
 Gördüğünüz gibi tüm dizinler / işareti ile temsil edilen kök dizinin altında bulunuyor.
 
@@ -352,13 +354,15 @@ Gördüğünüz gibi tüm dizinler / işareti ile temsil edilen kök dizinin alt
 
 ### cd (Change Directory / Dizin Değiştir)
 
-Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” ifadesinin kısaltmasından gelen `cd` komutunu kullanabiliyoruz. Dizin değiştirmek için yapmamız gereken `cd` komutundan sonra gitmek istediğimiz dizinin tam adresini belirtmek. Dosya sisteminde gezinmek için yolları kullanmamız gerekiyor. Yol belirtmenin mutlak ve göreli olmak üzere iki farklı yolu vardır.
+Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” ifadesinin kısaltmasından gelen `cd` komutunu kullanabiliyoruz. Dosya sisteminde gezinmek için yolları kullanmamız gerekiyor. Yol belirtmenin kesin (mutlak) ve göreli olmak üzere iki farklı yolu vardır.
 
 **Kesin yol “absolute path”:** Bu, kök dizinden itibaren olan yoldur. Kök dizin en önemli dizindir. Kök dizin genellikle bir eğik çizgi "/" olarak gösterilir. Yolunuz her zaman "/" ile başladığında, kök dizinden başladığınız anlamına gelir. Örneğin, `/home/ali/Masaüstü`
 
+<img src="../images/etc-apt.webp" width="300" />
+
 **Göreli yol “relative path”:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `cd` komutuna `vergiler/` argümanını verip ilgili dizinine gidebilirim.
 
-<img src="../images/parent-sub-directory2.jpg" width="400"  />
+
 
 İstediğimiz dizine geçmek için `cd` "dizin değiştir" komutuna gitmek istediğimiz dizin adını argüman olarak verilir.
 
@@ -384,7 +388,7 @@ Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 
 Sadece klasörün adını nasıl kullandığımı fark ettiniz mi? Çünkü zaten `/home/ali/Resimler` konumundaydım.
 
-Her zaman mutlak ve göreli yollarla gezinmek oldukça yorucu olabilir, Neyse ki, size yardımcı olacak bazı kısayollar var.
+Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı kısayollar var.
 
 ► **. (geçerli dizin)**: Şu anda bulunduğunuz dizindir.
 
@@ -393,6 +397,8 @@ Her zaman mutlak ve göreli yollarla gezinmek oldukça yorucu olabilir, Neyse ki
 ► **\~ (ana dizin)**: Bu dizin varsayılan olarak "ana dizininize" (`/home/kullanıcı_adı`) gider.
 
 ► **- (önceki dizin)**: Bu sizi az önce bulunduğunuz önceki dizine götürür.
+
+<img src="../images/parent-sub-directory2.jpg" width="500"  />
 
 Örnekler:
 
