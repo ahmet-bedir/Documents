@@ -358,9 +358,11 @@ Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” 
 
 **Kesin yol “absolute path”:** Bu, kök dizinden itibaren olan yoldur. Kök dizin en önemli dizindir. Kök dizin genellikle bir eğik çizgi "/" olarak gösterilir. Yolunuz her zaman "/" ile başladığında, kök dizinden başladığınız anlamına gelir. Örneğin, `/home/ali/Masaüstü`
 
-<img src="../images/etc-apt.webp" width="300" />
+<img src="../images/etc-apt.webp" width="370" />
 
 **Göreli yol “relative path”:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden tüm yolu belirtmeme gerek yok, bunun yerine sadece `cd` komutuna `vergiler/` argümanını verip ilgili dizinine gidebilirim.
+
+<img src="../images/parent-sub-directory.jpg" width="300"  />
 
 
 
@@ -386,7 +388,7 @@ Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 └─$ 
 ```
 
-Sadece klasörün adını nasıl kullandığımı fark ettiniz mi? Çünkü zaten `/home/ali/Resimler` konumundaydım.
+Sadece klasörün adını argüman olarak verdik, çünkü zaten `/home/ali/Resimler` konumundaydık.
 
 Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı kısayollar var.
 
@@ -412,13 +414,11 @@ $ cd ~ # ana dizine git (sadece cd komutuda yeterlidir)
 $ cd - # önceki dizine git
 ```
 
-<img src="../images/parent-sub-directory.jpg" width="300"  />
-
 ---
 
 ### ls (List Directories)
 
-Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler, 
+Dizin içeriklerini listelemek  için `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Resimler]
@@ -426,7 +426,7 @@ Dizin içeriklerini listelemek `ls` komutunu kullanabiliriz. `ls` komutu varsay�
 'Ekran Görüntüleri'  'Git Resimleri'   linux-distribution.png   source-code.jpg   veritabanı.jpg
 ```
 
-Ancak hangi dizinin dizinlerini listelemek istediğinizi belirtebilirsiniz.
+Ancak hangi dizinini listelemek istediğinizi belirtebilirsiniz.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Resimler]
@@ -479,7 +479,25 @@ drwxr-xrwx  3 ahmet ahmet 4096 Ara  5 22:23  Videolar
    Uzun listeleme formatı (izinler, sahip, grup, boyut, tarih). 
 
 ```bash
-ls -l
+┌──(ahmet㉿kali)-[~]
+└─$ ls -l
+toplam 29584
+drwxr-xrwx  2 ahmet ahmet     4096 Oca 19 15:37  Belgeler
+drwxr-xrwx  2 ahmet ahmet     4096 Kas 25 13:35  Genel
+drwxrwxr-x  4 ahmet ahmet     4096 Ara  1 13:08  GNUstep
+drwxr-xrwx  2 ahmet ahmet     4096 Oca 20 12:50  İndirilenler
+-rw-rw-r--  1 ahmet ahmet  1728252 Kas 29 12:42  kali-abstract-sky.png
+-rw-rw-r--  1 ahmet ahmet   715087 Kas 29 12:39  kali-ferrofluid.jpg
+-rw-rw-r--  1 ahmet ahmet  2377119 Kas 29 12:42  kali-layers.png
+drwxr-xrwx 13 ahmet ahmet     4096 Oca 20 12:30  Masaüstü
+-rw-rw-r--  1 ahmet ahmet       24 Oca 16 22:28  metin.txt
+drwxr-xrwx  2 ahmet ahmet     4096 Kas 25 13:35  Müzik
+-rwxr-----  1 ahmet ahmet  8342944 Tem 22 16:49 'Program Kurma (Kaynak Koddan).mp4'
+drwxr-xr-x 10 ahmet ahmet     4096 Oca 21  1970  pycharm-2025.3
+drwxrwxr-x  4 ahmet ahmet     4096 Ara 16 12:38  PyCharmMiscProject
+drwxrwxr-x  6 ahmet ahmet     4096 Oca 14 21:02  Python-3.14.2
+drwxr-xrwx  4 ahmet ahmet     4096 Oca 18 21:00  Resimler
+-rwxr-----  1 ahmet ahmet 17064180 Tem 22 16:49 'Süreçler (ps_ pstree_ kill_ killall).mp4'
 ```
 
 **`-h`**
@@ -487,7 +505,25 @@ ls -l
    Genellikle `-l` ile birlikte kullanılır.
 
 ```bash
-ls -lh
+┌──(ahmet㉿kali)-[~]
+└─$ ls -lh
+toplam 29M
+drwxr-xrwx  2 ahmet ahmet 4,0K Oca 19 15:37  Belgeler
+drwxr-xrwx  2 ahmet ahmet 4,0K Oca 20 12:50  İndirilenler
+-rw-rw-r--  1 ahmet ahmet 1,7M Kas 29 12:42  kali-abstract-sky.png
+-rw-rw-r--  1 ahmet ahmet 699K Kas 29 12:39  kali-ferrofluid.jpg
+-rw-rw-r--  1 ahmet ahmet 2,3M Kas 29 12:42  kali-layers.png
+drwxr-xrwx 13 ahmet ahmet 4,0K Oca 20 12:30  Masaüstü
+-rw-rw-r--  1 ahmet ahmet   24 Oca 16 22:28  metin.txt
+drwxr-xrwx  2 ahmet ahmet 4,0K Kas 25 13:35  Müzik
+-rwxr-----  1 ahmet ahmet 8,0M Tem 22 16:49 'Program Kurma (Kaynak Koddan).mp4'
+drwxr-xr-x 10 ahmet ahmet 4,0K Oca 21  1970  pycharm-2025.3
+drwxrwxr-x  4 ahmet ahmet 4,0K Ara 16 12:38  PyCharmMiscProject
+drwxrwxr-x  6 ahmet ahmet 4,0K Oca 14 21:02  Python-3.14.2
+drwxr-xrwx  4 ahmet ahmet 4,0K Oca 18 21:00  Resimler
+-rwxr-----  1 ahmet ahmet  17M Tem 22 16:49 'Süreçler (ps_ pstree_ kill_ killall).mp4'
+drwxr-xrwx  2 ahmet ahmet 4,0K Kas 25 13:35  Şablonlar
+drwxr-xrwx  3 ahmet ahmet 4,0K Ara  5 22:23  Videolar
 ```
 
 **`-a`**
@@ -565,7 +601,7 @@ ls -ld /etc
    Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
 
 ```bash
-  ls -R
+ls -R
 ```
 
 ------
