@@ -9,6 +9,8 @@
 
 ---
 
+Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri yönetir.
+
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
 **Yalnızca indirmiş olduğumuz yani lokal olarak bilgisayarımızda mevcut olan “.deb” uzantılı paketlerin kurulması için** `dpkg` **komutunun “install” yani “kurma” anlamına gelen** `i` **seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekir.**
