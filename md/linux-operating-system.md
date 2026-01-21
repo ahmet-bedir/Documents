@@ -192,7 +192,6 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 🔼 [**Başa Dön**](#basa_don)
 
----
 
 ### Kabuk (Shell)
 
@@ -832,7 +831,7 @@ Yararlı bir komut, `-r` (recursive, yinelenen) işaretini kullanmaktır. Bu, bi
 $ cp -r Belgeler /home/ali/Dökümanlar
 ```
 
-Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız şey her neyse, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i` (interactive, etkileşimli) işaretini kullanabilirsiniz.
+Not: Aynı ada sahip bir dosyayı bir dizine kopyalarsanız, kopyaladığınız dosya, var olan dosya üzerine yazılır. Bu, yanlışlıkla üzerine yazılmasını istemediğiniz bir dosyanız varsa iyi değildir. Dosyayı üzerine yazmadan önce size sormak için `-i` (interactive, etkileşimli) işaretini kullanabilirsiniz.
 
 Örnek:
 
@@ -880,18 +879,10 @@ $ mv <dizin1> <dizin2>
 
 **Üzerine Yazma**
 
-Bir dosyayı veya dizini `mv` ile taşırsanız, aynı dizindeki herhangi bir şeyin üzerine yazar. Bu davranışı değiştirmek için `-i` işaretini kullanabilirsiniz.
+Bir dosyayı veya dizini `mv` ile taşırsanız, o dizinde aynı isimli dosya yada dizin varsa üzerine yazar. Bu davranışı değiştirmek için `-i` işaretini kullanabilirsiniz.
 
 ```bash
 $ mv -i dizin1 dizin2
-```
-
-**Yedek Oluşturma**
-
-Taşıma işlemini gerçekleştirmek ve üzerine yazmak istediğinizi varsayalım. Ayrıca o dosyanın bir yedeğini oluşturabilir ve eski sürümü yalnızca bir \~ ile yeniden adlandırabilirsiniz.
-
-```bash
-$ mv -b dizin1 dizin2
 ```
 
 ---
@@ -900,11 +891,13 @@ $ mv -b dizin1 dizin2
 
 Oluşturduğumuz tüm dosyaları depolamak için dizinlere ihtiyacımız olacak. `mkdir` (Make Directory) komutu bunun için kullanılır, var olmayan bir dizin oluşturur.
 
-Aynı anda birden fazla dizin oluşturabilirsiniz.
-
 ```bash
-$ mkdir kitaplar resimler
+$ mkdir <dizin_adı>
 ```
+>
+> - Aynı anda birden fazla dizin oluşturmak için `mkdir kitaplar resimler` komutu kullanılır.
+> - Tam dizin adresi belirtirsek, eğer yetkimiz de varsa istediğimiz konumda `mkdir ~/Documents/belgeler` komutu ile bir dizin oluşturabiliriz.
+
 
 Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
 
@@ -912,7 +905,7 @@ Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşt
 $ mkdir -p kitaplar/yerli/favoriler
 ```
 
-Eğer mkdir komutunun -v seçeneğini kullanırsak tüm oluşturma işlemleri konsola basılacaktır.
+Eğer `mkdir` komutunun`-v` seçeneğini kullanırsak tüm oluşturma işlemleri konsola basılacaktır.
 
 ---
 
@@ -924,7 +917,7 @@ Birçok dosya oluşturduk, şimdi bazılarını silelim. Dosyaları silmek için
 $ rm dosya1
 ```
 
-**Dikkat:** `rm` komutu ile silinen dosyaları geri getirmek için bir çöp kutusu yoktur. Silindikten sonra sonsuza kadar kaybolurlar. Bu yüzden dikkatli olun.
+**Dikkat:** `rm` komutu ile silinen dosyaları geri getirmek için bir çöp kutusu yoktur. Silindikten sonra sonsuza kadar kaybolurlar.
 
 Önemli dosyaları kolayca silmesini önlemek için bazı güvenlik önlemleri vardır. Yazma korumalı dosyalar, silinmeden önce sizden onay ister. Bir dizin yazma korumalıysa, kolayca silinemez.
 
@@ -1092,9 +1085,7 @@ $ rmdir dizin
 
 ### find
 
-Sistemde bu kadar çok dosya varken, belirli bir dosyayı bulmaya çalışmak biraz zor olabilir. Neyse ki, bunun için kullanabileceğimiz bir komut var: `find`
-
-`find` komutunu kullanarak hangi dizinde arama yapacağınızı ve ne aradığınızı belirtmeniz gerekir. Bu örnekte, `software.jpg` adlı bir dosya aramaya çalışıyoruz.
+Sistemde dosya veya dizin aramak için`find` komutunu kullanabilirsiniz.
 
 * **Dosya adına göre arama:**
 
@@ -1107,12 +1098,16 @@ $ find /home -name software.jpg
 Aradığınız dosyanın türünü de belirtebilirsiniz. Örneğin, bir klasör aramak için `-type d` seçeneğini kullanabilirsiniz.
 
 ```bash
-$ find /home -type d -name MyFolder
+$ find /home -type d -name <dizin>
 ```
 
-Bu komutta, aradığımız dosya türünü `(d)` (dizin) olarak ayarladık ve yine `MyFolder` adına göre arama yapıyoruz.
-
 **Önemli Not:** `find` komutu yalnızca aradığınız dizinde arama yapmaz, aynı zamanda o dizinin içinde olabilecek alt dizinlerin içine de bakar.
+
+---
+
+### locate
+
+
 
 ---
 
