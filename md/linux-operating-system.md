@@ -13,13 +13,13 @@
 
 **İçindekiler**
 
-➤ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
+▷ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
 
-➤ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
+▸ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
 
-➤ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
+► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-➤ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
+⬥ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
 
 ➤ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
 
@@ -53,7 +53,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
-### ►Debian Dağıtımı
+### ▪ Debian Dağıtımı
 
 **Genel Bakış**
 
@@ -76,7 +76,7 @@ Debian en son güncellemeleri almasa da son derece kararlıdır. İyi bir "temel
 
 Debian, her platform için genel olarak harika bir işletim sistemidir.
 
-### ► Red Hat Enterprise Linux  Dağıtımı
+### » Red Hat Enterprise Linux  Dağıtımı
 
 **Genel Bakış**
 
@@ -94,7 +94,7 @@ RHEL tabanlı işletim sistemleri, Debian tabanlı işletim sistemlerinden biraz
 
 Adından da anlaşılacağı gibi, çoğunlukla kurumsal alanda kullanılır, bu nedenle sağlam bir sunucu işletim sistemine ihtiyacınız varsa bu iyi bir tercih olacaktır.
 
-### ► Ubuntu Dağıtımı
+### » Ubuntu Dağıtımı
 
 **Genel Bakış**
 
@@ -112,7 +112,7 @@ Linux'a başlamak isteyen yeni başlayanlar için Ubuntu harika bir seçimdir. U
 
 Masaüstü, dizüstü bilgisayar ve sunucu dahil olmak üzere her platform için uygundur.
 
-### ► Fedora Dağıtımı
+### » Fedora Dağıtımı
 
 **Genel Bakış**
 
@@ -130,7 +130,7 @@ Red Hat tabanlı bir işletim sistemi kullanmak istiyorsanız, bu kullanıcı do
 
 Fedora, Red Hat tabanlı bir işletim sistemini fiyat etiketi olmadan kullanmak istiyorsanız harika bir seçimdir. Masaüstü ve dizüstü bilgisayarlar için önerilir.
 
-### ► Linux Mint Dağıtımı
+### » Linux Mint Dağıtımı
 
 **Genel Bakış**
 
@@ -148,7 +148,7 @@ Harika bir kullanıcı arayüzü sunar, yeni başlayanlar için uygundur ve Ubun
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur.
 
-### ► Arch Linux Dağıtımı
+### » Arch Linux Dağıtımı
 
 **Genel Bakış**
 
@@ -166,7 +166,7 @@ Hafif bir işletim sistemi istiyor ve Linux'u gerçekten anlamak istiyorsanız A
 
 Masaüstü ve dizüstü bilgisayarlar için uygundur. Ayrıca Raspberry Pi gibi küçük bir cihazınız varsa ve üzerine hafif bir işletim sistemi kurmanız gerekiyorsa, Arch'ı tercih edebilirsiniz.
 
-### ► openSUSE Dağıtımı
+### » openSUSE Dağıtımı
 
 **Genel Bakış**
 
