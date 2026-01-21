@@ -13,15 +13,15 @@
 
 **İçindekiler**
 
-▷ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
+▸ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
 
 ▸ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
 
-► [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
+▸ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
 
-⬥ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
+▸ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
 
-➤ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
+▸ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
 
 
 ---
@@ -53,7 +53,7 @@ Bir Linux sistemi üç ana bölümden oluşur:
 
 Seçilebilecek birçok Linux dağıtımı vardır, sadece en popüler seçeneklere göz atacağız.
 
-### ▪ Debian Dağıtımı
+### » Debian Dağıtımı
 
 **Genel Bakış**
 
