@@ -362,8 +362,6 @@ Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” 
 
 **Göreli yol “relative path”:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden başlayarak tüm yolu belirtmeme gerek yok, bunun yerine sadece `cd` komutuna `vergiler/` argümanını verip ilgili dizinine gidebilirim.
 
-<img src="../images/parent-sub-directory.jpg" width="300"  />
-
 
 
 İstediğimiz dizine geçmek için `cd` "dizin değiştir" komutuna gitmek istediğimiz dizin adını argüman olarak verilir.
@@ -390,6 +388,8 @@ Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 
 Sadece klasörün adını argüman olarak verdik, çünkü zaten `/home/ali/Resimler` konumundaydık.
 
+
+
 Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı kısayollar var.
 
 ► **. (geçerli dizin)**: Şu anda bulunduğunuz dizindir.
@@ -400,7 +400,7 @@ Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı
 
 ► **- (önceki dizin)**: Bu sizi az önce bulunduğunuz önceki dizine götürür.
 
-<img src="../images/parent-sub-directory2.jpg" width="500"  />
+<img src="../images/parent-sub-directory.jpg" width="300"  />
 
 Örnekler:
 
@@ -413,6 +413,8 @@ $ cd ~ # ana dizine git (sadece cd komutuda yeterlidir)
 
 $ cd - # önceki dizine git
 ```
+
+<img src="../images/parent-sub-directory2.jpg" width="380"  />
 
 ---
 
