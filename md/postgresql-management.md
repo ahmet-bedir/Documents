@@ -38,6 +38,58 @@
 
 ---
 
+## PostgreSQL
+
+PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.
+
+Yüksek performanslı, kararlı ve güvenilirdir. Modern kurumsal veritabanı kabiliyet ve özelliklerine sahiptir.
+
+PostgreSQL’in, 1977 yılında başlayan 20 yılı akademik, son 20 yılı endüstride geçen 40 yıllık bir geçmişi olan en eski açık kaynak kodlu yazılımlardan biridir.
+
+PostgreSQL, tüm dünyada kamuda önemli devlet hizmetleri sunan uygulama sistemlerinde (CERN, NASA, Fransa, İngiltere,G.Kore, vb.) finans ve Telekom sektörlerinde iş kritik uygulamalarda, dünyada önde gelen üreticilerin ürünlerinde (Apple, Microsoft, IBM,Amazon, vb.), araştırma merkezleri ve üniversitelerde, küçük ölçekli projelerden çok büyük ölçekli kurumsal altyapılarda güvenilerek kullanılmaktadır.
+
+PostgreSQL, önde gelen ticari veritabanı ürünleri ile rekabet edecek kurumsal veritabanı özelliklerinin yanı sıra günümüzdijital dönüşüm projeleri ve teknolojileri ile uyumlu birçok yeni ve yenilikçi özelliğe sahip-tir (Örneğin; dizi şeklindeki veri tipleri,paralel sorgular, JSON veri tipini desteklemesi ve üzerinde sorgu çalıştırabilmesi).
+
+PostgreSQL, veritabanı ve sistem yöneticileri, yazılım mimarları ve geliştiricileri için çekici gelen yenilikçi birçok özellik sunar.
+
+PostgreSQL’in öğrenmesi, kurulumu, konfigürasyonu, yönetimi, izlemesi ve bakımı kolaydır. Post-greSQL ekosisteminde yönetim ve izleme için açık kaynaklı ve ticari birçok araç vardır.
+
+---
+
+### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
+
+> **Paket indexlerini güncelle.**
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+> **PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:**
+
+```bash
+sudo apt install postgresql -y
+```
+
+> **PostgreSQL servisini kontrol etmek için terminale:**
+
+```bash
+sudo systemctl status postgresql
+```
+
+> **Eğer çalışmıyorsa başlatmak için:**
+
+```bash
+sudo systemctl start postgresql
+```
+
+> **Sistem açılışında otomatik olarak başlaması için:**
+
+```bash
+sudo systemctl enable postgresql
+```
+
+---
+
 ### Initialize (initdb)
 
 `initdb` şunu yapar:
@@ -107,43 +159,9 @@ psql -l
 
 ------
 
-### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
+### PostgreSQL Veri Kümesi
 
-> **Paket indexlerini güncelle.**
-
-```bash
-sudo apt update && sudo apt upgrade -y
-```
-
-> **PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:**
-
-```bash
-sudo apt install postgresql -y
-```
-
-> **PostgreSQL servisini kontrol etmek için terminale:**
-
-```bash
-sudo systemctl status postgresql
-```
-
-> **Eğer çalışmıyorsa başlatmak için:**
-
-```bash
-sudo systemctl start postgresql
-```
-
-> **Sistem açılışında otomatik olarak başlaması için:**
-
-```bash
-sudo systemctl enable postgresql
-```
-
----
-
-### PostgreSQL Veritabanı Kümesi
-
-**PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizin.**
+**PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizindir.**
 
 #### Ana klasörler
 
@@ -292,7 +310,7 @@ Bu değer bir süre izlenip, sunucu kaynaklarına göre düzenlenmelidir!
 
 PostgreSQL’in sistemin zaman bilgilerini kullanması için `--with-system-tzdata` parametresiyle derlenmiş olması gerekir (rpm kurulumunda bu şekildedir). Veritabanının kullandığı zaman ve yerellik bilgileri ilklendirme sırasında sunucudan alınır.
 
-```
+```postgresql
 postgres=# show timezone;
     TimeZone
    ----------
@@ -306,7 +324,7 @@ postgres=# select current_time;
 
 PostgreSQL’in sistem zamanından farklı bir zaman kullanması istenirse ayarlardan değiştirilebilir.
 
-```
+```postgresql
 datestyle = 'iso, mdy'
 timezone = 'Turkey'
 lc_messages = 'en_US.UTF-8'
@@ -467,8 +485,6 @@ db_name=>
 
 > **Dosyayı girdi olarak kullanma:**
 >
-> 
-
 > ```bash
 > $ psql -U user db_name < sorgu.sql
 > ```
@@ -477,11 +493,11 @@ db_name=>
 
 > **Öntanımlı olarak sql sorgularının çıktıları sql biçeminde gelir psql üzerinden csv biçiminde çıktı almak için:**
 >
-> 
-
 > ```bash
 > $ psql -U user -d db_name -A -F"," -c "select * from table_name;" > dosya.csv
 > ```
+
+
 
 #### `psql` istemci temel komutları:
 
@@ -527,7 +543,7 @@ CREATE DATABASE
 ```
 
 > - `\c db_name`  **:  Diğer veritabana geçiş için kullanılır.**
->
+> - `\c db_name user_name`  :  Diğer veritabana kullanıcısı ile geçiş yapar.**
 > - `\l+`  **:  Mevcut veritabanlarının size, tablespace ve description alanlarınıda listeler.**
 > - `\i dosya`  **:  PostgreSQL sunucusuna bağlandığın konumda bulunan script dosyasını çalıştırır.**
 

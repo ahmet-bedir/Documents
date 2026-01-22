@@ -13,7 +13,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
+▸ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `locate` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
 
 ▸ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
 
@@ -896,7 +896,7 @@ $ mkdir <dizin_adı>
 ```
 >
 > - Aynı anda birden fazla dizin oluşturmak için `mkdir kitaplar resimler` komutu kullanılır.
-> - Tam dizin adresi belirtirsek, eğer yetkimiz de varsa istediğimiz konumda `mkdir ~/Documents/belgeler` komutu ile bir dizin oluşturabiliriz.
+> - Tam dizin adresi belirtirek istediğimiz konumda `mkdir ~/Documents/belgeler` komutu ile bir dizin oluşturabiliriz.
 
 
 Ayrıca `-p` (parent, üst dizin) işareti ile aynı anda alt dizinler de oluşturabilirsiniz.
@@ -911,7 +911,7 @@ Eğer `mkdir` komutunun`-v` seçeneğini kullanırsak tüm oluşturma işlemleri
 
 ### rm (Remove)
 
-Birçok dosya oluşturduk, şimdi bazılarını silelim. Dosyaları silmek için `rm` komutunu kullanabilirsiniz. `rm` (remove) komutu, dosya ve dizinleri silmek için kullanılır.
+Dosyaları silmek için `rm` komutunu kullanabilirsiniz. `rm` (remove) komutu, dosya ve dizinleri silmek için kullanılır.
 
 ```bash
 $ rm dosya1
@@ -1087,27 +1087,218 @@ $ rmdir dizin
 
 Sistemde dosya veya dizin aramak için`find` komutunu kullanabilirsiniz.
 
-* **Dosya adına göre arama:**
+##### 1. Temel Kullanım
 
-```bash
-$ find /home -name software.jpg
+```
+find [başlangıç_dizini] [koşullar] [aksiyonlar]
 ```
 
-* **Dosya türüne göre arama:**
+Örnek:
 
-Aradığınız dosyanın türünü de belirtebilirsiniz. Örneğin, bir klasör aramak için `-type d` seçeneğini kullanabilirsiniz.
-
-```bash
-$ find /home -type d -name <dizin>
+```
+find /etc -name "*.conf"
 ```
 
-**Önemli Not:** `find` komutu yalnızca aradığınız dizinde arama yapmaz, aynı zamanda o dizinin içinde olabilecek alt dizinlerin içine de bakar.
+`etc` dizni ve tüm alt dizinler altındaki tüm `.conf` uzantılı dosyaları arar.
 
----
+------
+
+##### 2. Dosya Adı ve Türüne Göre
+
+**Dosya adı**
+
+- `-name "desen"`
+   Büyük/küçük harfe duyarlı arama
+- `-iname "desen"`
+   Büyük/küçük harfe duyarsız arama
+
+```
+find . -iname "*.jpg"
+```
+
+**Dosya türü**
+
+- `-type f` → normal dosya
+- `-type d` → dizin
+- `-type l` → sembolik link
+- `-type b` → block device
+- `-type c` → character device
+
+```
+find /var -type d
+```
+
+------
+
+##### 3. Boyuta Göre Arama
+
+- `-size +10M` → 10 MB’dan büyük
+- `-size -100k` → 100 KB’dan küçük
+- `-size 1G` → tam 1 GB
+
+Birimler: `b, c, w, k, M, G`
+
+```
+find /home -size +500M
+```
+
+------
+
+##### 4. Zamana Göre Arama
+
+**Gün bazlı**
+
+- `-atime` → son erişim
+- `-mtime` → son değişiklik
+- `-ctime` → metadata değişimi
+
+```
+find . -mtime -7      # son 7 gün
+find . -mtime +30     # 30 günden eski
+```
+
+**Dakika bazlı**
+
+- `-amin`
+- `-mmin`
+- `-cmin`
+
+```
+find . -mmin -60
+```
+
+------
+
+##### 5. Sahiplik ve İzinler
+
+Kullanıcı / grup
+
+- `-user kullanıcı`
+- `-group grup`
+
+```
+find /home -user ahmet
+```
+
+İzinler
+
+- `-perm 644`
+- `-perm -644` → en az bu izinler
+- `-perm /222` → herhangi biri
+
+```
+find . -perm -4000     # SUID dosyalar
+```
+
+------
+
+##### 6. Derinlik (Dizin Seviyesi)
+
+- `-maxdepth N` → en fazla N seviye
+- `-mindepth N` → en az N seviye
+
+```
+find . -maxdepth 1 -type d
+```
+
+------
+
+##### 7. Mantıksal Operatörler
+
+- `-and` veya boşluk → VE
+- `-or` → VEYA
+- `!` → DEĞİL
+
+```
+find . -type f -name "*.log" ! -size +10M
+```
+
+------
 
 ### locate
 
+`locate` komutu sayesinde sistemdeki dosya ve dizinleri isimleriyle araştırabiliyoruz.
 
+`locate` komutu daha önce ele aldığımız `find` aracından farklı olarak araştırma işlemi sırasında tüm dosya sistemine değil daha önceden oluşturulmuş veri tabanını kullanıyor. Bu sayede veri tabanı üzerinden yaptığımız araştırmada, `find` aracından çok daha hızlı şekilde sonuç verebiliyor.
+
+Aracımızın en temel kullanımı `locate aranacak-isim` şeklinde. Fakat dediğim gibi `locate` aracı kendisine ait olan veritabanı üzerinden araştırma yaptığı için araştırmalarımız sırasında daha sağlıklı çıktılar elde edebilmek adına bu veritabanını güncellememiz gerekiyor.
+
+Ben hemen test etmek için bir önceki derste `find` aracıyla bulmak için oluşturduğum farklı konumlardaki **“bulbeni”** isimli dosya ve klasörleri `locate bulbeni` komutuyla sorgulamak istiyorum.
+
+```
+┌┌──(ahmet㉿kali)-[~]
+└─$ locate bulbeni
+┌──(ahmet㉿kali)-[~]
+└─$
+```
+
+Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturduğumuz için `locate` aracının kullandığı veritabanına bu dosya ve klasörün dizin adresi eklenmedi. Dolayısıyla bu isimde bir eşleşme olmadı.
+
+#### `locate` Veritabanını Güncellemek | `updatedb`
+
+`locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. İşlemi yetkili olarak gerçekleştirdiğimiz için parolamızı girip anlayamamız gerek. Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek.
+
+```
+┌──(ahmet㉿kali)-[~]
+└─$ sudo updatedb
+[sudo] password for taylan:
+```
+
+Şimdi dosya sistemindeki en son değişikliklerin veritabanına eklenmiş olması gerekiyor. Tekrar etmek için `locate bulbeni` şeklinde komutumuzu girebiliriz.
+
+```
+┌──(ahmet㉿kali)-[~]
+└─$ locate bulbeni
+/home/ali/Documents/bulbeni
+/home/ali/Pictures/bulbeni
+```
+
+Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi konsola bastırıldı. Bizzat sizin de deneyimleyebileceğiniz gibi `locate` aracı hızlı çalışıyor olmasına rağmen, veritabanı `updatedb` komutu ile güncellenmediyse sistemde mevcut olan yeni dosya ve dizinleri bulamıyor. Dolayısıyla `locate` aracını kullanmadan önce sağlıklı çıktılar almak istiyorsanız mutlaka `updatedb` komutuyla güncelleme yapın. Normalde her gün düzenli olarak bu veritabanı otomatik olarak güncelleniyor ancak dediğim gibi kullanmadan önce stabil çıktılar istiyorsanız `updatedb` komutunu çalıştırmanız şart.
+
+#### Harf Duyarlılığını Kaldırmak
+
+Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
+
+Ben denemek için `locate ABC` şeklinde yazıp içerisinde tamamı büyük harflerden oluşan **ABC** karakterlerini barından dosya ve klasör isimlerini listelemek istiyorum.
+
+```
+┌──(ahmet㉿kali)-[~]
+└─$ locate ABC                                                   
+/home/ali/ABC
+/home/ali/.cache/mozilla/firefox/d5n1etpa.default-esr/cache2/entries/1F001ABC732598300E8297AC686A75B32E5186EB
+```
+
+Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifadesi geçiyor. Eğer küçük büyük harf duyarlılığını kaldırmak istersek komutumuzu tekrar çağırıp `i` seçeneğini ekleyebiliriz.
+
+```
+┌──(taylan@linuxdersleri)-[~]
+└─$ locate -i ABC
+/home/taylan/ABC
+/home/taylan/AbC
+/home/taylan/aBc
+/home/taylan/abc
+/home/taylan/.cache/go-build/0d/0d0abc24b077b8fe4a2db64ca931edc2ed3107a8d4c35f0e230f762e70514359-a
+```
+
+**ℹ️ Not:** Çıktılar kısaltılarak verilmiştir.
+
+Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler listelenmiş oldu.
+
+##### Eşleşme Sayısını Öğrenmek
+
+Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz.
+
+```
+┌──(taylan@linuxdersleri)-[~]
+└─$ locate -ic ABC                                               
+142
+
+┌──(taylan@linuxdersleri)-[~]
+└─$ locate -c ABC                                           
+17
+```
+
+Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eşleşme olurken, harf duyarlılığı varken yalnızca 17 eşleşme bulunmuş.
 
 ---
 
