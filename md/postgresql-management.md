@@ -260,7 +260,7 @@ sudo ss -ltnp | grep 5432
 
 ##### `postgresql.conf` dosyası 
 
-###### Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
+Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
 
 Ayarların çoğu **reload** ile aktifleşir, **restart** gerektirenler dosyada belirtilmiştir. PostgreSQL *reload* edildiğinde servis kesintisi yapılmadan ayar dosyasındaki değişiklikler tekrar okunur. Mevcut bağlantıların düşmesine neden olmayacağı için *restart* gerektiren özel parametrelerin değişimi hariç tüm durumlarda *reload* tercih edilmelidir.
 
@@ -335,20 +335,22 @@ lc_time = 'en_US.UTF-8'
 
 #### `pg_hba.conf` dosyası
 
-**`Parola Şifreleme`**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
+**Parola Şifreleme**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
 
-**`Ağ Üzerindeki Verileri Şifreleme`**: SSL, ağ üzerinden gönderilen verileri şifreler: parola, sorgu ve döndürülen veriler. Hangi host’un şifrelenmemiş bağlantıları kullanacağı, hangisinin SSL şifreli bağlantılar gerektirdiği `pg_hba.conf` dosyasında belirtilir.
+**Ağ Üzerindeki Verileri Şifreleme**: SSL, ağ üzerinden gönderilen verileri şifreler: parola, sorgu ve döndürülen veriler. Hangi host’un şifrelenmemiş bağlantıları kullanacağı, hangisinin SSL şifreli bağlantılar gerektirdiği `pg_hba.conf` dosyasında belirtilir.
 
 PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vardır: **Sunucunun şu anki ayarını** görmek veya **kullanıcıların mevcut şifrelerinin** hangi formatta saklandığını kontrol etmek.
-
-İşte bu sorguları yapabileceğiniz yöntemler:
 
 ##### 1. Sunucunun Varsayılan Ayarını Sorgulama
 
 Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
 
 ```postgresql
-SHOW password_encryption;
+postgres=# SHOW password_encryption;
+ password_encryption 
+---------------------
+ scram-sha-256
+(1 satır)
 ```
 
 - **Çıktı `scram-sha-256` ise:** Yeni şifreler güvenli SCRAM yöntemiyle kaydedilecektir.
@@ -374,7 +376,7 @@ FROM pg_authid;
 
 ### 💡 Önemli İpuçları
 
-- **Ayarı Değiştirme:** Eğer yöntemi SCRAM'e çekmek isterseniz `	` komutunu kullanabilirsiniz. Ancak bu ayar sadece **yeni** belirlenen şifreleri etkiler.
+- **Ayarı Değiştirme:** Eğer yöntemi SCRAM'e çekmek isterseniz `SET password_encryption = 'scram-sha-256';` komutunu kullanabilirsiniz. Ancak bu ayar sadece **yeni** belirlenen şifreleri etkiler.
 
 - **Şifreleri Güncelleme:** Bir kullanıcının şifreleme yöntemini MD5'ten SCRAM'e yükseltmek için, ayarı değiştirdikten sonra o kullanıcının şifresini yeniden tanımlamanız gerekir:
 
@@ -383,6 +385,68 @@ FROM pg_authid;
   ```
 
 - **pg_hba.conf:** Sadece veritabanı içinde şifreleme yöntemini değiştirmek yetmez; istemcilerin bağlanabilmesi için `pg_hba.conf` dosyasındaki `method` kısmının da (örneğin `md5` yerine `scram-sha-256`) bu ayarla uyumlu olması gerekir.
+
+
+
+Modern PostgreSQL sürümlerinde (v13 ve sonrası) `scram-sha-256` artık varsayılan ve önerilen yöntemdir. Özellikle ağ üzerinden (farklı bir PC'den) bağlantı yaparken `md5` yerine `scram-sha-256` kullanmak güvenlik açısından büyük bir fark yaratır.
+
+### Neden SCRAM Kullanmalısınız?
+
+1. **MD5 Artık Güvenli Değil:** MD5 algoritması artık "kırılmış" kabul ediliyor. Çakışma saldırılarına karşı zayıf ve güçlü donanımlarla (GPU'lar gibi) hızlıca çözülebiliyor.
+2. **Parola Sızmasına Karşı Koruma:** `md5` yönteminde, bir saldırgan veritabanı sunucusundan hashlenmiş parolaları çalarsa, bu hashleri kırmak görece kolaydır. SCRAM-SHA-256 ise hem istemciyi hem sunucuyu doğrular ve hash çalınsa bile kırılması çok daha zordur.
+3. **Ağ Dinlemesi (Sniffing):** SCRAM, parolayı ağ üzerinden gönderirken her seferinde farklı bir "challenge" (meydan okuma) kullanarak gönderir. Bu, ağ trafiğini dinleyen birinin parolanızı ele geçirmesini veya bağlantıyı taklit etmesini (replay attack) engeller.
+
+------
+
+### Geçiş Yaparken İzlemeniz Gereken Adımlar
+
+Sadece `pg_hba.conf` dosyasında `md5`'i `scram-sha-256` yapmak yetmez; çünkü mevcut parolalarınız veritabanında hala MD5 formatında saklanıyor olabilir. Şu adımları izlemelisiniz:
+
+#### 1. `postgresql.conf` Dosyasını Güncelleyin
+
+Önce sunucunun yeni parolaları SCRAM formatında kaydetmesini sağlamalısınız:
+
+Ini, TOML
+
+```
+password_encryption = 'scram-sha-256'
+```
+
+*Bu değişikliği yaptıktan sonra PostgreSQL servisini yeniden başlatın veya yapılandırmayı reload edin.*
+
+#### 2. Mevcut Kullanıcıların Parolalarını Yenileyin
+
+Mevcut kullanıcıların parolaları hala eski formatta olduğu için SCRAM ile bağlanamazlar. Her kullanıcı için parolayı tekrar tanımlamanız gerekir:
+
+SQL
+
+```
+ALTER USER kullanici_adi WITH PASSWORD 'yeni_parola';
+```
+
+*(Bu işlem, parolanın `pg_authid` tablosuna SCRAM formatında kaydedilmesini sağlar.)*
+
+#### 3. `pg_hba.conf` Dosyasını Düzenleyin
+
+Artık ağdaki diğer PC'ler için erişim yöntemini değiştirebilirsiniz:
+
+Plaintext
+
+```
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+host    all             all             192.168.1.0/24          scram-sha-256
+```
+
+------
+
+### Dikkat Etmeniz Gereken Tek Şey: İstemci Desteği
+
+Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bir Java uygulaması, çok eski bir pgAdmin versiyonu veya çok eski bir kütüphane) SCRAM desteği olmalıdır.
+
+- **PostgreSQL 10+** kütüphaneleri SCRAM'ı destekler.
+- Eğer bağlanan uygulama çok eskiyse bağlantı hatası alabilirsiniz.
+
+**Özetle:** Ağdaki bir sunucuya bağlanırken `scram-sha-256` kullanmak, veritabanı güvenliğinizi bir üst seviyeye taşıyan en doğru karardır.
 
 ---
 
