@@ -1206,7 +1206,6 @@ Bu komuttan sonra `la` takma adını kullanamazsınız.
 
 🔼 [**Başa Dön**](#basa_don)
 
----
 
 ### stdout (Standard Out)
 
@@ -1577,7 +1576,6 @@ $ nl dosya1.txt
 
 🔼 [**Başa Dön**](#basa_don)
 
----
 
 ### join ve split
 
@@ -2095,7 +2093,6 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 🔼 [**Başa Dön**](#basa_don)
 
----
 
 ### Kullanıcılar ve Gruplar
 
@@ -2380,7 +2377,6 @@ sudo passwd ali
 
 🔼 [**Başa Dön**](#basa_don)
 
----
 
 ### Dosya İzinleri
 
