@@ -6,7 +6,7 @@
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 
-###### Son güncelleme : 12/2025
+###### Son güncelleme : 01/2026
 
 ---
 
@@ -23,6 +23,10 @@
 ▸ [**Tablo İşlemleri**](#tablo)
 
 ▸ [**Veri İşlemleri**](#veri)
+
+▸ [**Where Kullanımı**](#where)
+
+▸ [**Aggregate Fonksiyonları**](#aggregate)
 
 ▸ [**İndex İşlemleri**](#index)
 
@@ -406,8 +410,6 @@ Sadece `pg_hba.conf` dosyasında `md5`'i `scram-sha-256` yapmak yetmez; çünkü
 
 Önce sunucunun yeni parolaları SCRAM formatında kaydetmesini sağlamalısınız:
 
-Ini, TOML
-
 ```
 password_encryption = 'scram-sha-256'
 ```
@@ -417,8 +419,6 @@ password_encryption = 'scram-sha-256'
 #### 2. Mevcut Kullanıcıların Parolalarını Yenileyin
 
 Mevcut kullanıcıların parolaları hala eski formatta olduğu için SCRAM ile bağlanamazlar. Her kullanıcı için parolayı tekrar tanımlamanız gerekir:
-
-SQL
 
 ```
 ALTER USER kullanici_adi WITH PASSWORD 'yeni_parola';
@@ -1030,7 +1030,11 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ---
 
+<a id="where"><a/>
+
 #### `WHERE` kullanımı
+
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
 
@@ -1333,7 +1337,11 @@ LIMIT ...;
 
 ---
 
-#### Aggregate Fonksiyonları
+<a id="aggregate"><a/>
+
+### Aggregate Fonksiyonları
+
+[⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
 | Fonksiyon | Açıklama       |
 | --------- | -------------- |
