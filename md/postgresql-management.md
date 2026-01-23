@@ -24,9 +24,11 @@
 
 ▸ [**Veri İşlemleri**](#veri)
 
-[]
+▸ [**Alias Kullanımı**](#alias)
 
 ▸ [**Where Kullanımı**](#where)
+
+▸ [**Order By Kullanımı**](#order-by)
 
 ▸ [**Aggregate Fonksiyonları**](#aggregate)
 
@@ -966,9 +968,63 @@ postgres=# SELECT ad,soyad FROM personel;
 (5 rows)
 ```
 
+**Sütun Güncelleme:**
+
+```sql
+postgres=# UPDATE ogrenciler SET email='ersin-dari@yahoo.com' WHERE id=7;
+UPDATE 1
+```
+
+> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün `email` sütunları güncellenir.**
+
+**Satır silme:**
+
+```sql
+postgres=# DELETE FROM ogrenciler WHERE id=7;
+DELETE 1
+```
+
+> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün kayıtlar silinir.**
+
+PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre performanslıdır.
+
+**Temel Kullanım**
+
+```postgresql
+TRUNCATE TABLE tablo_adi;
+```
+
+Tablodaki tüm satırları siler, tablo yapısı korunur.
+
+**Birden Fazla Tablo**
+
+```postgresql
+TRUNCATE TABLE tablo1, tablo2;
+```
+
+İlişkili tabloları aynı anda temizlemek için kullanışlıdır.
+
+
+**FOREIGN KEY İlişkileri**
+Varsayılan Davranış (RESTRICT)
+
+Foreign key bağı varsa hata verir.
+
+```postgresql
+ERROR: cannot truncate a table referenced in a foreign key constraint
+```
+
+**CASCADE ile**
+
+Bağlı tablolar da otomatik temizlenir.
+
+```postgresql
+TRUNCATE TABLE ana_tablo CASCADE;
+```
+
 ---
 
-<a id="aliaas"><a/>
+<a id="alias"><a/>
 
 ### `ALIAS` kullanımı
 
@@ -1288,11 +1344,11 @@ PostgreSQL'de varsayılan davranış:
 ##### Manuel Kontrol
 
 ```sql
--- NULL'ları en sona at
+-- NULL 'ları en sona alır
 SELECT * FROM products
 ORDER BY price ASC NULLS LAST;
 
--- NULL'ları en başa al
+-- NULL 'ları en başa alır
 SELECT * FROM products
 ORDER BY price DESC NULLS FIRST;
 ```
@@ -1389,8 +1445,7 @@ WHERE active = true;
 
 #### SUM
 
-```
-
+```postgresql
 SELECT SUM(amount) FROM orders;
 ```
 
@@ -1398,10 +1453,9 @@ SELECT SUM(amount) FROM orders;
 
 ------
 
-## 4. AVG (Ortalama)
+#### AVG (Ortalama)
 
-```
-
+```postgresql
 SELECT AVG(price) FROM products;
 ```
 
@@ -1409,32 +1463,11 @@ SELECT AVG(price) FROM products;
 
 ------
 
-## 5. MIN / MAX
+#### MIN / MAX
 
-```
-
+```postgresql
 SELECT MIN(created_at), MAX(created_at) FROM users; 
 ```
-
----
-
-**Sütun Güncelleme:**
-
-```sql
-postgres=# UPDATE ogrenciler SET email='ersin-dari@yahoo.com' WHERE id=7;
-UPDATE 1
-```
-
-> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün `email` sütunları güncellenir.**
-
-**Satır silme:**
-
-```sql
-postgres=# DELETE FROM ogrenciler WHERE id=7;
-DELETE 1
-```
-
-> **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün kayıtlar silinir.**
 
 ---
 
