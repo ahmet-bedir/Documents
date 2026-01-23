@@ -16,6 +16,8 @@
 
 ▸ [**Veritabanı İstemcisi / psql**](#psql)
 
+▸ [**DDL (Data Definition Language)**](#ddl)
+
 ▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)
 
 ▸ [**Veri Türleri**](#veri-turleri)
@@ -23,8 +25,6 @@
 ▸ [**Tablo İşlemleri**](#tablo)
 
 ▸ [**Veri İşlemleri**](#veri)
-
-▸ [**Alias Kullanımı**](#alias)
 
 ▸ [**Where Kullanımı**](#where)
 
@@ -264,9 +264,9 @@ sudo ss -ltnp | grep 5432
 
 ---
 
-###  PostgreSQL Sunucu Ayarları
+##  PostgreSQL Sunucu Ayarları
 
-##### `postgresql.conf` dosyası 
+### `postgresql.conf` dosyası 
 
 Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
 
@@ -279,12 +279,12 @@ sudo systemctl reload postgresql
 Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin öntanımlı değerlerini gösterir:
 
 ```
-#port = 5432                                # (change requires restart)
-#superuser_reserved_connections = 3         # (change requires restart)
+#port = 5432                                            # (change requires restart)
+#superuser_reserved_connections = 3                     # (change requires restart)
 #unix_socket_directories = '/var/run/postgresql, /tmp'  #(comma-separated list of directories)
 ```
 
-### PostgreSQL Ayarları: Dosya Yerleri
+#### PostgreSQL Ayarları: Dosya Yerleri
 
 PostgreSQL veri dizini ile yetkilendirme ayar dosyalarının yerleri özel olarak belirtilebilir. Özel olarak belirlenmezse varsayılan olarak PostgreSQL sürecini başlatırken verilen `-D` parametresinden veya **PGDATA** çevresel değişkeninden alınır. Değiştirmek istenirse:
 
@@ -314,7 +314,7 @@ max_connections = 100
 
 Bu değer bir süre izlenip, sunucu kaynaklarına göre düzenlenmelidir!
 
-### PostgreSQL Ayarları: Zaman
+#### PostgreSQL Ayarları: Zaman
 
 PostgreSQL’in sistemin zaman bilgilerini kullanması için `--with-system-tzdata` parametresiyle derlenmiş olması gerekir (rpm kurulumunda bu şekildedir). Veritabanının kullandığı zaman ve yerellik bilgileri ilklendirme sırasında sunucudan alınır.
 
@@ -341,7 +341,7 @@ lc_numeric = 'en_US.UTF-8'
 lc_time = 'en_US.UTF-8'
 ```
 
-#### `pg_hba.conf` dosyası
+### `pg_hba.conf` dosyası
 
 **Parola Şifreleme**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
 
@@ -349,7 +349,7 @@ lc_time = 'en_US.UTF-8'
 
 PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vardır: **Sunucunun şu anki ayarını** görmek veya **kullanıcıların mevcut şifrelerinin** hangi formatta saklandığını kontrol etmek.
 
-##### 1. Sunucunun Varsayılan Ayarını Sorgulama
+#### 1. Sunucunun Varsayılan Ayarını Sorgulama
 
 Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
 
@@ -366,7 +366,7 @@ postgres=# SHOW password_encryption;
 
 ------
 
-##### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
+#### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
 
 Sunucu ayarı SCRAM olsa bile, bazı eski kullanıcıların şifreleri hala MD5 formatında kalmış olabilir. Hangi kullanıcının hangi yöntemi kullandığını görmek için `pg_authid` sistem tablosuna bakabilirsiniz:
 
@@ -382,7 +382,7 @@ FROM pg_authid;
 
 ------
 
-### 💡 Önemli İpuçları
+#### 💡 Önemli İpuçları
 
 - **Ayarı Değiştirme:** Eğer yöntemi SCRAM'e çekmek isterseniz `SET password_encryption = 'scram-sha-256';` komutunu kullanabilirsiniz. Ancak bu ayar sadece **yeni** belirlenen şifreleri etkiler.
 
@@ -394,11 +394,11 @@ FROM pg_authid;
 
 - **pg_hba.conf:** Sadece veritabanı içinde şifreleme yöntemini değiştirmek yetmez; istemcilerin bağlanabilmesi için `pg_hba.conf` dosyasındaki `method` kısmının da (örneğin `md5` yerine `scram-sha-256`) bu ayarla uyumlu olması gerekir.
 
-
+### PostgreSQL kullanıcı parolaları
 
 Modern PostgreSQL sürümlerinde (v13 ve sonrası) `scram-sha-256` artık varsayılan ve önerilen yöntemdir. Özellikle ağ üzerinden (farklı bir PC'den) bağlantı yaparken `md5` yerine `scram-sha-256` kullanmak güvenlik açısından büyük bir fark yaratır.
 
-### Neden SCRAM Kullanmalısınız?
+#### Neden SCRAM Kullanmalısınız?
 
 1. **MD5 Artık Güvenli Değil:** MD5 algoritması artık "kırılmış" kabul ediliyor. Çakışma saldırılarına karşı zayıf ve güçlü donanımlarla (GPU'lar gibi) hızlıca çözülebiliyor.
 2. **Parola Sızmasına Karşı Koruma:** `md5` yönteminde, bir saldırgan veritabanı sunucusundan hashlenmiş parolaları çalarsa, bu hashleri kırmak görece kolaydır. SCRAM-SHA-256 ise hem istemciyi hem sunucuyu doğrular ve hash çalınsa bile kırılması çok daha zordur.
@@ -406,11 +406,11 @@ Modern PostgreSQL sürümlerinde (v13 ve sonrası) `scram-sha-256` artık varsay
 
 ------
 
-### Geçiş Yaparken İzlemeniz Gereken Adımlar
+##### Geçiş Yaparken İzlemeniz Gereken Adımlar
 
 Sadece `pg_hba.conf` dosyasında `md5`'i `scram-sha-256` yapmak yetmez; çünkü mevcut parolalarınız veritabanında hala MD5 formatında saklanıyor olabilir. Şu adımları izlemelisiniz:
 
-#### 1. `postgresql.conf` Dosyasını Güncelleyin
+##### 1. `postgresql.conf` Dosyasını Güncelleyin
 
 Önce sunucunun yeni parolaları SCRAM formatında kaydetmesini sağlamalısınız:
 
@@ -420,21 +420,19 @@ password_encryption = 'scram-sha-256'
 
 *Bu değişikliği yaptıktan sonra PostgreSQL servisini yeniden başlatın veya yapılandırmayı reload edin.*
 
-#### 2. Mevcut Kullanıcıların Parolalarını Yenileyin
+##### 2. Mevcut Kullanıcıların Parolalarını Yenileyin
 
 Mevcut kullanıcıların parolaları hala eski formatta olduğu için SCRAM ile bağlanamazlar. Her kullanıcı için parolayı tekrar tanımlamanız gerekir:
 
-```
+```postgresql
 ALTER USER kullanici_adi WITH PASSWORD 'yeni_parola';
 ```
 
 *(Bu işlem, parolanın `pg_authid` tablosuna SCRAM formatında kaydedilmesini sağlar.)*
 
-#### 3. `pg_hba.conf` Dosyasını Düzenleyin
+##### 3. `pg_hba.conf` Dosyasını Düzenleyin
 
 Artık ağdaki diğer PC'ler için erişim yöntemini değiştirebilirsiniz:
-
-Plaintext
 
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
@@ -443,7 +441,7 @@ host    all             all             192.168.1.0/24          scram-sha-256
 
 ------
 
-### Dikkat Etmeniz Gereken Tek Şey: İstemci Desteği
+##### Dikkat Etmeniz Gereken Tek Şey: İstemci Desteği
 
 Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bir Java uygulaması, çok eski bir pgAdmin versiyonu veya çok eski bir kütüphane) SCRAM desteği olmalıdır.
 
@@ -578,6 +576,244 @@ db_name=>
 | `\du` (`\dg`) | Veritabanı rol/kullanıcı listeleme | `\password` | Rol parolası belirleme          |
 | `\dx`         | Yüklü olan eklentileri listeleme   | `\encoding` | Tanımlı olan karakter kodlaması |
 | `\dn`         | Mevcut şemaları listeleme          | `\s`           | Geçmiş komutları listeleme      |
+
+---
+
+<a id="ddl"><a/>
+
+## DDL (Data Definition Language)
+
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
+
+DDL, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
+
+### PostgreSQL’de Temel DDL Komutları
+
+#### 1.1 CREATE
+
+Yeni nesne oluşturur.
+
+```
+CREATE TABLE kullanicilar (
+    id SERIAL PRIMARY KEY,
+    ad VARCHAR(50),
+    email VARCHAR(100)
+);
+```
+
+Oluşturulabilen nesneler:
+
+- TABLE
+- DATABASE
+- SCHEMA
+- INDEX
+- VIEW
+- SEQUENCE
+- FUNCTION
+- TYPE
+
+------
+
+### 1.2 ALTER
+
+Mevcut nesnenin yapısını değiştirir.
+
+```
+
+ALTER TABLE kullanicilar
+ADD COLUMN yas INT;
+
+ALTER TABLE kullanicilar
+ALTER COLUMN ad SET NOT NULL;
+```
+
+------
+
+### 1.3 DROP
+
+Nesneyi tamamen siler.
+
+```
+
+DROP TABLE kullanicilar;
+
+DROP TABLE kullanicilar CASCADE;
+```
+
+------
+
+### 1.4 TRUNCATE
+
+Tablodaki **tüm veriyi** hızlıca siler (yapı kalır).
+
+```
+
+TRUNCATE TABLE kullanicilar;
+```
+
+------
+
+## 2. Constraint (Kısıt) Nedir?
+
+Constraint’ler, tabloya girilen verinin **doğruluğunu ve tutarlılığını** garanti altına alan kurallardır. PostgreSQL’de constraint’ler **DDL ile tanımlanır**.
+
+------
+
+## 3. PostgreSQL Constraint Türleri
+
+------
+
+### 3.1 PRIMARY KEY
+
+- Tekil (unique) ve **NULL olamaz**
+- Tablo başına **bir tane** olur
+
+```
+
+id SERIAL PRIMARY KEY
+```
+
+veya
+
+```
+
+CONSTRAINT pk_kullanici PRIMARY KEY (id)
+```
+
+------
+
+### 3.2 UNIQUE
+
+- Tekil değer zorunluluğu
+- NULL kabul eder (PostgreSQL’de birden fazla NULL olabilir)
+
+```
+
+email VARCHAR(100) UNIQUE
+```
+
+------
+
+### 3.3 NOT NULL
+
+- Boş değer girilmesini engeller
+
+```
+
+ad VARCHAR(50) NOT NULL
+```
+
+------
+
+### 3.4 FOREIGN KEY
+
+- Tablolar arası ilişki kurar
+- Referans bütünlüğünü sağlar
+
+```
+
+CREATE TABLE siparisler (
+    id SERIAL PRIMARY KEY,
+    kullanici_id INT REFERENCES kullanicilar(id)
+);
+```
+
+Detaylı hali:
+
+```
+
+CONSTRAINT fk_kullanici
+FOREIGN KEY (kullanici_id)
+REFERENCES kullanicilar(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+```
+
+------
+
+### 3.5 CHECK
+
+- Değer kontrolü yapar
+
+```
+
+yas INT CHECK (yas >= 18)
+```
+
+------
+
+### 3.6 DEFAULT
+
+- Varsayılan değer atar
+
+```
+
+created_at TIMESTAMP DEFAULT now()
+```
+
+------
+
+#### 3.7 EXCLUDE (PostgreSQL’e özgü)
+
+- Gelişmiş benzersizlik kısıtı
+- Özellikle zaman aralığı çakışmalarında kullanılır
+
+```
+
+EXCLUDE USING gist (
+    oda_id WITH =,
+    tarih WITH &&
+);
+```
+
+------
+
+#### 4. Constraint Sonradan Eklemek
+
+```
+
+ALTER TABLE kullanicilar
+ADD CONSTRAINT uq_email UNIQUE (email);
+```
+
+------
+
+#### 5. Constraint Silmek
+
+```
+
+ALTER TABLE kullanicilar
+DROP CONSTRAINT uq_email;
+```
+
+------
+
+#### 6. DDL ve Constraint İlişkisi
+
+| DDL Komutu | Constraint ile İlişkisi        |
+| ---------- | ------------------------------ |
+| CREATE     | Constraint tanımlar            |
+| ALTER      | Constraint ekler/siler         |
+| DROP       | Constraint’leri de siler       |
+| TRUNCATE   | Constraint’leri **tetiklemez** |
+
+------
+
+#### 7. Kritik Teknik Notlar
+
+- Constraint’ler **index** oluşturabilir (PRIMARY KEY, UNIQUE).
+- CHECK constraint’leri trigger’a göre daha hızlıdır.
+- FOREIGN KEY performansı için **index önerilir**.
+- DDL komutları PostgreSQL’de **transaction içindedir**.
+
+------
+
+#### 8. Kısa Özet
+
+- **DDL**: Yapıyı tanımlar
+- **Constraint**: Kuralları uygular
+- Veri güvenliği ve bütünlüğü constraint’lerle sağlanır
+- PostgreSQL constraint konusunda oldukça güçlüdür
 
 ---
 
@@ -986,6 +1222,8 @@ DELETE 1
 
 > **Not : `WHERE` ile koşul belirtmezsek `ogrenciler` tablosundaki bütün kayıtlar silinir.**
 
+---
+
 PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre performanslıdır.
 
 **Temel Kullanım**
@@ -1022,13 +1260,19 @@ Bağlı tablolar da otomatik temizlenir.
 TRUNCATE TABLE ana_tablo CASCADE;
 ```
 
+#### TRUNCATE vs DELETE Karşılaştırması
+
+| Özellik            | TRUNCATE  | DELETE |
+| ------------------ | --------- | ------ |
+| Hız                | Çok hızlı | Yavaş  |
+| WHERE koşulu       | ❌ Yok     | ✅ Var  |
+| Trigger çalışır mı | ❌ Hayır   | ✅ Evet |
+| ROLLBACK           | ✅ Var     | ✅ Var  |
+| Sequence sıfırlama | Opsiyonel | ❌ Yok  |
+
 ---
 
-<a id="alias"><a/>
-
 ### `ALIAS` kullanımı
-
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
@@ -1096,7 +1340,7 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ### `WHERE` kullanımı
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+[⤴️ **Başa Dön**](#postgresql-yonetimi)
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
 
@@ -1407,7 +1651,7 @@ LIMIT ...;
 
 ### Aggregate Fonksiyonları
 
-[⤴️ **Başa Dön...**](#postgresql-yonetimi)
+[⤴️ **Başa Dön**](#postgresql-yonetimi)
 
 | Fonksiyon | Açıklama       |
 | --------- | -------------- |
