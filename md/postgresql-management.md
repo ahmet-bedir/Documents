@@ -593,7 +593,7 @@ DDL, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için
 
 Yeni nesne oluşturur.
 
-```
+```postgresql
 CREATE TABLE kullanicilar (
     id SERIAL PRIMARY KEY,
     ad VARCHAR(50),
@@ -614,12 +614,11 @@ Oluşturulabilen nesneler:
 
 ------
 
-### 1.2 ALTER
+#### 1.2 ALTER
 
 Mevcut nesnenin yapısını değiştirir.
 
-```
-
+```postgresql
 ALTER TABLE kullanicilar
 ADD COLUMN yas INT;
 
@@ -629,12 +628,11 @@ ALTER COLUMN ad SET NOT NULL;
 
 ------
 
-### 1.3 DROP
+#### 1.3 DROP
 
 Nesneyi tamamen siler.
 
-```
-
+```postgresql
 DROP TABLE kullanicilar;
 
 DROP TABLE kullanicilar CASCADE;
@@ -642,76 +640,66 @@ DROP TABLE kullanicilar CASCADE;
 
 ------
 
-### 1.4 TRUNCATE
+#### 1.4 TRUNCATE
 
 Tablodaki **tüm veriyi** hızlıca siler (yapı kalır).
 
-```
-
+```postgresql
 TRUNCATE TABLE kullanicilar;
 ```
 
 ------
 
-## 2. Constraint (Kısıt) Nedir?
+### 2. Constraint (Kısıt)
 
 Constraint’ler, tabloya girilen verinin **doğruluğunu ve tutarlılığını** garanti altına alan kurallardır. PostgreSQL’de constraint’ler **DDL ile tanımlanır**.
 
-------
+### 3. PostgreSQL Constraint Türleri
 
-## 3. PostgreSQL Constraint Türleri
-
-------
-
-### 3.1 PRIMARY KEY
+#### 3.1 PRIMARY KEY
 
 - Tekil (unique) ve **NULL olamaz**
 - Tablo başına **bir tane** olur
 
-```
-
+```postgresql
 id SERIAL PRIMARY KEY
 ```
 
 veya
 
-```
-
+```postgresql
 CONSTRAINT pk_kullanici PRIMARY KEY (id)
 ```
 
 ------
 
-### 3.2 UNIQUE
+#### 3.2 UNIQUE
 
 - Tekil değer zorunluluğu
 - NULL kabul eder (PostgreSQL’de birden fazla NULL olabilir)
 
-```
-
+```postgresql
 email VARCHAR(100) UNIQUE
 ```
 
 ------
 
-### 3.3 NOT NULL
+#### 3.3 NOT NULL
 
 - Boş değer girilmesini engeller
 
-```
-
+```postgresql
 ad VARCHAR(50) NOT NULL
 ```
 
 ------
 
-### 3.4 FOREIGN KEY
+#### 3.4 FOREIGN KEY
 
 - Tablolar arası ilişki kurar
 - Referans bütünlüğünü sağlar
 
-```
-
+```postgresql
 CREATE TABLE siparisler (
     id SERIAL PRIMARY KEY,
     kullanici_id INT REFERENCES kullanicilar(id)
@@ -720,8 +708,7 @@ CREATE TABLE siparisler (
 
 Detaylı hali:
 
-```
-
+```postgresql
 CONSTRAINT fk_kullanici
 FOREIGN KEY (kullanici_id)
 REFERENCES kullanicilar(id)
@@ -731,23 +718,21 @@ ON UPDATE CASCADE
 
 ------
 
-### 3.5 CHECK
+#### 3.5 CHECK
 
 - Değer kontrolü yapar
 
-```
-
+```postgresql
 yas INT CHECK (yas >= 18)
 ```
 
 ------
 
-### 3.6 DEFAULT
+#### 3.6 DEFAULT
 
 - Varsayılan değer atar
 
-```
-
+```postgresql
 created_at TIMESTAMP DEFAULT now()
 ```
 
@@ -758,8 +743,7 @@ created_at TIMESTAMP DEFAULT now()
 - Gelişmiş benzersizlik kısıtı
 - Özellikle zaman aralığı çakışmalarında kullanılır
 
-```
-
+```postgresql
 EXCLUDE USING gist (
     oda_id WITH =,
     tarih WITH &&
@@ -768,27 +752,25 @@ EXCLUDE USING gist (
 
 ------
 
-#### 4. Constraint Sonradan Eklemek
+### 4. Constraint Sonradan Eklemek
 
-```
-
+```postgresql
 ALTER TABLE kullanicilar
 ADD CONSTRAINT uq_email UNIQUE (email);
 ```
 
 ------
 
-#### 5. Constraint Silmek
+### 5. Constraint Silmek
 
-```
-
+```postgresql
 ALTER TABLE kullanicilar
 DROP CONSTRAINT uq_email;
 ```
 
 ------
 
-#### 6. DDL ve Constraint İlişkisi
+### 6. DDL ve Constraint İlişkisi
 
 | DDL Komutu | Constraint ile İlişkisi        |
 | ---------- | ------------------------------ |
@@ -799,7 +781,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-#### 7. Kritik Teknik Notlar
+### 7. Teknik Notlar
 
 - Constraint’ler **index** oluşturabilir (PRIMARY KEY, UNIQUE).
 - CHECK constraint’leri trigger’a göre daha hızlıdır.
@@ -808,7 +790,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-#### 8. Kısa Özet
+### 8. Kısa Özet
 
 - **DDL**: Yapıyı tanımlar
 - **Constraint**: Kuralları uygular
@@ -825,7 +807,7 @@ DROP CONSTRAINT uq_email;
 
 **Mevcut veritabanlarını listeleme:**
 
-```sql
+```postgresql
 postgres=# \l
                                   List of databases
    Name    |  Owner   | Enc. |   Collate   |    Ctype    |   Access
@@ -841,7 +823,7 @@ postgres=# \l
 
 **Yeni bir veritabanı oluşturma:**
 
-```sql
+```postgresql
 postgres=# CREATE DATABASE db_name;
 CREATE DATABASE
 ```
@@ -853,12 +835,12 @@ CREATE DATABASE
 
 **Sahip belirterek veritabanı oluşturma:**
 
-```sql
+```postgresql
 postgres=# CREATE DATABASE db_name OWNER user;
 CREATE DATABASE
 ```
 
-```sql
+```postgresql
 postgres=# CREATE DATABASE db_name
     WITH
     OWNER = postgres
@@ -871,21 +853,21 @@ postgres=# CREATE DATABASE db_name
 
 **Veritabanı sahipliğini değiştirmek için:**
 
-```sql
+```postgresql
 postgres=# ALTER DATABASE db_name OWNER TO user;
 ALTER DATABASE
 ```
 
 **Veritabanının ismini değiştirmek için:**
 
-```sql
+```postgresql
 postgres=# ALTER DATABASE db_name RENAME TO new_db_name;
 ALTER DATABASE
 ```
 
 **Veritabanını silmek için:**
 
-```sql
+```postgresql
 postgres=# DROP DATABASE db_name;
 DROP DATABASE
 ```
