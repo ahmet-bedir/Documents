@@ -24,6 +24,8 @@
 
 ▸ [**Veri İşlemleri**](#veri)
 
+[]
+
 ▸ [**Where Kullanımı**](#where)
 
 ▸ [**Aggregate Fonksiyonları**](#aggregate)
@@ -966,7 +968,11 @@ postgres=# SELECT ad,soyad FROM personel;
 
 ---
 
-#### `ALIAS` kullanımı
+<a id="aliaas"><a/>
+
+### `ALIAS` kullanımı
+
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
@@ -1032,7 +1038,7 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 <a id="where"><a/>
 
-#### `WHERE` kullanımı
+### `WHERE` kullanımı
 
 [⤴️ **Başa Dön...**](#postgresql-yonetimi)
 
@@ -1204,7 +1210,11 @@ CREATE INDEX idx_users_email ON users(email);
 
 ---
 
-#### `ORDER BY` Kullanımı
+<a id="order-by"><a/>"
+
+### `ORDER BY` Kullanımı
+
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
 
