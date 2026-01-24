@@ -248,7 +248,7 @@ psql -l
 /var/lib/postgresql/<version>/main
 ```
 
-> - **RedHat / CentOS / Fedora dağıtımlarında  (yum/dnf ile kurulum):**
+> - **RedHat / CentOS / Fedora dağıtımlarında (yum/dnf ile kurulum):**
 
 ```bash
 /var/lib/pgsql/<version>/data
@@ -510,7 +510,7 @@ Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bi
 > ahmet@pardus:~$ sudo -u postgres psql
 > ```
 >
-> ###### Not : PostgreSQL kurulunca varsayılan olarak "postgres" adında bir kullanıcı ve bu kullanıcıya ait "postgres" adında yeni bir veritabanı geliyor.
+> *Not : PostgreSQL kurulunca varsayılan olarak "postgres" adında bir kullanıcı ve bu kullanıcıya ait "postgres" adında yeni bir veritabanı geliyor.*
 
 ---
 
@@ -550,7 +550,7 @@ psql [seçenekler...] [veritabanı[kullanıcı]]
 **Kullanıcı/parola ile TCP üzerinden veritabanına bağlanma:**
 
 ```sql
-$ psql -h 127.0.0.1 -U user -W -d db_name
+$ psql -h 127.0.0.1 -U user_name -W -d db_name
 Password for user user:
 psql (11.5)
 Type "help" for help.
@@ -568,22 +568,22 @@ db_name=>
 > db_name=# SELECT * FROM table_name;
 > ```
 
-
+---
 
 > **Etkileşimsiz kabuk kullanma (dışardan komut yollama):**
 >
 > ```bash
-> $ psql -U user -c 'SELECT * FROM table_name;' db_name
+> $ psql -U user_name -c 'SELECT * FROM table_name;' db_name
 > ```
 >
 > **Çıktıyı dosyaya kaydetme:**
 >
 > ```bash
-> $ psql -U user -c 'SELECT * FROM table_name;' db_name > sonuc
+> $ psql -U user_name -c 'SELECT * FROM table_name;' db_name > sonuc
 > ```
 >
 
-
+---
 
 > **Komut çıktısını kullanma (pipe):**
 >
@@ -591,23 +591,23 @@ db_name=>
 > $ echo '\c db_name \\ SELECT * FROM table_name;' | psql
 > ```
 
-
+---
 
 > **Dosyayı girdi olarak kullanma:**
 >
 > ```bash
-> $ psql -U user db_name < sorgu.sql
+> $ psql -U user_name db_name < sorgu.sql
 > ```
 
-
+---
 
 > **Öntanımlı olarak sql sorgularının çıktıları sql biçeminde gelir psql üzerinden csv biçiminde çıktı almak için:**
 >
 > ```bash
-> $ psql -U user -d db_name -A -F"," -c "select * from table_name;" > dosya.csv
+> $ psql -U user_name -d db_name -A -F"," -c "select * from table_name;" > dosya.csv
 > ```
 
-
+---
 
 #### `psql` istemci temel komutları:
 
