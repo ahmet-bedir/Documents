@@ -54,13 +54,59 @@ Yüksek performanslı, kararlı ve güvenilirdir. Modern kurumsal veritabanı ka
 
 PostgreSQL’in, 1977 yılında başlayan 20 yılı akademik, son 20 yılı endüstride geçen 40 yıllık bir geçmişi olan en eski açık kaynak kodlu yazılımlardan biridir.
 
-PostgreSQL, tüm dünyada kamuda önemli devlet hizmetleri sunan uygulama sistemlerinde (CERN, NASA, Fransa, İngiltere,G.Kore, vb.) finans ve Telekom sektörlerinde iş kritik uygulamalarda, dünyada önde gelen üreticilerin ürünlerinde (Apple, Microsoft, IBM,Amazon, vb.), araştırma merkezleri ve üniversitelerde, küçük ölçekli projelerden çok büyük ölçekli kurumsal altyapılarda güvenilerek kullanılmaktadır.
+PostgreSQL, tüm dünyada kamuda önemli devlet hizmetleri sunan uygulama sistemlerinde (CERN, NASA, Fransa, İngiltere, G.Kore, vb.) finans ve Telekom sektörlerinde iş kritik uygulamalarda, dünyada önde gelen üreticilerin ürünlerinde (Apple, Microsoft, IBM,Amazon, vb.), araştırma merkezleri ve üniversitelerde, küçük ölçekli projelerden çok büyük ölçekli kurumsal altyapılarda güvenilerek kullanılmaktadır.
 
-PostgreSQL, önde gelen ticari veritabanı ürünleri ile rekabet edecek kurumsal veritabanı özelliklerinin yanı sıra günümüzdijital dönüşüm projeleri ve teknolojileri ile uyumlu birçok yeni ve yenilikçi özelliğe sahip-tir (Örneğin; dizi şeklindeki veri tipleri,paralel sorgular, JSON veri tipini desteklemesi ve üzerinde sorgu çalıştırabilmesi).
+PostgreSQL, önde gelen ticari veritabanı ürünleri ile rekabet edecek kurumsal veritabanı özelliklerinin yanı sıra günümüz dijital dönüşüm projeleri ve teknolojileri ile uyumlu birçok yeni ve yenilikçi özelliğe sahip-tir (Örneğin; dizi şeklindeki veri tipleri, paralel sorgular, JSON veri tipini desteklemesi ve üzerinde sorgu çalıştırabilmesi).
 
 PostgreSQL, veritabanı ve sistem yöneticileri, yazılım mimarları ve geliştiricileri için çekici gelen yenilikçi birçok özellik sunar.
 
 PostgreSQL’in öğrenmesi, kurulumu, konfigürasyonu, yönetimi, izlemesi ve bakımı kolaydır. Post-greSQL ekosisteminde yönetim ve izleme için açık kaynaklı ve ticari birçok araç vardır.
+
+### PostgreSQL’in Özellikleri ve Kabiliyetleri
+
+- Açık kaynak ve ücretsizdir.
+
+- ACID uyumlu, yüksek güvenilirliğe sahip bir RDBMS’tir.
+
+- MVCC (Multi-Version Concurrency Control) mimarisi kullanır.
+
+- Gelişmiş SQL standardı desteği sunar.
+
+- Güçlü transaction ve rollback mekanizmasına sahiptir.
+
+- Foreign key, check, unique, exclude gibi gelişmiş constraint’leri destekler.
+
+- JSON / JSONB ile yarı-yapısal veri desteği sağlar.
+
+- Gelişmiş indeks türleri (B-Tree, Hash, GIN, GiST, BRIN) sunar.
+
+- Stored procedure ve function desteği vardır (PL/pgSQL, Python, Perl vb.).
+
+- Trigger ve rule sistemi ile olay tabanlı işlem yapabilir.
+
+- View ve materialized view desteği bulunur.
+
+- Parallel query ve query planner optimizasyonları içerir.
+
+- Replikasyon (streaming, logical) ve yüksek erişilebilirlik desteği sağlar.
+
+- Role-based güvenlik ve detaylı yetkilendirme sunar.
+
+- Kimlik doğrulama, yetkilendirme, denetim, veri güvenliği, veri şifreleme, satır (row) seviyesinde güvenlik gibi birçok güvenlik yapısı vardır.
+
+- Trust, Password, LDAP, GSSAPI, SSPI, Kerberos, kimlik tabanlı (ident-based), RADIUS, sertifika, PAM, SCRAM (versiyon 11’le birlikte) kimlik doğrulaması gibi çeşitli kimlik doğrulama yöntemlerini destekler.
+
+- Full-text search (tam metin arama) yeteneği vardır.
+
+- Extension mimarisi ile genişletilebilir (PostGIS vb.).
+
+- Platform bağımsızdır (Linux, Windows, macOS).
+
+- Büyük veri ve yüksek eşzamanlı kullanıcı yükünü destekler.
+
+- DDL komutları transaction desteklidir.
+
+- Uzun vadeli veri tutarlılığı ve veri bütünlüğü sağlar.
 
 ---
 
