@@ -261,9 +261,7 @@ psql -l
 initdb -D /usr/local/pgsql/data
 ```
 
-###### Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir.
-
-yada postgresql oturumunda:
+###### Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir, yada postgresql oturumunda aşağıdaki sorgu çalıştırılır:
 
 ```postgresql
 postgres=# show data_directory;
@@ -327,7 +325,7 @@ Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin 
 ```
 #port = 5432                                            # (change requires restart)
 #superuser_reserved_connections = 3                     # (change requires restart)
-#unix_socket_directories = '/var/run/postgresql, /tmp'  #(comma-separated list of directories)
+#unix_socket_directories = '/var/run/postgresql, /tmp'  # (comma-separated list of directories)
 ```
 
 #### PostgreSQL Ayarları: Dosya Yerleri
