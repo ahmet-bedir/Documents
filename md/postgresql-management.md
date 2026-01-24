@@ -275,7 +275,7 @@ postgres=# show data_directory;
 
 **PostgreSQL’de veritabanı (DB) ve tablo (nesne) kimliklerini (OID) öğrenmek için:**
 
-```sql
+```postgresql
 postgres=# SELECT datname, oid FROM pg_database;
   datname  | oid 
 -----------+-----
