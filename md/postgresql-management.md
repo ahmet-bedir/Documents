@@ -1335,7 +1335,7 @@ TRUNCATE TABLE ana_tablo CASCADE;
 
 ---
 
-### Örnek Kullanıcılar Tablosu
+## Örnek Kullanıcılar Tablosu
 
 ```postgresql
 CREATE TABLE kullanicilar (
@@ -1352,6 +1352,10 @@ CREATE TABLE kullanicilar (
 );
 ```
 
+------
+
+## Kolonların Açıklaması
+
 | Kolon           | Açıklama                          |
 | --------------- | --------------------------------- |
 | `id`            | Birincil anahtar (otomatik artan) |
@@ -1365,7 +1369,38 @@ CREATE TABLE kullanicilar (
 | `aktif`         | Kullanıcı aktif mi                |
 | `kayit_tarihi`  | Sisteme kayıt zamanı              |
 
-#### Tavsiye
+------
+
+## Örnek INSERT
+
+```postgresql
+INSERT INTO kullanicilar (ad, soyad, kullanici_adi, e_posta, sifre)
+VALUES ('Ahmet', 'Bedir', 'ahmetb', 'ahmet@mail.com', 'hashli_sifre');
+```
+
+------
+
+## Türkçe Karakterle Yazmak İstersen (Alternatif)
+
+PostgreSQL bunu kabul eder, **ama önerilmez**:
+
+```postgresql
+CREATE TABLE "kullanıcılar" (
+    "id" SERIAL PRIMARY KEY,
+    "ad" TEXT,
+    "şifre" TEXT
+);
+```
+
+Bu durumda **her sorguda çift tırnak kullanmak zorunda kalırsın**:
+
+```postgresql
+SELECT "şifre" FROM "kullanıcılar";
+```
+
+------
+
+## Profesyonel Tavsiye
 
 - Kolon adları: **Türkçe ama ASCII**
 - Tablo adları: **küçük harf**
