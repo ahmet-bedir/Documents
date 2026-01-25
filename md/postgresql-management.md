@@ -152,7 +152,7 @@ sudo systemctl enable postgresql
 - `postgres`, `template0`, `template1` gibi **sistem veritabanlarını** oluşturur
 - Sistem kataloglarını ve varsayılan ayarları hazırlar
 
-➡️ PostgreSQL **çalışabilir hale gelmez** initdb yapılmadan.
+➡️ PostgreSQL, `initdb` yapılmadan **çalışabilir hale gelmez.**
 
 ------
 
@@ -385,6 +385,8 @@ lc_numeric = 'en_US.UTF-8'
 lc_time = 'en_US.UTF-8'
 ```
 
+---
+
 ### `pg_hba.conf` dosyası
 
 **Parola Şifreleme**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
@@ -510,7 +512,7 @@ Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bi
 > ahmet@pardus:~$ sudo -u postgres psql
 > ```
 >
-> *Not : PostgreSQL kurulunca varsayılan olarak "postgres" adında bir kullanıcı ve bu kullanıcıya ait "postgres" adında yeni bir veritabanı geliyor.*
+> *Not : PostgreSQL kurulunca varsayılan olarak "postgres" adında bir kullanıcı ve bu kullanıcıya ait "postgres" adında yeni bir veritabanı otomatik olarak gelir.*
 
 ---
 
@@ -623,9 +625,26 @@ db_name=>
 
 ---
 
+## Sorgu Tipleri
+
+PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
+
+1. DDL (Data Definition Language) veri tanımlama görevlerini yerine getiri
+2. DML (Data Manipulation Language) veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir
+3. DQL (Data Query Language) aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
+4. TCL (Transaction Control Language) transaction kontrolü sağlar.
+
+
+
+
+
+
+
+---
+
 <a id="ddl"><a/>
 
-## DDL (Data Definition Language)
+### DDL (Data Definition Language)
 
 ⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
@@ -645,7 +664,7 @@ CREATE TABLE kullanicilar (
 );
 ```
 
-Oluşturulabilen nesneler:
+Oluşturulabilinen nesneler:
 
 - TABLE
 - DATABASE
@@ -686,7 +705,7 @@ DROP TABLE kullanicilar CASCADE;
 
 #### 1.4 TRUNCATE
 
-Tablodaki **tüm veriyi** hızlıca siler (yapı kalır).
+Tablodaki **tüm veriyi** hızlıca boşaltır (yapı kalır).
 
 ```postgresql
 TRUNCATE TABLE kullanicilar;
@@ -694,15 +713,16 @@ TRUNCATE TABLE kullanicilar;
 
 ------
 
-### 2. Constraint (Kısıt)
+#### 2. Constraint (Kısıt)
 
 Constraint’ler, tabloya girilen verinin **doğruluğunu ve tutarlılığını** garanti altına alan kurallardır. PostgreSQL’de constraint’ler **DDL ile tanımlanır**.
 
-### 3. PostgreSQL Constraint Türleri
+#### 3. PostgreSQL Constraint Türleri
 
 #### 3.1 PRIMARY KEY
 
 - Tekil (unique) ve **NULL olamaz**
+- Bu kısıt, bir veya daha fazla kolonun bir tablodaki satırlar için `UNIQUE` ve `NOT NULL` kısıtlarına aynı anda uyacağını garanti eder.
 - Tablo başına **bir tane** olur
 
 ```postgresql
@@ -720,17 +740,34 @@ CONSTRAINT pk_kullanici PRIMARY KEY (id)
 #### 3.2 UNIQUE
 
 - Tekil değer zorunluluğu
+- Bu kısıt, tanımlandığı kolonun tüm satırlarındaki verilerin birbirinden farklı olmasını gerektirir.
 - NULL kabul eder (PostgreSQL’de birden fazla NULL olabilir)
 
 ```postgresql
-email VARCHAR(100) UNIQUE
+CREATE TABLE example (
+    a integer,
+    b integer,
+    c integer,
+    email VARCHAR(100) UNIQUE
+);
+```
+
+Bu kısıt, herhangi bir kolon tanımında yazılabileceği gibi tablo tanımlaması içinde parantez içinde kısıtın kontrol edeceği kolonları listeleyerek de yazılabilir.
+
+```postgresql
+CREATE TABLE example (
+    a integer,
+    b integer,
+    c integer,
+    UNIQUE (a, c)
+);
 ```
 
 ------
 
 #### 3.3 NOT NULL
 
-- Boş değer girilmesini engeller
+- Boş değer girilmesini engeller. Bu kısıt, bir kolona kesinlikle veri girilme zorunluluğunu ifade eder ve herhangi bir veri girişinde ya da güncellenmesinde üzerinde `NOT NULL` kısıtı olan kolonun boş bırakılmasının önüne geçer.
 
 ```postgresql
 ad VARCHAR(50) NOT NULL
@@ -764,7 +801,7 @@ ON UPDATE CASCADE
 
 #### 3.5 CHECK
 
-- Değer kontrolü yapar
+- Değer kontrolü yapar, girilen her değer `CHECK` kuralıyla test edilir ve `TRUE` dönen değerlerin tabloya yazılmasına izin verir.
 
 ```postgresql
 yas INT CHECK (yas >= 18)
@@ -796,7 +833,7 @@ EXCLUDE USING gist (
 
 ------
 
-### 4. Constraint Sonradan Eklemek
+#### 4. Constraint Sonradan Eklemek
 
 ```postgresql
 ALTER TABLE kullanicilar
@@ -805,7 +842,7 @@ ADD CONSTRAINT uq_email UNIQUE (email);
 
 ------
 
-### 5. Constraint Silmek
+#### 5. Constraint Silmek
 
 ```postgresql
 ALTER TABLE kullanicilar
@@ -814,7 +851,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-### 6. DDL ve Constraint İlişkisi
+#### 6. DDL ve Constraint İlişkisi
 
 | DDL Komutu | Constraint ile İlişkisi        |
 | ---------- | ------------------------------ |
@@ -825,7 +862,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-### 7. Teknik Notlar
+#### 7. Teknik Notlar
 
 - Constraint’ler **index** oluşturabilir (PRIMARY KEY, UNIQUE).
 - CHECK constraint’leri trigger’a göre daha hızlıdır.
@@ -834,7 +871,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-### 8. Kısa Özet
+#### 8. Kısa Özet
 
 - **DDL**: Yapıyı tanımlar
 - **Constraint**: Kuralları uygular
@@ -873,14 +910,14 @@ CREATE DATABASE
 ```
 
 > - `\c db_name`  **:  Diğer veritabana geçiş için kullanılır.**
-> - `\c db_name user_name`  :  Diğer veritabana kullanıcısı ile geçiş yapar.**
+> - `\c db_name user_name`  **:  Diğer veritabana kullanıcısı ile geçiş yapar.**
 > - `\l+`  **:  Mevcut veritabanlarının size, tablespace ve description alanlarınıda listeler.**
 > - `\i dosya`  **:  PostgreSQL sunucusuna bağlandığın konumda bulunan script dosyasını çalıştırır.**
 
 **Sahip belirterek veritabanı oluşturma:**
 
 ```postgresql
-postgres=# CREATE DATABASE db_name OWNER user;
+postgres=# CREATE DATABASE db_name OWNER user_name;
 CREATE DATABASE
 ```
 
@@ -898,7 +935,7 @@ postgres=# CREATE DATABASE db_name
 **Veritabanı sahipliğini değiştirmek için:**
 
 ```postgresql
-postgres=# ALTER DATABASE db_name OWNER TO user;
+postgres=# ALTER DATABASE db_name OWNER TO user_name;
 ALTER DATABASE
 ```
 
@@ -918,7 +955,7 @@ DROP DATABASE
 
 > `SELECT datname FROM pg_database;`  **:  Sistemdeki mevcut veritabanlarını listeleme sorgusu.**
 >
-> `SELECT usename,usesysid FROM pg_user;`  **:  Sistemdeki kullanıcıadı ve id bilgileri listelenir.**
+> `SELECT usename, usesysid FROM pg_user;`  **:  Sistemdeki kullanıcıadı ve id bilgileri listelenir.**
 >
 > `SELECT * FROM pg_stat_activity WHERE datname='postgres';`  **:  Adı verilen veritabanına bağlı connectionları listeler.**
 
@@ -1084,10 +1121,10 @@ CREATE TYPE status AS ENUM ('active','passive');
 
 ```sql
 postgres=# CREATE TABLE personel (
+  id         int  PRIMARY KEY,
   ad         varchar(40),
   soyad      varchar(40),
-  kidem      int,
-  uid        int  PRIMARY KEY
+  kidem      int
 );
 CREATE TABLE
 ```
@@ -1113,7 +1150,7 @@ ALTER TABLE
 **Tablo silme:**
 
 ```sql
-postgres=# DROP TABLE table_name;
+postgres=# DROP TABLE tablo_adı;
 DROP TABLE
 ```
 
@@ -1140,10 +1177,10 @@ postgres=# \d personel
           Table "public.personel"
  Column |         Type          | Modifiers
 --------+-----------------------+-----------
+ id     | integer               | not null
  ad     | character varying(40) |
  soyad  | character varying(40) |
  kidem  | integer               |
- uid    | integer               | not null
 Indexes:
     "personel_pkey" PRIMARY KEY, btree (uid)
 ```
@@ -1187,7 +1224,7 @@ RENAME COLUMN eski_isim TO yeni_isim;
 **Tabloya bir satır ekleme:**
 
 ```sql
-postgres=# INSERT INTO personel VALUES('John','Doe',5,01);
+postgres=# INSERT INTO personel VALUES(01,'John','Doe',5);
 INSERT 0 1
 
 -- Sadece belirli kolonlar için ekleme yapılacak ise:
@@ -1199,10 +1236,10 @@ INSERT 0 1
 
 ```sql
 postgres=# INSERT INTO personel VALUES
-           		('Jane','Doe',1,02),
-           		('Richard','Roe',3,03),
-           		('Fred','Bloggs',7,04),
-        		('Juan','Perez',11,05);
+           		(02,'Jane','Doe',1),
+           		(03,'Richard','Roe',3),
+           		(04'Fred','Bloggs',7),
+        		(05'Juan','Perez',11);
 INSERT 0 4
 ```
 
@@ -1295,6 +1332,90 @@ TRUNCATE TABLE ana_tablo CASCADE;
 | Trigger çalışır mı | ❌ Hayır   | ✅ Evet |
 | ROLLBACK           | ✅ Var     | ✅ Var  |
 | Sequence sıfırlama | Opsiyonel | ❌ Yok  |
+
+---
+
+### Örnek Kullanıcılar Tablosu
+
+```postgresql
+CREATE TABLE kullanicilar (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ad VARCHAR(50) NOT NULL,
+    soyad VARCHAR(50) NOT NULL,
+    kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
+    e_posta VARCHAR(100) UNIQUE NOT NULL,
+    sifre TEXT NOT NULL,
+    telefon VARCHAR(20),
+    dogum_tarihi DATE,
+    aktif BOOLEAN DEFAULT true,
+    kayit_tarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+| Kolon           | Açıklama                          |
+| --------------- | --------------------------------- |
+| `id`            | Birincil anahtar (otomatik artan) |
+| `ad`            | Kullanıcının adı                  |
+| `soyad`         | Kullanıcının soyadı               |
+| `kullanici_adi` | Sistemde benzersiz kullanıcı adı  |
+| `e_posta`       | E-posta adresi (benzersiz)        |
+| `sifre`         | Şifre (hashlenmiş olmalı)         |
+| `telefon`       | Telefon numarası                  |
+| `dogum_tarihi`  | Doğum tarihi                      |
+| `aktif`         | Kullanıcı aktif mi                |
+| `kayit_tarihi`  | Sisteme kayıt zamanı              |
+
+#### Tavsiye
+
+- Kolon adları: **Türkçe ama ASCII**
+- Tablo adları: **küçük harf**
+- Şifre: **asla düz metin saklama**
+- `PRIMARY KEY + UNIQUE` mutlaka tanımla
+
+------
+
+## CSV İçeriği (Kolonlar)
+
+Dosya, daha önce oluşturduğumuz tabloyla **birebir uyumludur**:
+
+```
+ad, soyad, kullanici_adi, e_posta, sifre, telefon,
+dogum_tarihi, aktif, kayit_tarihi
+```
+
+- `id` kolonu **bilinçli olarak yok**
+  → PostgreSQL `IDENTITY / SERIAL` otomatik üretecek
+- UNIQUE alanlar (`kullanici_adi`, `e_posta`) çakışmaz
+- `BOOLEAN`, `DATE`, `TIMESTAMP` uyumlu
+
+------
+
+## PostgreSQL’e CSV Import (Önerilen)
+
+### 1. Sunucu Tarafında (COPY)
+
+```postgresql
+COPY kullanicilar (
+    ad, soyad, kullanici_adi, e_posta, sifre,
+    telefon, dogum_tarihi, aktif, kayit_tarihi
+)
+FROM '/path/kullanicilar_1200_kayit.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+### 2. Client Tarafında (psql → \copy)
+
+```postgresql
+\copy kullanicilar (
+    ad, soyad, kullanici_adi, e_posta, sifre,
+    telefon, dogum_tarihi, aktif, kayit_tarihi
+)
+FROM 'kullanicilar_1200_kayit.csv'
+CSV HEADER;
+```
+
+
 
 ---
 
