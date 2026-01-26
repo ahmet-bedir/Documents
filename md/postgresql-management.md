@@ -1335,7 +1335,7 @@ TRUNCATE TABLE ana_tablo CASCADE;
 
 ---
 
-## Örnek Kullanıcılar Tablosu
+#### Örnek Tablo Oluşturma
 
 ```postgresql
 CREATE TABLE kullanicilar (
@@ -1354,7 +1354,7 @@ CREATE TABLE kullanicilar (
 
 ------
 
-## Kolonların Açıklaması
+**Kolonların Açıklaması**
 
 | Kolon           | Açıklama                          |
 | --------------- | --------------------------------- |
@@ -1371,47 +1371,17 @@ CREATE TABLE kullanicilar (
 
 ------
 
-## Örnek INSERT
-
-```postgresql
-INSERT INTO kullanicilar (ad, soyad, kullanici_adi, e_posta, sifre)
-VALUES ('Ahmet', 'Bedir', 'ahmetb', 'ahmet@mail.com', 'hashli_sifre');
-```
-
-------
-
-## Türkçe Karakterle Yazmak İstersen (Alternatif)
-
-PostgreSQL bunu kabul eder, **ama önerilmez**:
-
-```postgresql
-CREATE TABLE "kullanıcılar" (
-    "id" SERIAL PRIMARY KEY,
-    "ad" TEXT,
-    "şifre" TEXT
-);
-```
-
-Bu durumda **her sorguda çift tırnak kullanmak zorunda kalırsın**:
-
-```postgresql
-SELECT "şifre" FROM "kullanıcılar";
-```
-
-------
-
-## Profesyonel Tavsiye
+#### 💡 Tavsiye
 
 - Kolon adları: **Türkçe ama ASCII**
+- Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)
 - Tablo adları: **küçük harf**
 - Şifre: **asla düz metin saklama**
 - `PRIMARY KEY + UNIQUE` mutlaka tanımla
 
 ------
 
-## CSV İçeriği (Kolonlar)
-
-Dosya, daha önce oluşturduğumuz tabloyla **birebir uyumludur**:
+CSV içeriğini içe aktarmak için öncelikle csv dosyasındaki kolon adları ile birebir yeni bir tablo oluşturulmalı:
 
 ```
 ad, soyad, kullanici_adi, e_posta, sifre, telefon,
@@ -1419,15 +1389,15 @@ dogum_tarihi, aktif, kayit_tarihi
 ```
 
 - `id` kolonu **bilinçli olarak yok**
-  → PostgreSQL `IDENTITY / SERIAL` otomatik üretecek
-- UNIQUE alanlar (`kullanici_adi`, `e_posta`) çakışmaz
+  → PostgreSQL `IDENTITY / SERIAL` otomatik artan
+- UNIQUE alanlar (`kullanici_adi`, `e_posta`)
 - `BOOLEAN`, `DATE`, `TIMESTAMP` uyumlu
 
 ------
 
-## PostgreSQL’e CSV Import (Önerilen)
+#### PostgreSQL’e CSV Import
 
-### 1. Sunucu Tarafında (COPY)
+##### 1. Sunucu Tarafında (COPY)
 
 ```postgresql
 COPY kullanicilar (
@@ -1439,7 +1409,7 @@ DELIMITER ','
 CSV HEADER;
 ```
 
-### 2. Client Tarafında (psql → \copy)
+##### 2. Client Tarafında (psql → \copy)
 
 ```postgresql
 \copy kullanicilar (
@@ -1450,7 +1420,7 @@ FROM 'kullanicilar_1200_kayit.csv'
 CSV HEADER;
 ```
 
-
+*Not : GUI uyumlu yazılımlarda tabloyu oluşturduktan sonra tabloya sağ tıklayıp csv dosyasını import edebilirsiniz.*
 
 ---
 
