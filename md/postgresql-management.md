@@ -1315,15 +1315,13 @@ Foreign key bağı varsa hata verir.
 ERROR: cannot truncate a table referenced in a foreign key constraint
 ```
 
-**CASCADE ile**
-
-Bağlı tablolar da otomatik temizlenir.
+**CASCADE ile** bağlı tablolar da otomatik temizlenir.
 
 ```postgresql
 TRUNCATE TABLE ana_tablo CASCADE;
 ```
 
-#### TRUNCATE vs DELETE Karşılaştırması
+**TRUNCATE vs DELETE Karşılaştırması**
 
 | Özellik            | TRUNCATE  | DELETE |
 | ------------------ | --------- | ------ |
@@ -1335,7 +1333,7 @@ TRUNCATE TABLE ana_tablo CASCADE;
 
 ---
 
-#### Örnek Tablo Oluşturma
+**Örnek Tablo Olşturma**
 
 ```postgresql
 CREATE TABLE kullanicilar (
@@ -1351,8 +1349,6 @@ CREATE TABLE kullanicilar (
     kayit_tarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
-
-------
 
 **Kolonların Açıklaması**
 
@@ -1371,10 +1367,10 @@ CREATE TABLE kullanicilar (
 
 ------
 
-#### 💡 Tavsiye
+**💡 Tavsiye**
 
 - Kolon adları: **Türkçe ama ASCII**
-- Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)
+- Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)**
 - Tablo adları: **küçük harf**
 - Şifre: **asla düz metin saklama**
 - `PRIMARY KEY + UNIQUE` mutlaka tanımla
@@ -1395,7 +1391,7 @@ dogum_tarihi, aktif, kayit_tarihi
 
 ------
 
-#### PostgreSQL’e CSV Import
+**PostgreSQL’e CSV Import**
 
 ##### 1. Sunucu Tarafında (COPY)
 
@@ -1404,7 +1400,7 @@ COPY kullanicilar (
     ad, soyad, kullanici_adi, e_posta, sifre,
     telefon, dogum_tarihi, aktif, kayit_tarihi
 )
-FROM '/path/kullanicilar_1200_kayit.csv'
+FROM '/path/kullanicilar.csv'
 DELIMITER ','
 CSV HEADER;
 ```
@@ -1416,7 +1412,7 @@ CSV HEADER;
     ad, soyad, kullanici_adi, e_posta, sifre,
     telefon, dogum_tarihi, aktif, kayit_tarihi
 )
-FROM 'kullanicilar_1200_kayit.csv'
+FROM 'kullanicilar.csv'
 CSV HEADER;
 ```
 
