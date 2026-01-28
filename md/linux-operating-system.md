@@ -13,15 +13,17 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri) [`pwd` `cd` `ls` `touch` `file` `locate` `cat` `less` `history` `cp` `mv` `mkdir` `rm` `chattr` `find` `help` `man` `whatis` `alias`]
+▸ [**Komut Satırı**](#komut_satiri)  `pwd`  `cd`  `ls`  `touch`  `file`  `cat`  `less`  `history`  `cp`  `mv`  `mkdir`  `rm`  `chattr`  `find`  `locate`  `help`  `man`  `whatis`  `alias`
 
-▸ [**Metin İşlemleri**](#metin) [`stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`]
+▸ [**Metin İşlemleri**](#metin) `stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`
 
-▸ [**Gelişmiş Metin İşlemleri**](#metin2) [`join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`]
+▸ [**Gelişmiş Metin İşlemleri**](#metin2) `join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`
 
-▸ [**Kullanıcı Yönetimi**](#kullanici) [`Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`]
+▸ [**Kullanıcı Yönetimi**](#kullanici) `Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`
 
-▸ [**İzinler**](#izinler) [`Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setuid` `Setgid` `İşlem İzinleri` `Sticky Bit`]
+▸ [**İzinler**](#izinler) `Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setgid` `İşlem İzinleri` `Sticky Bit`
+
+
 
 
 ---
@@ -207,19 +209,19 @@ Varsayılan kabuk programını öğrenmek için konsola `echo $SHELL` komutunu g
 /usr/bin/bash
 ```
 
-
+---
 
 Temelde bizler kabuğa iki tür komut girebiliyoruz. Bu türler “dahili” ve “harici” olarak gruplanmış olan komutlardır.
 
-##### Dahili Komutlar(Built-ins)
+#### Dahili Komutlar(Built-ins)
 
 Dahili komutlar, kabuk programında yerleşik olan araçları çalıştırmak üzere kullanılan komutlardır. Bash üzerinde yer alan tüm dahili komutları görmek için `compgen -b` komutunu kullanabiliriz.
 
-##### Harici Komutlar(External)
+#### Harici Komutlar(External)
 
 Harici komutlar ise, mevcut sistem üzerinde yüklü bulunan araçları çalıştırmamızı sağlayan komutlardır. Tabii ki bu tür komutlar harici olan araçları temsil eden komutlar olduğu için kullanmakta olduğunuz sisteme göre harici komutlar değişiklik gösterir. Örneğin siz komut satırı üzerinden metinleri düzenleyebilmenizi sağlayacak olan `nano` aracını çalıştırmak üzere kabuğa aracın ismini girdiğinizde eğer araç sistemde yüklü ise açılır. Eğer yüklü değilse komut yok hatası alırsınız. İşte burada girdiğiniz `nano` komutu harici bir komut olarak kabul ediliyor. Çünkü nano aracı `bash` kabuğunun içinde yüklü gelen bir araç değil, `nano` aracı harici olarak sisteme yüklenmiş olan bir metin editörü yazılımıdır.
 
-
+---
 
 Genel görünümü (promt) aşağıdaki gibidir.
 
@@ -246,15 +248,15 @@ Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal b
 Linux İşletim Sistemi
 ```
 
-Kabuğun bizim girdiğimiz komutları nasıl algıladığından bahsedecek olursak:
-
-Sistem üzerinde dosyaları ve klasörleri bulma konusunda bize yardımcı olan `find` aracının PATH yolundaki dizinlerde bulunup bulunmadığı kontrol edilir.
+Kabuğun bizim girdiğimiz komutları nasıl algıladığından bahsedecek olursak, örneğin sistem üzerinde dosyaları ve dizinleri bulma işi yapan `find` aracının PATH yolundaki dizinlerde bulunup bulunmadığı kontrol edilir.
 
 <img src="../images/find.webp" width="500" />
 
 Kabuğa girdiğimiz komutlar path yolundaki dizinlerde bulunması gerekir.
 
-### PATH Yolu
+---
+
+#### PATH Yolu
 
 PATH, kabuk (bash, zsh vb.) tarafından çalıştırılabilir dosyaların aranacağı dizinleri tutan ortam değişkenidir. Bir komutu tam yolunu yazmadan çalıştırabilmenizi sağlar.
 
@@ -319,9 +321,7 @@ PATH: Komutların arandığı dizinlerin listesi
 
 `/etc/profile` veya `/etc/bash.bashrc` : Sistem geneli için.
 
-
-
-Eklenen dizini kontrol etmek için:
+**Eklenen dizini kontrol etmek için:**
 
 ```bash
 $ echo $PATH
@@ -357,11 +357,11 @@ Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” 
 
 **Kesin yol “absolute path”:** Bu, kök dizinden itibaren olan yoldur. Kök dizin genellikle bir eğik çizgi "/" olarak gösterilir. Yolunuz her zaman kök "/" ile başladığında, kök dizinden başladığınız anlamına gelir. Örneğin, `/home/ali/Masaüstü` kök ile başladığı için kesin yol oluyor.
 
-<img src="../images/etc-apt.webp" width="370" />
+<img src="../images/etc-apt.webp" width="440" />
 
 **Göreli yol “relative path”:** Bu, dosya sistemindeki bulunduğunuz konumdan itibaren olan yoldur. Eğer `/home/ali/Dökümanlar` konumunda olsaydım ve Dökümanlar içinde vergiler adında bir dizine gitmek isteseydim, `/home/ali/Dökümanlar/vergiler` gibi kök dizinden başlayarak tüm yolu belirtmeme gerek yok, bunun yerine sadece `cd` komutuna `vergiler/` argümanını verip ilgili dizinine gidebilirim.
 
-
+---
 
 İstediğimiz dizine geçmek için `cd` "dizin değiştir" komutuna gitmek istediğimiz dizin adını argüman olarak verilir.
 
@@ -387,9 +387,9 @@ Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 
 Sadece klasörün adını argüman olarak verdik, çünkü zaten `/home/ali/Resimler` konumundaydık.
 
+---
 
-
-Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı kısayollar var.
+Mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı kısayollar vardır.
 
 ► **. (geçerli dizin)**: Şu anda bulunduğunuz dizindir.
 
@@ -400,6 +400,8 @@ Her zaman mutlak ve göreli yollarla gezinmek için size yardımcı olacak bazı
 ► **- (önceki dizin)**: Bu sizi az önce bulunduğunuz önceki dizine götürür.
 
 <img src="../images/parent-sub-directory.jpg" width="300"  />
+
+---
 
 Örnekler:
 
@@ -474,7 +476,9 @@ drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Şablonlar
 drwxr-xrwx  3 ahmet ahmet 4096 Ara  5 22:23  Videolar
 ```
 
-##### Sık kullanılan argümanlar
+---
+
+**Sık kullanılan argümanlar**
 
 **`-l`**
    Uzun listeleme formatı (izinler, sahip, grup, boyut, tarih). 
@@ -541,9 +545,9 @@ ls -a
 ls -A
 ```
 
-------
+---
 
-##### Sıralama Seçenekleri
+**Sıralama Seçenekleri**
 
 **`-t`**
    Dosyaları son değiştirilme zamanına göre sıralar.
@@ -566,9 +570,9 @@ ls -lS
 ls -ltr
 ```
 
-------
+---
 
-##### Dosya Türleri ve Ayırt Etme
+**Dosya Türleri ve Ayırt Etme**
 
 - **`-F`**
    Dosya türünü sonuna ek işaretle belirtir:
@@ -587,9 +591,9 @@ ls -F
 ls --color=auto
 ```
 
-------
+---
 
-##### Dizin ve Alt Dizin İşlemleri
+**Dizin ve Alt Dizin İşlemleri**
 
 **`-d`**
    Dizinin içeriğini değil, dizinin kendisini listeler.
@@ -605,9 +609,9 @@ ls -ld /etc
 ls -R
 ```
 
-------
+---
 
-##### Zaman Bilgileri
+**Zaman Bilgileri**
 
 **`-u`**
    Son erişim zamanına göre listeler.
@@ -623,9 +627,9 @@ ls -lu
 ls -lc
 ```
 
-------
+---
 
-##### Yaygın Kullanım Kombinasyonları
+**Yaygın Kullanım Kombinasyonları**
 
 - **`ls -lah`**
    Tüm dosyalar, detaylı liste, okunabilir boyutlar.
@@ -634,9 +638,9 @@ ls -lc
 - **`ls -ld */`**
    Sadece dizinleri uzun formatta listeler.
 
-------
+---
 
-##### Kısa Özet Tablosu
+**Kısa Özet Tablosu**
 
 | Argüman | Açıklama                   |
 | ------- | -------------------------- |
@@ -850,7 +854,7 @@ $ cp -i dosya /home/ali/Resimler
 Dosyaları şu şekilde yeniden adlandırabilirsiniz:
 
 ```bash
-$ mv <eski_dosya> <yeni_dosya>
+$ mv <dosya_ismi> <yeni_dosya_ismi>
 ```
 
 **Dosya Taşıma**
@@ -858,7 +862,7 @@ $ mv <eski_dosya> <yeni_dosya>
 Bir dosyayı farklı bir dizine şu şekilde taşıyabilirsiniz:
 
 ```bash
-$ mv dosya2 /home/ali/Dökümanlar
+$ mv dosya /home/ali/Dökümanlar
 ```
 
 **Çoklu Dosya Taşıma**
@@ -866,7 +870,7 @@ $ mv dosya2 /home/ali/Dökümanlar
 Birden fazla dosyayı şu şekilde taşıyabilirsiniz:
 
 ```bash
-$ mv dosya_1 dosya_2 /bir_dizin
+$ mv dosya_1 dosya_2 /dizin
 ```
 
 **Dizin Yeniden Adlandırma**
@@ -874,7 +878,7 @@ $ mv dosya_1 dosya_2 /bir_dizin
 Dizinleri de şu şekilde yeniden adlandırabilirsiniz:
 
 ```bash
-$ mv <dizin1> <dizin2>
+$ mv <dizin> <yeni_dizin_adı>
 ```
 
 **Üzerine Yazma**
@@ -925,7 +929,7 @@ Linux'ta `chattr` (Change Attribute) komutu, dosyaların ve dizinlerin **öznite
 
 Özellikle sistem güvenliğini sağlamak ve kritik dosyaların yanlışlıkla silinmesini önlemek için çok güçlü bir araçtır.
 
-##### Temel Kullanım Sözdizimi
+**Temel Kullanım Sözdizimi**
 
 ```bash
 chattr [operatör] [öznitelik] [dosya_adı]
@@ -937,7 +941,7 @@ chattr [operatör] [öznitelik] [dosya_adı]
 
 ------
 
-##### En Çok Kullanılan Öznitelikler
+**En Çok Kullanılan Öznitelikler**
 
 Aşağıdaki tabloda en yaygın kullanılan `chattr` parametreleri:
 
@@ -948,13 +952,9 @@ Aşağıdaki tabloda en yaygın kullanılan `chattr` parametreleri:
 | **c** (compressed)  | Dosyanın disk üzerinde kernel tarafından otomatik olarak sıkıştırılmasını sağlar. |
 | **u** (undeletable) | Dosya silindiğinde verileri saklanır, böylece geri getirilmesi (undelete) kolaylaşır. |
 
-------
+**Dosyayı Tamamen Korumaya Almak (Silinemez/Değiştirilemez)**
 
-#### Örnek Senaryolar
-
-##### 1. Dosyayı Tamamen Korumaya Almak (Silinemez/Değiştirilemez)
-
-Bir dosyayı root dahil kimsenin silememesi veya düzenleyememesi için `i` özniteliğini kullanırız:
+Bir dosyayı root dahil kimsenin silememesi veya düzenleyememesi için `i` özniteliği kullanılır:
 
 ```bash
 sudo chattr +i onemli_dosya.txt
@@ -962,7 +962,7 @@ sudo chattr +i onemli_dosya.txt
 
 *Bu aşamadan sonra `rm` veya `nano` ile dosyaya müdahale edilemez.*
 
-##### 2. Sadece Veri Eklenmesine İzin Vermek
+**Sadece Veri Eklenmesine İzin Vermek**
 
 Bir log dosyasının geçmişinin silinmesini istemiyor, sadece yeni satırlar eklenmesini istiyorsanız:
 
@@ -970,7 +970,7 @@ Bir log dosyasının geçmişinin silinmesini istemiyor, sadece yeni satırlar e
 sudo chattr +a sistem.log
 ```
 
-##### 3. Korumayı Kaldırmak
+**Korumayı Kaldırmak**
 
 Özniteliği devre dışı bırakmak için `-` operatörü kullanılır:
 
@@ -980,9 +980,7 @@ sudo chattr -i onemli_dosya.txt
 
 Bu aşamadan sonra dosya silinebilir.
 
-------
-
-##### Öznitelikleri Nasıl Kontrol Edilir? (`lsattr`)
+**Öznitelikler `lsattr` Komutu İle Kontrol Edilir**
 
 Bir dosyanın hangi özniteliklere sahip olduğunu görmek için standart `ls` komutu işe yaramaz. Bunun yerine **`lsattr`** komutunu kullanmalısınız:
 
@@ -1000,7 +998,7 @@ Buradaki i, dosyanın kilitli olduğunu gösterir.
 
 ------
 
-##### Dikkat Edilmesi Gerekenler
+**Dikkat Edilmesi Gerekenler**
 
 - `chattr` komutunu kullanmak için genellikle **root** veya **sudo** yetkisi gerekir.
 - Bu komut genellikle **ext2, ext3, ext4, XFS** gibi Linux dosya sistemlerinde çalışır.
@@ -1008,7 +1006,7 @@ Buradaki i, dosyanın kilitli olduğunu gösterir.
 
 Dizinlerde kullanım için iki temel yöntem vardır:
 
-##### 1. Sadece Dizinin Kendisini Korumak
+**1. Sadece Dizinin Kendisini Korumak**
 
 Eğer komutu doğrudan dizin ismiyle çalıştırırsanız, öznitelik sadece o klasörün kendisine uygulanır.
 
@@ -1025,7 +1023,7 @@ sudo chattr +i /home/kullanici/ozel_dizin
 
 ------
 
-##### 2. Alt Dosya ve Dizinlerle Birlikte Korumak (Rekürsif)
+**2. Alt Dosya ve Dizinlerle Birlikte Korumak (Rekürsif)**
 
 Eğer klasörün içindeki her şeyin (tüm alt dosyalar ve klasörler) aynı korumaya sahip olmasını istiyorsanız `-R` (recursive) parametresini kullanmalısınız.
 
@@ -1040,7 +1038,7 @@ sudo chattr -R +i /home/kullanici/ozel_dizin
 
 ------
 
-##### Önemli Bir Fark: `i` ve `a` Öznitelikleri
+**Önemli Bir Fark: `i` ve `a` Öznitelikleri**
 
 Dizinler söz konusu olduğunda şu farkı bilmek çok faydalıdır:
 
@@ -1049,7 +1047,7 @@ Dizinler söz konusu olduğunda şu farkı bilmek çok faydalıdır:
 | `chattr +i dizin/` | İçine yeni dosya eklenemez, mevcut dosyalar silinemez.       |
 | `chattr +a dizin/` | Mevcut dosyalar silinemez ama **yeni dosyalar oluşturulabilir**. |
 
-##### Kontrol Etmek İçin
+**Kontrol Etmek İçin**
 
 Dizine uygulanan özniteliği görmek için `lsattr` komutuna `-d` (directory) parametresini eklemeniz gerekir:
 
@@ -1087,15 +1085,15 @@ $ rmdir dizin
 
 Sistemde dosya veya dizin aramak için`find` komutunu kullanabilirsiniz.
 
-##### 1. Temel Kullanım
+**Temel Kullanım**
 
-```
+```bash
 find [başlangıç_dizini] [koşullar] [aksiyonlar]
 ```
 
 Örnek:
 
-```
+```bash
 find /etc -name "*.conf"
 ```
 
@@ -1103,7 +1101,7 @@ find /etc -name "*.conf"
 
 ------
 
-##### 2. Dosya Adı ve Türüne Göre
+**Dosya Adı ve Türüne Göre**
 
 **Dosya adı**
 
@@ -1112,7 +1110,7 @@ find /etc -name "*.conf"
 - `-iname "desen"`
    Büyük/küçük harfe duyarsız arama
 
-```
+```bash
 find . -iname "*.jpg"
 ```
 
@@ -1124,13 +1122,13 @@ find . -iname "*.jpg"
 - `-type b` → block device
 - `-type c` → character device
 
-```
+```bash
 find /var -type d
 ```
 
 ------
 
-##### 3. Boyuta Göre Arama
+**Boyuta Göre Arama**
 
 - `-size +10M` → 10 MB’dan büyük
 - `-size -100k` → 100 KB’dan küçük
@@ -1144,7 +1142,7 @@ find /home -size +500M
 
 ------
 
-##### 4. Zamana Göre Arama
+**Zamana Göre Arama**
 
 **Gün bazlı**
 
@@ -1169,7 +1167,7 @@ find . -mmin -60
 
 ------
 
-##### 5. Sahiplik ve İzinler
+**Sahiplik ve İzinler**
 
 Kullanıcı / grup
 
@@ -1192,7 +1190,7 @@ find . -perm -4000     # SUID dosyalar
 
 ------
 
-##### 6. Derinlik (Dizin Seviyesi)
+**Derinlik (Dizin Seviyesi)**
 
 - `-maxdepth N` → en fazla N seviye
 - `-mindepth N` → en az N seviye
@@ -1203,7 +1201,7 @@ find . -maxdepth 1 -type d
 
 ------
 
-##### 7. Mantıksal Operatörler
+**Mantıksal Operatörler**
 
 - `-and` veya boşluk → VE
 - `-or` → VEYA
@@ -1223,39 +1221,37 @@ find . -type f -name "*.log" ! -size +10M
 
 Aracımızın en temel kullanımı `locate aranacak-isim` şeklinde. Fakat dediğim gibi `locate` aracı kendisine ait olan veritabanı üzerinden araştırma yaptığı için araştırmalarımız sırasında daha sağlıklı çıktılar elde edebilmek adına bu veritabanını güncellememiz gerekiyor.
 
-Ben hemen test etmek için bir önceki derste `find` aracıyla bulmak için oluşturduğum farklı konumlardaki **“bulbeni”** isimli dosya ve klasörleri `locate bulbeni` komutuyla sorgulamak istiyorum.
-
 ```
-┌┌──(ahmet㉿kali)-[~]
-└─$ locate bulbeni
 ┌──(ahmet㉿kali)-[~]
-└─$
+└─$ locate dosya
+
 ```
 
 Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturduğumuz için `locate` aracının kullandığı veritabanına bu dosya ve klasörün dizin adresi eklenmedi. Dolayısıyla bu isimde bir eşleşme olmadı.
 
-#### `locate` Veritabanını Güncellemek | `updatedb`
+**Veritabanını Güncellemek | `updatedb`**
 
-`locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. İşlemi yetkili olarak gerçekleştirdiğimiz için parolamızı girip anlayamamız gerek. Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek.
+`locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek.
 
 ```
 ┌──(ahmet㉿kali)-[~]
 └─$ sudo updatedb
-[sudo] password for taylan:
+[sudo] password for ahmet: 
+
 ```
 
 Şimdi dosya sistemindeki en son değişikliklerin veritabanına eklenmiş olması gerekiyor. Tekrar etmek için `locate bulbeni` şeklinde komutumuzu girebiliriz.
 
 ```
 ┌──(ahmet㉿kali)-[~]
-└─$ locate bulbeni
-/home/ali/Documents/bulbeni
-/home/ali/Pictures/bulbeni
+└─$ locate dosya
+/home/ahmet/dosya
+/home/ahmet/Masaüstü/dosya
 ```
 
 Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi konsola bastırıldı. Bizzat sizin de deneyimleyebileceğiniz gibi `locate` aracı hızlı çalışıyor olmasına rağmen, veritabanı `updatedb` komutu ile güncellenmediyse sistemde mevcut olan yeni dosya ve dizinleri bulamıyor. Dolayısıyla `locate` aracını kullanmadan önce sağlıklı çıktılar almak istiyorsanız mutlaka `updatedb` komutuyla güncelleme yapın. Normalde her gün düzenli olarak bu veritabanı otomatik olarak güncelleniyor ancak dediğim gibi kullanmadan önce stabil çıktılar istiyorsanız `updatedb` komutunu çalıştırmanız şart.
 
-#### Harf Duyarlılığını Kaldırmak
+**Harf Duyarlılığını Kaldırmak**
 
 Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
 
@@ -1284,7 +1280,7 @@ Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifade
 
 Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler listelenmiş oldu.
 
-##### Eşleşme Sayısını Öğrenmek
+**Eşleşme Sayısını Öğrenmek**
 
 Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz.
 
