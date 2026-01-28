@@ -15,13 +15,13 @@
 
 ▸ [**Komut Satırı**](#komut_satiri)  `pwd`  `cd`  `ls`  `touch`  `file`  `cat`  `less`  `history`  `cp`  `mv`  `mkdir`  `rm`  `chattr`  `find`  `locate`  `help`  `man`  `whatis`  `alias`
 
-▸ [**Metin İşlemleri**](#metin) `stdout` `stdin` `stderr` `pipe` `tee` `env` `cut` `paste` `head` `tail` `expand` `unexpand` `wc` `nl`
+▸ [**Metin İşlemleri**](#metin)  `stdout`  `stdin`  `stderr`  `pipe`  `tee`  `env`  `cut`  `paste`  `head`  `tail`  `expand`  `unexpand`  `wc`  `nl`
 
-▸ [**Gelişmiş Metin İşlemleri**](#metin2) `join` `split` `sort` `tr` `uniq` `grep` `regex` `vim` `emacs`
+▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
 
-▸ [**Kullanıcı Yönetimi**](#kullanici) `Kullanıcılar ve Gruplar` `root` `sudo` `Kullanıcı Hesabı Oluşturma` `/etc/passwd` `/etc/shadow` `/etc/group` `Kullanıcı Yönetim Araçları`
+▸ [**Kullanıcı Yönetimi**](#kullanici)  `KullanıcılarveGruplar`  `root`  `sudo`  `KullanıcıHesabıOluşturma`  `/etc/passwd`  `/etc/shadow`  `/etc/group`  `KullanıcıYönetimAraçları`
 
-▸ [**İzinler**](#izinler) `Dosya İzinleri` `İzinlerin Değiştirilmesi` `Sahiplik İzinleri` `Umask` `Setgid` `İşlem İzinleri` `Sticky Bit`
+▸ [**İzinler**](#izinler)  `Dosyaİzinleri`  `İzinlerinDeğiştirilmesi`  `Sahiplikİzinleri`  `Umask`  `Setgid`  `İşlemİzinleri`  `StickyBit`
 
 
 
@@ -2414,7 +2414,7 @@ Her satır bir kullanıcı için kullanıcı bilgilerini görüntüler, genellik
 * Kullanıcının ana dizini
 * Kullanıcının kabuğu - muhtemelen birçok kullanıcının kabuğu olarak varsayılan olarak `bash`'ı göreceksiniz
 
-Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, `/etc/passwd`'ın diğer kullanıcıları da içerdiğini fark edeceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
+Normalde bir kullanıcının ayar sayfasında yalnızca normal kullanıcıları görmeyi beklersiniz. Ancak, `/etc/passwd`'ın diğer kullanıcıları da içerdiğini fark ede1ceksiniz. Unutmayın, kullanıcılar aslında sistemde yalnızca farklı izinlerle işlem çalıştırmak için vardır. Bazen önceden belirlenmiş izinlerle işlem çalıştırmak isteriz. Örneğin, daemon kullanıcısı daemon procesleri için kullanılır.
 
 Ayrıca, kullanıcı eklemek ve bilgileri değiştirmek istiyorsanız `/etc/passwd` dosyasını manuel olarak `vipw` aracıyla düzenleyebilirsiniz. Ancak `useradd` , `adduser` ve `userdel` gibi araçları kullanmak en iyisidir.
 
