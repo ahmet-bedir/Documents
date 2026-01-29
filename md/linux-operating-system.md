@@ -23,9 +23,6 @@
 
 ▸ [**İzinler**](#izinler)  `Dosyaİzinleri`  `İzinlerinDeğiştirilmesi`  `Sahiplikİzinleri`  `Umask`  `Setgid`  `İşlemİzinleri`  `StickyBit`
 
-
-
-
 ---
 
 ## 📅 Tarihçe
@@ -1136,7 +1133,7 @@ find /var -type d
 
 Birimler: `b, c, w, k, M, G`
 
-```
+```bash
 find /home -size +500M
 ```
 
@@ -1150,7 +1147,7 @@ find /home -size +500M
 - `-mtime` → son değişiklik
 - `-ctime` → metadata değişimi
 
-```
+```bash
 find . -mtime -7      # son 7 gün
 find . -mtime +30     # 30 günden eski
 ```
@@ -1161,7 +1158,7 @@ find . -mtime +30     # 30 günden eski
 - `-mmin`
 - `-cmin`
 
-```
+```bash
 find . -mmin -60
 ```
 
@@ -1174,7 +1171,7 @@ Kullanıcı / grup
 - `-user kullanıcı`
 - `-group grup`
 
-```
+```bash
 find /home -user ahmet
 ```
 
@@ -1184,7 +1181,7 @@ find /home -user ahmet
 - `-perm -644` → en az bu izinler
 - `-perm /222` → herhangi biri
 
-```
+```bash
 find . -perm -4000     # SUID dosyalar
 ```
 
@@ -1195,7 +1192,7 @@ find . -perm -4000     # SUID dosyalar
 - `-maxdepth N` → en fazla N seviye
 - `-mindepth N` → en az N seviye
 
-```
+```bash
 find . -maxdepth 1 -type d
 ```
 
@@ -1207,7 +1204,7 @@ find . -maxdepth 1 -type d
 - `-or` → VEYA
 - `!` → DEĞİL
 
-```
+```bash
 find . -type f -name "*.log" ! -size +10M
 ```
 
