@@ -1237,13 +1237,12 @@ Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturdu
 
 ```
 
-Şimdi dosya sistemindeki en son değişikliklerin veritabanına eklenmiş olması gerekiyor. Tekrar etmek için `locate bulbeni` şeklinde komutumuzu girebiliriz.
+Şimdi dosya sistemindeki en son değişikliklerin veritabanına eklenmiş olması gerekiyor. Tekrar etmek için `locate` ile arama yapabiliriz.
 
 ```
-┌──(ahmet㉿kali)-[~]
-└─$ locate dosya
-/home/ahmet/dosya
-/home/ahmet/Masaüstü/dosya
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ locate metin-dosyası
+/home/ahmet/metin-dosyası
 ```
 
 Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi konsola bastırıldı. Bizzat sizin de deneyimleyebileceğiniz gibi `locate` aracı hızlı çalışıyor olmasına rağmen, veritabanı `updatedb` komutu ile güncellenmediyse sistemde mevcut olan yeni dosya ve dizinleri bulamıyor. Dolayısıyla `locate` aracını kullanmadan önce sağlıklı çıktılar almak istiyorsanız mutlaka `updatedb` komutuyla güncelleme yapın. Normalde her gün düzenli olarak bu veritabanı otomatik olarak güncelleniyor ancak dediğim gibi kullanmadan önce stabil çıktılar istiyorsanız `updatedb` komutunu çalıştırmanız şart.
@@ -1252,28 +1251,16 @@ Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi
 
 Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
 
-Ben denemek için `locate ABC` şeklinde yazıp içerisinde tamamı büyük harflerden oluşan **ABC** karakterlerini barından dosya ve klasör isimlerini listelemek istiyorum.
-
 ```
-┌──(ahmet㉿kali)-[~]
-└─$ locate ABC                                                   
-/home/ali/ABC
-/home/ali/.cache/mozilla/firefox/d5n1etpa.default-esr/cache2/entries/1F001ABC732598300E8297AC686A75B32E5186EB
-```
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ locate metin-dosyası
+/home/ahmet/metin-dosyası
 
-Bakın buradaki çıktıların hepsinde yalnızca tamamı büyük olan ABC ifadesi geçiyor. Eğer küçük büyük harf duyarlılığını kaldırmak istersek komutumuzu tekrar çağırıp `i` seçeneğini ekleyebiliriz.
-
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ locate -i metin-dosyası
+/home/ahmet/Metin-Dosyası
+/home/ahmet/metin-dosyası
 ```
-┌──(taylan@linuxdersleri)-[~]
-└─$ locate -i ABC
-/home/taylan/ABC
-/home/taylan/AbC
-/home/taylan/aBc
-/home/taylan/abc
-/home/taylan/.cache/go-build/0d/0d0abc24b077b8fe4a2db64ca931edc2ed3107a8d4c35f0e230f762e70514359-a
-```
-
-**ℹ️ Not:** Çıktılar kısaltılarak verilmiştir.
 
 Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler listelenmiş oldu.
 
@@ -1282,16 +1269,16 @@ Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler lis
 Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz.
 
 ```
-┌──(taylan@linuxdersleri)-[~]
-└─$ locate -ic ABC                                               
-142
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ locate -c linux-operating
+76
 
-┌──(taylan@linuxdersleri)-[~]
-└─$ locate -c ABC                                           
-17
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ locate -ic linux-operating
+134
 ```
 
-Gördüğünüz gibi harf duyarlılığı olamadan arma yaptığımızda 142 eşleşme olurken, harf duyarlılığı varken yalnızca 17 eşleşme bulunmuş.
+Gördüğünüz gibi harf duyarlılığı olamadan arama yaptığımızda 134 eşleşme olurken, harf duyarlılığı varken yalnızca 76 eşleşme bulunmuş.
 
 ---
 
@@ -1315,10 +1302,16 @@ Bu komut, `echo` komutunu çalıştırmak istediğinizde kullanabileceğiniz aç
 $ ls --help
 ```
 
-Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, man komutunu kullanarak man sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir. Kullanımı `man <komut_adı>` şeklindedir.
+`--help` seçeneği ile komutlar hakkında kısa bir açıklama alabilirsiniz.
 
-Örneğin, ls komutu hakkında daha fazla bilgi edinmek için:
-`man ls`
+Linux programları hakkında daha fazla bilgi edinmek istiyorsanız, `man` komutunu kullanarak `man` sayfalarına erişebilirsiniz. Man sayfaları, komutların ayrıntılı açıklamalarını, seçeneklerini ve kullanım örneklerini içerir. Kullanımı `man <komut_adı>` şeklindedir.
+
+Örneğin, `ls` komutu hakkında daha fazla bilgi edinmek için:
+```bash
+$ man ls
+```
+
+Tam olarak ismini hatırlayamadığınız araçların isimlerini ya da tam tersi şekilde ismini bilip işlevini hatırlayamadığınız durumlarda da işlevlerini `apropos` ya da `man -k` komutu yardımıyla kolaylıkla sorgulayabilirsiniz.
 
 ---
 
@@ -1343,8 +1336,6 @@ Bu örnekte, `cat` komutunun ne işe yaradığı hakkında kısa bir açıklama 
 ---
 
 ### alias
-
-Uzun komutları yazmaktan yoruldunuz mu? Belki de aynı komutu tekrar tekrar mı kullanıyorsunuz?
 
 Linux size, sık kullandığınız komutlar için takma adlar oluşturma imkanı sunar. Bu takma adlar sayesinde komutları daha kısa ve yazması daha kolay hale getirebilirsiniz.
 
@@ -1380,7 +1371,16 @@ Oluşturduğunuz bir takma ada artık ihtiyacınız yoksa, `unalias` komutunu ku
 $ unalias la
 ```
 
-Bu komuttan sonra `la` takma adını kullanamazsınız.
+Bu komuttan sonra `la` takma adını kullanamazsınız. Bütün takma adları listelemek için `alias` komutu kullanılır. 
+
+---
+
+Shell'den çıkmak için aşağıdaki komutlardan birini kullanabilirsiniz:
+
+- `exit`: Bu en yaygın çıkış komutudur.
+- `logout`: `exit` komutuyla aynı işlevi görür.
+
+Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabilirsiniz.
 
 ---
 
