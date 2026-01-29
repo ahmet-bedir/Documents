@@ -1393,27 +1393,27 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ### stdout (Standard Out)
 
-Komutların nasıl çalıştığını ve çıktı ürettiklerini öğrendik. Şimdi bir sonraki konuya, yani **girdi/çıktı akışları (I/O)** konusuna geçelim. Aşağıdaki komutu çalıştırarak nasıl işlediğini görelim:
+Konsola girilen komutların davranışlarını **girdi/çıktı akışları (I/O)** inceleyerek devam edelim:
 
 ```bash
-$ echo Hello World > peanuts.txt
+$ echo Selam Linux > dosya.txt
 ```
 
-Bu komutu çalıştırdığınız dizine gidin ve orada `peanuts.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Hello World" yazısını göreceksiniz. Bu komutu incelediğimizde:
+Bu komutu çalıştırdığınız dizine gidin ve orada `dosya.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Selam Linux" yazısını göreceksiniz. Bu komutu incelediğimizde:
 
 **echo Komutu**
 
 ```bash
-$ echo Hello World
+$ echo Selam Linux
 ```
 
-Bu komutun "Hello World" yazısını ekrana yazdırdığını biliyoruz. Peki nasıl oluyor? İşlemler, giriş almak ve çıktı döndürmek için **girdi/çıktı akışları (I/O)** kullanır. Varsayılan olarak, `echo` komutu klavyeden **standart girdi (stdin)** alır ve **standart çıktı (stdout)** olarak ekrana yazdırır. Bu nedenle, `echo Hello World` yazdığınızda ekranda "Hello World" görürsünüz.
+Bu komutun "Selam Linux" yazısını ekrana yazdırdığını biliyoruz. Peki nasıl oluyor? İşlemler, giriş almak ve çıktı döndürmek için **girdi/çıktı akışları (I/O)** kullanır. Varsayılan olarak, `echo` komutu klavyeden **standart girdi (stdin)** alır ve **standart çıktı (stdout)** olarak ekrana yazdırır. Bu nedenle, `echo Selam Linux` yazdığınızda ekranda "Selam Linux" görürsünüz.
 
 **Yönlendirme Operatörü**
 
 Ancak I/O yönlendirme, bize daha fazla esneklik sağlayarak bu varsayılan davranışı değiştirmemize izin verir.
 
-`>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Hello World` komutunun çıktısını ekrana yazdırmak yerine bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
+`>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Selam Linux` komutunun çıktısını ekrana yazdırmak yerine bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
 
 **Standart Çıktı Yönlendirme**
 
@@ -1421,13 +1421,13 @@ Yani standart çıktı yönlendirme böyle çalışır!
 
 **Dosyaya Ekleme**
 
-Peki ya `peanuts.txt` dosyasının üzerine yazmak istemezsek `>>` operatörü kullanılır.
+Peki ya `dosya.txt` dosyasının üzerine yazmak istemezsek `>>` operatörü kullanılır.
 
 ```bash
-$ echo Hello World >> peanuts.txt
+$ echo Selam Linux >> dosya.txt
 ```
 
-Bu komut, "Hello World" yazısını `peanuts.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
+Bu komut, "Selam Linux" yazısını `dosya.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
 
 ---
 
@@ -1437,35 +1437,35 @@ Standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. K
 
 **Örnek: stdin Yönlendirme ile Dosya Kopyalama**
 
-Önceki derste oluşturduğumuz `peanuts.txt` dosyasını kullanalım. Bu dosyanın içinde "Hello World" yazısı olduğunu hatırlayın.
+Önceki derste oluşturduğumuz `dosya.txt` dosyasını kullanalım. Bu dosyanın içinde "Selam Linux" yazısı olduğunu hatırlayın.
 
 ```bash
-$ cat < peanuts.txt > banana.txt
+$ cat < dosya.txt > dosya2.txt
 ```
 
 Standart çıktı yönlendirmede `>` sembolünü nasıl kullandık, aynı şekilde standart giriş yönlendirmede de `<` sembolünü kullanıyoruz.
 
-Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş (stdin) haline gelir. Bu örnekte, `peanuts.txt` dosyasını standart giriş olarak kullanmak için yönlendirdik. Daha sonra, `cat peanuts.txt` komutunun çıktısı olan "Hello World" metni, `banana.txt` adında yeni bir dosyaya yönlendirildi.
+Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş (stdin) haline gelir. Bu örnekte, `dosya.txt` dosyasını standart giriş olarak kullanmak için yönlendirdik. Daha sonra, `cat dosya.txt` komutunun çıktısı olan "Selam Linux" metni, `dosya2.txt` adında yeni bir dosyaya yönlendirildi.
 
 **Açıklama:**
 
 * `cat` komutu, varsayılan olarak standart girişten (stdin) okuyup standart çıktıyı (stdout) ekrana yazar.
-* `< peanuts.txt` kısmı, `peanuts.txt` dosyasının içeriğini standart giriş akışına yönlendirir. Yani, `cat` komutu sanki klavyeden "Hello World" yazmışız gibi davranır.
-* `> banana.txt` kısmı ise standart çıktı akışını `banana.txt` dosyasına yönlendirir. Böylece, `cat` komutunun "Hello World" çıktısı bu dosyaya yazılır.
+* `< dosya.txt` kısmı, `dosya.txt` dosyasının içeriğini standart giriş akışına yönlendirir. Yani, `cat` komutu sanki klavyeden "Selam Linux" yazmışız gibi davranır.
+* `> dosya2.txt` kısmı ise standart çıktı akışını `dosya2.txt` dosyasına yönlendirir. Böylece, `cat` komutunun "Selam Linux" çıktısı bu dosyaya yazılır.
 
 **Sonuç:**
 
-Bu komutu çalıştırdığınızda, `banana.txt` adında yeni bir dosya oluşur ve içinde "Hello World" yazısı yer alır. Özetle, bu komut `peanuts.txt` dosyasının içeriğini `banana.txt` dosyasına kopyalamış olur.
+Bu komutu çalıştırdığınızda, `dosya2.txt` adında yeni bir dosya oluşur ve içinde "Selam Linux" yazısı yer alır. Özetle, bu komut `dosya.txt` dosyasının içeriğini `dosya2.txt` dosyasına kopyalamış olur.
 
 ----
 
 
 ### stderr (Standard Error)
 
-Şimdi biraz farklı bir şey deneyelim. Sisteminizde olmayan bir dizinin içeriğini listelemeye çalışalım ve çıktıyı yine `peanuts.txt` dosyasına yönlendirelim.
+Şimdi biraz farklı bir şey deneyelim. Sisteminizde olmayan bir dizinin içeriğini listelemeye çalışalım ve çıktıyı yine `dosya.txt` dosyasına yönlendirelim.
 
 ```bash
-$ ls /fake/directory > peanuts.txt
+$ ls /fake/directory > dosya.txt
 ```
 
 Bu komutu çalıştırdığınızda ekranda aşağıdaki gibi bir mesaj görmelisiniz:
@@ -1476,28 +1476,28 @@ ls: cannot access /fake/directory: No such file or directory
 
 Muhtemelen şu anda, bu mesajın dosyaya yazdırılması gerektiğini düşünüyorsunuz. Aslında burada devreye giren başka bir I/O akışı var: **standart hata (stderr)**. Standart çıktı (stdout) akışından tamamen farklı olan standart hata akışı, varsayılan olarak çıktısını da ekrana gönderir. Yani, standart hata çıktısını farklı bir şekilde yönlendirmeniz gerekir.
 
-Ne yazık ki, standart hata yönlendirme sembolleri (`<` veya `>`) kadar kolay değildir, ancak dosya tanımlayıcıları kullanılarak yapılabilir. Bir **dosya tanımlayıcısı**, bir dosyaya veya akışa erişmek için kullanılan negatif olmayan bir sayıdır. Dosya tanımlayıcıları hakkında daha sonra daha ayrıntılı bilgi edineceğiz, ancak şimdilik standart giriş (stdin), standart çıktı (stdout) ve standart hata (stderr) için dosya tanımlayıcılarının sırasıyla 0, 1 ve 2 olduğunu bilmeniz yeterli.
+Ne yazık ki, standart hata yönlendirme sembolleri (`<` veya `>`) kadar kolay değildir, ancak dosya tanımlayıcıları kullanılarak yapılabilir. Bir **dosya tanımlayıcısı**, bir dosyaya veya akışa erişmek için kullanılan negatif olmayan bir sayıdır. Dosya tanımlayıcıları standart giriş (stdin), standart çıktı (stdout) ve standart hata (stderr) için dosya tanımlayıcılarının sırasıyla 0, 1 ve 2 olduğunu bilmeniz yeterli.
 
 Şimdi standart hata çıktısını dosyaya yönlendirmek istiyorsak şöyle yapabiliriz:
 
 ```bash
-$ ls /fake/directory 2> peanuts.txt
+$ ls /fake/directory 2> hata.txt
 ```
 
-Bu komutta, standart hata mesajlarını `peanuts.txt` dosyasına yazdırmış olduk.
+Bu komutta, standart hata mesajlarını `hata.txt` dosyasına yazdırmış olduk.
 
-Peki hem standart hata hem de standart çıktıyı `peanuts.txt` dosyasına yazdırmak istersek ne yapabiliriz? Bunu da dosya tanımlayıcıları ile yapabiliriz:
+Peki hem standart hata hem de standart çıktıyı `hata.txt` dosyasına yazdırmak istersek ne yapabiliriz? Bunu da dosya tanımlayıcıları ile yapabiliriz:
 
 ```bash
-$ ls /fake/directory > peanuts.txt 2>&1
+$ ls /fake/directory > hata.txt 2>&1
 ```
 
-Bu komut, `ls /fake/directory` komutunun sonuçlarını `peanuts.txt` dosyasına gönderir ve ardından 2>&1 ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. 2>&1, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, 2>&1 de standart hatayı bir dosyaya gönderir. Yani `peanuts.txt` dosyasını açarsanız, hem standart hata hem de standart çıktı mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
+Bu komut, `ls /fake/directory` komutunun sonuçlarını `hata.txt` dosyasına gönderir ve ardından 2>&1 ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. 2>&1, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, 2>&1 de standart hatayı bir dosyaya gönderir. Yani `hata.txt` dosyasını açarsanız, hem standart hata hem de standart çıktı mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
 
 Hem standart hata hem de standart çıktıyı bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
 
 ```bash
-$ ls /fake/directory &> peanuts.txt
+$ ls /fake/directory &> hata.txt
 ```
 
 Peki tüm bu gereksiz hata mesajlarından kurtulmak ve standart hata mesajlarını tamamen yok saymak istersek ne yapabiliriz? Çıktıyı `/dev/null` adlı özel bir dosyaya yönlendirebilirsiniz. Bu dosya, herhangi bir girişi yok sayar.
@@ -1525,32 +1525,27 @@ Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı
 Peki ya komut çıktımı iki farklı akışa yazmak istersem? Bu, `tee` komutu ile mümkündür:
 
 ```bash
-$ ls | tee fıstık.txt
+$ ls | tee liste.txt
 ```
 
-Ekranda `ls` komutunun çıktısını görmelisiniz ve `fıstık.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
+Ekranda `ls` komutunun çıktısını görmelisiniz ve `liste.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
 
 ---
 
 ### env (Environment)
 
-Aşağıdaki komutu çalıştırın:
+Aşağıdaki komutu çalıştırdığızda ev dizininize giden yolu görmelisiniz:
 
 ```bash
 $ echo $HOME
 ```
-
-Ana dizininize giden yolu görmelisiniz, benimki /home/kullanıcı gibi görünüyor.
-
-Peki ya şu komut:
+Kullanıcı adınızı görmek için:
 
 ```bash
 $ echo $USER
 ```
 
-Kullanıcı adınızı görmelisiniz!
-
-Bu bilgiler nereden geliyor? Bunlar ortam değişkenlerinizden geliyor. Bunları yazarak görebilirsiniz:
+Bu bilgiler ortam değişkenlerinizden geliyor. Bunları yazarak görebilirsiniz:
 
 ```bash
 $ env
@@ -1575,11 +1570,6 @@ $ echo $PATH
 
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/bin
 ```
-
-Bu, sisteminiz bir komut çalıştırdığında aradığı yolların, iki nokta ile ayrılmış listesini döndürür. İnternetten manuel olarak bir paket indirip yüklediğinizi ve standart olmayan bir dizine koyduğunuzu ve bu komutu çalıştırmak istediğinizi varsayalım, `komut` yazıyorsunuz ve komut bulunamadı diyor. İkili dosyayı bir klasörde görüyorsunuz ve var olduğunu biliyorsunuz. Olan şey, $PATH değişkeninin bu ikili dosyayı aramak için o dizini kontrol etmemesi ve bu nedenle bir hata vermesidir.
-
-Çalıştırmak istediğiniz birçok ikili dosyanın bulunduğu bir dizininiz olduğunu varsayalım, PATH ortam değişkeninizi bu dizini içerecek şekilde değiştirmeniz yeterlidir.
-
 ---
 
 ### cut
