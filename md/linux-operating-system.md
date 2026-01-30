@@ -1514,7 +1514,7 @@ $ ls /fake/directory 2> /dev/null
 $ ls -la /etc
 ```
 
-Çok uzun bir öğeler listesi göreceksiniz, aslında okuması biraz zor. Bu çıktıyı bir dosyaya yönlendirmek yerine, çıktıyı `less` gibi başka bir komutta görebilsek harika olmaz mı? Evet yapabiliriz!
+Çok uzun bir öğeler listesi göreceksiniz, aslında okuması biraz zor. Bu çıktıyı bir dosyaya yönlendirmek yerine, çıktıyı `less` gibi başka bir komuta aktarabiliriz.
 
 ```bash
 $ ls -la /etc | less
@@ -1522,7 +1522,7 @@ $ ls -la /etc | less
 
 Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı `(stdout)` verisini alıp başka bir işlemin standart girdi `(stdin)` verisi haline getirmemizi sağlar. Bu durumda, `ls -la /etc` komutunun standart çıktısını alıp `less` komutuna aktardık.
 
-Peki ya komut çıktımı iki farklı akışa yazmak istersem? Bu, `tee` komutu ile mümkündür:
+Peki ya komut çıktımı iki farklı akışa yani hem konsol ekranına bassın hemde dosyaya yazsın istersek? Bu, `tee` komutu ile mümkündür:
 
 ```bash
 $ ls | tee liste.txt
