@@ -1218,7 +1218,7 @@ find . -type f -name "*.log" ! -size +10M
 
 Aracımızın en temel kullanımı `locate aranacak-isim` şeklinde. Fakat dediğim gibi `locate` aracı kendisine ait olan veritabanı üzerinden araştırma yaptığı için araştırmalarımız sırasında daha sağlıklı çıktılar elde edebilmek adına bu veritabanını güncellememiz gerekiyor.
 
-```
+```bash
 ┌──(ahmet㉿kali)-[~]
 └─$ locate dosya
 
@@ -1230,7 +1230,7 @@ Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturdu
 
 `locate` veritabanını güncellemek için `sudo updatedb` şeklinde komutumuzu girebiliriz. Ayrıca yeni dizinlerin eklenmesini de bir süre beklememiz gerek.
 
-```
+```bash
 ┌──(ahmet㉿kali)-[~]
 └─$ sudo updatedb
 [sudo] password for ahmet: 
@@ -1239,7 +1239,7 @@ Bakın herhangi bir çıktı almadık. Biz bu dosya ve klasörü yeni oluşturdu
 
 Şimdi dosya sistemindeki en son değişikliklerin veritabanına eklenmiş olması gerekiyor. Tekrar etmek için `locate` ile arama yapabiliriz.
 
-```
+```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
 └─$ locate metin-dosyası
 /home/ahmet/metin-dosyası
@@ -1251,7 +1251,7 @@ Bakın bu kez anında aradığım kelimeyle eşleşen dosya ve dizinlerin adresi
 
 Eğer aradığınız dosya isminde küçük büyük harf duyarlığının görmezden gelinmesini isterseniz komutunuza `i` seçeneğini de ekleyebilirsiniz.
 
-```
+```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
 └─$ locate metin-dosyası
 /home/ahmet/metin-dosyası
@@ -1268,7 +1268,7 @@ Bakın bu kez küçük büyük harf fark etmeksizin tüm dosya ve klasörler lis
 
 Kaç eşleşme olduğun saymak istersek “**c**ount” yani “saymak” ifadesinin kısaltmasından gelen `c` seçeneğini ekleyebiliriz.
 
-```
+```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
 └─$ locate -c linux-operating
 76
