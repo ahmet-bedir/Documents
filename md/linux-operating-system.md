@@ -19,9 +19,9 @@
 
 ▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
 
-▸ [**Kullanıcı Yönetimi**](#kullanici)  `KullanıcılarveGruplar`  `root`  `sudo`  `KullanıcıHesabıOluşturma`  `/etc/passwd`  `/etc/shadow`  `/etc/group`  `KullanıcıYönetimAraçları`
+▸ [**Kullanıcı Yönetimi**](#kullanici)  `Kullanıcılar ve Gruplar`  `root`  `sudo`  `Kullanıcı Hesabı Oluşturma`  `/etc/passwd`  `/etc/shadow`  `/etc/group`  `Kullanıcı Yönetim Araçları`
 
-▸ [**İzinler**](#izinler)  `Dosyaİzinleri`  `İzinlerinDeğiştirilmesi`  `Sahiplikİzinleri`  `Umask`  `Setgid`  `İşlemİzinleri`  `StickyBit`
+▸ [**İzinler**](#izinler)  `Dosya İzinleri`  `İzinlerin Değiştirilmesi`  `Sahiplik İzinleri`  `Umask`  `Setgid`  `İşlem İzinleri`  `Stick yBit`
 
 ---
 
@@ -2789,7 +2789,7 @@ Bir işlemi başlattığınızda, onu çalıştıran kullanıcı veya grubun izi
 
 **Gerçek kullanıcı kimliği (real user ID)** olarak adlandırılan başka bir UID vardır, bu, işlemi başlatan kullanıcının kimliğidir. Bunlar, işlemi başlatan kullanıcının kimliğini takip etmek için kullanılır.
 
-Son bir UID ise \*\*kayıtlı kullanıcı kimliği (saved user ID)\*\*dir, bu bir işlemin etkin kullanıcı kimliği ile gerçek kullanıcı kimliği arasında geçiş yapmasına izin verir. Bu yararlıdır çünkü işlemimizin her zaman yüksek ayrıcalıklarla çalışmasını istemeyiz, yalnızca belirli zamanlarda özel ayrıcalıklar kullanmak iyi bir uygulamadır.
+Son bir UID ise **kayıtlı kullanıcı kimliği (saved user ID)**dir, bu bir işlemin etkin kullanıcı kimliği ile gerçek kullanıcı kimliği arasında geçiş yapmasına izin verir. Bu yararlıdır çünkü işlemimizin her zaman yüksek ayrıcalıklarla çalışmasını istemeyiz, yalnızca belirli zamanlarda özel ayrıcalıklar kullanmak iyi bir uygulamadır.
 
 Şimdi bunların hepsini bir araya getirmek için passwd komutuna bir kez daha bakalım.
 
