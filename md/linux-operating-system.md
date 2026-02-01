@@ -17,7 +17,7 @@
 
 ▸ [**Metin İşlemleri**](#metin)  `stdout`  `stdin`  `stderr`  `pipe`  `tee`  `env`  `cut`  `paste`  `head`  `tail`  `expand`  `unexpand`  `wc`  `nl`
 
-▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
+▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `xargs`  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
 
 ▸ [**Kullanıcı Yönetimi**](#kullanici)  `Kullanıcılar ve Gruplar`  `root`  `sudo`  `Kullanıcı Hesabı Oluşturma`  `/etc/passwd`  `/etc/shadow`  `/etc/group`  `Kullanıcı Yönetim Araçları`
 
