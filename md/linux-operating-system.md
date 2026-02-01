@@ -1510,14 +1510,45 @@ $ ls /fake/directory 2> /dev/null
 
 ### pipe ve tee
 
+Pipe yapısına ihtiyaç duymamızdaki en temel iki sebep; hızlı çalışması ve aynı anda paralel şekilde işlemler arasında aktarım yapılabilmesi.
+
+Burada bahsi geçen pipe mekanizmasını dik çizgi `|` operatörü sayesinde kullanabiliyoruz. Pipe mekanizmasında, bu dik çizgi işaretinden önceki komutun çıktıları üretildikleri sıralamaya uygun şekilde bu çizgiden sonraki komuta girdi olarak aktarılıyor. Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor.
+
+Diyelim ki ben `find` komutu ile **/etc/** dizini altında sonu “**.sh**” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre **alfanümerik olarak sıralamak** ve daha sonra **numaralandırmak** için bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ile bu işlemi yapmak için:
+
 ```bash
-$ ls -la /etc
+┌──(ahmet@kali)-[~]
+└─$ find /etc/ -name "*.sh" -type f 2>/dev/null | sort | nl      
+     1  /etc/console-setup/cached_setup_font.sh
+     2  /etc/console-setup/cached_setup_keyboard.sh
+     3  /etc/console-setup/cached_setup_terminal.sh
+     4  /etc/init.d/console-setup.sh
+     5  /etc/init.d/hwclock.sh
+     6  /etc/init.d/keyboard-setup.sh
+     7  /etc/macchanger/ifupdown.sh
+     8  /etc/profile.d/bash_completion.sh
+     9  /etc/profile.d/dotnet-cli-tools-bin-path.sh
+    10  /etc/profile.d/gawk.sh
+    11  /etc/profile.d/taylan.sh
+    12  /etc/profile.d/vte-2.91.sh
+    13  /etc/wpa_supplicant/action_wpa.sh
+    14  /etc/wpa_supplicant/functions.sh
+    15  /etc/wpa_supplicant/ifupdown.sh
+    16  /etc/xdg/plasma-workspace/env/taylan-themes.sh
+```
+
+Araçların hepsi aynı anda paralel olarak çalıştırıldı.
+
+---
+
+```bash
+$ ls -la /etc/
 ```
 
 Bu komutu çalıştırdığınızda uzun bir öğeler listesi göreceksiniz. Bu çıktıyı bir dosyaya yönlendirmek yerine, çıktıyı `less` gibi başka bir komuta aktarıp çıktıyı sayfa sayfa görüntüleyebiliriz.
 
 ```bash
-$ ls -la /etc | less
+$ ls -la /etc/ | less
 ```
 
 Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı `(stdout)` verisini alıp başka bir işlemin standart girdi `(stdin)` verisi haline getirmemizi sağlar. Bu durumda, `ls -la /etc` komutunun standart çıktısını alıp `less` komutuna aktardık.
@@ -2156,7 +2187,7 @@ komutunu kullanın. Varsayılan karşılama tamponuyla karşılanmalısınız.
 
 Emacs'ta metinlerinizin bulunduğu yer tamponlardır. Yani bir dosya açarsanız, o dosyanın içeriğini depolamak için bir tampon kullanılır. Aynı anda birden fazla tampon açabilir ve tamponlar arasında kolayca geçiş yapabilirsiniz.
 
-#### Emacs Dosyaları Manipüle Etme
+**Emacs Dosyaları Manipüle Etme**
 
 Emacs dokümantasyonunun çoğunda (hatta hepsinde) **C-\[harf]** sözdizimini göreceksiniz. Bu sadece **Ctrl** tuşuna basıp ardından belirtilen **harf**e basmak anlamına gelir, ancak kısaltma amacıyla **Ctrl** tuşuna **C** diyeceğiz. Eğer **M-\[harf]** gibi bir sözdizimi görürseniz, bu genellikle **Alt** tuşu olan **Meta** tuşunu kullanmanız gerektiğini belirtir.
 
@@ -2180,7 +2211,7 @@ C-x C-f
 
 Bu sizi açmak için bir dosya adı yazmaya yönlendirecektir. Zaten var olan bir dosyanız yoksa, yeni bir dosya oluşturacaktır. Ayrıca bir dizini de yükleyebilirsiniz.
 
-#### Emacs Buffer Navigasyonu
+**Emacs Buffer Navigasyonu**
 
 Tamponlar (veya ziyaret ettiğiniz dosyalar) arasında gezinmek için aşağıdaki komutları kullanın:
 
@@ -2216,7 +2247,7 @@ C-x 1
 
 Eğer terminal multiplexer ( ekran ve tmux gibi ) kullandıysanız, tampon komutları size oldukça tanıdık gelecektir.
 
-#### Emacs Düzenleme
+**Emacs Düzenleme**
 
 **Metin Gezinme**
 
