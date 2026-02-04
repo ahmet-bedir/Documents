@@ -17,7 +17,7 @@
 
 ▸ [**Metin İşlemleri**](#metin)  `stdout`  `stdin`  `stderr`  `pipe`  `tee`  `env`  `cut`  `paste`  `head`  `tail`  `expand`  `unexpand`  `wc`  `nl`
 
-▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `xargs`  ...  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
+▸ [**Gelişmiş Metin İşlemleri**](#metin2)  `xargs`  `join`  `split`  `sort`  `tr`  `uniq`  `grep`  `regex`  `vim`  `emacs`
 
 ▸ [**Kullanıcı Yönetimi**](#kullanici)  `Kullanıcılar ve Gruplar`  `root`  `sudo`  `Kullanıcı Hesabı Oluşturma`  `/etc/passwd`  `/etc/shadow`  `/etc/group`  `Kullanıcı Yönetim Araçları`
 
@@ -1512,9 +1512,9 @@ $ ls /fake/directory 2> /dev/null
 
 Pipe yapısına ihtiyaç duymamızdaki en temel iki sebep; hızlı çalışması ve aynı anda paralel şekilde işlemler arasında aktarım yapılabilmesi.
 
-Burada bahsi geçen pipe mekanizmasını dik çizgi `|` operatörü sayesinde kullanabiliyoruz. Pipe mekanizmasında, bu dik çizgi işaretinden önceki komutun çıktıları üretildikleri sıralamaya uygun şekilde bu çizgiden sonraki komuta girdi olarak aktarılıyor. Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor.
+Pipe mekanizmasını dik çizgi `|` operatörü sayesinde kullanabiliyoruz. Pipe mekanizmasında, bu dik çizgi işaretinden önceki komutun çıktıları üretildikleri sıralamaya uygun şekilde bu çizgiden sonraki komuta girdi olarak aktarılıyor. Yani veriler, ilk işlemin ürettiği sıraya uygun şekilde tek yönlü olarak bir sonraki işleme aktarılıyor.
 
-Diyelim ki ben `find` komutu ile **/etc/** dizini altında sonu “**.sh**” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre **alfanümerik olarak sıralamak** ve daha sonra **numaralandırmak** için bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç araç biliyorum. `find` `sort` ve `nl` araçları ile bu işlemi yapmak için:
+Diyelim ki ben `find` komutu ile **/etc/** dizini altında sonu “**.sh**” uzantısıyla biten dosyaları araştırmak, bulunan dosyaları isimlerine göre **alfanümerik olarak sıralamak** ve daha sonra **numaralandırmak** için bu işi yapacak **tek bir araç** var mı varsa da hangi seçenekleri kullanmalıyım tam olarak bilmiyorum. Ancak her birini yapan ayrı ayrı üç aracı kullanabilirim. Bunlar `find` `sort` ve `nl` araçları ile bu işlemi yapmak için:
 
 ```bash
 ┌──(ahmet@kali)-[~]
@@ -1537,7 +1537,9 @@ Diyelim ki ben `find` komutu ile **/etc/** dizini altında sonu “**.sh**” uz
     16  /etc/xdg/plasma-workspace/env/taylan-themes.sh
 ```
 
-Araçların hepsi aynı anda paralel olarak çalıştırıldı.
+Birden fazla aracı `pipe` ile birbirine bağlamış ve araçların hepsini aynı anda daha hızlı bir şekilde paralel olarak çalıştırmış olduk.
+
+![](/home/ahmet/Masaüstü/Documents/images/pipe.png)
 
 ---
 
@@ -1556,10 +1558,42 @@ Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı
 Peki ya komut çıktımı iki farklı akışa yani hem konsol ekranına listelesin hemde dosyaya yazsın istersek, `tee` komutu kullanır:
 
 ```bash
-$ ls | tee liste.txt
+$ ls /etc/ | tee liste.txt
 ```
 
 Ekranda `ls` komutunun çıktısını görmelisiniz ve `liste.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
+
+Bu temel yaklaşım dışında, birden fazla dosyaya aynı veriyi kaydetmek isterseniz, dosyaların isimlerini argüman olarak vermeniz yeterli.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ ls /etc/ | head | tee dosya1 dosya2 dosya3 
+adduser.conf
+alsa
+alternatives
+apache2
+apparmor
+apparmor.d
+apt
+arp-scan
+avahi
+bash.bashrc
+
+┌──(ahmet㉿kali)-[~]
+└─$ paste dosya1 dosya2 dosya3
+adduser.conf    adduser.conf    adduser.conf
+alsa   		    alsa            alsa
+alternatives    alternatives    alternatives
+apache2         apache2         apache2
+apparmor        apparmor        apparmor
+apparmor.d      apparmor.d      apparmor.d
+apt             apt             apt
+arp-scan        arp-scan        arp-scan
+avahi           avahi           avahi
+bash.bashrc     bash.bashrc     bash.bashrc
+```
+
+Normalde `tee` komutu aynı isimde bir dosya varsa onun üzerine yazar. Yani o dosyanın içeriğini yok edip, elindeki verileri o dosyaya yazar. Eğer aynı isimli dosya varsa dosya içeriğinin sonuna yeni verilerin eklenmesini istersek “**a**ppend” yani “ekleme” ifadesinin kısaltması olan `a` seçeneğini kullanabiliriz.
 
 ---
 
@@ -1576,7 +1610,7 @@ Kullanıcı adınızı görmek için:
 $ echo $USER
 ```
 
-Bu bilgiler ortam değişkenlerinizden geliyor. Bunları yazarak görebilirsiniz:
+Bu bilgiler ortam değişkenlerinizden geliyor. Tüm ortam değişkenlerini görmek için:
 
 ```bash
 $ env
@@ -1584,7 +1618,7 @@ $ env
 
 Bu komut, şu anda ayarladığınız ortam değişkenleri hakkında bir sürü bilgi verir. Bu değişkenler, kabuğun ve diğer işlemlerin kullanabileceği faydalı bilgiler içerir.
 
-İşte kısa bir örnek:
+Örneğin:
 
 ```bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/bin
@@ -1594,7 +1628,7 @@ PWD=/home/kullanıcı
 USER=kullanıcı
 ```
 
-Özellikle önemli bir değişken PATH değişkenidir. Bu değişkenlere, değişken adının önüne bir $ işareti koyarak erişebilirsiniz:
+Önemli bir değişken PATH değişkenidir. Bu değişkenlere, değişken adının önüne bir $ işareti koyarak erişebilirsiniz:
 
 ```bash
 $ echo $PATH
@@ -1780,6 +1814,52 @@ $ nl dosya1.txt
 ## 🧾 Gelişmiş Metin İşlemleri
 
 🔼 [**Başa Dön**](#basa_don)
+
+### xargs
+
+Standart girdiden okuduğu verileri kendisinden sonraki komutun argümanı olarak iletebiliyor. Bu sayede standart girdiden veri kabul etmeyen araçları, tıpkı biz elle o araca argümanlar girmişiz gibi çalıştırabiliyoruz.
+
+Örneğin içerisinde veri bulunan dosyamı oluşturmak üzere `echo "dosya1 dosya2 dosya3" > veri` şeklinde komutumu giriyorum.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ echo "dosya1 dosya2 dosya3" > veri
+
+┌──(ahmet㉿kali)-[~]
+└─$ cat veri 
+dosya1 dosya2 dosya3
+```
+
+Şimdi ben bu dosyada geçen ifadelerin kullanılarak yeni dosyalar oluşturulması için `touch` aracına bu dosyadan veri yönlendirmek istiyorum.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ cat veri | touch 
+touch: missing file operand
+Try 'touch --help' for more information.
+```
+
+Gördüğünüz gibi `touch` komutu oluşturulacak dosya isimleri argüman olarak iletilmediği için hata verdi. Bu hatanın argüman eksikliğinden kaynaklandığını teyit etmek istersek tekrar yalnızca `touch` komutunu girdiğimizde aynı hata ile karşılaşırız.
+
+`touch` aracı yalnızca kendisine argüman olarak iletilen verileri işleyip, standart girdiden veri okumadığı için `pipe` ile ilettiğimiz “**veri**” dosyasının içeriği `touch` aracı tarafından işlenmedi. Bu durumda bu çıktıları önce `xargs` aracına yönlendirip oradan da `touch` aracına argüman olarak iletilmelerini sağlayabiliriz.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ cat veri | xargs touch
+
+┌──(ahmet㉿kali)-[~]
+└─$ ls
+ dosya1    dosya2
+ dosya3    veri
+```
+
+Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluşturulmuş. Yani `xargs` aracının standart girdiden okuduğu verileri hemen yanındaki komutun argümanı olarak çalıştırdığını bizzat teyit etmiş olduk.
+
+![](/home/ahmet/Masaüstü/Documents/images/xargs.png)
+
+`xargs` aracı kendisine girdi olarak verilerin tüm verileri standart şekilde boşluklarından parçalara ayırıp bunların her birini hemen yanındaki komuta ayrı ayrı argüman olarak iletiyor.
+
+---
 
 
 ### join ve split
@@ -1991,17 +2071,35 @@ Bu şekilde, tüm yinelenen satırlar, konumlarından bağımsız olarak kaldır
 
 ### grep
 
-grep, muhtemelen en sık kullanacağınız metin işleme komutlarından biridir. Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
+Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
 
-Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek isterseniz? Elbette her satırı tek tek incelemezsiniz, grep kullanırsınız!
+Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek isterseniz? Elbette her satırı tek tek incelemek istemezsiniz, `grep` kullanırsınız!
 
-Örnek olarak `sample.txt` dosyamızı kullanalım:
+Örneğin **/etc/passwd** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını giriyoruz.
 
 ```bash
-$ grep fox sample.txt
+┌──(ahmet㉿kali)-[~]
+└─$ grep "false" /etc/passwd
+dhcpcd:x:100:65534:DHCP Client Daemon:/usr/lib/dhcpcd:/bin/false
+mysql:x:101:102:MariaDB Server:/nonexistent:/bin/false
+tss:x:102:104:TPM software stack:/var/lib/tpm:/bin/false
+Debian-snmp:x:112:115::/var/lib/snmp:/bin/false
+speech-dispatcher:x:116:29:Speech Dispatcher:/run/speech-dispatcher:/bin/false
+lightdm:x:124:127:Light Display Manager:/var/lib/lightdm:/bin/false
+sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
+Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
+# yada
+┌──(ahmet㉿kali)-[~]
+└─$ cat /etc/passwd | grep false
+dhcpcd:x:100:65534:DHCP Client Daemon:/usr/lib/dhcpcd:/bin/false
+mysql:x:101:102:MariaDB Server:/nonexistent:/bin/false
+tss:x:102:104:TPM software stack:/var/lib/tpm:/bin/false
+Debian-snmp:x:112:115::/var/lib/snmp:/bin/false
+speech-dispatcher:x:116:29:Speech Dispatcher:/run/speech-dispatcher:/bin/false
+lightdm:x:124:127:Light Display Manager:/var/lib/lightdm:/bin/false
+sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
+Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
 ```
-
-grep komutu, sample.txt dosyasında "fox" kelimesini bulduğunu göstermelidir.
 
 * **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
 
