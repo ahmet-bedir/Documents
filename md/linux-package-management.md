@@ -9,7 +9,7 @@
 
 ---
 
-Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri yönetir.
+**Paket yönetimi, sisteme yeni yazılımların yüklenmesi ve gerektiğinde var olanların güncellenmesi, yeniden konfigüre edilmesi veya silinmesi gibi işlemleri yönetir. Kullanmakta olduğumuz Linux dağıtımına bir yazılım yüklemek istediğimizde en kolay yöntem paket yönetim aracını kullanmaktır. Çünkü yazılımlar ilgili dağıtıma kolayca kurulup yönetilebilsin diye geliştiriciler tarafından yazılımın tüm dosyaları tek bir paket olarak bize sunuluyor. Bizler de bu paketler üzerinden ilgili yazılımları kolayca kurup yönetebiliyoruz. Dağıtımların genel olarak birbirlerinden ayrıştığı noktanın başta paket yönetim araçları olmak üzere dağıtımlarda varsayılan olarak yüklü bulunan araçlardır. Debian tabanlı dağıtımlarda `apt` aracı kullanılır.**
 
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
@@ -31,15 +31,17 @@ dpkg -L <paket_adı>
 
 
 
-> `dpkg -r <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen** `r` **seçeneği kullanılır.**
+**Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen** `r` **seçeneği kullanılır.**
+
+```bash
+dpkg -r <paket_adı>
+```
 >
 > ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak istiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
-
-
-
+>
 > `dpkg -P <paket_adı>` **: Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “purge” yani “arındırmak” anlamındaki** `P` **seçeneği kullanılır.**
 
-
+---
 
 > `dpkg -I <paket_adı.deb>` **: Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “info” ifadesinin kısaltmasından gelen** `I` **karakteri kullanır.**
 
@@ -49,14 +51,20 @@ dpkg -L <paket_adı>
 >
 > ###### Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)
 
+---
 
-
-> `dpkg -l` **: Sistemde yüklü bulunan tüm paketleri listelemek için “list” yani “listelemek” ifadesinin kısalmasından gelen** `l` **seçeneği kullanılır.**
+> **Sistemde yüklü bulunan tüm paketleri listelemek için “list” yani “listelemek” ifadesinin kısalmasından gelen** `l` **seçeneği kullanılır.**
+>
+> ```bash
+> $ dpkg -l
+> ```
 >
 > `dpkg -l <paket_adı>` **: Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.**
 >
 > `dpkg -l | grep <paket_adı>` : `grep` **komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.**
 >
+> ---
+
 > `dpkg-reconfigure <paket_adı>` **: Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
 
 ---
