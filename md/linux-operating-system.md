@@ -1,6 +1,9 @@
+
+
 <p align="center">
     <img src="../images/linux-mascot.png" width="470" />
 </p>
+
 
 
 # Linux İşletim Sistemi
@@ -1539,7 +1542,7 @@ Diyelim ki ben `find` komutu ile **/etc/** dizini altında sonu “**.sh**” uz
 
 Birden fazla aracı `pipe` ile birbirine bağlamış ve araçların hepsini aynı anda daha hızlı bir şekilde paralel olarak çalıştırmış olduk.
 
-![](/home/ahmet/Masaüstü/Documents/images/pipe.png)
+![](../images/pipe.png)
 
 ---
 
@@ -1558,10 +1561,12 @@ Dikey çubukla temsil edilen pipe operatörü `|`, bir komutun standart çıktı
 Peki ya komut çıktımı iki farklı akışa yani hem konsol ekranına listelesin hemde dosyaya yazsın istersek, `tee` komutu kullanır:
 
 ```bash
-$ ls /etc/ | tee liste.txt
+$ ls /etc/ | tee liste2.txt
 ```
 
-Ekranda `ls` komutunun çıktısını görmelisiniz ve `liste.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
+![](../images/tee.png)
+
+Ekranda `ls` komutunun çıktısını görmelisiniz ve `liste2.txt` dosyasını açarsanız aynı bilgileri görmelisiniz!
 
 Bu temel yaklaşım dışında, birden fazla dosyaya aynı veriyi kaydetmek isterseniz, dosyaların isimlerini argüman olarak vermeniz yeterli.
 
@@ -1849,13 +1854,12 @@ Gördüğünüz gibi `touch` komutu oluşturulacak dosya isimleri argüman olara
 
 ┌──(ahmet㉿kali)-[~]
 └─$ ls
- dosya1    dosya2
- dosya3    veri
+ dosya1     dosya2     dosya3     veri
 ```
 
 Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluşturulmuş. Yani `xargs` aracının standart girdiden okuduğu verileri hemen yanındaki komutun argümanı olarak çalıştırdığını bizzat teyit etmiş olduk.
 
-![](/home/ahmet/Masaüstü/Documents/images/xargs.png)
+![](../images/xargs.png)
 
 `xargs` aracı kendisine girdi olarak verilerin tüm verileri standart şekilde boşluklarından parçalara ayırıp bunların her birini hemen yanındaki komuta ayrı ayrı argüman olarak iletiyor.
 
