@@ -63,7 +63,7 @@ dpkg -r <paket_adı>
 >
 > `dpkg -l | grep <paket_adı>` : `grep` **komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.**
 >
-> ---
+---
 
 > `dpkg-reconfigure <paket_adı>` **: Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
 
