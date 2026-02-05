@@ -1600,6 +1600,25 @@ bash.bashrc     bash.bashrc     bash.bashrc
 
 Normalde `tee` komutu aynı isimde bir dosya varsa onun üzerine yazar. Yani o dosyanın içeriğini yok edip, elindeki verileri o dosyaya yazar. Eğer aynı isimli dosya varsa dosya içeriğinin sonuna yeni verilerin eklenmesini istersek “**a**ppend” yani “ekleme” ifadesinin kısaltması olan `a` seçeneğini kullanabiliriz.
 
+Normalde yetki gerektiren bir görevi yerine getirmek için komutumuzun en başına sudo ifadesini yazıp eğer yetkimiz uygunsa çalıştırabiliyoruz. Normalde **/etc/apt/sources.list** dosyasını düzenlemek için yetkimiz yok fakat en yetkili kullanıcı gibi davranmak için komutumuzun başına sudo yazı işlemi yerine getirmeyi deneyebiliriz.
+
+Yani örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz.
+
+┌──(taylan@linuxdersleri)-[~/klasor]
+└─$ sudo echo "eklenecek veri" >> /etc/apt/sources.list
+bash: /etc/apt/sources.list: Permission denied
+Ancak gördüğünüz gibi yetki hatası aldık. Halbuki ileri de ayrıca ele alacağımız sudo komutu bizim yetkili şekilde bu dosyaya veri ekleyebilmemizi sağlamalıydı.
+
+Burada sudo komutu işe yaramadı çünkü yönlendirmeler üzerinde sudo komutunun etkisi bulunmuyor. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla sudo komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine tee komutunu sudo ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Ben echo "####" | sudo tee -a /etc/apt/sources.list şeklinde komutumu yazıyorum. Buradaki a seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.
+cat /etc/apt/sources.list
+# See https://www.taylan.org/docs/general-use/taylan-linux-sources-list-repositories/
+deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
+
+# Additional line for source packages
+# deb-src http://http.taylan.org/taylan taylan-rolling main contrib non-free
+yeni satır
+Bakın dosyanın en sonuna “####” ifadesi eklenmiş.
+
 ---
 
 ### env (Environment)
