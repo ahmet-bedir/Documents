@@ -1602,36 +1602,41 @@ Normalde `tee` komutu aynı isimde bir dosya varsa onun üzerine yazar. Yani o d
 
 Yetki gerektiren bir görevi yerine getirmek için komutumuzun en başına `sudo` ifadesini yazıp eğer yetkimiz uygunsa çalıştırabiliyoruz. Normalde **/etc/apt/sources.list** dosyasını düzenlemek için yetkimiz yok fakat en yetkili kullanıcı gibi davranmak için komutumuzun başına `sudo` yazıp işlemi yerine getirebiliriz.
 
-Örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz.
+Örneğin `sudo echo "### eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girelim.
 
 ```bash
 ┌──(ahmet@kali)-[~]
-└─$ sudo echo "eklenecek veri" >> /etc/apt/sources.list
+└─$ sudo echo "### eklenecek veri" >> /etc/apt/sources.list
 bash: /etc/apt/sources.list: Permission denied
 ```
 
 Ancak gördüğünüz gibi yetki hatası aldık. Halbuki komutumuzu `sudo` yetkisi ile çalıştırdığımız için işlem gerçekleşmeliydi.
 
-Burada `sudo` komutu işe yaramadı çünkü **yönlendirmeler üzerinde `sudo` komutunun etkisi bulunmuyor**. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla `sudo` komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine `tee` komutunu `sudo` ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Komutumuzu `echo "###" | sudo tee -a /etc/apt/sources.list` şeklinde komutumu yazıyorum. **Buradaki `a` seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.**
+Burada `sudo` komutu işe yaramadı çünkü **yönlendirmeler üzerinde `sudo` komutunun etkisi bulunmuyor**. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla `sudo` komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine `tee` komutunu `sudo` ile yetkili şekilde çalıştırıp işlemimizi gerçekleştirebiliriz. Komutumuzu `echo "### eklenecek veri" | sudo tee -a /etc/apt/sources.list` şeklinde yazıyorum. **Buradaki `a` seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.**
 
 ```bash
-$ echo "###" | sudo tee -a /etc/apt/sources.list
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ echo "### eklenecek veri" | sudo tee -a /etc/apt/sources.list
+[sudo] password for ahmet: 
 ###
 
-$ cat /etc/apt/sources.list
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ cat /etc/apt/sources.list
 # See https://www.kali.org/docs/general-use/kali-linux-sources-list-repositories/
-deb http://http.kali.org/taylan taylan-rolling main contrib non-free
+deb http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware
 
 # Additional line for source packages
-# deb-src http://http.kali.org/taylan taylan-rolling main contrib non-free
-###
+# deb-src http://http.kali.org/kali kali-rolling main contrib non-free non-free-firmware
+### eklenecek veri
 ```
 
-Bakın dosyanın en sonuna “###” ifadesi eklenmiş.
+Bakın dosyanın en sonuna “### eklenecek veri” ifadesi eklenmiş.
 
 ---
 
 ### env (Environment)
+
+Linux'ta `env` komutu, temel olarak **ortam değişkenlerini (environment variables)** yönetmek ve görüntülemek için kullanılan çok yönlü bir araçtır.
 
 Aşağıdaki komutu çalıştırdığızda ev dizininize giden yolu görmelisiniz:
 
@@ -1673,15 +1678,9 @@ $ echo $PATH
 
 ### cut
 
-Metin işlemek için kullanabileceğiniz birkaç faydalı komut öğreneceğiz. Başlamadan önce, üzerinde çalışacağımız bir dosya oluşturalım. Aşağıdaki komutu kopyalayıp yapıştırın, bunu yaptıktan sonra "lazy" ve "dog" arasına bir TAB ekleyin (Ctrl-v + TAB tuşlarına basılı tutun).
+Bu komut, satırların istenilen bölümlerinin kesilmesini sağlıyor.
 
-```bash
-$ echo 'The quick brown; fox jumps over the lazy  dog' > sample.txt
-```
-
-Öğreneceğimiz ilk komut `cut` komutudur. Bu komut, bir dosyadan metin parçalarını ayıklar.
-
-Karakter listesine göre içerik çıkarmak için:
+Öncelikkle `cut` aracı da elindeki verilerin hangi parçalardan oluştuğunu anlamak için bir “delimiter” yani “sınırlayıcı” karakter belirtmemizi istiyor. Bunun için `cut` komutundan sonra `-d` seçeneğinin hemen ardından sınırlayıcı karakteri yazmamız gerek.
 
 ```bash
 $ cut -c 5 sample.txt
