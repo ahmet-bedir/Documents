@@ -1602,7 +1602,7 @@ Normalde `tee` komutu aynı isimde bir dosya varsa onun üzerine yazar. Yani o d
 
 Yetki gerektiren bir görevi yerine getirmek için komutumuzun en başına `sudo` ifadesini yazıp eğer yetkimiz uygunsa çalıştırabiliyoruz. Normalde **/etc/apt/sources.list** dosyasını düzenlemek için yetkimiz yok fakat en yetkili kullanıcı gibi davranmak için komutumuzun başına `sudo` yazıp işlemi yerine getirebiliriz.
 
-Yani örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz.
+Örneğin `sudo echo "eklenecek veri" >> /etc/apt/sources.list` şeklinde komutumuzu girebiliriz.
 
 ```bash
 ┌──(ahmet@kali)-[~]
@@ -1612,9 +1612,12 @@ bash: /etc/apt/sources.list: Permission denied
 
 Ancak gördüğünüz gibi yetki hatası aldık. Halbuki komutumuzu `sudo` yetkisi ile çalıştırdığımız için işlem gerçekleşmeliydi.
 
-Burada `sudo` komutu işe yaramadı çünkü yönlendirmeler üzerinde `sudo` komutunun etkisi bulunmuyor. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla sudo komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine tee komutunu `sudo` ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Komutumuzu `echo "###" | sudo tee -a /etc/apt/sources.list` şeklinde komutumu yazıyorum. Buradaki `a` seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.
+Burada `sudo` komutu işe yaramadı çünkü **yönlendirmeler üzerinde `sudo` komutunun etkisi bulunmuyor**. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla `sudo` komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine `tee` komutunu `sudo` ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Komutumuzu `echo "###" | sudo tee -a /etc/apt/sources.list` şeklinde komutumu yazıyorum. **Buradaki `a` seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.**
 
 ```bash
+$ echo "###" | sudo tee -a /etc/apt/sources.list
+###
+
 $ cat /etc/apt/sources.list
 # See https://www.kali.org/docs/general-use/kali-linux-sources-list-repositories/
 deb http://http.kali.org/taylan taylan-rolling main contrib non-free
