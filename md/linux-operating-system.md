@@ -1612,15 +1612,19 @@ bash: /etc/apt/sources.list: Permission denied
 
 Ancak gördüğünüz gibi yetki hatası aldık. Halbuki komutumuzu `sudo` yetkisi ile çalıştırdığımız için işlem gerçekleşmeliydi.
 
-Burada sudo komutu işe yaramadı çünkü yönlendirmeler üzerinde sudo komutunun etkisi bulunmuyor. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla sudo komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine tee komutunu sudo ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Ben echo "####" | sudo tee -a /etc/apt/sources.list şeklinde komutumu yazıyorum. Buradaki a seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.
-cat /etc/apt/sources.list
-# See https://www.taylan.org/docs/general-use/taylan-linux-sources-list-repositories/
-deb http://http.taylan.org/taylan taylan-rolling main contrib non-free
+Burada `sudo` komutu işe yaramadı çünkü yönlendirmeler üzerinde `sudo` komutunun etkisi bulunmuyor. Yani yönlendirmeyi yine mevcut yetkisiz kullanıcımız yapmış oluyor. Dolayısıyla sudo komutunu kullansak dahi yönlendirme operatörü ile, ilgili dosyaya veri yazma yetkisi kazanamayız. Fakat bunun yerine tee komutunu `sudo` ile yetkili şekilde çalıştırabiliriz. Hadi hemen deneyelim. Komutumuzu `echo "###" | sudo tee -a /etc/apt/sources.list` şeklinde komutumu yazıyorum. Buradaki `a` seçeneğini unutmayın aksi halde bu çok önemli dosyasının tüm içeriğinin silinmesine neden olabilirsiniz.
+
+```bash
+$ cat /etc/apt/sources.list
+# See https://www.kali.org/docs/general-use/kali-linux-sources-list-repositories/
+deb http://http.kali.org/taylan taylan-rolling main contrib non-free
 
 # Additional line for source packages
-# deb-src http://http.taylan.org/taylan taylan-rolling main contrib non-free
-yeni satır
-Bakın dosyanın en sonuna “####” ifadesi eklenmiş.
+# deb-src http://http.kali.org/taylan taylan-rolling main contrib non-free
+###
+```
+
+Bakın dosyanın en sonuna “###” ifadesi eklenmiş.
 
 ---
 
