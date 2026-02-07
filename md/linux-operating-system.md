@@ -1,5 +1,3 @@
-
-
 <p align="center">
     <img src="../images/linux-mascot.png" width="470" />
 </p>
@@ -1682,59 +1680,88 @@ Bu komut, satırların istenilen bölümlerinin kesilmesini sağlıyor.
 
 Öncelikkle `cut` aracı da elindeki verilerin hangi parçalardan oluştuğunu anlamak için bir “delimiter” yani “sınırlayıcı” karakter belirtmemizi istiyor. Bunun için `cut` komutundan sonra `-d` seçeneğinin hemen ardından sınırlayıcı karakteri yazmamız gerek.
 
-```bash
-$ cut -c 5 sample.txt
-```
-
-Bu, dosyadaki her satırın 5. karakterini çıktı olarak verir. Bu durumda "q" dır, boşluk da bir karakter olarak sayılır.
-
-İçeriği bir alana göre çıkarmak için biraz değişiklik yapmamız gerekiyor:
+Örneğin benim dosyamda boşluk karakteri sütunları birbirinden ayırdığı için ben tırnak için `“ “` boşluk karakterinin sınırlayıcı olduğunu belirteceğim. Şimdi son olarak hangi sütunların, yani aslında hangi bölümlerin kalmasını istiyorsak, bunu “fields” yani “alanlar-bölümler” seçeneğinin kısalması olan `-f` seçeneğinin hemen ardından belirtebiliyoruz. Ben 1 ila 3. bölümleri almak istediğim için `1-3` şeklinde yazıyorum ve işlenecek verilerin bulunduğu dosyanın ismini de ekleyip komutumu onaylıyorum.
 
 ```bash
-$ cut -f 2 sample.txt
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat metin.txt # öncelikle üzerinde çalışacağımız metin.txt dosyasını görüntülüyoruz.
+satir1sutun1 satir1sutun2 satir1sutun3 satir1sutun4 satir1sutun5
+satir2sutun1 satir2sutun2 satir2sutun3 satir2sutun4 satir2sutun5
+satir3sutun1 satir3sutun2 satir3sutun3 satir3sutun4 satir3sutun5
+satir4sutun1 satir4sutun2 satir4sutun3 satir4sutun4 satir4sutun5
+satir5sutun1 satir5sutun2 satir5sutun3 satir5sutun4 satir5sutun5
+satir6sutun1 satir6sutun2 satir6sutun3 satir6sutun4 satir6sutun5
+satir7sutun1 satir7sutun2 satir7sutun3 satir7sutun4 satir7sutun5
+satir8sutun1 satir8sutun2 satir8sutun3 satir8sutun4 satir8sutun5
+
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cut -d " " -f 1-3 metin.txt 
+satir1sutun1 satir1sutun2 satir1sutun3
+satir2sutun1 satir2sutun2 satir2sutun3
+satir3sutun1 satir3sutun2 satir3sutun3
+satir4sutun1 satir4sutun2 satir4sutun3
+satir5sutun1 satir5sutun2 satir5sutun3
+satir6sutun1 satir6sutun2 satir6sutun3
+satir7sutun1 satir7sutun2 satir7sutun3
+satir8sutun1 satir8sutun2 satir8sutun3
 ```
 
-`-f` veya alan bayrağı, metni alanlara göre ayıklar, varsayılan olarak ayırıcı olarak TAB'ları kullanır, bu nedenle TAB ile ayrılmış her şey bir alan olarak kabul edilir. Çıktı olarak "dog" görmelisiniz.
-
-Alan bayrağını, ayırıcı bayrağıyla birlikte kullanarak içeriği özel bir ayırıcıya göre ayırabilirsiniz:
+Eğer bir aralığı değil de spesifik olarak listelemek istediğiniz sütunlar varsa -f seçeneğinden sonra virgülle ayırarak belirtebilirsiniz.
 
 ```bash
-$ cut -f 1 -d ";" sample.txt
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cut -d " " -f 3,5 metin.txt 
+satir1sutun3 satir1sutun5
+satir2sutun3 satir2sutun5
+satir3sutun3 satir3sutun5
+satir4sutun3 satir4sutun5
+satir5sutun3 satir5sutun5
+satir6sutun3 satir6sutun5
+satir7sutun3 satir7sutun5
+satir8sutun3 satir8sutun5
 ```
 
-Bu, TAB ayırıcıyı ";" ayırıcıya değiştirecek ve ilk alanı kestiğimiz için sonuç "The quick brown" olmalıdır.
+```bash
+$ cut -c 5 metin.txt
+```
+
+Bu, dosyadaki her satırın 5. karakterini çıktı olarak verir. Bu durumda "r" dır, boşluk da bir karakter olarak sayılır.
 
 ---
 
 ### paste
 
-`paste` komutu, `cat` komutuna benzer şekilde bir dosyadaki satırları birleştirir. Aşağıdaki içerikle yeni bir dosya oluşturalım:
-
-sample2.txt
-
-The
-
-quick
-
-brown
-
-fox
-
-Tüm bu satırları tek bir satırda birleştirelim:
+Normalde `cat` komutu ile birden fazla dosyayı okurken dosyaların içerikleri peşi sıra alt alta bastırılıyorken, `paste` aracı ile bu çıktıların yan yana bastırılmasını sağlar.
 
 ```bash
-$ paste -s sample2.txt
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat sayılar.txt sehirler.txt harfler.txt 
+1
+2
+3
+4
+5
+istanbul
+izmir
+muş
+elazığ
+denizli
+A
+B
+C
+D
+E
+
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ paste sayılar.txt sehirler.txt harfler.txt 
+1       istanbul        A
+2       izmir   B
+3       muş     C
+4       elazığ  D
+5       denizli E	
 ```
 
-`paste` komutu için varsayılan ayırıcı TAB'dır, bu nedenle şimdi her kelimeyi ayıran TAB'lar içeren tek bir satır var.
 
-Hadi bu ayırıcıyı (`-d`) biraz daha okunaklı bir şeyle değiştirelim:
-
-```
-$ paste -d ' ' -s sample2.txt
-```
-
-Şimdi her şey tek bir satırda olmalı ve boşluklarla ayrılmalıdır.
 
 ---
 
