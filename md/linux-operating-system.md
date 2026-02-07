@@ -1761,7 +1761,25 @@ E
 5       denizli E	
 ```
 
+`paste` aracına sütunları nasıl ayıracağını belirtmek için de İngilizce “**d**elimiter” yani “sınırlayıcı” ifadesinin kısalmasından gelen `-d` seçeneğinin ardından sınırlayıcı karakteri yazabiliriz.
 
+```bash
+└─$ paste -d "|" sayılar.txt sehirler.txt harfler.txt 
+1|istanbul|A
+2|izmir|B
+3|muş|C
+4|elazığ|D
+5|denizli|E
+```
+
+Ayrıca sınırlama işareti dışında eğer her bir satırı yan yana değil de alt alta eşleşecek şekilde sıralamak istersek `-s` seçeneğini de kullanabiliyoruz.
+
+```bash
+└─$ paste -s sayılar.txt sehirler.txt harfler.txt 
+1       2       3       4       5
+istanbul        izmir   muş     elazığ  denizli
+A       B       C       D       E
+```
 
 ---
 
@@ -1769,7 +1787,7 @@ E
 
 Metin dosyalarında, özellikle sistem günlükleri gibi çok uzun dosyalarda, genellikle yalnızca ilk birkaç satıra bakmak istersiniz. Bunu yapmak için `head` komutunu kullanabilirsiniz.
 
-`head` komutu varsayılan olarak bir dosyanın ilk 10 satırını görüntüler. Aşağıdaki komut, sistem günlüklerinden (/var/log/syslog) ilk 10 satırı görüntüleyecektir:
+`head` komutu varsayılan olarak bir dosyanın ilk 10 satırını görüntüler. Aşağıdaki komut, sistem günlüklerinden (`/var/log/syslog`) ilk 10 satırı görüntüleyecektir:
 
 ```bash
 $ head /var/log/syslog
@@ -1796,10 +1814,10 @@ $ tail /var/log/syslog
 `head` komutunda olduğu gibi, görmek istediğiniz satır sayısını da değiştirebilirsiniz:
 
 ```bash
-$ tail -n 10 /var/log/syslog
+$ tail -n 15 /var/log/syslog
 ```
 
-`tail` komutunun gerçekten faydalı bir özelliği de, dosya içeriği güncellendikçe onu takip edebilmesidir. Bunu yapmak için `-f` (takip) bayrağını kullanabilirsiniz. Deneyin ve neler olduğunu görün:
+`tail` komutunun gerçekten faydalı bir özelliği de, dosya içeriği güncellendikçe onu takip edebilmesidir. Bunu yapmak için `-f` (takip) bayrağını kullanabilirsiniz.
 
 ```bash
 $ tail -f /var/log/syslog
@@ -1807,11 +1825,13 @@ $ tail -f /var/log/syslog
 
 Sisteminizle etkileşim kurarken syslog dosyanız sürekli değişecektir. `tail -f` kullanarak, bu dosyaya eklenen her şeyi görebilirsiniz. Bu, sisteminizde neler olup bittiğini gerçek zamanlı olarak takip etmek için kullanışlıdır.
 
+![](../images/tail-f.gif)
+
 ---
 
 ### expand ve unexpand
 
-Önceki derste kullandığımız `sample.txt` dosyası bir tab içeriyordu. Normalde tablar genellikle boşluk bırakır ancak bazı metin editörleri bunu net göstermeyebilir. Bir metin dosyasındaki tablar istediğiniz aralığı sağlamayabilir. Sekmeleri boşluklara dönüştürmek için `expand` komutunu kullanabilirsiniz.
+Normalde tablar genellikle boşluk bırakır ancak bazı metin editörleri bunu net göstermeyebilir. Bir metin dosyasındaki tablar istediğiniz aralığı sağlamayabilir. Sekmeleri boşluklara dönüştürmek için `expand` komutunu kullanabilirsiniz.
 
 ```bash
 $ expand sample.txt
@@ -1838,23 +1858,29 @@ Bu, özellikle metin dosyaları farklı programlar arasında paylaşılırken ve
 Bu komut, bir dosyadaki toplam kelime sayısını görüntüler.
 
 ```bash
-$ wc /etc/passwd
-  96  265  5925 /etc/passwd
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ cat sayılar.txt 
+12 345
+6789
+
+┌──(ahmet㉿kali)-[~/Belgeler]
+└─$ wc sayılar.txt 
+ 2  3 12 sayılar.txt
 ```
 
-Bu çıktı satırları, sırasıyla kelime sayısı, karakter sayısı ve dosya boyutunu göstermektedir.
+Buradaki ilk sayı dosya içeriğinin kaç satır olduğunu, ortadaki sayı toplam kaç kelime olduğunu ve son sayı ise toplam kaç karakter olduğunu bildiriyor.
 
-* Belirli bir alanı saydırmak için -l, -w veya -c seçeneklerini kullanabilirsiniz.
+* Belirli bir alanı saydırmak için `-l` (satır), `-w` (kelime) veya `-c` (karakter) seçeneklerini kullanabilirsiniz.
 
 ```bash
 $ wc -l /etc/passwd
 96
 ```
 
-* Bir dosyadaki satır sayısını görmek için nl (satır numaralandırma) komutunu da kullanabilirsiniz.
+* Bir dosyadaki satır sayısını görmek için `nl` (satır numaralandırma) komutunu da kullanabilirsiniz.
 
 ```bash
-dosya1.txt
+$ cat dosya1.txt
 ben
 adana'yı
 seviyorum
