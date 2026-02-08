@@ -1949,8 +1949,6 @@ Bakın tam olarak dosyada bulunan veriler ile aynı isimde yeni dosyalar oluştu
 
 ### join ve split
 
-Birleştirme ve ayırma işlemleri için kullanışlı komutlar vardır:
-
 Bu komut, ortak bir alanı temel alan birden fazla dosyayı birleştirebilir.
 
 Örneğin, iki dosyayı birleştirmek istediğinizi varsayalım:
@@ -2050,7 +2048,7 @@ fil
 köpek
 ```
 
-Bu örnekte, sayılar metin içinde yer almasına rağmen, `sort` komutu -n seçeneği sayesinde sayısal olarak sıraladı.
+Bu örnekte, sayılar metin içinde yer almasına rağmen, `sort` komutu `-n` seçeneği sayesinde sayısal olarak sıraladı.
 
 ---
 
@@ -2185,8 +2183,37 @@ lightdm:x:124:127:Light Display Manager:/var/lib/lightdm:/bin/false
 sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
 Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
 ```
+Birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Örneğin `/etc/passwd` ve `/etc/group` dosya içeriklerinde “root” ifadesinin aranmasını için `grep “root” /etc/passwd /etc/group` şeklinde komut girebiliriz.
 
 *Not : Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için grep aracının hariç tutma özelliği olan `-v` seçeneğini kullanabiliyoruz.*
+
+* **Özyinelemeli Araştırma**
+Örnek olarak “/etc/” dizini içinde, içinde “bashrc” ifadesi geçen tüm dosyaları filtrelemeyi deneyebiliriz. Bunun için `grep -r “bashrc” /etc/ 2> /dev/null` şeklinde komutumu giriyorum. Buradaki `-r` seçeneği benim hedef gösterdiğim bu dizinden başlayıp tüm alt dizinler de dahil olmak üzere tüm dosyalarda “bashrc” ifadesinin geçtiği yerleri filtreleyip bana sunacak. Ayrıca yetki gibi nedenlerle oluşacak olan hatalı çıktıları yok etmek için `2> /dev/null` komutunu da ekledim.
+
+```bash
+┌──(ahmet@kali)-[~]
+└─$ grep -r "bashrc" /etc/ 2> /dev/null
+/etc/skel/.bashrc.original:# ~/.bashrc: executed by bash(1) for non-login shells.
+/etc/skel/.bashrc.original:# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+/etc/skel/.bashrc.original:# sources /etc/bash.bashrc).
+/etc/skel/.profile:    # include .bashrc if it exists
+/etc/skel/.profile:    if [ -f "$HOME/.bashrc" ]; then
+/etc/skel/.profile:     . "$HOME/.bashrc"
+/etc/skel/.bashrc:# ~/.bashrc: executed by bash(1) for non-login shells.
+/etc/skel/.bashrc:# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+/etc/skel/.bashrc:# sources /etc/bash.bashrc).
+/etc/apparmor.d/abstractions/bash:  @{HOME}/.bashrc                  r,
+/etc/apparmor.d/abstractions/bash:  /etc/bashrc                      r,
+/etc/apparmor.d/abstractions/bash:  /etc/bash.bashrc                 r,
+/etc/apparmor.d/abstractions/bash:  /etc/bash.bashrc.local           r,
+/etc/apparmor.d/abstractions/bash:  # run out of /etc/bash.bashrc
+/etc/bash.bashrc:# System-wide .bashrc file for interactive bash(1) shells.
+/etc/bash.bashrc.save.1:# System-wide .bashrc file for interactive bash(1) shells.
+/etc/bash.bashrc.save:# System-wide .bashrc file for interactive bash(1) shells.
+/etc/profile:    # The file bash.bashrc already sets the default PS1.
+/etc/profile:    if [ -f /etc/bash.bashrc ]; then
+/etc/profile:      . /etc/bash.bashrc
+```
 
 * **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
 
