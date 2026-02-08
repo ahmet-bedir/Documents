@@ -2160,7 +2160,7 @@ Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
 
 Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek için `grep` aracı kullanılır!
 
-Örneğin **/etc/passwd** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını giriyoruz.
+Örneğin **/etc/passwd** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğiniz kelimeyi ve daha sonra da hangi dosyada araştırılacağını giriyoruz.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -2203,14 +2203,6 @@ grep komutunu, | sembolü ile diğer komutlarla birleştirebilirsiniz. Bu sayede
 ```bash
 $ env | grep -i User
 ```
-
-Gördüğünüz gibi, grep oldukça çok yönlüdür. Kalıplarınızda hatta **düzenli ifadeler** bile kullanabilirsiniz:
-
-```bash
-$ ls /somedir | grep '.txt$'
-```
-
-Bu komut, /somedir dizinindeki tüm “.txt” ile biten dosyaları döndürmelidir.
 
 ---
 
