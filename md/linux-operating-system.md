@@ -2186,7 +2186,7 @@ sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
 Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
 ```
 
-Not : Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için grep aracının hariç tutma özelliği olan `-v` seçeneğini kullanabiliyoruz.
+*Not : Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için grep aracının hariç tutma özelliği olan `-v` seçeneğini kullanabiliyoruz.*
 
 * **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
 
