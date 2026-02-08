@@ -2156,9 +2156,9 @@ Bu şekilde, tüm yinelenen satırlar, konumlarından bağımsız olarak kaldır
 
 ### grep
 
-Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır.
+Belirli bir kalıpla eşleşen karakterleri dosyalarda aramanıza olanak tanır. `grep` aracı standart girdiden veya kendisine argüman olarak verilmiş olan dosyadan veri okuyup filtreleyebiliyor.
 
-Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek isterseniz? Elbette her satırı tek tek incelemek istemezsiniz, `grep` kullanırsınız!
+Bir dizinde belirli bir dosyanın olup olmadığını veya bir metnin bir dosyada bulunup bulunmadığını öğrenmek için `grep` aracı kullanılır!
 
 Örneğin **/etc/passwd** dosyasında kaç kez “**false**” ifadesinin geçtiğini öğrenmek üzere `grep` komutundan sonra araştırmak istediğim kelimeyi ve daha sonra da hangi dosyada araştırılacağını giriyoruz.
 
@@ -2185,6 +2185,8 @@ lightdm:x:124:127:Light Display Manager:/var/lib/lightdm:/bin/false
 sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
 Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
 ```
+
+Not : Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için grep aracının hariç tutma özelliği olan `-v` seçeneğini kullanabiliyoruz.
 
 * **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
 
