@@ -240,6 +240,23 @@ psql -l
 
 ---
 
+PostgreSQL veritabanı kümesi (database cluster) sorgulama:
+
+```bas
+┌──(ahmet㉿kali)-[~/Masaüstü/Belgeler]
+└─$ pg_lsclusters
+Ver Cluster Port Status Owner     Data directory              Log file
+18  main    5432 online <unknown> /var/lib/postgresql/18/main /var/log/postgresql/postgresql-18-main.log
+```
+
+Status ➜ down ise clusteri aktif etmek için aşağıdaki komut kullanılır.
+
+```bash
+sudo pg_ctlcluster 18 main start
+```
+
+---
+
 **PostgreSQL varsayılan veritabanı kümesinin (data cluster)  konumu işletim sistemine ve kurulum yöntemine göre değişir.**
 
 > - **Debian / Ubuntu / Pardus  dağıtımlarında (apt ile kurulum):**
