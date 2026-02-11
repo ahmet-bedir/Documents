@@ -53,49 +53,53 @@ dpkg -P <paket_adı>
 
 ---
 
-> `dpkg -I <paket_adı.deb>` : Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “**info**” ifadesinin kısaltmasından gelen `I` karakteri kullanır.
+`dpkg -I <paket_adı.deb>` : Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “**info**” ifadesinin kısaltmasından gelen `I` karakteri kullanır.
 
 
 
-> `dpkg -S dosya_yolu` **(veya uzun haliyle** `dpkg --search`**) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.**
->
-> ###### Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)
+`dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
+
+- *Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)*
 
 ---
 
-> **Sistemde yüklü bulunan tüm paketleri listelemek için “list” yani “listelemek” ifadesinin kısalmasından gelen** `l` **seçeneği kullanılır.**
->
-> ```bash
-> $ dpkg -l
-> ```
->
-> `dpkg -l <paket_adı>` **: Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.**
->
-> `dpkg -l | grep <paket_adı>` : `grep` **komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.**
->
+Sistemde yüklü bulunan tüm paketleri listelemek için “**list**” yani “**listelemek**” ifadesinin kısalmasından gelen `l` seçeneği kullanılır.
+
+```bash
+$ dpkg -l
+```
+
+- `dpkg -l <paket_adı>` : Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.
+
+- `dpkg -l | grep <paket_adı>` : `grep` komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.
+
 ---
 
-> `dpkg-reconfigure <paket_adı>` **: Aracı kurduktan sonra konfigürasyonları hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, konfigürasyon dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için kullanılır.**
+Aracı kurduktan sonra **konfigürasyonları** hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, **konfigürasyon** dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için aşağıdaki komut kullanılır.
+
+```bash
+dpkg-reconfigure <paket_adı>
+```
 
 ---
 
 ## `apt`
 
-Bir de `apt` isimli bir araç mevcut. `apt` aracının ismi de, “**a**dvanced **p**ackage **t**ool” yani “gelişmiş paket aracı” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
+`apt` aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmiş paket aracı**” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
 
 ### APT Komutu İle Paket Listesinin Güncellenmesi
 
-> `apt-get update` | `apt update` **: Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.**
+- `apt-get update` | `apt update` : Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.
 
-> `apt-get upgrade` | `apt upgrade` **: Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
->
-> ###### Not : Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.
+- `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
 
-> `apt-cache search <paket_adı>` | `apt search <paket_adı>` **: Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.**
+*Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
 
-> `apt-cache show <paket_adı>` | `apt show <paket_adı>` **: Paket hakkında ayrıntılı bilgi almamızı sağlar.**
+- `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
 
-> `apt-get install <paket_adı>` | `apt install <paket_adı>` **: Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.**
+- `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
+
+- `apt-get install <paket_adı>` | `apt install <paket_adı>` : Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.
 
 ---
 
@@ -109,7 +113,7 @@ Bir de `apt` isimli bir araç mevcut. `apt` aracının ismi de, “**a**dvanced 
 >
 >**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
 >
->---
+> ------
 
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
