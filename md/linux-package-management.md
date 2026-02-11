@@ -22,7 +22,7 @@ dpkg -i <paket_adı.deb>
 
 ###### Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek kurmamız gerekir.
 
-
+---
 
 **Kurulan paketin kurulum yerlerini detaylı görüntülemek için:**
 
@@ -30,7 +30,7 @@ dpkg -i <paket_adı.deb>
 dpkg -L <paket_adı>
 ```
 
-
+---
 
 **Sistemimize kurmuş olduğumuz paketi silmek istersek** `dpkg` **aracının “remove” yani “silmek - kaldırmak” ifadesinin kısaltmasından gelen** `r` **seçeneği kullanılır.**
 
@@ -89,8 +89,6 @@ dpkg -r <paket_adı>
 ### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
 #### 🔍 1. Bozuk Paket Var mı Kontrol Et.
-**🔍 1. Bozuk Paket Var mı Kontrol Et.**
-
 >
 > ```bash
 > sudo apt --fix-broken install
