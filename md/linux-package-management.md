@@ -28,7 +28,7 @@ Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut o
 dpkg -i <paket_adı.deb>
 ```
 
-*Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.*
+> ###### *Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.*
 
 ---
 
@@ -47,7 +47,7 @@ dpkg -L <paket_adı>
 ```bash
 dpkg -r <paket_adı>
 ```
->*Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
+>###### *Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
 
 ---
 
@@ -71,9 +71,9 @@ dpkg -I <paket_adı.deb>
 
 ---
 
-`dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
+▸ `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
-- *Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)*
+> ###### *Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)*
 
 ---
 
@@ -135,7 +135,7 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 
 ▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.
 
-> *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
+> ###### *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
 
 ---
 
@@ -153,25 +153,23 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 
 #### Paketlerin Kaldırılması
 
-▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
+▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` : Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.
 
 > ###### *Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.*
 
- 
-
-`apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
+▸ `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` : Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.
 
 ---
 
-🧨 `apt remove` **sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.**
+🧨 `apt remove` sadece paketin kendisini kaldırır, ayar dosyalarını bırakır.
 
 ```bash
 sudo apt remove <paket_adı>
 ```
 
-> **→ Paket silinir**
+> → Paket silinir
 
-> **→ /etc/paket_adı/ gibi ayar dosyaları kalır**
+> → /etc/paket_adı/ gibi ayar dosyaları kalır
 
 
 
@@ -924,4 +922,4 @@ rpm -qi nginx
 
 
 
-###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.
+###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.	

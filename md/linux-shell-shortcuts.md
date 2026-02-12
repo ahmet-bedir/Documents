@@ -50,11 +50,11 @@
 | `Ctrl + R`  | Geçmiş listesinde arama yapar                     |
 | `Ctrl + G`  | Geçmiş listesi aramasını sonlandırır              |
 
-> **Geçmiş listesi her bir kullanıcının kendi ev dizininde** `.bash_history` **isimli dosyada tutuluyor.  Boşluk bırakılarak girilen komutlar bu listeye dahil edilmez.**
+> Geçmiş listesi her bir kullanıcının kendi ev dizininde `.bash_history` isimli dosyada tutuluyor.  Boşluk bırakılarak girilen komutlar bu listeye dahil edilmez.
 
 #### Alias (Takma İsim)
 
-> **Uzun ve sık kullanılan komutları tek bir kısa takma isimle tanımlayıp, bu takma isim üzerinden o komuta kolayca ulaşabiliyoruz.**
+> Uzun ve sık kullanılan komutları tek bir kısa takma isimle tanımlayıp, bu takma isim üzerinden o komuta kolayca ulaşabiliyoruz.
 
 ```bash
 alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
