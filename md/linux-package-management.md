@@ -32,6 +32,10 @@ dpkg -i <paket_adı.deb>
 
 ---
 
+> <small>*Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.*</small>
+
+---
+
 ▪ Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
 
 ```bash
