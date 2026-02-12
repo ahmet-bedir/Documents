@@ -16,7 +16,9 @@ Paket yönetimi, sisteme yeni **yazılımların yüklenmesi** ve gerektiğinde v
 
 ## Debian Tabanlı Sistemlerde Paket Yönetimi
 
-### `dpkg`
+### » `dpkg`
+
+#### Paket Kurulumu
 
 Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut olan “**.deb**” uzantılı paketlerin kurulması için `dpkg` komutunun “install” yani “kurma” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekiyor. Paketin bulunduğu konumdan aşağıdaki komutu çalıştırmamız gerekiyor.
 
@@ -28,13 +30,15 @@ dpkg -i <paket_adı.deb>
 
 ---
 
-- Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
+▪ Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
 
 ```bash
 dpkg -L <paket_adı>
 ```
 
 ---
+
+#### Kurulu Paketin Kaldırılması
 
 Sistemimize kurmuş olduğumuz paketi silmek istersek `dpkg` aracının “**remove**” yani “**silmek - kaldırmak**” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.
 
@@ -83,23 +87,23 @@ dpkg-reconfigure <paket_adı>
 
 ---
 
-## `apt`
+## » `apt`
 
 `apt` aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmiş paket aracı**” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
 
 ### APT Komutu İle Paket Listesinin Güncellenmesi
 
-- `apt-get update` | `apt update` : Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.
+▸ `apt-get update` | `apt update` : Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.
 
-- `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
+▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
 
 *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
 
-- `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
+▸ `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
 
-- `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
+▸ `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
 
-- `apt-get install <paket_adı>` | `apt install <paket_adı>` : Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.
+▸ `apt-get install <paket_adı>` | `apt install <paket_adı>` : Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.
 
 ---
 

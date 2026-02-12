@@ -23,7 +23,7 @@
 
 ◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
 
-◈ [**Linux Bash / Terminal, Nano ve Vim Kısayolları**](md/linux-bash-nano-vim-shortcuts.md)
+◈ [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-shell-shortcuts.md)
 
 ---
 
