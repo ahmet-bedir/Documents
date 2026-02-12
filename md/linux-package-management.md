@@ -18,9 +18,11 @@ Paket yönetimi, sisteme yeni **yazılımların yüklenmesi** ve gerektiğinde v
 
 ### » `dpkg`
 
+Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut olan “**.deb**” uzantılı paketleri kurabiliyoruz. Bu paketin, daha doğrusu kurduğumuz aracın çalışması için gereken harici paketler `dpkg` tarafından bulunup indirilmiyor. Bunu yapan `apt` aracıdır. Bizler `dpkg` aracını **lokal** paket yönetimi için kullanıyoruz. Yani bu durumda `dpkg` aracını kullanarak kurulum yapacaksak kurduğumuz paketin ihtiyaç duyduğu ek paketleri de tek tek bulup indirmemiz ve onları da `dpkg` aracını kullanarak kurmamız gerekiyor.
+
 #### Paket Kurulumu
 
-Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut olan “**.deb**” uzantılı paketlerin kurulması için `dpkg` komutunun “install” yani “kurma” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekiyor. Paketin bulunduğu konumdan aşağıdaki komutu çalıştırmamız gerekiyor.
+✓ Kurulum için `dpkg` aracının “**install**” yani “**kurma**” anlamına gelen `i` seçeneğinin ardından kurmak istediğimiz paketin ismini girmemiz gerekiyor. Paketin bulunduğu konumdan kurmak istediğimiz paketin ismini vererek aşağıdaki komutu çalıştırmalıyız.
 
 ```bash
 dpkg -i <paket_adı.deb>
@@ -40,7 +42,7 @@ dpkg -L <paket_adı>
 
 #### Kurulu Paketin Kaldırılması
 
-Sistemimize kurmuş olduğumuz paketi silmek istersek `dpkg` aracının “**remove**” yani “**silmek - kaldırmak**” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.
+✓ Sistemimize kurmuş olduğumuz paketi silmek istersek `dpkg` aracının “**remove**” yani “**silmek - kaldırmak**” ifadesinin kısaltmasından gelen `r` seçeneği kullanılır.
 
 ```bash
 dpkg -r <paket_adı>
@@ -49,7 +51,9 @@ dpkg -r <paket_adı>
 
 ---
 
-Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “**purge**” yani “**arındırmak**” anlamındaki `P` seçeneği kullanılır.
+#### Kalıntıların Kaldırılması
+
+✓ Aracın konfigürasyon dosyaları da dahil sistemden tamamen tüm dosyalarının kaldırılmasını istersek “**purge**” yani “**arındırmak**” anlamındaki `P` seçeneği kullanılır.
 
 ```bash
 dpkg -P <paket_adı>
@@ -57,9 +61,15 @@ dpkg -P <paket_adı>
 
 ---
 
-`dpkg -I <paket_adı.deb>` : Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “**info**” ifadesinin kısaltmasından gelen `I` karakteri kullanır.
+#### Paket Hakkında Bilgi Almak
 
+✓ Henüz paketi kurmadan önce paketin içeriği hakkında bilgi almak istersek (boyut, versiyon, bağımlılıkları vb...) “**info**” ifadesinin kısaltmasından gelen `I` karakteri kullanır.
 
+```bash
+dpkg -I <paket_adı.deb>
+```
+
+---
 
 `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
@@ -67,19 +77,35 @@ dpkg -P <paket_adı>
 
 ---
 
-Sistemde yüklü bulunan tüm paketleri listelemek için “**list**” yani “**listelemek**” ifadesinin kısalmasından gelen `l` seçeneği kullanılır.
+#### Paketlerin Listelenmesi
+
+✓ Sistemde yüklü bulunan tüm paketleri listelemek için “**list**” yani “**listelemek**” ifadesinin kısalmasından gelen `l` seçeneği kullanılır.
 
 ```bash
-$ dpkg -l
+┌──(ahmet㉿kali)-[~/Masaüstü/Belgeler]
+└─$ dpkg -l
 ```
 
 - `dpkg -l <paket_adı>` : Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.
 
 - `dpkg -l | grep <paket_adı>` : `grep` komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.
 
+<img src="../images/dpkg-l.png" width="740" />
+
+Paketin **mevcut durumunu** gösteren durum kodları aşağıdaki gibidir:
+
+| **Kod** | **Açılımı**                   | **Anlamı**                                                   |
+| ------- | ----------------------------- | ------------------------------------------------------------ |
+| **ii**  | **i**nstall **i**nstalled     | Her şey yolunda. Paket başarıyla yüklendi ve sistemde kurulu. |
+| **rc**  | **r**emove **c**onf_files     | Paket silinmiş (**removed**) ancak yapılandırma (config) dosyaları hala sistemde duruyor. |
+| **un**  | **u**nknown **n**ot-installed | Paket sistem tarafından biliniyor ama hiç kurulmamış.        |
+| **hi**  | **h**old **i**nstalled        | Paket kurulu ancak güncellenmemesi için "beklemeye" (hold) alınmış. |
+
 ---
 
-Aracı kurduktan sonra **konfigürasyonları** hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, **konfigürasyon** dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için aşağıdaki komut kullanılır.
+#### Kurulu Paketleri Yeniden Yapılandırma
+
+✓ Aracı kurduktan sonra **konfigürasyonları** hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, **konfigürasyon** dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için aşağıdaki komut kullanılır.
 
 ```bash
 dpkg-reconfigure <paket_adı>
@@ -89,165 +115,51 @@ dpkg-reconfigure <paket_adı>
 
 ## » `apt`
 
-`apt` aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmiş paket aracı**” ifadesinin kısaltmasından geliyor. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
+Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmiş paket aracı**” ifadesinin kısaltmasından geliyor. `apt` aracı repolarda paket arama ve otomatik bağımlılık çözümleme gibi özellikleri ile paket yönetimini bizler için oldukça kolay hale getiren gelişmiş paket yönetim aracıdır. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
 
-### APT Komutu İle Paket Listesinin Güncellenmesi
+➜ `apt` yönetimi için birden fazla yardımcı araç bulunuyor, örneğin bu araçlardan başlıcaları; `apt-get` `apt-cache` ve `apt-file` araçlarıdır. Kısaca açıklamamız gerekirse;
 
-▸ `apt-get update` | `apt update` : Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.
+› `apt-get`: aracını, paketleri indirmek, kurmak, güncellemek ve silmek için kullanıyoruz.
 
-▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.**
+› `apt-cache`: aracını, repolarda paket araştırması yapmak için kullanıyoruz.
 
-*Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
+› `apt-file`: aracını ise paketlerin içindeki dosyaları aramak için kullanıyoruz.
 
-▸ `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
-
-▸ `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
-
-▸ `apt-get install <paket_adı>` | `apt install <paket_adı>` : Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.
+Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta birleştiren `apt` adlı kullanıcı dostu bir yardımcı araç da bulunuyor. Yani `apt-get` ve `apt-cache` komutları ile uzun uzadıya komut girmek yerine yalnızca `apt` komutu ile aynı işlevleri de yerine getirebiliyoruz.
 
 ---
 
-### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
+#### Paket Listesinin Güncellenmesi
 
-#### 🔍 1. Bozuk Paket Var mı Kontrol Et.
->
-> ```bash
-> sudo apt --fix-broken install
-> ```
->
->**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
->
-> ------
+▸ `apt-get update` | `apt update` : Repolardaki paketler kurulmadan evvel en güncel index bilgisini almak için kullanılır. Yani paket listesinin en güncel halini alıyoruz.
 
-#### 🔎 2. Kırık Bağımlılıkları Kontrol Et
->
-> ```bash
-> sudo dpkg --configure -a
-> ```
-> **➡ Yarım kalan kurulumları tamamlar.**
->
-> ------
+▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.
 
-#### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
->
-> ```bash
-> sudo apt install -f
-> ```
->
-> **➡ Eksik bağımlılık varsa otomatik kurar.**
->
-> ------
+> *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
 
-#### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
->
-> ```bash
-> apt-mark showhold
-> ```
->
-> **➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.**
->
-> ------
+---
 
-#### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
->
-> ```bash
-> sudo apt autoremove --purge
-> ```
->
-> **➡ Bu kaldırma işlemi yapar ama listelemeden kaldırmaz, önce liste görmek istersen:**
->
-> ```bash
-> sudo apt autoremove --dry-run
-> ```
->
-> ------
+#### Paketlerin Araştırılması
 
-#### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
->
-> ```bash
-> sudo apt update --fix-missing
-> ```
->
-> ------
+▸ `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
 
-#### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
->
-> ```bash
-> sudo apt clean
-> sudo apt update
-> ```
->
-> ------
+#### Paketin Ayrıntılı  Bilgisi
 
-🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
+▸ `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
 
-```bash
-apt policy <paket_adı>
-```
+#### Paketlerin Kurulumu
 
-> **➡ Örnek:**
->
->
-> `sudo apt policy gpaste-2`
+▸ `apt-get install <paket_adı>` | `apt install <paket_adı>` : Depo üzerinden paketin bağımlılıkları ile beraber online kurulum yapmak için kullanılır.
 
-![](../images/apt-policy.png)
+#### Paketlerin Kaldırılması
 
-> 📌 **1. "Kurulu: 45.3-2"**
->
-> **Sistemde şu an yüklü olan sürüm.**
+▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
 
-> 📌 **2. "Aday: 45.3-2"**
->
-> **Depoda yüklenebilecek sürüm de aynı
-> → güncel versiyon.**
+> ###### *Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.*
 
-> 📌 **3. "500 http://http.kali.org/kali kali-rolling/main"**
->
-> **Bu gösteriyor ki:**
-> - **Paket resmi kali deposundan geliyor**
-> - **main deposunda → resmi, güvenilir yazılımlar**
-> - **kali-rolling sürümü için uygun**
+ 
 
-> 📌 **4. "100 /var/lib/dpkg/status"**
->
-> **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
-
-> 📌 **Sonuç olarak:**
->
-> `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
-
-------
-
-> **➡ Örnek:**
->
-> `sudo apt policy gnome-shell-extension-gpaste`
-> 
-> ✔ **Paket Güvenli mi?**
->
-> **Evet, %100 güvenli, Çünkü:**
-
-> 📌 **1. "Kurulu: (hiçbiri)"**
->
-> **Sende şu an yüklü değil.**
->
-> 📌 **2. "Aday: 45.3-2"**
->
-> **Depoda yüklenebilir olan güncel sürüm bu.**
-
-> 📌 **3. "http://http.kali.org/kali kali-rolling/main"**
->
-> **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
-> **main deposu = test edilip onaylanmış paketler.**
-
-------
-
-> `apt-get remove <paket_adı>` | `apt remove <paket_adı>` **: Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.**
->
-> ###### Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.
->
-> 
-
-> `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
+`apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` **: Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.**
 
 ---
 
@@ -393,6 +305,144 @@ sudo apt autopurge
 sudo apt remove --purge <paket_adı>
 sudo apt autopurge
 ```
+
+---
+
+### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
+
+#### 🔍 1. Bozuk Paket Var mı Kontrol Et.
+>
+> ```bash
+> sudo apt --fix-broken install
+> ```
+>
+>**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
+>
+> ------
+
+#### 🔎 2. Kırık Bağımlılıkları Kontrol Et
+>
+> ```bash
+> sudo dpkg --configure -a
+> ```
+> **➡ Yarım kalan kurulumları tamamlar.**
+>
+> ------
+
+#### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
+>
+> ```bash
+> sudo apt install -f
+> ```
+>
+> **➡ Eksik bağımlılık varsa otomatik kurar.**
+>
+> ------
+
+#### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
+>
+> ```bash
+> apt-mark showhold
+> ```
+>
+> **➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.**
+>
+> ------
+
+#### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
+>
+> ```bash
+> sudo apt autoremove --purge
+> ```
+>
+> **➡ Bu kaldırma işlemi yapar ama listelemeden kaldırmaz, önce liste görmek istersen:**
+>
+> ```bash
+> sudo apt autoremove --dry-run
+> ```
+>
+> ------
+
+#### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
+>
+> ```bash
+> sudo apt update --fix-missing
+> ```
+>
+> ------
+
+#### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
+>
+> ```bash
+> sudo apt clean
+> sudo apt update
+> ```
+>
+> ------
+
+🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
+
+```bash
+apt policy <paket_adı>
+```
+
+> **➡ Örnek:**
+>
+>
+> `sudo apt policy gpaste-2`
+
+![](../images/apt-policy.png)
+
+> 📌 **1. "Kurulu: 45.3-2"**
+>
+> **Sistemde şu an yüklü olan sürüm.**
+
+> 📌 **2. "Aday: 45.3-2"**
+>
+> **Depoda yüklenebilecek sürüm de aynı
+> → güncel versiyon.**
+
+> 📌 **3. "500 http://http.kali.org/kali kali-rolling/main"**
+>
+> **Bu gösteriyor ki:**
+> - **Paket resmi kali deposundan geliyor**
+> - **main deposunda → resmi, güvenilir yazılımlar**
+> - **kali-rolling sürümü için uygun**
+
+> 📌 **4. "100 /var/lib/dpkg/status"**
+>
+> **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
+
+> 📌 **Sonuç olarak:**
+>
+> `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
+
+------
+
+> **➡ Örnek:**
+>
+> `sudo apt policy gnome-shell-extension-gpaste`
+> 
+> ✔ **Paket Güvenli mi?**
+>
+> **Evet, %100 güvenli, Çünkü:**
+
+> 📌 **1. "Kurulu: (hiçbiri)"**
+>
+> **Sende şu an yüklü değil.**
+>
+> 📌 **2. "Aday: 45.3-2"**
+>
+> **Depoda yüklenebilir olan güncel sürüm bu.**
+
+> 📌 **3. "http://http.kali.org/kali kali-rolling/main"**
+>
+> **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
+> **main deposu = test edilip onaylanmış paketler.**
+
+------
+
+
 
 ---
 
