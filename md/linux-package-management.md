@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../images/paket-yonetimi.webp" width="257" />
+  <img src="../images/paket-yonetimi.webp" width="237" />
 <p/>
 
 
