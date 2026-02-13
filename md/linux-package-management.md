@@ -3,7 +3,7 @@
 <p/>
 
 
-# Linux Sistemlerde Paket Yönetimi
+# Paket Yönetimi
 
 ###### Son güncelleme : 02/2026
 
@@ -353,16 +353,15 @@ sudo apt autopurge
 apt policy <paket_adı>
 ```
 
-> **➡ Örnek:**
->
->
-> `sudo apt policy gpaste-2`
-
 ![](../images/apt-policy.png)
 
-> 📌 **1. "Kurulu: 45.3-2"**
->
-> **Sistemde şu an yüklü olan sürüm.**
+> ✔ Kurulu: 45.3-2  Sistemde şu an yüklü olan sürüm.
+
+
+
+
+
+
 
 > 📌 **2. "Aday: 45.3-2"**
 >
