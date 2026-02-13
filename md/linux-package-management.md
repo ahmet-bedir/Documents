@@ -168,7 +168,7 @@ sudo apt remove <paket_adı>
 ```
 
 > → Paket silinir
-> → /etc/paket_adı/ gibi ayar dosyaları kalır
+> → `/etc/paket_adı/` gibi ayar dosyaları kalır
 
 
 
@@ -184,18 +184,24 @@ sudo apt remove --purge <paket_adı>
 > ✔ Sistem, o paket yüklenmemiş haline döner
 
 
+
+
 🔥 `purge` Bazı bozuk paketlerde veya çakışmalarda “purge” kullanılır.
 
-> - **Bozuk GNOME eklentileri
-> - **Yanlış tema paketleri
-> - **Config bozan programlar
-> - **Kalan ayarlar nedeniyle tekrar kurulamayan paketler
+> - Bozuk GNOME eklentileri
+> - Yanlış tema paketleri
+> - Config bozan programlar
+> - Kalan ayarlar nedeniyle tekrar kurulamayan paketler
+
+
 
 > ```bash
 > sudo apt purge <paket_adı>
 > ```
 >
 > → tüm sorunları sıfırlar.
+
+
 
 
 🛑 Dikkat etmen gereken tek şey `purge` evdeki dosyaları silmez, sadece programın **sistem ayarlarını** siler.
@@ -209,6 +215,8 @@ Güvenlidir ama şu paketleri `purge` etme:
 ❌ **python3 (sistem bileşeni)**
 
 
+
+
 🧹 Kullanılmayan bağımlılıkları silmek için:
 
 ```bash
@@ -220,6 +228,8 @@ sudo apt autoremove
 > - Sistemi hafifletir
 
 
+
+
 🎯 Genelde önerilen sıralama:
 
 ```bash
@@ -227,52 +237,38 @@ sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
----
+
 
 ⚡ `autopurge` kullanmak çoğu durumda güvenlidir ve `autoremove` + `purge` ile aynı işi tek adımda yapar.
 
-✔ `sudo apt remove --purge <paket_adı>` komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.
+✔ `sudo apt remove --purge <paket_adı>` komutu paketin kendisini + paketin kendi config dosyalarını siler.  Ancak bağımlılıkları silmez.
 
 ✔ `sudo apt autoremove` komutu artık kullanılmayan bağımlılık paketlerini siler fakat bu bağımlılıkların ayar dosyaları kalır (yani sadece `remove` yapar, `purge` değil).
 
-Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.
+› Bu yüzden sistemde zamanla “**config dosyaları**” birikebilir.
 
 ✔ `sudo apt autopurge`
 
-**Bu komut, autoremove + purge birleşimidir.**
+› Bu komut, `autoremove + purge` birleşimidir.
 
-**Yani:**
+Yani:
 
-**Artık kullanılmayan bağımlılıkları kaldırır**
+✓ Artık kullanılmayan bağımlılıkları kaldırır
 
-**Onların config dosyalarını da siler**
+✓ Onların config dosyalarını da siler
 
-**Tek fark:**
-`autopurge` **yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı** `autoremove` **gibi güvenlidir.**
 
-✔ **Sonuç: Hangisini kullanmalı?**
-**Güvenli tercih**
+
+`autopurge` yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı `autoremove` gibi güvenlidir.
+
+🌿 Güvenli tercih
 
 ```bash
 sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
-🌿 **Temiz sistem isteyenler**
-
-```bash
-sudo apt remove --purge <paket_adı>
-sudo apt autopurge
-```
-
-**Bu daha temiz bir kaldırma yapar ve kalıntıları azaltır.**
-
-✔ **“Yan etkisi olur mu?”**
-
-**Hayır,** `autopurge` **ekstra bir risk oluşturmaz.**
-`autoremove`**'ün sileceği şeyleri silip sadece onların ayarlarını da temizler.**
-
-✔ **Tavsiye (En pratik yöntem)**
+🌿 Temiz sistem
 
 ```bash
 sudo apt remove --purge <paket_adı>
