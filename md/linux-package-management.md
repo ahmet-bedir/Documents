@@ -47,7 +47,8 @@ dpkg -L <paket_adı>
 ```bash
 dpkg -r <paket_adı>
 ```
->###### *Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
+
+> ###### *Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
 
 ---
 
@@ -82,7 +83,6 @@ dpkg -I <paket_adı.deb>
 ✓ Sistemde yüklü bulunan tüm paketleri listelemek için “**list**” yani “**listelemek**” ifadesinin kısalmasından gelen `l` seçeneği kullanılır.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Masaüstü/Belgeler]
 └─$ dpkg -l
 ```
 
@@ -143,7 +143,7 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 
 ▸ `apt-cache search <paket_adı>` | `apt search <paket_adı>` : Depoda paket arama, yani bir paketi kurmadan önce ilgili paketin repoda hangi isimde tutulduğunu öğrenmek için kullanılır.
 
-#### Paketin Ayrıntılı  Bilgisi
+#### Paket Hakkında Ayrıntılı Bilgi
 
 ▸ `apt-cache show <paket_adı>` | `apt show <paket_adı>` : Paket hakkında ayrıntılı bilgi almamızı sağlar.
 
@@ -155,7 +155,7 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 
 ▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` : Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.
 
-> ###### *Not : Belirtilen paketin, başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove <paket_adı>` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklemiş olsaydım bana sorulmadan ilgili paket ve paket ile ilişkili artık gerekli olmayan paketler de silinmiş olacaktı.*
+> ###### *Not : Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.*
 
 ▸ `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` : Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.
 
@@ -168,99 +168,74 @@ sudo apt remove <paket_adı>
 ```
 
 > → Paket silinir
-
 > → /etc/paket_adı/ gibi ayar dosyaları kalır
 
 
 
-🧹 `apt remove --purge` **komutu, paketi ve tüm ayar/config dosyalarını beraber siler.**
+🧹 `apt remove --purge` komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
 
 ```bash
 sudo apt remove --purge <paket_adı>
 ```
 
-> ✔ **Paket kaldırılır**
->
-> ✔ **/etc/, /var/ altındaki konfigürasyonlar temizlenir**
->
-> ✔ **Kullanıcı ayar dosyalarının çoğu silinir**
->
-> ✔ **Sistem o paket yüklenmemiş haline döner**
+> ✔ Paket kaldırılır
+> ✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir
+> ✔ Kullanıcı ayar dosyalarının çoğu silinir
+> ✔ Sistem, o paket yüklenmemiş haline döner
 
 
+🔥 `purge` Bazı bozuk paketlerde veya çakışmalarda “purge” kullanılır.
 
-🔥 `purge` **neden önemli?**
-**Bazı bozuk paketlerde veya çakışmalarda “purge” hayat kurtarır.**
+> - **Bozuk GNOME eklentileri
+> - **Yanlış tema paketleri
+> - **Config bozan programlar
+> - **Kalan ayarlar nedeniyle tekrar kurulamayan paketler
 
-> **Örneğin:**
->
-> - **Bozuk GNOME eklentileri**
-> - **Yanlış tema paketleri**
-> - **Config bozan programlar**
-> - **Kalan ayarlar nedeniyle tekrar kurulamayan paketler**
-
-> **Bu durumda:**
->
 > ```bash
 > sudo apt purge <paket_adı>
 > ```
 >
-> **→ tüm sorunları sıfırlar.**
+> → tüm sorunları sıfırlar.
 
 
+🛑 Dikkat etmen gereken tek şey `purge` evdeki dosyaları silmez, sadece programın **sistem ayarlarını** siler.
 
-🛑 **Dikkat etmen gereken tek şey purge evdeki dosyaları silmez, sadece programın sistem ayarlarını siler.**
-**Yani güvenlidir, ama şu paketleri purge etme:**
+Güvenlidir ama şu paketleri `purge` etme:
 
 ❌ **systemd**
-
 ❌ **kali-desktop-***
-
 ❌ **linux-image-*(kernel)**
-
 ❌ **apt veya dpkg**
-
 ❌ **python3 (sistem bileşeni)**
 
 
-
-🧹 **Kullanılmayan bağımlılıkları silmek için:**
+🧹 Kullanılmayan bağımlılıkları silmek için:
 
 ```bash
 sudo apt autoremove
 ```
-> - **Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler**
-> - **Gereksiz kütüphaneleri siler**
-> - **Sistemi hafifletir**
+
+> - Artık hiçbir paket tarafından kullanılmayan bağımlılıkları temizler
+> - Gereksiz kütüphaneleri siler
+> - Sistemi hafifletir
 
 
-
-🎯 **Genelde önerilen sıralama:**
-
-**Bir paketi tamamen temizlemek istiyorsan:**
+🎯 Genelde önerilen sıralama:
 
 ```bash
 sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
-> **Bu 2 adım:**
->
-> ✔ **Paket silinir**
->
-> ✔ **Ayar dosyaları temizlenir**
->
-> ✔ **Gereksiz bağımlılıklar da silinir**
-
 ---
 
-⚡ `autopurge` **kullanmak çoğu durumda güvenlidir ve** `autoremove` + `purge` **ile aynı işi tek adımda yapar.**
+⚡ `autopurge` kullanmak çoğu durumda güvenlidir ve `autoremove` + `purge` ile aynı işi tek adımda yapar.
 
-✔ `sudo apt remove --purge <paket_adı>` **komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.**
+✔ `sudo apt remove --purge <paket_adı>` komutu paketin kendisini + paketin kendi config dosyalarını siler. Ancak bağımlılıkları silmez.
 
-✔ `sudo apt autoremove` **komutu artık kullanılmayan bağımlılık paketlerini siler fakat bu bağımlılıkların ayar dosyaları kalır (yani sadece remove yapar, purge değil).**
+✔ `sudo apt autoremove` komutu artık kullanılmayan bağımlılık paketlerini siler fakat bu bağımlılıkların ayar dosyaları kalır (yani sadece `remove` yapar, `purge` değil).
 
-**Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.**
+Bu yüzden sistemde zamanla “yetim config dosyaları” birikebilir.
 
 ✔ `sudo apt autopurge`
 
@@ -454,11 +429,11 @@ apt policy <paket_adı>
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
-> **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler** `/var/cache/apt/archives/` **dizini altında tutuluyor. Bunları silmek için de yine** `apt` **aracını kullanabiliriz. Eğer** `apt-get clean` **ya da** `apt clean` **komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
+▪ **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler** `/var/cache/apt/archives/` **dizini altında tutuluyor. Bunları silmek için de yine** `apt` **aracını kullanabiliriz. Eğer** `apt-get clean` **ya da** `apt clean` **komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
 
 ---
 
-> **Eğer indirmiş olduğumuz** `.deb` **uzantılı paketi** `apt` **aracı ile kurarsak, internet bağlantımız da olduğu için** `apt` **aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi** `apt` **aracı ile kurabiliyoruz.**
+▪ **Eğer indirmiş olduğumuz** `.deb` **uzantılı paketi** `apt` **aracı ile kurarsak, internet bağlantımız da olduğu için** `apt` **aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi** `apt` **aracı ile kurabiliyoruz.**
 
 ```bash
 apt install ~/Downloads/<paket_adı.deb>
@@ -466,11 +441,11 @@ apt install ~/Downloads/<paket_adı.deb>
 
 ---
 
-> `apt-cache depends <paket_adı>` **: Paketin çalışması için gerekli olan bağımlılıkları listeler.**
+▪ `apt-cache depends <paket_adı>` **: Paketin çalışması için gerekli olan bağımlılıkları listeler.**
 
 ---
 
-> `.deb` **dosyasını kurmadan bağımlılıkların sistemde eksik olup olmadığını kontrol etmek için:**
+▪ `.deb` **dosyasını kurmadan bağımlılıkların sistemde eksik olup olmadığını kontrol etmek için:**
 
 ```bash
 sudo apt-get install -f ./<paket_adı.deb> --dry-run
@@ -481,7 +456,7 @@ sudo apt-get install -f ./<paket_adı.deb> --dry-run
 
 ---
 
-> **Bağımlılık ağacını detaylı görüntülemek için aşağıdaki komut kullanılır.**
+▪ **Bağımlılık ağacını detaylı görüntülemek için aşağıdaki komut kullanılır.**
 
 ```bash
 debtree ./<paket_adı.deb>
