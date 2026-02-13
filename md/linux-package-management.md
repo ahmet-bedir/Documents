@@ -355,60 +355,14 @@ apt policy <paket_adı>
 
 ![](../images/apt-policy.png)
 
-> ✔ Kurulu: 45.3-2  Sistemde şu an yüklü olan sürüm.
-
-
-
-
-
-
-
-> 📌 **2. "Aday: 45.3-2"**
->
-> **Depoda yüklenebilecek sürüm de aynı
-> → güncel versiyon.**
-
-> 📌 **3. "500 http://http.kali.org/kali kali-rolling/main"**
->
-> **Bu gösteriyor ki:**
-> - **Paket resmi kali deposundan geliyor**
-> - **main deposunda → resmi, güvenilir yazılımlar**
-> - **kali-rolling sürümü için uygun**
-
-> 📌 **4. "100 /var/lib/dpkg/status"**
->
-> **Bu, paketin sistemde kayıtlı olduğunu gösteriyor.**
-
-> 📌 **Sonuç olarak:**
->
-> `gpaste-2` **paketinin kaynağı ve sürümü tamamen temiz.**
+> ✔ "Kurulu: 45.3-2"  ➜ Sistemde şu an yüklü olan sürüm<br />✔ "Aday: 45.3-2" ➜ Depoda yüklenebilecek sürüm de aynı (güncel versiyon)<br />✔ "500 http://http.kali.org/kali kali-rolling/main" ➜ Paket resmi kali deposundan geliyor (main deposunda, resmi, güvenilir yazılımlar)<br />✔ "100 /var/lib/dpkg/status" ➜ Bu, paketin sistemde kayıtlı olduğunu gösteriyor<br />✔ Sonuç olarak `gpaste-2` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
 
 ------
 
-> **➡ Örnek:**
->
-> `sudo apt policy gnome-shell-extension-gpaste`
-> 
-> ✔ **Paket Güvenli mi?**
->
-> **Evet, %100 güvenli, Çünkü:**
-
-> 📌 **1. "Kurulu: (hiçbiri)"**
->
-> **Sende şu an yüklü değil.**
->
-> 📌 **2. "Aday: 45.3-2"**
->
-> **Depoda yüklenebilir olan güncel sürüm bu.**
-
-> 📌 **3. "http://http.kali.org/kali kali-rolling/main"**
->
-> **Bu da paketin resmi Kali deposundan geldiğini gösteriyor.**
-> **main deposu = test edilip onaylanmış paketler.**
-
-------
+`sudo apt policy gnome-shell-extension-gpaste`
 
 
+> ✔ "Kurulu: (hiçbiri)"  ➜ Sistemde şu an yüklü değil<br />✔ "Aday: 45.3-2" ➜ Depoda yüklenebilir olan güncel sürüm)<br />✔ "http://http.kali.org/kali kali-rolling/main" ➜ Paket resmi kali deposundan geliyor (main deposunda, resmi, güvenilir yazılımlar)<br />✔ Sonuç olarak `gnome-shell-extension-gpaste` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
 
 ---
 
