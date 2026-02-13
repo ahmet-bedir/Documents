@@ -29,8 +29,8 @@ dpkg -i <paket_adı.deb>
 ```
 
 > ###### *Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.*
-
----
+>
+> ---
 
 ▪ Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
 
@@ -49,8 +49,8 @@ dpkg -r <paket_adı>
 ```
 
 > ###### *Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
-
----
+>
+> ---
 
 #### Kalıntıların Kaldırılması
 
@@ -75,8 +75,8 @@ dpkg -I <paket_adı.deb>
 ▸ `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
 > ###### *Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)*
-
----
+>
+> ---
 
 #### Paketlerin Listelenmesi
 
@@ -86,9 +86,9 @@ dpkg -I <paket_adı.deb>
 └─$ dpkg -l
 ```
 
-- `dpkg -l <paket_adı>` : Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.
+> - `dpkg -l <paket_adı>` : Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.
 
-- `dpkg -l | grep <paket_adı>` : `grep` komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.
+> - `dpkg -l | grep <paket_adı>` : `grep` komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.
 
 <img src="../images/dpkg-l.png" width="740" />
 
@@ -125,9 +125,9 @@ Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmi�
 
 › `apt-file`: aracını ise paketlerin içindeki dosyaları aramak için kullanıyoruz.
 
-Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta birleştiren `apt` adlı kullanıcı dostu bir yardımcı araç da bulunuyor. Yani `apt-get` ve `apt-cache` komutları ile uzun uzadıya komut girmek yerine yalnızca `apt` komutu ile aynı işlevleri de yerine getirebiliyoruz.
-
----
+> ###### Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta birleştiren `apt` adlı bir yardımcı araç da bulunuyor. Yani `apt-get` ve `apt-cache` komutları ile uzun uzadıya komut girmek yerine yalnızca `apt` komutu ile aynı işlevleri de yerine getirebiliyoruz.
+>
+> ---
 
 #### Paket Listesinin Güncellenmesi
 
@@ -136,8 +136,8 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 ▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.
 
 > ###### *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
-
----
+>
+> ---
 
 #### Paketlerin Araştırılması
 
@@ -156,6 +156,8 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 ▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` : Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.
 
 > ###### *Not : Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.*
+>
+> ---
 
 ▸ `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` : Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.
 
@@ -167,8 +169,7 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 sudo apt remove <paket_adı>
 ```
 
-> → Paket silinir<br />
-> → `/etc/paket_adı/` gibi ayar dosyaları kalır
+> → Paket silinir<br />→ `/etc/paket_adı/` gibi ayar dosyaları kalır
 
 ---
 
@@ -178,10 +179,7 @@ sudo apt remove <paket_adı>
 sudo apt remove --purge <paket_adı>
 ```
 
-> ✔ Paket kaldırılır<br />
-> ✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir<br />
-> ✔ Kullanıcı ayar dosyalarının çoğu silinir<br />
-> ✔ Sistem, o paket yüklenmemiş haline döner
+> ✔ Paket kaldırılır<br />✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir<br />✔ Kullanıcı ayar dosyalarının çoğu silinir<br />✔ Sistem, o paket yüklenmemiş haline döner
 
 ---
 
@@ -206,11 +204,7 @@ sudo apt purge <paket_adı>
 
 Güvenlidir ama şu paketleri `purge` etme:
 
-❌ systemd<br />
-❌ kali-desktop-\*<br />
-❌ linux-image-\* (kernel)<br />
-❌ apt veya dpkg<br />
-❌ python3 (sistem bileşeni)
+> ❌ systemd<br />❌ kali-desktop-\*<br />❌ linux-image-\* (kernel)<br />❌ apt veya dpkg<br />❌ python3 (sistem bileşeni)
 
 ---
 
