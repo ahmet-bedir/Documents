@@ -168,9 +168,9 @@ sudo apt remove <paket_adı>
 ```
 
 > → Paket silinir<br />
-> → `/etc/paket_adı/` gibi ayar dosyaları kalır<br />
+> → `/etc/paket_adı/` gibi ayar dosyaları kalır
 
-
+---
 
 🧹 `apt remove --purge` komutu, paketi ve tüm ayar/config dosyalarını beraber siler.
 
@@ -181,7 +181,9 @@ sudo apt remove --purge <paket_adı>
 > ✔ Paket kaldırılır<br />
 > ✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir<br />
 > ✔ Kullanıcı ayar dosyalarının çoğu silinir<br />
-> ✔ Sistem, o paket yüklenmemiş haline döner<br />
+> ✔ Sistem, o paket yüklenmemiş haline döner
+
+---
 
 
 🔥 `purge` Bazı bozuk paketlerde veya çakışmalarda “purge” kullanılır.
@@ -195,7 +197,9 @@ sudo apt remove --purge <paket_adı>
 sudo apt purge <paket_adı>
 ```
 
-> → tüm sorunları sıfırlar.<br />
+> → tüm sorunları sıfırlar.
+
+---
 
 
 🛑 Dikkat etmen gereken tek şey `purge` evdeki dosyaları silmez, sadece programın **sistem ayarlarını** siler.
@@ -206,7 +210,9 @@ Güvenlidir ama şu paketleri `purge` etme:
 ❌ kali-desktop-\*<br />
 ❌ linux-image-\* (kernel)<br />
 ❌ apt veya dpkg<br />
-❌ python3 (sistem bileşeni)<br />
+❌ python3 (sistem bileşeni)
+
+---
 
 
 🧹 Kullanılmayan bağımlılıkları silmek için:
@@ -219,6 +225,8 @@ sudo apt autoremove
 > - Gereksiz kütüphaneleri siler
 > - Sistemi hafifletir
 
+---
+
 
 🎯 Genelde önerilen sıralama:
 
@@ -227,6 +235,7 @@ sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
 
+---
 
 ⚡ `autopurge` kullanmak çoğu durumda güvenlidir ve `autoremove` + `purge` ile aynı işi tek adımda yapar.
 
@@ -246,7 +255,7 @@ Yani:
 
 ✓ Onların config dosyalarını da siler
 
-
+---
 
 `autopurge` yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı `autoremove` gibi güvenlidir.
 
