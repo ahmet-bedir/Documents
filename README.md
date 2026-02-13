@@ -21,7 +21,7 @@
 
 ◈ [**Linux İşletim Sistemi**](md/linux-operating-system.md)
 
-◈ [**Linux Paket Yönetimi**](linux-package-management.md)
+◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
 
 ◈ [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-shell-shortcuts.md)
 
