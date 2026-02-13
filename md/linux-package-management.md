@@ -167,8 +167,8 @@ Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta 
 sudo apt remove <paket_adı>
 ```
 
-> → Paket silinir
-> → `/etc/paket_adı/` gibi ayar dosyaları kalır
+> → Paket silinir<br />
+> → `/etc/paket_adı/` gibi ayar dosyaları kalır<br />
 
 
 
@@ -178,12 +178,10 @@ sudo apt remove <paket_adı>
 sudo apt remove --purge <paket_adı>
 ```
 
-> ✔ Paket kaldırılır
-> ✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir
-> ✔ Kullanıcı ayar dosyalarının çoğu silinir
-> ✔ Sistem, o paket yüklenmemiş haline döner
-
-
+> ✔ Paket kaldırılır<br />
+> ✔ /etc/, /var/ altındaki konfigürasyonlar temizlenir<br />
+> ✔ Kullanıcı ayar dosyalarının çoğu silinir<br />
+> ✔ Sistem, o paket yüklenmemiş haline döner<br />
 
 
 🔥 `purge` Bazı bozuk paketlerde veya çakışmalarda “purge” kullanılır.
@@ -193,28 +191,22 @@ sudo apt remove --purge <paket_adı>
 > - Config bozan programlar
 > - Kalan ayarlar nedeniyle tekrar kurulamayan paketler
 
+```bash
+sudo apt purge <paket_adı>
+```
 
-
-> ```bash
-> sudo apt purge <paket_adı>
-> ```
->
-> → tüm sorunları sıfırlar.
-
-
+> → tüm sorunları sıfırlar.<br />
 
 
 🛑 Dikkat etmen gereken tek şey `purge` evdeki dosyaları silmez, sadece programın **sistem ayarlarını** siler.
 
 Güvenlidir ama şu paketleri `purge` etme:
 
-❌ **systemd**
-❌ **kali-desktop-***
-❌ **linux-image-*(kernel)**
-❌ **apt veya dpkg**
-❌ **python3 (sistem bileşeni)**
-
-
+❌ systemd<br />
+❌ kali-desktop-\*<br />
+❌ linux-image-\* (kernel)<br />
+❌ apt veya dpkg<br />
+❌ python3 (sistem bileşeni)<br />
 
 
 🧹 Kullanılmayan bağımlılıkları silmek için:
@@ -228,15 +220,12 @@ sudo apt autoremove
 > - Sistemi hafifletir
 
 
-
-
 🎯 Genelde önerilen sıralama:
 
 ```bash
 sudo apt remove --purge <paket_adı>
 sudo apt autoremove
 ```
-
 
 
 ⚡ `autopurge` kullanmak çoğu durumda güvenlidir ve `autoremove` + `purge` ile aynı işi tek adımda yapar.
