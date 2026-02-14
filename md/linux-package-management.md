@@ -97,7 +97,7 @@ Paketin **mevcut durumunu** gösteren durum kodları aşağıdaki gibidir:
 | **Kod** | **Açılımı**                   | **Anlamı**                                                   |
 | ------- | ----------------------------- | ------------------------------------------------------------ |
 | **ii**  | **i**nstall **i**nstalled     | Her şey yolunda. Paket başarıyla yüklendi ve sistemde kurulu. |
-| **rc**  | **r**emove **c**onf_files     | Paket silinmiş (**removed**) ancak yapılandırma (config) dosyaları hala sistemde duruyor. |
+| **rc**  | **r**emove **c**onf_files     | Paket silinmiş (**removed**) ancak yapılandırma (**config**) dosyaları hala sistemde duruyor. |
 | **un**  | **u**nknown **n**ot-installed | Paket sistem tarafından biliniyor ama hiç kurulmamış.        |
 | **hi**  | **h**old **i**nstalled        | Paket kurulu ancak güncellenmemesi için "beklemeye" (hold) alınmış. |
 
@@ -353,36 +353,41 @@ sudo apt autopurge
 apt policy <paket_adı>
 ```
 
-![](../images/apt-policy.png)
+<img src="../images/apt-policy.png" width="577" />
 
 > ✔ "Kurulu: 45.3-2"  ➜ Sistemde şu an yüklü olan sürüm<br />✔ "Aday: 45.3-2" ➜ Depoda yüklenebilecek sürüm de aynı (güncel versiyon)<br />✔ "500 http://http.kali.org/kali kali-rolling/main" ➜ Paket resmi kali deposundan geliyor (main deposunda, resmi, güvenilir yazılımlar)<br />✔ "100 /var/lib/dpkg/status" ➜ Bu, paketin sistemde kayıtlı olduğunu gösteriyor<br />✔ Sonuç olarak `gpaste-2` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
 
 ------
 
-`sudo apt policy gnome-shell-extension-gpaste`
+<img src="../images/apt-policy2.png" width="577" />
 
 
-> ✔ "Kurulu: (hiçbiri)"  ➜ Sistemde şu an yüklü değil<br />✔ "Aday: 45.3-2" ➜ Depoda yüklenebilir olan güncel sürüm)<br />✔ "http://http.kali.org/kali kali-rolling/main" ➜ Paket resmi kali deposundan geliyor (main deposunda, resmi, güvenilir yazılımlar)<br />✔ Sonuç olarak `gnome-shell-extension-gpaste` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
+> ✔ "Kurulu: (hiçbiri)"  ➜ Sistemde şu an yüklü değil<br />✔ "Aday: 1.10.2-1" ➜ Depoda yüklenebilir olan güncel sürüm<br />✔ "http://http.kali.org/kali kali-rolling/main" ➜ Paket resmi kali deposundan geliyor (main deposunda, resmi, güvenilir yazılımlar)<br />✔ Sonuç olarak `sqlmap` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
+
+---
+
+<img src="../images/apt-policy3.png" width="577" />
+
+> ✔ "Kurulu: (hiçbiri)"  ➜ Sistemde şu an yüklü değil<br />✔ "Aday: 1.10.2-1" ➜ Depoda yüklenebilir olan güncel sürüm<br />✔ "https://download.sublimetext.com apt/stable" ➜ Paket sublimetext.com deposundan geliyor (stabil güvenilir yazılımlar)<br />✔ Sonuç olarak `sublime-merge` ➜ Paketinin kaynağı ve sürümü tamamen temiz.
 
 ---
 
 ### Bozuk Bağımlılıkların Düzeltilmesi
 
-⬥ `apt --fix-broken install` | `apt-get install -f` : APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.
+⬧ `apt --fix-broken install` | `apt-get install -f` : APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.
 
-> `apt-get dist-upgrade` **: Komutu ile sistemde yüklü bulunan bir paketin bağımlılıkları arttıysa veya azaldıysa güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.**
+⬧ `apt-get dist-upgrade` : Komutu ile sistemde yüklü bulunan bir paketin **bağımlılıkları arttıysa veya azaldıysa** güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.
+>###### *Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.*
 >
-> ###### Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
-
----
+> ---
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
-▪ **İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler** `/var/cache/apt/archives/` **dizini altında tutuluyor. Bunları silmek için de yine** `apt` **aracını kullanabiliriz. Eğer** `apt-get clean` **ya da** `apt clean` **komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.**
+▪ İndirilen paketler daha sonra tekrar kullanılma ihtimaline karşı diskte tutuluyorlar. Yani biz bir aracı kurmak için komut girdiğimizde o aracın paketi tekrar kullanılmak üzere diskte tutuluyor. Bu paketler `/var/cache/apt/archives/` dizini altında tutuluyor. Bunları silmek için de `apt` aracını kullanabiliriz. Eğer `apt-get clean` ya da `apt clean` komutlarını kullanırsak bu paketlerin hepsi silinmiş olacak.
 
 ---
 
-▪ **Eğer indirmiş olduğumuz** `.deb` **uzantılı paketi** `apt` **aracı ile kurarsak, internet bağlantımız da olduğu için** `apt` **aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi** `apt` **aracı ile kurabiliyoruz.**
+▪ Eğer indirmiş olduğumuz `.deb` uzantılı paketi `apt` aracı ile kurarsak, internet bağlantımız da olduğu için `apt` aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi `apt` aracı ile kurabiliyoruz.
 
 ```bash
 apt install ~/Downloads/<paket_adı.deb>
@@ -390,11 +395,11 @@ apt install ~/Downloads/<paket_adı.deb>
 
 ---
 
-▪ `apt-cache depends <paket_adı>` **: Paketin çalışması için gerekli olan bağımlılıkları listeler.**
+▪ `apt-cache depends <paket_adı>` : Paketin çalışması için gerekli olan bağımlılıkları listeler.
 
 ---
 
-▪ `.deb` **dosyasını kurmadan bağımlılıkların sistemde eksik olup olmadığını kontrol etmek için:**
+▪ `.deb` dosyasını kurmadan bağımlılıkların sistemde eksik olup olmadığını kontrol etmek için:
 
 ```bash
 sudo apt-get install -f ./<paket_adı.deb> --dry-run

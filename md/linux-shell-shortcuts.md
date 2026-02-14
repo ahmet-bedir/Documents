@@ -32,11 +32,11 @@
 Bash kabuğunda etkileşimli kabuk kullanımını kolaylaştırmak için “**otomatik tamamlama**” özelliği bulunuyor. Bu özellik sayesinde komutların ve dosya klasör isimlerinin **tab** tuşuna basıldığında otomatik olarak kabuk tarafından tamamlanması mümkün oluyor.
 Örneğin, `pwd` komutunu yazarken yalnızca "pw" yazıp **iki kez tab** tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.
 
-![](../images/tab.gif)
+<img src="../images/tab.gif" width="650" />
 
 Otomatik tamlama sadece **komutlar** için değil **dosya** veya **dizinler** içinde geçerlidir. Dosyayı okumak için `cat` komutunu kullandığımda dosyanın adını hatırlamıyorsam, mevcut konumda kullanabileceğim dosyası listelemek için **iki kez tab** tuşuna basmam yeterli. Ayrıca dosya isminin birazını girip tekrar tab tuşuna bastığımda dosya ismi de otomatik olarak tamamlanacaktır.
 
-![](../images/tab2.gif)
+<img src="../images/tab2.gif" width="650" />
 
 #### Geçmiş Kısayolları
 
@@ -96,7 +96,7 @@ Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıy
 
 ###### Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, `Ctrl + T` tuşu ile dosya sistemi üzerinde gezinebiliriz.
 
-Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kullanablirsiniz.
+###### Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kullanablirsiniz.
 
 ---
 
@@ -133,7 +133,7 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 | `gg`              | Dosyanın başına git                                          |
 | `G`               | Dosyanın sonuna git                                          |
 
-###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştiriyoruz.
+###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştirebiliyoruz.
 
 ---
 
