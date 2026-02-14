@@ -405,37 +405,31 @@ apt install ~/Downloads/<paket_adı.deb>
 sudo apt-get install -f ./<paket_adı.deb> --dry-run
 ```
 
-> - `--dry-run` : **Kurulum yapmaz, sadece simülasyon yapar.**
-> - **Eksik bağımlılıkları listeler.**
+> - `--dry-run` : Kurulum yapmaz, sadece simülasyon yapar.
+> - Eksik bağımlılıkları listeler.
 
 ---
 
-▪ **Bağımlılık ağacını detaylı görüntülemek için aşağıdaki komut kullanılır.**
+▪ Bağımlılık ağacını detaylı görüntülemek için aşağıdaki komut kullanılır.
 
 ```bash
 debtree ./<paket_adı.deb>
 ```
 
-> `apt list` | `apt-cache pkgnames` **: Depodaki mevcut tüm paketleri listeler.**
-> `apt list --upgradable` **: Sistemdeki güncellenebilir paketleri listeler.**
+▪ `apt list` | `apt-cache pkgnames` : Depodaki mevcut tüm paketleri listeler.
 
-> `apt download <paket_adı>` **: İsmi verilen paketi repodan bulunduğun konuma kurmadan indirme işlemi yapar.**
+▪ `apt list --upgradable` : Sistemdeki güncellenebilir paketleri listeler.
 
-------
+▪ `apt download <paket_adı>` | `apt install <paket_adı> -d` : İsmi verilen paketi repodan, bulunduğun konuma **kurmadan sadece indirme** işlemi yapar.
 
-#### ✅ **`apt install <paket_adı> -d` komutu ne yapar?**
-
-Bu komut:
-
-#### ✔ **Paketi ve tüm bağımlılıklarını sadece indirir**
-
-- `.deb` dosyalarını **/var/cache/apt/archives/** klasörüne koyar
-- Fakat **kurulum yapmaz**
-- Sistemde hiçbir dosya değişmez
+> - **Paketi ve tüm bağımlılıklarını sadece indirir**
+> - `.deb` dosyalarını **/var/cache/apt/archives/** klasörüne koyar
+> - Fakat **kurulum yapmaz**
+> - Sistemde hiçbir dosya değişmez
 
 Yani **offline kurulum için paketleri önceden indirme komutudur**.
-
-------
+>
+> ------
 
 #### 📌 Kullanım örneği
 
@@ -472,7 +466,7 @@ Bu klasörde .deb dosyaları durur.
 ```bash
 sudo apt install golang-go
 ```
-
+    
 Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 
 #### 2) Direkt .deb ile kurarsın:
