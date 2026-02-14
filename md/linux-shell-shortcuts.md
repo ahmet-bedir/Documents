@@ -29,13 +29,12 @@
 
 #### Otomatik Tamamlama
 
-> Bash kabuğunda etkileşimli kabuk kullanımını kolaylaştırmak için “otomatik tamamlama” özelliği bulunuyor. Bu özellik sayesinde komutların ve dosya klasör isimlerinin tab tuşuna basıldığında otomatik olarak kabuk tarafından tamamlanması mümkün oluyor.
->
-> Örneğin, `pwd` komutunu yazarken yalnızca "pw" yazıp iki kez tab tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.
+Bash kabuğunda etkileşimli kabuk kullanımını kolaylaştırmak için “**otomatik tamamlama**” özelliği bulunuyor. Bu özellik sayesinde komutların ve dosya klasör isimlerinin **tab** tuşuna basıldığında otomatik olarak kabuk tarafından tamamlanması mümkün oluyor.
+Örneğin, `pwd` komutunu yazarken yalnızca "pw" yazıp **iki kez tab** tuşuna basarsak “pw” ile başlayan kullanılabilir komutların bir listesini alırız.
 
 ![](../images/tab.gif)
 
-> **Otomatik tamlama sadece komutlar için değil dosya veya dizinler içinde geçerlidir. Dosyayı okumak için** `cat` **komutunu kullandığımda dosyanın adını hatırlamıyorsam, mevcut konumda kullanabileceğim dosyası listelemek için iki kez tab tuşuna basmam yeterli. Ayrıca dosya isminin birazını girip tekrar tab tuşuna bastığımda dosya ismi de otomatik olarak tamamlanacaktır.**
+Otomatik tamlama sadece **komutlar** için değil **dosya** veya **dizinler** içinde geçerlidir. Dosyayı okumak için `cat` komutunu kullandığımda dosyanın adını hatırlamıyorsam, mevcut konumda kullanabileceğim dosyası listelemek için **iki kez tab** tuşuna basmam yeterli. Ayrıca dosya isminin birazını girip tekrar tab tuşuna bastığımda dosya ismi de otomatik olarak tamamlanacaktır.
 
 ![](../images/tab2.gif)
 
@@ -44,27 +43,29 @@
 | Kısayol     | Açıklama                                          |
 | ----------- | ------------------------------------------------- |
 | `history`   | Geçmişde girilen bütün komutların listesini verir |
-| `history 5` | Geçmişde girilen son beş komutun listesini verir  |
+| `history 5` | Geçmi   şde girilen son beş komutun listesini verir  |
 | `!!`        | En son girilen komutu çağırır                     |
 | `!SIRA-NO`  | Sıra numarası verilen komutu geçmişten çağırır    |
 | `Ctrl + R`  | Geçmiş listesinde arama yapar                     |
 | `Ctrl + G`  | Geçmiş listesi aramasını sonlandırır              |
 
 > Geçmiş listesi her bir kullanıcının kendi ev dizininde `.bash_history` isimli dosyada tutuluyor.  Boşluk bırakılarak girilen komutlar bu listeye dahil edilmez.
+>
+> ---
 
 #### Alias (Takma İsim)
 
-> Uzun ve sık kullanılan komutları tek bir kısa takma isimle tanımlayıp, bu takma isim üzerinden o komuta kolayca ulaşabiliyoruz.
+Uzun ve sık kullanılan komutları tek bir kısa takma isimle tanımlayıp, bu takma isim üzerinden o komuta kolayca ulaşabiliyoruz.
 
 ```bash
 alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 ```
 
-> **Konsola** `bas` **yazdığımda buradaki** `echo` **komutu çalışıp konsola çıktıyı bastıracak. Tanımlamış olduğumuz takma isim sadece geçerli konsol içindir. Sistemi yeniden başlattığımızdada bu takma isim geçersizdir. Örneğin kendi kullanıcı hesabımdaki tüm etkileşimli kabuklarda bu takma isim geçerli olsun istersem, kendi ev dizinimdeki** `.bashrc` **dosyasına bu takma ismi eklemem gerekiyor. Benzer şekilde tüm kullanıcılarda geçerli olması için de** `/etc/bash.bashrc` **ya da** `/etc/bashrc` **dosyalarından hangisi mevcutsa ona ekleyip, tanımladığım takma isimin tüm kullanıcılar tarafından ortak şekilde kullanılabilmesini sağlayabiliriz.**
+Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıyı bastıracak. Tanımlamış olduğumuz takma isim sadece geçerli konsol içindir. Sistemi yeniden başlattığımızdada bu takma isim geçersizdir. Örneğin kendi kullanıcı hesabımdaki tüm etkileşimli kabuklarda bu takma isim geçerli olsun istersem, kendi ev dizinimdeki `.bashrc` dosyasına bu takma ismi eklemem gerekiyor. Benzer şekilde tüm kullanıcılarda geçerli olması için de `/etc/bash.bashrc` ya da `/etc/bashrc` dosyalarından hangisi mevcutsa ona ekleyip, tanımladığım takma isimin tüm kullanıcılar tarafından ortak şekilde kullanılabilmesini sağlayabiliriz.
 
-> **Mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek** `alias` **komutunu kullanmamız yeterli.**
+> Mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek `alias` komutunu kullanmamız yeterli.
 
-> **Mevcut kabuktan bir takma isimi kaldırmak isterseniz** `unalias` **komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.**
+> Mevcut kabuktan bir takma isimi kaldırmak isterseniz `unalias` komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.
 
 ---
 
@@ -101,7 +102,7 @@ Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kul
 
 ### 🧠 Vim / Vi Kısayolları
 
-> **Not : Vim’de iki temel mod vardır:**
+> **Vim’de iki temel mod vardır:**
 >
 > - **Normal mod:** Komutlar için
 > - **Insert mod:** Yazı yazmak için (`i` ile girilir, `Esc` ile çıkılır)
