@@ -477,7 +477,7 @@ sudo apt install ./golang-go_*.deb
 
 ------
 
-#### 🚫 **Ne yapmaz?**
+#### 🚫 **Ne yapmaz?
 
 `-d` şunları yapmaz:
 
