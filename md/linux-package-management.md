@@ -431,43 +431,16 @@ Yani **offline kurulum için paketleri önceden indirme komutudur**.
 >
 > ------
 
-#### 📌 Kullanım örneği
-
-```bash
-sudo apt install golang-go -d
-```
-
-Bu:
-
-- `golang-go` paketini
-- Bağımlılıklarını
-- Gerekirse ekstra önerilen paketleri
-
-sadece indirir.
-
-------
-
-#### 📁 Her şey şu klasöre gider:
-
-```bash
-/var/cache/apt/archives/
-```
-
-Bu klasörde .deb dosyaları durur.
-
-------
-
-#### ▶️ **Peki sonra nasıl kurarım?**
-
-İki yol var:
-
-#### 1) İnternet yokken apt kurar:
+İnternet yokken apt kurar:
 
 ```bash
 sudo apt install golang-go
 ```
     
 Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
+```
+
+Bu klasörde .deb dosyaları du
 
 #### 2) Direkt .deb ile kurarsın:
 
