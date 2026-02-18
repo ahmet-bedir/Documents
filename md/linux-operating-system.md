@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)  `pwd`  `cd`  `ls`  `touch`  `file`  `cat`  `less`  `history`  `cp`  `mv`  `mkdir`  `rm`  `chattr`  `find`  `locate`  `help`  `man`  `whatis`  `alias`
+▸ [**Komut Satırı**](#komut_satiri)
 
 ▸ [**Metin İşlemleri**](#metin)  `stdout`  `stdin`  `stderr`  `pipe`  `tee`  `env`  `cut`  `paste`  `head`  `tail`  `expand`  `unexpand`  `wc`  `nl`
 
