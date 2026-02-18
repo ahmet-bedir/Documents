@@ -430,56 +430,25 @@ debtree ./<paket_adı.deb>
 
 Yani **offline kurulum için paketleri önceden indirme komutudur**.
 >
+> - İnternet yokken apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
+
 > ------
-
-İnternet yokken apt kur
-
-```
-
-Bu klasörde .deb dosyaları du
-
-#### 2) Direkt .deb ile kurarsın:
-
-```bash
-sudo apt install ./golang-go_*.deb
-```
-
-------
-
-#### 🚫 **Ne yapmaz?
-
-`-d` şunları yapmaz:
-
-- Paketi kurmaz
-- Config dosyası yazmaz
-- Hizmet başlatmaz
-- Sisteme hiçbir şey eklemez
-
-------
-
-#### 🎯 Sonuç
-
-**`apt install <paket_adı> -d` = “Paketi depodan indir ama kurmaz.”**
-
----
-
 
 ### Kaynak Listesi
 
-> **APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo adreslerini biliyor olması gerekir. İşte bu repo adresleri sistem üzerindeki “sources.list” yani “kaynak listesi” dosyasında belirtiliyor. APT aracı bu kaynak listesine bakıp sorgulama yapacağı repo adreslerini öğreniyor.**
+APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo adreslerini biliyor olması gerekir. İşte bu repo adresleri sistem üzerindeki “**sources.list**” yani “**kaynak listesi**” dosyasında belirtiliyor. APT aracı bu kaynak listesine bakıp sorgulama yapacağı repo adreslerini öğreniyor.
 
-> **Debian tabanlı dağıtımlarda kaynak listesi** `/etc/apt` **dizini altındaki** `sources.list` **isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu** `sources.list` **dosyası içinde tanımlanmıştır.**
+Debian tabanlı dağıtımlarda kaynak listesi `/etc/apt` dizini altındaki `sources.list` isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu `sources.list` dosyası içinde tanımlanmıştır.
 
 ### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları
 
-### ✅ **LOCAL REPO (dpkg-scanpackages)**
+#### ✅ LOCAL REPO (dpkg-scanpackages)
 
-Bu yöntem APT’nin anlayacağı basit bir depo oluşturur.
-İstediğin `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
+Bu yöntem APT’nin anlayacağı basit bir depo oluşturur. `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
 
 ------
 
-#### ➤ **1. Klasör oluştur**
+#### ➤ 1.Klasör oluştur
 
 ```bash
 mkdir -p ~/localrepo
