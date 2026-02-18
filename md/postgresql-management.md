@@ -14,35 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)
-
-▸ [**DDL (Data Definition Language)**](#ddl)
-
-▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)
-
-▸ [**Veri Türleri**](#veri-turleri)
-
-▸ [**Tablo İşlemleri**](#tablo)
-
-▸ [**Veri İşlemleri**](#veri)
-
-▸ [**Where Kullanımı**](#where)
-
-▸ [**Order By Kullanımı**](#order-by)
-
-▸ [**Aggregate Fonksiyonları**](#aggregate)
-
-▸ [**İndex İşlemleri**](#index)
-
-▸ [**Referans İşlemleri**](#referans)
-
-▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)
-
-▸ [**Metin (String) Fonksiyonları**](#metin)
-
-▸ [**Transaction İşlemleri**](#transaction)
-
-▸ [**Kullanıcı Yönetimi**](#kullanici)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
