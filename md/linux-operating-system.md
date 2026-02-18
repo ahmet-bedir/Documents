@@ -14,12 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)
-▸ [**Metin İşlemleri**](#metin)
-▸ [**Gelişmiş Metin İşlemleri**](#metin2)
-▸ [**Kullanıcı Yönetimi**](#kullanici)
-▸ [**İzinler**](#izinler)
-▸ 
+▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ 
 
 
 ---

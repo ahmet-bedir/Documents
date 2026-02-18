@@ -3,7 +3,7 @@
 <p/>
 
 
-# Paket Yönetimi
+# Linux Paket Yönetimi
 
 ###### Son güncelleme : 02/2026
 
@@ -253,11 +253,11 @@ sudo apt autopurge
 
 Yani:
 
-✓ Artık kullanılmayan bağımlılıkları kaldırır
+> ✓ Artık kullanılmayan bağımlılıkları kaldırır
 
-✓ Onların config dosyalarını da siler
+> ✓ Onların config dosyalarını da siler
 
-✓ `autopurge` yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı `autoremove` gibi güvenlidir.
+> ✓ `autopurge` yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı `autoremove` gibi güvenlidir.
 
 🌿 Güvenli tercih
 
@@ -448,7 +448,7 @@ Bu yöntem APT’nin anlayacağı basit bir depo oluşturur. `.deb` dosyaların�
 
 ------
 
-#### ➤ 1.Klasör oluştur
+#### ➤ 1. Klasör oluştur
 
 ```bash
 mkdir -p ~/localrepo
@@ -530,14 +530,14 @@ APT artık `.deb` dosyasını **internet yerine yerel repo’dan** alır.
 
 #### ⛳ EN ÖNEMLİ NOT
 
-Her yeni .deb eklediğinde tekrar şu komutu çalıştırırsın:
+Her yeni `.deb` eklediğinde tekrar şu komutu çalıştırırsın:
 
 ```bash
 cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
-APT listeyi günceller ve yeni paketi görür.
+APT listeyi günceller ve yeni paketler görünür.
 
 ---
 
