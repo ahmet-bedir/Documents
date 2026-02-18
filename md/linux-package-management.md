@@ -426,18 +426,14 @@ debtree ./<paket_adı.deb>
 > - `.deb` dosyalarını **/var/cache/apt/archives/** klasörüne koyar
 > - Fakat **kurulum yapmaz**
 > - Sistemde hiçbir dosya değişmez
+> - Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 
 Yani **offline kurulum için paketleri önceden indirme komutudur**.
 >
 > ------
 
-İnternet yokken apt kurar:
+İnternet yokken apt kur
 
-```bash
-sudo apt install golang-go
-```
-    
-Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 ```
 
 Bu klasörde .deb dosyaları du
