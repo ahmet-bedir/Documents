@@ -744,25 +744,25 @@ Bu yol, paketi bulmak için ana girdidir.
 
 ###### Dosya Hangi Pakete Ait?
 
-```
+```bash
 dpkg -S /usr/sbin/nginx
 ```
 
 Çıktı:
 
-```
+```bash
 nginx-core: /usr/sbin/nginx
 ```
 
 ##### Paket Kurulu mu?
 
-```
+```bash
 dpkg -l | grep nginx
 ```
 
 ##### Paket Bilgisi
 
-```
+```bash
 apt show nginx
 ```
 
@@ -770,13 +770,13 @@ apt show nginx
 
 ##### Red Hat / CentOS / Fedora (dnf / rpm)
 
-```
+```bash
 rpm -qf /usr/sbin/nginx
 ```
 
 Paket detayları:
 
-```
+```bash
 rpm -qi nginx 
 ```
 

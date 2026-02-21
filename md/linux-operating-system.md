@@ -1387,13 +1387,13 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ### stdout (Standard Out)
 
-Konsola girilen komutların davranışlarını **girdi/çıktı akışları (I/O)** inceleyerek devam edelim:
+Konsola girilen komutların davranışlarını **girdi/çıktı akışlarını (I/O)** yönetme.
 
 ```bash
 $ echo Selam Linux > dosya.txt
 ```
 
-Bu komutu çalıştırdığınız dizine gidin ve orada `dosya.txt` adında bir dosya göreceksiniz. Dosyayı açtığınızda içinde "Selam Linux" yazısını göreceksiniz. Bu komutu incelediğimizde:
+Bu komutu çalıştırdığınız dizine gidin ve orada `dosya.txt` adında bir dosya oluşacaktır. Dosyayı açtığınızda içinde "*Selam Linux*" yazısını göreceksiniz. Bu komutu incelediğimizde:
 
 **echo Komutu**
 
@@ -1401,62 +1401,57 @@ Bu komutu çalıştırdığınız dizine gidin ve orada `dosya.txt` adında bir 
 $ echo Selam Linux
 ```
 
-Bu komutun "Selam Linux" yazısını ekrana yazdırdığını biliyoruz. Peki nasıl oluyor? İşlemler, giriş almak ve çıktı döndürmek için **girdi/çıktı akışları (I/O)** kullanır. Varsayılan olarak, `echo` komutu klavyeden **standart girdi (stdin)** alır ve **standart çıktı (stdout)** olarak ekrana yazdırır. Bu nedenle, `echo Selam Linux` yazdığınızda ekranda "Selam Linux" görürsünüz.
+Bu komutun "*Selam Linux*" yazısını ekrana yazdırdırır. İşlemler, giriş almak ve çıktı döndürmek için **girdi/çıktı akışları (I/O)** kullanır. Varsayılan olarak, `echo` komutu klavyeden **standart girdi (stdin)** alır ve **standart çıktı (stdout)** olarak ekrana yazdırır. Bu nedenle, `echo Selam Linux` yazdığınızda ekranda "*Selam Linux*" görürsünüz.
 
 **Yönlendirme Operatörü**
 
 Ancak I/O yönlendirme, bize daha fazla esneklik sağlayarak bu varsayılan davranışı değiştirmemize izin verir.
 
-`>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Selam Linux` komutunun çıktısını ekrana yazdırmak yerine bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
-
-**Standart Çıktı Yönlendirme**
-
-Yani standart çıktı yönlendirme böyle çalışır!
+`>` sembolü, standart çıktının nereye gideceğini değiştirmemizi sağlayan bir **yönlendirme operatörüdür**. `echo Selam Linux` komutunun çıktısını varsayılan olarak ekrana yazdırmak yerine, bir dosyaya göndermemizi sağlar. Dosya zaten yoksa, bizim için oluşturur. Ancak, dosya zaten varsa, üzerine yazar (kullandığınız shell'e bağlı olarak bunu önlemek için bir shell işareti ekleyebilirsiniz).
 
 **Dosyaya Ekleme**
 
-Peki ya `dosya.txt` dosyasının üzerine yazmak istemezsek `>>` operatörü kullanılır.
+Veriyi `dosya.txt` dosyasının üzerine yazmak istemezsek `>>` operatörü kullanılır.
 
 ```bash
 $ echo Selam Linux >> dosya.txt
 ```
 
-Bu komut, "Selam Linux" yazısını `dosya.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
+Bu komut, "*Selam Linux*" yazısını `dosya.txt` dosyasının sonuna ekler. Dosya zaten yoksa, tıpkı `>` yönlendiricisi gibi bizim için oluşturur.
 
 ---
 
 ### stdin (Standard In)
 
-Standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. Klavyeden gelen veriler varsayılan standart giriş kaynağı olsa da, dosyaları, diğer işlemlerin çıktılarını ve terminali de stdin olarak kullanabiliriz.
+Standart giriş (stdin) akışlarını da farklı kaynaklardan kullanabiliriz. Klavyeden gelen veriler **varsayılan standart giriş** kaynağı olsa da, **dosyaları, diğer işlemlerin çıktılarını ve terminali** de stdin olarak kullanabiliriz.
 
 **Örnek: stdin Yönlendirme ile Dosya Kopyalama**
 
-Önceki derste oluşturduğumuz `dosya.txt` dosyasını kullanalım. Bu dosyanın içinde "Selam Linux" yazısı olduğunu hatırlayın.
+Önceki bölümde oluşturduğumuz `dosya.txt` dosyasını kullanalım. Bu dosyanın içinde "*Selam Linux*" yazısı bulunuyordu.
 
 ```bash
 $ cat < dosya.txt > dosya2.txt
 ```
 
-Standart çıktı yönlendirmede `>` sembolünü nasıl kullandık, aynı şekilde standart giriş yönlendirmede de `<` sembolünü kullanıyoruz.
+Standart çıktı yönlendirmede `>` sembolünü kullandık, aynı şekilde standart giriş yönlendirmede de `<` sembolünü kullanıyoruz.
 
-Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş (stdin) haline gelir. Bu örnekte, `dosya.txt` dosyasını standart giriş olarak kullanmak için yönlendirdik. Daha sonra, `cat dosya.txt` komutunun çıktısı olan "Selam Linux" metni, `dosya2.txt` adında yeni bir dosyaya yönlendirildi.
+Normalde `cat` komutunda, bir dosya ismi verirsiniz ve bu dosya standart giriş (stdin) haline gelir. Bu örnekte, `dosya.txt` dosyasını standart giriş olarak kullanmak için yönlendirdik. Daha sonra, `cat dosya.txt` komutunun çıktısı olan "*Selam Linux*" metni, `dosya2.txt` adında yeni bir dosyaya yönlendirildi.
 
 **Açıklama:**
 
 * `cat` komutu, varsayılan olarak standart girişten (stdin) okuyup standart çıktıyı (stdout) ekrana yazar.
 * `< dosya.txt` kısmı, `dosya.txt` dosyasının içeriğini standart giriş akışına yönlendirir. Yani, `cat` komutu sanki klavyeden "Selam Linux" yazmışız gibi davranır.
-* `> dosya2.txt` kısmı ise standart çıktı akışını `dosya2.txt` dosyasına yönlendirir. Böylece, `cat` komutunun "Selam Linux" çıktısı bu dosyaya yazılır.
+* `> dosya2.txt` kısmı ise standart çıktı akışını `dosya2.txt` dosyasına yönlendirir. Böylece, `cat` komutunun "*Selam Linux*" çıktısı bu dosyaya yazılır.
 
 **Sonuç:**
 
-Bu komutu çalıştırdığınızda, `dosya2.txt` adında yeni bir dosya oluşur ve içinde "Selam Linux" yazısı yer alır. Özetle, bu komut `dosya.txt` dosyasının içeriğini `dosya2.txt` dosyasına kopyalamış olur.
+Bu komutu çalıştırdığınızda, `dosya2.txt` adında yeni bir dosya oluşur ve içinde "*Selam Linux* yazısı yer alır. Özetle, bu komut `dosya.txt` dosyasının içeriğini `dosya2.txt` dosyasına kopyalamış olur.
 
 ----
 
-
 ### stderr (Standard Error)
 
-Şimdi biraz farklı bir şey deneyelim. Sisteminizde olmayan bir dizinin içeriğini listelemeye çalışalım ve çıktıyı yine `dosya.txt` dosyasına yönlendirelim.
+Sisteminizde olmayan bir dizinin içeriğini listelemeye çalışalım ve çıktıyı `dosya.txt` dosyasına yönlendirelim.
 
 ```bash
 $ ls /fake/directory > dosya.txt
