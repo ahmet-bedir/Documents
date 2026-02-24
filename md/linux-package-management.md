@@ -431,7 +431,7 @@ debtree ./<paket_adı.deb>
 
 Yani **offline kurulum** için paketleri önceden indirme komutudur.
 >
-> - İnternet yokken apt, “**önceden indirilmiş**” diyerek yeniden indirmez.
+>- İnternet yokken apt, “**önceden indirilmiş**” diyerek yeniden indirmez.
 
 > ------
 
@@ -483,7 +483,7 @@ dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
 Sonuç:
- `~/localrepo/` içinde **Packages.gz** oluşur → APT’nin görmek istediği şey.
+ › `~/localrepo/` içinde **Packages.gz** oluşur → APT’nin görmek istediği şey.
 
 ------
 
@@ -513,7 +513,7 @@ Kaydet.
 sudo apt update
 ```
 
-Ve artık sistem senin klasörü **depo gibi** görüyor.
+› Ve artık sistem senin klasörü **depo gibi** görüyor.
 
 ------
 
@@ -538,7 +538,7 @@ cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
-APT listeyi günceller ve yeni paketler görünür.
+› APT listeyi günceller ve yeni paketler görünür.
 
 ---
 
