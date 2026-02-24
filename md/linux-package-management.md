@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="../images/linux-package.png" width="537" />
+  <img src="../images/linux-package.png" width="527" />
 <p/>
+
 
 
 
@@ -424,14 +425,13 @@ debtree ./<paket_adı.deb>
 ▪ `apt download <paket_adı>` | `apt install <paket_adı> -d` : İsmi verilen paketi repodan, bulunduğun konuma **kurmadan sadece indirme** işlemi yapar.
 
 > - **Paketi ve tüm bağımlılıklarını sadece indirir**
-> - `.deb` dosyalarını **/var/cache/apt/archives/** klasörüne koyar
+> - `.deb` dosyalarını `/var/cache/apt/archives/` klasörüne koyar
 > - Fakat **kurulum yapmaz**
 > - Sistemde hiçbir dosya değişmez
-> - Apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
 
-Yani **offline kurulum için paketleri önceden indirme komutudur**.
+Yani **offline kurulum** için paketleri önceden indirme komutudur.
 >
-> - İnternet yokken apt, “zaten önceden indirilmiş” diyerek yeniden indirmez.
+> - İnternet yokken apt, “**önceden indirilmiş**” diyerek yeniden indirmez.
 
 > ------
 
@@ -529,7 +529,7 @@ APT artık `.deb` dosyasını **internet yerine yerel repo’dan** alır.
 
 ------
 
-#### ⛳ EN ÖNEMLİ NOT
+#### ⛳ NOT
 
 Her yeni `.deb` eklediğinde tekrar şu komutu çalıştırırsın:
 
@@ -717,19 +717,19 @@ sudo apt remove <paket_adı>
 
 #### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
 
-##### Programın Yolunu Bulma
+**Programın Yolunu Bulma**
 
 ```bash
 which program_adı
 ```
 
-veya
+**veya**
 
 ```bash
 whereis program_adı
 ```
 
-Örnek:
+**Örnek:**
 
 ```bash
 which nginx
@@ -740,27 +740,27 @@ Bu yol, paketi bulmak için ana girdidir.
 
 ------
 
-##### Debian / Ubuntu / Kali (apt / dpkg)
+#### Debian / Ubuntu / Kali (apt / dpkg)
 
-###### Dosya Hangi Pakete Ait?
+**Dosya Hangi Pakete Ait?***
 
 ```bash
 dpkg -S /usr/sbin/nginx
 ```
 
-Çıktı:
+**Çıktı:**
 
 ```bash
 nginx-core: /usr/sbin/nginx
 ```
 
-##### Paket Kurulu mu?
+**Paket Kurulu mu?**
 
 ```bash
 dpkg -l | grep nginx
 ```
 
-##### Paket Bilgisi
+**Paket Bilgisi**
 
 ```bash
 apt show nginx
@@ -768,13 +768,13 @@ apt show nginx
 
 ------
 
-##### Red Hat / CentOS / Fedora (dnf / rpm)
+#### Red Hat / CentOS / Fedora (dnf / rpm)
 
 ```bash
 rpm -qf /usr/sbin/nginx
 ```
 
-Paket detayları:
+**Paket detayları:**
 
 ```bash
 rpm -qi nginx 
