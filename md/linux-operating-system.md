@@ -1475,21 +1475,21 @@ $ ls /fake/directory 2> hata.txt
 
 Bu komutta, standart hata mesajlarını `hata.txt` dosyasına yazdırmış olduk.
 
-Peki hem standart hata hem de standart çıktıyı `hata.txt` dosyasına yazdırmak istersek ne yapabiliriz? Bunu da dosya tanımlayıcıları ile yapabiliriz:
+Peki hem **standart hata** hem de **standart çıktıyı** `hata.txt` dosyasına yazdırmak istersek dosya tanımlayıcıları ile yapabiliriz:
 
 ```bash
 $ ls /fake/directory > hata.txt 2>&1
 ```
 
-Bu komut, `ls /fake/directory` komutunun sonuçlarını `hata.txt` dosyasına gönderir ve ardından 2>&1 ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. 2>&1, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, 2>&1 de standart hatayı bir dosyaya gönderir. Yani `hata.txt` dosyasını açarsanız, hem standart hata hem de standart çıktı mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
+Bu komut, `ls /fake/directory` komutunun sonuçlarını `hata.txt` dosyasına gönderir ve ardından `2>&1` ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. `2>&1`, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, `2>&1` de standart hatayı bir dosyaya gönderir. Yani `hata.txt` dosyasını açarsanız, **hem standart hata, hem de standart çıktı** mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
 
-Hem standart hata hem de standart çıktıyı bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
+**Hem standart hata hem de standart çıktıyı** bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
 
 ```bash
 $ ls /fake/directory &> hata.txt
 ```
 
-Peki tüm bu gereksiz hata mesajlarından kurtulmak ve standart hata mesajlarını tamamen yok saymak istersek ne yapabiliriz? Çıktıyı `/dev/null` adlı özel bir dosyaya yönlendirebilirsiniz. Bu dosya, herhangi bir girişi yok sayar.
+- Hata mesajlarından kurtulmak ve standart hata mesajlarını tamamen yok saymak istersek çıktıyı `/dev/null` adlı özel bir dosyaya yönlendirebilirsiniz. Bu dosya, herhangi bir girişi yok sayar.
 
 ```bash
 $ ls /fake/directory 2> /dev/null
