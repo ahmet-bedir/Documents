@@ -2251,7 +2251,7 @@ Regex’in temel karakterleri:
 
 `|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
 
-Örnek metnimiz olarak şunu ele alalım:
+Örnek metnimiz:
 
 ```bash
 alican deniz kabukları satıyor
@@ -2259,7 +2259,7 @@ alican deniz kabukları satıyor
 sahile göre
 ```
 
-1. ^ ile Satırın Başı
+`^` ile Satırın Başı
 
 ```bash
 ^sahile
@@ -2267,7 +2267,7 @@ sahile göre
 ifadesi sadece "sahile göre" satırını seçer.
 ```
 
-2. $ ile Satırın Sonu
+`$` ile Satırın Sonu
 
 ```bash
 sahile$
@@ -2275,7 +2275,7 @@ sahile$
 ifadesi sadece "sahile göre" satırını seçer.
 ```
 
-3. . ile Tek Karakter Eşleşmesi
+`.` ile Tek Karakter Eşleşmesi
 
 ```bash
 s.
@@ -2283,7 +2283,7 @@ s.
 ifadesi "sahile" ile eşleşir.
 ```
 
-4. \[] ile Köşeli Ayraç Kullanımı
+`\[]` ile Köşeli Ayraç Kullanımı
 
 Köşeli ayraçlar, içinde belirtilen karakterlerden herhangi biriyle eşleşmeyi sağlar.
 
@@ -2293,7 +2293,7 @@ k[ıaö]z
 Bu ifade "kız", "kaz" ve "köz" ile eşleşir.
 ```
 
-Daha önce gördüğümüz ^ sembolü, köşeli ayraç içinde kullanıldığında ayraç içindeki karakterler HARİÇ herhangi bir karakteri temsil eder.
+Daha önce gördüğümüz `^`` sembolü, köşeli ayraç içinde kullanıldığında ayraç içindeki karakterler **hariç** herhangi bir karakteri temsil eder.
 
 ```bash
 k[^ı]z
@@ -2309,21 +2309,19 @@ k[a-c]z
 Bu ifade "kaz", "kbz" ve "kcz" gibi desenlerle eşleşir.
 ```
 
-Dikkatli olun, köşeli ayraçlar büyük/küçük harfe duyarlıdır:
+Köşeli ayraçlar büyük/küçük harfe duyarlıdır:
 
 ```bash
 k[A-C]z
 
-Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir ancak "kaz", "kbz" ve "kcz" ile eşleşmez.
+Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir, ancak "kaz", "kbz" ve "kcz" ile eşleşmez.
 ```
-
-İşte bazı temel düzenli ifade örnekleri böyledir.
 
 ---
 
 ### Emacs
 
-Emacs, son derece güçlü bir metin editörü arayan kullanıcılar içindir. Tüm kod düzenlemelerinizi, dosya işlemlerinizi vb. her şeyi emacs içinde yapabilirsiniz. Vim'e göre biraz daha yavaş açılır ve öğrenme eğrisi biraz daha diktir, ancak son derece genişletilebilir güçlü bir editör istiyorsanız, emacs tam size göre. Genişletilebilir derken, işlevselliğini genişleten emacs için script'ler yazabileceğinizi kastediyorum.
+Emacs, son derece güçlü bir metin editörü arayan kullanıcılar içindir. Tüm kod düzenlemelerinizi, dosya işlemlerinizi vb. her şeyi `emacs` içinde yapabilirsiniz. Vim'e göre biraz daha yavaş açılır ve öğrenme eğrisi biraz daha diktir, ancak son derece genişletilebilir güçlü bir editör istiyorsanız, `emacs` tam size göre. Genişletilebilir derken, işlevselliğini genişleten `emacs` için script'ler yazabileceğinizi kastediyorum.
 
 Emacs'ı başlatmak için:
 
@@ -2337,7 +2335,7 @@ Emacs'ta metinlerinizin bulunduğu yer tamponlardır. Yani bir dosya açarsanız
 
 **Emacs Dosyaları Manipüle Etme**
 
-Emacs dokümantasyonunun çoğunda (hatta hepsinde) **C-\[harf]** sözdizimini göreceksiniz. Bu sadece **Ctrl** tuşuna basıp ardından belirtilen **harf**e basmak anlamına gelir, ancak kısaltma amacıyla **Ctrl** tuşuna **C** diyeceğiz. Eğer **M-\[harf]** gibi bir sözdizimi görürseniz, bu genellikle **Alt** tuşu olan **Meta** tuşunu kullanmanız gerektiğini belirtir.
+Emacs dokümantasyonlarında **C-\[harf]** sözdizimini göreceksiniz. Bu sadece **Ctrl** tuşuna basıp ardından belirtilen **harf**e basmak anlamına gelir, ancak kısaltma amacıyla **Ctrl** tuşuna **C** diyeceğiz. Eğer **M-\[harf]** gibi bir sözdizimi görürseniz, bu genellikle **Alt** tuşu olan **Meta** tuşunu kullanmanız gerektiğini belirtir.
 
 **Dosya Kaydetme**
 
@@ -2361,7 +2359,7 @@ Bu sizi açmak için bir dosya adı yazmaya yönlendirecektir. Zaten var olan bi
 
 **Emacs Buffer Navigasyonu**
 
-Tamponlar (veya ziyaret ettiğiniz dosyalar) arasında gezinmek için aşağıdaki komutları kullanın:
+Tamponlar (veya ziyaret ettiğiniz dosyalar) arasında gezinmek için aşağıdaki komutlar kullanılır:
 
 **Buffer Değiştirme**
 
@@ -2385,7 +2383,7 @@ C-x k
 C-x 2
 ```
 
-Bu, tek bir ekran üzerinde birden fazla tampon görmenizi sağlar. Bu tamponlar arasında gezinmek için: **C-x o** kullanın.
+Bu, tek bir ekran üzerinde birden fazla tampon görmenizi sağlar. Bu tamponlar arasında gezinmek için: **C-x o** kullanılır.
 
 **Tek Bir Buffer Ekran Olarak Ayarlama**
 
@@ -2393,9 +2391,7 @@ Bu, tek bir ekran üzerinde birden fazla tampon görmenizi sağlar. Bu tamponlar
 C-x 1
 ```
 
-Eğer terminal multiplexer ( ekran ve tmux gibi ) kullandıysanız, tampon komutları size oldukça tanıdık gelecektir.
-
-**Emacs Düzenleme**
+Eğer terminal multiplexer (ekran ve tmux gibi) kullandıysanız, tampon komutları size oldukça tanıdık gelecektir.
 
 **Metin Gezinme**
 
