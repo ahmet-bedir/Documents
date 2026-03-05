@@ -1483,7 +1483,7 @@ $ ls /fake/directory > hata.txt 2>&1
 
 Bu komut, `ls /fake/directory` komutunun sonuçlarını `hata.txt` dosyasına gönderir ve ardından `2>&1` ile standart hatayı standart çıktının yönlendirildiği yere yönlendirir. İşlem sırası burada önemlidir. `2>&1`, standart hatayı standart çıktının işaret ettiği yere gönderir. Bu durumda standart çıktı bir dosyaya işaret ettiğinden, `2>&1` de standart hatayı bir dosyaya gönderir. Yani `hata.txt` dosyasını açarsanız, **hem standart hata, hem de standart çıktı** mesajlarını görmelisiniz. Yukarıdaki komut yalnızca standart hata çıktısı ürettiği için her ikisini de görmeyebilirsiniz.
 
-**Hem standart hata hem de standart çıktıyı** bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
+**Hem standart hata, hem de standart çıktıyı** bir dosyaya yönlendirmenin daha kısa bir yolu vardır:
 
 ```bash
 $ ls /fake/directory &> hata.txt
@@ -1641,7 +1641,7 @@ Bu bilgiler ortam değişkenlerinizden geliyor. Tüm ortam değişkenlerini gör
 $ env
 ```
 
-Bu komut, şu anda ayarladığınız ortam değişkenleri hakkında bir sürü bilgi verir. Bu değişkenler, kabuğun ve diğer işlemlerin kullanabileceği faydalı bilgiler içerir.
+- Bu komut, şu anda ayarladığınız ortam değişkenleri hakkında bir sürü bilgi verir. Bu değişkenler, kabuğun ve diğer işlemlerin kullanabileceği faydalı bilgiler içerir.
 
 Örneğin:
 
@@ -1666,9 +1666,9 @@ $ echo $PATH
 
 Bu komut, satırların istenilen bölümlerinin kesilmesini sağlıyor.
 
-Öncelikkle `cut` aracı da elindeki verilerin hangi parçalardan oluştuğunu anlamak için bir “delimiter” yani “sınırlayıcı” karakter belirtmemizi istiyor. Bunun için `cut` komutundan sonra `-d` seçeneğinin hemen ardından sınırlayıcı karakteri yazmamız gerek.
+Öncelikle `cut` aracı da elindeki verilerin hangi parçalardan oluştuğunu anlamak için bir “**delimiter**” yani “**sınırlayıcı**” karakter belirtmemizi istiyor. Bunun için `cut` komutundan sonra `-d` seçeneğinin hemen ardından sınırlayıcı karakteri yazmamız gerek.
 
-Örneğin benim dosyamda boşluk karakteri sütunları birbirinden ayırdığı için ben tırnak için `“ “` boşluk karakterinin sınırlayıcı olduğunu belirteceğim. Şimdi son olarak hangi sütunların, yani aslında hangi bölümlerin kalmasını istiyorsak, bunu “fields” yani “alanlar-bölümler” seçeneğinin kısalması olan `-f` seçeneğinin hemen ardından belirtebiliyoruz. Ben 1 ila 3. bölümleri almak istediğim için `1-3` şeklinde yazıyorum ve işlenecek verilerin bulunduğu dosyanın ismini de ekleyip komutumu onaylıyorum.
+Örneğin benim dosyamda boşluk karakteri sütunları birbirinden ayırdığı için ben tırnak için `“ “` boşluk karakterinin sınırlayıcı olduğunu belirteceğim. Şimdi son olarak hangi sütunların, yani aslında hangi bölümlerin kalmasını istiyorsak, bunu “**fields**” yani “**alanlar-bölümler**” seçeneğinin kısalması olan `-f` seçeneğinin hemen ardından belirtebiliyoruz. Ben 1 ila 3. bölümleri almak istediğim için `1-3` şeklinde yazıyorum ve işlenecek verilerin bulunduğu dosyanın ismini de ekleyip komutumu onaylıyorum.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Belgeler]
@@ -1713,7 +1713,7 @@ satir8sutun3 satir8sutun5
 $ cut -c 5 metin.txt
 ```
 
-Bu, dosyadaki her satırın 5. karakterini çıktı olarak verir. Bu durumda "r" dır, boşluk da bir karakter olarak sayılır.
+Bu komut, dosyadaki her satırın 5. karakterini çıktı olarak verir. Boşluk da bir karakter olarak sayılır.
 
 ---
 
@@ -1781,13 +1781,13 @@ Metin dosyalarında, özellikle sistem günlükleri gibi çok uzun dosyalarda, g
 $ head /var/log/syslog
 ```
 
-İlk kaç satırı görmek istediğinizi belirtmek için `-n` bayrağını kullanabilirsiniz. Örneğin, ilk 15 satırı görmek istiyorsanız:
+İlk kaç satırı görmek istediğinizi belirtmek için `-n` seçeneğini kullanabilirsiniz. Örneğin, ilk 15 satırı görmek istiyorsanız:
 
 ```bash
 $ head -n 15 /var/log/syslog
 ```
 
-`-n` bayrağı ile birlikte satır sayısını belirterek, uzun dosyalarda hızlı bir şekilde özet bilgi edinebilirsiniz.
+`-n` seçeneğini ile birlikte satır sayısını belirterek, uzun dosyalarda hızlı bir şekilde özet bilgi edinebilirsiniz.
 
 ---
 
@@ -1805,13 +1805,13 @@ $ tail /var/log/syslog
 $ tail -n 15 /var/log/syslog
 ```
 
-`tail` komutunun gerçekten faydalı bir özelliği de, dosya içeriği güncellendikçe onu takip edebilmesidir. Bunu yapmak için `-f` (takip) bayrağını kullanabilirsiniz.
+`tail` komutunun gerçekten faydalı bir özelliği de, dosya içeriği güncellendikçe onu takip edebilmesidir. Bunu yapmak için `-f` (takip) seçeneğini kullanabilirsiniz.
 
 ```bash
 $ tail -f /var/log/syslog
 ```
 
-Sisteminizle etkileşim kurarken syslog dosyanız sürekli değişecektir. `tail -f` kullanarak, bu dosyaya eklenen her şeyi görebilirsiniz. Bu, sisteminizde neler olup bittiğini gerçek zamanlı olarak takip etmek için kullanışlıdır.
+Sisteminizle etkileşim kurarken `syslog` dosyanız sürekli değişecektir. `tail -f` kullanarak, bu dosyaya eklenen her şeyi görebilirsiniz. Bu, sisteminizde neler olup bittiğini gerçek zamanlı olarak takip etmek için kullanışlıdır.
 
 ![](../images/tail-f.gif)
 
@@ -1822,13 +1822,13 @@ Sisteminizle etkileşim kurarken syslog dosyanız sürekli değişecektir. `tail
 Normalde tablar genellikle boşluk bırakır ancak bazı metin editörleri bunu net göstermeyebilir. Bir metin dosyasındaki tablar istediğiniz aralığı sağlamayabilir. Sekmeleri boşluklara dönüştürmek için `expand` komutunu kullanabilirsiniz.
 
 ```bash
-$ expand sample.txt
+$ expand dosya.txt
 ```
 
 Bu komut, her taksimi bir grup boşluğa dönüştürerek çıktıyı yazdıracaktır. Bu çıktıyı bir dosyaya kaydetmek için aşağıdaki gibi çıktı yönlendirmeyi kullanın.
 
 ```bash
-$ expand sample.txt > sonuc.txt
+$ expand dosya.txt > sonuc.txt
 ```
 
 `expand` komutunun tersi olarak, boşluk gruplarını `unexpand` komutuyla tek bir tab'a dönüştürebilirsiniz:
@@ -1979,7 +1979,7 @@ $ join -1 2 -2 1 dosya1.txt dosya2.txt
 * **split:** Bu komut, tek bir dosyayı birden fazla dosyaya böler.
 
 ```bash
-$ split bazıdosya
+$ split dosya
 ```
 
 Bu komut, satır sayısı 1000'e ulaştığında dosyayı birden fazla dosyaya böler. Oluşan dosyalar varsayılan olarak `x**` şeklinde adlandırılır.
@@ -2017,9 +2017,9 @@ $ sort -r dosya1.txt
 
 kuş
 köpek
-fil
-inek
 kedi
+inek
+fil
 ```
 
 * **Sayısal Sıralama:**
@@ -2029,11 +2029,11 @@ Sayısal değer içeren metinleri sıralamak için `-n` seçeneğini kullanabili
 ```bash
 $ sort -n dosya1.txt
 
-kuş
-kedi
-inek
 fil
+inek
+kedi
 köpek
+kuş
 ```
 
 Bu örnekte, sayılar metin içinde yer almasına rağmen, `sort` komutu `-n` seçeneği sayesinde sayısal olarak sıraladı.
@@ -2060,7 +2060,7 @@ Komutta `a-z` küçük harflerin aralığını, `A-Z` ise büyük harflerin aral
 
 ### uniq (Unique)
 
-uniq (unique) komutu, metin ayrıştırmak için kullanışlı bir başka araçtır.
+`uniq` (unique) komutu, metin ayrıştırmak için kullanışlı bir başka araçtır.
 
 Çok sayıda yinelenen öğe içeren bir dosyanız olduğunu varsayalım:
 
@@ -2075,7 +2075,7 @@ makale
 dergi
 ```
 
-Yinelenen öğeleri kaldırmak istiyorsanız, uniq komutunu kullanabilirsiniz:
+Yinelenen öğeleri kaldırmak istiyorsanız, `uniq` komutunu kullanabilirsiniz:
 
 ```bash
 $ uniq reading.txt
@@ -2111,7 +2111,7 @@ kağıt
 makale
 ```
 
-**Dikkat:** uniq komutu, yan yana olmayan yinelenen satırları algılamaz. Örneğin, reading.txt dosyanız aşağıdaki gibi olsun:
+**Dikkat:** `uniq` komutu, yan yana olmayan yinelenen satırları algılamaz. Örneğin, `reading.txt` dosyanız aşağıdaki gibi olsun:
 
 ```bash
 reading.txt
@@ -2126,7 +2126,7 @@ makale
 
 Bu durumda `uniq reading.txt` komutu tüm satırları döndürür.
 
-uniq komutunun bu sınırlamasını aşmak için `sort` komutuyla birlikte kullanabilirsiniz:
+`uniq` komutunun bu sınırlamasını aşmak için `sort` komutuyla birlikte kullanabilirsiniz:
 
 ```bash
 $ sort reading.txt | uniq
@@ -2171,12 +2171,12 @@ lightdm:x:124:127:Light Display Manager:/var/lib/lightdm:/bin/false
 sddm:x:125:128:Simple Desktop Display Manager:/var/lib/sddm:/bin/false
 Debian-gdm:x:980:980:Gnome Display Manager:/var/lib/gdm3:/bin/false
 ```
-Birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Örneğin `/etc/passwd` ve `/etc/group` dosya içeriklerinde “root” ifadesinin aranmasını için `grep “root” /etc/passwd /etc/group` şeklinde komut girebiliriz.
+Birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Örneğin `/etc/passwd` ve `/etc/group` dosya içeriklerinde “**root**” ifadesinin aranmasını için `grep “root” /etc/passwd /etc/group` şeklinde komut girebiliriz.
 
 *Not : Eğer tersi şekilde aradığımız ifadenin geçmediği bölümleri istersek bulun için grep aracının hariç tutma özelliği olan `-v` seçeneğini kullanabiliyoruz.*
 
 * **Özyinelemeli Araştırma**
-Örnek olarak “/etc/” dizini içinde, içinde “bashrc” ifadesi geçen tüm dosyaları filtrelemeyi deneyebiliriz. Bunun için `grep -r “bashrc” /etc/ 2> /dev/null` şeklinde komutumu giriyorum. Buradaki `-r` seçeneği benim hedef gösterdiğim bu dizinden başlayıp tüm alt dizinler de dahil olmak üzere tüm dosyalarda “bashrc” ifadesinin geçtiği yerleri filtreleyip bana sunacak. Ayrıca yetki gibi nedenlerle oluşacak olan hatalı çıktıları yok etmek için `2> /dev/null` komutunu da ekledim.
+Örnek olarak `/etc/` dizini içinde, “**bashrc**” ifadesi geçen tüm dosyaları filtrelemeyi deneyebiliriz. Bunun için `grep -r “bashrc” /etc/ 2> /dev/null` şeklinde komutumu giriyorum. Buradaki `-r` seçeneği benim hedef gösterdiğim bu dizinden başlayıp tüm alt dizinler de dahil olmak üzere tüm dosyalarda “**bashrc**” ifadesinin geçtiği yerleri filtreleyip bana sunacak. Ayrıca yetki gibi nedenlerle oluşacak olan hatalı çıktıları yok etmek için `2> /dev/null` komutunu da ekledim.
 
 ```bash
 ┌──(ahmet@kali)-[~]
@@ -2205,15 +2205,15 @@ Birden fazla dosyanın tüm içeriğinde de filtreleme yapabiliriz. Örneğin `/
 
 * **Büyük/Küçük Harfe Duyarlı Olmayan Arama:**
 
--i bayrağı ile büyük/küçük harfe duyarlı olmayan aramalar yapabilirsiniz:
+`-i` seçeneği ile büyük/küçük harfe duyarlı olmayan aramalar yapabilirsiniz:
 
 ```bash
-$ grep -i somepattern somefile
+$ grep -i "false" /etc/group
 ```
 
 * **Diğer Komutlarla Kombinasyon:**
 
-grep komutunu, | sembolü ile diğer komutlarla birleştirebilirsiniz. Bu sayede daha esnek aramalar yapabilirsiniz:
+`grep` komutunu, | sembolü ile diğer komutlarla birleştirebilirsiniz. Bu sayede daha esnek aramalar yapabilirsiniz:
 
 ```bash
 $ env | grep -i User
@@ -2321,53 +2321,9 @@ Bu ifade "kAz", "kBz" ve "kCz" ile eşleşir ancak "kaz", "kbz" ve "kcz" ile eş
 
 ---
 
-### Vim (Vi Improved)
-
-Vim, adından da anlaşılacağı gibi, vi metin editörü komutunun geliştirilmiş versiyonu anlamına gelen "vi ( geliştirilmiş)" kelimelerinin kısaltmasıdır.
-
-Çok hafiftir, vim ile bir dosya açmak ve düzenlemek hızlı ve kolaydır. Aynı zamanda neredeyse her zaman kullanılabilir, rastgele bir Linux dağıtımı başlattıysanız, büyük ihtimalle vim varsayılan olarak kuruludur.
-
-Vim'i çalıştırmak için sadece şunu yazın:
-
-```bash
-vim
-```
-
-Denemenize rağmen bir şey yazamadığınızı fark etmiş olabilirsiniz. Bunun nedeni, komut modunda olmanızdır. Bu özellikle sadece bir dosya açıp metin girmek istiyorsanız oldukça kafa karıştırıcı olabilir. Komut modu, h, j, k, l vb. gibi komutları girdiğinizde kullanılır. Metin eklemek için öncelikle ekleme moduna girmeniz gerekir.
-
-`i`- İmlecin önüne metin ekler
-
-`O` - Önceki satıra metin ekler
-
-`o` - Sonraki satıra metin ekler
-
-`a` - İmlecin sonuna metin ekler
-
-`A` - Satırın sonuna metin ekler
-
-Bu ekleme modlarından herhangi birini yazdığınızda, vim'in ekranın alt kısmında ekleme moduna geçtiğini göreceksiniz. Ekleme modundan çıkmak ve komut moduna geri dönmek için sadece `Esc` tuşuna basın.
-
-Vim'den çıkıp dosyayı kaydetmek için:
-
-`:w` - Dosyayı yazar veya kaydeder.
-
-`:q` - Vim'den çıkar.
-
-`:wq` - Kaydedip çıkar (write and quit).
-
-`:q!` - Dosyayı kaydetmeden vim'den çıkar.
-
-`ZZ` - :wq ile aynı işlevi görür, ancak bir tuş daha kısadır.
-
-`u` - Son eylemi geri alır (undo).
-
-`Ctrl-r` - Son eylemi yeniden yapar (redo)
-
----
-
 ### Emacs
 
-Emacs, son derece güçlü bir metin editörü arayan kullanıcılar içindir. Bu aslında bir yetersiz ifade bile olabilir, çünkü emacs'ın içinde yaşarsınız. Tüm kod düzenlemelerinizi, dosya işlemlerinizi vb. her şeyi emacs içinde yapabilirsiniz. Vim'e göre biraz daha yavaş açılır ve öğrenme eğrisi biraz daha diktir, ancak son derece genişletilebilir güçlü bir editör istiyorsanız, emacs tam size göre. Genişletilebilir derken, işlevselliğini genişleten emacs için script'ler yazabileceğinizi kastediyorum.
+Emacs, son derece güçlü bir metin editörü arayan kullanıcılar içindir. Tüm kod düzenlemelerinizi, dosya işlemlerinizi vb. her şeyi emacs içinde yapabilirsiniz. Vim'e göre biraz daha yavaş açılır ve öğrenme eğrisi biraz daha diktir, ancak son derece genişletilebilir güçlü bir editör istiyorsanız, emacs tam size göre. Genişletilebilir derken, işlevselliğini genişleten emacs için script'ler yazabileceğinizi kastediyorum.
 
 Emacs'ı başlatmak için:
 
@@ -2722,7 +2678,7 @@ $ groups ali
 ali : ali yeni-grup
 ```
 
-Gruptan kullanıcı silmek için `gpasswd` aracının `-d` seçeneği yani “delete” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz.`yeni-grup` grubuna eklediğimiz ali kullanıcısını silmek için:
+Gruptan kullanıcı silmek için `gpasswd` aracının `-d` seçeneği yani “**delete**” seçeneğiyle gruba ekli olan kullanıcıyı silebiliriz.`yeni-grup` grubuna eklediğimiz ali kullanıcısını silmek için:
 
 ```bash
 $ sudo gpasswd -d ali yeni-grup 
