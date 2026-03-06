@@ -2223,7 +2223,7 @@ $ env | grep -i User
 
 ### regex (Regular Expressions)
 
-Düzenli ifadeler, daha önce karşılaştığımız yıldız (\*) gibi özel semboller kullanarak desenlere göre metin seçimi yapan güçlü bir araçtır. Bu ifadeler hemen hemen tüm programlama dillerinde kullanılabilir.
+Düzenli ifadeler, daha önce karşılaştığımız yıldız (\*) gibi özel semboller kullanarak desenlere göre metin seçimi yapan güçlü bir araçtır. Bu ifadeler hemen hemen tüm programlama dillerinde kullanılabilir. `grep` aracı; “basit”, “genişletilmiş” ve “perl uyumlu” olmak üzere üç tür genişletme özelliğini destekliyor olmasına karşın varsayılan olarak “basit” genişletmeyi kullanıyor.
 
 Regex’in temel karakterleri:
 
@@ -2251,11 +2251,11 @@ Regex’in temel karakterleri:
 
 `|` - Alternatifler arasında bir seçenek yani “ya da” koşulu belirtir.
 
-Örnek metnimiz `isimler.txt` dosyası kullanılarak bazı filtreleme işlemlri yapalım:
+Örnek metnimiz `isimler.txt` dosyası kullanılarak bazı filtreleme işlemleri yapalım:
 
 `^` ile Satırın Başı
 
-Örneğin ben “ay” ifadesiyle başlayan satırları filtrelemek istersem grep “^ay” isimler.txt şeklinde komutumu yazabilirim.
+Örneğin ben “ay” ifadesiyle başlayan satırları filtrelemek istersem `grep “^ay” isimler.txt` şeklinde komutumu yazabilirim.
 
 ```bash
 └─$ grep "^ay" isimler.txt          
@@ -2283,6 +2283,8 @@ Ilkay
 gökay
 ```
 
+<img src="../images/grep-regex.png" width="500" />
+
 Örnek metnimiz olarak şunu ele alalım:
 
 ```
@@ -2299,7 +2301,7 @@ s.
 ifadesi "sahile" ile eşleşir.
 ```
 
-`\[]` ile Köşeli Ayraç Kullanımı
+`[]` ile Köşeli Ayraç Kullanımı
 
 Köşeli ayraçlar, içinde belirtilen karakterlerden herhangi biriyle eşleşmeyi sağlar.
 
@@ -2512,7 +2514,7 @@ Artık dosyanın içeriğini görebileceksiniz!
 
 Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, `/etc/sudoers` dosyası `sudo` çalıştırabilen kullanıcıları listeler. Bu dosyayı `visudo` komutuyla düzenleyebilirsiniz
 
-### sudoers dosyası
+### `sudoers` Dosyası
 
 
 
@@ -2546,7 +2548,7 @@ Arkaplanda gerçekleşen işlemler:
 - **nil**’in ev dizinin `/home/nil` dizininde oluşturuldu,
 - **ev** dizinine `/etc/skel` dizinindeki dosyalar kopyalandı.
 
-
+---
 
 `useradd` komutu ile kullanıcı oluşturma:
 
@@ -2608,6 +2610,8 @@ Ben **ali** kullanıcısının oturum açmasını engellemek için buradaki kabu
 ```bash
 ali:x:1002:1004::/home/ali:/usr/sbin/nologin
 ```
+
+- **nologin** dosyasına benzer şekilde **false** dosyası da kullanıcının oturum açmasına engel olmak için kullanılan dosya. Fakat **nologin** dosyasından farklı olarak kullanıcıya bu durumda bir uyarı verilmeden kullanıcı doğrudan reddediliyor. 
 
 Mevcut konsolumuz üzerinden yeni bir kullanıcı hesabına geçiş yapmak için `su` komutunun ardından geçiş yapmak istediğimiz hesabın ismini girmemiz yeterli oluyor.
 
@@ -2748,7 +2752,7 @@ sudo passwd ali
 
 ### Dosya İzinleri
 
-Daha önce öğrendiğimiz gibi, dosyaların farklı izinleri veya dosya modları vardır. Bir örneğe bakalım:
+Dosyaların farklı izinleri veya dosya modları vardır, örneğin:
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -3031,4 +3035,4 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 ###### Referans ve Katkılar: Bu belgedeki bilgiler [Türkçe Linux](https://turkce-linux.gitbook.io/anasayfa) üzerinden referans alınarak derlenmiştir.
 
-###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.
+###### Referans ve Katkılar: Bu belgedeki belirli bilgiler [Linux Dersleri](https://www.linuxdersleri.net/) üzerinden referans alınarak derlenmiştir.	
