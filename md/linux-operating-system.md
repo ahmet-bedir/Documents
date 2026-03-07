@@ -2479,7 +2479,7 @@ Linux’ta “**süper(Super User)**”, “**sistem(System User)**” ve “**n
 
 **Normal Kullanıcı:** Normal olarak geçen kullanıcı hesapları, kök kullanıcısının oluşturduğu standart kullanıcı hesaplarıdır. Standart kullanıcıların temel görevleri yerine getirebilmeleri için oluşturulan hesaplardır. Bu tür hesapları standart insanlar kullanacağı için normal kullanıcılar kendi ev dizinlere sahiptir. Yani genellikle `/home` dizini altında kullanıcı isimleriyle oluşturulmuş olan bir klasörde, kişisel dosyalarını barındırmaları için bir ev dizinleri vardır. Ev dizini, insanların kişisel dosyalarını düzenli şekilde tutabilmeleri ve kendi kullanıcı hesaplarına yönelik kişiselleştirilmiş çalışma ortamına sahip olabilmeleri için önemli bir yaklaşım. Ev dizinleri dışında tabii ki normal kullanıcılar da sahip oldukları yetkiler dahilinde sistemdeki araçları kullanabilirler. Yetkilerinin düşük veya yüksek olmasına göre sistem üzerinde yetkileri dahilinde hareket edebilirler.
 
-### `sudo` Komutu
+### `sudo` komutu
 
 Sistemi yönetirken, yetki gerektiren işlemler yapmamız gerebilir. Sistemde en yetkili kullanıcının `root` olduğunu öğrendik. Bu durumda ilgili görevleri yerine getirmek için `root` hesabına geçiş yapabiliriz. Ancak `root` hesabındayken, tüm yetkilere sahip olacağınız için, hatalı şekilde kritik dosyaları silmenizi önleyecek veya sistemin işleyişine zarar verecek bir eyleminizde sizi uyaracak bir mekanizma yoktur. Her şeyi `root` olarak çalıştırmak kritik bir hata yapmayı çok daha kolaylaştırır, sistem konfigürasyonlarını değiştirmek için kullandığınız komutların kayıtlarını tutmaz vb. Temel olarak, süper kullanıcı olarak komut çalıştırmanız gerekiyorsa, sadece `sudo` kullanın. Çünkü `root` hesabını yalnızca gerektiğinde kullandığınız ve ne yaptığınızı bildiğiniz varsayılır. Zaten `root` hesabını kullanmak tehlikeli olabileceği için çoğu sistemde `root` hesabı pasif şekilde gelir. Siz aktifleştirmediğiniz sürece `root` hesabı kullanılamaz.
 
@@ -2514,7 +2514,7 @@ Artık dosyanın içeriğini görebileceksiniz!
 
 Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, `/etc/sudoers` dosyası `sudo` çalıştırabilen kullanıcıları listeler. Bu dosyayı `visudo` komutuyla düzenleyebilirsiniz
 
-### `sudoers` Dosyası
+### `sudoers` dosyası
 
 
 
@@ -2676,7 +2676,6 @@ ali:x:1004:
 * Grup kimliği (GID)
 * Kullanıcı listesi - Belirli bir grupta istediğiniz kullanıcıları manuel olarak belirleyebilirsiniz.
 
-
 ---
 
 ### Kullanıcı Yönetim Araçları
@@ -2690,7 +2689,7 @@ Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. (örn
 Teyid etmek için:
 
 ```bash
-$ tail -1 /etc/group                                                                   
+$ tail -1 /etc/group
 yeni-grup:x:1005:ali
 
 $ groups ali
@@ -2756,7 +2755,7 @@ Dosyaların farklı izinleri veya dosya modları vardır, örneğin:
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
-└─$ ls -l                                                                   
+└─$ ls -l                       
 
 toplam 56
 drwxr-xrwx  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
@@ -2779,7 +2778,7 @@ Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk
 
 <img src="../images/permission-first-column.webp" width="405" />
 
-Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için boru sembolü (`|`) ile ayırıldı.
+Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için izinler boru sembolü (`|`) ile ayırıldı.
 
 ```bash
 d | rwx | r-x | r-x
@@ -2798,7 +2797,7 @@ Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzer
 
 ### İzinlerin Değiştirilmesi
 
-İzinleri değiştirmek `chmod` komutu ile kolayca yapılabilir.
+İzinleri değiştirmek `chmod` komutu ile yapılabilir.
 
 Öncelikle hangi izin setini değiştirmek istediğinizi seçin: kullanıcı(u), grup(g) veya diğer(o). İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
 
@@ -2808,7 +2807,7 @@ Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzer
 chmod u+x metin.txt
 ```
 
-Yukarıdaki komut şöyle okunur: `metin.txt` üzerindeki izinleri değiştirerek kullanıcı setine yürütülebilir izin biti ekleyin. Bu sayede artık kullanıcının bu dosya üzerinde yürütme izni var!
+Yukarıdaki komut `metin.txt` üzerindeki izinleri değiştirerek kullanıcı setine yürütülebilir izin biti ekler. Bu sayede artık kullanıcının bu dosya üzerinde yürütme izni var!
 
 **Dosyadan İzin Kaldırma**
 
@@ -2822,7 +2821,7 @@ chmod u-x metin.txt
 chmod ug+w metin.txt
 ```
 
-İzinleri sayısal biçimde değiştirmenin başka bir yolu daha vardır. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
+İzinler sayısal biçimdede değiştirmenr. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
 
 Sayısal gösterimler aşağıda verilmiştir:
 
