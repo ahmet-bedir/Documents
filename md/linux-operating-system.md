@@ -2526,7 +2526,7 @@ ahmet   ALL=(ALL:ALL) ALL
 Anlamı:
 
 ```
-kullanıcı  host=(hangi_kullanıcı:grup) yetki
+kullanıcı  host=(kullanıcı:grup) yetki
 ```
 
 - ALL → tüm host
@@ -2563,156 +2563,122 @@ Temel `sudoers` dosyasının yeri `/etc/sudoers` dosyasıdır. Ek dosyalar `/etc
 ali ALL=(ALL:ALL) /usr/bin/ls, /usr/bin/whoami
 ```
 
-
-
-1️⃣ sudoers syntax (genel yapı)
-
-Temel format:
-
-kullanıcı  host = (hangi_kullanıcı) komutlar
-
-Tam format:
-
-user  HOST=(RUNAS:GROUP) COMMANDS
-
-Örnek:
-
-ahmet ALL=(ALL:ALL) ALL
-
-Anlamı:
-
-Kısım	Anlam
-ahmet	kullanıcı
-ALL	tüm host
-(ALL:ALL)	tüm kullanıcı / grup
-ALL	tüm komutlar
-Örnekler
-sadece root olarak çalıştırabilir
-ahmet ALL=(root) ALL
-sadece belirli kullanıcı olarak
-ahmet ALL=(postgres) ALL
-2️⃣ NOPASSWD ayarı (şifre sormasın)
+**NOPASSWD ayarı (şifre sormasın)**
 
 Normal:
 
 ```
-
 ahmet ALL=(ALL:ALL) ALL
 ```
 
 Şifresiz sudo:
 
 ```
-
 ahmet ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
 Artık:
 
 ```
-
 sudo ls
 ```
 
 şifre istemez.
 
-------
+**Sadece bazı komutlarda şifresiz**
 
-## sadece bazı komutlarda şifresiz
-
+```
 ahmet ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl
+```
 
-ahmet ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl
-3️⃣ Sadece belirli komuta izin verme
+**Sadece belirli komuta izin verme**
 
 Örnek:
 
+```
 ahmet ALL=(ALL:ALL) /usr/bin/apt
+```
 
 Sadece apt çalıştırabilir:
 
+```bash
 sudo apt update
+```
 
-ama
+fakat
 
+```bash
 sudo nano
+```
 
 çalışmaz.
 
-Birden fazla komut
+**Birden fazla komut**
+
+```
 ahmet ALL=(ALL:ALL) /usr/bin/apt, /usr/bin/systemctl
-Komut yolu önemli
+```
 
-Komut yolu öğrenmek:
+Komut yolu öğrenmek için:
 
-which apt
-which systemctl
-which nano
-
-örnek:
+```bash
+$ which apt
 
 /usr/bin/apt
-4️⃣ Root olmadan sudo verme
+```
 
-Yani kullanıcı root değil ama sudo kullanabilir.
-
-En doğru yöntem → sudo grubuna eklemek
-
-Debian / Ubuntu / Kali:
-
-sudo usermod -aG sudo ahmet
-
-Kontrol:
-
-groups ahmet
-
-çıktı:
-
-ahmet sudo
-sudoers ile vermek
-ahmet ALL=(ALL:ALL) ALL
-5️⃣ Sadece belirli kullanıcıya sudo verme
+**Sadece belirli kullanıcıya sudo verme**
 
 Örnek:
 
+```
 ahmet ALL=(postgres) ALL
+```
 
 Bu durumda:
 
+```bash
 sudo -u postgres psql
+```
 
 çalışır
 
-ama
+fakat
 
+```bash
 sudo nano
+```
 
 çalışmaz.
 
-6️⃣ sudoers.d kullanımı (profesyonel yöntem)
+**`sudoers.d` kullanımı**
 
 Ana dosyayı değiştirmek yerine:
 
+```
 /etc/sudoers.d/
+```
 
 dosya oluştur:
 
+```bash
 sudo nano /etc/sudoers.d/ahmet
+```
 
 yaz:
 
+```
 ahmet ALL=(ALL:ALL) ALL
+```
 
 bu yöntem daha güvenlidir.
 
-7️⃣ En çok kullanılan sudoers ayarları
-Amaç	Kural
-Tam yetki	ahmet ALL=(ALL:ALL) ALL
-Şifresiz	ahmet ALL=(ALL:ALL) NOPASSWD: ALL
-Sadece apt	ahmet ALL=(ALL:ALL) /usr/bin/apt
-Sadece root	ahmet ALL=(root) ALL
-Grup sudo	%sudo ALL=(ALL:ALL) ALL
-İstersen sıradak
+**En çok kullanılan sudoers ayarları**
+- Tam yetki	→ ahmet ALL=(ALL:ALL) ALL
+- Şifresiz → ahmet ALL=(ALL:ALL)  NOPASSWD: ALL
+- Sadece apt → ahmet ALL=(ALL:ALL) /usr/bin/apt
+- Sadece root → ahmet ALL=(root) ALL
+- Grup sudo → %sudo ALL=(ALL:ALL) ALL
 
 ### Kullanıcı Hesabı Oluşturma
 
