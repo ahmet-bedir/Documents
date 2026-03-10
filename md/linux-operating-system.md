@@ -2529,12 +2529,11 @@ Anlamı:
 kullanıcı  host=(hangi_kullanıcı:grup) yetki
 ```
 
-Kısım	Anlam
 - ALL → tüm host
 - (ALL:ALL) → tüm kullanıcılar ve gruplar
 - ALL → tüm komutlar
 
-Kullanıcıya sudo yetkisi vermek
+Kullanıcıya `sudo` yetkisi vermek
 
 Örnek:
 
@@ -2548,7 +2547,7 @@ veya grup ile:
 %sudo ALL=(ALL:ALL) ALL
 ```
 
-Ubuntu / Kali / Debian sistemlerde sudo grubu kullanılır.
+➜ Ubuntu / Kali / Debian sistemlerde `sudo` grubu kullanılır.
 
 Kullanıcıyı gruba eklemek:
 
@@ -2557,6 +2556,163 @@ sudo usermod -aG sudo ahmet
 ```
 
 Temel `sudoers` dosyasının yeri `/etc/sudoers` dosyasıdır. Ek dosyalar `/etc/sudoers.d/` dizininede kural eklenebilir.
+
+**Kullanıcıya Özel Tanımlama**
+
+```
+ali ALL=(ALL:ALL) /usr/bin/ls, /usr/bin/whoami
+```
+
+
+
+1️⃣ sudoers syntax (genel yapı)
+
+Temel format:
+
+kullanıcı  host = (hangi_kullanıcı) komutlar
+
+Tam format:
+
+user  HOST=(RUNAS:GROUP) COMMANDS
+
+Örnek:
+
+ahmet ALL=(ALL:ALL) ALL
+
+Anlamı:
+
+Kısım	Anlam
+ahmet	kullanıcı
+ALL	tüm host
+(ALL:ALL)	tüm kullanıcı / grup
+ALL	tüm komutlar
+Örnekler
+sadece root olarak çalıştırabilir
+ahmet ALL=(root) ALL
+sadece belirli kullanıcı olarak
+ahmet ALL=(postgres) ALL
+2️⃣ NOPASSWD ayarı (şifre sormasın)
+
+Normal:
+
+```
+
+ahmet ALL=(ALL:ALL) ALL
+```
+
+Şifresiz sudo:
+
+```
+
+ahmet ALL=(ALL:ALL) NOPASSWD: ALL
+```
+
+Artık:
+
+```
+
+sudo ls
+```
+
+şifre istemez.
+
+------
+
+## sadece bazı komutlarda şifresiz
+
+ahmet ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl
+
+ahmet ALL=(ALL:ALL) NOPASSWD: /usr/bin/systemctl
+3️⃣ Sadece belirli komuta izin verme
+
+Örnek:
+
+ahmet ALL=(ALL:ALL) /usr/bin/apt
+
+Sadece apt çalıştırabilir:
+
+sudo apt update
+
+ama
+
+sudo nano
+
+çalışmaz.
+
+Birden fazla komut
+ahmet ALL=(ALL:ALL) /usr/bin/apt, /usr/bin/systemctl
+Komut yolu önemli
+
+Komut yolu öğrenmek:
+
+which apt
+which systemctl
+which nano
+
+örnek:
+
+/usr/bin/apt
+4️⃣ Root olmadan sudo verme
+
+Yani kullanıcı root değil ama sudo kullanabilir.
+
+En doğru yöntem → sudo grubuna eklemek
+
+Debian / Ubuntu / Kali:
+
+sudo usermod -aG sudo ahmet
+
+Kontrol:
+
+groups ahmet
+
+çıktı:
+
+ahmet sudo
+sudoers ile vermek
+ahmet ALL=(ALL:ALL) ALL
+5️⃣ Sadece belirli kullanıcıya sudo verme
+
+Örnek:
+
+ahmet ALL=(postgres) ALL
+
+Bu durumda:
+
+sudo -u postgres psql
+
+çalışır
+
+ama
+
+sudo nano
+
+çalışmaz.
+
+6️⃣ sudoers.d kullanımı (profesyonel yöntem)
+
+Ana dosyayı değiştirmek yerine:
+
+/etc/sudoers.d/
+
+dosya oluştur:
+
+sudo nano /etc/sudoers.d/ahmet
+
+yaz:
+
+ahmet ALL=(ALL:ALL) ALL
+
+bu yöntem daha güvenlidir.
+
+7️⃣ En çok kullanılan sudoers ayarları
+Amaç	Kural
+Tam yetki	ahmet ALL=(ALL:ALL) ALL
+Şifresiz	ahmet ALL=(ALL:ALL) NOPASSWD: ALL
+Sadece apt	ahmet ALL=(ALL:ALL) /usr/bin/apt
+Sadece root	ahmet ALL=(root) ALL
+Grup sudo	%sudo ALL=(ALL:ALL) ALL
+İstersen sıradak
 
 ### Kullanıcı Hesabı Oluşturma
 
@@ -2653,13 +2809,17 @@ ali:x:1002:1004::/home/ali:/usr/sbin/nologin
 
 - **nologin** dosyasına benzer şekilde **false** dosyası da kullanıcının oturum açmasına engel olmak için kullanılan dosya. Fakat **nologin** dosyasından farklı olarak kullanıcıya bu durumda bir uyarı verilmeden kullanıcı doğrudan reddediliyor. 
 
-Mevcut konsolumuz üzerinden yeni bir kullanıcı hesabına geçiş yapmak için `su` komutunun ardından geçiş yapmak istediğimiz hesabın ismini girmemiz yeterli oluyor.
+Mevcut konsolumuz üzerinden yeni bir kullanıcı hesabına geçiş yapmak için `su` komutunun ardından geçiş yapmak istediğimiz hesabın ismini girmemiz yeterli oluyor. 
 
 ```bash
 $ su ali
 Parola: 
 This account is currently not available.
 ```
+
+Bu şekilde komut girdiğimizde `su` aracı, ilgili kullanıcı hesabına geçiş yaparken mevcut kabuğun çalışma ortamındaki mevcut dizinini ve ortam değişkenleri gibi çeşitli özellikleri koruyarak geçiş yapılan kullanıcının kabuğunu alt kabukta başlatıyor. Yani aslında sıfırdan temiz bir kabuk ortamı başlatılmıyor.
+
+Eğer biz mevcut kabuktan etkilenmeyecek temiz bir kabuk başlatılsın istersek komutumuz `su - kullanıcı-adı` şeklinde girebiliriz. 
 
 ---
 
