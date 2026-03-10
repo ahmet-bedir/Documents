@@ -2512,11 +2512,51 @@ sudo cat /etc/shadow
 
 Artık dosyanın içeriğini görebileceksiniz!
 
-Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, `/etc/sudoers` dosyası `sudo` çalıştırabilen kullanıcıları listeler. Bu dosyayı `visudo` komutuyla düzenleyebilirsiniz
-
 ### `sudoers` dosyası
 
+Sistem her sıradan kullanıcının süper kullanıcı olarak komut çalıştırmasına izin vermiyor, `/etc/sudoers` dosyası `sudo` çalıştırabilen kullanıcıları listeler. Bu dosyayı `visudo` komutuyla düzenleyebilirsiniz. Aslında normalde herhangi bir metin editörünü de kullanabiliriz fakat `visudo` aracı sayesinde dosyadaki yeni tanımların hata kontrolü yapıldığı için olası yanlış konfigürasyonların önüne geçmemiz de mümkün oluyor.
 
+sudoers dosyası örnek:
+
+```
+root    ALL=(ALL:ALL) ALL
+ahmet   ALL=(ALL:ALL) ALL
+```
+
+Anlamı:
+
+```
+kullanıcı  host=(hangi_kullanıcı:grup) yetki
+```
+
+Kısım	Anlam
+- ALL → tüm host
+- (ALL:ALL) → tüm kullanıcılar ve gruplar
+- ALL → tüm komutlar
+
+Kullanıcıya sudo yetkisi vermek
+
+Örnek:
+
+```
+ahmet ALL=(ALL:ALL) ALL
+```
+
+veya grup ile:
+
+```
+%sudo ALL=(ALL:ALL) ALL
+```
+
+Ubuntu / Kali / Debian sistemlerde sudo grubu kullanılır.
+
+Kullanıcıyı gruba eklemek:
+
+```bash
+sudo usermod -aG sudo ahmet
+```
+
+Temel `sudoers` dosyasının yeri `/etc/sudoers` dosyasıdır. Ek dosyalar `/etc/sudoers.d/` dizininede kural eklenebilir.
 
 ### Kullanıcı Hesabı Oluşturma
 
@@ -2684,6 +2724,13 @@ Bir kullanıcının gruplarını öğrenmek için `groups` komutu kullanılır. 
 
 Yeni bir grup oluşturmak için `groupadd` aracını kullanabiliriz. (örn. `sudo groupadd yeni-grup`)
 
+Teyid etmek için:
+
+```bash
+$ tail -1 /etc/group
+yeni-grup:x:1005:
+```
+
 Mevcut gruba kullanıcı eklemek için `gpasswd` aracını kullanabiliriz. (örn. `sudo gpasswd -a ali yeni-grup`)
 
 Teyid etmek için:
@@ -2730,7 +2777,11 @@ Bir kullanıcıyı kaldırmak için `userdel` komutunu kullanabilirsiniz.
 sudo userdel ali
 ```
 
+Fakat bu şekilde kullandığımızda kullanıcı hesabının ev dizini silinmediği için ek olarak `-r` seçeneğini de eklememiz gerekiyor.
+
 Bu komut, temel olarak `useradd` tarafından yapılan dosya değişikliklerini geri almaya çalışır.
+
+Silmek istediğiniz kullanıcının oturumu hala aktifse ve çalışmakta olan işlemler dolayısıyla silme işlemi başarısız olur. Bu durumda bu işlemleri sonlandırıp silme işlemini tekrar deneyebiliriz. Yada `force` yani zorlama seçeneğini kullanabiliriz. Bu seçenek sayesinde, silmek istediğimiz kullanıcıya ait aktif işlemler olsa bile silme işlemi gerçekleştiriliyor.
 
 **Şifre Değiştirme**
 
