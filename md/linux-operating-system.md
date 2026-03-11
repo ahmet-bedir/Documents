@@ -2674,7 +2674,7 @@ ahmet ALL=(ALL:ALL) ALL
 bu yöntem daha güvenlidir.
 
 **En çok kullanılan sudoers ayarları**
-- Tam yetki	→ ahmet ALL=(ALL:ALL) ALL
+- Tam yetki → `ahmet ALL=(ALL:ALL) ALL`
 - Şifresiz → ahmet ALL=(ALL:ALL)  NOPASSWD: ALL
 - Sadece apt → ahmet ALL=(ALL:ALL) /usr/bin/apt
 - Sadece root → ahmet ALL=(root) ALL
@@ -2935,7 +2935,7 @@ Dosyaların farklı izinleri veya dosya modları vardır, örneğin:
 └─$ ls -l                       
 
 toplam 56
-drwxr-xrwx  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
+drwxr-xr-x  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
 drwxrwxrwx  2 ahmet ahmet 4096 Ara  1 12:28 'BiglyBT Downloads'
 drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Genel
 drwxrwxr-x  4 ahmet ahmet 4096 Ara  1 13:08  GNUstep
@@ -2958,7 +2958,7 @@ Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk
 Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için izinler boru sembolü (`|`) ile ayırıldı.
 
 ```bash
-d | rwx | r-x | r-x
+d | rwx | r-x | r-x  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
 ```
 
 Her karakter farklı bir izni temsil eder:
@@ -2968,7 +2968,9 @@ Her karakter farklı bir izni temsil eder:
 * x: yürütülebilir (temel olarak yürütülebilir bir program)
 * \-: boş
 
-Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. Grubun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
+![](../images/rwx.png)
+
+Dolayısıyla yukarıdaki örnekte, `ahmet` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. Grubun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
 
 ---
 
@@ -2976,7 +2978,9 @@ Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzer
 
 İzinleri değiştirmek `chmod` komutu ile yapılabilir.
 
-Öncelikle hangi izin setini değiştirmek istediğinizi seçin: **kullanıcı(u)**, **grup(g)** veya **diğer(o)**. İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
+Öncelikle hangi izin setini değiştirmek istediğinizi seçin: **kullanıcı-sahibi(u)**, **grup(g)** veya **diğer(o)**. İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
+
+![](../images/izinler.png)
 
 **Dosyaya İzin Eklenme**
 
@@ -3005,6 +3009,8 @@ Sayısal gösterimler aşağıda verilmiştir:
 * 4: okuma izni
 * 2: yazma izni
 * 1: yürütme izni
+
+![](/home/ahmet/Masaüstü/Documents/images/rwx-421.png)
 
 
 ```bash
@@ -3197,8 +3203,19 @@ $ sudo chmod 1755 mydir
 
 Sticky bit için sayısal gösterim ise 1'dir.
 
-
 ---
+
+<a id="process"></a>
+
+## Processes
+
+🔼 [**Başa Dön**](#basa_don)
+
+
+
+
+
+
 
 
 ---
