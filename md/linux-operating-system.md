@@ -2976,7 +2976,7 @@ Dolayısıyla yukarıdaki örnekte, `kullanıcı` kullanıcısının dosya üzer
 
 İzinleri değiştirmek `chmod` komutu ile yapılabilir.
 
-Öncelikle hangi izin setini değiştirmek istediğinizi seçin: kullanıcı(u), grup(g) veya diğer(o). İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
+Öncelikle hangi izin setini değiştirmek istediğinizi seçin: **kullanıcı(u)**, **grup(g)** veya **diğer(o)**. İzinleri `+` ile ekleyebilir, `-` ile  kaldırabilirsiniz.
 
 **Dosyaya İzin Eklenme**
 
@@ -2998,7 +2998,7 @@ chmod u-x metin.txt
 chmod ug+w metin.txt
 ```
 
-İzinler sayısal biçimdede değiştirmenr. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
+İzinler sayısal biçimdede değiştirilir. Bu yöntem izinleri tek seferde değiştirmenize olanak tanır. İzinleri temsil etmek için r, w veya x kullanmak yerine, tek bir izin seti için sayısal bir gösterim kullanacaksınız. Dolayısıyla g ile grubu veya u ile kullanıcıyı belirtmenize gerek yok.
 
 Sayısal gösterimler aşağıda verilmiştir:
 
@@ -3023,7 +3023,7 @@ Dikkat edilmesi gereken bir nokta: izinleri gelişigüzel değiştirmek iyi bir 
 
 ### Sahiplik İzinleri
 
-Dosya izinlerini değiştirmenin yanı sıra, dosyanın grup ve kullanıcı sahipliğini de değiştirebilirsiniz.
+Dosya izinlerini değiştirmenin yanı sıra, dosyanın **grup** ve **kullanıcı** sahipliğini de değiştirebilirsiniz. Bunun için `chown` komutu kullanılır.
 
 **Kullanıcı sahipliğini değiştirme**
 
@@ -3031,7 +3031,7 @@ Dosya izinlerini değiştirmenin yanı sıra, dosyanın grup ve kullanıcı sahi
 sudo chown ahmet metin.txt
 ```
 
-Bu komut, metin.txt dosyasının sahibini ahmet olarak ayarlayacaktır.
+Bu komut, `metin.txt` dosyasının sahibini **ahmet** olarak ayarlayacaktır.
 
 **Grup sahipliğini değiştirme**
 
@@ -3039,11 +3039,11 @@ Bu komut, metin.txt dosyasının sahibini ahmet olarak ayarlayacaktır.
 sudo chgrp yeni-grup metin.txt
 ```
 
-Bu komut, metin.txt dosyasının grubunu yeni-grup olarak ayarlayacaktır.
+Bu komut, `metin.txt` dosyasının grubunu **yeni-grup** olarak ayarlayacaktır.
 
 **Kullanıcı ve grup sahipliğini aynı anda değiştirme**
 
-Kullanıcı adından sonra bir iki nokta (:) ve grup adı eklerseniz, kullanıcı ve grubu aynı anda ayarlayabilirsiniz.
+Kullanıcı adından sonra iki nokta üstüste (:) ve grup adı eklerseniz, kullanıcı ve grubu aynı anda ayarlayabilirsiniz.
 
 ```bash
 sudo chown ahmet:yeni-grup metin.txt
@@ -3053,35 +3053,35 @@ sudo chown ahmet:yeni-grup metin.txt
 
 ### Umask
 
-Herhangi bir dosya oluşturulduğunda, varsayılan izinlerle birlikte gelir. Bu varsayılan izin setini değiştirmek isterseniz, umask komutunu kullanabilirsiniz. Bu komut, sayısal izinlerde gördüğümüz 3 bitlik izin setini alır.
+Herhangi bir dosya oluşturulduğunda, varsayılan izinlerle birlikte gelir. Bu varsayılan izin setini değiştirmek isterseniz, `umask` komutunu kullanabilirsiniz. Bu komut, sayısal izinlerde gördüğümüz 3 bitlik izin setini alır.
 
-Ancak umask bu izinleri eklemek yerine kaldırır.
+Ancak `umask` bu izinleri eklemek yerine kaldırır.
 
 ```bash
 umask 021
 ```
 
-Yukarıdaki örnekte, yeni dosyaların varsayılan izinlerinin kullanıcılara her şeye erişim izni vermesini istediğimizi, ancak gruplar için yazma iznini ve diğerleri için yürütme iznini kaldırmak istediğimizi belirtiyoruz. Çoğu dağıtımda varsayılan umask 022'dir, yani tüm kullanıcı erişimi vardır, ancak grup ve diğer kullanıcılar için yazma erişimi yoktur.
+Yukarıdaki örnekte, yeni dosyaların varsayılan izinlerinin kullanıcılara her şeye erişim izni vermesini istediğimizi, ancak gruplar için yazma iznini ve diğerleri için yürütme iznini **kaldırmak** istediğimizi belirtiyoruz. Çoğu dağıtımda varsayılan `umask 022`'dir, yani tüm kullanıcı erişimi vardır, ancak grup ve diğer kullanıcılar için yazma erişimi yoktur.
 
-umask komutunu çalıştırdığınızda, oluşturduğunuz herhangi bir yeni dosyada varsayılan izin setini verir. Ancak, bunun devam etmesini istiyorsanız, başlangıç dosyanızı (.profile) değiştirmeniz gerekir, ancak bunu sonraki bir derste ele alacağız.
+`umask` komutunu çalıştırdığınızda, oluşturduğunuz herhangi bir yeni dosyada varsayılan izin setini verir. Ancak, bunun devam etmesini istiyorsanız, başlangıç dosyanızı (.profile) değiştirmeniz gerekir.
 
 ---
 
 ### Setuid
 
-Normal kullanıcıların bazı durumlarda işleri tamamlamak için yetki yükseltmesine ihtiyaçları vardır. Sistem yöneticisi, her seferinde bir kullanıcı korunan bir dosyaya erişmek istediğinde kök parola girmek için her zaman orada olamaz, bu nedenle bu davranışa izin vermek için özel dosya izin bitimleri vardır.
+Normal kullanıcıların bazı durumlarda işleri tamamlamak için **yetki yükseltmesine** ihtiyaçları vardır. Sistem yöneticisi, her seferinde bir kullanıcı korunan bir dosyaya erişmek istediğinde kök parola girmek için her zaman orada olamaz, bu nedenle bu davranışa izin vermek için özel dosya izin bitimleri vardır.
 
 **Set Kullanıcı Kimliği (SUID)**, bir kullanıcının programı kendisinin yerine program dosyasının sahibi olarak çalıştırmasına izin verir.
 
 Bir örneğe bakalım:
 
-Diyelim ki şifremi değiştirmek istiyorum, basit değil mi? Sadece passwd komutunu kullanıyorum:
+Diyelim ki şifremi değiştirmek istiyorum, sadece `passwd` komutunu kullanıyorum:
 
 ```bash
 passwd
 ```
 
-passwd komutu ne yapıyor? Birkaç dosyayı değiştiriyor, ancak en önemlisi /etc/shadow dosyasını değiştiriyor. Bir saniyeliğine bu dosyaya bakalım:
+`passwd` komutu birkaç dosyayı değiştiriyor, ancak en önemlisi `/etc/shadow` dosyasını değiştiriyor. Bu dosyaya bakalım:
 
 ```bash
 $ ls -l /etc/shadow
@@ -3089,7 +3089,7 @@ $ ls -l /etc/shadow
 -rw-r----- 1 root shadow 1134 Dec 1 11:45 /etc/shadow
 ```
 
-Bir dakika bekle, bu dosya root'a ait? Root'a ait bir dosyayı nasıl değiştirebiliriz?
+Bu dosya root'a ait? Root'a ait bir dosyayı nasıl değiştirebiliriz?
 
 Bu sefer çalıştırdığımız komutun izin setine bakalım:
 
@@ -3099,9 +3099,9 @@ $ ls -l /usr/bin/passwd
 -rwsr-xr-x 1 root root 47032 Dec 1 11:45 /usr/bin/passwd
 ```
 
-Burada yeni bir izin biti s gördünüz mü? Bu izin biti SUID'dir. Bir dosyada bu izin seti olduğunda, programı başlatan kullanıcılara dosya sahibi izinlerinin yanı sıra yürütme izni de verir, bu durumda root. Yani aslında bir kullanıcı passwd komutunu çalıştırırken root olarak çalışır.
+Burada yeni bir izin biti `s` gördünüz mü? Bu izin biti SUID'dir. Bir dosyada bu izin seti olduğunda, programı başlatan kullanıcılara dosya sahibi izinlerinin yanı sıra yürütme izni de verir, bu durumda root. Yani aslında bir kullanıcı `passwd` komutunu çalıştırırken root olarak çalışır.
 
-Bu nedenle, passwd komutunu çalıştırdığımızda /etc/shadow gibi korunan bir dosyaya erişebiliyoruz. Şimdi bu biti kaldırırsanız, /etc/shadow'u değiştiremeyeceğiniz ve dolayısıyla şifrenizi değiştiremeyeceğinizi göreceksiniz.
+Bu nedenle, `passwd` komutunu çalıştırdığımızda `/etc/shadow` gibi korunan bir dosyaya erişebiliyoruz. Şimdi bu biti kaldırırsanız, `/etc/shadow`'u değiştiremeyeceğiniz ve dolayısıyla şifrenizi değiştiremeyeceğinizi göreceksiniz.
 
 **SUID'yi Değiştirme**
 
@@ -3119,13 +3119,11 @@ Sayısal yol:
 sudo chmod 4755 myfile
 ```
 
-Gördüğünüz gibi, SUID bir 4 ile gösterilir ve izin setine eklenir. SUID'yi büyük S olarak görebilirsiniz, bu hala aynı şeyi yaptığı anlamına gelir, ancak yürütme izinleri yoktur.
+Gördüğünüz gibi, SUID bir 4 ile gösterilir ve izin setine eklenir. SUID'yi büyük S olarak görebilirsiniz, bu aynı şeyi yaptığı anlamına gelir, ancak yürütme izinleri yoktur.
 
 ---
 
 ### Setgid
-
-Absolutely, here is the translation of the text you provided:
 
 **Set Grup Kimliği (SGID) izni**
 
@@ -3155,7 +3153,7 @@ SGID için sayısal gösterim 2'dir.
 
 ### İşlem İzinleri
 
-Size daha önce SUID izin biti etkinleştirilmiş passwd komutunu çalıştırdığınızda programı root olarak çalıştıracağınızı söylemiştim, değil mi? Bu doğru, ancak siz geçici olarak root olduğunuz için diğer kullanıcıların şifrelerini değiştirebileceğiniz anlamına mı geliyor? Neyse ki hayır!
+SUID izin biti etkinleştirilmiş `passwd` komutunu çalıştırdığınızda programı root olarak çalıştırırsınız. Bu doğru, ancak siz geçici olarak root olduğunuz için diğer kullanıcıların şifrelerini değiştirebileceğiniz anlamına mı geliyor? Neyse ki hayır!
 
 Bu, Linux'un uyguladığı birçok UID nedeniyledir. Her işlemle ilişkili üç UID vardır:
 
