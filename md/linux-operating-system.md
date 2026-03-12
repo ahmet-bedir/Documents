@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ 
+▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#process)<br />
 
 
 ---
@@ -2918,6 +2918,12 @@ sudo passwd ali
 ```
 
 ---
+
+
+
+
+
+
 
 <a id="izinler"><a/>
 
