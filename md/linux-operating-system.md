@@ -3213,14 +3213,79 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 <a id="process"></a>
 
-## Processes
+## İşlem(Process)
 
 🔼 [**Başa Dön**](#basa_don)
 
+### ps (Processes)
+
+İşlemler, makinenizde çalışan programlardır. Çekirdek tarafından yönetilirler ve her işlemin, **işlem kimliği (PID)** adı verilen bir kimliği vardır. Bu PID, işlemlerin oluşturulma sırasına göre atanır.
+
+Çalışan işlemlerin listesini görmek için ps komutunu çalıştırın:
+
+```bash
+$ ps
 
 
+PID        TTY     STAT   TIME          CMD
+
+41230    pts/4    Ss        00:00:00     bash
+
+51224    pts/4    R+        00:00:00     ps
+```
+
+Bu size mevcut işlemlerin hızlı bir görüntüsünü gösterir:
+
+* PID: İşlem Kimliği
+* TTY: İşlemle ilişkili kontrol terminali
+* STAT: İşlem durumu kodu
+* TIME: Toplam CPU kullanım süresi
+* CMD: Yürütülebilir/komut adı
+
+```bash
+$ ps aux
+```
+
+* a: Çalışan tüm işlemleri görüntüler, diğer kullanıcılar tarafından çalıştırılanlar dahil.
+* u: İşlemler hakkında daha fazla ayrıntı gösterir.
+* x: TTY'si olmayan tüm işlemleri listeler, bu programlar TTY alanında ? işareti gösterir, sistem başlangıcının bir parçası olarak başlatılan daemon süreçlerinde en yaygın olanıdır.
 
 
+* USER: Etkin kullanıcı (erişimini kullandığımız kullanıcı)
+* PID: İşlem Kimliği
+* %CPU: Kullanılan CPU zamanının, işlemin çalışma süresine bölünmüş hali
+* %MEM: İşlemin yerleşik küme boyutunun, makinenin fiziksel belleğine oranı
+* VSZ: Tüm işlemin sanal bellek kullanımı
+* RSS: Görev tarafından kullanılan takaslanmamış fiziksel bellek miktarı
+* TTY: İşlemle ilişkili kontrol terminali
+* STAT: İşlem durumu kodu
+* START: İşlemin başlangıç zamanı
+* TIME: Toplam CPU kullanım süresi
+* COMMAND: Yürütülebilir/komut adı
+
+Top komutu size sisteminizde çalışan işlemler hakkında anlık bilgi verir. Varsayılan olarak, her 10 saniyede bir yenileme alırsınız. Top, kaynaklarınızın çoğunu kullanan işlemlerin neler olduğunu görmek için son derece yararlı bir araçtır.
+
+```bash
+$ top
+```
+
+---
+
+### Kontrol Terminali
+
+ps çıktısında bir TTY alanı olduğunu nasıl olduğunu konuştuk. TTY, komutu çalıştıran terminaldir.
+
+İki tür terminal vardır: normal terminal cihazları ve pseudo terminal cihazları. Normal bir terminal cihazı, yazabileceğiniz ve sisteminize çıktı gönderebileceğiniz yerel bir terminal cihazıdır. Bu, shell'inize erişmek için başlattığınız terminal uygulaması gibi geliyor, ancak öyle değil.
+
+Bunu görebilmeniz için size bir geçiş yapacağız, TTY1'e (birinci sanal konsol) gitmek için Ctrl-Alt-F1 yazın, terminal dışında hiçbir şeyin olmadığını fark edeceksiniz, grafik yok, vb. Bu, normal bir terminal cihazı olarak kabul edilir, buradan Ctrl-Alt-F7 ile çıkabilirsiniz.
+
+Bir pseudo terminal, üzerinde çalışmaya alıştığınız şeydir, kabuk terminal penceresiyle terminalleri öykünürler ve PTS ile gösterilirler. ps'e tekrar bakarsanız, kabuk işleminizi pts/\* altında göreceksiniz.
+
+Tamam, şimdi kontrol terminaline geri dönelim, işlemler genellikle bir kontrol terminaline bağlıdır. Örneğin, kabuk pencerenizde find gibi bir program çalıştırıyorsanız ve pencereyi kapatırsanız, işleminiz de onunla birlikte gider.
+
+Sistemi çalışır durumda tutan özel işlemler olan daemon süreçleri gibi işlemler vardır. Bunlar genellikle sistem önyüklenmesinde başlar ve genellikle sistem kapatıldığında sonlandırılır. Arka planda çalışırlar ve bu özel işlemlerin sonlandırılmasını istemediğimiz için bir kontrol terminaline bağlı değildirler. Ps çıktısında, TTY bir ? olarak listelenir, yani bir kontrol terminaline sahip olmadığı anlamına gelir.
+
+---
 
 
 
