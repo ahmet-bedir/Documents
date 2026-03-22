@@ -3213,7 +3213,7 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 <a id="process"></a>
 
-## İşlem(Process)
+## 🛠️ İşlem(Process) Yönetimi
 
 🔼 [**Başa Dön**](#basa_don)
 
