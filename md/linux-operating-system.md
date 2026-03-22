@@ -3217,6 +3217,10 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 🔼 [**Başa Dön**](#basa_don)
 
+Diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda olan her türlü programın öncelikle RAM yani hafızaya yüklenmesi ve oradan da sırası geldiğinde CPU yani işlemci üzerinde işlenmesine bütüncül olarak “**process**” yani “**işlem**” diyoruz.
+
+![](../images/process.webp)
+
 ### ps (Processes)
 
 İşlemler, makinenizde çalışan programlardır. Çekirdek tarafından yönetilirler ve her işlemin, **işlem kimliği (PID)** adı verilen bir kimliği vardır. Bu PID, işlemlerin oluşturulma sırasına göre atanır.
