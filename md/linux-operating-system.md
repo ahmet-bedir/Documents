@@ -3221,6 +3221,23 @@ Diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda ola
 
 ![](../images/process.webp)
 
+İşlem yönetimini, kabuğun başlattığı ve sistem genelinde kabuktan bağımsız başlatılmış olan işlemlerin yönetimi olarak ikiye ayırabiliriz.
+
+Kabuk başlatabileceği iki tür işlem vardır.
+
+- **Ön Planda(Foreground) Çalışanlar:** Çalışmak için kullanıcı(konsol vasıtası ile) etkileşimine ihtiyacı olan işlemlerdir.
+- **Arka Planda(Background) Çalışanlar:** Kullanıcı etkileşimi olmaksızın arka planda otomatik olarak işlerini yürüten işlemlerdir.
+
+### Ön Plandaki İşlemler
+
+Örneğin konsola `firefox` komutunu girecek olursak mevcut kabuk, `firefox` aracını bulup çalıştıracaktır.
+
+![](../images/process-foreground.png)
+
+Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz. Aracı kapatmak için konsola `Ctrl + C` tuşlaması yapılmalı.
+
+
+
 ### ps (Processes)
 
 İşlemler, makinenizde çalışan programlardır. Çekirdek tarafından yönetilirler ve her işlemin, **işlem kimliği (PID)** adı verilen bir kimliği vardır. Bu PID, işlemlerin oluşturulma sırasına göre atanır.
