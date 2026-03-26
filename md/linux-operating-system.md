@@ -3236,6 +3236,17 @@ Kabuk başlatabileceği iki tür işlem vardır.
 
 Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz. Aracı kapatmak için konsola `Ctrl + C` tuşlaması yapılmalı.
 
+Üstelik ön plandaki işlemler grafiksel arayüze sahip olmak zorunda da değil. Örneğin `cat > dosya` komutunu girdiğimizde mevcut konsol, `cat` aracının “dosya” isimli dosyaya veri yazması için işlemi beklemeye başlıyor `Ctrl + D` tuşlaması ile veri girişini sonlandırana kadar `cat` işlemi ön planda bu konsol üzerinden bizden etkileşim bekliyor olacak.
+
+
+### Arka Plan İşlemleri
+
+Arka plan işlemleri sistem tarafından başlatılabileceği gibi kabuğumuz üzerinden başlatmamız da mümkündür. Örneğin `firefox` aracını arka planda başlatmak ve mevcut konsolu meşgul etmesini önlemek istersek bash kabuğuna `firefox &` komutu girilir.
+
+![](../images/process-background.png)
+
+
+
 
 
 ### ps (Processes)
