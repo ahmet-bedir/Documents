@@ -3236,7 +3236,7 @@ Kabuk başlatabileceği iki tür işlem vardır.
 
 Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş olduğumuz konsola yani bu kabuğa yeni herhangi bir komut giremeyiz. Aracı kapatmak için konsola `Ctrl + C` tuşlaması yapılmalı.
 
-Üstelik ön plandaki işlemler grafiksel arayüze sahip olmak zorunda da değil. Örneğin `cat > dosya` komutunu girdiğimizde mevcut konsol, `cat` aracının “dosya” isimli dosyaya veri yazması için işlemi beklemeye başlıyor `Ctrl + D` tuşlaması ile veri girişini sonlandırana kadar `cat` işlemi ön planda bu konsol üzerinden bizden etkileşim bekliyor olacak.
+Üstelik ön plandaki işlemler grafiksel arayüze sahip olmak zorunda da değil. Örneğin `cat > dosya.txt` komutunu girdiğimizde mevcut konsol, `cat` aracının “dosya.txt” isimli dosyaya veri yazması için işlemi beklemeye başlıyor `Ctrl + D` tuşlaması ile veri girişini sonlandırana kadar `cat` işlemi ön planda bu konsol üzerinden bizden etkileşim bekliyor olacak.
 
 
 ### Arka Plan İşlemleri
@@ -3244,6 +3244,24 @@ Fakat **firefox** aracı açık olduğu sürece “`firefox`” komutunu girmiş
 Arka plan işlemleri sistem tarafından başlatılabileceği gibi kabuğumuz üzerinden başlatmamız da mümkündür. Örneğin `firefox` aracını arka planda başlatmak ve mevcut konsolu meşgul etmesini önlemek istersek bash kabuğuna `firefox &` komutu girilir.
 
 ![](../images/process-background.png)
+
+Firefox aracı arka planda açıldığı için bu aracı açan konsol bu işlem ile meşgul değil. Bu sebeple konsola yeni komutlar girmemiz mümkün.
+
+Başlatılan işlemin durumunu kontrol etmek istersek `jobs` komutunu girip, mevcut kabuğun kontrolünde olan tüm işlemleri listeleyebiliriz.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ firefox &
+[1] 52715
+
+┌──(ahmet㉿kali)-[~]
+└─$ jobs
+[1]+  Çalışıyor              firefox &
+```
+
+Arka plandaki işlemi ön plana almak için “**f**ore**g**round” ifadesinin kısaltmasından gelen `fg` aracınıı, `fg iş-numarası` şeklinde kullanabiliyoruz. Arka planda çalışmakta olan **firefox** işleminin iş numarası **1** olduğu için `fg 1` şeklinde komut girilir.
+
+
 
 
 
