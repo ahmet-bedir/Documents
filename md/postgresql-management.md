@@ -14,7 +14,9 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**DML (Data Manipulation Language)**](#dml)
+
+▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
@@ -619,8 +621,6 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 3. DQL (Data Query Language) aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
 4. TCL (Transaction Control Language) transaction kontrolü sağlar.
 
-
-
 ---
 
 <a id="ddl"><a/>
@@ -663,9 +663,10 @@ Oluşturulabilinen nesneler:
 Mevcut nesnenin yapısını değiştirir.
 
 ```postgresql
+-- kullanıcılar tablosuna yas adında kolon ekler.
 ALTER TABLE kullanicilar
 ADD COLUMN yas INT;
-
+-- kullanıcılar tablosundaki ad kolonunu boş (null) değer kabul etmez hale getirir
 ALTER TABLE kullanicilar
 ALTER COLUMN ad SET NOT NULL;
 ```
@@ -700,7 +701,7 @@ Constraint’ler, tabloya girilen verinin **doğruluğunu ve tutarlılığını*
 
 #### 3. PostgreSQL Constraint Türleri
 
-#### 3.1 PRIMARY KEY
+##### 3.1 PRIMARY KEY
 
 - Tekil (unique) ve **NULL olamaz**
 - Bu kısıt, bir veya daha fazla kolonun bir tablodaki satırlar için `UNIQUE` ve `NOT NULL` kısıtlarına aynı anda uyacağını garanti eder.
@@ -718,7 +719,7 @@ CONSTRAINT pk_kullanici PRIMARY KEY (id)
 
 ------
 
-#### 3.2 UNIQUE
+##### 3.2 UNIQUE
 
 - Tekil değer zorunluluğu
 - Bu kısıt, tanımlandığı kolonun tüm satırlarındaki verilerin birbirinden farklı olmasını gerektirir.
@@ -746,7 +747,7 @@ CREATE TABLE example (
 
 ------
 
-#### 3.3 NOT NULL
+##### 3.3 NOT NULL
 
 - Boş değer girilmesini engeller. Bu kısıt, bir kolona kesinlikle veri girilme zorunluluğunu ifade eder ve herhangi bir veri girişinde ya da güncellenmesinde üzerinde `NOT NULL` kısıtı olan kolonun boş bırakılmasının önüne geçer.
 
@@ -756,7 +757,7 @@ ad VARCHAR(50) NOT NULL
 
 ------
 
-#### 3.4 FOREIGN KEY
+##### 3.4 FOREIGN KEY
 
 - Tablolar arası ilişki kurar
 - Referans bütünlüğünü sağlar
@@ -780,7 +781,7 @@ ON UPDATE CASCADE
 
 ------
 
-#### 3.5 CHECK
+##### 3.5 CHECK
 
 - Değer kontrolü yapar, girilen her değer `CHECK` kuralıyla test edilir ve `TRUE` dönen değerlerin tabloya yazılmasına izin verir.
 
@@ -790,17 +791,21 @@ yas INT CHECK (yas >= 18)
 
 ------
 
-#### 3.6 DEFAULT
+##### 3.6 DEFAULT
 
-- Varsayılan değer atar
+- Varsayılan değer atar (kullanıcı o kolon için bir değer girmese dahi otomatik olarak istenilen değerin girilmesi sağlanabilir)
 
 ```postgresql
-created_at TIMESTAMP DEFAULT now()
+CREATE TABLE products (
+    product_no integer,
+    name text,
+    price numeric DEFAULT 9.99
+);
 ```
 
 ------
 
-#### 3.7 EXCLUDE (PostgreSQL’e özgü)
+##### 3.7 EXCLUDE (PostgreSQL’e özgü)
 
 - Gelişmiş benzersizlik kısıtı
 - Özellikle zaman aralığı çakışmalarında kullanılır
@@ -857,7 +862,157 @@ DROP CONSTRAINT uq_email;
 - **DDL**: Yapıyı tanımlar
 - **Constraint**: Kuralları uygular
 - Veri güvenliği ve bütünlüğü constraint’lerle sağlanır
-- PostgreSQL constraint konusunda oldukça güçlüdür
+
+---
+
+<a id="dml"><a/>
+
+### DML (Data Manipulation Language)
+
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
+
+PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **veriyi eklemek, güncellemek, silmek ve okumak** için kullanılır. Yani yapıyı değil (DDL), **verinin kendisini yönetir**.
+
+| Komut    | Açıklama        |
+| -------- | --------------- |
+| `SELECT` | veri çekme      |
+| `INSERT` | veri ekleme     |
+| `UPDATE` | veri güncelleme |
+| `DELETE` | veri silme      |
+
+------
+
+# 1️⃣ SELECT (veri çekme)
+
+```
+
+SELECT * FROM kullanicilar;
+```
+
+Belirli kolon:
+
+```
+
+SELECT ad, soyad FROM kullanicilar;
+```
+
+Koşullu:
+
+```
+
+SELECT * FROM kullanicilar
+WHERE id = 1;
+```
+
+------
+
+# 2️⃣ INSERT (veri ekleme)
+
+```
+
+INSERT INTO kullanicilar (ad, soyad)
+VALUES ('Ahmet', 'Yılmaz');
+```
+
+Birden fazla:
+
+```
+
+INSERT INTO kullanicilar (ad, soyad)
+VALUES 
+('Ali', 'Kaya'),
+('Veli', 'Demir');
+```
+
+------
+
+# 3️⃣ UPDATE (veri güncelleme)
+
+```
+
+UPDATE kullanicilar
+SET ad = 'Mehmet'
+WHERE id = 1;
+```
+
+⚠️ WHERE olmazsa:
+
+```
+
+UPDATE kullanicilar SET ad = 'X';
+```
+
+👉 tüm tablo değişir
+
+------
+
+# 4️⃣ DELETE (veri silme)
+
+```
+
+DELETE FROM kullanicilar
+WHERE id = 1;
+```
+
+⚠️ WHERE olmazsa:
+
+```
+
+DELETE FROM kullanicilar;
+```
+
+👉 tüm veri silinir (tablo durur)
+
+------
+
+# 🔁 Bonus: RETURNING (çok önemli)
+
+PostgreSQL’e özel güçlü özellik:
+
+```
+
+INSERT INTO kullanicilar (ad)
+VALUES ('Ahmet')
+RETURNING *;
+```
+
+Eklenen veriyi geri döner.
+
+------
+
+# 🔁 UPSERT (INSERT + UPDATE)
+
+```
+
+INSERT INTO kullanicilar (id, ad)
+VALUES (1, 'Ahmet')
+ON CONFLICT (id)
+DO UPDATE SET ad = EXCLUDED.ad;
+```
+
+------
+
+# 📊 DML vs DDL farkı
+
+| Tür  | Amaç           |
+| ---- | -------------- |
+| DML  | veri ile oynar |
+| DDL  | tablo yapısı   |
+
+------
+
+# 🧠 Özet
+
+DML = veriyi yönetir
+
+- SELECT → oku
+- INSERT → ekle
+- UPDATE → değiştir
+- DELETE → sil
+
+------
+
+İstersen bir üst seviye konulara geçe
 
 ---
 
