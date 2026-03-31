@@ -14,9 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**DML (Data Manipulation Language)**](#dml)
-
-▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**DML (Data Manipulation Language)**](#dml)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
@@ -625,11 +623,11 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
 <a id="ddl"><a/>
 
-### DDL (Data Definition Language)
+## DDL (Data Definition Language)
 
 ⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
-DDL, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
+PostgreSQL’de **DDL (Data Definition Language)** komutları, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
 
 ### PostgreSQL’de Temel DDL Komutları
 
@@ -867,11 +865,13 @@ DROP CONSTRAINT uq_email;
 
 <a id="dml"><a/>
 
-### DML (Data Manipulation Language)
+## DML (Data Manipulation Language)
 
 ⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **veriyi eklemek, güncellemek, silmek ve okumak** için kullanılır. Yani yapıyı değil (DDL), **verinin kendisini yönetir**.
+
+### PostgreSQL’de Temel DML Komutları
 
 | Komut    | Açıklama        |
 | -------- | --------------- |
@@ -882,42 +882,37 @@ PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **ver
 
 ------
 
-# 1️⃣ SELECT (veri çekme)
+#### 1️⃣ SELECT (veri çekme)
 
-```
-
+```postgresql
 SELECT * FROM kullanicilar;
 ```
 
 Belirli kolon:
 
-```
-
+```postgresql
 SELECT ad, soyad FROM kullanicilar;
 ```
 
 Koşullu:
 
-```
-
+```postgresql
 SELECT * FROM kullanicilar
 WHERE id = 1;
 ```
 
 ------
 
-# 2️⃣ INSERT (veri ekleme)
+#### 2️⃣ INSERT (veri ekleme)
 
-```
-
+```postgresql
 INSERT INTO kullanicilar (ad, soyad)
 VALUES ('Ahmet', 'Yılmaz');
 ```
 
 Birden fazla:
 
-```
-
+```postgresql
 INSERT INTO kullanicilar (ad, soyad)
 VALUES 
 ('Ali', 'Kaya'),
@@ -926,10 +921,9 @@ VALUES
 
 ------
 
-# 3️⃣ UPDATE (veri güncelleme)
+#### 3️⃣ UPDATE (veri güncelleme)
 
-```
-
+```postgresql
 UPDATE kullanicilar
 SET ad = 'Mehmet'
 WHERE id = 1;
@@ -937,8 +931,7 @@ WHERE id = 1;
 
 ⚠️ WHERE olmazsa:
 
-```
-
+```postgresql
 UPDATE kullanicilar SET ad = 'X';
 ```
 
@@ -946,18 +939,16 @@ UPDATE kullanicilar SET ad = 'X';
 
 ------
 
-# 4️⃣ DELETE (veri silme)
+#### 4️⃣ DELETE (veri silme)
 
-```
-
+```postgresql
 DELETE FROM kullanicilar
 WHERE id = 1;
 ```
 
 ⚠️ WHERE olmazsa:
 
-```
-
+```postgresql
 DELETE FROM kullanicilar;
 ```
 
@@ -965,12 +956,11 @@ DELETE FROM kullanicilar;
 
 ------
 
-# 🔁 Bonus: RETURNING (çok önemli)
+#### 🔁 Bonus: RETURNING (çok önemli)
 
 PostgreSQL’e özel güçlü özellik:
 
-```
-
+```postgresql
 INSERT INTO kullanicilar (ad)
 VALUES ('Ahmet')
 RETURNING *;
@@ -980,10 +970,9 @@ Eklenen veriyi geri döner.
 
 ------
 
-# 🔁 UPSERT (INSERT + UPDATE)
+#### 🔁 UPSERT (INSERT + UPDATE)
 
-```
-
+```postgresql
 INSERT INTO kullanicilar (id, ad)
 VALUES (1, 'Ahmet')
 ON CONFLICT (id)
@@ -992,7 +981,7 @@ DO UPDATE SET ad = EXCLUDED.ad;
 
 ------
 
-# 📊 DML vs DDL farkı
+#### 📊 DML vs DDL farkı
 
 | Tür  | Amaç           |
 | ---- | -------------- |
@@ -1001,7 +990,7 @@ DO UPDATE SET ad = EXCLUDED.ad;
 
 ------
 
-# 🧠 Özet
+#### 🧠 Özet
 
 DML = veriyi yönetir
 
@@ -1009,10 +998,6 @@ DML = veriyi yönetir
 - INSERT → ekle
 - UPDATE → değiştir
 - DELETE → sil
-
-------
-
-İstersen bir üst seviye konulara geçe
 
 ---
 
