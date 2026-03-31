@@ -6,7 +6,7 @@
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 
-###### Son güncelleme : 01/2026
+###### Son güncelleme : 04/2026
 
 ---
 
@@ -90,7 +90,7 @@ PostgreSQL’in öğrenmesi, kurulumu, konfigürasyonu, yönetimi, izlemesi ve b
 sudo apt update && sudo apt upgrade -y
 ```
 
-> **PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır geliyor:**
+> **PsgreSQL kurulumu için Debian/Ubuntu resmi depolarında PostgreSQL paketi hazır olarak geliyor, aşağıdaki komut ile sisteme PostgreSQL sunucusu kurulabilinir :**
 
 ```bash
 sudo apt install postgresql -y
@@ -118,8 +118,6 @@ sudo systemctl enable postgresql
 
 ### Initialize (initdb)
 
-`initdb` şunu yapar:
-
 - PostgreSQL **data directory** (veri kümesi) oluşturur
 - `postgres`, `template0`, `template1` gibi **sistem veritabanlarını** oluşturur
 - Sistem kataloglarını ve varsayılan ayarları hazırlar
@@ -133,8 +131,6 @@ sudo systemctl enable postgresql
 - `postgresql` paketi kurulduğunda
 - **initdb otomatik yapılır**
 - Data dizini hazır gelir
-
-Örnek:
 
 ```bash
 /var/lib/postgresql/<sürüm>/main
@@ -155,7 +151,7 @@ Bu adımlar:
 - **sadece binary’leri kurar**
 - data directory **oluşturmaz**
 
-Bu yüzden **manuel initdb şarttır**:
+Bu yüzden **manuel initdb yapmak gerekir**
 
 ```bash
 initdb -D /usr/local/pgsql/data
@@ -511,7 +507,7 @@ Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bi
 
 ⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
-**PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu çalıştırma, sorgu sonuçlarını görüntüleme, kabuk parametreleri ile dosya veya komut gönderme, betik içerisinde kullanarak otomatik işlemler yaptırabilir.**
+PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu çalıştırma, sorgu sonuçlarını görüntüleme, kabuk parametreleri ile dosya veya komut gönderme, betik içerisinde kullanarak otomatik işlemler yaptırabilir.
 
 #### Genel Kullanımı
 
@@ -622,10 +618,6 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 2. DML (Data Manipulation Language) veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir
 3. DQL (Data Query Language) aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
 4. TCL (Transaction Control Language) transaction kontrolü sağlar.
-
-
-
-
 
 
 
