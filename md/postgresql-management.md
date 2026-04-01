@@ -1236,7 +1236,186 @@ DQL sadece veri okur:
 
 ### TCL (Transaction Control Language)
 
+**TCL (Transaction Control Language)**, veritabanında yapılan işlemleri (transaction) **onaylama, geri alma ve yönetme** için kullanılır. Özellikle PostgreSQL gibi ACID uyumlu sistemlerde kritik öneme sahiptir.
 
+------
+
+# 🔹 TCL Komutları
+
+Temel komutlar:
+
+```
+
+COMMIT
+ROLLBACK
+SAVEPOINT
+```
+
+------
+
+# 1️⃣ COMMIT (kalıcı yap)
+
+Yapılan işlemleri **veritabanına kesin olarak kaydeder**.
+
+```
+
+BEGIN;
+
+INSERT INTO students (name) VALUES ('Ahmet');
+
+COMMIT;
+```
+
+✔ COMMIT sonrası:
+
+- Veri kalıcıdır
+- Geri alınamaz
+
+------
+
+# 2️⃣ ROLLBACK (geri al)
+
+Transaction içindeki işlemleri **iptal eder**.
+
+```
+
+BEGIN;
+
+INSERT INTO students (name) VALUES ('Mehmet');
+
+ROLLBACK;
+```
+
+✔ Sonuç:
+
+- Veri eklenmez
+- Her şey eski haline döner
+
+------
+
+# 3️⃣ SAVEPOINT (ara nokta)
+
+Transaction içinde **geri dönülebilir checkpoint** oluşturur.
+
+```
+
+BEGIN;
+
+INSERT INTO students (name) VALUES ('Ali');
+
+SAVEPOINT nokta1;
+
+INSERT INTO students (name) VALUES ('Veli');
+
+ROLLBACK TO nokta1;
+
+COMMIT;
+```
+
+✔ Sonuç:
+
+- Ali kalır
+- Veli silinir
+
+------
+
+# 4️⃣ RELEASE SAVEPOINT
+
+Savepoint’i kaldırır:
+
+```
+
+RELEASE SAVEPOINT nokta1;
+```
+
+------
+
+# 🔹 Transaction başlatma
+
+PostgreSQL’de:
+
+```
+
+BEGIN;
+```
+
+veya
+
+```
+
+START TRANSACTION;
+```
+
+------
+
+# 🔹 Otomatik vs Manuel Transaction
+
+| Tür         | Açıklama                  |
+| ----------- | ------------------------- |
+| Auto-commit | Her sorgu otomatik commit |
+| Manual      | BEGIN ile başlatılır      |
+
+------
+
+# 🔹 ACID Mantığı
+
+TCL’nin amacı:
+
+| Özellik     | Açıklama                     |
+| ----------- | ---------------------------- |
+| Atomicity   | ya hep ya hiç                |
+| Consistency | veri tutarlı                 |
+| Isolation   | işlemler birbirini etkilemez |
+| Durability  | veri kalıcı                  |
+
+------
+
+# 🔹 Gerçek Senaryo
+
+Para transferi:
+
+```
+
+BEGIN;
+
+UPDATE hesap SET bakiye = bakiye - 100 WHERE id = 1;
+
+UPDATE hesap SET bakiye = bakiye + 100 WHERE id = 2;
+
+COMMIT;
+```
+
+❌ hata olursa:
+
+```
+
+ROLLBACK;
+```
+
+------
+
+# 🔹 Python (psycopg2) ile TCL
+
+```
+
+conn.autocommit = False
+
+cur.execute("INSERT INTO students (name) VALUES ('Ahmet')")
+
+conn.commit()   # COMMIT
+# conn.rollback()  # ROLLBACK
+```
+
+------
+
+# 🔥 Özet
+
+| Komut     | İşlev              |
+| --------- | ------------------ |
+| COMMIT    | kalıcı yap         |
+| ROLLBACK  | geri al            |
+| SAVEPOINT | ara kayıt          |
+| BEGIN     | transaction başlat |
 
 ---
 
