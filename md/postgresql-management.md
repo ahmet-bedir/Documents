@@ -1001,8 +1001,7 @@ DML = veriyi yönetir
 
 PostgreSQL’de **DQL (Data Query Language)** dediğimiz şey temelde **veri okuma / sorgulama** işlemleridir. Ana komut:
 
-```
-
+```postgresql
 SELECT
 ```
 
@@ -1012,15 +1011,13 @@ Ama bunun etrafında kullanılan birçok alt yapı var. Hepsini sistematik şeki
 
 #### 1️⃣ Temel DQL komutu
 
-```
-
+```postgresql
 SELECT * FROM tablo_adi;
 ```
 
 Örnek:
 
-```
-
+```postgresql
 SELECT * FROM students;
 ```
 
@@ -1028,8 +1025,7 @@ SELECT * FROM students;
 
 #### 2️⃣ Belirli kolonları çekme
 
-```
-
+```postgresql
 SELECT name, surname FROM students;
 ```
 
@@ -1037,8 +1033,7 @@ SELECT name, surname FROM students;
 
 #### 3️⃣ WHERE (filtreleme)
 
-```
-
+```postgresql
 SELECT * FROM students WHERE id = 1;
 
 SELECT * FROM students WHERE age > 18;
@@ -1046,10 +1041,9 @@ SELECT * FROM students WHERE age > 18;
 
 ------
 
-## Operatörler
+#### Operatörler
 
-```
-
+```postgresql
 =   eşit
 !=  eşit değil
 >   büyük
@@ -1060,10 +1054,9 @@ SELECT * FROM students WHERE age > 18;
 
 ------
 
-# 4️⃣ AND / OR
+#### 4️⃣ AND / OR
 
-```
-
+```postgresql
 SELECT * FROM students
 WHERE age > 18 AND gender = 'E';
 
@@ -1073,10 +1066,9 @@ WHERE age < 18 OR age > 25;
 
 ------
 
-# 5️⃣ LIKE (arama)
+#### 5️⃣ LIKE (arama)
 
-```
-
+```postgresql
 SELECT * FROM students WHERE name LIKE 'A%';
 ```
 
@@ -1088,10 +1080,9 @@ SELECT * FROM students WHERE name LIKE 'A%';
 
 ------
 
-# 6️⃣ ORDER BY (sıralama)
+#### 6️⃣ ORDER BY (sıralama)
 
-```
-
+```postgresql
 SELECT * FROM students ORDER BY age;
 
 SELECT * FROM students ORDER BY age DESC;
@@ -1099,10 +1090,9 @@ SELECT * FROM students ORDER BY age DESC;
 
 ------
 
-# 7️⃣ LIMIT / OFFSET
+#### 7️⃣ LIMIT / OFFSET
 
-```
-
+```postgresql
 SELECT * FROM students LIMIT 5;
 
 SELECT * FROM students LIMIT 5 OFFSET 5;
@@ -1110,10 +1100,9 @@ SELECT * FROM students LIMIT 5 OFFSET 5;
 
 ------
 
-# 8️⃣ COUNT / AVG / SUM (aggregate)
+#### 8️⃣ COUNT / AVG / SUM (aggregate)
 
-```
-
+```postgresql
 SELECT COUNT(*) FROM students;
 
 SELECT AVG(age) FROM students;
@@ -1123,10 +1112,9 @@ SELECT SUM(score) FROM students;
 
 ------
 
-# 9️⃣ GROUP BY
+#### 9️⃣ GROUP BY
 
-```
-
+```postgresql
 SELECT gender, COUNT(*)
 FROM students
 GROUP BY gender;
@@ -1134,10 +1122,9 @@ GROUP BY gender;
 
 ------
 
-# 🔟 HAVING
+#### 🔟 HAVING
 
-```
-
+```postgresql
 SELECT gender, COUNT(*)
 FROM students
 GROUP BY gender
@@ -1146,21 +1133,19 @@ HAVING COUNT(*) > 5;
 
 ------
 
-# 11️⃣ DISTINCT
+#### 1️⃣1️⃣ DISTINCT
 
-```
-
+```postgresql
 SELECT DISTINCT gender FROM students;
 ```
 
 ------
 
-# 12️⃣ JOIN (çok önemli)
+#### 1️⃣2️⃣ JOIN
 
-## INNER JOIN
+##### INNER JOIN
 
-```
-
+```postgresql
 SELECT s.name, c.course_name
 FROM students s
 JOIN courses c ON s.course_id = c.id;
@@ -1168,10 +1153,9 @@ JOIN courses c ON s.course_id = c.id;
 
 ------
 
-## LEFT JOIN
+##### LEFT JOIN
 
-```
-
+```postgresql
 SELECT s.name, c.course_name
 FROM students s
 LEFT JOIN courses c ON s.course_id = c.id;
@@ -1179,10 +1163,9 @@ LEFT JOIN courses c ON s.course_id = c.id;
 
 ------
 
-# 13️⃣ IN / BETWEEN
+#### 1️⃣3️⃣ IN / BETWEEN
 
-```
-
+```postgresql
 SELECT * FROM students WHERE id IN (1,2,3);
 
 SELECT * FROM students WHERE age BETWEEN 18 AND 25;
@@ -1190,19 +1173,17 @@ SELECT * FROM students WHERE age BETWEEN 18 AND 25;
 
 ------
 
-#### 14 Alias (takma ad)
+#### 1️⃣4️⃣ Alias (takma ad)
 
-```
-
+```postgresql
 SELECT name AS isim FROM students;
 ```
 
 ------
 
-#### 15 Subquery
+#### 1️⃣5️⃣ Subquery
 
-```
-
+```postgresql
 SELECT * FROM students
 WHERE id IN (SELECT student_id FROM exams);
 ```
@@ -1240,12 +1221,11 @@ DQL sadece veri okur:
 
 ------
 
-# 🔹 TCL Komutları
+#### 🔹 TCL Komutları
 
 Temel komutlar:
 
-```
-
+```postgresql
 COMMIT
 ROLLBACK
 SAVEPOINT
@@ -1253,12 +1233,11 @@ SAVEPOINT
 
 ------
 
-# 1️⃣ COMMIT (kalıcı yap)
+#### 1️⃣ COMMIT (kalıcı yap)
 
 Yapılan işlemleri **veritabanına kesin olarak kaydeder**.
 
-```
-
+```postgresql
 BEGIN;
 
 INSERT INTO students (name) VALUES ('Ahmet');
@@ -1273,12 +1252,11 @@ COMMIT;
 
 ------
 
-# 2️⃣ ROLLBACK (geri al)
+#### 2️⃣ ROLLBACK (geri al)
 
 Transaction içindeki işlemleri **iptal eder**.
 
-```
-
+```postgresql
 BEGIN;
 
 INSERT INTO students (name) VALUES ('Mehmet');
@@ -1293,12 +1271,11 @@ ROLLBACK;
 
 ------
 
-# 3️⃣ SAVEPOINT (ara nokta)
+#### 3️⃣ SAVEPOINT (ara nokta)
 
 Transaction içinde **geri dönülebilir checkpoint** oluşturur.
 
-```
-
+```postgresql
 BEGIN;
 
 INSERT INTO students (name) VALUES ('Ali');
@@ -1319,36 +1296,33 @@ COMMIT;
 
 ------
 
-# 4️⃣ RELEASE SAVEPOINT
+#### 4️⃣ RELEASE SAVEPOINT
 
 Savepoint’i kaldırır:
 
-```
-
+```postgresql
 RELEASE SAVEPOINT nokta1;
 ```
 
 ------
 
-# 🔹 Transaction başlatma
+#### 🔹 Transaction başlatma
 
 PostgreSQL’de:
 
-```
-
+```postgresql
 BEGIN;
 ```
 
 veya
 
-```
-
+```postgresql
 START TRANSACTION;
 ```
 
 ------
 
-# 🔹 Otomatik vs Manuel Transaction
+#### 🔹 Otomatik vs Manuel Transaction
 
 | Tür         | Açıklama                  |
 | ----------- | ------------------------- |
@@ -1357,7 +1331,7 @@ START TRANSACTION;
 
 ------
 
-# 🔹 ACID Mantığı
+#### 🔹 ACID Mantığı
 
 TCL’nin amacı:
 
@@ -1370,12 +1344,11 @@ TCL’nin amacı:
 
 ------
 
-# 🔹 Gerçek Senaryo
+#### 🔹 Gerçek Senaryo
 
 Para transferi:
 
-```
-
+```postgresql
 BEGIN;
 
 UPDATE hesap SET bakiye = bakiye - 100 WHERE id = 1;
@@ -1387,17 +1360,15 @@ COMMIT;
 
 ❌ hata olursa:
 
-```
-
+```postgresql
 ROLLBACK;
 ```
 
 ------
 
-# 🔹 Python (psycopg2) ile TCL
+#### 🔹 Python (psycopg2) ile TCL
 
-```
-
+```postgresql
 conn.autocommit = False
 
 cur.execute("INSERT INTO students (name) VALUES ('Ahmet')")
@@ -1408,7 +1379,7 @@ conn.commit()   # COMMIT
 
 ------
 
-# 🔥 Özet
+#### 🔥 Özet
 
 | Komut     | İşlev              |
 | --------- | ------------------ |
