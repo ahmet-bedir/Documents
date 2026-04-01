@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**DDL (Data Definition Language)**](#ddl)<br />▸ [**DML (Data Manipulation Language)**](#dml)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**Sorgu Tipleri (DDL, DML, DQL, TCL)**](#sorgu-tipleri)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
@@ -610,7 +610,11 @@ db_name=>
 
 ---
 
+<a id="sorgu-tipleri"><a/>
+
 ## Sorgu Tipleri
+
+⤴️ [**Başa Dön**](#postgresql-yonetimi)
 
 PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
@@ -621,15 +625,11 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
 ---
 
-<a id="ddl"><a/>
-
-## DDL (Data Definition Language)
-
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+### DDL (Data Definition Language)
 
 PostgreSQL’de **DDL (Data Definition Language)** komutları, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
 
-### PostgreSQL’de Temel DDL Komutları
+#### PostgreSQL’de Temel DDL Komutları
 
 #### 1.1 CREATE
 
@@ -863,15 +863,11 @@ DROP CONSTRAINT uq_email;
 
 ---
 
-<a id="dml"><a/>
-
-## DML (Data Manipulation Language)
-
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+### DML (Data Manipülasyon Language)
 
 PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **veriyi eklemek, güncellemek, silmek ve okumak** için kullanılır. Yani yapıyı değil (DDL), **verinin kendisini yönetir**.
 
-### PostgreSQL’de Temel DML Komutları
+#### PostgreSQL’de Temel DML Komutları
 
 | Komut    | Açıklama        |
 | -------- | --------------- |
@@ -998,6 +994,249 @@ DML = veriyi yönetir
 - INSERT → ekle
 - UPDATE → değiştir
 - DELETE → sil
+
+---
+
+### DQL (Data Query Language)
+
+PostgreSQL’de **DQL (Data Query Language)** dediğimiz şey temelde **veri okuma / sorgulama** işlemleridir. Ana komut:
+
+```
+
+SELECT
+```
+
+Ama bunun etrafında kullanılan birçok alt yapı var. Hepsini sistematik şekilde veriyorum.
+
+------
+
+#### 1️⃣ Temel DQL komutu
+
+```
+
+SELECT * FROM tablo_adi;
+```
+
+Örnek:
+
+```
+
+SELECT * FROM students;
+```
+
+------
+
+#### 2️⃣ Belirli kolonları çekme
+
+```
+
+SELECT name, surname FROM students;
+```
+
+------
+
+#### 3️⃣ WHERE (filtreleme)
+
+```
+
+SELECT * FROM students WHERE id = 1;
+
+SELECT * FROM students WHERE age > 18;
+```
+
+------
+
+## Operatörler
+
+```
+
+=   eşit
+!=  eşit değil
+>   büyük
+<   küçük
+>=  büyük eşit
+<=  küçük eşit
+```
+
+------
+
+# 4️⃣ AND / OR
+
+```
+
+SELECT * FROM students
+WHERE age > 18 AND gender = 'E';
+
+SELECT * FROM students
+WHERE age < 18 OR age > 25;
+```
+
+------
+
+# 5️⃣ LIKE (arama)
+
+```
+
+SELECT * FROM students WHERE name LIKE 'A%';
+```
+
+| Pattern | Anlam             |
+| ------- | ----------------- |
+| A%      | A ile başlayan    |
+| %a      | a ile biten       |
+| %ah%    | içinde "ah" geçen |
+
+------
+
+# 6️⃣ ORDER BY (sıralama)
+
+```
+
+SELECT * FROM students ORDER BY age;
+
+SELECT * FROM students ORDER BY age DESC;
+```
+
+------
+
+# 7️⃣ LIMIT / OFFSET
+
+```
+
+SELECT * FROM students LIMIT 5;
+
+SELECT * FROM students LIMIT 5 OFFSET 5;
+```
+
+------
+
+# 8️⃣ COUNT / AVG / SUM (aggregate)
+
+```
+
+SELECT COUNT(*) FROM students;
+
+SELECT AVG(age) FROM students;
+
+SELECT SUM(score) FROM students;
+```
+
+------
+
+# 9️⃣ GROUP BY
+
+```
+
+SELECT gender, COUNT(*)
+FROM students
+GROUP BY gender;
+```
+
+------
+
+# 🔟 HAVING
+
+```
+
+SELECT gender, COUNT(*)
+FROM students
+GROUP BY gender
+HAVING COUNT(*) > 5;
+```
+
+------
+
+# 11️⃣ DISTINCT
+
+```
+
+SELECT DISTINCT gender FROM students;
+```
+
+------
+
+# 12️⃣ JOIN (çok önemli)
+
+## INNER JOIN
+
+```
+
+SELECT s.name, c.course_name
+FROM students s
+JOIN courses c ON s.course_id = c.id;
+```
+
+------
+
+## LEFT JOIN
+
+```
+
+SELECT s.name, c.course_name
+FROM students s
+LEFT JOIN courses c ON s.course_id = c.id;
+```
+
+------
+
+# 13️⃣ IN / BETWEEN
+
+```
+
+SELECT * FROM students WHERE id IN (1,2,3);
+
+SELECT * FROM students WHERE age BETWEEN 18 AND 25;
+```
+
+------
+
+#### 14 Alias (takma ad)
+
+```
+
+SELECT name AS isim FROM students;
+```
+
+------
+
+#### 15 Subquery
+
+```
+
+SELECT * FROM students
+WHERE id IN (SELECT student_id FROM exams);
+```
+
+------
+
+#### 🔥 Özet (DQL ne içerir)
+
+- SELECT
+- WHERE
+- JOIN
+- GROUP BY
+- ORDER BY
+- LIMIT
+- Aggregate fonksiyonlar
+
+------
+
+#### ⚠️ Not
+
+DQL sadece veri okur:
+
+| Dil  | Açıklama               |
+| ---- | ---------------------- |
+| DQL  | SELECT                 |
+| DML  | INSERT, UPDATE, DELETE |
+| DDL  | CREATE, DROP           |
+| DCL  | GRANT                  |
+
+------
+
+### TCL (Transaction Control Language)
+
+
 
 ---
 
