@@ -625,7 +625,7 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
 ---
 
-### DDL (Data Definition Language)
+### DDL — Data Definition Language (Veri Tanımlama Dili)
 
 PostgreSQL’de **DDL (Data Definition Language)** komutları, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
 
@@ -863,7 +863,7 @@ DROP CONSTRAINT uq_email;
 
 ---
 
-### DML (Data Manipülasyon Language)
+### DML — Data Manipülasyon Language (Veri İşleme Dili)
 
 PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **veriyi eklemek, güncellemek, silmek ve okumak** için kullanılır. Yani yapıyı değil (DDL), **verinin kendisini yönetir**.
 
@@ -997,7 +997,7 @@ DML = veriyi yönetir
 
 ---
 
-### DQL (Data Query Language)
+### DQL — Data Query Language (Veri Sorgulama Dili)
 
 PostgreSQL’de **DQL (Data Query Language)** dediğimiz şey temelde **veri okuma / sorgulama** işlemleridir. Ana komut:
 
@@ -1215,7 +1215,7 @@ DQL sadece veri okur:
 
 ------
 
-### TCL (Transaction Control Language)
+### TCL — Transaction Control Language (İşlem Kontrol Dili)
 
 **TCL (Transaction Control Language)**, veritabanında yapılan işlemleri (transaction) **onaylama, geri alma ve yönetme** için kullanılır. Özellikle PostgreSQL gibi ACID uyumlu sistemlerde kritik öneme sahiptir.
 
