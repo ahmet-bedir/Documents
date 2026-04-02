@@ -618,10 +618,10 @@ db_name=>
 
 PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
-1. DDL (Data Definition Language) veri tanımlama görevlerini yerine getiri
-2. DML (Data Manipulation Language) veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir
-3. DQL (Data Query Language) aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
-4. TCL (Transaction Control Language) transaction kontrolü sağlar.
+1. **DDL (Data Definition Language)** veri tanımlama görevlerini yerine getiri
+2. **DML (Data Manipulation Language)** veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir
+3. **DQL (Data Query Language)** aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
+4. **TCL (Transaction Control Language)** transaction kontrolü sağlar.
 
 ---
 
@@ -952,7 +952,7 @@ DELETE FROM kullanicilar;
 
 ------
 
-#### 🔁 Bonus: RETURNING (çok önemli)
+#### 🔁 RETURNING
 
 PostgreSQL’e özel güçlü özellik:
 

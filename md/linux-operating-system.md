@@ -6,7 +6,7 @@
 
 # Linux İşletim Sistemi
 
-###### Son güncelleme : 01/2026
+###### Son güncelleme : 04/2026
 
 ---
 
