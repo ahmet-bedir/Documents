@@ -1815,7 +1815,6 @@ TRUNCATE TABLE tablo1, tablo2;
 
 İlişkili tabloları aynı anda temizlemek için kullanışlıdır.
 
-
 **FOREIGN KEY İlişkileri**
 Varsayılan Davranış (RESTRICT)
 
@@ -1884,6 +1883,13 @@ CREATE TABLE kullanicilar (
 - Tablo adları: **küçük harf**
 - Şifre: **asla düz metin saklama**
 - `PRIMARY KEY + UNIQUE` mutlaka tanımla
+
+- Küçük harf ve alt çizgi kullan (`snake_case`)
+- Tablo isimleri çoğul (`customers`, `orders`)
+- Sütun isimleri tekil (`first_name`, `email`)
+- Anlamlı isimler ver — 6 ay sonra `oid`'nin ne olduğunu hatırlamak zor
+- SQL anahtar kelimelerini isim olarak kullanma (`order`, `select`, `table` isim olarak sorunlu)
+- Türkçe karakter kullanma (`müşteri_adı` yerine `musteri_adi` veya `first_name`)
 
 ------
 
