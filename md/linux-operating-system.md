@@ -3260,12 +3260,17 @@ Başlatılan işlemin durumunu kontrol etmek istersek `jobs` komutunu girip, mev
 ```
 
 Arka plandaki işlemi ön plana almak için “**f**ore**g**round” ifadesinin kısaltmasından gelen `fg` aracınıı, `fg iş-numarası` şeklinde kullanabiliyoruz. Arka planda çalışmakta olan **firefox** işleminin iş numarası **1** olduğu için `fg 1` şeklinde komut girilir.
+Başlatılmış olan işlemleri arka plana almak için işlemi durdurduktan sonra “**b**ack**g**round” ifadesinin kısaltmasından gelen `bg iş-numarası` şeklinde komutumuzu girebiliriz.
+
+### İşi Sonlandırmak
+
+Eğer işlemi sonlandırmak istersek “öldürmek” anlamındaki `kill % iş-numarası` komutunu kullanabiliyoruz.
 
 
 
+---
 
-
-
+---
 
 ### ps (Processes)
 
