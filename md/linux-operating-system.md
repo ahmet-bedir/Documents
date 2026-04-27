@@ -10,11 +10,11 @@
 
 ---
 
-<a id="basa_don"><a/>
+<a id="basa_don"><a />
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#process)<br />
+▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Servis Yönetimi**](#servis)<br />
 
 
 ---
@@ -179,7 +179,7 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 ---
 
-<a id="komut_satiri"><a/>
+<a id="komut_satiri"><a />
 
 ## 💻 Komut Satırı
 
@@ -1378,7 +1378,7 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ---
 
-<a id="metin"><a/>
+<a id="metin"><a />
 
 ## 📃 Metin İşlemleri
 
@@ -2454,7 +2454,7 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 ---
 
-<a id="kullanici"><a/>
+<a id="kullanici"><a />
 
 ## 🧑‍🧒‍🧒 Kullanıcı Yönetimi
 
@@ -2919,13 +2919,7 @@ sudo passwd ali
 
 ---
 
-
-
-
-
-
-
-<a id="izinler"><a/>
+<a id="izinler"><a />
 
 ## 🗂️ İzinler
 
@@ -3211,9 +3205,9 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 ---
 
-<a id="process"></a>
+<a id="islem"><a /> 
 
-## 🛠️ İşlem(Process) Yönetimi
+## 🛠️ İşlem (Process) Yönetimi
 
 🔼 [**Başa Dön**](#basa_don)
 
@@ -3275,37 +3269,17 @@ Tasks: 358 total,   1 running, 357 sleeping,   0 stopped,   0 zombie
 MiB Mem :  15731,7 total,   9408,3 free,   3721,1 used,   3824,5 buff/cache     
 MiB Swap:  17166,0 total,  17166,0 free,      0,0 used.  12010,7 avail Mem 
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                    
-   2814 ahmet     20   0 8735996 364576 154144 S  15,2   2,3   3:27.04 gnome-shell                                                                
-   9354 ahmet     20   0 1417,0g 367652 101840 S  12,3   2,3   2:49.64 chromium                                                                   
-   2995 ahmet     20   0 1375672 152476 114412 S   7,6   0,9   0:05.54 konsole                                                                    
-   2980 ahmet     20   0  920568  84452  67608 S   0,7   0,5   0:15.83 kdeconnectd                                                                
-  14328 root       0 -20       0      0      0 D   0,7   0,0   0:02.70 kworker/u49:1+i915_flip                                                    
-     15 root      20   0       0      0      0 I   0,3   0,0   0:03.35 rcu_preempt                                                                
-     35 root      rt   0       0      0      0 S   0,3   0,0   0:00.33 migration/5                                                                
-   2592 ahmet     20   0   15252   8192   7140 S   0,3   0,1   0:01.57 mosquitto                                                                  
-  18176 ahmet     20   0   10312   5988   3812 S   0,3   0,0   0:00.22 top                                                                        
-  18260 ahmet     20   0   10448   6008   3788 R   0,3   0,0   0:00.20 top                                                                        
-  18325 root      20   0       0      0      0 I   0,3   0,0   0:00.06 kworker/u48:2-events_unbound                                               
-      1 root      20   0   25600  15756  10960 S   0,0   0,1   0:02.51 systemd                                                                    
-      2 root      20   0       0      0      0 S   0,0   0,0   0:00.00 kthreadd                                                                   
-      3 root      20   0       0      0      0 S   0,0   0,0   0:00.00 pool_workqueue_release                                                     
-      4 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-rcu_gp                                                           
-      5 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-sync_wq                                                          
-      6 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-kvfree_rcu_reclaim                                               
-      7 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-slub_flushwq                                                     
-      8 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-netns                                                            
-     10 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/0:0H-events_highpri                                                
-     13 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-mm_percpu_wq                                                     
-     14 root      20   0       0      0      0 S   0,0   0,0   0:00.05 ksoftirqd/0                                                                
-     16 root      20   0       0      0      0 S   0,0   0,0   0:00.00 rcu_exp_par_gp_kthread_worker/0                                            
-     17 root      20   0       0      0      0 S   0,0   0,0   0:00.01 rcu_exp_gp_kthread_worker                                                  
-     18 root      rt   0       0      0      0 S   0,0   0,0   0:00.13 migration/0                                                                
-     19 root     -51   0       0      0      0 S   0,0   0,0   0:00.00 idle_inject/0                                                              
-     20 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpuhp/0                                                                    
-     21 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpuhp/2                                                                    
-     22 root     -51   0       0      0      0 S   0,0   0,0   0:00.00 idle_inject/2                                                              
-     23 root      rt   0       0      0      0 S   0,0   0,0   0:00.08 migration/2 
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                               
+   2814 ahmet     20   0 8735996 364576 154144 S  15,2   2,3   3:27.04 gnome-shell                           
+   9354 ahmet     20   0 1417,0g 367652 101840 S  12,3   2,3   2:49.64 chromium                               
+   2995 ahmet     20   0 1375672 152476 114412 S   7,6   0,9   0:05.54 konsole                               
+   2980 ahmet     20   0  920568  84452  67608 S   0,7   0,5   0:15.83 kdeconnectd              
+  14328 root       0 -20       0      0      0 D   0,7   0,0   0:02.70 kworker/u49:1+i915_flip   
+     15 root      20   0       0      0      0 I   0,3   0,0   0:03.35 rcu_preempt
+     20 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpu                              
+     21 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpuhp/2                  .
+     .
+     .
 ```
 
 Biz `q` tuşuna basıp aracı kapatana kadar anlık olarak tüm işlemler konsola bastırılıyor olacak.
@@ -3417,7 +3391,52 @@ Yaygın kullanıma sahip temel sinyaller:
 
 ---
 
-`killall` komutu sayesinde argüman olarak verdiğimiz isimle eşleşen tüm işlemler sonlandırılıyor. Bu sayede tek tek hepsinin **pid** değerlerini bulmamız ve konsola girmemiz gerekmiyor.
+`killall` komutu sayesinde argüman olarak verdiğimiz isimle eşleşen tüm işlemler sonlandırılıyor. Bu sayede tek tek hepsinin **pid** değerlerini bulmamız ve konsola girmemiz gerekmiyor. Kullanımı `killall -9 firefox` komutunu kullanacak olursak, `firefox` ile eşleşen tüm işlemler sonlandırılacak.
+
+`pgrep` komutu “**p**rocess” yani “işlemler” arasında bizim aradığımız işlemin, işlem numarasını filtreleyen bir araç. Bu sayede ilgili işlemin işlem numarasını manuel olarak bulmakla uğraşmamız gerekmiyor. İsmi üzerinden kolaylıkla öğrenebiliyoruz.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ pgrep firefox                                                                
+64622
+
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ ps x | tail
+   1220 pts/0    Ss     0:00 /usr/bin/bash
+   1258 ?        Ss     0:00 /usr/libexec/bluetooth/obexd
+  61768 pts/1    Ss     0:00 /usr/bin/bash
+  62872 pts/0    S      0:00 sleep 700
+  64622 ?        Sl     0:04 /usr/lib/firefox-esr/firefox-esr
+  64774 ?        Sl     0:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 2 -isForBrowser -prefsLen 4657 -prefMapSize 238089 -jsInit 285716 -parentBuildID 20220105212146 -appdir /usr/lib/firefox-esr/browser 64622 true tab
+  64810 ?        Sl     0:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 3 -isForBrowser -prefsLen 5317 -prefMapSize 238089 -jsInit 285716 -parentBuildID 20220105212146 -appdir /usr/lib/firefox-esr/browser 64622 true tab
+  64856 ?        Sl     0:00 /usr/lib/firefox-esr/firefox-esr -contentproc -childID 5 -isForBrowser -prefsLen 5317 -prefMapSize 238089 -jsInit 285716 -parentBuildID 20220105212146 -appdir /usr/lib/firefox-esr/browser 64622 true tab
+  64948 pts/0    R+     0:00 ps x
+  64949 pts/0    S+     0:00 tail
+  
+┌──(ahmet㉿kali)-[~]
+└─$ kill -9 $(pgrep firefox)
+
+┌──(ahmet㉿kali)-[~]
+└─$ └─$ ps x | tail                                                   
+   1182 ?        Ssl    0:00 /usr/libexec/gvfs-afc-volume-monitor
+   1187 ?        Ssl    0:00 /usr/libexec/gvfs-mtp-volume-monitor
+   1196 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.15 /org/gtk/gvfs/exec_spaw/0
+   1209 ?        Ssl    0:00 /usr/libexec/gvfsd-metadata
+   1220 pts/0    Ss     0:00 /usr/bin/bash
+   1258 ?        Ss     0:00 /usr/libexec/bluetooth/obexd
+  61768 pts/1    Ss     0:00 /usr/bin/bash
+  62872 pts/0    S      0:00 sleep 700
+  65636 pts/0    R+     0:00 ps x
+  65637 pts/0    S+     0:00 tail
+```
+
+---
+
+<a id="servis"><a />
+
+## 🖱️ Servis Yönetimi
+
+🔼 [**Başa Dön**](#basa_don)
 
 
 
