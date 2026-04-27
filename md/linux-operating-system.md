@@ -3262,13 +3262,78 @@ Başlatılan işlemin durumunu kontrol etmek istersek `jobs` komutunu girip, mev
 Arka plandaki işlemi ön plana almak için “**f**ore**g**round” ifadesinin kısaltmasından gelen `fg` aracınıı, `fg iş-numarası` şeklinde kullanabiliyoruz. Arka planda çalışmakta olan **firefox** işleminin iş numarası **1** olduğu için `fg 1` şeklinde komut girilir.
 Başlatılmış olan işlemleri arka plana almak için işlemi durdurduktan sonra “**b**ack**g**round” ifadesinin kısaltmasından gelen `bg iş-numarası` şeklinde komutumuzu girebiliriz.
 
-### İşi Sonlandırmak
-
 Eğer işlemi sonlandırmak istersek “öldürmek” anlamındaki `kill % iş-numarası` komutunu kullanabiliyoruz.
 
-
-
 ---
+
+Sistem üzerinde çalışmakta olan işlemleri anlık olarak takip etmek üzere `top` aracını kullanabiliyoruz.
+
+```bash
+top - 15:28:53 up 28 min,  1 user,  load average: 0,35, 0,38, 0,39
+Tasks: 358 total,   1 running, 357 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  3,6 us,  1,5 sy,  0,0 ni, 94,9 id,  0,0 wa,  0,0 hi,  0,0 si,  0,0 st 
+MiB Mem :  15731,7 total,   9408,3 free,   3721,1 used,   3824,5 buff/cache     
+MiB Swap:  17166,0 total,  17166,0 free,      0,0 used.  12010,7 avail Mem 
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                    
+   2814 ahmet     20   0 8735996 364576 154144 S  15,2   2,3   3:27.04 gnome-shell                                                                
+   9354 ahmet     20   0 1417,0g 367652 101840 S  12,3   2,3   2:49.64 chromium                                                                   
+   2995 ahmet     20   0 1375672 152476 114412 S   7,6   0,9   0:05.54 konsole                                                                    
+   2980 ahmet     20   0  920568  84452  67608 S   0,7   0,5   0:15.83 kdeconnectd                                                                
+  14328 root       0 -20       0      0      0 D   0,7   0,0   0:02.70 kworker/u49:1+i915_flip                                                    
+     15 root      20   0       0      0      0 I   0,3   0,0   0:03.35 rcu_preempt                                                                
+     35 root      rt   0       0      0      0 S   0,3   0,0   0:00.33 migration/5                                                                
+   2592 ahmet     20   0   15252   8192   7140 S   0,3   0,1   0:01.57 mosquitto                                                                  
+  18176 ahmet     20   0   10312   5988   3812 S   0,3   0,0   0:00.22 top                                                                        
+  18260 ahmet     20   0   10448   6008   3788 R   0,3   0,0   0:00.20 top                                                                        
+  18325 root      20   0       0      0      0 I   0,3   0,0   0:00.06 kworker/u48:2-events_unbound                                               
+      1 root      20   0   25600  15756  10960 S   0,0   0,1   0:02.51 systemd                                                                    
+      2 root      20   0       0      0      0 S   0,0   0,0   0:00.00 kthreadd                                                                   
+      3 root      20   0       0      0      0 S   0,0   0,0   0:00.00 pool_workqueue_release                                                     
+      4 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-rcu_gp                                                           
+      5 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-sync_wq                                                          
+      6 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-kvfree_rcu_reclaim                                               
+      7 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-slub_flushwq                                                     
+      8 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-netns                                                            
+     10 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/0:0H-events_highpri                                                
+     13 root       0 -20       0      0      0 I   0,0   0,0   0:00.00 kworker/R-mm_percpu_wq                                                     
+     14 root      20   0       0      0      0 S   0,0   0,0   0:00.05 ksoftirqd/0                                                                
+     16 root      20   0       0      0      0 S   0,0   0,0   0:00.00 rcu_exp_par_gp_kthread_worker/0                                            
+     17 root      20   0       0      0      0 S   0,0   0,0   0:00.01 rcu_exp_gp_kthread_worker                                                  
+     18 root      rt   0       0      0      0 S   0,0   0,0   0:00.13 migration/0                                                                
+     19 root     -51   0       0      0      0 S   0,0   0,0   0:00.00 idle_inject/0                                                              
+     20 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpuhp/0                                                                    
+     21 root      20   0       0      0      0 S   0,0   0,0   0:00.00 cpuhp/2                                                                    
+     22 root     -51   0       0      0      0 S   0,0   0,0   0:00.00 idle_inject/2                                                              
+     23 root      rt   0       0      0      0 S   0,0   0,0   0:00.08 migration/2 
+```
+
+Biz `q` tuşuna basıp aracı kapatana kadar anlık olarak tüm işlemler konsola bastırılıyor olacak.
+
+Tablodaki temel sütunları açıklayacak olursak:
+
+**PID:** **P**rocess **id** yani benzersiz işlem numarasıdır.
+
+**USER:** İşlemin sahibi olan kullanıcıdır.
+
+**PR:** Priority yani işlem önceliğini belirtir.
+
+**NI:** İşlemin “nice” değeri. Diğer işlemlere ne kadar öncelik vereceğini belirtir.
+
+**S:** Status yani “durum” bilgisidir. Çeşitli durumlar mevcuttur:
+
+- R : Running (çalışıyor)
+- S : Sleeping (uyuyor)
+- T : Traced or stopped (durdurulmuş)
+- Z : Zombie (zombi)
+
+**%CPU**: İşlem tarafından kullanılan CPU yüzdesi
+
+**%MEM**; İşlem tarafından kullanılan RAM yüzdesi.
+
+**TIME+:** İşlem tarafından tüketilen CPU zamanı.
+
+**Command**: İşlemi başlatan komut.
 
 ---
 
@@ -3276,26 +3341,31 @@ Eğer işlemi sonlandırmak istersek “öldürmek” anlamındaki `kill % iş-n
 
 İşlemler, makinenizde çalışan programlardır. Çekirdek tarafından yönetilirler ve her işlemin, **işlem kimliği (PID)** adı verilen bir kimliği vardır. Bu PID, işlemlerin oluşturulma sırasına göre atanır.
 
-Çalışan işlemlerin listesini görmek için ps komutunu çalıştırın:
+Tek başına `ps` komutunu girdiğimizde, yalnızca o anda mevcut konsol üzerinde çalışmakta olan işleme dair bilgi sunar.:
 
 ```bash
-$ ps
-
-
-PID        TTY     STAT   TIME          CMD
-
-41230    pts/4    Ss        00:00:00     bash
-
-51224    pts/4    R+        00:00:00     ps
+└─$ ps
+    PID TTY          TIME CMD
+   4175 pts/0    00:00:00 bash
+  11137 pts/0    00:00:34 Typora
+  24241 pts/0    00:00:00 top
+  27888 pts/0    00:00:00 ps
 ```
 
 Bu size mevcut işlemlerin hızlı bir görüntüsünü gösterir:
 
 * PID: İşlem Kimliği
 * TTY: İşlemle ilişkili kontrol terminali
-* STAT: İşlem durumu kodu
 * TIME: Toplam CPU kullanım süresi
 * CMD: Yürütülebilir/komut adı
+
+Geniş çaplı bilgi almak için genellikle `ps aux` komutu kullanılır.
+
+`a`: tüm kullanıcılara ait olan işlemleri listeler.
+
+`u`: işlemlerin sahibi olan kullanıcı bilgisini bastırır.
+
+`x`: terminaller ile kontrol edilmeyen arka plan işlemlerini de bastırmayı sağlar.
 
 ```bash
 $ ps aux
@@ -3318,29 +3388,40 @@ $ ps aux
 * TIME: Toplam CPU kullanım süresi
 * COMMAND: Yürütülebilir/komut adı
 
-Top komutu size sisteminizde çalışan işlemler hakkında anlık bilgi verir. Varsayılan olarak, her 10 saniyede bir yenileme alırsınız. Top, kaynaklarınızın çoğunu kullanan işlemlerin neler olduğunu görmek için son derece yararlı bir araçtır.
+Bir işlemi durdurmak, duran işlemi devam ettirmek veya işlemi sonlandırmak istediğimizde ilgili işleme bu duruma uygun olan sinyali göndermemiz gerekiyor. Sinyal göndermek için de `kill` komutunu kullanabiliyoruz. `kill` komutu ile gönderebileceğimiz tüm sinyalleri görmek için `kill -l` komutunu kullanabiliriz.
 
 ```bash
-$ top
+└─$ kill -l
+ 1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
+ 6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
+11) SIGSEGV     12) SIGUSR2     13) SIGPIPE     14) SIGALRM     15) SIGTERM
+16) SIGSTKFLT   17) SIGCHLD     18) SIGCONT     19) SIGSTOP     20) SIGTSTP
+21) SIGTTIN     22) SIGTTOU     23) SIGURG      24) SIGXCPU     25) SIGXFSZ
+26) SIGVTALRM   27) SIGPROF     28) SIGWINCH    29) SIGIO       30) SIGPWR
+31) SIGSYS      34) SIGRTMIN    35) SIGRTMIN+1  36) SIGRTMIN+2  37) SIGRTMIN+3
+38) SIGRTMIN+4  39) SIGRTMIN+5  40) SIGRTMIN+6  41) SIGRTMIN+7  42) SIGRTMIN+8
+43) SIGRTMIN+9  44) SIGRTMIN+10 45) SIGRTMIN+11 46) SIGRTMIN+12 47) SIGRTMIN+13
+48) SIGRTMIN+14 49) SIGRTMIN+15 50) SIGRTMAX-14 51) SIGRTMAX-13 52) SIGRTMAX-12
+53) SIGRTMAX-11 54) SIGRTMAX-10 55) SIGRTMAX-9  56) SIGRTMAX-8  57) SIGRTMAX-7
+58) SIGRTMAX-6  59) SIGRTMAX-5  60) SIGRTMAX-4  61) SIGRTMAX-3  62) SIGRTMAX-2
+63) SIGRTMAX-1  64) SIGRTMAX
 ```
 
----
+Yaygın kullanıma sahip temel sinyaller:
 
-### Kontrol Terminali
+- **`SIGKILL`** (9): Öldürme sinyali. Hedef işlemin anında sonlandırılmasını sağlar. Genellikle bir işlemi zorla sonlandırmak için son çare olarak kullanılır.
+- **`SIGSTOP`** (19): Durdurma sinyali. Hedef işlemin askıya alınarak durdurulmasını sağlar. Ctrl + Z kısayoluyla da bu sinyal üretilebiliyor.
+- **`SIGCONT`** (18): Devam sinyali. Daha önce durdurulan bir işlemin çalışmaya devam etmesini sağlıyor.
 
-ps çıktısında bir TTY alanı olduğunu nasıl olduğunu konuştuk. TTY, komutu çalıştıran terminaldir.
-
-İki tür terminal vardır: normal terminal cihazları ve pseudo terminal cihazları. Normal bir terminal cihazı, yazabileceğiniz ve sisteminize çıktı gönderebileceğiniz yerel bir terminal cihazıdır. Bu, shell'inize erişmek için başlattığınız terminal uygulaması gibi geliyor, ancak öyle değil.
-
-Bunu görebilmeniz için size bir geçiş yapacağız, TTY1'e (birinci sanal konsol) gitmek için Ctrl-Alt-F1 yazın, terminal dışında hiçbir şeyin olmadığını fark edeceksiniz, grafik yok, vb. Bu, normal bir terminal cihazı olarak kabul edilir, buradan Ctrl-Alt-F7 ile çıkabilirsiniz.
-
-Bir pseudo terminal, üzerinde çalışmaya alıştığınız şeydir, kabuk terminal penceresiyle terminalleri öykünürler ve PTS ile gösterilirler. ps'e tekrar bakarsanız, kabuk işleminizi pts/\* altında göreceksiniz.
-
-Tamam, şimdi kontrol terminaline geri dönelim, işlemler genellikle bir kontrol terminaline bağlıdır. Örneğin, kabuk pencerenizde find gibi bir program çalıştırıyorsanız ve pencereyi kapatırsanız, işleminiz de onunla birlikte gider.
-
-Sistemi çalışır durumda tutan özel işlemler olan daemon süreçleri gibi işlemler vardır. Bunlar genellikle sistem önyüklenmesinde başlar ve genellikle sistem kapatıldığında sonlandırılır. Arka planda çalışırlar ve bu özel işlemlerin sonlandırılmasını istemediğimiz için bir kontrol terminaline bağlı değildirler. Ps çıktısında, TTY bir ? olarak listelenir, yani bir kontrol terminaline sahip olmadığı anlamına gelir.
+Çalışmakta olan bir işlemi durdurmak için sinyalın ismini ya da sayısal karşılığını `kill SIGSTOP pid` ya da `kill -19 pid` şeklinde girebiliyoruz. Durdurulmuş işlemi devam ettirmek için **SIGCONT** veya sinyalin sayısal karşılığı olan **18** sayısını kullanabiliyoruz. Eğer işlemi ani olarak kapatmak veya kapanmaya zorlamak istersek **SIGKILL** sinyalini yada **9** sayısını kullanırız.
 
 ---
+
+`killall` komutu sayesinde argüman olarak verdiğimiz isimle eşleşen tüm işlemler sonlandırılıyor. Bu sayede tek tek hepsinin **pid** değerlerini bulmamız ve konsola girmemiz gerekmiyor.
+
+
+
+
 
 
 
