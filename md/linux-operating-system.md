@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Servis Yönetimi**](#servis)<br />
+▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Servis Yönetimi ve Zamanlanmış Görevler**](#servis)<br />
 
 
 ---
@@ -2921,7 +2921,7 @@ sudo passwd ali
 
 <a id="izinler"><a />
 
-## 🗂️ İzinler
+## 📁 İzinler
 
 🔼 [**Başa Dön**](#basa_don)
 
@@ -3318,6 +3318,7 @@ Tablodaki temel sütunları açıklayacak olursak:
 Tek başına `ps` komutunu girdiğimizde, yalnızca o anda mevcut konsol üzerinde çalışmakta olan işleme dair bilgi sunar.:
 
 ```bash
+┌──(ahmet㉿kali)-[~]
 └─$ ps
     PID TTY          TIME CMD
    4175 pts/0    00:00:00 bash
@@ -3365,6 +3366,7 @@ $ ps aux
 Bir işlemi durdurmak, duran işlemi devam ettirmek veya işlemi sonlandırmak istediğimizde ilgili işleme bu duruma uygun olan sinyali göndermemiz gerekiyor. Sinyal göndermek için de `kill` komutunu kullanabiliyoruz. `kill` komutu ile gönderebileceğimiz tüm sinyalleri görmek için `kill -l` komutunu kullanabiliriz.
 
 ```bash
+┌──(ahmet㉿kali)-[~]
 └─$ kill -l
  1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
  6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
@@ -3417,7 +3419,7 @@ Yaygın kullanıma sahip temel sinyaller:
 └─$ kill -9 $(pgrep firefox)
 
 ┌──(ahmet㉿kali)-[~]
-└─$ └─$ ps x | tail                                                   
+└─$ ps x | tail                                                   
    1182 ?        Ssl    0:00 /usr/libexec/gvfs-afc-volume-monitor
    1187 ?        Ssl    0:00 /usr/libexec/gvfs-mtp-volume-monitor
    1196 ?        Sl     0:00 /usr/libexec/gvfsd-trash --spawner :1.15 /org/gtk/gvfs/exec_spaw/0
@@ -3434,7 +3436,7 @@ Yaygın kullanıma sahip temel sinyaller:
 
 <a id="servis"><a />
 
-## 🖱️ Servis Yönetimi
+## ⚙️ Servis Yönetimi
 
 🔼 [**Başa Dön**](#basa_don)
 
@@ -3447,6 +3449,7 @@ Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçene
 ```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
 └─$ systemctl status apache2
+
 ● apache2.service - The Apache HTTP Server
      Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; preset: disabled)
      Active: active (running) since Mon 2026-04-27 22:20:26 +03; 32min ago
@@ -3472,31 +3475,60 @@ Nis 27 22:20:26 kali systemd[1]: Started apache2.service - The Apache HTTP Serve
 
 Çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutu kullanılır.
 
-Birimi yeniden başlatmak için `restart` seçeneğini kullanılır. `sudo systemctl restart birim-adı`
-
-Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
+Birimi yeniden başlatmak için `restart` seçeneğini kullanılır. `sudo systemctl restart birim-adı`. Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
 
 Sistem başlangıcında otomatik olarak başlatılmasını istediğimiz birimleri **systemd** üzerinden “**enabled**” yani “aktif” şekilde tanımlamamız gerekir.
 
 ```bash
-└─$ sudo systemctl enable apache2
+# Sistem bağlatıldığında apache2 servisini aktifleştirmek için.
+┌──(ahmet㉿kali)-[~]
+└─$ sudo systemctl enable apache2 
+
 Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
 Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-Eğer aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
+Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
+
+---
 
 Hangi çalışma sevisinde (run level) olduğumuzu öğrenmek için `systemctl get-default` komutu kullanılır.
 
-Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde bulumuş oluyoruz.
+Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
-systemctl isolate multi-user.terget : Run level 3 (sadece cli modu) seviyesine geçmek için.
-systemctl isolate rescue.target : Kurtarma modu.
+Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini değiştirmek istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ systemctl get-default 
+graphical.target
+
+┌──(ahmet㉿kali)-[~]
+└─$ sudo systemctl set-default multi-user.target
+Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi-user.target.
+
+┌──(ahmet㉿kali)-[~]
+└─$ systemctl get-default                                     
+multi-user.target
+```
+
+Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
+
+- `systemctl isolate multi-user.target` : Run level 3 (sadece CLI modu) seviyesine geçmek için.
+- `systemctl isolate rescue.target` : Kurtarma modu seviyesi için.
 
 Bilgisayar açılışta başlayan servislerin listesi `/lib/systemd/system/` konumunda bulunur.
 
+---
 
+## ⏳ Zamanlanmış Görevler
+
+🔼 [**Başa Dön**](#basa_don)
+
+Belirli görevlerin tanımlandıkları zaman aralıklarında otomatik olarak çalıştırılması için **systemd** aracının **timer** birimi ile zamanlanmış görevler tanımlayabiliyoruz.
+
+Bi betik dosyasının spesifik bir aralıkta çalıştırılması için tanımlamada bulunacağım. Bunun için `nano /lib/systemd/system/zaman.timer` komutu ile zamanlanmış görev için **timer** birim dosyası oluşturalım.
 
 
 
