@@ -3526,9 +3526,297 @@ Bilgisayar açılışta başlayan servislerin listesi `/lib/systemd/system/` kon
 
 🔼 [**Başa Dön**](#basa_don)
 
-Belirli görevlerin tanımlandıkları zaman aralıklarında otomatik olarak çalıştırılması için **systemd** aracının **timer** birimi ile zamanlanmış görevler tanımlayabiliyoruz.
+### Cron Nedir?
 
-Bi betik dosyasının spesifik bir aralıkta çalıştırılması için tanımlamada bulunacağım. Bunun için `nano /lib/systemd/system/zaman.timer` komutu ile zamanlanmış görev için **timer** birim dosyası oluşturalım.
+**Cron**, Linux ve Unix tabanlı sistemlerde belirli görevleri otomatik olarak zamanlamak için kullanılan bir servisdir.
+
+Örneğin Cron ile:
+
+- Her gün saat 03:00'te yedek alma
+- Her 5 dakikada bir script çalıştırma
+- Haftalık log temizleme
+- Sistem bakım görevlerini otomatikleştirme
+
+Bu otomatik görevlere **Cron Job** denir.
+
+---
+
+### Cron Servisi
+
+Cron arka planda çalışan bir daemon'dır:
+
+```bash
+crond
+```
+
+Bazı dağıtımlarda servis kontrolü:
+
+```bash
+systemctl status cron     # Debian/Ubuntu
+systemctl status crond    # RHEL/CentOS/Kali
+```
+
+---
+
+### Crontab Nedir?
+
+Kullanıcıya ait zamanlanmış görevler **crontab** dosyasında tutulur.
+
+Crontab düzenlemek için:
+
+```bash
+crontab -e
+```
+
+Listelemek için:
+
+```bash
+crontab -l
+```
+
+Silmek için:
+
+```bash
+crontab -r
+```
+
+---
+
+### Cron Zaman Formatı
+
+Cron 5 alanlı zaman yapısı kullanır:
+
+```bash
+* * * * * komut
+│ │ │ │ │
+│ │ │ │ └── Haftanın günü (0-7)
+│ │ │ └──── Ay (1-12)
+│ │ └────── Ayın günü (1-31)
+│ └──────── Saat (0-23)
+└────────── Dakika (0-59)
+```
+
+---
+
+### Örnekler
+
+Her gün 02:00'de script çalıştır:
+
+```bash
+0 2 * * * /home/user/backup.sh
+```
+
+Her 5 dakikada bir:
+
+```bash
+*/5 * * * * /home/user/check.sh
+```
+
+Her pazartesi:
+
+```bash
+0 9 * * 1 /home/user/report.sh
+```
+
+---
+
+### Kullanım Alanları
+
+- Yedekleme otomasyonu
+- Günlük raporlama
+- Log temizleme
+- Sistem bakım işleri
+- Script ve bot zamanlama
+
+---
+
+## systemd Timer ile Zamanlanmış Görevler
+
+### systemd Timer Nedir?
+
+Modern Linux sistemlerde, klasik **Cron** yerine veya onun yanında **systemd timer** kullanılabilir.
+
+Timer birimleri, belirli aralıklarla veya belirli zamanlarda servis (service unit) çalıştırmak için kullanılır.
+
+Cron mantığına benzer ancak daha esnek ve güçlüdür.
+
+Avantajları:
+
+- systemd ile entegre çalışır
+- Loglar journal üzerinden izlenebilir
+- Dependency yönetimi vardır
+- Boot sonrası görev tetiklenebilir
+- Daha ayrıntılı zamanlama yapılabilir
+
+---
+
+### Yapı
+
+Bir timer genellikle iki dosyadan oluşur:
+
+- `.service` → Çalıştırılacak komut
+- `.timer` → Ne zaman çalışacağını belirler
+
+Örnek:
+
+```bash
+backup.service
+backup.timer
+```
+
+---
+
+### Service Birimi Oluşturma
+
+```bash
+sudo nano /etc/systemd/system/backup.service
+```
+
+İçeriği:
+
+```ini
+[Unit]
+Description=Backup Script
+
+[Service]
+Type=oneshot
+ExecStart=/home/user/backup.sh
+```
+
+---
+
+### Timer Birimi Oluşturma
+
+```bash
+sudo nano /etc/systemd/system/backup.timer
+```
+
+İçerik:
+
+```ini
+[Unit]
+Description=Run backup daily
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+```
+
+---
+
+### Etkinleştirme
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now backup.timer
+```
+
+---
+
+### Timer Kontrolü
+
+Aktif timerları listele:
+
+```bash
+systemctl list-timers
+```
+
+Durum kontrolü:
+
+```bash
+systemctl status backup.timer
+```
+
+Log görüntüleme:
+
+```bash
+journalctl -u backup.service
+```
+
+---
+
+### OnCalendar Örnekleri
+
+Her gün gece 02:00:
+
+```ini
+OnCalendar=*-*-* 02:00:00
+```
+
+Her pazartesi 09:00:
+
+```ini
+OnCalendar=Mon 09:00:00
+```
+
+Her saat başı:
+
+```ini
+OnCalendar=hourly
+```
+
+Hazır ifadeler:
+
+```ini
+hourly
+daily
+weekly
+monthly
+yearly
+```
+
+---
+
+### Persistent=true Ne İşe Yarar?
+
+```ini
+Persistent=true
+```
+
+Sistem kapalıyken kaçan görev, sistem açılınca telafi edilir.
+
+Cron'daki missed job sorununu azaltır.
+
+---
+
+### Boot Sonrası Çalıştırma
+
+Sistem açıldıktan 5 dakika sonra:
+
+```ini
+OnBootSec=5min
+```
+
+Her 30 dakikada tekrar:
+
+```ini
+OnUnitActiveSec=30min
+```
+
+---
+
+### Cron ve systemd Timer Karşılaştırması
+
+| Özellik                | Cron    | systemd Timer |
+| ---------------------- | ------- | ------------- |
+| Basit görevler         | ✔       | ✔             |
+| Dependency yönetimi    | ✘       | ✔             |
+| Log takibi             | Sınırlı | ✔             |
+| Boot sonrası tetikleme | ✘       | ✔             |
+| Missed job telafisi    | ✘       | ✔             |
+
+---
+
+### Özet
+
+- Cron klasik zamanlayıcıdır.
+- systemd timer modern alternatifidir.
+- `.service` görev tanımlar.
+- `.timer` zamanlamayı yapar.
+- `systemctl list-timers` ile kontrol edilir.
 
 
 
