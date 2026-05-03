@@ -61,3 +61,61 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 `ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullanılır.
 
+Sistemimize bağlı bulunan ağ arayüzleri hakkında bilgi almak için `ip a` ya da `ip addr` ya da uzun şekilde `ip address` şeklinde komutumuzu girebiliriz.
+
+```bash
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 50:a1:32:3c:bf:2d brd ff:ff:ff:ff:ff:ff
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether c4:3d:1a:bc:34:b9 brd ff:ff:ff:ff:ff:ff
+    inet 10.43.239.196/24 brd 10.43.239.255 scope global dynamic noprefixroute wlan0
+       valid_lft 2000sec preferred_lft 2000sec
+    inet6 fe80::1970:5982:3bc5:7e2a/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+
+Eğer ağ arayüzleri tarafından gerçekleştirilen paket transferleri hakkında bilgi edinmek istersek `-s` seçeneğini ekleyebiliriz.
+
+```bash
+└─$ ip -s a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+         24472     314      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+         24472     314      0       0       0       0 
+2: eth0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 50:a1:32:3c:bf:2d brd ff:ff:ff:ff:ff:ff
+    RX:  bytes packets errors dropped  missed   mcast           
+             0       0      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+             0       0      0       0       0       0 
+3: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether c4:3d:1a:bc:34:b9 brd ff:ff:ff:ff:ff:ff
+    inet 10.43.239.196/24 brd 10.43.239.255 scope global dynamic noprefixroute wlan0
+       valid_lft 1882sec preferred_lft 1882sec
+    inet6 fe80::1970:5982:3bc5:7e2a/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+    RX:  bytes packets errors dropped  missed   mcast           
+      17296456   23732      0       0       0       0 
+    TX:  bytes packets errors dropped carrier collsns           
+       9112521   16490      0       0       0       0 
+```
+
+Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback olarak bilinen ağ arayüzünü temsil ediyor. Bu arayüz, sayesinde mevcut cihazın kendi kendine ağ trafiği oluşturması ve işlemesi mümkün oluyor. Bu sayede örneğin bir websitesi geliştirirken gerçek ağ trafiği olmadan uygulamanın nasıl çalıştığını test edebiliyoruz. Ayrıca sistem üzerindeki pek çok araç da lokal adrese benzer sebeplerle ihtiyaç duyuyor.
+
+İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını temsil eden ağ arayüzüdür.
+
+Üçüncü ağ arayüzü Wi-Fi aygıtı “wlan0” ağ arayüzünü de bu çıktılarda görüyor olacaktım. Bu durumu teyit etmek için sistemime Wifi adaptörünü bağladıktan sonra tekrar `ip a` komutunu giriyorum
