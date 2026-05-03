@@ -36,3 +36,18 @@ PING www.google.com (142.251.156.119) 56(84) bytes of data.
 rtt min/avg/max/mdev = 33.346/36.841/39.646/1.878 ms
 ```
 
+Verdiğimiz www.google.com domain adresi çözümlenip “216.58.212.4” ip adresi bulunmuş ve bu adrese küçük bir data paketi gönderilmiş. Göndermiş olduğumuz pakete karşılık olarak da www.google.com adresi 64 byte’lık yanıt paketleri göndermiş.
+
+```bash
+┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+└─$ ping -c 3 www.linuxdersleri.net
+PING linux-dersleri.github.io (185.199.108.153) 56(84) bytes of data.
+64 bytes from cdn-185-199-108-153.github.com (185.199.108.153): icmp_seq=1 ttl=50 time=94.1 ms
+64 bytes from cdn-185-199-108-153.github.com (185.199.108.153): icmp_seq=2 ttl=50 time=70.3 ms
+64 bytes from cdn-185-199-108-153.github.com (185.199.108.153): icmp_seq=3 ttl=50 time=60.8 ms
+
+--- linux-dersleri.github.io ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 60.795/75.069/94.076/13.992 ms
+```
+
