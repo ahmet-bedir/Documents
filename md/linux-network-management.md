@@ -118,4 +118,5 @@ Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback 
 
 İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını temsil eden ağ arayüzüdür.
 
-Üçüncü ağ arayüzü Wi-Fi aygıtı “wlan0” ağ arayüzü olarak görünüyor.
+Üçüncü ağ arayüzü Wi-Fi aygıtı “wlan0” olarak görünüyor.
+
