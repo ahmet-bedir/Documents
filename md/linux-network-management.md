@@ -36,7 +36,7 @@ PING www.google.com (142.251.156.119) 56(84) bytes of data.
 rtt min/avg/max/mdev = 33.346/36.841/39.646/1.878 ms
 ```
 
-Verdiğimiz www.google.com domain adresi çözümlenip “216.58.212.4” ip adresi bulunmuş ve bu adrese küçük bir data paketi gönderilmiş. Göndermiş olduğumuz pakete karşılık olarak da www.google.com adresi 64 byte’lık yanıt paketleri göndermiş.
+Verdiğimiz www.google.com domain adresi çözümlenip “142.251.156.119” ip adresi bulunmuş ve bu adrese küçük bir data paketi gönderilmiş. Göndermiş olduğumuz pakete karşılık olarak da www.google.com adresi 64 byte’lık yanıt paketleri göndermiş.
 
 ```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
