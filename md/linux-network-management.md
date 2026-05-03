@@ -53,10 +53,11 @@ rtt min/avg/max/mdev = 60.795/75.069/94.076/13.992 ms
 
 Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı belirtmemiz mümkün.
 
-
+`ping` komutu varsayılan olarak ipv4 adresleri üzerinde çalışıyor. Eğer ipv6 adresleriyle çalışacaksanız `-6` seçeneği ile bunu özellikle belirtmeniz gerekiyor. 
 
 ---
 
 ## ip Komutu
 
-`ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullan
+`ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullanılır.
+
