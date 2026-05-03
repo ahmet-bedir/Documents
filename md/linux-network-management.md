@@ -14,7 +14,7 @@
 
 ---
 
-## ping
+## ping Komutu
 
 `ping` komutu, ağdaki cihazların erişilebilirliğini ve tepki sürelerini kontrol etmek için kullanılan bir araçtır.
 
@@ -51,3 +51,12 @@ PING linux-dersleri.github.io (185.199.108.153) 56(84) bytes of data.
 rtt min/avg/max/mdev = 60.795/75.069/94.076/13.992 ms
 ```
 
+Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı belirtmemiz mümkün.
+
+
+
+---
+
+## ip Komutu
+
+`ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullan
