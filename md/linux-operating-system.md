@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Servis Yönetimi ve Zamanlanmış Görevler**](#servis)<br />
+▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
 
 
 ---
@@ -2955,11 +2955,9 @@ Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk
 
 <img src="../images/permission-first-column.webp" width="405" />
 
-Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Göstermek için izinleri boru sembolü (`|`) ile ayırdık.
+Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir.
 
-```bash
-d | rwx | r-x | r-x  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
-```
+<img src="../images/permission-file.jpg" width="405" />
 
 Her karakter farklı bir izni temsil eder:
 
@@ -2969,8 +2967,6 @@ Her karakter farklı bir izni temsil eder:
 * \-: boş
 
 ![](../images/rwx.png)
-
-Dolayısıyla yukarıdaki örnekte, `ahmet` kullanıcısının dosya üzerinde okuma, yazma ve yürütme izinlerine sahip olduğunu görüyoruz. Grubun okuma ve yürütme izni vardır. Son olarak, diğer kullanıcıların (herkesin) okuma ve yürütme izni vardır.
 
 ---
 
@@ -3521,6 +3517,8 @@ Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
 Bilgisayar açılışta başlayan servislerin listesi `/lib/systemd/system/` konumunda bulunur.
 
 ---
+
+<a id="zaman"><a />
 
 ## ⏳ Zamanlanmış Görevler
 
