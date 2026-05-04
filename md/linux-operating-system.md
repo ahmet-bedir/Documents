@@ -2951,11 +2951,11 @@ drwxr-xrwx  2 ahmet ahmet 4096 Kas 25 13:35  Şablonlar
 drwxr-xrwx  3 ahmet ahmet 4096 Ara  5 22:23  Videolar
 ```
 
-Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk karakterle gösterilen dosya türüdür. Bizim durumumuzda bir dizine baktığımız için dosya türü için `d` gösterir. Çoğunlukla normal bir dosya için `-` görürsünüz.
+Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk karakterle gösterilen dosya türüdür. Dizinler için `d` gösterir. Normal bir dosya için `-` görürsünüz.
 
 <img src="../images/permission-first-column.webp" width="405" />
 
-Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Farklılaştırmayı kolaylaştırmak için izinler boru sembolü (`|`) ile ayırıldı.
+Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir. Göstermek için izinleri boru sembolü (`|`) ile ayırdık.
 
 ```bash
 d | rwx | r-x | r-x  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
