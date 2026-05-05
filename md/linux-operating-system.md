@@ -3131,12 +3131,10 @@ Gördüğünüz gibi, SUID bir 4 ile gösterilir ve izin setine eklenir. SUID'yi
 
 Kullanıcı kimliği (SUID) izin bitine benzer şekilde, bir set grup kimliği (SGID) izin biti de vardır. Bu bit, bir programın sanki o grubun bir üyesiymiş gibi çalışmasına izin verir.
 
-Bir örneğe bakalım:
-
 ```bash
 $ ls -l /usr/bin/wall
 
--rwxr-sr-x 1 root tty 19024 Dec 14 11:45 /usr/bin/wall// Some code
+-rwxr-sr-x 1 root tty 19024 Dec 14 11:45 /usr/bin/wall/ Some code
 ```
 
 Artık izin bitinin grup izin seti içinde olduğunu görebiliyoruz.
