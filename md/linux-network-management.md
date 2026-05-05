@@ -8,13 +8,15 @@
 
 **İçindekiler**
 
-- ping
+- [**ping komutu**](#ping)
+- [**ip komutu**](#ip)
+- [**nmtui komutu**](#nmtui)
 
 
 
 ---
 
-## ping Komutu
+## ping komutu
 
 `ping` komutu, ağdaki cihazların erişilebilirliğini ve tepki sürelerini kontrol etmek için kullanılan bir araçtır.
 
@@ -57,7 +59,7 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
-## ip Komutu
+## ip komutu
 
 `ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullanılır.
 
