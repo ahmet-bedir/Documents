@@ -2928,7 +2928,7 @@ sudo passwd ali
 
 ### Dosya İzinleri
 
-Dosyaların farklı izinleri veya dosya modları vardır, örneğin:
+Dosyaların ve dizinlerin farklı izinleri veya dosya modları vardır:
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -2955,7 +2955,7 @@ Bir dosyanın izinlerinin dört bölümü vardır. İlk bölüm, izinlerdeki ilk
 
 <img src="../images/permission-first-column.webp" width="405" />
 
-Dosya modunun sonraki üç bölümü gerçek izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir, ardından grup izinleri ve sonra diğer izinler gelir.
+Dosya modunun sonraki üç bölüm izinlerdir. İzinler her biri 3 bitli gruplara ayrılır. İlk 3 bit kullanıcı izinleridir (sahibi), ardından grup izinleri (sahibi ile aynı gruptakiler)  ve sonra diğer izinler (diğer kullanıcılar) gelir.
 
 <img src="../images/permission-file.jpg" width="405" />
 
