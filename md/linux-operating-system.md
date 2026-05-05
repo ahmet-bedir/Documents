@@ -3438,40 +3438,56 @@ Yaygın kullanıma sahip temel sinyaller:
 
 Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve sisteme işlevsellik sağlayan arka plan işlemleridir. Genellikle sistem başlangıcında otomatik olarak başlatılır ve sistem çalıştığı süre boyunca aksini gerektiren bir durum olmadığı sürece çalışırlar.
 
-Sistemimizde aktif olan yani halihazırda çalışmakta olan tüm birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz.
+### Birimleri listelemek
+
+Sistemimizde aktif olan yani halihazırda çalışmakta olan birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz. `—state=inactive` seçeneği ile inaktif olanları da özellikle filtreleyebiliriz.
 
 Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneğini kullanabiliyoruz.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
-└─$ systemctl status apache2
-
-● apache2.service - The Apache HTTP Server
-     Loaded: loaded (/usr/lib/systemd/system/apache2.service; enabled; preset: disabled)
-     Active: active (running) since Mon 2026-04-27 22:20:26 +03; 32min ago
- Invocation: 055f926b6f9d4fe8a4c72397f5c06dc5
+┌──(ahmet㉿kali)-[~]
+└─$ systemctl status apache2.service
+○ apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: inactive (dead)
        Docs: https://httpd.apache.org/docs/2.4/
-   Main PID: 1024 (apache2)
-     Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes served/sec:   0 B/sec"
-      Tasks: 7 (limit: 18631)
-     Memory: 22M (peak: 23.2M)
-        CPU: 436ms
-     CGroup: /system.slice/apache2.service
-             ├─1024 /usr/sbin/apache2 -k start -DFOREGROUND
-             ├─1114 /usr/sbin/apache2 -k start -DFOREGROUND
-             ├─1115 /usr/sbin/apache2 -k start -DFOREGROUND
-             ├─1116 /usr/sbin/apache2 -k start -DFOREGROUND
-             ├─1117 /usr/sbin/apache2 -k start -DFOREGROUND
-             ├─1118 /usr/sbin/apache2 -k start -DFOREGROUND
-             └─1119 /usr/sbin/apache2 -k start -DFOREGROUND
-
-Nis 27 22:20:25 kali systemd[1]: Starting apache2.service - The Apache HTTP Server...
-Nis 27 22:20:26 kali systemd[1]: Started apache2.service - The Apache HTTP Server.
 ```
 
-Çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutu kullanılır.
+### Unit (Birim) Yönetimi
 
-Birimi yeniden başlatmak için `restart` seçeneğini kullanılır. `sudo systemctl restart birim-adı`. Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
+İnaktif durumdaki bir birimi başlatmak için `sudo systemctl start birim-adı` komutu, çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutu kullanılır.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ systemctl start apache2.service
+[sudo] password for ahmet: 
+    
+┌──(ahmet㉿kali)-[~]
+└─$ systemctl status apache2.service
+● apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; disabled; vendor preset: disabled)
+     Active: active (running) since Mon 2023-07-24 10:08:06 EDT; 6s ago
+       Docs: https://httpd.apache.org/docs/2.4/
+    Process: 15355 ExecStart=/usr/sbin/apachectl start (code=exited, status=0/SUCCESS)
+   Main PID: 15390 (apache2)
+      Tasks: 6 (limit: 12719)
+     Memory: 19.2M
+        CPU: 110ms
+     CGroup: /system.slice/apache2.service
+             ├─15390 /usr/sbin/apache2 -k start
+             ├─15391 /usr/sbin/apache2 -k start
+             ├─15392 /usr/sbin/apache2 -k start
+             ├─15393 /usr/sbin/apache2 -k start
+             ├─15394 /usr/sbin/apache2 -k start
+             └─15395 /usr/sbin/apache2 -k start
+
+Jul 24 10:08:01 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
+Jul 24 10:08:06 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
+```
+
+➜ Birimi yeniden başlatmak için `restart` seçeneği kullanılır. `sudo systemctl restart birim-adı`. Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
+
+### Birimlerin Aktif Pasif Hale Getirilmesi
 
 Sistem başlangıcında otomatik olarak başlatılmasını istediğimiz birimleri **systemd** üzerinden “**enabled**” yani “aktif” şekilde tanımlamamız gerekir.
 
@@ -3485,11 +3501,11 @@ Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
+➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
 
----
+### Birimleri Gruplamak | Target
 
-Hangi çalışma sevisinde (run level) olduğumuzu öğrenmek için `systemctl get-default` komutu kullanılır.
+Hangi çalışma sevisinde (run level) yani Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
 
 Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
@@ -3505,9 +3521,11 @@ graphical.target
 Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi-user.target.
 
 ┌──(ahmet㉿kali)-[~]
-└─$ systemctl get-default                                     
+└─$ systemctl get-default
 multi-user.target
 ```
+
+➜ 
 
 Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
 
