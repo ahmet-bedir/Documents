@@ -1,10 +1,9 @@
 <p align="center">
 	<img src="../images/network-technology.png" width="415"/>
 <p/>
+## 🖧 Linux Ağ Yönetimi (Network Management)
 
-# Linux Ağ Yönetimi
-
-###### Son Güncelleme : 05/2026
+Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapılandırmasını, yönlendirme (routing) ve bağlantı servislerini kontrol etme sürecidir. Hem statik hem dinamik (DHCP) ağ yapılandırmaları desteklenir.
 
 **İçindekiler**
 
@@ -116,9 +115,9 @@ Eğer ağ arayüzleri tarafından gerçekleştirilen paket transferleri hakkınd
        9112521   16490      0       0       0       0 
 ```
 
-Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback olarak bilinen ağ arayüzünü temsil ediyor. Bu arayüz, sayesinde mevcut cihazın kendi kendine ağ trafiği oluşturması ve işlemesi mümkün oluyor. Bu sayede örneğin bir websitesi geliştirirken gerçek ağ trafiği olmadan uygulamanın nasıl çalıştığını test edebiliyoruz. Ayrıca sistem üzerindeki pek çok araç da lokal adrese benzer sebeplerle ihtiyaç duyuyor.
+Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback olarak bilinen ağ arayüzünü temsil ediyor. Bu arayüz, sayesinde mevcut cihazın kendi kendine ağ trafiği oluşturması ve işlemesi mümkün oluyor. Bu sayede örneğin bir websitesi geliştirirken gerçek ağ trafiği olmadan uygulamanın nasıl çalıştığını test edebiliyoruz.
 
-İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını temsil eden ağ arayüzüdür.
+İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını (kablo ile bağlantı) temsil eden ağ arayüzüdür.
 
-Üçüncü ağ arayüzü Wi-Fi aygıtı “wlan0” olarak görünüyor.
+Üçüncü ağ arayüzü Wi-Fi (kablosuzz bağlantı) aygıtı “wlan0” olarak görünüyor.
 
