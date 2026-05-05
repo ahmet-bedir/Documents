@@ -121,3 +121,5 @@ Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback 
 
 Üçüncü ağ arayüzü Wi-Fi (kablosuzz bağlantı) aygıtı “wlan0” olarak görünüyor.
 
+💡 Uyarı: “eth” ve “wlan” ifadeleri arayüz tipini belirtiyorken, bitişik şekilde yazılan sayılar ise kaçıncı ağ arayüzü olduğunu belirtiyor. Örneğin benim sistemimde 3 tane ethernet ağ kartı(network interface card) bağlı olsaydı buradaki çıktılarda “eth0”, “eth1” ve “eth2” şeklinde sırasıyla isimlendirilmiş ethernet arayüzlerini görecektik.
+
