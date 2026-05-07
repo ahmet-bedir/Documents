@@ -1,9 +1,12 @@
 <p align="center">
 	<img src="../images/network-technology.png" width="415"/>
 <p/>
+
 ## 🖧 Linux Ağ Yönetimi (Network Management)
 
 Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapılandırmasını, yönlendirme (routing) ve bağlantı servislerini kontrol etme sürecidir. Hem statik hem dinamik (DHCP) ağ yapılandırmaları desteklenir.
+
+<a id=
 
 **İçindekiler**
 
@@ -176,9 +179,9 @@ Gördüğünüz gibi ethernet bağlantısını temsil eden **eth0** arayüzünü
     inet6 fe80::a00:27ff:fe95:bd54/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
 ```
- 
+
 Bakın `sudo ip link set eth0 up` komutu sayesinde `eth0` arayüzünü tekrar aktifleştirmiş olduk.
- 
+
  
 
 ethtool -i (network kartı) # Network kartının bilgilerini verir
