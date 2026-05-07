@@ -3422,6 +3422,105 @@ Yaygın kullanıma sahip temel sinyaller:
 
 ---
 
+## Çalışma Seviyeleri (Runlevels)
+
+🔼 [**Başa Dön**](#basa_don)
+
+Linux sistemlerinde çalışma seviyeleri (runlevels), sistemin hangi modda çalışacağını belirleyen işletim durumu seviyeleridir. Her çalışma seviyesi farklı servis ve kullanıcı ortamlarını ifade eder.
+
+------
+
+### 🧩 Temel Çalışma Seviyeleri
+
+| Seviye | Açıklama                                       |
+| ------ | ---------------------------------------------- |
+| 0      | Sistemi kapatır (halt)                         |
+| 1      | Tek kullanıcı modu (single-user / rescue mode) |
+| 2      | Çok kullanıcılı mod (bazı dağıtımlarda ağsız)  |
+| 3      | Çok kullanıcılı metin tabanlı mod              |
+| 4      | Kullanıcıya özel / genellikle kullanılmaz      |
+| 5      | Grafik arayüzlü mod (GUI)                      |
+| 6      | Sistemi yeniden başlatır (reboot)              |
+
+------
+
+## ⚙️ Çalışma Seviyesi Görüntüleme
+
+Mevcut çalışma seviyesini görmek için:
+
+```
+runlevel
+```
+
+veya:
+
+```
+who -r
+```
+
+------
+
+## 🔄 Çalışma Seviyesi Değiştirme
+
+Geçici olarak çalışma seviyesini değiştirmek için:
+
+```
+init 3
+```
+
+veya:
+
+```
+telinit 3
+```
+
+Bu örnekte sistem grafik arayüzden çıkıp metin tabanlı çok kullanıcılı moda geçer.
+
+------
+
+## 🖥️ Açılış Sırasında Geçici Çalışma Seviyesi Değiştirme
+
+Sistem açılırken GRUB ekranında çekirdek satırı düzenlenerek çalışma seviyesi geçici olarak değiştirilebilir.
+
+### Adımlar
+
+1. GRUB menüsünde açılacak çekirdeği seçin.
+2. `e` tuşuna basarak düzenleme ekranına girin.
+3. `linux` ile başlayan satırı bulun.
+4. Satırın sonuna istenilen çalışma seviyesi numarasını ekleyin.
+
+Örneğin çalışma seviyesini **3** yapmak için:
+
+```
+linux /boot/vmlinuz ... 3
+```
+
+1. `Ctrl + X` veya `F10` ile sistemi başlatın.
+
+Bu işlem yalnızca o açılış için geçerlidir ve kalıcı değildir.
+
+------
+
+## 📌 Modern Linux Sistemleri
+
+Günümüzde birçok Linux dağıtımı klasik runlevel sistemi yerine systemd kullanmaktadır. `systemd` içerisinde çalışma seviyeleri yerine “target” yapısı kullanılmaktadır.
+
+| Runlevel | systemd Target    |
+| -------- | ----------------- |
+| 3        | multi-user.target |
+| 5        | graphical.target  |
+| 1        | rescue.target     |
+
+Örnek:
+
+```
+systemctl isolate multi-user.target
+```
+
+Bu komut sistemi çalışma seviyesi 3 benzeri moda geçirir.
+
+---
+
 <a id="servis"><a />
 
 ## ⚙️ Servis Yönetimi
@@ -3495,13 +3594,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → 
 
 ➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
 
-### Birimleri Gruplamak | Target
+### Birimleri Gruplamak | Target8
 
 Hangi çalışma sevisinde (run level) yani Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
 
 Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
-Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini değiştirmek istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
+Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini kalıcı olarak değiştirmek istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -3517,9 +3616,7 @@ Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi
 multi-user.target
 ```
 
-➜ 
-
-Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
+➜ Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
 
 - `systemctl isolate multi-user.target` : Run level 3 (sadece CLI modu) seviyesine geçmek için.
 - `systemctl isolate rescue.target` : Kurtarma modu seviyesi için.
@@ -3825,6 +3922,10 @@ OnUnitActiveSec=30min
 - `.service` görev tanımlar.
 - `.timer` zamanlamayı yapar.
 - `systemctl list-timers` ile kontrol edilir.
+
+---
+
+
 
 
 
