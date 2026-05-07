@@ -10,15 +10,19 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 **İçindekiler**
 
-- [**ping komutu**](#ping)
 - [**ip komutu**](#ip)
+- [**ping komutu**](#ping)
 - [**nmtui komutu**](#nmtui)
 
 
 
 ---
 
+<a id="ping"><a />
+
 ## ping komutu
+
+🔼 [**Başa Dön**](#basa_don)
 
 `ping` komutu, ağdaki cihazların erişilebilirliğini ve tepki sürelerini kontrol etmek için kullanılan bir araçtır.
 
@@ -63,7 +67,11 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
+<a id="ip"><a />
+
 ## ip komutu
+
+🔼 [**Başa Dön**](#basa_don)
 
 `ip` komutu, ağ arayüzleri hakkında bilgi almak ve yapılandırmak için kullanılır.
 
@@ -88,8 +96,6 @@ Sistemimize bağlı bulunan ağ arayüzleri hakkında bilgi almak için `ip a` y
     inet6 fe80::1970:5982:3bc5:7e2a/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
 ```
-
-➜ Networke ait genel bilgileri öğrenmek için `ip addr show` komutunu kullanabiliriz.
 
 Eğer ağ arayüzleri tarafından gerçekleştirilen paket transferleri hakkında bilgi edinmek istersek `-s` seçeneğini ekleyebiliriz.
 
