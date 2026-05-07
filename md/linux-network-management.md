@@ -20,8 +20,9 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 `ping` komutu, ağdaki cihazların erişilebilirliğini ve tepki sürelerini kontrol etmek için kullanılan bir araçtır.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+┌──(ahmet㉿kali)-[~]
 └─$ ping www.google.com
+
 PING www.google.com (142.251.156.119) 56(84) bytes of data.
 64 bytes from 142.251.156.119: icmp_seq=1 ttl=112 time=39.6 ms
 64 bytes from 142.251.156.119: icmp_seq=2 ttl=112 time=38.1 ms
@@ -40,8 +41,9 @@ rtt min/avg/max/mdev = 33.346/36.841/39.646/1.878 ms
 Verdiğimiz www.google.com domain adresi çözümlenip “142.251.156.119” ip adresi bulunmuş ve bu adrese küçük bir data paketi gönderilmiş. Göndermiş olduğumuz pakete karşılık olarak da www.google.com adresi 64 byte’lık yanıt paketleri göndermiş.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+┌──(ahmet㉿kali)-[~]
 └─$ ping -c 3 www.linuxdersleri.net
+
 PING linux-dersleri.github.io (185.199.108.153) 56(84) bytes of data.
 64 bytes from cdn-185-199-108-153.github.com (185.199.108.153): icmp_seq=1 ttl=50 time=94.1 ms
 64 bytes from cdn-185-199-108-153.github.com (185.199.108.153): icmp_seq=2 ttl=50 time=70.3 ms
@@ -65,8 +67,9 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 Sistemimize bağlı bulunan ağ arayüzleri hakkında bilgi almak için `ip a` ya da `ip addr` ya da uzun şekilde `ip address` şeklinde komutumuzu girebiliriz.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Masaüstü/Documents]
+┌──(ahmet㉿kali)-[~]
 └─$ ip a
+
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -83,10 +86,14 @@ Sistemimize bağlı bulunan ağ arayüzleri hakkında bilgi almak için `ip a` y
        valid_lft forever preferred_lft forever
 ```
 
+➜ Networke ait genel bilgileri öğrenmek için `ip addr show` komutunu kullanabiliriz.
+
 Eğer ağ arayüzleri tarafından gerçekleştirilen paket transferleri hakkında bilgi edinmek istersek `-s` seçeneğini ekleyebiliriz.
 
 ```bash
+┌──(ahmet㉿kali)-[~]
 └─$ ip -s a
+
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -119,9 +126,64 @@ Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback 
 
 İkinci ağ arayüzü olan “eth0” ise ethernet bağlantısını (kablo ile bağlantı) temsil eden ağ arayüzüdür.
 
-Üçüncü ağ arayüzü Wi-Fi (kablosuzz bağlantı) aygıtı “wlan0” olarak görünüyor.
+Üçüncü ağ arayüzü Wi-Fi (kablosuz bağlantı) aygıtı “wlan0” olarak görünüyor.
 
 💡 Uyarı: “eth” ve “wlan” ifadeleri arayüz tipini belirtiyorken, bitişik şekilde yazılan sayılar ise kaçıncı ağ arayüzü olduğunu belirtiyor. Örneğin benim sistemimde 3 tane ethernet ağ kartı(network interface card) bağlı olsaydı buradaki çıktılarda “eth0”, “eth1” ve “eth2” şeklinde sırasıyla isimlendirilmiş ethernet arayüzlerini görecektik.
 
 ### Ağ Arayüzlerini Açıp Kapatmak | UP DOWN
 
+Üzerinde işlem yapmak istediğimiz arayüzü `ip link set` komutundan sonra yazıp, yapmak istediğimiz işlemi belirtiriz.
+
+Ethernet arayüzünü kapatmak için:
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ sudo ip link set eth0 down
+[sudo] password for ahmet:
+
+┌──(ahmet㉿kali)-[~]
+└─$ ip address
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST> mtu 1500 qdisc pfifo_fast state DOWN group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+````
+
+Gördüğünüz gibi ethernet bağlantısını temsil eden **eth0** arayüzünün **state** yani durumu **DOWN** olarak gözüküyor.
+
+Şimdi kapatmış olduğumuz ağ arayüzünü tekrar aktifleştirmek üzere bu kez `up` seçeneğini kullanalım.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ sudo ip link set eth0 up
+
+┌──(ahmet㉿kali)-[~]
+└─$ ip address             
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:95:bd:54 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.11/24 brd 192.168.1.255 scope global dynamic noprefixroute eth0
+       valid_lft 86398sec preferred_lft 86398sec
+    inet6 fe80::a00:27ff:fe95:bd54/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+```
+ 
+Bakın `sudo ip link set eth0 up` komutu sayesinde `eth0` arayüzünü tekrar aktifleştirmiş olduk.
+ 
+ 
+
+ethtool -i (network kartı) # Network kartının bilgilerini verir
+ethtool -S (network kartı) # Network kartının daha detaylı bilgileri verir
+
+DNS ayarlarının olduğu dosya `/etc/resolv.conf` konumundadır.
+
+Ağda bulunan tüm aygıtları görmek için`netdiscover` komutu kullanılır.
