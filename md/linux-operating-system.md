@@ -3422,6 +3422,8 @@ Yaygın kullanıma sahip temel sinyaller:
 
 ---
 
+<a id="seviye"><a /> 
+
 ## Çalışma Seviyeleri (Runlevels)
 
 🔼 [**Başa Dön**](#basa_don)
@@ -3444,7 +3446,7 @@ Linux sistemlerinde çalışma seviyeleri (runlevels), sistemin hangi modda çal
 
 ------
 
-## ⚙️ Çalışma Seviyesi Görüntüleme
+### ⚙️ Çalışma Seviyesi Görüntüleme
 
 Mevcut çalışma seviyesini görmek için:
 
@@ -3460,7 +3462,7 @@ who -r
 
 ------
 
-## 🔄 Çalışma Seviyesi Değiştirme
+### 🔄 Çalışma Seviyesi Değiştirme
 
 Geçici olarak çalışma seviyesini değiştirmek için:
 
@@ -3478,11 +3480,11 @@ Bu örnekte sistem grafik arayüzden çıkıp metin tabanlı çok kullanıcılı
 
 ------
 
-## 🖥️ Açılış Sırasında Geçici Çalışma Seviyesi Değiştirme
+### 🖥️ Açılış Sırasında Geçici Çalışma Seviyesi Değiştirme
 
 Sistem açılırken GRUB ekranında çekirdek satırı düzenlenerek çalışma seviyesi geçici olarak değiştirilebilir.
 
-### Adımlar
+#### Adımlar
 
 1. GRUB menüsünde açılacak çekirdeği seçin.
 2. `e` tuşuna basarak düzenleme ekranına girin.
@@ -3501,7 +3503,7 @@ Bu işlem yalnızca o açılış için geçerlidir ve kalıcı değildir.
 
 ------
 
-## 📌 Modern Linux Sistemleri
+### 📌 Modern Linux Sistemleri
 
 Günümüzde birçok Linux dağıtımı klasik runlevel sistemi yerine systemd kullanmaktadır. `systemd` içerisinde çalışma seviyeleri yerine “target” yapısı kullanılmaktadır.
 
@@ -3594,13 +3596,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → 
 
 ➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
 
-### Birimleri Gruplamak | Target8
+### Birimleri Gruplamak | Target
 
 Hangi çalışma sevisinde (run level) yani Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
 
 Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
-Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini kalıcı olarak değiştirmek istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
+Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini **kalıcı olarak değiştirmek** istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -3618,10 +3620,26 @@ multi-user.target
 
 ➜ Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
 
-- `systemctl isolate multi-user.target` : Run level 3 (sadece CLI modu) seviyesine geçmek için.
-- `systemctl isolate rescue.target` : Kurtarma modu seviyesi için.
+- `systemctl isolate multi-user.target` : Sistemi grafik arayüzden çıkarıp çok kullanıcılı metin tabanlı moda geçirir. (Eski runlevel 3 karşılığı)
+- `systemctl isolate rescue.target` : Sistemi kurtarma moduna geçirir.  (Eski runlevel 1 / single-user mode karşılığı)
 
-Bilgisayar açılışta başlayan servislerin listesi `/lib/systemd/system/` konumunda bulunur.
+### Systemd Servis Dosyaları
+
+Sistem açılışında çalışan servislerin unit dosyaları genellikle aşağıdaki dizinlerde bulunur:
+
+`/lib/systemd/system/`
+
+veya:
+
+`/etc/systemd/system/`
+
+- `/lib/systemd/system/`
+   Paket yöneticisi tarafından kurulan servis dosyalarını içerir.
+
+- `/etc/systemd/system/`
+   Kullanıcı veya sistem yöneticisi tarafından oluşturulan/özelleştirilen servisleri içerir.
+
+
 
 ---
 
