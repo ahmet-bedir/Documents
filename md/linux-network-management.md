@@ -6,7 +6,7 @@
 
 Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapılandırmasını, yönlendirme (routing) ve bağlantı servislerini kontrol etme sürecidir. Hem statik hem dinamik (DHCP) ağ yapılandırmaları desteklenir.
 
-<a id=
+<a id="basa_don"><a />
 
 **İçindekiler**
 
