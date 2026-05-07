@@ -3639,7 +3639,13 @@ veya:
 - `/etc/systemd/system/`
    Kullanıcı veya sistem yöneticisi tarafından oluşturulan/özelleştirilen servisleri içerir.
 
+Hangilerinin açılışta aktif olduğunu görmek için:
 
+```bash
+systemctl list-unit-files --type=service
+# yada
+systemctl list-units --type=service
+```
 
 ---
 
