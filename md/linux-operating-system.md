@@ -3444,6 +3444,10 @@ Linux sistemlerinde çalışma seviyeleri (runlevels), sistemin hangi modda çal
 | 5      | Grafik arayüzlü mod (GUI)                      |
 | 6      | Sistemi yeniden başlatır (reboot)              |
 
+Çalışma seviyesine ait bütün betikler `/etc/init.d` altında yer alır. Her bir çalışma seviyesi için `/etc/rcX.d` şeklinde bir dizin olup o seviyede çalıştırılacak yada durdurulacak betiklere ait sembolinkler linkeri içerir. Yani `/etc/init.d` altındaki bütün betikler çalıştırılmaz, **sadece ilgili çalışma seviyesinden linklenmiş betikler çalışır**.
+Çalışma seviyesi dizinleri şunlardır:
+`rc0.d`  `rc1.d`  `rc2.d`  `rc3.d`  `rc4.d`  `rc5.d`  `rc6.d`
+
 ------
 
 ### ⚙️ Çalışma Seviyesi Görüntüleme
@@ -3478,6 +3482,27 @@ telinit 3
 
 Bu örnekte sistem grafik arayüzden çıkıp metin tabanlı çok kullanıcılı moda geçer.
 
+---
+
+Sistemi kapatmak (halt) veya yeniden başlatmak (reboot) için telinit 
+kullanılabilir. Ancak daha güvenli yol olarak `shutdown` komutu 
+kullanılabilir. ‘halt’ ve ‘reboot’ komutları da aynı işlevi görürler. Bu iki komut da nihayetinde shutdown’u farklı parametrelerde çağıran kısaltmalardır. Aynı şekilde ‘poweroff’ komutu da yine shutdown’u
+kullanan farklı bir kısaltmadır.
+
+```bash
+shutdown [-t sec] [-arkhncfFHP] süre [uyarı mesajı]
+```
+
+‘süre’ parametresi olarak ‘now’ denirse işlem hemen gerçekleştirilir. İstenirse ileri bir zaman verilebilir. Genel kullanıma açık sunucularda 
+system kapamaları planlıdır ve önceden duyurulur.
+Aşağıda farklı shutdown kullanımları görülmektedir.
+- `shutdown ­h now`
+- `shutdown ­r now`
+- `shutdown ­h 16:30`
+- `shutdown ­r +10`
+Son kullanımdaki +10, şu andan itibaren 10 dakika sonra reboot et 
+demektir.
+
 ------
 
 ### 🖥️ Açılış Sırasında Geçici Çalışma Seviyesi Değiştirme
@@ -3500,6 +3525,44 @@ linux /boot/vmlinuz ... 3
 1. `Ctrl + X` veya `F10` ile sistemi başlatın.
 
 Bu işlem yalnızca o açılış için geçerlidir ve kalıcı değildir.
+
+### Açılışta sistemi bash kabuğu ile başlatma. 
+
+GRUB ekranında → E tuşuna bas →
+linux ile başlayan satırı bulun:
+`linux   /boot/vmlinuz-... root=UUID=.... quiet splash`
+
+Satırın sonuna `init=/bin/bash` ifadesini ekleyip, linux satırında bulunan “ro” (read only yalnızca okuma yetkisi) ifadesini, “rw” ( read write yani hem okuma hem de yazma - değişiklik yapma) yetkisi olarak değiştirdikten sonra, satırın sonuna ”init=/bin/bash” ifadesini ekliyoruz. Bu değişiklik sayesinde disk üzerinde yazma yetkisi ve sistem başlangıcında bash kabuğuna erişim kazanmış olacağız.
+
+Sonra Ctrl + X veya F10 ile başlat.
+
+Sistem root shell olarak açılacak.
+
+❗ Öncelikle dosya sistemini
+yazılabilir olması için aşağıdaki komutla kök dizin bağlanır.
+
+```bash
+mount -o remount,rw /
+```
+
+� Not: Sisteme istediğiniz komutları vererek işleminizi gerçekleştirebilirsiniz.
+
+✅ Sistemi yeniden başlatmak için:
+
+```bash
+exec /sbin/init
+```
+
+yada:
+
+```bash
+reboot -f
+```
+
+Fakat SELinux etkin sistemlerde (CentOS, RedHat vb..) son olarak `touch /.autorelabel` komutu ile kök dizinde “.autorelabel” dosyası oluşturulmalı. Çünkü güvenlik için kullanılan SELinux modülü her dosya ve işlem için, etiket (label) ile tanımlanır. Bu etiketler, dosyanın
+veya işlemin üzerinde izin verilen işlemleri belirtir. Yani SELinux, bu etiketleri kullanarak dosya ve işlemlere olan erişimi kontrol eder.
+Yapılan işlemlerde sistemde meydana gelecek olan etiket değişimi dolayısıyla SELinux aktif sistemde, yetki problemi oluşmaması için bu etiketlerin güncellenmesi gerekir.
+İşte `touch /.autorelabel` komutu ile ana dizine “.autorelabel” dosyasını eklenir.
 
 ------
 
