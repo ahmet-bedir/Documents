@@ -1623,7 +1623,7 @@ CREATE TYPE status AS ENUM ('active','passive');
 
 ## Tablo İşlemleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 **Bir veritabanı içinde yeni bir tablo oluşturma:**
 
@@ -1723,11 +1723,11 @@ RENAME COLUMN eski_isim TO yeni_isim;
 
 ---
 
-<a id="veri"><a/>
+<a id="veri-islemleri"><a/>
 
 ## Veri İşlemleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 **Tabloya bir satır ekleme:**
 
@@ -2002,7 +2002,7 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ### `WHERE` kullanımı
 
-[⤴️ **Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
 
@@ -2176,7 +2176,7 @@ CREATE INDEX idx_users_email ON users(email);
 
 ### `ORDER BY` Kullanımı
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
 
@@ -2313,7 +2313,7 @@ LIMIT ...;
 
 ### Aggregate Fonksiyonları
 
-[⤴️ **Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 | Fonksiyon | Açıklama       |
 | --------- | -------------- |
@@ -2381,7 +2381,7 @@ SELECT MIN(created_at), MAX(created_at) FROM users;
 
 ## İndeks İşlemleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 **PostgreSQL’de index işlemleri; sorguları hızlandırmak, tablo içindeki belirli kolonlara göre hızlı arama yapabilmek için kullanılır.**
 
@@ -2512,7 +2512,7 @@ WHERE active = true;
 
 ## Referans Verme İşlemleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 **Bir tablodan başka bir tabloya o tablonun Primary Key alanı aracılığıyla referans verilir.**
 
@@ -2764,7 +2764,7 @@ SET
 
 ### PostgreSQL Tarih ve Zaman Fonksiyonları
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 #### 🔹Zaman Bilgisi Alma
 
@@ -2886,7 +2886,7 @@ AGE() Fonksiyonu: Eğer doğum tarihinden yaş hesaplamak isterseniz, AGE() fonk
 
 ### PostgreSQL Metin (String) Fonksiyonları
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 #### 🔹Temel Fonksiyonlar
 
@@ -3154,7 +3154,7 @@ SELECT ad, TO_CHAR(dtarihi, 'DD.MM.YYYY') AS dogum_tarihi FROM ogrenciler;
 
 ## 🧱 PostgreSQL’de Transaction (İşlem) Nedir?
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 Transaction, bir grup SQL işleminin **tamamının başarıyla yapılması** veya **hiç yapılmaması** demektir.
  Yani **atomicity (bölünmezlik)** ilkesini sağlar.
@@ -3297,7 +3297,7 @@ Fonksiyon hata alırsa otomatik rollback olur.
 
 ## PostgreSQL Kullanıcı Yönetimi
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 > ```sql
 > postgres=# ALTER USER postgres PASSWORD 'parola';
