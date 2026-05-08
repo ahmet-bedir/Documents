@@ -10,7 +10,7 @@
 
 ---
 
-<a id="postgresql-yonetimi"><a/>
+<a id="basa-don"><a/>
 
 **İçindekiler**
 
@@ -505,7 +505,7 @@ Bağlantı kuracak olan diğer bilgisayardaki yazılımların (örneğin eski bi
 
 ## Veritabanı İstemcisi / psql
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu çalıştırma, sorgu sonuçlarını görüntüleme, kabuk parametreleri ile dosya veya komut gönderme, betik içerisinde kullanarak otomatik işlemler yaptırabilir.
 
