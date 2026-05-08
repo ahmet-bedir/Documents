@@ -1,8 +1,6 @@
 <p align="center">
     <img src="../images/linux+postgresql.png" width="650" />
 <p/>
-
-
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 
@@ -14,7 +12,7 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**Sorgu Tipleri (DDL, DML, DQL, TCL)**](#sorgu-tipleri)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**Sorgu Tipleri (DDL, DML, DQL, TCL)**](#sorgu-tipleri)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri-islemleri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Order By Kullanımı**](#order-by)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)
 
 ---
 
@@ -614,7 +612,7 @@ db_name=>
 
 ## Sorgu Tipleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
@@ -1394,7 +1392,7 @@ conn.commit()   # COMMIT
 
 ## Temel Veritabanı İşlemleri
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 **Mevcut veritabanlarını listeleme:**
 
@@ -1475,7 +1473,7 @@ DROP DATABASE
 
 ## PostgreSQL’de Veri Türleri (Data Types)
 
-⤴️ [**Başa Dön**](#postgresql-yonetimi)
+🔼 [**Başa Dön**](#basa-don)
 
 #### 📌 1) SAYISAL (NUMERIC) TİPLER
 
