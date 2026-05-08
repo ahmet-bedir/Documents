@@ -10,11 +10,11 @@
 
 ---
 
-<a id="basa_don"><a />
+<a id="basa-don"><a />
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut_satiri)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
+▸ [**Komut Satırı**](#cli)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
 
 
 ---
@@ -179,11 +179,11 @@ openSUSE Leap, masaüstü PC ve dizüstü bilgisayarda kullanıma tamamen uygund
 
 ---
 
-<a id="komut_satiri"><a />
+<a id="cli"><a />
 
 ## 💻 Komut Satırı
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 
 ### Kabuk (Shell)
@@ -1382,7 +1382,7 @@ Eğer terminal emülatörü kullanıyorsanız, pencereyi kapatarak da çıkabili
 
 ## 📃 Metin İşlemleri
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 
 ### stdout (Standard Out)
@@ -1887,7 +1887,7 @@ $ nl dosya1.txt
 
 ## 🧾 Gelişmiş Metin İşlemleri
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 ### xargs
 
@@ -2458,7 +2458,7 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 ## 🧑‍🧒‍🧒 Kullanıcı Yönetimi
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 
 ### Kullanıcılar ve Gruplar
@@ -2923,7 +2923,7 @@ sudo passwd ali
 
 ## 📁 İzinler
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 
 ### Dosya İzinleri
@@ -3197,7 +3197,7 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 ## 🛠️ İşlem (Process) Yönetimi
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 Diskimiz üzerinde mevcut bulunan ve sistemin çalıştırabileceği yapıda olan her türlü programın öncelikle RAM yani hafızaya yüklenmesi ve oradan da sırası geldiğinde CPU yani işlemci üzerinde işlenmesine bütüncül olarak “**process**” yani “**işlem**” diyoruz.
 
@@ -3426,7 +3426,7 @@ Yaygın kullanıma sahip temel sinyaller:
 
 ## ⛓️‍💥 Çalışma Seviyeleri (Runlevels)
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 Linux sistemlerinde çalışma seviyeleri (runlevels), sistemin hangi modda çalışacağını belirleyen işletim durumu seviyeleridir. Her çalışma seviyesi farklı servis ve kullanıcı ortamlarını ifade eder.
 
@@ -3522,7 +3522,7 @@ Sistem açılırken GRUB ekranında çekirdek satırı düzenlenerek çalışma 
 linux /boot/vmlinuz ... 3
 ```
 
-1. `Ctrl + X` veya `F10` ile sistemi başlatın.
+- `Ctrl + X` veya `F10` ile sistemi başlatın.
 
 Bu işlem yalnızca o açılış için geçerlidir ve kalıcı değildir.
 
@@ -3534,12 +3534,11 @@ linux ile başlayan satırı bulun:
 
 Satırın sonuna `init=/bin/bash` ifadesini ekleyip, linux satırında bulunan “ro” (read only yalnızca okuma yetkisi) ifadesini, “rw” ( read write yani hem okuma hem de yazma - değişiklik yapma) yetkisi olarak değiştirdikten sonra, satırın sonuna ”init=/bin/bash” ifadesini ekliyoruz. Bu değişiklik sayesinde disk üzerinde yazma yetkisi ve sistem başlangıcında bash kabuğuna erişim kazanmış olacağız.
 
-Sonra Ctrl + X veya F10 ile başlat.
+- Sonra Ctrl + X veya F10 ile başlat.
 
-Sistem root shell olarak açılacak.
+- Sistem root shell olarak açılacak.
 
-❗ Öncelikle dosya sistemini
-yazılabilir olması için aşağıdaki komutla kök dizin bağlanır.
+❗ Öncelikle dosya sistemi yazılabilir olması için aşağıdaki komutla kök dizin bağlanır.
 
 ```bash
 mount -o remount,rw /
@@ -3590,7 +3589,7 @@ Bu komut sistemi çalışma seviyesi 3 benzeri moda geçirir.
 
 ## ⚙️ Servis Yönetimi
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve sisteme işlevsellik sağlayan arka plan işlemleridir. Genellikle sistem başlangıcında otomatik olarak başlatılır ve sistem çalıştığı süre boyunca aksini gerektiren bir durum olmadığı sürece çalışırlar.
 
@@ -3716,7 +3715,7 @@ systemctl list-units --type=service
 
 ## ⏳ Zamanlanmış Görevler
 
-🔼 [**Başa Dön**](#basa_don)
+🔼 [**Başa Dön**](#basa-don)
 
 ### Cron Nedir?
 
