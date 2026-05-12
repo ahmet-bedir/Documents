@@ -139,7 +139,7 @@ Gördüğünüz gibi ethernet bağlantısını temsil eden **eth0** arayüzünü
 
 Bakın `sudo ip link set eth0 up` komutu sayesinde `eth0` arayüzünü tekrar aktifleştirmiş olduk.
 
- 
+
 - Network kartının bilgilerini görmek için:
 
 ```bash
@@ -203,3 +203,6 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
+## Yönlendirici Adresini Öğrenmek | route
+
+Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu kullanabiliyoruz.
