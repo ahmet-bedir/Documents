@@ -203,6 +203,18 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
-## Yönlendirici Adresini Öğrenmek | route
+<a id="route"><a />
 
-Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu kullanabiliyoruz.
+## Yönlendirici Adresi | route
+
+Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu kullanılır.
+
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ ip route 
+
+```
+
+Bu çıktılarda, **eth0** ağ arayüzünün **192.168.1.1** adresini **getway** olarak kullandığını belirtiyor. Ayrıca **192.168.1.0/24** adresinin **ağ adresi** olduğunu, **eth0** arayüzünün ise **192.168.1.11 ip adresine sahip** olduğu belirtiliyor.
+
+Yani böylelikle 192.168.1.0/24 ağında 192.168.1.11 ip adresine sahip bir ethernet bağlantısına sahip olduğumu ve harici bir ağ ile iletişime geçmem gerektiğinde default getway olan 192.168.1.1 ip adresine sahip router ile iletişim kurulduğunu buradaki çıktılara bakarak anlayabiliyorum.
