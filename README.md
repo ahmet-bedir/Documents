@@ -41,5 +41,3 @@
 ◈ [**Git Komutları**](md/git-commands.md)
 
 ---
-
-
