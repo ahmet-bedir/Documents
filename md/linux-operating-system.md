@@ -3719,7 +3719,7 @@ systemctl list-units --type=service
 
 ### Cron Nedir?
 
-**Cron**, Linux ve Unix tabanlı sistemlerde belirli görevleri otomatik olarak zamanlamak için kullanılan bir servisdir.
+**Cron**, Linux ve Unix tabanlı sistemlerde belirli görevleri otomatik olarak zamanlamak için kullanılan bir servisdir. Cron, Linux/Unix sistemlerinde **belirli zamanlarda otomatik olarak görevleri çalıştıran** bir sistem daemon'udur.
 
 Örneğin Cron ile:
 
