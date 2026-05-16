@@ -3773,7 +3773,12 @@ Kullanıcıya ait zamanlanmış görevler **crontab** dosyasında tutulur.
 Crontab düzenlemek için:
 
 ```bash
+# varsayılan editör kullanılır
 crontab -e
+
+# Belirli editörle açma
+EDITOR=nano crontab -e
+EDITOR=vim crontab -e
 ```
 
 Listelemek için:
