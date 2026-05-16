@@ -3753,7 +3753,7 @@ systemctl status crond    # RHEL/CentOS/Kali
 
 ---
 
-### Crontab Dosya Konumları:
+### Crontab Dosya Konumları
 
 ```bash
 # Sistem genelinde cron görevleri
@@ -3802,6 +3802,27 @@ Cron 5 alanlı zaman yapısı kullanır:
 │ │ └────── Ayın günü (1-31)
 │ └──────── Saat (0-23)
 └────────── Dakika (0-59)
+```
+
+##### Karakter Anlamları:
+
+| Karakter | Anlamı          | Örnek                                        |
+| -------- | --------------- | -------------------------------------------- |
+| `*`      | Her değer       | Saat alanında `*` = her saat                 |
+| `,`      | Liste değerleri | `1,3,5` = 1., 3. ve 5. değerler              |
+| `-`      | Aralık          | `1-5` = 1'den 5'e kadar                      |
+| `/`      | Adım/Artış      | `*/5` = her 5 birim, `0-23/2` = çift saatler |
+| `?`      | Belirtilmemiş   | Ay ve haftanın günü alanlarında kullanılır   |
+
+##### Alan Açıklaması:
+
+```
+1. Dakika: 0-59
+2. Saat: 0-23 (00:00 = gece yarısı, 12:00 = öğle)
+3. Ayın günü: 1-31
+4. Ay: 1-12 (1 = Ocak, 12 = Aralık)
+5. Haftanın günü: 0-7 (0 ve 7 = Pazar, 1 = Pazartesi, 6 = Cumartesi)
+6. Komut: Çalıştırılacak komut veya script
 ```
 
 ---
