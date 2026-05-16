@@ -3753,6 +3753,19 @@ systemctl status crond    # RHEL/CentOS/Kali
 
 ---
 
+### Crontab Dosya Konumları:
+
+```bash
+# Sistem genelinde cron görevleri
+/etc/crontab
+
+# Kullanıcı-özel cron görevleri
+username     # Linux
+/var/spool/cron/tabs/username         # macOS
+```
+
+---
+
 ### Crontab Nedir?
 
 Kullanıcıya ait zamanlanmış görevler **crontab** dosyasında tutulur.
