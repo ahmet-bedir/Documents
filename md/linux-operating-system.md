@@ -3729,17 +3729,10 @@ systemctl list-units --type=service
 - Veritabanı temizliği
 - İstatistik raporları oluşturma
 - Sistem bakım görevlerini otomatikleştirme
-
-Bu otomatik görevlere **Cron Job** denir.
-
-##### 
-- 
-- Log dosyalarını temizleme
-- 
-- 
-- Sistem bakımı görevleri
 - E-posta gönderimi
 - Veri senkronizasyonu
+
+Bu otomatik görevlere **Cron Job** denir.
 
 ---
 
