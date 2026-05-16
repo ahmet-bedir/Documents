@@ -3721,14 +3721,25 @@ systemctl list-units --type=service
 
 **Cron**, Linux ve Unix tabanlı sistemlerde belirli görevleri otomatik olarak zamanlamak için kullanılan bir servisdir. Cron, Linux/Unix sistemlerinde **belirli zamanlarda otomatik olarak görevleri çalıştıran** bir sistem daemon'udur.
 
-Örneğin Cron ile:
+##### Kullanım Alanları:
 
-- Her gün saat 03:00'te yedek alma
+- Düzenli yedekleme işleri. Her gün saat 03:00'te yedek alma
 - Her 5 dakikada bir script çalıştırma
 - Haftalık log temizleme
+- Veritabanı temizliği
+- İstatistik raporları oluşturma
 - Sistem bakım görevlerini otomatikleştirme
 
 Bu otomatik görevlere **Cron Job** denir.
+
+##### 
+- 
+- Log dosyalarını temizleme
+- 
+- 
+- Sistem bakımı görevleri
+- E-posta gönderimi
+- Veri senkronizasyonu
 
 ---
 
