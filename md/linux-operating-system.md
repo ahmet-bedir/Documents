@@ -3773,24 +3773,36 @@ Kullanıcıya ait zamanlanmış görevler **crontab** dosyasında tutulur.
 Crontab düzenlemek için:
 
 ```bash
-# varsayılan editör kullanılır
+# Varsayılan editör kullanılır
 crontab -e
 
 # Belirli editörle açma
 EDITOR=nano crontab -e
 EDITOR=vim crontab -e
+
+# Dosyadan crontab yükleme
+crontab /path/to/file
+
 ```
 
 Listelemek için:
 
 ```bash
+# Mevcut kullanıcının crontab'ını görüntüleme
 crontab -l
+
+# Belirli kullanıcının crontab'ını görüntüleme (root olarak)
+sudo crontab -u username -l
 ```
 
 Silmek için:
 
 ```bash
+# Crontab'ı silme (onay istenir)
 crontab -r
+
+# Zorla silme (onay istemez)
+crontab -r -f
 ```
 
 ---
@@ -3821,7 +3833,7 @@ Cron 5 alanlı zaman yapısı kullanır:
 
 ##### Alan Açıklaması:
 
-```
+```bash
 1. Dakika: 0-59
 2. Saat: 0-23 (00:00 = gece yarısı, 12:00 = öğle)
 3. Ayın günü: 1-31
