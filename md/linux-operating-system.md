@@ -3967,6 +3967,34 @@ Sistem Bilgisi Raporlaması
 
 ---
 
+#### Komut Çıktısını Dosyaya Kaydetme
+```bash
+# Standart çıktıyı dosyaya yaz
+0 2 * * * /path/to/script.sh >> /var/log/my_backup.log 2>&1
+
+# 2>&1 açıklaması:
+# 1 = Standart çıktı (stdout)
+# 2 = Standart hata (stderr)
+# 2>&1 = Hataları da standart çıktıya yönlendir
+```
+
+#### E-posta ile Sonuç Gönderme
+```bash
+# Komut çıktısı e-posta ile gönder
+0 2 * * * /path/to/script.sh | mail -s "Backup Sonucu" admin@example.com
+
+# Hataları da dahil et
+0 2 * * * (/path/to/script.sh) 2>&1 | mail -s "Backup Sonucu" admin@example.com
+```
+
+#### Çıktıyı Bastırma
+```bash
+# Çıktıyı tamamen iptal et (null cihazına gönder)
+0 2 * * * /path/to/script.sh > /dev/null 2>&1
+```
+
+---
+
 ## systemd Timer ile Zamanlanmış Görevler
 
 ### systemd Timer Nedir?
