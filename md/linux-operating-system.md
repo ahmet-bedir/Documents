@@ -3856,19 +3856,19 @@ Cron 5 alanlı zaman yapısı kullanır:
 
 ### Örnekler
 
-Her gün 02:00'de script çalıştır:
+Her gün 02:00'de script çalıştır
 
 ```bash
 0 2 * * * /home/user/backup.sh
 ```
 
-Her 5 dakikada bir:
+Her 5 dakikada bir
 
 ```bash
 */5 * * * * /home/user/check.sh
 ```
 
-Her pazartesi:
+Her pazartesi
 
 ```bash
 0 9 * * 1 /home/user/report.sh
@@ -3886,91 +3886,84 @@ Her Pazartesi 15:30'da Komut Çalıştır
 30 15 * * 1 /path/to/backup.sh
 ```
 
-#### 3. Her 5 Dakika Çalıştır
-```bash
-*/5 * * * * /path/to/check.sh
-```
+Her Saat Başında Çalıştır
 
-#### 4. Her Saat Başında Çalıştır
 ```bash
 0 * * * * /path/to/hourly_task.sh
 ```
 
-#### 5. Ayda Bir (Her Ayın 1. Günü) Saat 02:00'de
+Ayda Bir (Her Ayın 1. Günü) Saat 02:00'de
+
 ```bash
 0 2 1 * * /path/to/monthly_task.sh
 ```
 
-### Gelişmiş Örnekler
+Hafta İçi (Pazartesi-Cuma) 09:00-17:00 Arası Her Saatte
 
-#### 6. Hafta İçi (Pazartesi-Cuma) 09:00-17:00 Arası Her Saatte
 ```bash
 0 9-17 * * 1-5 /path/to/work_hours.sh
 ```
 
-#### 7. Ayın Son Günü Gece Yarısında
+Ayın Son Günü Gece Yarısında
+
 ```bash
 0 0 31 1,3,5,7,8,10,12 * /path/to/month_end.sh
 0 0 30 4,6,9,11 * /path/to/month_end.sh
 0 0 28 2 * /path/to/month_end.sh
 ```
 
-#### 8. Saatte Üç Kez (00, 20, 40. dakikalarda)
+Saatte Üç Kez (00, 20, 40. dakikalarda)
+
 ```bash
 0,20,40 * * * * /path/to/frequent.sh
 ```
 
-#### 9. İlk Pazartesi Her Ayda
+İlk Pazartesi Her Ayda
+
 ```bash
 0 9 1-7 * 1 /path/to/first_monday.sh
 ```
 
-#### 10. Her Gün 23:59'da Çalıştır (Gece Yarısından Bir Dakika Önce)
+Her Gün 23:59'da Çalıştır (Gece Yarısından Bir Dakika Önce)
+
 ```bash
 59 23 * * * /path/to/before_midnight.sh
 ```
 
-### Pratik Örnekler
+Günlük Yedekleme
 
-#### Günlük Yedekleme
 ```bash
 # Her gün 02:00'de yedekleme yap
 0 2 * * * /usr/local/bin/backup.sh >> /var/log/backup.log 2>&1
 ```
 
-#### Log Dosyalarını Temizleme
+Log Dosyalarını Temizleme
+
 ```bash
 # Her pazar gece 03:00'te eski logları sil
 0 3 * * 0 find /var/log -name "*.log" -mtime +30 -delete
 ```
 
-#### Sistem Güncelleme Kontrolü
+Sistem Güncelleme Kontrolü
+
 ```bash
 # Her Cuma 20:00'de güncellemeleri kontrol et
 0 20 * * 5 sudo apt update && sudo apt upgrade -y
 ```
 
-#### Veritabanı Temizliği
+Veritabanı Temizliği
+
 ```bash
 # Her gün 01:00'de geçici verileri sil
 0 1 * * * mysql -u root -p'password' -e "DELETE FROM temp_table WHERE created_at < DATE_SUB(NOW(), INTERVAL 7 DAY);"
 ```
 
-#### Sistem Bilgisi Raporlaması
+Sistem Bilgisi Raporlaması
+
 ```bash
 # Pazartesi-Cuma 09:00'da sistem raporunu e-postayla gönder
 0 9 * * 1-5 /usr/local/bin/system_report.sh | mail -s "Sistem Raporu" admin@example.com
 ```
-
----
-
-### Kullanım Alanları
-
-- Yedekleme otomasyonu
-- Günlük raporlama
-- Log temizleme
-- Sistem bakım işleri
-- Script ve bot zamanlama
 
 ---
 
