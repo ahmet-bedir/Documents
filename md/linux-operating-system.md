@@ -3807,42 +3807,6 @@ crontab -r -f
 
 ---
 
-### Sistem Genelinde Cron
-```bash
-# Sistem crontab'ını düzenleme (root olarak)
-sudo crontab -e
-
-# /etc/crontab dosyasını direkt düzenleme
-sudo nano /etc/crontab
-```
-
-### Sistem Crontab'ı (/etc/crontab)
-```bash
-# 6. alan olarak kullanıcı adını belirtir
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-# dakika saat gün ay haftaGünü kullanıcı komut
-0 2 * * * root /path/to/backup.sh
-30 * * * * nobody /path/to/check_mail.sh
-```
-
-### Sistem Cron Dizinleri
-```bash
-/etc/cron.d/          # Ek sistem cron dosyaları
-/etc/cron.daily/      # Günlük görevler
-/etc/cron.hourly/     # Saatlik görevler
-/etc/cron.monthly/    # Aylık görevler
-/etc/cron.weekly/     # Haftalık görevler
-```
-
-Dosyaları doğrudan bu dizinlere koymak yeterlidir:
-```bash
-# Dosya oluştur ve çalıştırılabilir yap
-sudo nano /etc/cron.daily/my_task
-sudo chmod +x /etc/cron.daily/my_task
-```
-
 ---
 
 ### Cron Zaman Formatı
@@ -4018,7 +3982,52 @@ Sistem Bilgisi Raporlaması
 0 2 * * * (/path/to/script.sh) 2>&1 | mail -s "Backup Sonucu" admin@example.com
 ```
 
+### Cron daemon'u çalışıyor mu?
 
+```bash
+ps aux | grep cron
+sudo systemctl status cron
+```
+
+### Sistem Genelinde Cron
+
+```bash
+# Sistem crontab'ını düzenleme (root olarak)
+sudo crontab -e
+
+# /etc/crontab dosyasını direkt düzenleme
+sudo nano /etc/crontab
+```
+
+### Sistem Crontab'ı (/etc/crontab)
+
+```bash
+# 6. alan olarak kullanıcı adını belirtir
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# dakika saat gün ay haftaGünü kullanıcı komut
+0 2 * * * root /path/to/backup.sh
+30 * * * * nobody /path/to/check_mail.sh
+```
+
+### Sistem Cron Dizinleri
+
+```bash
+/etc/cron.d/          # Ek sistem cron dosyaları
+/etc/cron.daily/      # Günlük görevler
+/etc/cron.hourly/     # Saatlik görevler
+/etc/cron.monthly/    # Aylık görevler
+/etc/cron.weekly/     # Haftalık görevler
+```
+
+Dosyaları doğrudan bu dizinlere koymak yeterlidir:
+
+```bash
+# Dosya oluştur ve çalıştırılabilir yap
+sudo nano /etc/cron.daily/my_task
+sudo chmod +x /etc/cron.daily/my_task
+```
 
 ---
 
