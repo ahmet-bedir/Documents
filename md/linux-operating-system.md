@@ -3976,6 +3976,9 @@ Sistem Bilgisi Raporlaması
 # 1 = Standart çıktı (stdout)
 # 2 = Standart hata (stderr)
 # 2>&1 = Hataları da standart çıktıya yönlendir
+
+# Çıktıyı tamamen iptal et (null cihazına gönder)
+0 2 * * * /path/to/script.sh > /dev/null 2>&1
 ```
 
 #### E-posta ile Sonuç Gönderme
@@ -3987,11 +3990,7 @@ Sistem Bilgisi Raporlaması
 0 2 * * * (/path/to/script.sh) 2>&1 | mail -s "Backup Sonucu" admin@example.com
 ```
 
-#### Çıktıyı Bastırma
-```bash
-# Çıktıyı tamamen iptal et (null cihazına gönder)
-0 2 * * * /path/to/script.sh > /dev/null 2>&1
-```
+
 
 ---
 
