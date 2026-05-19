@@ -1,8 +1,8 @@
 <p align="center">
     <img src="../images/linux+postgresql.png" width="650" />
 <p/>
-# Linux Sistemlerde PostgreSQL Yönetimi
 
+# Linux Sistemlerde PostgreSQL Yönetimi
 
 ###### Son güncelleme : 04/2026
 
@@ -3372,4 +3372,8 @@ Fonksiyon hata alırsa otomatik rollback olur.
 
 ---
 
-Sözlük
+<a id="sozluk"><a/>
+
+## Söxlük
+
+🔼 [**Başa Dön**](#basa-don)
