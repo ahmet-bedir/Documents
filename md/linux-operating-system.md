@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#cli)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
+▸ [**Komut Satırı**](#cli)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**Disk Yönetimi**](#disk)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
 
 
 ---
@@ -3190,6 +3190,16 @@ $ sudo chmod 1755 mydir
 ```
 
 Sticky bit için sayısal gösterim ise 1'dir.
+
+---
+
+<a id="disk"><a /> 
+
+## 🛠️ İşlem (Process) Yönetimi
+
+🔼 [**Başa Dön**](#basa-don)
+
+
 
 ---
 
