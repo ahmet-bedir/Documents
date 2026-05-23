@@ -3195,7 +3195,7 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 <a id="disk"><a /> 
 
-## 🛠️ İşlem (Process) Yönetimi
+## 💽 Disk Yönetimi
 
 🔼 [**Başa Dön**](#basa-don)
 
