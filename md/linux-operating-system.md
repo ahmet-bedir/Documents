@@ -2968,6 +2968,14 @@ Her karakter farklı bir izni temsil eder:
 
 ![](../images/rwx.png)
 
+Dosya hakkında daha detaylı bilgi almak için `stat` komutu kullanılır.
+
+```bash
+$ stat <file_name>
+```
+
+`tree` : Bulunduğun dizini ağaç şeklinde göstermek için kullanılır. (gizli dosyalar için `-a` seçeneği dahil edilir)
+
 ---
 
 ### İzinlerin Değiştirilmesi
@@ -3199,6 +3207,32 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 🔼 [**Başa Dön**](#basa-don)
 
+Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar için kullanabiliyoruz. Hangi disk bölümünün nerede başlayıp nerede bittiğinin bilgisi de “bölümlendirme tablosu” olarak isimlendirilen MBR ya da GPT tablolarında tutuluyor.
+
+### MBR
+
+MBR disk bölümleme tablosu maksimum 2 TB’a kadar olan disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil bölüme ayrılabiliyor. Yine de birincil bölüm sınırlamasını aşmak için, birincil bölümlerden birini mantıksal bölümlere ayrılan genişletilmiş bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz.
+
+### GPT
+
+GPT, zaman içinde disk kapasitelerinin artması ve diskleri daha fazla alana bölümlenebilmesi ihtiyaçları doğrultusunda MBR‘ın yetersiz kaldığı noktada geliştirilmiş olan yeni nesil disk bölümleme tablosudur. GPT maksimum 8 ZiB‘a kadar olan disk boyutlarını destekliyor. Yani eski nesil bölümleme tablosu olan MBR’a oranla günümüz şartları için gereken büyüklükleri destekliyor. Ayrıca GPT sayesinde diski 128 bölüme ayırmamız da mümkündür.
+
+
+
+
+
+lsblk  :  Komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
+Not : Eğer aygıt dosyalarının sahip olduğu dosya sistemleri ve benzersiz kimlik numaraları olan UUID değeri hakkında bilgi almak istersek lsblk -f seçeneği kullanılır.
+
+fdisk -l  :  Sistemde bulunan diskleri listeler.
+Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız sudo fdisk -l /dev/aygıt-adı şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
+
+mkfs yani “make filesystem” yazıp iki kez Tab tuşuna bastığımızda tanımlayabileceğimiz dosya sistemleri listeleniyor.
+
+mount /dev/sdb1 ~/Desktop/disk  :  Disk bölümünü belirtilen klasöre bağlamak için kullanılır.
+
+umount ~/Desktop/disk  :  Disk bölümünün bağlı olduğu konumun tam dizin adresini argüman olarak girip disk bölümünü sistemden ayırmak için kullanılır.
+Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar ediyorsa f yani force seçeneği ile çıkarmaya zorlayabilirsiniz. Yine de f seçeneği diskteki verilerin bozulmasına sebep olabileceği için zorunlu olmayan durumlar haricinde kullanılmamalı.
 
 
 ---
