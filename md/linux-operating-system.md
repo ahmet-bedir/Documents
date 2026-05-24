@@ -3217,6 +3217,11 @@ MBR disk bölümleme tablosu maksimum 2 TB’a kadar olan disk boyutlarını des
 
 GPT, zaman içinde disk kapasitelerinin artması ve diskleri daha fazla alana bölümlenebilmesi ihtiyaçları doğrultusunda MBR‘ın yetersiz kaldığı noktada geliştirilmiş olan yeni nesil disk bölümleme tablosudur. GPT maksimum 8 ZiB‘a kadar olan disk boyutlarını destekliyor. Yani eski nesil bölümleme tablosu olan MBR’a oranla günümüz şartları için gereken büyüklükleri destekliyor. Ayrıca GPT sayesinde diski 128 bölüme ayırmamız da mümkündür.
 
+Bbilgisayarın başlangıç aşamasından sorumlu olan yapılar:
+- BIOS (daha eski sislemlerde)
+- UEFI (modern sislemlerde)
+
+
 
 
 
