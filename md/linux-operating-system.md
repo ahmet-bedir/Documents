@@ -3207,6 +3207,102 @@ Sticky bit için sayısal gösterim ise 1'dir.
 
 🔼 [**Başa Dön**](#basa-don)
 
+Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimlendirme; disk türüne, bağlantı tipine ve bölüm numarasına göre değişir.
+
+**SATA / HDD / SSD Diskler**
+
+**» IDE (P-ATA)**
+
+```bash
+/dev/hda
+/dev/hdb
+```
+- `hd` → P-ATA disk sınıfı
+- `a`, `b` → sırasıyla 1., 2. disk
+
+**Bölümler:**
+
+```bash
+/dev/hda1
+/dev/hda2
+/dev/hda3
+```
+- `hda1` → ilk bölüm
+- `hda2` → ikinci bölüm
+- `hda3` → üçüncü bölüm
+
+---
+
+**» SCSI/SATA**
+
+```bash
+/dev/sda
+/dev/sdb
+/dev/sdc
+```
+- `sd` → SCSI/SATA disk sınıfı
+- `a`, `b`, `c` → 1., 2., 3. disk
+
+**Örnek:**
+
+```bash
+/dev/sda
+```
+→ Sistemdeki ilk SATA SSD/HDD.
+
+**Bölümler:**
+
+```bash
+/dev/sda1
+/dev/sda2
+/dev/sda3
+```
+- `sda1` → ilk bölüm
+- `sda2` → ikinci bölüm
+
+---
+
+**NVMe SSD Diskler**
+Yeni nesil M.2 NVMe SSD’ler:
+
+```bash
+/dev/nvme0n1
+/dev/nvme1n1
+```
+- `nvme0` → ilk NVMe kontrolcüsü
+- `n1` → namespace 1
+
+**Bölümler:**
+
+```bash
+/dev/nvme0n1p1
+/dev/nvme0n1p2
+```
+- Burada `p` kullanılır çünkü isim zaten sayı içeriyor.
+
+**Örnek:**
+
+```bash
+/dev/nvme0n1p1
+```
+→ İlk NVMe SSD’nin ilk bölümü.
+
+---
+
+**USB Bellek / Harici Disk**
+
+Takıldığında genelde:
+
+```bash
+/dev/sdb
+/dev/sdc
+```
+olarak görünür.
+
+Çünkü Linux USB storage’ı çoğunlukla SCSI/SATA gibi yönetir.
+
+---
+
 Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar için kullanabiliyoruz. Hangi disk bölümünün nerede başlayıp nerede bittiğinin bilgisi de “bölümlendirme tablosu” olarak isimlendirilen MBR ya da GPT tablolarında tutuluyor.
 
 ### MBR
@@ -3221,7 +3317,12 @@ Bbilgisayarın başlangıç aşamasından sorumlu olan yapılar:
 - BIOS (daha eski sislemlerde)
 - UEFI (modern sislemlerde)
 
-
+**Dosya Sistemi**
+- Dosya sistemi, disk bölümündeki verilerin nasıl ele alınacağını belirleyen yapıdır.
+- Dosya sistemi olmadan diskteki veriler yalnızca yığınlardan ibarettir.
+- Dosya sistemi olmadan diskteki verilere erişip onları yönetemeyiz.
+- Tek bir diski birden fazla bölüme ayırabildiğimiz için de esasen aynı fiziksel diskteki farklı bölümlerde birbirinden farklı dosya sistemleri kullanılabilinir.
+- Linux sistemi pek çok farklı dosya sistemini destekliyor. Bunları görmek için `cat /proc/filesystem` komutunu girebiliriz.
 
 
 
