@@ -3,7 +3,6 @@
 </p>
 
 
-
 # Linux İşletim Sistemi
 
 ###### Son güncelleme : 04/2026
@@ -3325,13 +3324,28 @@ Bbilgisayarın başlangıç aşamasından sorumlu olan yapılar:
 - Linux sistemi pek çok farklı dosya sistemini destekliyor. Bunları görmek için `cat /proc/filesystem` komutunu girebiliriz.
 
 
+Diskler, Linux üzerinde blok aygıtları olarak anıldıkları için “list block devices” ifadesinin kısaltmasından gelen `lsblk` komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
 
+Not : Eğer aygıt dosyalarının sahip olduğu dosya sistemleri ve benzersiz kimlik numaraları olan UUID değeri hakkında bilgi almak istersek `lsblk -f` seçeneği kullanılır.
 
-lsblk  :  Komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
-Not : Eğer aygıt dosyalarının sahip olduğu dosya sistemleri ve benzersiz kimlik numaraları olan UUID değeri hakkında bilgi almak istersek lsblk -f seçeneği kullanılır.
+```bash
+┌──(ahmet㉿kali)-[~]
+└─$ lsblk 
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+sda       8:0    0   80G  0 disk
+├─sda1    8:1    0   79G  0 part /
+├─sda2    8:2    0    1K  0 part 
+└─sda5    8:5    0  975M  0 part [SWAP]
+sdb       8:16   0    2G  0 disk 
+sdc       8:32   0    1G  0 disk 
+sdd       8:48   0    1G  0 disk 
+sr0      11:0    1 1024M  0 rom  
+nvme0n1 259:0    0    1G  0 disk 
+nvme0n2 259:1
+```
 
-fdisk -l  :  Sistemde bulunan diskleri listeler.
-Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız sudo fdisk -l /dev/aygıt-adı şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
+`fdisk -l` : Sistemde bulunan diskleri listeler.
+Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız sudo `fdisk -l /dev/aygıt-adı` şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
 
 mkfs yani “make filesystem” yazıp iki kez Tab tuşuna bastığımızda tanımlayabileceğimiz dosya sistemleri listeleniyor.
 
