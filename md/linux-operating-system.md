@@ -3323,6 +3323,7 @@ Bbilgisayarın başlangıç aşamasından sorumlu olan yapılar:
 - Tek bir diski birden fazla bölüme ayırabildiğimiz için de esasen aynı fiziksel diskteki farklı bölümlerde birbirinden farklı dosya sistemleri kullanılabilinir.
 - Linux sistemi pek çok farklı dosya sistemini destekliyor. Bunları görmek için `cat /proc/filesystem` komutunu girebiliriz.
 
+### Diskleri Listeleme
 
 Diskler, Linux üzerinde blok aygıtları olarak anıldıkları için “list block devices” ifadesinin kısaltmasından gelen `lsblk` komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
 
@@ -3345,14 +3346,18 @@ nvme0n2 259:1
 ```
 
 `fdisk -l` : Sistemde bulunan diskleri listeler.
-Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız sudo `fdisk -l /dev/aygıt-adı` şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
+Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız `fdisk -l /dev/aygıt-adı` şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
 
-mkfs yani “make filesystem” yazıp iki kez Tab tuşuna bastığımızda tanımlayabileceğimiz dosya sistemleri listeleniyor.
+### Disklerin Bağlanması | `mount`
 
-mount /dev/sdb1 ~/Desktop/disk  :  Disk bölümünü belirtilen klasöre bağlamak için kullanılır.
+Bir disk bölümünü “dosya sistemini” mevcut sistemimize bağlamak için “bağlama” anlamına gelen `mount` komutunun ardından, sisteme bağlamak istediğimiz disk bölümünün aygıt ismini ve bu bölümün dosya sistemi hiyerarşisinde hangi dizin altına bağlanacağı belirtilir.
 
-umount ~/Desktop/disk  :  Disk bölümünün bağlı olduğu konumun tam dizin adresini argüman olarak girip disk bölümünü sistemden ayırmak için kullanılır.
-Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar ediyorsa f yani force seçeneği ile çıkarmaya zorlayabilirsiniz. Yine de f seçeneği diskteki verilerin bozulmasına sebep olabileceği için zorunlu olmayan durumlar haricinde kullanılmamalı.
+```bash
+mount /dev/sdb1 ~/Desktop/disk/
+```
+➜ Disk bölümünün sistemden ayırmak için `umount ~/Desktop/disk/` komutu kullanılır.
+
+Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar ediyorsa `f` yani `force` seçeneği ile çıkarmaya zorlayabilirsiniz. Yine de `f` seçeneği diskteki verilerin bozulmasına sebep olabileceği için zorunlu olmayan durumlar haricinde kullanılmamalıdır.
 
 
 ---
