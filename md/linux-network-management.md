@@ -8,11 +8,11 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 <a id="basa-don"><a />
 
-**İçindekiler**
-
-- [**ip komutu**](#ip)
-- [**ping komutu**](#ping)
-- [**nmtui komutu**](#nmtui)
+**İçindekiler**<br />
+» [**ip komutu**](#ip)<br />
+» [**ping komutu**](#ping)<br />
+» [**nmcli | nmtui**](#nm)<br />
+» [**
 
 
 
@@ -20,7 +20,7 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 <a id="ip"><a />
 
-## ip komutu
+## `ip` komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -90,7 +90,7 @@ Buradaki çıktılarda yer alan “lo” ifadesi localhost ya da local loopback 
 
 💡 Uyarı: “eth” ve “wlan” ifadeleri arayüz tipini belirtiyorken, bitişik şekilde yazılan sayılar ise kaçıncı ağ arayüzü olduğunu belirtiyor. Örneğin benim sistemimde 3 tane ethernet ağ kartı(network interface card) bağlı olsaydı buradaki çıktılarda “eth0”, “eth1” ve “eth2” şeklinde sırasıyla isimlendirilmiş ethernet arayüzlerini görecektik.
 
-### Ağ Arayüzlerini Açıp Kapatmak | UP DOWN
+### Ağ Arayüzlerini Açıp Kapatmak | `UP` `DOWN`
 
 Üzerinde işlem yapmak istediğimiz arayüzü `ip link set` komutundan sonra yazıp, yapmak istediğimiz işlemi belirtiriz.
 
@@ -152,7 +152,7 @@ DNS ayarlarının olduğu dosya `/etc/resolv.conf` konumundadır.
 
 Ağda bulunan tüm aygıtları görmek için`netdiscover` komutu kullanılır.
 
-### Yönlendirici Adresi | route
+### Yönlendirici Adresi | `route`
 
 Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu kullanılır.
 
@@ -164,13 +164,13 @@ Sistemin yönlendirme tablosu hakkında bilgi almak için `ip route` komutunu ku
 
 Bu çıktılarda, **eth0** ağ arayüzünün **192.168.1.1** adresini **getway** olarak kullandığını belirtiyor. Ayrıca **192.168.1.0/24** adresinin **ağ adresi** olduğunu, **eth0** arayüzünün ise **192.168.1.11 ip adresine sahip** olduğu belirtiliyor.
 
-Yani böylelikle 192.168.1.0/24 ağında 192.168.1.11 ip adresine sahip bir ethernet bağlantısına sahip olduğumu ve harici bir ağ ile iletişime geçmem gerektiğinde default getway olan 192.168.1.1 ip adresine sahip router ile iletişim kurulduğunu buradaki çıktılara bakarak anlayabiliyorum.
+Yani böylelikle 192.168.1.0/24 ağında 192.168.1.11 ip adresine sahip bir ethernet bağlantısına sahip olduğumu ve harici bir ağ ile iletişime geçmem gerektiğinde default getway olan 192.168.1.1 ip adresine sahip router ile iletişim kurulduğu buradaki çıktılarda gözüküyor.
 
 ---
 
 <a id="ping"><a />
 
-## ping komutu
+## `ping` komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -217,5 +217,9 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
-<a id="nml"><a />
+<a id="nm"><a />
+
+## `nmcli` | `nmtui`
+
+🔼 [**Başa Dön**](#basa-don)
 
