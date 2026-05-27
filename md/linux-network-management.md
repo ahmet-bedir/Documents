@@ -11,8 +11,8 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 **İçindekiler**<br />
 » [**ip komutu**](#ip)<br />
 » [**ping komutu**](#ping)<br />
-» [**nmcli | nmtui**](#nm)<br />
-» [**
+» [**İp sabitleme**](#static-ip)<br />
+» [**SSH komutu**](#ssh)<br />
 
 
 
@@ -217,9 +217,61 @@ Kaç adet paketin gönderileceğini belirtmek için `-c` seçeneği ile sayı be
 
 ---
 
-<a id="nm"><a />
+<a id="static-ip"><a />
 
-## `nmcli` | `nmtui`
+## Linux’ta IP Sabitleme (Static IP) | `nmcli` / `nmtui`
 
 🔼 [**Başa Dön**](#basa-don)
 
+### 1. IP Sabitleme Nedir?
+
+IP sabitleme, bir ağ arayüzüne **manuel olarak belirlenen IP adresinin** atanmasıdır.
+DHCP ile otomatik IP almak yerine sistem her açılışta **aynı IP adresini** kullanır.
+
+------
+
+### 2. Neden IP Sabitlenir?
+
+- Sunucu ve servis erişimleri (SSH, Web, DB) kararlı olur
+- Port yönlendirme sorunsuz çalışır
+- Firewall ve güvenlik kuralları tutarlı olur
+- Ağ yönetimi ve log takibi kolaylaşır
+
+------
+
+## 3. Gerekli Bilgiler
+
+IP sabitlemeden önce aşağıdaki bilgiler bilinmelidir:
+
+- **IP Adresi** → `192.168.1.50`
+- **Subnet / Prefix** → `/24` (255.255.255.0)
+- **Gateway** → `192.168.1.1`
+- **DNS Sunucuları** → `1.1.1.1`, `8.8.8.8`
+- **Ağ Arayüzü** → `eth0`, `enp0s3`, `wlan0`
+
+------
+
+### 4. NetworkManager (Masaüstü Sistemler)
+
+#### GUI İle
+
+- DHCP kapatılır
+- IPv4 yöntemi **Manual** yapılır
+- IP, Gateway ve DNS elle girilir
+
+#### Komut Satırı (nmcli)
+
+```shell
+$ nmcli con show
+$ nmcli con mod "bağlantı_adı" \
+  ipv4.method manual \
+  ipv4.addresses 192.168.1.50/24 \
+  ipv4.gateway 192.168.1.1 \
+  ipv4.dns "1.1.1.1 8.8.8.8"
+
+$ nmcli con up "bağlantı_adı"
+```
+
+------
+
+nmcli device status
