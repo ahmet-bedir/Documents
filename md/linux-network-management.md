@@ -11,8 +11,8 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 **İçindekiler**<br />
 » [**ip komutu**](#ip)<br />
 » [**ping komutu**](#ping)<br />
-» [**İp sabitleme**](#static-ip)<br />
-» [**SSH komutu**](#ssh)<br />
+» [**ip sabitleme**](#static-ip)<br />
+» [**ssh komutu**](#ssh)<br />
 
 
 
@@ -259,10 +259,144 @@ IP sabitlemeden önce aşağıdaki bilgiler bilinmelidir:
 - IPv4 yöntemi **Manual** yapılır
 - IP, Gateway ve DNS elle girilir
 
-#### Komut Satırı (nmcli)
+#### `nmcli`
+
+Linux’ta ağ bağlantılarını yönetmek için kullanılan bir komut satırı aracıdır.
+NetworkManager paketinin CLI (Command Line Interface) aracıdır.
+
+**Ağ cihazlarını listele**
+
+```bash
+nmcli device status
+```
+
+**Wi-Fi ağlarını tara**
+
+```bash
+$ nmcli device wifi list
+
+# Kısa kullanım:
+$ nmcli dev wifi
+```
+
+**Wi-Fi ağına bağlan**
+
+```bash
+$ nmcli device wifi connect "WifiAdi" password "Şifre"
+
+# Örnek:
+$ nmcli device wifi connect "EvWifi" password "12345678"
+```
+
+**Kayıtlı bağlantıları listele**
+
+```bash
+$ nmcli connection show
+
+# Kısa kullanım:
+$ nmcli con show
+```
+
+**Bağlantıyı aktif et**
+
+
+nmcli connection up "EvWifi"
+
+
+Bağlantıyı kapat
+nmcli connection down "EvWifi"
+Wi-Fi kapat / aç
+Wi-Fi kapat:
+
+nmcli radio wifi off
+Wi-Fi aç:
+
+nmcli radio wifi on
+Ağ kartını kapat / aç
+Örneğin wlan0:
+
+Kapat:
+
+nmcli device disconnect wlan0
+Aç:
+
+nmcli device connect wlan0
+IP Bilgisi Görüntüleme
+nmcli device show
+Sadece belirli cihaz:
+
+nmcli device show wlan0
+Manuel IP Verme
+Örnek:
+
+nmcli con mod "EvWifi" ipv4.addresses 192.168.1.50/24
+nmcli con mod "EvWifi" ipv4.gateway 192.168.1.1
+nmcli con mod "EvWifi" ipv4.dns "1.1.1.1 8.8.8.8"
+nmcli con mod "EvWifi" ipv4.method manual
+Sonra:
+
+nmcli con up "EvWifi"
+DHCP’ye geri dönmek için:
+
+nmcli con mod "EvWifi" ipv4.method auto
+Hotspot Açma
+nmcli device wifi hotspot ssid BenimHotspot password 12345678
+NetworkManager Servisi
+Durum kontrolü:
+
+systemctl status NetworkManager
+Başlat:
+
+sudo systemctl start NetworkManager
+Etkinleştir:
+
+sudo systemctl enable NetworkManager
+Faydalı Kısaltmalar
+Uzun	Kısa
+device	dev
+connection	con
+monitor	mon
+Örnek:
+
+nmcli dev status
+Canlı Ağ Olaylarını İzleme
+nmcli monitor
+Yardım
+nmcli help
+Belirli bölüm:
+
+nmcli connection help
+Özellikle Server Sistemlerde Önemli
+GUI olmayan sistemlerde:
+
+Ubuntu Server
+
+Debian
+
+Kali Linux
+
+CentOS
+
+gibi dağıtımlarda ağ yönetimi için çok kullanılır.
+
+Önemli Not
+Bazı minimal sistemlerde NetworkManager kurulu olmayabilir.
+Kontrol:
+
+nmcli --version
+Yoksa kurulum:
+
+Debian/Ubuntu tabanlı:
+
+sudo apt install network-manager
+Arch tabanlı:
+
+sudo pacman -S networkmanager
+Fedora:
+
+sudo dnf install NetworkManager
 
 ```shell
-$ nmcli con show
 $ nmcli con mod "bağlantı_adı" \
   ipv4.method manual \
   ipv4.addresses 192.168.1.50/24 \
@@ -272,6 +406,3 @@ $ nmcli con mod "bağlantı_adı" \
 $ nmcli con up "bağlantı_adı"
 ```
 
-------
-
-nmcli device status
