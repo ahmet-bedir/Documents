@@ -291,19 +291,24 @@ Fedora:
 
 **NetworkManager Servisi**
 
+Sistemde kurulu olup olmadığını kontrol etmek için `nmcli --version` komutu kullanılır.
+
 Durum kontrolü:
-`systemctl status networkmanager`
+`systemctl status NetworkManager`
 
 Kapalıysa başlat:
-`sudo systemctl start networkmanager`
+`sudo systemctl start NetworkManager`
 
-Etkinleştir:
-`sudo systemctl enable networkmanager`
+Açılışta etkinleştir:
+`sudo systemctl enable NetworkManager`
 
 **Ağ cihazlarını listele**
 
 ```bash
 $ nmcli device status
+
+# Kısa kullanım:
+$ nmcli dev status
 ```
 
 **Wi-Fi ağlarını tara**
@@ -336,9 +341,10 @@ $ nmcli con show
 **Bağlantıyı aktif et**
 
 ```bash
+# Bağlantıyı aç:
 $ nmcli connection up "EvWifi"
 
-# Bağlantıyı kapat
+# Bağlantıyı kapat:
 $ nmcli connection down "EvWifi"
 ```
 
@@ -397,14 +403,173 @@ $ nmcli con mod "EvWifi" ipv4.method auto
 $ nmcli device wifi hotspot ssid HotspotAdı password 12345678
 ```
 
+**Canlı Ağ Olaylarını İzleme**
+
+```bash
+$ nmcli monitor
+
+# Kısa kullanım:
+$ nmcli mon
+```
+
 **Yardım Alma**
 
 ```bash
 $ nmcli help
 
-# Server Sistemlerde:
+# Beliri bölüm:
 $ nmcli connection help
 ```
 
+### `nmtui`
 
+`nmtui` (NetworkManager Text User Interface), Linux sistemlerde ağ bağlantılarını terminal üzerinden yönetmek için kullanılan metin tabanlı bir araçtır.
+
+#### Çalıştırma
+
+```bash
+nmtui
+```
+
+#### Temel Özellikler
+
+* Wi-Fi ağına bağlanma
+* Ethernet ayarlarını düzenleme
+* Statik IP tanımlama
+* DNS ayarlarını değiştirme
+* Ağ bağlantısını aktif/pasif yapma
+* Sistem hostname değiştirme
+
+---
+
+#### Menü Seçenekleri
+
+##### Edit a connection
+
+Mevcut ağ bağlantılarını düzenlemek için kullanılır.
+
+Buradan:
+
+* IPv4 / IPv6 ayarları
+* Statik IP
+* DNS
+* Gateway
+* Otomatik bağlanma
+
+gibi ayarlar yapılabilir.
+
+---
+
+##### Activate a connection
+
+Ağ bağlantısını etkinleştirmek veya devre dışı bırakmak için kullanılır.
+
+Örneğin:
+
+* Wi-Fi ağına bağlanma
+* Ethernet bağlantısını açma/kapatma
+
+---
+
+##### Set system hostname
+
+Bilgisayarın ağ üzerindeki adını değiştirmek için kullanılır.
+
+---
+
+##### Wi-Fi Bağlantısı Örneği
+
+```bash
+nmtui
+```
+
+Adımlar:
+
+1. `Activate a connection`
+2. Wi-Fi ağını seç
+3. Şifreyi gir
+4. Bağlantıyı etkinleştir
+
+---
+
+##### Statik IP Ayarlama
+
+```bash
+nmtui
+```
+
+Adımlar:
+
+1. `Edit a connection`
+2. Ağ bağlantısını seç
+3. `IPv4 CONFIGURATION`
+4. `Manual` seç
+
+Örnek bilgiler:
+
+```text
+IP Address : 192.168.1.50/24
+Gateway    : 192.168.1.1
+DNS        : 1.1.1.1, 8.8.8.8
+```
+
+---
+
+##### Klavye Kontrolleri
+
+| Tuş        | Görev           |
+| ---------- | --------------- |
+| Ok Tuşları | Menüde gezinme  |
+| Tab        | Alan değiştirme |
+| Enter      | Seçim yapma     |
+| Space      | İşaretleme      |
+
+---
+
+### Paket Kurulumu
+
+#### Debian / Ubuntu / Kali
+
+```bash
+sudo apt install network-manager
+```
+
+#### Arch Linux / CachyOS
+
+```bash
+sudo pacman -S networkmanager
+```
+
+---
+
+#### NetworkManager Servisini Başlatma
+
+```bash
+sudo systemctl enable --now NetworkManager
+```
+
+Servis durumunu kontrol etmek için:
+
+```bash
+systemctl status NetworkManager
+```
+
+---
+
+#### nmcli ile farkı
+
+| Araç  | Özellik                       |
+| ----- | ----------------------------- |
+| nmcli | Komut satırı tabanlı          |
+| nmtui | Terminal içinde görsel arayüz |
+
+İkisi de `NetworkManager` altyapısını kullanır.
+
+---
+
+<a id="ssh"><a />
+
+## `ssh` komutu
+
+🔼 [**Başa Dön**](#basa-don)
 
