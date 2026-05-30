@@ -262,15 +262,15 @@ IP sabitlemeden önce aşağıdaki bilgiler bilinmelidir:
 #### Komut Satırı İle | `nmcli`
 
 ```shell
-$ nmcli con show
+nmcli con show
 
-$ nmcli con mod "bağlantı_adı" \
+nmcli con mod "bağlantı_adı" \
   ipv4.method manual \
   ipv4.addresses 192.168.1.50/24 \
   ipv4.gateway 192.168.1.1 \
   ipv4.dns "1.1.1.1 8.8.8.8"
 
-$ nmcli con up "bağlantı_adı"
+nmcli con up "bağlantı_adı"
 ```
 
 #### `nmcli`
@@ -305,57 +305,57 @@ Açılışta etkinleştir:
 **Ağ cihazlarını listele**
 
 ```bash
-$ nmcli device status
+nmcli device status
 
 # Kısa kullanım:
-$ nmcli dev status
+nmcli dev status
 ```
 
 **Wi-Fi ağlarını tara**
 
 ```bash
-$ nmcli device wifi list
+nmcli device wifi list
 
 # Kısa kullanım:
-$ nmcli dev wifi
+nmcli dev wifi
 ```
 
 **Wi-Fi ağına bağlan**
 
 ```bash
-$ nmcli device wifi connect "WifiAdi" password "Şifre"
+nmcli device wifi connect "WifiAdi" password "Şifre"
 
 # Örnek:
-$ nmcli device wifi connect "EvWifi" password "12345678"
+nmcli device wifi connect "EvWifi" password "12345678"
 ```
 
 **Kayıtlı bağlantıları listele**
 
 ```bash
-$ nmcli connection show
+nmcli connection show
 
 # Kısa kullanım:
-$ nmcli con show
+nmcli con show
 ```
 
 **Bağlantıyı aktif et**
 
 ```bash
 # Bağlantıyı aç:
-$ nmcli connection up "EvWifi"
+nmcli connection up "EvWifi"
 
 # Bağlantıyı kapat:
-$ nmcli connection down "EvWifi"
+nmcli connection down "EvWifi"
 ```
 
 **Wi-Fi kapat / aç**
 
 ```bash
 # Wi-Fi kapat:
-$ nmcli radio wifi off
+nmcli radio wifi off
 
 # Wi-Fi aç:
-$ nmcli radio wifi on
+nmcli radio wifi on
 ```
 
 **Ağ kartını kapat / aç**
@@ -364,61 +364,61 @@ $ nmcli radio wifi on
 
 ```bash
 # Kapat:
-$ nmcli device disconnect wlan0
+nmcli device disconnect wlan0
 
 # Aç:
-$ nmcli device connect wlan0
+nmcli device connect wlan0
 ```
 
 **IP Bilgisi Görüntüleme**
 
 ```bash
-$ nmcli device show
+nmcli device show
 
 # Sadece belirli cihaz:
-$ nmcli device show wlan0
+nmcli device show wlan0
 ```
 
 **Manuel IP Verme**
 
 ```bash
-$ nmcli con mod "EvWifi" ipv4.addresses 192.168.1.50/24
+nmcli con mod "EvWifi" ipv4.addresses 192.168.1.50/24
 nmcli con mod "EvWifi" ipv4.gateway 192.168.1.1
 nmcli con mod "EvWifi" ipv4.dns "1.1.1.1 8.8.8.8"
 nmcli con mod "EvWifi" ipv4.method manual
 
 # Sonra:
-$ nmcli con up "EvWifi"
-``
+nmcli con up "EvWifi"
+```
 
 **DHCP’ye geri dönmek için:**
 
 ```bash
-$ nmcli con mod "EvWifi" ipv4.method auto
+nmcli con mod "EvWifi" ipv4.method auto
 ```
 
 **Hotspot Açma**
 
 ```bash
-$ nmcli device wifi hotspot ssid HotspotAdı password 12345678
+nmcli device wifi hotspot ssid HotspotAdı password 12345678
 ```
 
 **Canlı Ağ Olaylarını İzleme**
 
 ```bash
-$ nmcli monitor
+nmcli monitor
 
 # Kısa kullanım:
-$ nmcli mon
+nmcli mon
 ```
 
 **Yardım Alma**
 
 ```bash
-$ nmcli help
+nmcli help
 
 # Beliri bölüm:
-$ nmcli connection help
+nmcli connection help
 ```
 
 ### `nmtui`
