@@ -26,6 +26,7 @@
 » [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-shell-shortcuts.md)
 
 » [**Linux Ağ Yönetimi**](md/linux-network-management.md)
+
 ---
 
 ## Linux Sistemlerde PostgreSQL Yönetimi
