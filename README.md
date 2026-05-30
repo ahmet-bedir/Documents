@@ -21,24 +21,25 @@
 
 » [**Linux İşletim Sistemi**](md/linux-operating-system.md)
 
-◈ [**Linux Paket Yönetimi**](md/linux-package-management.md)
+» [**Linux Paket Yönetimi**](md/linux-package-management.md)
 
-◈ [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-shell-shortcuts.md)
+» [**Linux Terminal, Nano ve Vim Kısayolları**](md/linux-shell-shortcuts.md)
 
+» [**Linux Ağ Yönetimi**](md/linux-network-management.md)
 ---
 
 ## Linux Sistemlerde PostgreSQL Yönetimi
 
 **PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.**
 
-◈ [**PostgreSQL**](md/postgresql-management.md)
+» [**PostgreSQL**](md/postgresql-management.md)
 
 ---
 
 ## Sık Kullanılan Git Komutları
 **Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
 
-◈ [**Git Komutları**](md/git-commands.md)
+» [**Git Komutları**](md/git-commands.md)
 
 ---
 
