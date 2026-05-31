@@ -3380,11 +3380,9 @@ Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar e
 
 ### Dosya Sistemini Kalıcı Olarak Bağlamak | `/etc/fstab`
 
-# Dosya Sistemini Kalıcı Olarak Bağlamak (`/etc/fstab`)
-
 Linux'ta bir disk, bölüm veya ağ paylaşımını her açılışta otomatik olarak bağlamak için `/etc/fstab` dosyası kullanılır.
 
-## Mevcut Diskleri Listeleme
+#### Mevcut Diskleri Listeleme
 
 ```bash
 lsblk -f
@@ -3405,7 +3403,7 @@ sudo blkid
 
 ---
 
-## Bağlama Noktası Oluşturma
+#### Bağlama Noktası Oluşturma
 
 Örneğin bir veri diski için:
 
@@ -3415,7 +3413,7 @@ sudo mkdir /mnt/veri
 
 ---
 
-## UUID Bilgisini Öğrenme
+#### UUID Bilgisini Öğrenme
 
 ```bash
 sudo blkid
@@ -3429,7 +3427,7 @@ sudo blkid
 
 ---
 
-## `/etc/fstab` Dosyasını Düzenleme
+#### `/etc/fstab` Dosyasını Düzenleme
 
 ```bash
 sudo nano /etc/fstab
@@ -3443,7 +3441,7 @@ UUID=12345678-90ab-cdef-1234-567890abcdef  /mnt/veri  ext4  defaults  0  2
 
 ---
 
-## fstab Alanları
+#### fstab Alanları
 
 ```text
 UUID=<uuid>  <bağlama_noktası>  <dosya_sistemi>  <seçenekler>  <dump>  <fsck>
@@ -3464,9 +3462,13 @@ UUID=12345678-90ab-cdef-1234-567890abcdef /mnt/veri ext4 defaults 0 2
 | dump | Genellikle 0 |
 | fsck | Kök dosya sistemi için 1, diğerleri için 2 |
 
+Seçenekler kısmından ilgili bölümün nasıl bağlanacağını belirtilir.
+`dump` seçeneği yedeklemeyle ilgili.
+`pass` ise sistem başlangıcında ilgili disk üzerinde `fsck` aracının çalıştırılıp diskin kontrol edilip edilmeyeceğini belirtmemizi sağlıyor. Eğer ilgili disk bölümü kontrol edilsin istersek 1 veya 2 rakamlarından birini eklememiz gerekiyor. 
+
 ---
 
-## Yaygın Dosya Sistemi Türleri
+#### Yaygın Dosya Sistemi Türleri
 
 | Dosya Sistemi | Tür |
 |---------------|-----|
@@ -3491,7 +3493,7 @@ UUID=XXXX-XXXX /mnt/exfat exfat defaults 0 0
 
 ---
 
-## Yapılandırmayı Test Etme
+#### Yapılandırmayı Test Etme
 
 Yeniden başlatmadan önce:
 
@@ -3515,7 +3517,7 @@ mount | grep /mnt
 
 ---
 
-## Önemli Notlar
+#### Önemli Notlar
 
 - Disk isimleri (`/dev/sda`, `/dev/sdb`) değişebilir.
 - Bu nedenle `UUID` kullanılması önerilir.
@@ -3530,7 +3532,7 @@ komutu ile test yapılmalıdır.
 
 ---
 
-## Örnek Tam Yapılandırma
+#### Örnek Tam Yapılandırma
 
 ```fstab
 # EFI Bölümü
