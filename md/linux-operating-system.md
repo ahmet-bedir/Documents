@@ -3261,7 +3261,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 
 ---
 
-**NVMe SSD Diskler**
+**» NVMe SSD Diskler**
 Yeni nesil M.2 NVMe SSD’ler:
 
 ```bash
@@ -3288,7 +3288,7 @@ Yeni nesil M.2 NVMe SSD’ler:
 
 ---
 
-**USB Bellek / Harici Disk**
+**» USB Bellek / Harici Disk**
 
 Takıldığında genelde:
 
@@ -3302,36 +3302,48 @@ olarak görünür.
 
 ---
 
+### Disk Bölümleri ve Bölümlendirme Tablosu
+
 Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar için kullanabiliyoruz. Hangi disk bölümünün nerede başlayıp nerede bittiğinin bilgisi de “bölümlendirme tablosu” olarak isimlendirilen MBR ya da GPT tablolarında tutuluyor.
 
 ### MBR
 
-MBR disk bölümleme tablosu maksimum 2 TB’a kadar olan disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil bölüme ayrılabiliyor. Yine de birincil bölüm sınırlamasını aşmak için, birincil bölümlerden birini mantıksal bölümlere ayrılan genişletilmiş bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz.
+MBR, disk bölümleme tablosu maksimum 2 TB’a kadar olan disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil (primary) bölüme ayrılabiliyor. Birincil bölümlerden birini mantıksal (logical) bölümlere ayrılan genişletilmiş (extended) bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz.
 
 ### GPT
 
 GPT, zaman içinde disk kapasitelerinin artması ve diskleri daha fazla alana bölümlenebilmesi ihtiyaçları doğrultusunda MBR‘ın yetersiz kaldığı noktada geliştirilmiş olan yeni nesil disk bölümleme tablosudur. GPT maksimum 8 ZiB‘a kadar olan disk boyutlarını destekliyor. Yani eski nesil bölümleme tablosu olan MBR’a oranla günümüz şartları için gereken büyüklükleri destekliyor. Ayrıca GPT sayesinde diski 128 bölüme ayırmamız da mümkündür.
 
-Bbilgisayarın başlangıç aşamasından sorumlu olan yapılar:
+Yani özetle MBR’a oranla GPT hem maksimum boyut hem de bölüm sayısı ile çok daha kullanışlı bir bölümleme tablosudur.
+
+
+Bilgisayarın başlangıç aşamasından sorumlu olan yapılar:
+
 - BIOS (daha eski sislemlerde)
 - UEFI (modern sislemlerde)
 
+Eğer sizin cihazınızda BIOS kullanılıyorsa MBR disk bölümleme tablosunu kullanabiliyorsunuz. UEFI varsa, GPT bölümleme tablosunu kullanmanız mümkün oluyor.
+
+
 **Dosya Sistemi**
+
 - Dosya sistemi, disk bölümündeki verilerin nasıl ele alınacağını belirleyen yapıdır.
 - Dosya sistemi olmadan diskteki veriler yalnızca yığınlardan ibarettir.
 - Dosya sistemi olmadan diskteki verilere erişip onları yönetemeyiz.
 - Tek bir diski birden fazla bölüme ayırabildiğimiz için de esasen aynı fiziksel diskteki farklı bölümlerde birbirinden farklı dosya sistemleri kullanılabilinir.
 - Linux sistemi pek çok farklı dosya sistemini destekliyor. Bunları görmek için `cat /proc/filesystem` komutunu girebiliriz.
 
-### Diskleri Listeleme
 
-Diskler, Linux üzerinde blok aygıtları olarak anıldıkları için “list block devices” ifadesinin kısaltmasından gelen `lsblk` komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
+### Blok Aygıtlarını Listeleme | `lsblk`
+
+Diskler, Linux üzerinde blok aygıtları olarak anıldıkları için “**l**i**s**t **bl**oc**k** devices” ifadesinin kısaltmasından gelen `lsblk` komutu ile disk aygıtlarının ve bölümlerinin sistem üzerindeki isimlerini öğrenebiliyoruz.
 
 Not : Eğer aygıt dosyalarının sahip olduğu dosya sistemleri ve benzersiz kimlik numaraları olan UUID değeri hakkında bilgi almak istersek `lsblk -f` seçeneği kullanılır.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
-└─$ lsblk 
+└─$ lsblk
+
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 sda       8:0    0   80G  0 disk
 ├─sda1    8:1    0   79G  0 part /
@@ -3345,19 +3357,28 @@ nvme0n1 259:0    0    1G  0 disk
 nvme0n2 259:1
 ```
 
+Disk bölümleme için `fdisk` aracı kullanılır.
+
 `fdisk -l` : Sistemde bulunan diskleri listeler.
 Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız `fdisk -l /dev/aygıt-adı` şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
 
+
 ### Disklerin Bağlanması | `mount`
 
-Bir disk bölümünü “dosya sistemini” mevcut sistemimize bağlamak için “bağlama” anlamına gelen `mount` komutunun ardından, sisteme bağlamak istediğimiz disk bölümünün aygıt ismini ve bu bölümün dosya sistemi hiyerarşisinde hangi dizin altına bağlanacağı belirtilir.
+Bir disk bölümünü “dosya sistemini” mevcut sistemimize bağlamak yani o disk bölümü içindeki verilere erişebilmek için “bağlama” anlamına gelen `mount` komutunun ardından, sisteme bağlamak istediğimiz disk bölümünün aygıt ismini ve bu bölümün dosya sistemi hiyerarşisinde hangi dizin altına bağlanacağı belirtilir.
+
 
 ```bash
 mount /dev/sdb1 ~/Desktop/disk/
 ```
+
+Artık ilgili disk bloğuna bu dizin altından erişebiliyor olacağım. Yani bu dizin içine bir dosya eklediğimde ya da buradaki bir dosyayı sildiğimde aslında o disk bölümündeki veriler üzerinde işlem yapmış olacağım. `mount` işleminin aslında disk bölümlerine bir nevi giriş kapısı görevi görür.
+
 ➜ Disk bölümünün sistemden ayırmak için `umount ~/Desktop/disk/` komutu kullanılır.
 
 Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar ediyorsa `f` yani `force` seçeneği ile çıkarmaya zorlayabilirsiniz. Yine de `f` seçeneği diskteki verilerin bozulmasına sebep olabileceği için zorunlu olmayan durumlar haricinde kullanılmamalıdır.
+
+### Dosya Sistemini Kalıcı Olarak Bağlamak | `/etc/fstab`
 
 
 ---
