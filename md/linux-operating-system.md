@@ -3380,6 +3380,171 @@ Not : Eğer disk bölümü meşgul olduğu için bağını koparmamakta ısrar e
 
 ### Dosya Sistemini Kalıcı Olarak Bağlamak | `/etc/fstab`
 
+# Dosya Sistemini Kalıcı Olarak Bağlamak (`/etc/fstab`)
+
+Linux'ta bir disk, bölüm veya ağ paylaşımını her açılışta otomatik olarak bağlamak için `/etc/fstab` dosyası kullanılır.
+
+## Mevcut Diskleri Listeleme
+
+```bash
+lsblk -f
+```
+
+veya
+
+```bash
+sudo blkid
+```
+
+Örnek çıktı:
+
+```text
+/dev/sda1 UUID="A1B2-C3D4" TYPE="vfat"
+/dev/sda2 UUID="12345678-90ab-cdef-1234-567890abcdef" TYPE="ext4"
+```
+
+---
+
+## Bağlama Noktası Oluşturma
+
+Örneğin bir veri diski için:
+
+```bash
+sudo mkdir /mnt/veri
+```
+
+---
+
+## UUID Bilgisini Öğrenme
+
+```bash
+sudo blkid
+```
+
+Örnek:
+
+```text
+/dev/sdb1: UUID="12345678-90ab-cdef-1234-567890abcdef" TYPE="ext4"
+```
+
+---
+
+## `/etc/fstab` Dosyasını Düzenleme
+
+```bash
+sudo nano /etc/fstab
+```
+
+Dosyanın sonuna aşağıdaki satırı ekleyin:
+
+```fstab
+UUID=12345678-90ab-cdef-1234-567890abcdef  /mnt/veri  ext4  defaults  0  2
+```
+
+---
+
+## fstab Alanları
+
+```text
+UUID=<uuid>  <bağlama_noktası>  <dosya_sistemi>  <seçenekler>  <dump>  <fsck>
+```
+
+Örnek:
+
+```text
+UUID=12345678-90ab-cdef-1234-567890abcdef /mnt/veri ext4 defaults 0 2
+```
+
+| Alan | Açıklama |
+|--------|-----------|
+| UUID | Diskin benzersiz kimliği |
+| Bağlama Noktası | Diskin bağlanacağı dizin |
+| Dosya Sistemi | ext4, xfs, ntfs, vfat vb. |
+| Seçenekler | defaults, rw, ro, noatime vb. |
+| dump | Genellikle 0 |
+| fsck | Kök dosya sistemi için 1, diğerleri için 2 |
+
+---
+
+## Yaygın Dosya Sistemi Türleri
+
+| Dosya Sistemi | Tür |
+|---------------|-----|
+| ext4 | Linux |
+| xfs | Linux |
+| btrfs | Linux |
+| vfat | FAT32 |
+| exfat | exFAT |
+| ntfs | Windows NTFS |
+
+Örnek NTFS:
+
+```fstab
+UUID=XXXX-XXXX /mnt/windows ntfs-3g defaults,uid=1000,gid=1000 0 0
+```
+
+Örnek exFAT:
+
+```fstab
+UUID=XXXX-XXXX /mnt/exfat exfat defaults 0 0
+```
+
+---
+
+## Yapılandırmayı Test Etme
+
+Yeniden başlatmadan önce:
+
+```bash
+sudo mount -a
+```
+
+Hata yoksa yapılandırma doğrudur.
+
+Bağlı diskleri kontrol etmek için:
+
+```bash
+df -h
+```
+
+veya
+
+```bash
+mount | grep /mnt
+```
+
+---
+
+## Önemli Notlar
+
+- Disk isimleri (`/dev/sda`, `/dev/sdb`) değişebilir.
+- Bu nedenle `UUID` kullanılması önerilir.
+- Hatalı bir `fstab` girdisi sistemin açılışını engelleyebilir.
+- Düzenleme sonrası mutlaka:
+
+```bash
+sudo mount -a
+```
+
+komutu ile test yapılmalıdır.
+
+---
+
+## Örnek Tam Yapılandırma
+
+```fstab
+# EFI Bölümü
+UUID=A1B2-C3D4 /boot/efi vfat umask=0077 0 1
+
+# Kök Dosya Sistemi
+UUID=11111111-2222-3333-4444-555555555555 / ext4 defaults 0 1
+
+# Veri Diski
+UUID=66666666-7777-8888-9999-AAAAAAAAAAAA /mnt/veri ext4 defaults 0 2
+
+# Windows Bölümü
+UUID=BBBBBBBBBBBBBBBB /mnt/windows ntfs-3g defaults,uid=1000,gid=1000 0 0
+```
 
 ---
 
