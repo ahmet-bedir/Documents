@@ -3216,6 +3216,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 /dev/hda
 /dev/hdb
 ```
+
 - `hd` → P-ATA disk sınıfı
 - `a`, `b` → sırasıyla 1., 2. disk
 
@@ -3226,6 +3227,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 /dev/hda2
 /dev/hda3
 ```
+
 - `hda1` → ilk bölüm
 - `hda2` → ikinci bölüm
 - `hda3` → üçüncü bölüm
@@ -3239,6 +3241,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 /dev/sdb
 /dev/sdc
 ```
+
 - `sd` → SCSI/SATA disk sınıfı
 - `a`, `b`, `c` → 1., 2., 3. disk
 
@@ -3247,6 +3250,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 ```bash
 /dev/sda
 ```
+
 → Sistemdeki ilk SATA SSD/HDD.
 
 **Bölümler:**
@@ -3256,6 +3260,7 @@ Linux’ta diskler ve bölümler /dev altında dosya gibi temsil edilir. İsimle
 /dev/sda2
 /dev/sda3
 ```
+
 - `sda1` → ilk bölüm
 - `sda2` → ikinci bölüm
 
@@ -3268,6 +3273,7 @@ Yeni nesil M.2 NVMe SSD’ler:
 /dev/nvme0n1
 /dev/nvme1n1
 ```
+
 - `nvme0` → ilk NVMe kontrolcüsü
 - `n1` → namespace 1
 
@@ -3277,6 +3283,7 @@ Yeni nesil M.2 NVMe SSD’ler:
 /dev/nvme0n1p1
 /dev/nvme0n1p2
 ```
+
 - Burada `p` kullanılır çünkü isim zaten sayı içeriyor.
 
 **Örnek:**
@@ -3284,6 +3291,7 @@ Yeni nesil M.2 NVMe SSD’ler:
 ```bash
 /dev/nvme0n1p1
 ```
+
 → İlk NVMe SSD’nin ilk bölümü.
 
 ---
@@ -3296,6 +3304,7 @@ Takıldığında genelde:
 /dev/sdb
 /dev/sdc
 ```
+
 olarak görünür.
 
 Çünkü Linux USB storage’ı çoğunlukla SCSI/SATA gibi yönetir.
@@ -3306,23 +3315,23 @@ olarak görünür.
 
 Fiziksel diskimizi yazılımsal olarak bölümlere ayırıp farklı amaçlar için kullanabiliyoruz. Hangi disk bölümünün nerede başlayıp nerede bittiğinin bilgisi de “bölümlendirme tablosu” olarak isimlendirilen MBR ya da GPT tablolarında tutuluyor.
 
-### MBR
+#### MBR
 
 MBR, disk bölümleme tablosu maksimum 2 TB’a kadar olan disk boyutlarını destekliyor. Ve MBR disk bölümleme tablosu kullanılarak disk yalnızca 4 birincil (primary) bölüme ayrılabiliyor. Birincil bölümlerden birini mantıksal (logical) bölümlere ayrılan genişletilmiş (extended) bölüm olarak da kullanabiliyoruz. Yani MBR bölümleme tablosunda maksimum 3 birincil ve 1 genişletilmiş bölüm üzerinden 12 mantıksal olmak üzere toplam 15 tane bölüm oluşturabiliyoruz.
 
-### GPT
+#### GPT
 
 GPT, zaman içinde disk kapasitelerinin artması ve diskleri daha fazla alana bölümlenebilmesi ihtiyaçları doğrultusunda MBR‘ın yetersiz kaldığı noktada geliştirilmiş olan yeni nesil disk bölümleme tablosudur. GPT maksimum 8 ZiB‘a kadar olan disk boyutlarını destekliyor. Yani eski nesil bölümleme tablosu olan MBR’a oranla günümüz şartları için gereken büyüklükleri destekliyor. Ayrıca GPT sayesinde diski 128 bölüme ayırmamız da mümkündür.
 
 Yani özetle MBR’a oranla GPT hem maksimum boyut hem de bölüm sayısı ile çok daha kullanışlı bir bölümleme tablosudur.
 
 
-Bilgisayarın başlangıç aşamasından sorumlu olan yapılar:
+**Bilgisayarın başlangıç aşamasından sorumlu olan yapılar:**
 
 - BIOS (daha eski sislemlerde)
 - UEFI (modern sislemlerde)
 
-Eğer sizin cihazınızda BIOS kullanılıyorsa MBR disk bölümleme tablosunu kullanabiliyorsunuz. UEFI varsa, GPT bölümleme tablosunu kullanmanız mümkün oluyor.
+Eğer sizin cihazınızda BIOS kullanılıyorsa, MBR disk bölümleme tablosunu kullanabiliyorsunuz. UEFI varsa, GPT bölümleme tablosunu kullanmanız mümkün oluyor.
 
 
 **Dosya Sistemi**
