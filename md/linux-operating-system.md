@@ -3861,13 +3861,15 @@ shutdown [-t sec] [-arkhncfFHP] süre [uyarı mesajı]
 
 ‘süre’ parametresi olarak ‘now’ denirse işlem hemen gerçekleştirilir. İstenirse ileri bir zaman verilebilir. Genel kullanıma açık sunucularda 
 system kapamaları planlıdır ve önceden duyurulur.
-Aşağıda farklı shutdown kullanımları görülmektedir.
-- `shutdown ­h now`
-- `shutdown ­r now`
-- `shutdown ­h 16:30`
-- `shutdown ­r +10`
-Son kullanımdaki +10, şu andan itibaren 10 dakika sonra reboot et 
-demektir.
+
+Aşağıda farklı `shutdown` kullanımları görülmektedir.
+
+- `shutdown ­-h now`
+- `shutdown ­-r now`
+- `shutdown ­-h 16:30`
+- `shutdown ­-r +10`
+
+Son kullanımdaki +10, şu andan itibaren 10 dakika sonra `reboot` et  demektir.
 
 ------
 
