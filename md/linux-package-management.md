@@ -609,7 +609,7 @@ rpm -qa | less
 > **Kaynak koddan kurulum yaparken** `--prefix` **parametresiyle programı istediğin yere kurabilirsiniz:**
 
 ```bash
-./configure --prefix = $HOME/
+./configure --prefix=$HOME/
 make
 sudo make install
 ```
