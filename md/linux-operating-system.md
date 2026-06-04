@@ -664,8 +664,8 @@ Touch ayrıca mevcut dosya ve dizinlerde zaman damgalarını değiştirmek için
 Bir dosyanın ne tür bir dosya olduğunu bulmak için `file` komutunu kullanabilirsiniz. Bu komut, dosyanın içeriğinin bir açıklamasını size gösterecektir.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Resimler]
-└─$ file man-image.gif 
+$ file man-image.gif 
+
 man-image.gif: GIF image data, version 89a, 807 x 662
 ```
 
@@ -684,13 +684,13 @@ linux-distribution.gif: PNG image data, 2000 x 2416, 8-bit/color RGBA, non-inter
 Dosya okumak için kullanılır. Bu komut, concatenate (birleştirmek) kelimesinin kısaltmasıdır.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Notlar.txt 
+$ cat Notlar.txt
+
 ==== NOTLAR ===
 Python'u öğrenirken ilerlemenin en iyi yolları.
 
-┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Komutlar.txt 
+$ cat Komutlar.txt
+
 === Komutlar ===
 [#] pwd : Bulunduğumuz dizinin tam adresini yazdırır.
 [#] ls : Dizin içeriklerini listelemek için kullanılır.
@@ -699,8 +699,8 @@ Python'u öğrenirken ilerlemenin en iyi yolları.
 Yalnızca dosya içeriğini görüntülemez, aynı zamanda birden fazla dosyayı birleştirebilir ve size çıktıları gösterebilir.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Notlar.txt Komutlar.txt                                           
+$ cat Notlar.txt Komutlar.txt
+
 ==== NOTLAR ===
 Python'u öğrenirken ilerlemenin en iyi yolları.
 === Komutlar ===
@@ -711,11 +711,10 @@ Python'u öğrenirken ilerlemenin en iyi yolları.
 Dosyaları birleştirmek ve içeriği dosyaya yazdırmak içinde kullanabilirsiniz.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Notlar.txt Komutlar.txt > Birlesimi.txt                           
+$ cat Notlar.txt Komutlar.txt > Birlesimi.txt                           
 
-┌──(ahmet㉿kali)-[~/Belgeler]
-└─$ cat Birlesimi.txt                                                     
+$ cat Birlesimi.txt
+
 ==== NOTLAR ===
 Python'u öğrenirken ilerlemenin en iyi yolları.
 === Komutlar ===
