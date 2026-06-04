@@ -448,8 +448,8 @@ $ ls -a
 Bir başka `ls` işareti, `-l` uzun formatta ayrıntılı bir dosya listesi gösterir. Bu size ayrıntılı bilgi gösterecektir, soldan başlayarak: dosya izinleri, bağlantı sayısı, sahip adı, sahip grubu, dosya boyutu, son değişiklik zaman damgası ve dosya/dizin adı.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ ls -l
+$ ls -l
+
 toplam 56
 drwxr-xrwx  2 ahmet ahmet 4096 Oca 12 16:55  Belgeler
 drwxrwxrwx  2 ahmet ahmet 4096 Ara  1 12:28 'BiglyBT Downloads'
@@ -475,8 +475,8 @@ drwxr-xrwx  3 ahmet ahmet 4096 Ara  5 22:23  Videolar
    Uzun listeleme formatı (izinler, sahip, grup, boyut, tarih). 
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ ls -l
+$ ls -l
+
 toplam 29584
 drwxr-xrwx  2 ahmet ahmet     4096 Oca 19 15:37  Belgeler
 drwxr-xrwx  2 ahmet ahmet     4096 Kas 25 13:35  Genel
@@ -501,8 +501,8 @@ drwxr-xrwx  4 ahmet ahmet     4096 Oca 18 21:00  Resimler
    Genellikle `-l` ile birlikte kullanılır.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ ls -lh
+$ ls -lh
+
 toplam 29M
 drwxr-xrwx  2 ahmet ahmet 4,0K Oca 19 15:37  Belgeler
 drwxr-xrwx  2 ahmet ahmet 4,0K Oca 20 12:50  İndirilenler
@@ -526,14 +526,14 @@ drwxr-xrwx  3 ahmet ahmet 4,0K Ara  5 22:23  Videolar
    Gizli dosyaları da listeler (`.` ile başlayanlar).
 
 ```bash
-ls -a
+$ ls -a
 ```
 
 **`-A`**
    Gizli dosyaları listeler ancak `.` ve `..` hariç tutar.
 
 ```bash
-ls -A
+$ ls -A
 ```
 
 ---
@@ -544,7 +544,7 @@ ls -A
    Dosyaları son değiştirilme zamanına göre sıralar.
 
 ```bash
-ls -lt
+$ ls -lt
 ```
 
 **`-S`**
@@ -558,7 +558,7 @@ ls -lS
    Ters sıralama yapar.
 
 ```bash
-ls -ltr
+$ ls -ltr
 ```
 
 ---
@@ -572,14 +572,14 @@ ls -ltr
   - `@` → sembolik link
 
 ```bash
-ls -F
+$ ls -F
 ```
 
 **`--color=auto`**
  Dosya türlerine göre renklendirerek gösterir (çoğu dağıtımda varsayılan).
 
 ```bash
-ls --color=auto
+$ ls --color=auto
 ```
 
 ---
@@ -590,14 +590,14 @@ ls --color=auto
    Dizinin içeriğini değil, dizinin kendisini listeler.
 
 ```bash
-ls -ld /etc
+$ ls -ld /etc
 ```
 
 **`-R`**
    Alt dizinlerle birlikte recursive (özyinelemeli) listeleme yapar.
 
 ```bash
-ls -R
+$ ls -R
 ```
 
 ---
@@ -608,14 +608,14 @@ ls -R
    Son erişim zamanına göre listeler.
 
 ```bash
-ls -lu
+$ ls -lu
 ```
 
 **`-c`**
    Son durum değişikliği zamanına göre listeler.
 
 ```bash
-ls -lc
+$ ls -lc
 ```
 
 ---
