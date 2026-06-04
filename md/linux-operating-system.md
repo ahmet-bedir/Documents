@@ -367,7 +367,7 @@ Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” 
 
 Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 
-Şimdi bu dizinden **Linux** adında bir klasörüm var, şu şekilde o klasöre gidebilirim:
+Şimdi bu dizinden **Linux** adında bir dizin var, şu şekilde odizine gidebilirim:
 
 ```bash
 ┌──(ali㉿kali)-[/home/ali/Resimler]
@@ -416,24 +416,23 @@ $ cd - # önceki dizine git
 Dizin içeriklerini listelemek  için `ls` komutunu kullanabiliriz. `ls` komutu varsayılan olarak geçerli dizindeki dizinleri ve dosyaları listeler.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Resimler]
-└─$ ls
+$ ls
+
 'Ekran Görüntüleri'  'Git Resimleri'   linux-distribution.png   source-code.jpg   veritabanı.jpg
 ```
 
 Ancak hangi dizinini listelemek istediğinizi belirtebilirsiniz.
 
 ```bash
-┌──(ahmet㉿kali)-[~/Resimler]
-└─$ ls /home/ali/
+$ ls /home/ali/
+
 Belgeler  Genel  İndirilenler  Masaüstü  Müzik  Resimler  Şablonlar  Videolar
 ```
 
 Nokta ile başlayan dosya adları gizlidir, ancak bunları `ls` komutuyla görebilirsiniz ve `-a` (tümü için all) işaretini ekleyebilirsiniz.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ ls -a
+$ ls -a
  .                    .cache       .gtkrc-2.0     .pki                        .swt
  ..                   .codeintel   İndirilenler   .profile                    Şablonlar
  .atom                .config      .ipython       .psql_history               .var
