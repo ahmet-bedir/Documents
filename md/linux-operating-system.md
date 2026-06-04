@@ -3466,9 +3466,9 @@ UUID=12345678-90ab-cdef-1234-567890abcdef /mnt/veri ext4 defaults 0 2
 | dump | Genellikle 0 |
 | fsck | Kök dosya sistemi için 1, diğerleri için 2 |
 
-Seçenekler kısmından ilgili bölümün nasıl bağlanacağını belirtilir.
-`dump` seçeneği yedeklemeyle ilgili.
-`pass` ise sistem başlangıcında ilgili disk üzerinde `fsck` aracının çalıştırılıp diskin kontrol edilip edilmeyeceğini belirtmemizi sağlıyor. Eğer ilgili disk bölümü kontrol edilsin istersek 1 veya 2 rakamlarından birini eklememiz gerekiyor. İlgili disk bölümün her sistem başlangıcında kontrol edilmesini istemiyorsanız 0 olarak da bırakabilirsiniz.
+↦ Seçenekler kısmından ilgili bölümün nasıl bağlanacağını belirtilir.
+↦ `dump` seçeneği yedeklemeyle ilgili kısım.
+↦ `pass` seçeneği, sistem başlangıcında ilgili disk üzerinde `fsck` aracının çalıştırılıp diskin kontrol edilip edilmeyeceğini belirtmemizi sağlıyor. Eğer ilgili disk bölümü kontrol edilsin istersek 1 veya 2 rakamlarından birini eklememiz gerekiyor. İlgili disk bölümün her sistem başlangıcında kontrol edilmesini istemiyorsanız 0 olarak belirlenir.
 
 ---
 
