@@ -5,7 +5,7 @@
 
 # Linux İşletim Sistemi
 
-###### Son güncelleme : 04/2026
+###### Son güncelleme : 06/2026
 
 ---
 
@@ -194,8 +194,8 @@ Bu belgede kabuk programı `bash` (Bourne Again SHell) kullanacağız, hemen hem
 Varsayılan kabuk programını öğrenmek için konsola `echo $SHELL` komutunu girmeniz yeterli. Bu komutta yer alan `echo` ifadesi varsayılan kabuğun değerini tutan `SHELL` değişkenini konsola bastırmanızı sağlıyor.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ echo $SHELL
+$ echo $SHELL
+
 /usr/bin/bash
 ```
 
@@ -221,10 +221,10 @@ kullanıcı_adı@bilgisayar_adı:su_anki_dizin $
 ali@pc:/home/ali/İndirilenler $
 ```
 
-Kullandığınız dağıtıma göre promt görünümü değişebilir.Örneğin kali linux dağıtımında promt görünümü aşağıdaki gibidir: 
+Kullandığınız dağıtıma göre promt görünümü değişebilir. Örneğin Kali Linux dağıtımında promt görünümü aşağıdaki gibidir: 
 
 ```bash
-┌──(ahmet㉿kali)-[/home/ali/İndirilenler]
+┌──(ali㉿kali)-[/home/ali/İndirilenler]
 └─$ 
 ```
 
@@ -233,8 +233,8 @@ Promptun sonundaki $ sembolü Bash, Bourne veya Korn kabuğunu kullanan normal b
 `echo` komutu, kendisine verilen metin argümanlarını ekrana yazdırır. 
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ echo Linux İşletim Sistemi
+$ echo Linux İşletim Sistemi
+
 Linux İşletim Sistemi
 ```
 
@@ -252,6 +252,7 @@ PATH, kabuk (bash, zsh vb.) tarafından çalıştırılabilir dosyaların aranac
 
 ```bash
 $ echo $PATH
+
 /usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games
 ```
 
@@ -315,6 +316,7 @@ PATH: Komutların arandığı dizinlerin listesi
 
 ```bash
 $ echo $PATH
+
 /home/ali/Belgeler/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games
 ```
 
@@ -328,8 +330,8 @@ Bu dosya ve dizinlerin konumları yollar olarak adlandırılır.
 Nerede olduğunuzu görmek için `pwd` komutunu kullanabilirsiniz, bu komut "çalışma dizinini yazdır" anlamına gelir ve yalnızca hangi dizinde olduğunuzu gösterir, yolun kök dizinden geldiğini unutmayın.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ pwd
+$ pwd
+
 /home/ahmet
 ```
 
@@ -356,10 +358,10 @@ Dizinlerde gezinmek için “change directory” yani “dizini değiştirme” 
 İstediğimiz dizine geçmek için `cd` "dizin değiştir" komutuna gitmek istediğimiz dizin adını argüman olarak verilir.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
+┌──(ali㉿kali)-[~]
 └─$ cd /home/ali/Resimler/
 
-┌──(ahmet㉿kali)-[/home/ali/Resimler]
+┌──(ali㉿kali)-[/home/ali/Resimler]
 └─$ 
 ```
 
@@ -368,10 +370,10 @@ Böylece şimdi dizin konumumu `/home/ali/Resimler` olarak değiştirdik.
 Şimdi bu dizinden **Linux** adında bir klasörüm var, şu şekilde o klasöre gidebilirim:
 
 ```bash
-┌──(ahmet㉿kali)-[/home/ali/Resimler]
+┌──(ali㉿kali)-[/home/ali/Resimler]
 └─$ cd Linux/
 
-┌──(ahmet㉿kali)-[/home/ali/Resimler/Linux]
+┌──(ali㉿kali)-[/home/ali/Resimler/Linux]
 └─$ 
 ```
 
