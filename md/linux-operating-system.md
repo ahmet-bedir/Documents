@@ -3350,25 +3350,20 @@ Diskler, Linux üzerinde blok aygıtları olarak anıldıkları için “**l**i*
 Not : Eğer aygıt dosyalarının sahip olduğu dosya sistemleri ve benzersiz kimlik numaraları olan UUID değeri hakkında bilgi almak istersek `lsblk -f` seçeneği kullanılır.
 
 ```bash
-┌──(ahmet㉿kali)-[~]
-└─$ lsblk
+$ lsblk
 
-NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
-sda       8:0    0   80G  0 disk
-├─sda1    8:1    0   79G  0 part /
-├─sda2    8:2    0    1K  0 part 
-└─sda5    8:5    0  975M  0 part [SWAP]
-sdb       8:16   0    2G  0 disk 
-sdc       8:32   0    1G  0 disk 
-sdd       8:48   0    1G  0 disk 
-sr0      11:0    1 1024M  0 rom  
-nvme0n1 259:0    0    1G  0 disk 
-nvme0n2 259:1
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+nvme0n1     259:0    0 931,5G  0 disk 
+├─nvme0n1p1 259:1    0   488M  0 part /boot/efi
+├─nvme0n1p2 259:2    0  18,6G  0 part [SWAP]
+├─nvme0n1p3 259:3    0 372,5G  0 part /
+├─nvme0n1p4 259:4    0 186,3G  0 part 
+└─nvme0n1p5 259:5    0 353,6G  0 part /run/media/ahmet/Yedek
 ```
 
-Disk bölümleme için `fdisk` aracı kullanılır.
+↦ Disk bölümleme için `fdisk` aracı kullanılır.
 
-`fdisk -l` : Sistemde bulunan diskleri listeler.
+↦ `fdisk -l` : Sistemde bulunan diskleri listeler.
 Not : Yalnızca ilgili disk aygıtı hakkında bilgi almak istiyorsanız `fdisk -l /dev/aygıt-adı` şeklinde disk aygıtını argüman olarak da belirtebilirsiniz.
 
 
