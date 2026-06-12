@@ -4394,7 +4394,7 @@ sudo chmod +x /etc/cron.daily/my_task
 
 ---
 
-## `systemd` Timer ile Zamanlanmış Görevler
+## systemd Timer ile Zamanlanmış Görevler
 
 ### systemd Timer Nedir?
 
@@ -4420,7 +4420,6 @@ Bir timer genellikle iki dosyadan oluşur:
 
 - `.service` → Çalıştırılacak komut
 - `.timer` → Ne zaman çalışacağını belirler
-- 
 
 Örnek:
 
@@ -4478,6 +4477,8 @@ WantedBy=timers.target
 sudo systemctl daemon-reload
 sudo systemctl enable --now backup.timer
 ```
+
+çalıştırıldığında `backup.timer`, otomatik olarak `backup.service` birimini tetikler.
 
 ---
 
