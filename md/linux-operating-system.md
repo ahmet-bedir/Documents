@@ -3956,11 +3956,13 @@ Bu komut sistemi çalışma seviyesi 3 benzeri moda geçirir.
 
 Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve sisteme işlevsellik sağlayan arka plan işlemleridir. Genellikle sistem başlangıcında otomatik olarak başlatılır ve sistem çalıştığı süre boyunca aksini gerektiren bir durum olmadığı sürece çalışırlar.
 
-### Birimleri listelemek
+Sistem üzerindeki servisleri yönetmek için en güncel ve yaygın kullanıma sahip olan “systemd” servis yöneticisini kullanacağız.
 
-Sistemimizde aktif olan yani halihazırda çalışmakta olan birimleri listelemek için `systemctl list-units` komutunu kullanıyoruz. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz. `—state=inactive` seçeneği ile inaktif olanları da özellikle filtreleyebiliriz.
+### Birimleri Listeleme
 
-Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneğini kullanabiliyoruz.
+Sistemimizde aktif olan yani halihazırda çalışmakta olan birimleri listelemek için `systemctl list-units` komutunu kullanılır. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz. `—state=inactive` seçeneği ile inaktif olanları yani pasif olanlar listelenir.
+
+Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçeneği kullanılır.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -3973,7 +3975,7 @@ Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçene
 
 ### Unit (Birim) Yönetimi
 
-İnaktif durumdaki bir birimi başlatmak için `sudo systemctl start birim-adı` komutu, çalışmakta olan birimi durdurmak için `sudo systemctl stop birim-adı` komutu kullanılır.
+İnaktif durumdaki bir birimi başlatmak için `sudo systemctl start <birim-adı>` komutu, çalışmakta olan birimi durdurmak için `sudo systemctl stop <birim-adı>` komutu kullanılır.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
@@ -4003,7 +4005,7 @@ Jul 24 10:08:01 linuxdersleri.net systemd[1]: Starting The Apache HTTP Server...
 Jul 24 10:08:06 linuxdersleri.net systemd[1]: Started The Apache HTTP Server.
 ```
 
-➜ Birimi yeniden başlatmak için `restart` seçeneği kullanılır. `sudo systemctl restart birim-adı`. Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
+➜ Birimi yeniden başlatmak için `restart` seçeneği kullanılır. `sudo systemctl restart <birim-adı>`. Eğer servisi kesintiye uğratmadan yalnızca konfigürasyon değişikliklerinin geçerli olmasını isterseniz `restart` yerine `reload` seçeneğini kullanabilirsiniz.
 
 ### Birimlerin Aktif Pasif Hale Getirilmesi
 
@@ -4011,19 +4013,26 @@ Sistem başlangıcında otomatik olarak başlatılmasını istediğimiz birimler
 
 ```bash
 # Sistem bağlatıldığında apache2 servisini aktifleştirmek için.
-┌──(ahmet㉿kali)-[~]
-└─$ sudo systemctl enable apache2 
+$ sudo systemctl enable apache2 
 
 Synchronizing state of apache2.service with SysV service script with /lib/systemd/systemd-sysv-install.
 Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.
+➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.(`sudo systemctl disable apache2`)
 
 ### Birimleri Gruplamak | Target
 
-Hangi çalışma sevisinde (run level) yani Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
+Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak aktifleştirilmesini isteyebiliriz. systemd bu durumlar için “target” ismi verilen birimleri kullanıyor. target sayesinde sistem başlangıcında başlatılmasını istediğimiz tüm birimleri gruplayabiliyoruz. Temel target birimlerini listeleyecek olursak:
+
+- poweroff
+- rescue
+- multi-user
+- graphical
+- reboot
+
+Hangi çalışma sevisinde (run level) yani kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
 
 Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
@@ -4436,7 +4445,7 @@ backup.timer
 sudo nano /etc/systemd/system/backup.service
 ```
 
-İçeriği:
+İçerik:
 
 ```ini
 [Unit]
@@ -4478,7 +4487,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now backup.timer
 ```
 
-çalıştırıldığında `backup.timer`, otomatik olarak `backup.service` birimini tetikler.
+› Çalıştırıldığında `backup.timer`, otomatik olarak `backup.service` birimini tetikler.
 
 ---
 
