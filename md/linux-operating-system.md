@@ -4394,7 +4394,7 @@ sudo chmod +x /etc/cron.daily/my_task
 
 ---
 
-## systemd Timer ile Zamanlanmış Görevler
+## `systemd` Timer ile Zamanlanmış Görevler
 
 ### systemd Timer Nedir?
 
@@ -4420,6 +4420,7 @@ Bir timer genellikle iki dosyadan oluşur:
 
 - `.service` → Çalıştırılacak komut
 - `.timer` → Ne zaman çalışacağını belirler
+- 
 
 Örnek:
 
