@@ -3990,6 +3990,8 @@ Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçene
        Docs: https://httpd.apache.org/docs/2.4/
 ```
 
+**ℹ️ Not:** **apache2.service** şeklinde birimin türünü (**.service**) açıkça belirttik fakat **apache2** isminde başka bir birim türü yoksa **apache2.service** yerine doğrudan **apache2** şeklinde de girebil
+
 ### Unit (Birim) Yönetimi
 
 İnaktif durumdaki bir birimi başlatmak için `sudo systemctl start <birim-adı>` komutu, çalışmakta olan birimi durdurmak için `sudo systemctl stop <birim-adı>` komutu kullanılır.
