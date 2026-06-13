@@ -4037,7 +4037,7 @@ Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.(`sudo systemctl disable <birim-adı>`)
+➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır. (`sudo systemctl disable <birim-adı>`)
 
 ### Birimleri Gruplamak | Target
 
