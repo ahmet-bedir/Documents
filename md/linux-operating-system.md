@@ -3958,6 +3958,23 @@ Servisler, sürekli olarak çalışan, çeşitli görevleri yerine getiren ve si
 
 Sistem üzerindeki servisleri yönetmek için en güncel ve yaygın kullanıma sahip olan “systemd” servis yöneticisini kullanacağız.
 
+`systemd` aracı, kontrolü altındaki tüm yapıları “birim” yani “unit” olarak görüyor. Birimlerin tablosu aşağıdaki şekilde:
+
+|              Unit Type            |        	 File Extension          |
+| ------------------ | --------------------- |
+|         Service unit           |             	.service               |
+|         Target unit             |               	.target                 |
+|      Automount unit       |       		.automount           |
+|         Device unit	          |              	.device           |
+|         Mount unit	            |              	.mount           |
+|         Path unit	               |                	.path           |
+|         Scope unit	            |              	.scope           |
+|         Slice unit	               |             	.slice             |
+|      Snapshot unit	         |             	.snapshot           |
+|         Socket unit	         |        	       .socket           |
+|         Swap unit	            |              	.swap           |
+|         Timer unit	            |               	.timer           |
+
 ### Birimleri Listeleme
 
 Sistemimizde aktif olan yani halihazırda çalışmakta olan birimleri listelemek için `systemctl list-units` komutunu kullanılır. Eğer sistemdeki tüm birimleri listelemek istersek `systemctl list-units —all` komutunu kullanabiliriz. `—state=inactive` seçeneği ile inaktif olanları yani pasif olanlar listelenir.
@@ -4020,11 +4037,11 @@ Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.(`sudo systemctl disable apache2`)
+➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.(`sudo systemctl disable <birim-adı>`)
 
 ### Birimleri Gruplamak | Target
 
-Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak aktifleştirilmesini isteyebiliriz. systemd bu durumlar için “target” ismi verilen birimleri kullanıyor. target sayesinde sistem başlangıcında başlatılmasını istediğimiz tüm birimleri gruplayabiliyoruz. Temel target birimlerini listeleyecek olursak:
+Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak aktifleştirilmesini isteyebiliriz. `systemd` bu durumlar için “target” ismi verilen birimleri kullanıyor. target sayesinde sistem başlangıcında başlatılmasını istediğimiz tüm birimleri gruplayabiliyoruz. Temel target birimlerini listeleyecek olursak:
 
 - poweroff
 - rescue
@@ -4032,9 +4049,16 @@ Farklı durumlar için farklı birimlerin sistem açılışında otomatik olarak
 - graphical
 - reboot
 
-Hangi çalışma sevisinde (run level) yani kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
+Kullanmakta olduğunuz sistemdeki varsayılan target bilgisini öğrenmek için `systemctl get-default` komutu kullanılır.
 
-Kullanmakta olduğum sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
+```bash
+┌──(ahmet㉿linux)-[~]
+└─$ systemctl get-default
+
+graphical.target
+```
+
+Kullanmakta olduğumuz sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
 Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini **kalıcı olarak değiştirmek** istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
 
@@ -4052,8 +4076,9 @@ Created symlink /etc/systemd/system/default.target → /lib/systemd/system/multi
 multi-user.target
 ```
 
-➜ Eğer değişikliğin anında mevcut oturum için geçerli olmasını istersek:
+➜ Eğer değişikliğin anında mevcut oturum için yani geçici olarak geçerli olmasını istersek `sudo systemctl isolate <isim.target>` şeklinde komutumuzu girebiliriz.
 
+- `systemctl isolate reboot.target` komutunu girecek olursak, **reboot.target** birimi konfigürasyonları sebebiyle sistemin yeniden başlatılmasını sağlayacaktır.
 - `systemctl isolate multi-user.target` : Sistemi grafik arayüzden çıkarıp çok kullanıcılı metin tabanlı moda geçirir. (Eski runlevel 3 karşılığı)
 - `systemctl isolate rescue.target` : Sistemi kurtarma moduna geçirir.  (Eski runlevel 1 / single-user mode karşılığı)
 
