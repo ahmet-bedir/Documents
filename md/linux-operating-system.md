@@ -3992,7 +3992,7 @@ Eğer spesifik olarak bir servisin durumunu sorgulamak istersek `status` seçene
 
 **ℹ️ Not:** **apache2.service** şeklinde birimin türünü (**.service**) açıkça belirttik fakat **apache2** isminde başka bir birim türü yoksa **apache2.service** yerine doğrudan **apache2** şeklinde de girilebilinir.
 
-Ayrıca servisin tam adından emin değilseniz `systemctl list-unit-files | grep <filtre>` komutu ile çıktı filtrelenebilinir.
+› Ayrıca servisin tam adından emin değilseniz `systemctl list-unit-files | grep <filtre>` komutu ile çıktı filtrelenebilinir.
 
 ### Unit (Birim) Yönetimi
 
