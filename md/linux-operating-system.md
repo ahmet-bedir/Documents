@@ -4037,7 +4037,7 @@ Executing: /lib/systemd/systemd-sysv-install enable apache2
 Created symlink /etc/systemd/system/multi-user.target.wants/apache2.service → /lib/systemd/system/apache2.service.
 ```
 
-➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır.(`sudo systemctl disable <birim-adı>`)
+➜ Eğer sistem başlangıcında aktifleştirilmiş bir birimi pasif konuma getirmek istersek `disable` yani “devre dışı bırakma” seçeneği kullanılır. (`sudo systemctl disable <birim-adı>`)
 
 ### Birimleri Gruplamak | Target
 
@@ -4060,7 +4060,7 @@ graphical.target
 
 Kullanmakta olduğumuz sistem **graphical.target** seviyesinde başlatıldığı için otomatik olarak ağ destekleri grafiksel çok kullanıcılı sistem için gerekli olan birimler de başlatılmış oluyor. Bu sayede grafiksel arayüze sahip olan, ağa bağlanabilen, çok kullanıcılı işletim sisteminde kullanmış oluyoruz.
 
-Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` komutu kullanılır. Eğer varsayılan target birimini **kalıcı olarak değiştirmek** istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
+Mevcut sistemimde tanımlı olan tüm targetleri öğrenmek üzere `systemctl list-units —type target —all` yada `systemctl list-unit-files` komutu kullanılır. Eğer varsayılan target birimini **kalıcı olarak değiştirmek** istersek `set-default` seçeneği kullanılır. Değişiklik sistem başlangıcında geçerli olur.
 
 ```bash
 ┌──(ahmet㉿kali)-[~]
