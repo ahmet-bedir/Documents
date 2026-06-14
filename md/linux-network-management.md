@@ -573,3 +573,58 @@ systemctl status NetworkManager
 
 🔼 [**Başa Dön**](#basa-don)
 
+SSH, “secure shell” ifadesinin kısaltmasından geliyor. SSH sayesinde uzaktaki sunuculara güvenli şekilde bağlanıp sunucular yönetilebilinir.
+
+SSH kullanabilmek için sunucular üzerinde ssh servisinin aktif olması gerekiyor. Aktif olma durumunu kontrol etmek için systemctl status ssh.service komutu kullanılır.
+
+```bash
+┌──(ahmet㉿linux)-[~]
+└─$ systemctl status ssh.service
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; disabled; vendor preset: disabled)
+     Active: active (running) since Tue 2023-08-22 11:56:07 EDT; 1s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 23362 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 23363 (sshd)
+      Tasks: 1 (limit: 12719)
+     Memory: 2.2M
+        CPU: 29ms
+     CGroup: /system.slice/ssh.service
+             └─23363 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+.
+.
+.
+```
+
+SSH ile bu sunucuya bağlanmamız için `ssh kullanıcı-adı@sunucu-ip` komutu girilir.
+
+```bash
+$ ssh ali@192.168.1.11
+
+The authenticity of host '192.168.1.11 (192.168.1.11)' can't be established.
+ED25519 key fingerprint is SHA256:5bgjOGZMfMpfFhTRv8jTYWq2dCdHA5dVmYb3OCeU6g4.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Taraflar arasında ilk kez bağlantı kurulduğu için, bağlantıyı şifrelemeyi sağlayan anahtar hakkında bilgi sunuluyor. Bu anahtar bağlanılan sistemimde kayıtlı olan bir anahtar olmadığı için bağlantıya güvenme konusunda onay bekleniyor. Emin isek “yes” ile onaylıyoruz. Anahtarı kabul ettikten sonra oturum açabilmem için kullanıcı hesabının parolasını girmemiz gerekiyor. Aradaki tüm bağlantı şifrelendiği için veri trafiğini izleyen hiç kimse trafiği analiz etme noktasında güvenlik riski oluşturamaz.
+
+Sunucuda işiniz bittiğinde `exit` komutu ile mevcut kabuğu kapatmak suretiyle ssh bağlantısını sonlandırabilirsiniz.
+
+### scp
+
+scp , “Secure Copy Protocol” ifadesinin kısaltmasından gelen ve dosyaları güvenli bir şekilde SSH (Secure Shell) üzerinden kopyalamak için kullanılan bir araçtır.
+
+Kullanım şekli: `scp gönderilecek-dosya kullanıcı-adı@sunucu-ip:hedef-dosya-yolu`
+
+```bash
+┌──(taylan㉿linuxdersleri)-[~]
+└─$ scp ./kali-linux.txt pc@192.168.1.12:/home/pc/Desktop/kaliden-gelen.txt                                                                               
+The authenticity of host '192.168.1.12 (192.168.1.12)' can't be established.
+ED25519 key fingerprint is SHA256:wkc7gaEfQ4X72cDnzhTSg5TX/OsYaeRJCLvLx26HdyA.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+
