@@ -4605,7 +4605,7 @@ OnCalendar=*-*-* *:00:00
 OnCalendar=*-*-* 00/2:00:00
 ```
 
-→ Buradaki taksim işaretinden sonraki sayı, tekrar edecek olan sayının katlarını belirtiyor. Bu sayede 00’dan başlayıp 2 şer artarak 2 saatte bir çalıştırılmış olacak.
+💡 Buradaki taksim işaretinden sonraki sayı, tekrar edecek olan sayının katlarını belirtiyor. Bu sayede 00’dan başlayıp 2 şer artarak 2 saatte bir çalıştırılmış olacak.
 
 Her dakika çalıştırmak için:
 
