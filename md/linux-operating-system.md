@@ -4090,24 +4090,24 @@ multi-user.target
 
 Sistem açılışında çalışan servislerin unit dosyaları genellikle aşağıdaki dizinlerde bulunur:
 
-`/lib/systemd/system/`
-
-veya:
-
-`/etc/systemd/system/`
-
 - `/lib/systemd/system/`
    Paket yöneticisi tarafından kurulan servis dosyalarını içerir.
 
 - `/etc/systemd/system/`
    Kullanıcı veya sistem yöneticisi tarafından oluşturulan/özelleştirilen servisleri içerir.
 
+Araçlarla birlikte gelen servis dosyaları `/lib/systemd/system/` konumunda bulunuyor.
+
+Sistem açılışında otomatik olarak çalışmasını istediğimiz servisler `/etc/systemd/system/` konumunda bulunan kullanılan target birimi altına bu servis sembolik olarak bağlanmış olur. Eğer bu birimi devredışı bırakırsak da bu sembolik link silinecektir.
+
+
 Hangilerinin açılışta aktif olduğunu görmek için:
 
 ```bash
-systemctl list-unit-files --type=service
+$ systemctl list-unit-files --type=service
+
 # yada
-systemctl list-units --type=service
+$ systemctl list-units --type=service
 ```
 
 ---
@@ -4205,8 +4205,6 @@ crontab -r
 # Zorla silme (onay istemez)
 crontab -r -f
 ```
-
----
 
 ---
 
@@ -4432,9 +4430,7 @@ sudo chmod +x /etc/cron.daily/my_task
 
 ---
 
-## systemd Timer ile Zamanlanmış Görevler
-
-### systemd Timer Nedir?
+### Systemd Timer Nedir?
 
 Modern Linux sistemlerde, klasik **Cron** yerine veya onun yanında **systemd timer** kullanılabilir.
 
@@ -4500,12 +4496,22 @@ sudo nano /etc/systemd/system/backup.timer
 Description=Run backup daily
 
 [Timer]
+OnBootSec=1min
 OnCalendar=daily
 Persistent=true
+Unit=backup.service
 
 [Install]
 WantedBy=timers.target
 ```
+
+[Timer] başlığı altında hangi servisin hangi sıklıkla çalıştırılması gerektiğini tanımlayabiliyoruz.
+
+`OnBootSec` seçeneği, 1min tanımlamasıyla systemd aracının bu zamanlanmış görevi sistem başlatıldıktan 1 dakika sonra tetiklemesi gerektiği belirtiyor. Eğer anında geçerli olması gerekiyorsa 0min şeklinde de tanımlanabilir.
+
+Tanımlamak için `YYYY-MM-DD HH:MM:SS` modeli kullanıyor.
+
+Yani: `Yıl-Ay-Gün Saat:Dakika:Saniye` şeklinde tanımlayabiliyoruz.
 
 ---
 
@@ -4560,6 +4566,87 @@ Her saat başı:
 
 ```ini
 OnCalendar=hourly
+```
+
+30 saniyede bir:
+
+```ini
+OnCalendar=*:*:0/30
+```
+
+2023 yılının 12. ayının 1. gününde 23.59 da çalışması için:
+
+```ini
+OnCalendar=2023-12-01 23:59:00
+```
+
+Her gün saat 9.30 da çalışması için:
+
+```ini
+OnCalendar=*-*-* 09:30:00
+```
+
+Her gün sabah 12 ve akşam 12 de çalışması için:
+
+```ini
+OnCalendar=*-*-* 12:00:00
+OnCalendar=*-*-* 00:00:00
+```
+
+Her saat çalışması için:
+
+```ini
+OnCalendar=*-*-* *:00:00
+```
+
+İki saatte bir çalışması için
+
+```ini
+OnCalendar=*-*-* 00/2:00:00
+```
+
+→ Buradaki taksim işaretinden sonraki sayı, tekrar edecek olan sayının katlarını belirtiyor. Bu sayede 00’dan başlayıp 2 şer artarak 2 saatte bir çalıştırılmış olacak.
+
+Her dakika çalıştırmak için:
+
+```ini
+OnCalendar=*-*-* *:*:00
+```
+
+5 dakikadaki bir çalıştırmak için:
+
+```ini
+OnCalendar=*-*-* *:00/5:00
+```
+
+20 saniyede bir çalıştırmak için:
+
+```ini
+OnCalendar=*-*-* *:*:00/20
+```
+
+Pazartesiden cumaya her saat çalıştırmak için:
+
+```ini
+OnCalendar=Mon..Fri *-*-* *:00:00
+```
+
+Yalnızca hafta sonları 6 saatte bir çalıştırmak için:
+
+```ini
+OnCalendar=Sat,Sun *-*-* 00/6:00:00
+```
+
+Yalnızca pazartesi çarşamba ve cuma günleri her saat başında çalıştırmak için:
+
+```ini
+OnCalendar=Mon,Wed,Fri *-*-* *:00:00
+```
+
+Yılın ilk altı ayında 10 günde bir kez çalıştırmak için:
+
+```ini
+OnCalendar=Jan..Jun/10 00:00:00
 ```
 
 Hazır ifadeler:
