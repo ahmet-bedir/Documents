@@ -614,12 +614,12 @@ Sunucuda işiniz bittiğinde `exit` komutu ile mevcut kabuğu kapatmak suretiyle
 
 ### scp
 
-scp , “Secure Copy Protocol” ifadesinin kısaltmasından gelen ve dosyaları güvenli bir şekilde SSH (Secure Shell) üzerinden kopyalamak için kullanılan bir araçtır.
+scp , “Secure Copy Protocol” ifadesinin kısaltmasından gelen ve dosyaları güvenli bir şekilde SSH (Secure Shell) üzerinden kopyalamak için kullanılan araçtır.
 
 Kullanım şekli: `scp gönderilecek-dosya kullanıcı-adı@sunucu-ip:hedef-dosya-yolu`
 
 ```bash
-┌──(taylan㉿linuxdersleri)-[~]
+┌──(ahmet㉿linux)-[~]
 └─$ scp ./kali-linux.txt pc@192.168.1.12:/home/pc/Desktop/kaliden-gelen.txt                                                                               
 The authenticity of host '192.168.1.12 (192.168.1.12)' can't be established.
 ED25519 key fingerprint is SHA256:wkc7gaEfQ4X72cDnzhTSg5TX/OsYaeRJCLvLx26HdyA.
