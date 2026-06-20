@@ -8,13 +8,21 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 <a id="basa-don"><a />
 
-**İçindekiler**<br />
-» [**ip komutu**](#ip)<br />
-» [**ping komutu**](#ping)<br />
-» [**ip sabitleme**](#static-ip)<br />
-» [**ssh komutu**](#ssh)<br />
-» [**wget komutu**](#wget)<br />
-» [**DNS Hakkında**](#dns)<br />
+**İçindekiler**
+
+» [**ip komutu**](#ip)
+
+» [**ping komutu**](#ping)
+
+» [**ip sabitleme**](#static-ip)
+
+» [**ssh komutu**](#ssh)
+
+» [**wget komutu**](#wget)
+
+» [**DNS Hakkında**](#dns)
+
+
 
 ---
 
