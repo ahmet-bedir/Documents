@@ -20,7 +20,7 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 <a id="ip"><a />
 
-## `ip` komutu
+## ip komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -170,7 +170,7 @@ Yani böylelikle 192.168.1.0/24 ağında 192.168.1.11 ip adresine sahip bir ethe
 
 <a id="ping"><a />
 
-## `ping` komutu
+## ping komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -569,13 +569,13 @@ systemctl status NetworkManager
 
 <a id="ssh"><a />
 
-## `ssh` komutu
+## ssh komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
 SSH, “secure shell” ifadesinin kısaltmasından geliyor. SSH sayesinde uzaktaki sunuculara güvenli şekilde bağlanıp sunucular yönetilebilinir.
 
-SSH kullanabilmek için sunucular üzerinde ssh servisinin aktif olması gerekiyor. Aktif olma durumunu kontrol etmek için systemctl status ssh.service komutu kullanılır.
+SSH kullanabilmek için sunucular üzerinde ssh servisinin aktif olması gerekiyor. Aktif olma durumunu kontrol etmek için `systemctl status ssh.service` komutu kullanılır.
 
 ```bash
 ┌──(ahmet㉿linux)-[~]
@@ -641,7 +641,7 @@ pc@192.168.1.12
 
 <a id="wget"><a />
 
-## `wget` komutu
+## wget komutu
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -706,7 +706,7 @@ wget -i indirilecekler.txt
 
 ---
 
-## `curl` komutu
+## curl komutu
 
 `curl`, URL'ler üzerinden veri alışverişi yapmak için kullanılan güçlü bir komut satırı aracıdır. API testlerinde ve web servisleriyle çalışırken sık kullanılır.
 
@@ -788,7 +788,7 @@ curl -F "file=@dosya.txt" https://example.com/upload
 
 ---
 
-# wget ve curl Karşılaştırması
+### wget ve curl Karşılaştırması
 
 | Özellik | wget | curl |
 |----------|------|------|
