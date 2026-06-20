@@ -13,8 +13,8 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 » [**ping komutu**](#ping)<br />
 » [**ip sabitleme**](#static-ip)<br />
 » [**ssh komutu**](#ssh)<br />
-
-
+» [**wget komutu**](#wget)<br />
+» [**DNS Hakkında**](#dns)<br />
 
 ---
 
@@ -620,11 +620,211 @@ Kullanım şekli: `scp gönderilecek-dosya kullanıcı-adı@sunucu-ip:hedef-dosy
 
 ```bash
 ┌──(ahmet㉿linux)-[~]
-└─$ scp ./kali-linux.txt pc@192.168.1.12:/home/pc/Desktop/kaliden-gelen.txt                                                                               
+└─$ scp ./kali-linux.txt pc@192.168.1.12:/home/pc/Desktop/kaliden-gelen.txt
+                                                          
 The authenticity of host '192.168.1.12 (192.168.1.12)' can't be established.
 ED25519 key fingerprint is SHA256:wkc7gaEfQ4X72cDnzhTSg5TX/OsYaeRJCLvLx26HdyA.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
+Not: Hedef bilgisayarların lokal ağdaki ip adresini bilmemiz ve her iki bilgisayarlarında ssh servisinin aktif olması gerekir.
+
+Ayrıca mevcut makinden hedef makineye gönderilebileceği gibi, hedefteki makineden mevcut makineye de dosya çekilebilir. Bunun için; hedefteki kullanıcı adı ve ip adresiyle birlikte hangi dosya alınacaksa tam olarak o dosyanın konumu belirtilir. Ve bu dosyanın mevcut makinede hangi dizine kopyalanacağı da tam dizin yolu olarak belirtilir.
+
+```
+$ scp pc@192.168.1.12:/home/pc/rocky-linux.txt /home/taylan/rocky-linuxtan-gelen.txt
+pc@192.168.1.12
+```
+
+---
+
+<a id="wget"><a />
+
+## `wget` komutu
+
+🔼 [**Başa Dön**](#basa-don)
+
+`wget`, internet üzerinden dosya indirmek için kullanılan komut satırı aracıdır. HTTP, HTTPS ve FTP protokollerini destekler.
+
+### Kurulum
+
+Debian/Kali/Ubuntu:
+
+```bash
+sudo apt install wget
+```
+
+### Temel Kullanım
+
+Bir dosya indirme:
+
+```bash
+wget https://example.com/dosya.zip
+```
+
+Farklı isimle kaydetme:
+
+```bash
+wget -O yeni_ad.zip https://example.com/dosya.zip
+```
+
+İndirmeye kaldığı yerden devam etme:
+
+```bash
+wget -c https://example.com/buyuk_dosya.iso
+```
+
+Arka planda indirme:
+
+```bash
+wget -b https://example.com/dosya.zip
+```
+
+Tüm bir web sitesini indirme:
+
+```bash
+wget --mirror https://example.com
+```
+
+Toplu şekilde dosya indirmek istediğinizde bu dosyaların linklerini bir dosya içinde toplayıp, bu dosyayı wget aracına -i seçeneği ile “input” yani girdi olarak verebilirsiniz.
+
+```bash
+wget -i indirilecekler.txt
+```
+
+### Yararlı Seçenekler
+
+| Seçenek | Açıklama |
+|----------|----------|
+| `-O` | Farklı isimle kaydet |
+| `-c` | Kaldığı yerden devam et |
+| `-b` | Arka planda çalıştır |
+| `-q` | Sessiz mod |
+| `--limit-rate=500k` | İndirme hızını sınırla |
+| `--mirror` | Site aynalama |
+
+---
+
+## `curl` komutu
+
+`curl`, URL'ler üzerinden veri alışverişi yapmak için kullanılan güçlü bir komut satırı aracıdır. API testlerinde ve web servisleriyle çalışırken sık kullanılır.
+
+### Kurulum
+
+Debian/Kali/Ubuntu:
+
+```bash
+sudo apt install curl
+```
+
+### Temel Kullanım
+
+Bir sayfanın içeriğini görüntüleme:
+
+```bash
+curl https://example.com
+```
+
+Dosya indirme:
+
+```bash
+curl -O https://example.com/dosya.zip
+```
+
+Farklı isimle kaydetme:
+
+```bash
+curl -o yeni_ad.zip https://example.com/dosya.zip
+```
+
+HTTP başlıklarını görüntüleme:
+
+```bash
+curl -I https://example.com
+```
+
+### GET İsteği
+
+```bash
+curl https://api.example.com/users
+```
+
+### POST İsteği
+
+```bash
+curl -X POST https://api.example.com/users \
+     -H "Content-Type: application/json" \
+     -d '{"isim":"Ahmet"}'
+```
+
+### JSON Veri Gönderme
+
+```bash
+curl -H "Content-Type: application/json" \
+     -d '{"ad":"Ahmet","yas":20}' \
+     https://api.example.com
+```
+
+### Dosya Yükleme
+
+```bash
+curl -F "file=@dosya.txt" https://example.com/upload
+```
+
+### Yararlı Seçenekler
+
+| Seçenek | Açıklama |
+|----------|----------|
+| `-O` | Uzak dosya adıyla kaydet |
+| `-o` | Belirtilen isimle kaydet |
+| `-I` | HTTP başlıklarını göster |
+| `-L` | Yönlendirmeleri takip et |
+| `-X` | HTTP metodunu belirt |
+| `-H` | HTTP başlığı ekle |
+| `-d` | Veri gönder |
+| `-F` | Form verisi gönder |
+| `-v` | Ayrıntılı çıktı |
+
+---
+
+# wget ve curl Karşılaştırması
+
+| Özellik | wget | curl |
+|----------|------|------|
+| Dosya indirme | ✓ | ✓ |
+| Kaldığı yerden devam | ✓ | Sınırlı |
+| Web sitesi aynalama | ✓ | ✗ |
+| API testleri | ✗ | ✓ |
+| HTTP metodları | Sınırlı | Çok güçlü |
+| Script kullanımı | ✓ | ✓ |
+
+## Hangisini Kullanmalı?
+
+- Dosya indirmek için: **wget**
+- API testleri için: **curl**
+- Web sitesi aynalamak için: **wget**
+- HTTP istekleri ve otomasyon için: **curl**
+
+## Yardım Sayfaları
+
+```bash
+man wget
+man curl
+```
+
+Kısa yardım:
+
+```bash
+wget --help
+curl --help
+```
+
+---
+
+<a id="dns"><a />
+
+## DNS Hakkında
+
+🔼 [**Başa Dön**](#basa-don)
 
