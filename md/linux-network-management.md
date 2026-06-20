@@ -20,7 +20,7 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 » [**wget komutu**](#wget)
 
-» [**DNS Hakkında**](#dns)
+» [**DNS**](#dns)
 
 
 
