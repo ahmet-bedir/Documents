@@ -208,7 +208,7 @@ psql -l
 
 PostgreSQL veritabanı kümesi (database cluster) sorgulama:
 
-```bas
+```bash
 ┌──(ahmet㉿kali)-[~/Masaüstü/Belgeler]
 └─$ pg_lsclusters
 Ver Cluster Port Status Owner     Data directory              Log file
@@ -305,7 +305,7 @@ sudo systemctl reload postgresql
 
 Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin öntanımlı değerlerini gösterir:
 
-```
+```ini
 #port = 5432                                            # (change requires restart)
 #superuser_reserved_connections = 3                     # (change requires restart)
 #unix_socket_directories = '/var/run/postgresql, /tmp'  # (comma-separated list of directories)
@@ -315,7 +315,7 @@ Ayar dosyalarında “#” ile başlayan yorum satırları her bir parametrenin 
 
 PostgreSQL veri dizini ile yetkilendirme ayar dosyalarının yerleri özel olarak belirtilebilir. Özel olarak belirlenmezse varsayılan olarak PostgreSQL sürecini başlatırken verilen `-D` parametresinden veya **PGDATA** çevresel değişkeninden alınır. Değiştirmek istenirse:
 
-```
+```ini
 data_directory = '/srv/postgresql'
 hba_file = '/srv/postgresql/pg_hba.conf'
 ident_file = '/srv/postgresql/pg_ident.conf'
@@ -323,19 +323,19 @@ ident_file = '/srv/postgresql/pg_ident.conf'
 
 PostgreSQL sunucu varsayılan olarak loopback (127.0.0.1) IP’sinden servis verir. Dışarıdan erişilebilmesi için:
 
-```
+```ini
 listen_addresses = '*'
 ```
 
 Hiç TCP/IP hizmeti vermemesi için:
 
-```
+```ini
 listen_addresses = ''
 ```
 
 PostgreSQL sunucunun aynı anda kaç bağlantı isteği kabul edeceği:
 
-```
+```ini
 max_connections = 100
 ```
 
@@ -443,7 +443,7 @@ Sadece `pg_hba.conf` dosyasında `md5`'i `scram-sha-256` yapmak yetmez; çünkü
 
 Önce sunucunun yeni parolaları SCRAM formatında kaydetmesini sağlamalısınız:
 
-```
+```ini
 password_encryption = 'scram-sha-256'
 ```
 
@@ -463,7 +463,7 @@ ALTER USER kullanici_adi WITH PASSWORD 'yeni_parola';
 
 Artık ağdaki diğer PC'ler için erişim yöntemini değiştirebilirsiniz:
 
-```
+```ini
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 host    all             all             192.168.1.0/24          scram-sha-256
 ```
