@@ -2917,7 +2917,7 @@ AGE() Fonksiyonu: Eğer doğum tarihinden yaş hesaplamak isterseniz, AGE() fonk
 | ---------------------------------- | -------------------------------- | ------------------------------------------ | ---------------------------- |
 | `CONCAT(a, b, c...)`               | Değerleri birleştirir.           | `SELECT CONCAT('Postgre', 'SQL');`         | `PostgreSQL`                 |
 | `CONCAT_WS(delimiter, a, b, c...)` | Araya ayraç koyarak birleştirir. | `SELECT CONCAT_WS('-', 'Ahmet', 'Bedir');` | `Ahmet-Bedir`                |
-| `a                                 |                                  | b`                                         | Metin birleştirme operatörü. |
+| `a || b`                                         | Metin birleştirme operatörü. |||
 
 ------
 
