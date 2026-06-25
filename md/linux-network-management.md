@@ -10,19 +10,7 @@ Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapıla
 
 **İçindekiler**
 
-» [**ip komutu**](#ip)
-
-» [**ping komutu**](#ping)
-
-» [**ip sabitleme**](#static-ip)
-
-» [**ssh komutu**](#ssh)
-
-» [**wget komutu**](#wget)
-
-» [**DNS**](#dns)
-
-
+» [**ip komutu**](#ip)<br />» [**ping komutu**](#ping)<br />» [**ip sabitleme**](#static-ip)<br />» [**ssh komutu**](#ssh)<br />» [**wget komutu**](#wget)<br />» [**DNS**](#dns)<br />
 
 ---
 
