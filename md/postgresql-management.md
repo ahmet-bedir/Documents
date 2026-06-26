@@ -2261,7 +2261,7 @@ ORDER BY price DESC NULLS FIRST;
 
 ---
 
-##### Birleştirerek kullanım
+##### Birleştirerek Kullanım
 
 ```sql
 SELECT
@@ -2269,8 +2269,6 @@ SELECT
 FROM customers
 ORDER BY full_name;
 ```
-
-
 
 ---
 
