@@ -2209,7 +2209,7 @@ ORDER BY age DESC;
 
 ##### Birden Fazla Kolona Göre Sıralama
 
-Önce `department`, aynı department içindekileri ise `salary`'e göre sıralar:
+Önce `department` kolonunu artan sırada, aynı `department` içindekileri ise `salary`'e göre azalan sıra ile sıralar:
 
 ```sql
 SELECT * FROM employees
