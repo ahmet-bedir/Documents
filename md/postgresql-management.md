@@ -2185,7 +2185,9 @@ CREATE INDEX idx_users_email ON users(email);
 ##### Temel Sözdizimi
 
 ```sql
-SELECT kolon1, kolon2 FROM tablo_adı
+SELECT
+	kolon1, kolon2
+FROM tablo_adı
 ORDER BY kolon_adı;
 ```
 
