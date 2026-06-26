@@ -2261,6 +2261,19 @@ ORDER BY price DESC NULLS FIRST;
 
 ---
 
+##### Birleştirerek kullanım
+
+```sql
+SELECT
+	first_name || ' ' || last_name AS full_name
+FROM customers
+ORDER BY full_name;
+```
+
+
+
+---
+
 ##### Hesaplanan Değer ile Sıralama
 
 ```sql
@@ -2271,8 +2284,6 @@ ORDER BY total DESC;
 ---
 
 ##### `ORDER BY` + `LIMIT`
-
-En sık kullanılan senaryolardan biri:
 
 ```sql
 -- En pahalı 5 ürün
@@ -2305,7 +2316,7 @@ LIMIT ...;
 * `ASC` / `DESC` → artan / azalan
 * Birden fazla kolonla sıralama mümkündür
 * `NULLS FIRST | LAST` ile NULL kontrol edilir
-* Performans için büyük tablolarda **index** kullanımı önemlidir
+* Büyük tablolarda `order by` kullanımı kaynak israfına yol açar, ferformans için büyük tablolarda **index** kullanımı önemlidir
 
 ---
 
