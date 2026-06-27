@@ -1732,11 +1732,11 @@ RENAME COLUMN eski_isim TO yeni_isim;
 **Tabloya bir satır ekleme:**
 
 ```sql
-postgres=# INSERT INTO personel VALUES(01,'John','Doe',5);
+postgres=# INSERT INTO personel VALUES (01, 'John', 'Doe', 5);
 INSERT 0 1
 
 -- Sadece belirli kolonlar için ekleme yapılacak ise:
-postgres=# INSERT INTO personel(ad,soyad) VALUES('John','Doe');
+postgres=# INSERT INTO personel (ad, soyad) VALUES ('John', 'Doe');
 INSERT 0 1
 ```
 
@@ -1744,10 +1744,10 @@ INSERT 0 1
 
 ```sql
 postgres=# INSERT INTO personel VALUES
-           		(02,'Jane','Doe',1),
-           		(03,'Richard','Roe',3),
-           		(04'Fred','Bloggs',7),
-        		(05'Juan','Perez',11);
+           		(02, 'Jane', 'Doe', 1),
+           		(03, 'Richard', 'Roe', 3),
+           		(04, 'Fred', 'Bloggs', 7),
+        		(05, 'Juan', 'Perez', 11);
 INSERT 0 4
 ```
 
