@@ -2113,7 +2113,7 @@ Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür.
 
 ---
 
-## DISTINCT ve ORDER BY
+##### DISTINCT ve ORDER BY
 
 ```sql
 SELECT DISTINCT sehir
@@ -2125,7 +2125,7 @@ Sonuçlar sıralı olarak döndürülür.
 
 ---
 
-## Özet
+##### Özet
 
 | Kullanım                         | Açıklama                                                |
 | -------------------------------- | ------------------------------------------------------- |
@@ -2134,7 +2134,307 @@ Sonuçlar sıralı olarak döndürülür.
 | `COUNT(DISTINCT sütun)`          | Tekrarsız kayıt sayısını verir                          |
 | `DISTINCT ON (sütun)`            | Her grup için ilk satırı getirir (PostgreSQL'e özeldir) |
 
-> Not: `DISTINCT ON` kullanırken, belirtilen sütunlar `ORDER BY` ifadesinin en solunda yer almalıdır. Aksi halde PostgreSQL hata verir : `contentReference[oaicite:6]{index=6}`
+> Not: `DISTINCT ON` kullanırken, belirtilen sütunlar `ORDER BY` ifadesinin en solunda yer almalıdır. Aksi halde PostgreSQL hata verir.
+
+---
+
+<a id="order-by"><a/>"
+
+### `ORDER BY` Kullanımı
+
+🔼 [**Başa Dön**](#basa-don)
+
+`ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
+
+---
+
+##### Temel Sözdizimi
+
+```sql
+SELECT
+	kolon1, kolon2
+FROM tablo_adı
+ORDER BY kolon_adı;
+```
+
+Varsayılan olarak sıralama **artan (ASC)** şeklindedir.
+
+---
+
+##### Artan (ASC) ve Azalan (DESC) Sıralama
+
+```sql
+-- Artan sıralama (varsayılan)
+SELECT * FROM users
+ORDER BY age ASC;
+
+-- Azalan sıralama
+SELECT * FROM users
+ORDER BY age DESC;
+```
+
+---
+
+##### Birden Fazla Kolona Göre Sıralama
+
+Önce `department` kolonunu artan sırada, aynı `department` içindekileri ise `salary`'e göre azalan sıra ile sıralar:
+
+```sql
+SELECT * FROM employees
+ORDER BY department ASC, salary DESC;
+```
+
+---
+
+##### Kolon Sıra Numarası ile Sıralama
+
+`SELECT` listesindeki kolonların **sıra numarası** kullanılabilir:
+
+```sql
+SELECT name, age, city FROM users
+ORDER BY 2 DESC;  -- age kolonu
+```
+
+> ⚠️ Okunabilirlik açısından genellikle **kolon adı kullanılması önerilir**.
+
+---
+
+##### Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama
+
+```sql
+SELECT * FROM users
+ORDER BY LOWER(username);
+```
+
+---
+
+##### NULL Değerlerin Sıralanması
+
+PostgreSQL'de varsayılan davranış:
+
+* `ASC` → NULL **en sonda**
+* `DESC` → NULL **en başta**
+
+##### Manuel Kontrol
+
+```sql
+-- NULL 'ları en sona alır
+SELECT * FROM products
+ORDER BY price ASC NULLS LAST;
+
+-- NULL 'ları en başa alır
+SELECT * FROM products
+ORDER BY price DESC NULLS FIRST;
+```
+
+---
+
+##### Birleştirerek Kullanım
+
+```sql
+SELECT
+	first_name || ' ' || last_name AS full_name
+FROM customers
+ORDER BY full_name;
+```
+
+---
+
+##### Hesaplanan Değer ile Sıralama
+
+```sql
+SELECT
+	name, price, quantity, price * quantity AS total
+FROM orders
+ORDER BY total DESC;
+```
+
+---
+
+##### `ORDER BY` + `LIMIT`
+
+```sql
+-- En pahalı 5 ürün
+SELECT * FROM products
+ORDER BY price DESC
+LIMIT 5;
+```
+
+---
+
+##### `ORDER BY` Nerede Kullanılır?
+
+`ORDER BY` **her zaman sorgunun en sonunda** yer alır:
+
+```sql
+SELECT ...
+FROM ...
+WHERE ...
+GROUP BY ...
+HAVING ...
+ORDER BY ...
+LIMIT ...;
+```
+
+---
+
+##### Özet
+
+* `ORDER BY` → sonuçları sıralar
+* `ASC` / `DESC` → artan / azalan
+* Birden fazla kolonla sıralama mümkündür
+* `NULLS FIRST | LAST` ile NULL kontrol edilir
+* Büyük tablolarda `order by` kullanımı kaynak israfına yol açar, ferformans için büyük tablolarda **index** kullanımı önemlidir
+
+---
+
+<a id="order-by"><a/>"
+
+### `ORDER BY` Kullanımı
+
+🔼 [**Başa Dön**](#basa-don)
+
+`ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
+
+---
+
+##### Temel Sözdizimi
+
+```sql
+SELECT
+	kolon1, kolon2
+FROM tablo_adı
+ORDER BY kolon_adı;
+```
+
+Varsayılan olarak sıralama **artan (ASC)** şeklindedir.
+
+---
+
+##### Artan (ASC) ve Azalan (DESC) Sıralama
+
+```sql
+-- Artan sıralama (varsayılan)
+SELECT * FROM users
+ORDER BY age ASC;
+
+-- Azalan sıralama
+SELECT * FROM users
+ORDER BY age DESC;
+```
+
+---
+
+##### Birden Fazla Kolona Göre Sıralama
+
+Önce `department` kolonunu artan sırada, aynı `department` içindekileri ise `salary`'e göre azalan sıra ile sıralar:
+
+```sql
+SELECT * FROM employees
+ORDER BY department ASC, salary DESC;
+```
+
+---
+
+##### Kolon Sıra Numarası ile Sıralama
+
+`SELECT` listesindeki kolonların **sıra numarası** kullanılabilir:
+
+```sql
+SELECT name, age, city FROM users
+ORDER BY 2 DESC;  -- age kolonu
+```
+
+> ⚠️ Okunabilirlik açısından genellikle **kolon adı kullanılması önerilir**.
+
+---
+
+##### Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama
+
+```sql
+SELECT * FROM users
+ORDER BY LOWER(username);
+```
+
+---
+
+##### NULL Değerlerin Sıralanması
+
+PostgreSQL'de varsayılan davranış:
+
+* `ASC` → NULL **en sonda**
+* `DESC` → NULL **en başta**
+
+##### Manuel Kontrol
+
+```sql
+-- NULL 'ları en sona alır
+SELECT * FROM products
+ORDER BY price ASC NULLS LAST;
+
+-- NULL 'ları en başa alır
+SELECT * FROM products
+ORDER BY price DESC NULLS FIRST;
+```
+
+---
+
+##### Birleştirerek Kullanım
+
+```sql
+SELECT
+	first_name || ' ' || last_name AS full_name
+FROM customers
+ORDER BY full_name;
+```
+
+---
+
+##### Hesaplanan Değer ile Sıralama
+
+```sql
+SELECT
+	name, price, quantity, price * quantity AS total
+FROM orders
+ORDER BY total DESC;
+```
+
+---
+
+##### `ORDER BY` + `LIMIT`
+
+```sql
+-- En pahalı 5 ürün
+SELECT * FROM products
+ORDER BY price DESC
+LIMIT 5;
+```
+
+---
+
+##### `ORDER BY` Nerede Kullanılır?
+
+`ORDER BY` **her zaman sorgunun en sonunda** yer alır:
+
+```sql
+SELECT ...
+FROM ...
+WHERE ...
+GROUP BY ...
+HAVING ...
+ORDER BY ...
+LIMIT ...;
+```
+
+---
+
+##### Özet
+
+* `ORDER BY` → sonuçları sıralar
+* `ASC` / `DESC` → artan / azalan
+* Birden fazla kolonla sıralama mümkündür
+* `NULLS FIRST | LAST` ile NULL kontrol edilir
+* Büyük tablolarda `order by` kullanımı kaynak israfına yol açar, ferformans için büyük tablolarda **index** kullanımı önemlidir
 
 ---
 
@@ -2309,156 +2609,6 @@ CREATE INDEX idx_users_email ON users(email);
 - `AND / OR / NOT` → mantık
 - `IN / BETWEEN / LIKE / IS NULL` → sık kullanılan yardımcılar
 - `ILIKE` → case-insensitive arama (PostgreSQL’e özgü)
-
----
-
-<a id="order-by"><a/>"
-
-### `ORDER BY` Kullanımı
-
-🔼 [**Başa Dön**](#basa-don)
-
-`ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
-
----
-
-##### Temel Sözdizimi
-
-```sql
-SELECT
-	kolon1, kolon2
-FROM tablo_adı
-ORDER BY kolon_adı;
-```
-
-Varsayılan olarak sıralama **artan (ASC)** şeklindedir.
-
----
-
-##### Artan (ASC) ve Azalan (DESC) Sıralama
-
-```sql
--- Artan sıralama (varsayılan)
-SELECT * FROM users
-ORDER BY age ASC;
-
--- Azalan sıralama
-SELECT * FROM users
-ORDER BY age DESC;
-```
-
----
-
-##### Birden Fazla Kolona Göre Sıralama
-
-Önce `department` kolonunu artan sırada, aynı `department` içindekileri ise `salary`'e göre azalan sıra ile sıralar:
-
-```sql
-SELECT * FROM employees
-ORDER BY department ASC, salary DESC;
-```
-
----
-
-##### Kolon Sıra Numarası ile Sıralama
-
-`SELECT` listesindeki kolonların **sıra numarası** kullanılabilir:
-
-```sql
-SELECT name, age, city FROM users
-ORDER BY 2 DESC;  -- age kolonu
-```
-
-> ⚠️ Okunabilirlik açısından genellikle **kolon adı kullanılması önerilir**.
-
----
-
-##### Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama
-
-```sql
-SELECT * FROM users
-ORDER BY LOWER(username);
-```
-
----
-
-##### NULL Değerlerin Sıralanması
-
-PostgreSQL'de varsayılan davranış:
-
-* `ASC` → NULL **en sonda**
-* `DESC` → NULL **en başta**
-
-##### Manuel Kontrol
-
-```sql
--- NULL 'ları en sona alır
-SELECT * FROM products
-ORDER BY price ASC NULLS LAST;
-
--- NULL 'ları en başa alır
-SELECT * FROM products
-ORDER BY price DESC NULLS FIRST;
-```
-
----
-
-##### Birleştirerek Kullanım
-
-```sql
-SELECT
-	first_name || ' ' || last_name AS full_name
-FROM customers
-ORDER BY full_name;
-```
-
----
-
-##### Hesaplanan Değer ile Sıralama
-
-```sql
-SELECT
-	name, price, quantity, price * quantity AS total
-FROM orders
-ORDER BY total DESC;
-```
-
----
-
-##### `ORDER BY` + `LIMIT`
-
-```sql
--- En pahalı 5 ürün
-SELECT * FROM products
-ORDER BY price DESC
-LIMIT 5;
-```
-
----
-
-##### `ORDER BY` Nerede Kullanılır?
-
-`ORDER BY` **her zaman sorgunun en sonunda** yer alır:
-
-```sql
-SELECT ...
-FROM ...
-WHERE ...
-GROUP BY ...
-HAVING ...
-ORDER BY ...
-LIMIT ...;
-```
-
----
-
-##### Özet
-
-* `ORDER BY` → sonuçları sıralar
-* `ASC` / `DESC` → artan / azalan
-* Birden fazla kolonla sıralama mümkündür
-* `NULLS FIRST | LAST` ile NULL kontrol edilir
-* Büyük tablolarda `order by` kullanımı kaynak israfına yol açar, ferformans için büyük tablolarda **index** kullanımı önemlidir
 
 ---
 
