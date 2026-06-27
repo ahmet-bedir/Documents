@@ -4,7 +4,7 @@
 
 # Linux Sistemlerde PostgreSQL Yönetimi
 
-###### Son güncelleme : 04/2026
+###### Son güncelleme : 06/2026
 
 ---
 
@@ -12,7 +12,7 @@
 
 **İçindekiler**
 
-▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**Sorgu Tipleri (DDL, DML, DQL, TCL)**](#sorgu-tipleri)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Tablo İşlemleri**](#tablo)<br />▸ [**Veri İşlemleri**](#veri-islemleri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**Sözlük**](#sozluk)
+▸ [**Veritabanı İstemcisi / psql**](#psql)<br />▸ [**Sorgu Tipleri (DDL, DML, DQL, TCL)**](#sorgu-tipleri)<br />▸ [**Temel Veritabanı İşlemleri**](#temel-veritabani)<br />▸ [**Veri Türleri**](#veri-turleri)<br />▸ [**Veri İşlemleri**](#veri-islemleri)<br />▸ [**Where Kullanımı**](#where)<br />▸ [**Aggregate Fonksiyonları**](#aggregate)<br />▸ [**İndex İşlemleri**](#index)<br />▸ [**Referans İşlemleri**](#referans)<br />▸ [**Tarih ve Zaman Fonksiyonları**](#zaman)<br />▸ [**Metin (String) Fonksiyonları**](#metin)<br />▸ [**Transaction İşlemleri**](#transaction)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**Sözlük**](#sozluk)
 
 ---
 
