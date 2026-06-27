@@ -2019,7 +2019,7 @@ Varsayılan olarak sıralama **artan (ASC)** şeklindedir.
 
 ---
 
-##### Artan (ASC) ve Azalan (DESC) Sıralama
+**Artan (ASC) ve Azalan (DESC) Sıralama**
 
 ```sql
 -- Artan sıralama (varsayılan)
@@ -2033,7 +2033,7 @@ ORDER BY age DESC;
 
 ---
 
-##### Birden Fazla Kolona Göre Sıralama
+**Birden Fazla Kolona Göre Sıralama**
 
 Önce `department` kolonunu artan sırada, aynı `department` içindekileri ise `salary`'e göre azalan sıra ile sıralar:
 
@@ -2044,7 +2044,7 @@ ORDER BY department ASC, salary DESC;
 
 ---
 
-##### Kolon Sıra Numarası ile Sıralama
+**Kolon Sıra Numarası ile Sıralama**
 
 `SELECT` listesindeki kolonların **sıra numarası** kullanılabilir:
 
@@ -2057,7 +2057,7 @@ ORDER BY 2 DESC;  -- age kolonu
 
 ---
 
-##### Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama
+**Metinlerde Büyük/Küçük Harfe Duyarsız Sıralama**
 
 ```sql
 SELECT * FROM users
@@ -2066,14 +2066,14 @@ ORDER BY LOWER(username);
 
 ---
 
-##### NULL Değerlerin Sıralanması
+**NULL Değerlerin Sıralanması**
 
 PostgreSQL'de varsayılan davranış:
 
 * `ASC` → NULL **en sonda**
 * `DESC` → NULL **en başta**
 
-##### Manuel Kontrol
+Manuel Kontrol
 
 ```sql
 -- NULL 'ları en sona alır
@@ -2087,7 +2087,7 @@ ORDER BY price DESC NULLS FIRST;
 
 ---
 
-##### Birleştirerek Kullanım
+**Birleştirerek Kullanım**
 
 ```sql
 SELECT
@@ -2098,7 +2098,7 @@ ORDER BY full_name;
 
 ---
 
-##### Hesaplanan Değer ile Sıralama
+**Hesaplanan Değer ile Sıralama**
 
 ```sql
 SELECT
@@ -2109,7 +2109,7 @@ ORDER BY total DESC;
 
 ---
 
-##### `ORDER BY` + `LIMIT`
+**`ORDER BY` + `LIMIT`**
 
 ```sql
 -- En pahalı 5 ürün
@@ -2120,7 +2120,7 @@ LIMIT 5;
 
 ---
 
-##### `ORDER BY` Nerede Kullanılır?
+**`ORDER BY` Nerede Kullanılır?**
 
 `ORDER BY` **her zaman sorgunun en sonunda** yer alır:
 
@@ -2136,7 +2136,7 @@ LIMIT ...;
 
 ---
 
-##### Özet
+Özet
 
 * `ORDER BY` → sonuçları sıralar
 * `ASC` / `DESC` → artan / azalan
@@ -2146,7 +2146,7 @@ LIMIT ...;
 
 ---
 
-### DISTINCT Kullanımı
+#### DISTINCT Kullanımı
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
