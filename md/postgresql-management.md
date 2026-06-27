@@ -1721,6 +1721,98 @@ postgres=# ALTER TABLE tablo_adi
 RENAME COLUMN eski_isim TO yeni_isim;
 ```
 
+#### Örnek Tablo Oluşturma
+
+```postgresql
+CREATE TABLE kullanicilar (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    ad VARCHAR(50) NOT NULL,
+    soyad VARCHAR(50) NOT NULL,
+    kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
+    e_posta VARCHAR(100) UNIQUE NOT NULL,
+    sifre TEXT NOT NULL,
+    telefon VARCHAR(20),
+    dogum_tarihi DATE,
+    aktif BOOLEAN DEFAULT true,
+    kayit_tarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+**Kolonların Açıklaması**
+
+| Kolon           | Açıklama                          |
+| --------------- | --------------------------------- |
+| `id`            | Birincil anahtar (otomatik artan) |
+| `ad`            | Kullanıcının adı                  |
+| `soyad`         | Kullanıcının soyadı               |
+| `kullanici_adi` | Sistemde benzersiz kullanıcı adı  |
+| `e_posta`       | E-posta adresi (benzersiz)        |
+| `sifre`         | Şifre (hashlenmiş olmalı)         |
+| `telefon`       | Telefon numarası                  |
+| `dogum_tarihi`  | Doğum tarihi                      |
+| `aktif`         | Kullanıcı aktif mi                |
+| `kayit_tarihi`  | Sisteme kayıt zamanı              |
+
+------
+
+**💡 Tavsiye**
+
+- Kolon adları: **Türkçe ama ASCII**
+- Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)**
+- Tablo adları: **küçük harf**
+- Şifre: **asla düz metin saklama**
+- `PRIMARY KEY + UNIQUE` mutlaka tanımla
+
+- Küçük harf ve alt çizgi kullan (`snake_case`)
+- Tablo isimleri çoğul (`customers`, `orders`)
+- Sütun isimleri tekil (`first_name`, `email`)
+- Anlamlı isimler ver — 6 ay sonra `oid`'nin ne olduğunu hatırlamak zor
+- SQL anahtar kelimelerini isim olarak kullanma (`order`, `select`, `table` isim olarak sorunlu)
+- Türkçe karakter kullanma (`müşteri_adı` yerine `musteri_adi` veya `first_name`)
+
+------
+
+CSV içeriğini içe aktarmak için öncelikle csv dosyasındaki kolon adları ile birebir yeni bir tablo oluşturulmalı:
+
+```ini
+ad, soyad, kullanici_adi, e_posta, sifre, telefon,
+dogum_tarihi, aktif, kayit_tarihi
+```
+
+- `id` kolonu **bilinçli olarak yok**
+  → PostgreSQL `IDENTITY / SERIAL` otomatik artan
+- UNIQUE alanlar (`kullanici_adi`, `e_posta`)
+- `BOOLEAN`, `DATE`, `TIMESTAMP` uyumlu
+
+------
+
+##### PostgreSQL’e CSV Import
+
+##### 1. Sunucu Tarafında (COPY)**
+
+```postgresql
+COPY kullanicilar (
+    ad, soyad, kullanici_adi, e_posta, sifre,
+    telefon, dogum_tarihi, aktif, kayit_tarihi
+)
+FROM '/path/kullanicilar.csv'
+DELIMITER ','
+CSV HEADER;
+```
+
+##### 2. Client Tarafında (psql → \copy)
+
+```postgresql
+\copy kullanicilar (
+    ad, soyad, kullanici_adi, e_posta, sifre,
+    telefon, dogum_tarihi, aktif, kayit_tarihi
+)
+FROM 'kullanicilar.csv'
+CSV HEADER;
+```
+
+*Not : GUI uyumlu yazılımlarda tabloyu oluşturduktan sonra tabloya sağ tıklayıp csv dosyasını import edebilirsiniz.*
+
 ---
 
 <a id="veri-islemleri"><a/>
@@ -1797,6 +1889,8 @@ DELETE 1
 
 ---
 
+
+
 PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre daha performanslıdır.
 
 **Temel Kullanım**
@@ -1842,98 +1936,6 @@ TRUNCATE TABLE ana_tablo CASCADE;
 | Sequence sıfırlama | Opsiyonel | ❌ Yok  |
 
 ---
-
-**Örnek Tablo Olşturma**
-
-```postgresql
-CREATE TABLE kullanicilar (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    ad VARCHAR(50) NOT NULL,
-    soyad VARCHAR(50) NOT NULL,
-    kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
-    e_posta VARCHAR(100) UNIQUE NOT NULL,
-    sifre TEXT NOT NULL,
-    telefon VARCHAR(20),
-    dogum_tarihi DATE,
-    aktif BOOLEAN DEFAULT true,
-    kayit_tarihi TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-**Kolonların Açıklaması**
-
-| Kolon           | Açıklama                          |
-| --------------- | --------------------------------- |
-| `id`            | Birincil anahtar (otomatik artan) |
-| `ad`            | Kullanıcının adı                  |
-| `soyad`         | Kullanıcının soyadı               |
-| `kullanici_adi` | Sistemde benzersiz kullanıcı adı  |
-| `e_posta`       | E-posta adresi (benzersiz)        |
-| `sifre`         | Şifre (hashlenmiş olmalı)         |
-| `telefon`       | Telefon numarası                  |
-| `dogum_tarihi`  | Doğum tarihi                      |
-| `aktif`         | Kullanıcı aktif mi                |
-| `kayit_tarihi`  | Sisteme kayıt zamanı              |
-
-------
-
-**💡 Tavsiye**
-
-- Kolon adları: **Türkçe ama ASCII**
-- Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)**
-- Tablo adları: **küçük harf**
-- Şifre: **asla düz metin saklama**
-- `PRIMARY KEY + UNIQUE` mutlaka tanımla
-
-- Küçük harf ve alt çizgi kullan (`snake_case`)
-- Tablo isimleri çoğul (`customers`, `orders`)
-- Sütun isimleri tekil (`first_name`, `email`)
-- Anlamlı isimler ver — 6 ay sonra `oid`'nin ne olduğunu hatırlamak zor
-- SQL anahtar kelimelerini isim olarak kullanma (`order`, `select`, `table` isim olarak sorunlu)
-- Türkçe karakter kullanma (`müşteri_adı` yerine `musteri_adi` veya `first_name`)
-
-------
-
-CSV içeriğini içe aktarmak için öncelikle csv dosyasındaki kolon adları ile birebir yeni bir tablo oluşturulmalı:
-
-```ini
-ad, soyad, kullanici_adi, e_posta, sifre, telefon,
-dogum_tarihi, aktif, kayit_tarihi
-```
-
-- `id` kolonu **bilinçli olarak yok**
-  → PostgreSQL `IDENTITY / SERIAL` otomatik artan
-- UNIQUE alanlar (`kullanici_adi`, `e_posta`)
-- `BOOLEAN`, `DATE`, `TIMESTAMP` uyumlu
-
-------
-
-**PostgreSQL’e CSV Import**
-
-##### 1. Sunucu Tarafında (COPY)
-
-```postgresql
-COPY kullanicilar (
-    ad, soyad, kullanici_adi, e_posta, sifre,
-    telefon, dogum_tarihi, aktif, kayit_tarihi
-)
-FROM '/path/kullanicilar.csv'
-DELIMITER ','
-CSV HEADER;
-```
-
-##### 2. Client Tarafında (psql → \copy)
-
-```postgresql
-\copy kullanicilar (
-    ad, soyad, kullanici_adi, e_posta, sifre,
-    telefon, dogum_tarihi, aktif, kayit_tarihi
-)
-FROM 'kullanicilar.csv'
-CSV HEADER;
-```
-
-*Not : GUI uyumlu yazılımlarda tabloyu oluşturduktan sonra tabloya sağ tıklayıp csv dosyasını import edebilirsiniz.*
 
 #### Birleştirme Operatörü
 
