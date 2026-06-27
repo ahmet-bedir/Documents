@@ -1935,6 +1935,18 @@ CSV HEADER;
 
 *Not : GUI uyumlu yazılımlarda tabloyu oluşturduktan sonra tabloya sağ tıklayıp csv dosyasını import edebilirsiniz.*
 
+### Birleştirme Operatörü
+
+```postgresql
+SELECT
+    country_id || ': ' || country 
+FROM countries;
+
+SELECT 
+    customer_id || ': ' || first_name  || ' ' || last_name
+FROM customers;
+```
+
 ---
 
 ### ALIAS Kullanımı
