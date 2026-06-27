@@ -1935,7 +1935,7 @@ CSV HEADER;
 
 *Not : GUI uyumlu yazılımlarda tabloyu oluşturduktan sonra tabloya sağ tıklayıp csv dosyasını import edebilirsiniz.*
 
-### Birleştirme Operatörü
+#### Birleştirme Operatörü
 
 ```postgresql
 SELECT
@@ -1955,7 +1955,7 @@ PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olar
 
 ##### 1. Kolon (Column) Alias Kullanımı
 
-##### Temel Sözdizimi
+**Temel Sözdizmi**
 
 ```postgresql
 SELECT kolon_adı AS alias_adı
@@ -1966,7 +1966,7 @@ FROM tablo_adı;
 >
 > `alias_adı` boşluk içerecek ise **çift tırnaklar** arasına yazılmalıdır.
 
-##### Örnekler
+Örnekler
 
 ```postgresql
 SELECT
@@ -1983,13 +1983,13 @@ FROM employees;
 
 ##### 2. Tablo (Table) Alias Kullanımı
 
-##### Temel Sözdizimi
+**Temel Sözdizimi**
 
 ```postgresql
 SELECT * FROM tablo_adı AS t;
 ```
 
-##### Örnek
+Örnek
 
 ```postgresql
 SELECT u.username, u.email
