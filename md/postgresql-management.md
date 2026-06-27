@@ -1764,7 +1764,7 @@ postgres=# SELECT * FROM personel;
  Juan    | Perez  |    11 |   5
 (5 rows)
 
-postgres=# SELECT ad,soyad FROM personel;
+postgres=# SELECT ad, soyad FROM personel;
    ad    | soyad
 ---------+--------
  John    | Doe    
@@ -1814,6 +1814,7 @@ TRUNCATE TABLE tablo1, tablo2;
 İlişkili tabloları aynı anda temizlemek için kullanışlıdır.
 
 **FOREIGN KEY İlişkileri**
+
 Varsayılan Davranış (RESTRICT)
 
 Foreign key bağı varsa hata verir.
@@ -1986,7 +1987,7 @@ FROM users AS u;
 ---
 
 ```sql
-=== Syntax ===
+--- Syntax 
 SELECT *, distinct(tekrarsız veriler), top(istenilen sayıda kayıt), min,max,avg(ortalama),sum, count
 FROM tablo_adı
 WHERE (BIL - Between, In, Like)
@@ -2565,8 +2566,6 @@ Indexes:
 Foreign-key constraints:
     "orders_item_code_fkey" FOREIGN KEY (item_code) REFERENCES items(code)
 ```
-
-
 
 **PostgreSQL’de referans verme işlemi, yani FOREIGN KEY (yabancı anahtar) tanımlamak; bir tablodaki bir kolonun başka bir tablodaki PRIMARY KEY/UNIQUE bir kolona bağlı olmasını sağlar. Bu, veri bütünlüğü için çok önemlidir.**
 
