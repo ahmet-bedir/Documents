@@ -1788,7 +1788,7 @@ dogum_tarihi, aktif, kayit_tarihi
 
 ##### PostgreSQL’e CSV Import
 
-##### 1. Sunucu Tarafında (COPY)**
+**1. Sunucu Tarafında (COPY)**
 
 ```postgresql
 COPY kullanicilar (
@@ -1800,7 +1800,7 @@ DELIMITER ','
 CSV HEADER;
 ```
 
-##### 2. Client Tarafında (psql → \copy)
+**2. Client Tarafında (psql → \copy)**
 
 ```postgresql
 \copy kullanicilar (
@@ -1889,7 +1889,7 @@ DELETE 1
 
 ---
 
-
+#### TRUNCATE Kullanımı
 
 PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre daha performanslıdır.
 
@@ -1951,11 +1951,11 @@ FROM customers;
 
 ---
 
-### ALIAS Kullanımı
+#### ALIAS Kullanımı
 
 PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
-##### 1. Kolon (Column) Alias Kullanımı
+**1. Kolon (Column) Alias Kullanımı**
 
 **Temel Sözdizmi**
 
@@ -1983,7 +1983,7 @@ FROM employees;
 
 ------
 
-##### 2. Tablo (Table) Alias Kullanımı
+**2. Tablo (Table) Alias Kullanımı**
 
 **Temel Sözdizimi**
 
@@ -2002,11 +2002,11 @@ FROM users AS u;
 
 ---
 
-### ORDER BY Kullanımı
+#### ORDER BY Kullanımı
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
 
-##### Temel Sözdizimi
+**Temel Sözdizimi**
 
 ```sql
 SELECT
