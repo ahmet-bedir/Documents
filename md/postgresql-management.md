@@ -1775,6 +1775,8 @@ postgres=# SELECT ad, soyad FROM personel;
 (5 rows)
 ```
 
+Not: Tüm sütunları  seçmek için yıldız(`*`)  kullanılır. Fakat kayıt sayısı ve kolon sayısı fazla olan tablolarda yıldız(`*`) kullanmak kaynak israfına yol açar.
+
 **Sütun Güncelleme:**
 
 ```sql
