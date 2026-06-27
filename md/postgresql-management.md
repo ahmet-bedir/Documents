@@ -1986,17 +1986,6 @@ FROM users AS u;
 
 ---
 
-```sql
---- Syntax ---
-SELECT *, distinct(tekrarsız veriler), top(istenilen sayıda kayıt), min,max,avg(ortalama),sum, count
-FROM tablo_adı
-WHERE (BIL - Between, In, Like)
-ORDER BY (Sıralama)
-JOIN (Birden fazla tabloda ortak vb yapıları listelemek)
-GROUP BY (Belli kolon için gruplama yapmak içindir)
-HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
-```
-
 ### DISTINCT Kullanımı
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
@@ -2136,15 +2125,9 @@ Sonuçlar sıralı olarak döndürülür.
 
 ---
 
-<a id="order-by"><a/>"
-
 ### ORDER BY Kullanımı
 
-🔼 [**Başa Dön**](#basa-don)
-
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
-
----
 
 ##### Temel Sözdizimi
 
@@ -2288,7 +2271,7 @@ LIMIT ...;
 
 <a id="where"><a/>
 
-### WHERE kullanımı
+## PostgreSQL'de WHERE
 
 🔼 [**Başa Dön**](#basa-don)
 
