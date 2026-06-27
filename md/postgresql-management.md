@@ -1935,7 +1935,7 @@ CSV HEADER;
 
 ---
 
-### `ALIAS` kullanımı
+### ALIAS Kullanımı
 
 PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
@@ -2001,7 +2001,7 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
-#### Temel Sözdizimi
+##### Temel Sözdizimi
 
 ```sql
 SELECT DISTINCT sütun_adı
@@ -2138,7 +2138,7 @@ Sonuçlar sıralı olarak döndürülür.
 
 <a id="order-by"><a/>"
 
-### `ORDER BY` Kullanımı
+### ORDER BY Kullanımı
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -2288,7 +2288,7 @@ LIMIT ...;
 
 <a id="where"><a/>
 
-### `WHERE` kullanımı
+### WHERE kullanımı
 
 🔼 [**Başa Dön**](#basa-don)
 
