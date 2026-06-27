@@ -1999,20 +1999,20 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ---
 
-# PostgreSQL DISTINCT Kullanımı
+### PostgreSQL DISTINCT Kullanımı
 
-`DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür. :contentReference[oaicite:0]{index=0}
+`DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
-## Temel Sözdizimi
+#### Temel Sözdizimi
 
 ```sql
 SELECT DISTINCT sütun_adı
 FROM tablo_adı;
 ```
 
-## Örnek Tablo
+##### Örnek Tablo
 
-### ogrenciler
+##### ogrenciler
 
 | id   | sehir    |
 | ---- | -------- |
@@ -2022,14 +2022,14 @@ FROM tablo_adı;
 | 4    | İzmir    |
 | 5    | İstanbul |
 
-## Tek Sütunda DISTINCT
+##### Tek Sütunda DISTINCT
 
 ```sql
 SELECT DISTINCT sehir
 FROM ogrenciler;
 ```
 
-### Sonuç
+##### Sonuç
 
 | sehir    |
 | -------- |
@@ -2037,18 +2037,18 @@ FROM ogrenciler;
 | İstanbul |
 | İzmir    |
 
-Aynı şehirler yalnızca bir kez listelenir. :contentReference[oaicite:1]{index=1}
+Aynı şehirler yalnızca bir kez listelenir.
 
 ---
 
-## Birden Fazla Sütunda DISTINCT
+##### Birden Fazla Sütunda DISTINCT
 
 ```sql
 SELECT DISTINCT ad, sehir
 FROM musteriler;
 ```
 
-Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşimini değerlendirir. Aynı `ad + sehir` kombinasyonları tek satıra düşürülür. :contentReference[oaicite:2]{index=2}
+Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşimini değerlendirir. Aynı `ad + sehir` kombinasyonları tek satıra düşürülür.
 
 ---
 
