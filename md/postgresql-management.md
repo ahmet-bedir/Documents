@@ -1999,6 +1999,10 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ---
 
+
+
+---
+
 <a id="where"><a/>
 
 ### `WHERE` kullanımı
