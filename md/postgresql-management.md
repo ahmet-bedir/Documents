@@ -2277,7 +2277,9 @@ ORDER BY full_name;
 ##### Hesaplanan Değer ile Sıralama
 
 ```sql
-SELECT name, price, quantity, price * quantity AS total FROM orders
+SELECT
+	name, price, quantity, price * quantity AS total
+FROM orders
 ORDER BY total DESC;
 ```
 
