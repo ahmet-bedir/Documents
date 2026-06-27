@@ -1629,9 +1629,9 @@ CREATE TYPE status AS ENUM ('active','passive');
 
 ```sql
 postgres=# CREATE TABLE personel (
-  id         int  PRIMARY KEY,
-  ad         varchar(40),
-  soyad      (40),
+  id         INT PRIMARY KEY,
+  ad         VARCHAR(40),
+  soyad      VARCHAR(40),
   kidem      INT
 );
 CREATE TABLE
