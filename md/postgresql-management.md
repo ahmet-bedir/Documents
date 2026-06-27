@@ -2052,7 +2052,7 @@ Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşi
 
 ---
 
-## COUNT(DISTINCT)
+##### COUNT(DISTINCT)
 
 Tekrarsız değerlerin sayısını bulmak için kullanılır.
 
@@ -2061,7 +2061,7 @@ SELECT COUNT(DISTINCT sehir)
 FROM ogrenciler;
 ```
 
-### Sonuç
+##### Sonuç
 
 ```text
 3
@@ -2073,11 +2073,11 @@ FROM ogrenciler;
 - İstanbul
 - İzmir
 
-şehirleri bulunmaktadır. :contentReference[oaicite:3]{index=3}
+şehirleri bulunmaktadır.
 
 ---
 
-## PostgreSQL'e Özgü: DISTINCT ON
+##### PostgreSQL'e Özgü: DISTINCT ON
 
 `DISTINCT ON`, belirli bir sütuna göre ilk kaydı döndürür.
 
@@ -2089,7 +2089,7 @@ FROM ogrenciler
 ORDER BY sehir, id;
 ```
 
-### Sonuç
+##### Sonuç
 
 | sehir    | id   |
 | -------- | ---- |
@@ -2097,9 +2097,9 @@ ORDER BY sehir, id;
 | İstanbul | 2    |
 | İzmir    | 4    |
 
-Her şehir için yalnızca ilk kayıt getirilir. :contentReference[oaicite:4]{index=4}
+Her şehir için yalnızca ilk kayıt getirilir.
 
-### En Büyük ID'yi Getirme
+##### En Büyük ID'yi Getirme
 
 ```sql
 SELECT DISTINCT ON (sehir)
@@ -2109,7 +2109,7 @@ FROM ogrenciler
 ORDER BY sehir, id DESC;
 ```
 
-Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür. :contentReference[oaicite:5]{index=5}
+Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür.
 
 ---
 
