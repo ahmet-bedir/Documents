@@ -2000,145 +2000,6 @@ FROM users AS u;
 
 ---
 
-### DISTINCT Kullanımı
-
-`DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
-
-##### Temel Sözdizimi
-
-```sql
-SELECT DISTINCT sütun_adı
-FROM tablo_adı;
-```
-
-##### Örnek Tablo
-
-##### ogrenciler
-
-| id   | sehir    |
-| ---- | -------- |
-| 1    | Ankara   |
-| 2    | İstanbul |
-| 3    | Ankara   |
-| 4    | İzmir    |
-| 5    | İstanbul |
-
-##### Tek Sütunda DISTINCT
-
-```sql
-SELECT DISTINCT sehir
-FROM ogrenciler;
-```
-
-##### Sonuç
-
-| sehir    |
-| -------- |
-| Ankara   |
-| İstanbul |
-| İzmir    |
-
-Aynı şehirler yalnızca bir kez listelenir.
-
----
-
-##### Birden Fazla Sütunda DISTINCT
-
-```sql
-SELECT DISTINCT ad, sehir
-FROM musteriler;
-```
-
-Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşimini değerlendirir. Aynı `ad + sehir` kombinasyonları tek satıra düşürülür.
-
----
-
-##### COUNT(DISTINCT)
-
-Tekrarsız değerlerin sayısını bulmak için kullanılır.
-
-```sql
-SELECT COUNT(DISTINCT sehir)
-FROM ogrenciler;
-```
-
-##### Sonuç
-
-```text
-3
-```
-
-Çünkü tabloda yalnızca:
-
-- Ankara
-- İstanbul
-- İzmir
-
-şehirleri bulunmaktadır.
-
----
-
-##### PostgreSQL'e Özgü: DISTINCT ON
-
-`DISTINCT ON`, belirli bir sütuna göre ilk kaydı döndürür.
-
-```sql
-SELECT DISTINCT ON (sehir)
-       sehir,
-       id
-FROM ogrenciler
-ORDER BY sehir, id;
-```
-
-##### Sonuç
-
-| sehir    | id   |
-| -------- | ---- |
-| Ankara   | 1    |
-| İstanbul | 2    |
-| İzmir    | 4    |
-
-Her şehir için yalnızca ilk kayıt getirilir.
-
-##### En Büyük ID'yi Getirme
-
-```sql
-SELECT DISTINCT ON (sehir)
-       sehir,
-       id
-FROM ogrenciler
-ORDER BY sehir, id DESC;
-```
-
-Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür.
-
----
-
-##### DISTINCT ve ORDER BY
-
-```sql
-SELECT DISTINCT sehir
-FROM ogrenciler
-ORDER BY sehir;
-```
-
-Sonuçlar sıralı olarak döndürülür.
-
----
-
-##### Özet
-
-| Kullanım                         | Açıklama                                                |
-| -------------------------------- | ------------------------------------------------------- |
-| `SELECT DISTINCT sütun`          | Tekrarsız değerleri getirir                             |
-| `SELECT DISTINCT sütun1, sütun2` | Benzersiz sütun kombinasyonlarını getirir               |
-| `COUNT(DISTINCT sütun)`          | Tekrarsız kayıt sayısını verir                          |
-| `DISTINCT ON (sütun)`            | Her grup için ilk satırı getirir (PostgreSQL'e özeldir) |
-
-> Not: `DISTINCT ON` kullanırken, belirtilen sütunlar `ORDER BY` ifadesinin en solunda yer almalıdır. Aksi halde PostgreSQL hata verir.
-
----
-
 ### ORDER BY Kullanımı
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
@@ -2280,6 +2141,145 @@ LIMIT ...;
 * Birden fazla kolonla sıralama mümkündür
 * `NULLS FIRST | LAST` ile NULL kontrol edilir
 * Büyük tablolarda `order by` kullanımı kaynak israfına yol açar, ferformans için büyük tablolarda **index** kullanımı önemlidir
+
+---
+
+### DISTINCT Kullanımı
+
+`DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
+
+##### Temel Sözdizimi
+
+```sql
+SELECT DISTINCT sütun_adı
+FROM tablo_adı;
+```
+
+##### Örnek Tablo
+
+ogrenciler
+
+| id   | sehir    |
+| ---- | -------- |
+| 1    | Ankara   |
+| 2    | İstanbul |
+| 3    | Ankara   |
+| 4    | İzmir    |
+| 5    | İstanbul |
+
+##### Tek Sütunda DISTINCT
+
+```sql
+SELECT DISTINCT sehir
+FROM ogrenciler;
+```
+
+##### Sonuç
+
+| sehir    |
+| -------- |
+| Ankara   |
+| İstanbul |
+| İzmir    |
+
+Aynı şehirler yalnızca bir kez listelenir.
+
+---
+
+##### Birden Fazla Sütunda DISTINCT
+
+```sql
+SELECT DISTINCT ad, sehir
+FROM musteriler;
+```
+
+Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşimini değerlendirir. Aynı `ad + sehir` kombinasyonları tek satıra düşürülür.
+
+---
+
+##### COUNT(DISTINCT)
+
+Tekrarsız değerlerin sayısını bulmak için kullanılır.
+
+```sql
+SELECT COUNT(DISTINCT sehir)
+FROM ogrenciler;
+```
+
+##### Sonuç
+
+```text
+3
+```
+
+Çünkü tabloda yalnızca:
+
+- Ankara
+- İstanbul
+- İzmir
+
+şehirleri bulunmaktadır.
+
+---
+
+##### PostgreSQL'e Özgü: DISTINCT ON
+
+`DISTINCT ON`, belirli bir sütuna göre ilk kaydı döndürür.
+
+```sql
+SELECT DISTINCT ON (sehir)
+       sehir,
+       id
+FROM ogrenciler
+ORDER BY sehir, id;
+```
+
+##### Sonuç
+
+| sehir    | id   |
+| -------- | ---- |
+| Ankara   | 1    |
+| İstanbul | 2    |
+| İzmir    | 4    |
+
+Her şehir için yalnızca ilk kayıt getirilir.
+
+##### En Büyük ID'yi Getirme
+
+```sql
+SELECT DISTINCT ON (sehir)
+       sehir,
+       id
+FROM ogrenciler
+ORDER BY sehir, id DESC;
+```
+
+Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür.
+
+---
+
+##### DISTINCT ve ORDER BY
+
+```sql
+SELECT DISTINCT sehir
+FROM ogrenciler
+ORDER BY sehir;
+```
+
+Sonuçlar sıralı olarak döndürülür.
+
+---
+
+##### Özet
+
+| Kullanım                         | Açıklama                                                |
+| -------------------------------- | ------------------------------------------------------- |
+| `SELECT DISTINCT sütun`          | Tekrarsız değerleri getirir                             |
+| `SELECT DISTINCT sütun1, sütun2` | Benzersiz sütun kombinasyonlarını getirir               |
+| `COUNT(DISTINCT sütun)`          | Tekrarsız kayıt sayısını verir                          |
+| `DISTINCT ON (sütun)`            | Her grup için ilk satırı getirir (PostgreSQL'e özeldir) |
+
+> Not: `DISTINCT ON` kullanırken, belirtilen sütunlar `ORDER BY` ifadesinin en solunda yer almalıdır. Aksi halde PostgreSQL hata verir.
 
 ---
 
