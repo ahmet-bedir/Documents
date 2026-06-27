@@ -1997,9 +1997,7 @@ GROUP BY (Belli kolon için gruplama yapmak içindir)
 HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 ```
 
----
-
-### PostgreSQL DISTINCT Kullanımı
+### DISTINCT Kullanımı
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
