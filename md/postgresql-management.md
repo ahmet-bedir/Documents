@@ -1896,7 +1896,7 @@ CREATE TABLE kullanicilar (
 
 CSV içeriğini içe aktarmak için öncelikle csv dosyasındaki kolon adları ile birebir yeni bir tablo oluşturulmalı:
 
-```
+```ini
 ad, soyad, kullanici_adi, e_posta, sifre, telefon,
 dogum_tarihi, aktif, kayit_tarihi
 ```
