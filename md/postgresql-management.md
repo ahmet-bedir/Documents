@@ -1797,7 +1797,7 @@ DELETE 1
 
 ---
 
-PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre performanslıdır.
+PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre daha performanslıdır.
 
 **Temel Kullanım**
 
