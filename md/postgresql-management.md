@@ -1786,7 +1786,7 @@ dogum_tarihi, aktif, kayit_tarihi
 
 ------
 
-##### PostgreSQL’e CSV Import
+#### PostgreSQL’e CSV Import
 
 **1. Sunucu Tarafında (COPY)**
 
