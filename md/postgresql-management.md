@@ -1999,7 +1999,142 @@ HAVING (Filtreleme) (Sum, Avg, Count, Min, Max)
 
 ---
 
+# PostgreSQL DISTINCT Kullanımı
 
+`DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür. :contentReference[oaicite:0]{index=0}
+
+## Temel Sözdizimi
+
+```sql
+SELECT DISTINCT sütun_adı
+FROM tablo_adı;
+```
+
+## Örnek Tablo
+
+### ogrenciler
+
+| id   | sehir    |
+| ---- | -------- |
+| 1    | Ankara   |
+| 2    | İstanbul |
+| 3    | Ankara   |
+| 4    | İzmir    |
+| 5    | İstanbul |
+
+## Tek Sütunda DISTINCT
+
+```sql
+SELECT DISTINCT sehir
+FROM ogrenciler;
+```
+
+### Sonuç
+
+| sehir    |
+| -------- |
+| Ankara   |
+| İstanbul |
+| İzmir    |
+
+Aynı şehirler yalnızca bir kez listelenir. :contentReference[oaicite:1]{index=1}
+
+---
+
+## Birden Fazla Sütunda DISTINCT
+
+```sql
+SELECT DISTINCT ad, sehir
+FROM musteriler;
+```
+
+Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşimini değerlendirir. Aynı `ad + sehir` kombinasyonları tek satıra düşürülür. :contentReference[oaicite:2]{index=2}
+
+---
+
+## COUNT(DISTINCT)
+
+Tekrarsız değerlerin sayısını bulmak için kullanılır.
+
+```sql
+SELECT COUNT(DISTINCT sehir)
+FROM ogrenciler;
+```
+
+### Sonuç
+
+```text
+3
+```
+
+Çünkü tabloda yalnızca:
+
+- Ankara
+- İstanbul
+- İzmir
+
+şehirleri bulunmaktadır. :contentReference[oaicite:3]{index=3}
+
+---
+
+## PostgreSQL'e Özgü: DISTINCT ON
+
+`DISTINCT ON`, belirli bir sütuna göre ilk kaydı döndürür.
+
+```sql
+SELECT DISTINCT ON (sehir)
+       sehir,
+       id
+FROM ogrenciler
+ORDER BY sehir, id;
+```
+
+### Sonuç
+
+| sehir    | id   |
+| -------- | ---- |
+| Ankara   | 1    |
+| İstanbul | 2    |
+| İzmir    | 4    |
+
+Her şehir için yalnızca ilk kayıt getirilir. :contentReference[oaicite:4]{index=4}
+
+### En Büyük ID'yi Getirme
+
+```sql
+SELECT DISTINCT ON (sehir)
+       sehir,
+       id
+FROM ogrenciler
+ORDER BY sehir, id DESC;
+```
+
+Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür. :contentReference[oaicite:5]{index=5}
+
+---
+
+## DISTINCT ve ORDER BY
+
+```sql
+SELECT DISTINCT sehir
+FROM ogrenciler
+ORDER BY sehir;
+```
+
+Sonuçlar sıralı olarak döndürülür.
+
+---
+
+## Özet
+
+| Kullanım                         | Açıklama                                                |
+| -------------------------------- | ------------------------------------------------------- |
+| `SELECT DISTINCT sütun`          | Tekrarsız değerleri getirir                             |
+| `SELECT DISTINCT sütun1, sütun2` | Benzersiz sütun kombinasyonlarını getirir               |
+| `COUNT(DISTINCT sütun)`          | Tekrarsız kayıt sayısını verir                          |
+| `DISTINCT ON (sütun)`            | Her grup için ilk satırı getirir (PostgreSQL'e özeldir) |
+
+> Not: `DISTINCT ON` kullanırken, belirtilen sütunlar `ORDER BY` ifadesinin en solunda yer almalıdır. Aksi halde PostgreSQL hata verir : `contentReference[oaicite:6]{index=6}`
 
 ---
 
