@@ -2271,7 +2271,7 @@ LIMIT ...;
 
 <a id="where"><a/>
 
-## PostgreSQL'de WHERE
+## PostgreSQL'de WHERE Kullanımı
 
 🔼 [**Başa Dön**](#basa-don)
 
