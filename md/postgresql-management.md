@@ -1987,7 +1987,7 @@ FROM users AS u;
 ---
 
 ```sql
---- Syntax 
+--- Syntax ---
 SELECT *, distinct(tekrarsız veriler), top(istenilen sayıda kayıt), min,max,avg(ortalama),sum, count
 FROM tablo_adı
 WHERE (BIL - Between, In, Like)
