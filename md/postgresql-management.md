@@ -2291,7 +2291,7 @@ Sonuçlar sıralı olarak döndürülür.
 
 PostgreSQL’de **`WHERE`** ifadesi, sorgu sonucunu **belirli koşullara göre filtrelemek** için kullanılır.
 
-##### Temel Kullanım
+**Temel Kullanım**
 
 ```sql
 SELECT * FROM table_name
@@ -2309,7 +2309,7 @@ WHERE age = 25;
 
 ------
 
-##### Karşılaştırma Operatörleri
+**Karşılaştırma Operatörleri**
 
 | Operatör       | Açıklama   |
 | -------------- | ---------- |
