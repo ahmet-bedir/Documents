@@ -2136,7 +2136,7 @@ LIMIT ...;
 
 ---
 
-Özet
+**Özet**
 
 * `ORDER BY` → sonuçları sıralar
 * `ASC` / `DESC` → artan / azalan
@@ -2150,16 +2150,14 @@ LIMIT ...;
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
-##### Temel Sözdizimi
+**Temel Sözdizimi**
 
 ```sql
 SELECT DISTINCT sütun_adı
 FROM tablo_adı;
 ```
 
-##### Örnek Tablo
-
-ogrenciler
+**Örnek Tablo `ogrenciler`**
 
 | id   | sehir    |
 | ---- | -------- |
@@ -2169,14 +2167,14 @@ ogrenciler
 | 4    | İzmir    |
 | 5    | İstanbul |
 
-##### Tek Sütunda DISTINCT
+**Tek Sütunda DISTINCT**
 
 ```sql
 SELECT DISTINCT sehir
 FROM ogrenciler;
 ```
 
-##### Sonuç
+**Sonuç**
 
 | sehir    |
 | -------- |
@@ -2188,7 +2186,7 @@ Aynı şehirler yalnızca bir kez listelenir.
 
 ---
 
-##### Birden Fazla Sütunda DISTINCT
+**Birden Fazla Sütunda DISTINCT**
 
 ```sql
 SELECT DISTINCT ad, sehir
@@ -2199,7 +2197,7 @@ Bu kullanımda PostgreSQL, her sütunu ayrı ayrı değil, sütunların birleşi
 
 ---
 
-##### COUNT(DISTINCT)
+**COUNT(DISTINCT)**
 
 Tekrarsız değerlerin sayısını bulmak için kullanılır.
 
@@ -2208,7 +2206,7 @@ SELECT COUNT(DISTINCT sehir)
 FROM ogrenciler;
 ```
 
-##### Sonuç
+**Sonuç**
 
 ```text
 3
@@ -2224,7 +2222,7 @@ FROM ogrenciler;
 
 ---
 
-##### PostgreSQL'e Özgü: DISTINCT ON
+**PostgreSQL'e Özgü: DISTINCT ON**
 
 `DISTINCT ON`, belirli bir sütuna göre ilk kaydı döndürür.
 
@@ -2236,7 +2234,7 @@ FROM ogrenciler
 ORDER BY sehir, id;
 ```
 
-##### Sonuç
+**Sonuç**
 
 | sehir    | id   |
 | -------- | ---- |
@@ -2246,7 +2244,7 @@ ORDER BY sehir, id;
 
 Her şehir için yalnızca ilk kayıt getirilir.
 
-##### En Büyük ID'yi Getirme
+**En Büyük ID'yi Getirme**
 
 ```sql
 SELECT DISTINCT ON (sehir)
@@ -2260,7 +2258,7 @@ Bu kez her şehir için en büyük `id` değerine sahip kayıt döndürülür.
 
 ---
 
-##### DISTINCT ve ORDER BY
+**DISTINCT ve ORDER BY**
 
 ```sql
 SELECT DISTINCT sehir
@@ -2272,7 +2270,7 @@ Sonuçlar sıralı olarak döndürülür.
 
 ---
 
-##### Özet
+**Özet**
 
 | Kullanım                         | Açıklama                                                |
 | -------------------------------- | ------------------------------------------------------- |
