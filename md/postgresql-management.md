@@ -2438,7 +2438,7 @@ WHERE department_id IN (
 
 ------
 
-##### Performans Notu
+**Performans Notu**
 
 - `WHERE` koşulunda kullanılan kolonlara **index** eklemek performansı ciddi artırır.
 
@@ -2448,7 +2448,7 @@ CREATE INDEX idx_users_email ON users(email);
 
 ------
 
-##### Kısa Özet
+**Özet**
 
 - `WHERE` → filtreleme
 - `AND / OR / NOT` → mantık
