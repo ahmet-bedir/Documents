@@ -2438,7 +2438,7 @@ WHERE department_id IN (
 
 ------
 
-##### Performans Notu (Önemli)
+##### Performans Notu
 
 - `WHERE` koşulunda kullanılan kolonlara **index** eklemek performansı ciddi artırır.
 
