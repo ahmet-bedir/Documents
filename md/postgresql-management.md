@@ -1676,7 +1676,7 @@ postgres=# \dt
  public | personel | table | yildirim
 ```
 
-###### Not : PostgreSQL’de bir tablo sahibini tablo oluşmadan belirlemek mümkün değildir. Tablo, onu oluşturan kullanıcıya aittir.
+*Not : PostgreSQL’de bir tablo sahibini tablo oluşmadan belirlemek mümkün değildir. Tablo, onu oluşturan kullanıcıya aittir.*
 
 **Tablo yapısını gösterme:**
 
@@ -1867,7 +1867,7 @@ postgres=# SELECT ad, soyad FROM personel;
 (5 rows)
 ```
 
-Not: Tüm sütunları  seçmek için yıldız(`*`)  kullanılır. Fakat kayıt sayısı ve kolon sayısı fazla olan tablolarda yıldız(`*`) kullanmak kaynak israfına yol açar.
+*Not: Tüm sütunları  seçmek için yıldız(`*`)  kullanılır. Fakat kayıt sayısı ve kolon sayısı fazla olan tablolarda yıldız(`*`) kullanmak kaynak israfına yol açar.*
 
 **Sütun Güncelleme:**
 
