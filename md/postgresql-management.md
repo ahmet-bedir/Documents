@@ -80,7 +80,7 @@ PostgreSQL’in öğrenmesi, kurulumu, konfigürasyonu, yönetimi, izlemesi ve b
 
 ---
 
-#### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
+##### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
 > **Paket indexlerini güncelle.**
 
@@ -176,8 +176,6 @@ psql -l
 ```
 
 **Çalışıyorsa → initdb yapılmıştır.**
-
-##### Calısma
 
 ---
 
