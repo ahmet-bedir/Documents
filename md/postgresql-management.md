@@ -2,7 +2,7 @@
     <img src="../images/linux+postgresql.png" width="650" />
 <p/>
 
-# Linux Sistemlerde PostgreSQL Yönetimi
+## Linux Sistemlerde PostgreSQL Yönetimi
 
 ###### Son güncelleme: 06/2026
 
