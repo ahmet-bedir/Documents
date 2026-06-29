@@ -181,7 +181,7 @@ psql -l
 
 ### PostgreSQL Veri Kümesi
 
-**PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizindir.**
+PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizindir.
 
 #### Ana klasörler
 
