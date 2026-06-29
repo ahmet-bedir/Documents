@@ -3331,7 +3331,7 @@ sudo ss -ltnp | grep 5432
 
 ---
 
-
+<a id="sunucu-ayarlari"><a/>
 
 ##  PostgreSQL Sunucu Ayarları
 
