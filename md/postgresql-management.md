@@ -177,6 +177,8 @@ psql -l
 
 **Çalışıyorsa → initdb yapılmıştır.**
 
+##### Calısma
+
 ---
 
 #### Terminalden PostgreSQL sunucusuna bağlanmak için:
