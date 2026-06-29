@@ -321,11 +321,9 @@ PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
 ---
 
-### DDL — Data Definition Language (Veri Tanımlama Dili)
+#### DDL — Data Definition Language (Veri Tanımlama Dili)
 
 PostgreSQL’de **DDL (Data Definition Language)** komutları, veritabanı **nesnelerinin yapısını tanımlamak ve değiştirmek** için kullanılan SQL komutlarıdır. Veri üzerinde değil, **şema (schema)** üzerinde çalışır.
-
-#### PostgreSQL’de Temel DDL Komutları
 
 #### 1.1 CREATE
 
@@ -551,7 +549,7 @@ DROP CONSTRAINT uq_email;
 
 ------
 
-#### 8. Kısa Özet
+#### 8. Özet
 
 - **DDL**: Yapıyı tanımlar
 - **Constraint**: Kuralları uygular
@@ -559,11 +557,9 @@ DROP CONSTRAINT uq_email;
 
 ---
 
-### DML — Data Manipülasyon Language (Veri İşleme Dili)
+#### DML — Data Manipülasyon Language (Veri İşleme Dili)
 
 PostgreSQL’de **DML (Data Manipulation Language)** komutları, tablodaki **veriyi eklemek, güncellemek, silmek ve okumak** için kullanılır. Yani yapıyı değil (DDL), **verinin kendisini yönetir**.
-
-#### PostgreSQL’de Temel DML Komutları
 
 | Komut    | Açıklama        |
 | -------- | --------------- |
