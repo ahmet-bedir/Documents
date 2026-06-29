@@ -689,7 +689,7 @@ DML = veriyi yönetir
 
 ---
 
-### DQL — Data Query Language (Veri Sorgulama Dili)
+#### DQL — Data Query Language (Veri Sorgulama Dili)
 
 PostgreSQL’de **DQL (Data Query Language)** dediğimiz şey temelde **veri okuma / sorgulama** işlemleridir. Ana komut:
 
@@ -882,7 +882,7 @@ WHERE id IN (SELECT student_id FROM exams);
 
 ------
 
-#### 🔥 Özet (DQL ne içerir)
+#### 🔥 Özet
 
 - SELECT
 - WHERE
@@ -907,15 +907,9 @@ DQL sadece veri okur:
 
 ------
 
-### TCL — Transaction Control Language (İşlem Kontrol Dili)
+#### TCL — Transaction Control Language (İşlem Kontrol Dili)
 
 **TCL (Transaction Control Language)**, veritabanında yapılan işlemleri (transaction) **onaylama, geri alma ve yönetme** için kullanılır. Özellikle PostgreSQL gibi ACID uyumlu sistemlerde kritik öneme sahiptir.
-
-------
-
-#### 🔹 TCL Komutları
-
-Temel komutlar:
 
 ```postgresql
 COMMIT
@@ -1414,6 +1408,8 @@ DROP COLUMN kidem;
 postgres=# ALTER TABLE tablo_adi
 RENAME COLUMN eski_isim TO yeni_isim;
 ```
+
+---
 
 #### Örnek Tablo Oluşturma
 
@@ -3274,13 +3270,13 @@ sudo pg_ctlcluster 18 main start
 ```
 
 
-> - **Kaynaktan derlediysen (**`make install`**) kurulum sırasında** `initdb` **çalıştırırken verdiğin** `-D` **parametresine göre belirlenir.**
+> - **Kaynaktan derlendiyse (**`make install`**) kurulum sırasında** `initdb` **çalıştırırken verdiğin** `-D` **parametresine göre belirlenir.**
 
 ```bash
 initdb -D /usr/local/pgsql/data
 ```
 
-###### Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir, yada postgresql oturumunda aşağıdaki sorgu çalıştırılır:
+*Not : Kesin konumu öğrenmek için `postgres` kullanıcısındayken terminale `psql -U postgres -c "SHOW data_directory;"` komutu girilir, yada postgresql oturumunda aşağıdaki sorgu çalıştırılır:*
 
 ```postgresql
 postgres=# show data_directory;
@@ -3323,7 +3319,7 @@ postgres=# SELECT relname, oid FROM pg_class WHERE relname = 'tablo1';
 sudo ss -ltnp | grep 5432
 ```
 
-###### Not : Bu çıktı LISTEN eden adresleri gösterir. Örneğin: `127.0.0.1:5432` gibi olmalı. Eğer hiç çıkmıyorsa PostgreSQL çalışmıyor demektir.
+*Not : Bu çıktı LISTEN eden adresleri gösterir. Örneğin: `127.0.0.1:5432` gibi olmalı. Eğer hiç çıkmıyorsa PostgreSQL çalışmıyor demektir.*
 
 ---
 
