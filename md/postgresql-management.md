@@ -3335,7 +3335,9 @@ sudo ss -ltnp | grep 5432
 
 ##  PostgreSQL Sunucu Ayarları
 
-### `postgresql.conf` dosyası 
+🔼 [**Başa Dön**](#basa-don)
+
+#### `postgresql.conf` dosyası 
 
 Dosya genelde `/etc/postgresql/<version>/main/postgresql.conf` yada `/var/lib/pgsql/<version>/data/postgresql.conf` konumunda bulunur:
 
@@ -3412,7 +3414,7 @@ lc_time = 'en_US.UTF-8'
 
 ---
 
-### `pg_hba.conf` dosyası
+#### `pg_hba.conf` dosyası
 
 **Parola Şifreleme**: Veritabanı kullanıcı parolaları hash’lenerek saklanır. Böylece yönetici, kullanıcı parolalarını göremez. `SCRAM` ve `MD5` şifreleme kullanımında, şifrelenmemiş parola sunucuda geçici olarak bile tutulmaz. Bir İnternet standardı olan SCRAM, PostgreSQL’e özgü MD5 kimlik doğrulama protokolünden daha güvenlidir.
 
@@ -3420,7 +3422,7 @@ lc_time = 'en_US.UTF-8'
 
 PostgreSQL'de şifreleme yöntemini sorgulamak için iki farklı yaklaşım vardır: **Sunucunun şu anki ayarını** görmek veya **kullanıcıların mevcut şifrelerinin** hangi formatta saklandığını kontrol etmek.
 
-#### 1. Sunucunun Varsayılan Ayarını Sorgulama
+#### Sunucunun Varsayılan Ayarını Sorgulama
 
 Yeni oluşturulacak kullanıcıların şifrelerinin hangi yöntemle (SCRAM veya MD5) şifreleneceğini görmek için aşağıdaki SQL komutunu kullanabilirsiniz:
 
@@ -3437,7 +3439,7 @@ postgres=# SHOW password_encryption;
 
 ------
 
-#### 2. Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
+#### Kullanıcıların Mevcut Şifre Formatlarını Sorgulama
 
 Sunucu ayarı SCRAM olsa bile, bazı eski kullanıcıların şifreleri hala MD5 formatında kalmış olabilir. Hangi kullanıcının hangi yöntemi kullandığını görmek için `pg_authid` sistem tablosuna bakabilirsiniz:
 
