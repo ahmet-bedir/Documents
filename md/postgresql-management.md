@@ -185,9 +185,8 @@ PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm ver
 
 #### Ana klasörler
 
->  - `base/` **→ Tüm veritabanlarının tabloları burada durur.**
->     **Her veritabanı için bir alt klasör vardır. Her tablo, index, sequence dosya olarak saklanır.**
->  - `global/` **→ Tüm cluster’a ait global veriler (ör. kullanıcılar, roller, transaction ID’ler).**
+>  - **`base/`**→ Tüm veritabanlarının tabloları burada durur. Her veritabanı için bir alt klasör vardır. Her tablo, index, sequence dosya olarak saklanır.
+>  - **`global/`**→ Tüm cluster’a ait global veriler (ör. kullanıcılar, roller, transaction ID’ler).
 >  - `pg_wal/`(eski adı `pg_xlog`) **→ Write Ahead Log dosyaları; veri bütünlüğünü sağlamak için yapılan değişikliklerin günlükleri.**
 >  - `pg_multixact/` **→ Çoklu transaction bilgileri.**
 >  - `pg_tblspc/` **→ Tablespace’lere (farklı disklere/veri yollarına ayrılan alanlar) sembolik linkler.**
