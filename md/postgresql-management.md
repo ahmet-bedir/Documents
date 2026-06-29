@@ -80,7 +80,7 @@ PostgreSQL’in öğrenmesi, kurulumu, konfigürasyonu, yönetimi, izlemesi ve b
 
 ---
 
-### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
+#### Debian tabanlı sistemler için repositoryden PostgreSQL kurulumu:
 
 > **Paket indexlerini güncelle.**
 
@@ -114,7 +114,7 @@ sudo systemctl enable postgresql
 
 ---
 
-### Initialize (initdb)
+#### Initialize (initdb)
 
 - PostgreSQL **data directory** (veri kümesi) oluşturur
 - `postgres`, `template0`, `template1` gibi **sistem veritabanlarını** oluşturur
@@ -124,7 +124,7 @@ sudo systemctl enable postgresql
 
 ------
 
-### Depodan (apt/yum/pacman) Kurulumda
+#### Depodan (apt/yum/pacman) Kurulumda
 
 - `postgresql` paketi kurulduğunda
 - **initdb otomatik yapılır**
@@ -136,7 +136,7 @@ sudo systemctl enable postgresql
 
 ------
 
-### Kaynaktan (source) Kurulumda
+#### Kaynaktan (source) Kurulumda
 
 ```bash
 ./configure
@@ -179,7 +179,7 @@ psql -l
 
 ---
 
-### Terminalden PostgreSQL sunucusuna bağlanmak için:
+#### Terminalden PostgreSQL sunucusuna bağlanmak için:
 
 > - `ahmet@pardus:~$ sudo su`  **Komutu ile root kullanıcısına geçilir.**
 > -  `root@pardus:~# su - postgres`  **Komutu ile postgres kullanıcısına geçilir.**
@@ -205,13 +205,13 @@ psql -l
 
 PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu çalıştırma, sorgu sonuçlarını görüntüleme, kabuk parametreleri ile dosya veya komut gönderme, betik içerisinde kullanarak otomatik işlemler yaptırabilir.
 
-#### Genel Kullanımı
+**Genel Kullanımı**
 
 ```bash
 psql [seçenekler...] [veritabanı[kullanıcı]]
 ```
 
-#### `psql` komutu için kullanılan parametreler:
+**`psql` komutu için kullanılan parametreler:**
 
 | Parametre | Açıklama | Örnek Kullanım |
 |----------|----------|----------------|
@@ -292,7 +292,7 @@ db_name=>
 
 ---
 
-#### `psql` istemci temel komutları:
+**`psql` istemci temel komutları:**
 
 | Komut         | Açıklama                           | Komut          | Açıklama                        |
 | ------------- | ---------------------------------- | -------------- | ------------------------------- |
@@ -3139,7 +3139,7 @@ Fonksiyon hata alırsa otomatik rollback olur.
 
 <a id="kullanici"><a/>
 
-## PostgreSQL Kullanıcı Yönetimi
+### PostgreSQL Kullanıcı Yönetimi
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -3216,7 +3216,11 @@ Fonksiyon hata alırsa otomatik rollback olur.
 
 ---
 
+<a id="veri-kumesi"><a/>
+
 ### PostgreSQL Veri Kümesi
+
+🔼 [**Başa Dön**](#basa-don)
 
 PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm verilerini, ayarlarını ve iç yapısını tuttuğu bir dizindir.
 
