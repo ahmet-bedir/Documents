@@ -191,9 +191,9 @@ PostgreSQL’in veritabanı kümesi (database cluster), PostgreSQL’in tüm ver
 >  - **`pg_multixact/`**→ Çoklu transaction bilgileri.
 >  - **`pg_tblspc/`**→ Tablespace’lere (farklı disklere/veri yollarına ayrılan alanlar) sembolik linkler.
 >  - **`pg_stat/`**→ İstatistik bilgileri.
->  - `pg_logical/` **→ Mantıksal replikasyon için kullanılan bilgiler.**
->  - `pg_commit_ts/` **→ Commit timestamp verileri.**
->  - `pg_subtrans/` **→ Transaction alt-id bilgileri.**
+>  - **`pg_logical/`**→ Mantıksal replikasyon için kullanılan bilgiler.
+>  - **`pg_commit_ts/`**→ Commit timestamp verileri.
+>  - **`pg_subtrans/`**→ Transaction alt-id bilgileri.
 
 #### Önemli dosyalar
 
