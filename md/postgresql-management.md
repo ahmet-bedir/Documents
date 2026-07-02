@@ -1976,7 +1976,7 @@ Sonuçlar sıralı olarak döndürülür.
 
 <a id="where"><a/>
 
-## PostgreSQL'de HERE Kullanımı
+### PostgreSQL'de WHERE Kullanımı
 
 🔼 [**Başa Dön**](#basa-don)
 
@@ -2000,7 +2000,7 @@ WHERE age = 25;
 
 ------
 
-**Karşılaştırma Operatörleri**
+##### Karşılaştırma Operatörleri
 
 | Operatör       | Açıklama   |
 | -------------- | ---------- |
