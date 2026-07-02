@@ -1446,7 +1446,7 @@ CREATE TABLE kullanicilar (
 
 ------
 
-**💡 Tavsiye**
+##### 💡 Tavsiye
 
 - Kolon adları: **Türkçe ama ASCII**
 - Kolon adları: **kelime aralarına `_` alt tire (örn. `stok_miktari`)**
@@ -1477,7 +1477,7 @@ dogum_tarihi, aktif, kayit_tarihi
 
 ------
 
-#### PostgreSQL’e CSV Import
+##### PostgreSQL’e CSV Import
 
 **1. Sunucu Tarafında (COPY)**
 
@@ -1580,7 +1580,7 @@ DELETE 1
 
 ---
 
-### TRUNCATE Kullanımı
+#### TRUNCATE Kullanımı
 
 PostgreSQL’de **TRUNCATE** komutu, bir tabloyu çok hızlı şekilde tamamen boşaltmak için kullanılır. **DELETE**’e göre daha performanslıdır.
 
@@ -1616,7 +1616,7 @@ ERROR: cannot truncate a table referenced in a foreign key constraint
 TRUNCATE TABLE ana_tablo CASCADE;
 ```
 
-**TRUNCATE vs DELETE Karşılaştırması**
+##### TRUNCATE vs DELETE Karşılaştırması
 
 | Özellik            | TRUNCATE  | DELETE |
 | ------------------ | --------- | ------ |
@@ -1642,7 +1642,7 @@ FROM customers;
 
 ---
 
-### ALIAS Kullanımı
+#### ALIAS Kullanımı
 
 PostgreSQL’de **ALIAS** (takma ad), tablo veya kolon adlarını **geçici olarak yeniden adlandırmak** için kullanılır. Amaç sorguyu daha **okunabilir**, **kısa** ve özellikle **JOIN**’lerde daha **net** hale getirmektir.
 
@@ -1693,7 +1693,7 @@ FROM users AS u;
 
 ---
 
-### ORDER BY Kullanımı
+#### ORDER BY Kullanımı
 
 `ORDER BY`, sorgu sonuçlarını **belirli bir kolona veya ifadeye göre sıralamak** için kullanılır.
 
@@ -1837,7 +1837,7 @@ LIMIT ...;
 
 ---
 
-### DISTINCT Kullanımı
+#### DISTINCT Kullanımı
 
 `DISTINCT`, sorgu sonucundaki tekrar eden (duplicate) kayıtları kaldırmak için kullanılır. Sadece benzersiz (unique) satırları döndürür.
 
