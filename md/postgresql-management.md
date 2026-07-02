@@ -4,7 +4,7 @@
 
 ## Linux Sistemlerde PostgreSQL Yönetimi
 
-###### Son güncelleme: 06/2026
+###### Son güncelleme: 07/2026
 
 ---
 
@@ -211,7 +211,7 @@ PostgreSQL sunucu interaktif terminal istemcisidir. PostgreSQL sunucuda sorgu ç
 psql [seçenekler...] [veritabanı[kullanıcı]]
 ```
 
-**`psql` komutu için kullanılan parametreler:**
+##### `psql` komutu için kullanılan parametreler:
 
 | Parametre | Açıklama | Örnek Kullanım |
 |----------|----------|----------------|
@@ -230,16 +230,17 @@ psql [seçenekler...] [veritabanı[kullanıcı]]
 | `--help` veya `-?` | Yardım ekranı | `psql --help` veya `psql -?` |
 | `--version` veya `-V` | Sürüm bilgisini gösterir | `psql --version` veya `psql -V` |
 
-**Kullanıcı/parola ile TCP üzerinden veritabanına bağlanma:**
-
-```sql
-$ psql -h 127.0.0.1 -U user_name -W -d db_name
-Password for user user:
-psql (11.5)
-Type "help" for help.
-
-db_name=>
-```
+> **Kullanıcı/parola ile TCP üzerinden veritabanına bağlanma:**
+>
+> ```sql
+> $ psql -h 127.0.0.1 -U user_name -W -d db_name
+> Password for user user:
+> psql (11.5)
+> Type "help" for help.
+> 
+> db_name=>
+> ```
+>
 > **Etkileşimli (interaktif) kabuk kullanma:**
 >
 > ```sql
@@ -292,7 +293,7 @@ db_name=>
 
 ---
 
-**`psql` istemci temel komutları:**
+##### `psql` istemci temel komutları:
 
 | Komut         | Açıklama                           | Komut          | Açıklama                        |
 | ------------- | ---------------------------------- | -------------- | ------------------------------- |
