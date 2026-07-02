@@ -315,10 +315,10 @@ psql [seçenekler...] [veritabanı[kullanıcı]]
 
 PostgreSQL’de sorgu tiplerini dört grupta incelemek mümkündür:
 
-1. **DDL (Data Definition Language)** veri tanımlama görevlerini yerine getiri
-2. **DML (Data Manipulation Language)** veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir
-3. **DQL (Data Query Language)** aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
-4. **TCL (Transaction Control Language)** transaction kontrolü sağlar.
+1. **DDL (Data Definition Language)**: Veri tanımlama görevlerini yerine getirir.
+2. **DML (Data Manipulation Language)**: Veriyi oluşturma, değiştirme ve silme görevlerini yerine getirir.
+3. **DQL (Data Query Language)**: Aranan veriyi sorgulama ve sunma görevlerini yerine getirir.
+4. **TCL (Transaction Control Language)**: Transaction kontrolü sağlar.
 
 ---
 
@@ -1108,7 +1108,7 @@ CREATE DATABASE
 
 > - `\c db_name`  **:  Diğer veritabana geçiş için kullanılır.**
 > - `\c db_name user_name`  **:  Diğer veritabana kullanıcısı ile geçiş yapar.**
-> - `\l+`  **:  Mevcut veritabanlarının size, tablespace ve description alanlarınıda listeler.**
+> - `\l+`  **:  Mevcut veritabanlarının listesine, size, tablespace ve description alanlarınıda dahil eder.**
 > - `\i dosya`  **:  PostgreSQL sunucusuna bağlandığın konumda bulunan script dosyasını çalıştırır.**
 
 **Sahip belirterek veritabanı oluşturma:**
