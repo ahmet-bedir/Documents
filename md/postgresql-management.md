@@ -1152,7 +1152,7 @@ DROP DATABASE
 
 > `SELECT datname FROM pg_database;`  **:  Sistemdeki mevcut veritabanlarını listeleme sorgusu.**
 >
-> `SELECT usename, usesysid FROM pg_user;`  **:  Sistemdeki kullanıcıların, kullanıcıadı ve id bilgileri listelenir.**
+> `SELECT usesysid, usename FROM pg_user;`  **:  Sistemdeki kullanıcıların, id ve kullanıcıadı bilgileri listelenir.**
 >
 > `SELECT * FROM pg_stat_activity WHERE datname='postgres';`  **:  Adı verilen veritabanına bağlı connectionları listeler.**
 
@@ -1160,7 +1160,7 @@ DROP DATABASE
 
 <a id="veri-turleri"><a/>
 
-## PostgreSQL’de Veri Türleri (Data Types)
+### PostgreSQL’de Veri Türleri (Data Types)
 
 🔼 [**Başa Dön**](#basa-don)
 
