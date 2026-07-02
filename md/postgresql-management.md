@@ -1998,6 +1998,26 @@ WHERE age = 25;
 
 → Yaşı 25 olan kayıtları getirir.
 
+**Örnek:**
+
+```sql
+-- 
+select * from actor
+where first_name = 'Penelope';
+
+--
+select * from customer
+where store_id = 1;
+
+--
+select * from payment
+where staff_id <> 2;
+
+---
+select * from film
+where length >= 100;
+```
+
 ------
 
 ##### Karşılaştırma Operatörleri
@@ -2024,10 +2044,12 @@ WHERE salary >= 50000;
 
 ```sql
 SELECT * FROM orders
-WHERE status = 'paid' AND total_amount > 1000;
+WHERE status = 'paid'
+    AND total_amount > 1000;
 
 SELECT * FROM users
-WHERE city = 'Ankara' OR city = 'İstanbul';
+WHERE city = 'Ankara'
+	OR city = 'İstanbul';
 
 SELECT * FROM users
 WHERE NOT is_active;
