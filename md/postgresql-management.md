@@ -1152,7 +1152,7 @@ DROP DATABASE
 
 > `SELECT datname FROM pg_database;`  **:  Sistemdeki mevcut veritabanlarını listeleme sorgusu.**
 >
-> `SELECT usename, usesysid FROM pg_user;`  **:  Sistemdeki kullanıcıadı ve id bilgileri listelenir.**
+> `SELECT usename, usesysid FROM pg_user;`  **:  Sistemdeki kullanıcıların, kullanıcıadı ve id bilgileri listelenir.**
 >
 > `SELECT * FROM pg_stat_activity WHERE datname='postgres';`  **:  Adı verilen veritabanına bağlı connectionları listeler.**
 
