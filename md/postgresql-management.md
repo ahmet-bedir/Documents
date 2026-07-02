@@ -2035,16 +2035,7 @@ WHERE NOT is_active;
 
 ------
 
-##### `IN` Kullanımı
-
-Birden fazla değeri kontrol etmek için:
-
-```postgresql
-SELECT * FROM products
-WHERE category IN ('Elektronik', 'Bilgisayar', 'Telefon');
-```
-
-------
+#### WHERE (BIL - Between, In, Like)
 
 ##### `BETWEEN` Kullanımı
 
@@ -2053,6 +2044,17 @@ Belirli bir aralık için:
 ```postgresql
 SELECT * FROM orders
 WHERE order_date BETWEEN '2024-01-01' AND '2024-12-31';
+```
+
+------
+
+##### `IN` Kullanımı
+
+Birden fazla değeri kontrol etmek için:
+
+```postgresql
+SELECT * FROM products
+WHERE category IN ('Elektronik', 'Bilgisayar', 'Telefon');
 ```
 
 ------
