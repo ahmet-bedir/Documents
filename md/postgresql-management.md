@@ -1,8 +1,10 @@
 <p align="center">
-    <img src="../images/linux+postgresql.png" width="650" />
+    <img src="../images/linux+postgresql.png" width="910" />
 <p/>
 
-## Linux Sistemlerde PostgreSQL Yönetimi
+
+
+# Linux Sistemlerde PostgreSQL Yönetimi
 
 ###### Son güncelleme: 07/2026
 
