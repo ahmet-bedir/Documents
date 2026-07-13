@@ -1,6 +1,7 @@
 <p align="center">
-    <img src="../images/linux+postgresql.png" width="910" />
+    <img src="../images/linux+postgresql.png" width="710" />
 <p/>
+
 
 
 

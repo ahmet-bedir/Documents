@@ -1,7 +1,6 @@
 <p align="center">
-    <img src="../images/linux-mascot.png" width="557" />
+    <img src="../images/linux-mascot.png" width="487" />
 </p>
-
 
 
 
