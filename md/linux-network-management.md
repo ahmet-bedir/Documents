@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/network-technology.png" width="415"/>
+	<img src="../images/network-technology.png" width="615"/>
 <p/>
+
 
 ## 🖧 Linux Ağ Yönetimi (Network Management)
 
