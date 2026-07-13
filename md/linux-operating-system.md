@@ -1,6 +1,7 @@
 <p align="center">
-    <img src="../images/linux-mascot.png" width="457" />
+    <img src="../images/linux-mascot.png" width="757" />
 </p>
+
 
 
 # Linux İşletim Sistemi
