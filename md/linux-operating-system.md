@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="../images/linux-mascot.png" width="487" />
+    <img src="../images/linux-mascot.png" width="537" />
 </p>
 
 
