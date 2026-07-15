@@ -1,0 +1,377 @@
+/* Genel */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 19px;
+    font-weight: 400;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #24292f;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+/* İçerik Alanı */
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 16px;
+}
+
+
+/* Başlıklar */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #24292f;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 2.7rem;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #d0d7de;
+}
+
+h2 {
+    font-size: 2.3rem;
+    padding-bottom: .3em;
+    border-bottom: 1px solid #d0d7de;
+}
+
+h3 {
+    font-size: 1.9rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+h5 {
+    font-size: 1.3rem;
+}
+
+h6 {
+    font-size: 1.1rem;
+}
+
+
+/* Paragraf */
+
+p {
+    margin: 0 0 16px;
+    margin-top: 16px;
+}
+
+
+/* Link */
+
+a {
+    color: #0969da;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Liste */
+
+ul,
+ol {
+    padding-left: 2rem;
+}
+
+li {
+    margin: 4px 0;
+}
+
+
+/* Blockquote */
+
+blockquote {
+    margin: 16px 0;
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 4px solid #d0d7de;
+}
+
+
+/* Inline Code */
+
+code {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    background: rgba(175, 184, 193, 0.2);
+    padding: .2em .4em;
+    border-radius: 6px;
+    font-size: 90%;
+}
+
+
+/* Kod Bloğu */
+
+pre {
+    overflow-x: auto;
+    padding: 16px;
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+}
+
+pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 90%;
+    white-space: pre;
+}
+
+
+/* Tablo */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    word-break: initial;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+th,
+td {
+    padding: 10px 14px;
+    border: 1px solid #d0d7de;
+}
+
+th {
+    background: #f6f8fa;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: #f6f8fa;
+}
+
+.table-figure {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    word-break: initial;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* Resim */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Yatay Çizgi */
+
+hr {
+    border: 0;
+    border-top: 1px solid #d0d7de;
+    margin: 24px 0;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+    h1 {
+        font-size: 2.2rem;
+    }
+    h2 {
+        font-size: 1.9rem;
+    }
+    h3 {
+        font-size: 1.6rem;
+    }
+    h4 {
+        font-size: 1.4rem;
+    }
+    h5 {
+        font-size: 1.2rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+
+/* copy */
+
+.code-container {
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #57606a;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.copy-btn:hover {
+    background: #f3f4f6;
+    color: #24292f;
+}
+
+.copy-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+
+/*
+Siyah tema
+Satır içi code 
+
+code {
+background-color: #1e1e1e;
+color: #21a462;
+padding: 2px 6px;
+border-radius: 4px;
+font-family: "JetBrains Mono", "Fira Code", monospace;
+font-size: 0.95em;
+}
+
+pre {
+background: #1e1e1e;
+border: 1px solid #3a3a3a;
+border-radius: 6px;
+padding: 14px;
+margin: 1em 0;
+overflow-x: auto;
+}
+
+pre code {
+background: transparent;
+color: #d4d4d4;
+font-family: "Consolas", "Cascadia Code", "JetBrains Mono", monospace;
+font-size: 0.95rem;
+line-height: 1.6;
+padding: 0;
+border: 0;
+display: block;
+}
+
+
+table {
+width: 100%;
+border-collapse: separate;
+border-spacing: 0;
+margin: 1.5rem 0;
+
+background: #181818;
+border: 1px solid #2e2e2e;
+border-radius: 10px;
+overflow: hidden;
+
+box-shadow: 0 4px 12px rgba(0,0,0,.25);
+}
+
+thead th {
+background: #222;
+color: #fff;
+}
+
+th, td {
+padding: 14px 18px;
+}
+
+tbody tr:hover {
+background: rgba(255,255,255,0.05);
+}
+
+td {
+border-top: 1px solid #2a2a2a;
+color: #d6d6d6;
+}
+
+
+.code-block {
+position: relative;
+margin: 1rem 0;
+}
+
+.code-block pre {
+background: #111;
+color: #d4d4d4;
+
+border: 1px solid #2a2a2a;
+border-radius: 10px;
+
+padding: 18px;
+overflow-x: auto;
+}
+
+.copy-btn {
+position: absolute;
+top: 10px;
+right: 10px;
+
+width: 34px;
+height: 34px;
+
+border: none;
+border-radius: 6px;
+
+background: #222;
+color: #bbb;
+
+cursor: pointer;
+
+transition: all .2s ease;
+}
+
+.copy-btn:hover {
+background: #333;
+color: #fff;
+}
+
+.copy-btn:active {
+transform: scale(0.95);
+}
+*/
