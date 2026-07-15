@@ -4,8 +4,6 @@
 
 
 
-
-
 # Linux Paket Yönetimi
 
 ###### Son güncelleme : 02/2026

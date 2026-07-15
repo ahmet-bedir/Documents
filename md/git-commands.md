@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="570"/>
+	<img src="../images/git-banner.png" width="530"/>
 <p/>
+
 
 
 
