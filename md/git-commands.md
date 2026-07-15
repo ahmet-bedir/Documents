@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="695"/>
+	<img src="../images/git-banner.png" width="570"/>
 <p/>
+
 
 
 # Git Komutları (Git Commands)
