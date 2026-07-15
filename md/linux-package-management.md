@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="../images/linux-package.png" width="777" />
+  <img src="../images/linux-package.png" width="627" />
 <p/>
+
 
 
 

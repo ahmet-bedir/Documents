@@ -3,8 +3,6 @@
 <p/>
 
 
-
-
 # Linux Sistemlerde PostgreSQL Yönetimi
 
 ###### Son güncelleme: 07/2026
