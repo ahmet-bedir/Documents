@@ -2454,6 +2454,18 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 ---
 
+<a id="bilgi"><a />
+
+## 💡 Bilgi Alma Komutları
+
+🔼 [**Başa Dön**](#basa-don)
+
+### stdout
+
+
+
+---
+
 <a id="kullanici"><a />
 
 ## 🧑‍🧒‍🧒 Kullanıcı Yönetimi
