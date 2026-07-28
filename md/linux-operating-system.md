@@ -14,7 +14,7 @@
 
 **İçindekiler**
 
-▸ [**Komut Satırı**](#komut)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Bilgi Alma**](#bilgi)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**Disk Yönetimi**](#disk)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
+▸ [**Komut Satırı**](#komut)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Bilgi Alma Komutları**](#bilgi)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**Disk Yönetimi**](#disk)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)<br />
 
 
 ---
