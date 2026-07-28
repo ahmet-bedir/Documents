@@ -2506,7 +2506,18 @@ Benzer şekilde ileri tarih de belirtebiliriz (`$ ncal 6 2033`).
 
 #### `which` Komutu
 
-`which` komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanılır. Konsola `ls` yazdığımda kabuk öncelikle `ls` isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor.
+`which` komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanılır. Konsola `ls` yazdığımızda kabuk öncelikle `ls` isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor. Yani aslında `which` komutu da PATH yoluna bakarak argüman olarak verdiğimiz aracı araştırıyor. Dolayısıyla PATH yolunda olmayan araçların dosya konumları `which` komutu tarafından bastırılamıyor.
+
+```bash
+$ which ls
+/usr/bin/ls
+```
+
+İşte bu şekilde PATH yolu üzerindeki araçların tam dizin adreslerini öğrenebilirsiniz.
+
+#### `type` Komutu | `command` & `builtin` Komutları
+
+Kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanı
 
 ---
 
