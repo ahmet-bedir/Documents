@@ -2460,7 +2460,7 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 🔼 [**Başa Dön**](#basa-don)
 
-### Tarih ve Saat Hakkında Bilgi Edinme
+#### Tarih ve Saat Hakkında Bilgi Edinme
 
 #### `date` Komutu
 
@@ -2500,7 +2500,13 @@ Fr     7 14 21 28
 Sa  1  8 15 22 29
 ```
 
-Benzer şekilde ileri tarih de belirtebiliriz (`$ ncal 6 2033`). 
+Benzer şekilde ileri tarih de belirtebiliriz (`$ ncal 6 2033`).
+
+####  Dosyalar Hakkında Bilgi Edinmek
+
+#### `which` Komutu
+
+`which` komutunu, çalıştırdığımız araçların dosya konumlarını öğrenmek için kullanılır. Konsola `ls` yazdığımda kabuk öncelikle `ls` isminde bir yerleşik komutu var mı diye bakıyor, eğer yoksa PATH yolu üzerinde bu isimde bir dosya var mı diye araştırmaya giriyor ve eğer bulabilirse bu dosyayı çalıştırıyor.
 
 ---
 
