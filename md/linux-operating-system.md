@@ -2473,6 +2473,33 @@ Sal 28 Tem 2026 12:58:37 +03
 
 #### `cal` Komutu
 
+Komut satırı üzerinden takvim bilgisi sunan bir araçtır.
+
+```bash
+$ cal
+     June 2023        
+Su Mo Tu We Th Fr Sa  
+             1  2  3  
+ 4  5  6  7  8  9 10  
+11 12 13 14 15 16 17  
+18 19 20 21 22 23 24  
+25 26 27 28 29 30
+```
+
+Eğer mevcut ayı değil de geçmiş ya da gelecek bir tarihten takvim bilgisine bakmak istersek `cal` ya da `ncal` komutunun ardından ay ve yılı belirterek tam istediğimiz tarihteki takvim bilgisine de ulaşabiliriz.
+
+```bash
+$ ncal 1 2000
+    January 2000      
+Su     2  9 16 23 30
+Mo     3 10 17 24 31
+Tu     4 11 18 25   
+We     5 12 19 26   
+Th     6 13 20 27   
+Fr     7 14 21 28   
+Sa  1  8 15 22 29
+```
+
 
 
 ---
