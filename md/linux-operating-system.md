@@ -2462,16 +2462,16 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 ### Tarih ve Saat Hakkında Bilgi Edinme
 
-### `date` Komutu
+#### `date` Komutu
 
-Tarih bilgisini komut satırından edinmek için `date` komutunu kullanılır:
+Tarih bilgisini komut satırından edinmek için `date` komutu kullanılır:
 
 ```bash
 $ date
 Sal 28 Tem 2026 12:58:37 +03
 ```
 
-
+#### `cal` Komutu
 
 
 
