@@ -2460,7 +2460,18 @@ Görebileceğiniz gibi Emacs'ın daha fazla hareketli parçacığı var, bu nede
 
 🔼 [**Başa Dön**](#basa-don)
 
-### stdout
+### Tarih ve Saat Hakkında Bilgi Edinme
+
+### `date` Komutu
+
+Tarih bilgisini komut satırından edinmek için `date` komutunu kullanılır:
+
+```bash
+$ date
+Sal 28 Tem 2026 12:58:37 +03
+```
+
+
 
 
 
