@@ -2500,7 +2500,7 @@ Fr     7 14 21 28
 Sa  1  8 15 22 29
 ```
 
-
+Benzer şekilde ileri tarih de belirtebiliriz (`$ ncal 6 2033`). 
 
 ---
 
