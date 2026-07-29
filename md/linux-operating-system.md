@@ -2517,7 +2517,12 @@ $ which ls
 
 #### `type` Komutu | `command` & `builtin` Komutları
 
-Kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanı
+Kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanılır.
+
+```bash
+```
+
+
 
 ---
 
