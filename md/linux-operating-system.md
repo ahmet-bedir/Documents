@@ -2520,7 +2520,11 @@ $ which ls
 Kabuğa verdiğiniz komutların kabuk tarafından nasıl algılandığını görmenizi sağlıyor. Bu komut özellikle sistemde yüklü bulunan araçların isimleri ile aynı isimde takma isimler yani **alias** tanımlandığında, kabuğun bizim girdiğimiz komutu nasıl gördüğünü anlamak için kullanılır.
 
 ```bash
+$ type ls
+ls `ls --color=auto' için takma addır
 ```
+
+Bakın kabuğa `ls` komutunu verdiğimde aslında kabuğun `ls` komutunu bir takma isim olarak kabul edip buradaki komutu çalıştırdığını öğrendik. Normalde standart `ls` aracı yani biz `ls` komutunu girdiğimizde çalıştırılan dosya `/usr/bin/ls` dosyası. Ama `ls` komutu ile aynı isimde yeni bir takma isim tanımlandığı için kabuk bizim girdiğimiz `ls` komutunu öncelikli olarak takma isim olarak dikkate alıyor ve buradaki takma isim tanımlamasından dolayı `ls --color=auto` komutunu çalıştırıyor.
 
 
 
