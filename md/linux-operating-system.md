@@ -2536,7 +2536,7 @@ nano /usr/bin/nano'dir
 
 ⚠️ Uyarı: Takma isimler yerleşik ve harici komutlardan daha öncelikli değerlendirilir.
 
-
+Kabuğun girdiğimiz komutun asıl işlevini yerine getirmesi için `command` veya `builtin` takma ismi görmezden gelip .
 
 ---
 
