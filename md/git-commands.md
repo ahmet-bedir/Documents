@@ -7,7 +7,7 @@
 
 # Git Komutları (Git Commands)
 
-###### Son güncelleme : 12/2025
+###### Son güncelleme : 08/2026
 
 ---
 
