@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="500"/>
+	<img src="../images/git-banner.png" width="490"/>
 <p/>
 
 
@@ -8,11 +8,13 @@
 
 # Git Komutları (Git Commands)
 
+
+
 ###### Son güncelleme : 08/2026
 
 ---
 
-### Git Yapılandırması | `git config`
+#### Git Yapılandırması | `git config`
 
 Git'in üç farklı yapılandırma seviyesi vardır:
 
@@ -33,6 +35,8 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 │  └──────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────┘
 ```
+
+
 
 
 
@@ -60,7 +64,7 @@ git config --global user.email
 
 ---
 
-### Varsayılan Editör
+#### Varsayılan Editör
 
 - VS Code ayarlamak için:
   
