@@ -18,7 +18,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 ```text 
 ┌──────────────────────────────────────────────────────┐
 │  System  (/etc/gitconfig)                            │
-│  Tüm kullanıcılar, tüm repolar için geçerli         │
+│  Tüm kullanıcılar, tüm repolar için geçerli          │
 │                                                      │
 │  ┌──────────────────────────────────────────────┐    │
 │  │  Global  (~/.gitconfig)                      │    │
@@ -27,7 +27,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 │  │  ┌──────────────────────────────────────┐    │    │
 │  │  │  Local  (.git/config)                │    │    │
 │  │  │  Sadece bu repo için geçerli         │    │    │
-│  │  │  ⬆️ EN YÜKSEK ÖNCELİK               │    │    │
+│  │  │  ⬆️ EN YÜKSEK ÖNCELİK                │    │    │
 │  │  └──────────────────────────────────────┘    │    │
 │  └──────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────┘
@@ -58,7 +58,7 @@ git config --global user.email
 ### Varsayılan Editör
 
 - VS Code ayarlamak için:
-   
+  
    `git config --global core.editor "code --wait"`
 
 - Nano ayarlamak için:
