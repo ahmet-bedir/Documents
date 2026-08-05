@@ -11,58 +11,83 @@
 
 ---
 
-> - **Gitin sistemine kullanıcı adımızı ve e-mail adresimizi tanımlamak için:**
+### Git Yapılandırması | `git config`
+
+Git'in üç farklı yapılandırma seviyesi vardır:
+
+```text 
+┌──────────────────────────────────────────────────────┐
+│  System  (/etc/gitconfig)                            │
+│  Tüm kullanıcılar, tüm repolar için geçerli         │
+│                                                      │
+│  ┌──────────────────────────────────────────────┐    │
+│  │  Global  (~/.gitconfig)                      │    │
+│  │  Bu kullanıcının tüm repoları için geçerli   │    │
+│  │                                              │    │
+│  │  ┌──────────────────────────────────────┐    │    │
+│  │  │  Local  (.git/config)                │    │    │
+│  │  │  Sadece bu repo için geçerli         │    │    │
+│  │  │  ⬆️ EN YÜKSEK ÖNCELİK               │    │    │
+│  │  └──────────────────────────────────────┘    │    │
+│  └──────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────┘
+```
+
+**Git'in sistemine kullanıcı adımızı ve e-mail adresimizi tanımlamak için:**
 
 ```shell
 git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
 
-###### Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarı yerine `--local` anahtarı yazılması veya hiç yazılmaması gerekir.
+> *Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarı yerine `--local` anahtarı yazılması veya hiç yazılmaması gerekir. Local ayar, global'i ezer. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.*
 
-> - **Tanımlamış olduğumuz kullanıcı adı ve email adresini görüntülemek için:**
+⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
 
+**Tanımlamış olduğumuz kullanıcı adı ve email adresini görüntülemek için:**
 
 ```shell
 git config --global user.name
 git config --global user.email
 ```
 
-###### Not : Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.
+> *Not: Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.*
 
 ---
 
-> - **Git varsayılan editörünü nano ayarlamak için:**
+### Varsayılan Editör
 
-```shell
-git config --global core.editor "nano -w"
-```
+- VS Code ayarlamak için:
+   
+   `git config --global core.editor "code --wait"`
 
-> - **Git varsayılan editörünü vim ayarlamak için:**
+- Nano ayarlamak için:
 
-```shell
-git config --global core.editor "vim"
-```
+   `git config --global core.editor "nano -w"`
 
-> - **Git varsayılan editörünü gedit (linux) ayarlamak için:**
+- Vim ayarlamak için:
 
-```shell
-git config --global core.editor "gedit --wait --new-window"
-```
+   `git config --global core.editor "vim"`
 
-> - **Git varsayılan editörünü emacs ayarlamak için:**
+- Gedit (linux) ayarlamak için:
 
-```shell
-git config --global core.editor emacs
-```
+   `git config --global core.editor "gedit --wait --new-window"`
 
-> - **Git varsayılan editörü görüntülemek için:**
+- Emacs ayarlamak için:
+
+   `git config --global core.editor emacs`
+
+- Sublime Text  ayarlamak için:
+
+   `git config --global core.editor "subl -n -w"`
+
+- Git varsayılan editörü görüntülemek için:
 
 ```shell
 git config --global core.editor
 ```
 
-
+💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.
 
 ---
 
