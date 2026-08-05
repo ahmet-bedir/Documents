@@ -92,6 +92,8 @@ git config --global user.email
 
 
 
+
+
 **Git varsayılan editörü görüntülemek için:**
 
 ```shell
