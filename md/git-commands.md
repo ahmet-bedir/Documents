@@ -14,6 +14,8 @@
 
 ---
 
+
+
 #### Git Yapılandırması | `git config`
 
 Git'in üç farklı yapılandırma seviyesi vardır:
@@ -64,6 +66,8 @@ git config --global user.email
 
 ---
 
+
+
 #### Varsayılan Editör
 
 - VS Code ayarlamak için:
@@ -89,8 +93,6 @@ git config --global user.email
 - Sublime Text  ayarlamak için:
 
    `git config --global core.editor "subl -n -w"`
-
-
 
 
 
