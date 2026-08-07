@@ -106,6 +106,24 @@ git config --global core.editor
 
 ---
 
+#### Varsayılan Branch İsmi
+
+Varsayılan brach ismini değiştirmek için:
+
+```bash
+git config --global init.defaultBranch main
+```
+
+Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.
+
+#### Satır Sonu Ayarları (Line Endings)
+
+
+
+
+
+---
+
 > - **Bulunduğun dizinde boş bir git deposu oluşturmak için:**
 >
 >   `git init`
