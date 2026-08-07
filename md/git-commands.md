@@ -118,6 +118,18 @@ Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i i
 
 #### Satır Sonu Ayarları (Line Endings)
 
+Windows `CRLF` (\r\n), Linux/Mac `LF` (\n) kullanır. Ekipte karışık işletim sistemi varsa sorun olur.
+
+```bash
+# Windows'ta:
+$ git config --global core.autocrlf true
+# Checkout: LF → CRLF, Commit: CRLF → LF
+
+# Mac/Linux'ta:
+$ git config --global core.autocrlf input
+# Checkout: dokunma, Commit: CRLF → LF (yanlışlıkla CRLF girdiyse düzelt)
+```
+
 
 
 
