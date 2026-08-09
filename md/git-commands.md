@@ -130,6 +130,28 @@ $ git config --global core.autocrlf input
 # Checkout: dokunma, Commit: CRLF → LF (yanlışlıkla CRLF girdiyse düzelt)
 ```
 
+#### Tüm Ayarları Görüntüleme
+
+```bash
+# Tüm aktif ayarları gör
+$ git config --list
+
+user.name=Tolgahan Kaya
+user.email=tolgahan@example.com
+core.editor=code --wait
+init.defaultbranch=main
+core.autocrlf=true
+color.ui=auto
+
+# Belirli bir ayarı gör
+$ git config user.name
+Tolgahan Kaya
+
+# Ayarın hangi dosyadan geldiğini gör
+$ git config --show-origin user.name
+file:/home/tolgahan/.gitconfig  Tolgahan Kaya
+```
+
 
 
 
