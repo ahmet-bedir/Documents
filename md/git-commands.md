@@ -55,7 +55,7 @@ git config --global user.email "user_email"
 
 
 
-**Tanımlamış olduğumuz kullanıcı adı ve email adresini görüntülemek için:**
+**Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
 ```shell
 git config --global user.name
