@@ -49,7 +49,7 @@ git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
 
-> *Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarı yerine `--local` anahtarı yazılması veya hiç yazılmaması gerekir. Local ayar, global'i ezer. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.*
+> *Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'i ezer. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.*
 
 <small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
 
@@ -136,8 +136,8 @@ $ git config --global core.autocrlf input
 # Tüm aktif ayarları gör
 $ git config --list
 
-user.name=Tolgahan Kaya
-user.email=tolgahan@example.com
+user.name=Ahmet Bedir
+user.email=ahmet_bedir@example.com
 core.editor=code --wait
 init.defaultbranch=main
 core.autocrlf=true
@@ -145,7 +145,7 @@ color.ui=auto
 
 # Belirli bir ayarı gör
 $ git config user.name
-Tolgahan Kaya
+Ahmet Bedir
 
 # Ayarın hangi dosyadan geldiğini gör
 $ git config --show-origin user.name
