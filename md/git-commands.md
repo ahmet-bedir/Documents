@@ -51,7 +51,7 @@ git config --global user.email "user_email"
 
 > *Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarı yerine `--local` anahtarı yazılması veya hiç yazılmaması gerekir. Local ayar, global'i ezer. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.*
 
-⚠️ <small>Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
+<small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
 
 
 
@@ -70,7 +70,7 @@ git config --global user.email
 
 #### Varsayılan Editör
 
-- VS Code ayarlamak için:
+- VS Code ayarlamak için:git config --global user.name
   
    `git config --global core.editor "code --wait"`
 
@@ -102,7 +102,7 @@ git config --global user.email
 git config --global core.editor
 ```
 
-💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.
+<small>💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.</small>
 
 ---
 
