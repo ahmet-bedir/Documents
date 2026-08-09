@@ -51,7 +51,7 @@ git config --global user.email "user_email"
 
 > *Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için `--global` anahtarı yerine `--local` anahtarı yazılması veya hiç yazılmaması gerekir. Local ayar, global'i ezer. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.*
 
-⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
+⚠️ <small>Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
 
 
 
@@ -62,7 +62,7 @@ git config --global user.name
 git config --global user.email
 ```
 
-> *Not: Depoya özgü konfigurasyonlar için `git config user.name` veya `git config user.email` komutları kullanılır.
+> *Not: Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları kullanılır.*
 
 ---
 
