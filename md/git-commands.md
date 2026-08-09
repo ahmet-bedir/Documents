@@ -505,6 +505,14 @@ git pull <remote_name> <branch_name>
 git clone https://github.com/<github_username>/<repo_name>.git
 ```
 
+*Not: Bu işlem sonucunda username ve password giriși için username kısmına kullanıcıadı şifre kısmına ise oluşturduğunuz pat girilir. Yalnız bu kullanımda her `push` için giriş gerekir.*
+
+Çözüm için klonlama yaparken:
+
+```bash
+git clone https://<username>:<pat>@github.com/<username>/<repo_name>.git
+
+
 > - **Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı ssh protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.**
 
 ```shell
