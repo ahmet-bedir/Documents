@@ -152,6 +152,16 @@ $ git config --show-origin user.name
 file:/home/tolgahan/.gitconfig  Tolgahan Kaya
 ```
 
+#### Ayar Silme
+
+```bash
+# Bir ayarı sil
+$ git config --global --unset user.name
+
+# Bir bölümü tamamen sil
+$ git config --global --remove-section user
+```
+
 
 
 
