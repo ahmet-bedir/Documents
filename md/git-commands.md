@@ -62,7 +62,7 @@ git config --global user.name
 git config --global user.email
 ```
 
-> *Not: Tüm konfigurasyonlar için `git config --global --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.*
+> *Not: Tüm konfigurasyonlar için `git config --global --list` komutu kullanılır. Depoya özgü ayarları görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.*
 
 ---
 
@@ -133,7 +133,7 @@ $ git config --global core.autocrlf input
 #### Tüm Ayarları Görüntüleme
 
 ```bash
-# Tüm aktif ayarları gör
+git config --show-origin user.name# Tüm aktif ayarları gör
 $ git config --list
 
 user.name=Tolgahan Kaya
