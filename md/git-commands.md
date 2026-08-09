@@ -511,7 +511,7 @@ git clone https://github.com/<github_username>/<repo_name>.git
 
 ```bash
 git clone https://<username>:<pat>@github.com/<username>/<repo_name>.git
-
+```
 
 > - **Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı ssh protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.**
 
