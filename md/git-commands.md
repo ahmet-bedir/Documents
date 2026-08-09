@@ -133,7 +133,7 @@ $ git config --global core.autocrlf input
 #### Tüm Ayarları Görüntüleme
 
 ```bash
-git config --show-origin user.name# Tüm aktif ayarları gör
+# Tüm aktif ayarları gör
 $ git config --list
 
 user.name=Tolgahan Kaya
