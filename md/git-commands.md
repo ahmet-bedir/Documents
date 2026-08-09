@@ -62,7 +62,7 @@ git config --global user.name
 git config --global user.email
 ```
 
-> *Not: Tüm konfigurasyonlar için `git config --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.*
+> *Not: Tüm konfigurasyonlar için `git config --global --list` komutu kullanılır. Depoya özgü kullanıcıadı ve email görüntüleme işlemi için `--global` anahtarının yazılmaması gerekir.*
 
 ---
 
