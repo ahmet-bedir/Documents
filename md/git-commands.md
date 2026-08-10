@@ -60,9 +60,12 @@ git config --global user.email "user_email"
 ```shell
 git config --global user.name
 git config --global user.email
+
+# Tüm ayarlar için
+git config --global --list
 ```
 
-> *Not: Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları kullanılır.*
+> *Not: Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları, tüm ayarlar için `git config --local --list` komutu kullanılır.*
 
 ---
 
@@ -114,7 +117,7 @@ Varsayılan brach ismini değiştirmek için:
 git config --global init.defaultBranch main
 ```
 
-Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.
+<small>Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.</small>
 
 #### Satır Sonu Ayarları (Line Endings)
 
@@ -133,23 +136,23 @@ $ git config --global core.autocrlf input
 #### Tüm Ayarları Görüntüleme
 
 ```bash
-# Tüm aktif ayarları gör
+# Tüm aktif ayarlar (global+local)
 $ git config --list
 
-user.name=Ahmet Bedir
-user.email=ahmet_bedir@example.com
+user.name=termux
+user.email=community@termux.com
 core.editor=code --wait
 init.defaultbranch=main
 core.autocrlf=true
 color.ui=auto
 
-# Belirli bir ayarı gör
+# Belirli bir ayar
 $ git config user.name
-Ahmet Bedir
+termux
 
-# Ayarın hangi dosyadan geldiğini gör
+# Ayarın hangi dosyadan geldiğini görme
 $ git config --show-origin user.name
-file:/home/tolgahan/.gitconfig  Tolgahan Kaya
+file:/home/user/.gitconfig  termux
 ```
 
 #### Ayar Silme
