@@ -138,7 +138,6 @@ $ git config --global core.autocrlf input
 ```bash
 # Tüm aktif ayarlar (global+local)
 $ git config --list
-
 user.name=termux
 user.email=community@termux.com
 core.editor=code --wait
