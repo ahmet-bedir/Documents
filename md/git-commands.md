@@ -42,7 +42,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 
 
 
-**Git'in sistemine kullanıcı adımızı ve e-mail adresimizi tanımlamak için:**
+**Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
 ```shell
 git config --global user.name "user_name"
