@@ -164,6 +164,13 @@ $ git config --global --unset user.name
 $ git config --global --remove-section user
 ```
 
+#### Alias
+
+Komutları kısaltmak için kullanılır. Kullanımm şekli:
+
+```bash
+```
+
 
 
 
@@ -203,7 +210,7 @@ $ git config --global --remove-section user
 | `git mv <file_name> <new_file_name>`                  | Dosya adı değiştirmek için kullanılır              |
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
-| `git config --global alias.<kısayol> <komut_adı>`     | Komutları kısaltmak için kullanılır                |
+|                                                       |                                                    |
 
 ---
 
