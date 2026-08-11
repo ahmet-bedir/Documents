@@ -166,9 +166,12 @@ $ git config --global --remove-section user
 
 #### Alias
 
-Komutları kısaltmak için kullanılır. Kullanımm şekli:
+Alias'lar, sık kullandığın komutlara kısayol tanımlar. Kullanımm şekli:
 
 ```bash
+$ git config --global alias.<kısayol> <komut_adı>
+
+
 ```
 
 
@@ -210,7 +213,6 @@ Komutları kısaltmak için kullanılır. Kullanımm şekli:
 | `git mv <file_name> <new_file_name>`                  | Dosya adı değiştirmek için kullanılır              |
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
-|                                                       |                                                    |
 
 ---
 
