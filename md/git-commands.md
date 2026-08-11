@@ -164,14 +164,37 @@ $ git config --global --unset user.name
 $ git config --global --remove-section user
 ```
 
-#### Alias
+#### Alias (Kısayollar)
 
-Alias'lar, sık kullandığın komutlara kısayol tanımlar. Kullanımm şekli:
+Alias'lar, sık kullandığın komutlara kısayol tanımlar. Kısayol tanımlama şekli:
 
 ```bash
 $ git config --global alias.<kısayol> <komut_adı>
+```
 
+Örnekler:
 
+```bash
+# Kısa log görünümü
+$ git config --global alias.lg "log --oneline --graph --all --decorate"
+
+# Durum kısayolu
+$ git config --global alias.st "status"
+
+# Kısa commit
+$ git config --global alias.cm "commit -m"
+
+# Branch listesi
+$ git config --global alias.br "branch"
+
+# Checkout kısayolu
+$ git config --global alias.co "checkout"
+
+# Son commit'i göster
+$ git config --global alias.last "log -1 HEAD"
+
+# Unstage (staging'den çıkar)
+$ git config --global alias.unstage "restore --staged"
 ```
 
 
