@@ -197,6 +197,19 @@ $ git config --global alias.last "log -1 HEAD"
 $ git config --global alias.unstage "restore --staged"
 ```
 
+Kullanımı:
+
+```bash
+# Artık şunu yazmak yerine:
+$ git log --oneline --graph --all --decorate
+
+# Şunu yazabilirsin:
+$ git lg
+* a1b2c3d (HEAD -> main) Feature X eklendi
+* d4e5f6g Login sayfası
+* h7i8j9k İlk commit
+```
+
 
 
 
