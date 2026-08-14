@@ -504,7 +504,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
 ```
 
-###### Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
+<small>Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.</small>
 
 
 
@@ -549,7 +549,7 @@ git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<git
 git push -u <remote_name> <branch_name>
 ```
 
-###### Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece `git push` komutu ile aynı işlemi yapabilirsiniz.
+<small>Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece `git push` komutu ile aynı işlemi yapabilirsiniz.</small>
 
 
 
@@ -584,7 +584,9 @@ git pull <remote_name> <branch_name>
 git clone https://github.com/<github_username>/<repo_name>.git
 ```
 
-*Not: Bu işlem sonucunda username ve password giriși için username kısmına kullanıcıadı şifre kısmına ise oluşturduğunuz pat girilir. Yalnız bu kullanımda her `push` için giriş gerekir.*
+<small>Not: Bu işlem sonucunda username ve password giriși için username kısmına kullanıcıadı şifre kısmına ise oluşturduğunuz pat girilir. Yalnız bu kullanımda her `push` için giriş gerekir.</small>
+
+
 
 Çözüm için klonlama yaparken:
 
