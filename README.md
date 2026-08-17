@@ -7,7 +7,10 @@
 **2. Ticari amaçlar için kullanabilirsiniz.** *(You may use it for commercial purposes)*
 
 **3. İzin almadan özgürce kullanabilirsiniz.** *(You may use it freely without asking for permission)*
+Commit Zinciri (Commit History):
 
+[Commit A] ← [Commit B] ← [Commit C] ← [Commit D]
+  "init"      "login"      "database"    "css fix"
 **4. Atıf yapmanız gerekmez.** *(Attribution is not required)*
 
 **5. Herhangi bir sınırlama veya kısıtlama yoktur.** *(There are no limitations or restrictions)*
@@ -43,3 +46,5 @@
 » [**Git Komutları**](md/git-commands.md)
 
 ---
+
+
