@@ -241,7 +241,7 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 ##### 3. Repository (.git dizini)
 
-Commit'lediğin her şey burada **kalıcı olarak** saklanır. Silmek çok zor (imkânsız değil ama zor). Her commit bir snapshot ve bu snapshot'lar zincir gibi birbirine bağlı.
+Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
 
 ###### Üç Alanın Akışı
 
@@ -265,6 +265,43 @@ Commit'lediğin her şey burada **kalıcı olarak** saklanır. Silmek çok zor (
   ◄─────────────────────────────────────────────────────────
                     git checkout / git restore
                     (Commit'teki hali geri getirir)
+```
+
+```bash
+# 1. Dosya oluştur (Working Directory'de)
+$ echo "Merhaba Dünya" > merhaba.txt
+
+# 2. Git'in durumuna bak
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        merhaba.txt
+
+# "Untracked" = Git bu dosyayı tanımıyor, izlemiyor
+
+# 3. Staging'e al
+$ git add merhaba.txt
+
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   merhaba.txt
+
+# "Changes to be committed" = Staging'de, commit'e hazır
+
+# 4. Commit'le
+$ git commit -m "İlk dosya eklendi"
+[main abc1234] İlk dosya eklendi
+ 1 file changed, 1 insertion(+)
+ create mode 100644 merhaba.txt
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+# "Clean" = Her şey commit'lenmiş, değişiklik yok
 ```
 
 
