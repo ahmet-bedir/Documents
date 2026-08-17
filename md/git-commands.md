@@ -210,6 +210,65 @@ $ git lg
 * h7i8j9k İlk commit
 ```
 
+---
+
+#### Üç Alan: Working Directory, Staging Area, Repository
+
+##### 1. Working Directory (Çalışma Dizini)
+
+Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
+
+```text
+Working Directory'deki dosya durumları:
+
+┌──────────────┐
+│  Untracked   │  Git bu dosyayı hiç bilmiyor (yeni eklendi)
+├──────────────┤
+│  Modified    │  Git tanıyor ama son commit'ten beri değişmiş
+├──────────────┤
+│  Unmodified  │  Git tanıyor ve değişmemiş (commit'teki haliyle aynı)
+└──────────────┘
+```
+
+##### 2. Staging Area (Hazırlık Alanı / Index)
+
+Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
+
+```text
+git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
+git commit             # sepetteki her şeyi satın al (commit'le)
+```
+
+##### 3. Repository (.git dizini)
+
+Commit'lediğin her şey burada **kalıcı olarak** saklanır. Silmek çok zor (imkânsız değil ama zor). Her commit bir snapshot ve bu snapshot'lar zincir gibi birbirine bağlı.
+
+###### Üç Alanın Akışı
+
+```text
+  Working Directory          Staging Area            Repository
+   (Çalışma Alanı)            (Hazırlık)              (.git)
+  ─────────────────         ──────────────          ──────────────
+                    
+  dosya.txt [değişti]
+          │
+          │  git add dosya.txt
+          ▼
+                            dosya.txt [hazır]
+                                    │
+                                    │  git commit -m "mesaj"
+                                    ▼
+                                                    Commit #abc123
+                                                    dosya.txt kaydedildi
+
+
+  ◄─────────────────────────────────────────────────────────
+                    git checkout / git restore
+                    (Commit'teki hali geri getirir)
+```
+
+
+
 
 
 
