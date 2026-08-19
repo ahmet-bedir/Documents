@@ -105,7 +105,7 @@ git config --global --list
 git config --global core.editor
 ```
 
-<small>💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.</small>
+> <small>💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.</small>
 
 ---
 
@@ -117,7 +117,7 @@ Varsayılan brach ismini değiştirmek için:
 git config --global init.defaultBranch main
 ```
 
-<small>Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.</small>
+> <small>Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.</small>
 
 #### Satır Sonu Ayarları (Line Endings)
 
@@ -303,6 +303,8 @@ nothing to commit, working tree clean
 
 # "Clean" = Her şey commit'lenmiş, değişiklik yok
 ```
+
+
 
 
 
