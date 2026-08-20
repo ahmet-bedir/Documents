@@ -241,6 +241,28 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 ##### 3. Repository (.git dizini)
 
+Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde .git adlı gizli bir dizin barındırmasıdır.
+
+İki tür repository vardır:
+
+```text
+┌──────────────────────────┐    ┌──────────────────────────┐
+│    Yerel Repo (Local)    │    │    Uzak Repo (Remote)    │
+│                          │    │                          │
+│  Senin bilgisayarında    │    │  GitHub, GitLab, vb.     │
+│  git init ile oluşturur  │    │  İnternette barınır      │
+│  veya git clone ile      │    │  Ekip paylaşımı için     │
+│  kopyalarsın             │    │                          │
+│                          │◄──►│                          │
+│  Commit, branch,         │    │  push/pull/fetch ile     │
+│  her şeyi yaparsın       │    │  senkronize olur         │
+└──────────────────────────┘    └──────────────────────────┘
+```
+
+
+
+
+
 Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
 
 ###### Üç Alanın Akışı
