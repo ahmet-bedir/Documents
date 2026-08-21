@@ -6,7 +6,7 @@
 
 
 
-# Git Komutları (Git Commands)
+# Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 
 
@@ -14,7 +14,125 @@
 
 ---
 
+## Git (Global Information Tracker) Nedir?
 
+Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler.
+
+#### Üç Alan: Working Directory, Staging Area, Repository
+
+```text
+
+```
+
+##### 1. Working Directory (Çalışma Dizini)
+
+Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
+
+```text
+Working Directory'deki dosya durumları:
+
+┌──────────────┐
+│  Untracked   │  Git bu dosyayı hiç bilmiyor (yeni eklendi)
+├──────────────┤
+│  Modified    │  Git tanıyor ama son commit'ten beri değişmiş
+├──────────────┤
+│  Unmodified  │  Git tanıyor ve değişmemiş (commit'teki haliyle aynı)
+└──────────────┘
+```
+
+##### 2. Staging Area (Hazırlık Alanı / Index)
+
+Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
+
+```text
+git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
+git commit             # sepetteki her şeyi satın al (commit'le)
+```
+
+##### 3. Repository (.git dizini)
+
+Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde .git adlı gizli bir dizin barındırmasıdır.
+
+İki tür repository vardır:
+
+```text
+┌──────────────────────────┐    ┌──────────────────────────┐
+│    Yerel Repo (Local)    │    │    Uzak Repo (Remote)    │
+│                          │    │                          │
+│  Senin bilgisayarında    │    │  GitHub, GitLab, vb.     │
+│  git init ile oluşturur  │    │  İnternette barınır      │
+│  veya git clone ile      │    │  Ekip paylaşımı için     │
+│  kopyalarsın             │    │                          │
+│                          │◄──►│                          │
+│  Commit, branch,         │    │  push/pull/fetch ile     │
+│  her şeyi yaparsın       │    │  senkronize olur         │
+└──────────────────────────┘    └──────────────────────────┘
+```
+
+Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
+
+###### Üç Alanın Akışı
+
+```text
+  Working Directory          Staging Area            Repository
+   (Çalışma Alanı)            (Hazırlık)              (.git)
+  ─────────────────         ──────────────          ──────────────
+                    
+  dosya.txt [değişti]
+          │
+          │  git add dosya.txt
+          ▼
+                            dosya.txt [hazır]
+                                    │
+                                    │  git commit -m "mesaj"
+                                    ▼
+                                                    Commit #abc123
+                                                    dosya.txt kaydedildi
+
+
+  ◄─────────────────────────────────────────────────────────
+                    git checkout / git restore
+                    (Commit'teki hali geri getirir)
+```
+
+```bash
+# 1. Dosya oluştur (Working Directory'de)
+$ echo "Merhaba Dünya" > merhaba.txt
+
+# 2. Git'in durumuna bak
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        merhaba.txt
+
+# "Untracked" = Git bu dosyayı tanımıyor, izlemiyor
+
+# 3. Staging'e al
+$ git add merhaba.txt
+
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   merhaba.txt
+
+# "Changes to be committed" = Staging'de, commit'e hazır
+
+# 4. Commit'le
+$ git commit -m "İlk dosya eklendi"
+[main abc1234] İlk dosya eklendi
+ 1 file changed, 1 insertion(+)
+ create mode 100644 merhaba.txt
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+# "Clean" = Her şey commit'lenmiş, değişiklik yok
+```
+
+---
 
 #### Git Yapılandırması | `git config`
 
@@ -44,7 +162,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 
 **Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
-```shell
+```bash
 git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
@@ -57,7 +175,7 @@ git config --global user.email "user_email"
 
 **Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
-```shell
+```bash
 git config --global user.name
 git config --global user.email
 
@@ -101,7 +219,7 @@ git config --global --list
 
 **Git varsayılan editörü görüntülemek için:**
 
-```shell
+```bash
 git config --global core.editor
 ```
 
@@ -211,120 +329,6 @@ $ git lg
 ```
 
 ---
-
-#### Üç Alan: Working Directory, Staging Area, Repository
-
-##### 1. Working Directory (Çalışma Dizini)
-
-Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
-
-```text
-Working Directory'deki dosya durumları:
-
-┌──────────────┐
-│  Untracked   │  Git bu dosyayı hiç bilmiyor (yeni eklendi)
-├──────────────┤
-│  Modified    │  Git tanıyor ama son commit'ten beri değişmiş
-├──────────────┤
-│  Unmodified  │  Git tanıyor ve değişmemiş (commit'teki haliyle aynı)
-└──────────────┘
-```
-
-##### 2. Staging Area (Hazırlık Alanı / Index)
-
-Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
-
-```text
-git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
-git commit             # sepetteki her şeyi satın al (commit'le)
-```
-
-##### 3. Repository (.git dizini)
-
-Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde .git adlı gizli bir dizin barındırmasıdır.
-
-İki tür repository vardır:
-
-```text
-┌──────────────────────────┐    ┌──────────────────────────┐
-│    Yerel Repo (Local)    │    │    Uzak Repo (Remote)    │
-│                          │    │                          │
-│  Senin bilgisayarında    │    │  GitHub, GitLab, vb.     │
-│  git init ile oluşturur  │    │  İnternette barınır      │
-│  veya git clone ile      │    │  Ekip paylaşımı için     │
-│  kopyalarsın             │    │                          │
-│                          │◄──►│                          │
-│  Commit, branch,         │    │  push/pull/fetch ile     │
-│  her şeyi yaparsın       │    │  senkronize olur         │
-└──────────────────────────┘    └──────────────────────────┘
-```
-
-
-
-
-
-Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
-
-###### Üç Alanın Akışı
-
-```text
-  Working Directory          Staging Area            Repository
-   (Çalışma Alanı)            (Hazırlık)              (.git)
-  ─────────────────         ──────────────          ──────────────
-                    
-  dosya.txt [değişti]
-          │
-          │  git add dosya.txt
-          ▼
-                            dosya.txt [hazır]
-                                    │
-                                    │  git commit -m "mesaj"
-                                    ▼
-                                                    Commit #abc123
-                                                    dosya.txt kaydedildi
-
-
-  ◄─────────────────────────────────────────────────────────
-                    git checkout / git restore
-                    (Commit'teki hali geri getirir)
-```
-
-```bash
-# 1. Dosya oluştur (Working Directory'de)
-$ echo "Merhaba Dünya" > merhaba.txt
-
-# 2. Git'in durumuna bak
-$ git status
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        merhaba.txt
-
-# "Untracked" = Git bu dosyayı tanımıyor, izlemiyor
-
-# 3. Staging'e al
-$ git add merhaba.txt
-
-$ git status
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        new file:   merhaba.txt
-
-# "Changes to be committed" = Staging'de, commit'e hazır
-
-# 4. Commit'le
-$ git commit -m "İlk dosya eklendi"
-[main abc1234] İlk dosya eklendi
- 1 file changed, 1 insertion(+)
- create mode 100644 merhaba.txt
-
-$ git status
-On branch main
-nothing to commit, working tree clean
-
-# "Clean" = Her şey commit'lenmiş, değişiklik yok
-```
 
 
 
