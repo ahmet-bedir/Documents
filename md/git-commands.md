@@ -5,12 +5,14 @@
 
 
 
+###### Son güncelleme : 08/2026
+
+---
 
 # Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 
-
-###### Son güncelleme : 08/2026
+Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır.
 
 ---
 
