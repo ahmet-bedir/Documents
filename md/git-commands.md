@@ -9,14 +9,15 @@
 
 ---
 
-# Versiyon Kontrol Sistemi (Version Control System — VCS)
-
+## Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır.
 
+
+
 ---
 
-## Git (Global Information Tracker) Nedir?
+### Git (Global Information Tracker) Nedir?
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler.
 
