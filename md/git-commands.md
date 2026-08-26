@@ -33,7 +33,7 @@ Merkezi (Centralized) Model Dezavantajları:
 
 - Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.
 
-🌐 **3. Nesil: Dağıtık Sistemler (2005-Günümüz)**
+#### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
 Dağıtık (Distributed) Model — Git Türevleri
 
@@ -47,8 +47,22 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 #### Üç Alan: Working Directory, Staging Area, Repository
 
 ```text
-
+text
 ```
+
+```ini
+ini
+```
+
+```bash
+bash
+```
+
+```shell
+shell
+```
+
+
 
 ##### 1. Working Directory (Çalışma Dizini)
 

@@ -1,653 +1,685 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1'>
-    <title>git-commands</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>git-commands</title>
 </head>
+<body><p aliges="center">
+	<img src="../images/git-banner.png" width="490"/>
+<p/>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h6 id='son-güncelleme--082026'>Son güncelleme : 08/2026</h6>
+<hr />
+<h2 id='versiyon-kontrol-sistemi-version-control-system-----vcs'>Versiyon Kontrol Sistemi (Version Control System — VCS)</h2>
+<p>Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.</p>
+<h3 id='vcsnin-kısa-tarihi'>VCS&#39;nin Kısa Tarihi</h3>
+<h4 id='🏛️-1-nesil-yerel-sistemler-1970-80ler'>🏛️ 1. Nesil: Yerel Sistemler (1970-80&#39;ler)</h4>
+<p>İlk VCS&#39;ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)</p>
+<h4 id='🏢-2-nesil-merkezi-sistemler-1990-2000ler'>🏢 2. Nesil: Merkezi Sistemler (1990-2000&#39;ler)</h4>
+<p>CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.</p>
+<p>Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.</p>
+<p>Merkezi (Centralized) Model Dezavantajları:</p>
+<ul>
+<li>Tek nokta arızası (Single Point of Failure): Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.</li>
+<li>Ağ bağımlılığı</li>
+<li>Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.</li>
 
-<body>
-    <div class="container">
-    <p align="center">
-        <img src="../images/git-banner.png" width="530" />
-        <p />
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <h1 id='git-komutları-git-commands'>Git Komutları (Git Commands)</h1>
-    <h6 id='son-güncelleme--122025'>Son güncelleme : 12/2025</h6>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Gitin sistemine kullanıcı adımızı ve e-mail adresimizi tanımlamak için:</strong></li>
+</ul>
+<h4 id='🌐-3-nesil-dağıtık-sistemler-2005-günümüz'>🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)</h4>
+<p>Dağıtık (Distributed) Model — Git Türevleri</p>
+<ul>
+<li></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global user.name &quot;user_name&quot;
+</ul>
+<hr />
+<h3 id='git-global-information-tracker-nedir'>Git (Global Information Tracker) Nedir?</h3>
+<p>Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler.</p>
+<h4 id='üç-alan-working-directory-staging-area-repository'>Üç Alan: Working Directory, Staging Area, Repository</h4>
+<pre><code class='language-text' lang='text'>text
+</code></pre>
+<pre><code class='language-ini' lang='ini'>ini
+</code></pre>
+<pre><code class='language-shell' lang='shell'>bash
+</code></pre>
+<pre><code class='language-shell' lang='shell'>shell
+</code></pre>
+<p>&nbsp;</p>
+<h5 id='1-working-directory-çalışma-dizini'>1. Working Directory (Çalışma Dizini)</h5>
+<p>Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git&#39;in gözünde bu alan &quot;kontrol dışı&quot; — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.</p>
+<pre><code class='language-text' lang='text'>Working Directory&#39;deki dosya durumları:
+
+┌──────────────┐
+│  Untracked   │  Git bu dosyayı hiç bilmiyor (yeni eklendi)
+├──────────────┤
+│  Modified    │  Git tanıyor ama son commit&#39;ten beri değişmiş
+├──────────────┤
+│  Unmodified  │  Git tanıyor ve değişmemiş (commit&#39;teki haliyle aynı)
+└──────────────┘
+</code></pre>
+<h5 id='2-staging-area-hazırlık-alanı--index'>2. Staging Area (Hazırlık Alanı / Index)</h5>
+<p>Staging area, &quot;bir sonraki commit&#39;e neleri dahil edeceğim?&quot; sorusunun cevabı.</p>
+<pre><code class='language-text' lang='text'>git add dosya.txt      # dosya.txt&#39;yi sepete koy (staging&#39;e al)
+git commit             # sepetteki her şeyi satın al (commit&#39;le)
+</code></pre>
+<h5 id='3-repository-git-dizini'>3. Repository (.git dizini)</h5>
+<p>Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde .git adlı gizli bir dizin barındırmasıdır.</p>
+<p>İki tür repository vardır:</p>
+<pre><code class='language-text' lang='text'>┌──────────────────────────┐    ┌──────────────────────────┐
+│    Yerel Repo (Local)    │    │    Uzak Repo (Remote)    │
+│                          │    │                          │
+│  Senin bilgisayarında    │    │  GitHub, GitLab, vb.     │
+│  git init ile oluşturur  │    │  İnternette barınır      │
+│  veya git clone ile      │    │  Ekip paylaşımı için     │
+│  kopyalarsın             │    │                          │
+│                          │◄──►│                          │
+│  Commit, branch,         │    │  push/pull/fetch ile     │
+│  her şeyi yaparsın       │    │  senkronize olur         │
+└──────────────────────────┘    └──────────────────────────┘
+</code></pre>
+<p>Commit&#39;lediğin her şey burada <strong>kalıcı olarak</strong> saklanır. Her commit bir snapshot gibi ve bu snapshot&#39;lar zincir gibi birbirine bağlı.</p>
+<h6 id='üç-alanın-akışı'>Üç Alanın Akışı</h6>
+<pre><code class='language-text' lang='text'>  Working Directory          Staging Area            Repository
+   (Çalışma Alanı)            (Hazırlık)              (.git)
+  ─────────────────         ──────────────          ──────────────
+                    
+  dosya.txt [değişti]
+          │
+          │  git add dosya.txt
+          ▼
+                            dosya.txt [hazır]
+                                    │
+                                    │  git commit -m &quot;mesaj&quot;
+                                    ▼
+                                                    Commit #abc123
+                                                    dosya.txt kaydedildi
+
+
+  ◄─────────────────────────────────────────────────────────
+                    git checkout / git restore
+                    (Commit&#39;teki hali geri getirir)
+</code></pre>
+<pre><code class='language-shell' lang='shell'># 1. Dosya oluştur (Working Directory&#39;de)
+$ echo &quot;Merhaba Dünya&quot; &gt; merhaba.txt
+
+# 2. Git&#39;in durumuna bak
+$ git status
+On branch main
+Untracked files:
+  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+        merhaba.txt
+
+# &quot;Untracked&quot; = Git bu dosyayı tanımıyor, izlemiyor
+
+# 3. Staging&#39;e al
+$ git add merhaba.txt
+
+$ git status
+On branch main
+Changes to be committed:
+  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)
+        new file:   merhaba.txt
+
+# &quot;Changes to be committed&quot; = Staging&#39;de, commit&#39;e hazır
+
+# 4. Commit&#39;le
+$ git commit -m &quot;İlk dosya eklendi&quot;
+[main abc1234] İlk dosya eklendi
+ 1 file changed, 1 insertion(+)
+ create mode 100644 merhaba.txt
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+# &quot;Clean&quot; = Her şey commit&#39;lenmiş, değişiklik yok
+</code></pre>
+<hr />
+<h4 id='git-yapılandırması-|-git-config'>Git Yapılandırması | <code>git config</code></h4>
+<p>Git&#39;in üç farklı yapılandırma seviyesi vardır:</p>
+<pre><code class='language-text' lang='text'>┌──────────────────────────────────────────────────────┐
+│  System  (/etc/gitconfig)                            │
+│  Tüm kullanıcılar, tüm repolar için geçerli          │
+│                                                      │
+│  ┌──────────────────────────────────────────────┐    │
+│  │  Global  (~/.gitconfig)                      │    │
+│  │  Bu kullanıcının tüm repoları için geçerli   │    │
+│  │                                              │    │
+│  │  ┌──────────────────────────────────────┐    │    │
+│  │  │  Local  (.git/config)                │    │    │
+│  │  │  Sadece bu repo için geçerli         │    │    │
+│  │  │  ⬆️ EN YÜKSEK ÖNCELİK                │    │    │
+│  │  └──────────────────────────────────────┘    │    │
+│  └──────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────┘
+</code></pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Git&#39;in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:</strong></p>
+<pre><code class='language-shell' lang='shell'>git config --global user.name &quot;user_name&quot;
 git config --global user.email &quot;user_email&quot;
 </code></pre>
-    <h6
-        id='not--depoya-özgü-kullanıcıadı-ve-email-tanımlama-işlemi-için---global-anahtarı-yerine---local-anahtarı-yazılması-veya-hiç-yazılmaması-gerekir'>
-        Not : Depoya özgü kullanıcıadı ve email tanımlama işlemi için <code>--global</code> anahtarı yerine
-        <code>--local</code> anahtarı yazılması veya hiç yazılmaması gerekir.</h6>
-    <blockquote>
-        <ul>
-            <li><strong>Tanımlamış olduğumuz kullanıcı adı ve email adresini görüntülemek için:</strong></li>
-
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global user.name
+<blockquote><p><em>Not : Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için <code>--global</code> anahtarının belirtilmemesi veya <code>--global</code> anahtarı yerine <code>--local</code> anahtarı yazılması gerekir. Local ayar, global&#39;i ezer. O repoda yaptığın commit&#39;ler <code>--local</code> anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.</em></p>
+</blockquote>
+<p><small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name &quot;root&quot; ve user.email &quot;root@localhost&quot; olarak gözükür.)</small></p>
+<p>&nbsp;</p>
+<p><strong>Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:</strong></p>
+<pre><code class='language-shell' lang='shell'>git config --global user.name
 git config --global user.email
+
+# Tüm ayarlar için
+git config --global --list
 </code></pre>
-    <h6
-        id='not--tüm-konfigurasyonlar-için-git-config---list-komutu-kullanılır-depoya-özgü-kullanıcıadı-ve-email-görüntüleme-işlemi-için---global-anahtarının-yazılmaması-gerekir'>
-        Not : Tüm konfigurasyonlar için <code>git config --list</code> komutu kullanılır. Depoya özgü kullanıcıadı ve
-        email görüntüleme işlemi için <code>--global</code> anahtarının yazılmaması gerekir.</h6>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Git varsayılan editörünü nano ayarlamak için:</strong></li>
+<blockquote><p><em>Not: Depoya özgü yani local konfigurasyonlar için <code>git config user.name</code> veya <code>git config user.email</code> komutları, tüm ayarlar için <code>git config --local --list</code> komutu kullanılır.</em></p>
+</blockquote>
+<hr />
+<p>&nbsp;</p>
+<h4 id='varsayılan-editör'>Varsayılan Editör</h4>
+<ul>
+<li><p>VS Code ayarlamak için:git config --global user.name</p>
+<p><code>git config --global core.editor &quot;code --wait&quot;</code></p>
+</li>
+<li><p>Nano ayarlamak için:</p>
+<p><code>git config --global core.editor &quot;nano -w&quot;</code></p>
+</li>
+<li><p>Vim ayarlamak için:</p>
+<p><code>git config --global core.editor &quot;vim&quot;</code></p>
+</li>
+<li><p>Gedit (linux) ayarlamak için:</p>
+<p><code>git config --global core.editor &quot;gedit --wait --new-window&quot;</code></p>
+</li>
+<li><p>Emacs ayarlamak için:</p>
+<p><code>git config --global core.editor emacs</code></p>
+</li>
+<li><p>Sublime Text  ayarlamak için:</p>
+<p><code>git config --global core.editor &quot;subl -n -w&quot;</code></p>
+</li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global core.editor &quot;nano -w&quot;
+</ul>
+<p>&nbsp;</p>
+<p><strong>Git varsayılan editörü görüntülemek için:</strong></p>
+<pre><code class='language-shell' lang='shell'>git config --global core.editor
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Git varsayılan editörünü vim ayarlamak için:</strong></li>
-
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global core.editor &quot;vim&quot;
+<blockquote><p><small>💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. <code>--wait</code> bayrağı olmadan git hemen devam eder ve boş mesaj alır.</small></p>
+</blockquote>
+<hr />
+<h4 id='varsayılan-branch-i̇smi'>Varsayılan Branch İsmi</h4>
+<p>Varsayılan brach ismini değiştirmek için:</p>
+<pre><code class='language-shell' lang='shell'>git config --global init.defaultBranch main
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Git varsayılan editörünü gedit (linux) ayarlamak için:</strong></li>
+<blockquote><p><small>Bu ayardan sonra <code>git init</code> ile oluşturulan tüm yeni repolar <code>main</code> branch&#39;i ile başlar.</small></p>
+</blockquote>
+<h4 id='satır-sonu-ayarları-line-endings'>Satır Sonu Ayarları (Line Endings)</h4>
+<p>Windows <code>CRLF</code> (\r\n), Linux/Mac <code>LF</code> (\n) kullanır. Ekipte karışık işletim sistemi varsa sorun olur.</p>
+<pre><code class='language-shell' lang='shell'># Windows&#39;ta:
+$ git config --global core.autocrlf true
+# Checkout: LF → CRLF, Commit: CRLF → LF
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global core.editor &quot;gedit --wait --new-window&quot;
+# Mac/Linux&#39;ta:
+$ git config --global core.autocrlf input
+# Checkout: dokunma, Commit: CRLF → LF (yanlışlıkla CRLF girdiyse düzelt)
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Git varsayılan editörünü emacs ayarlamak için:</strong></li>
+<h4 id='tüm-ayarları-görüntüleme'>Tüm Ayarları Görüntüleme</h4>
+<pre><code class='language-shell' lang='shell'># Tüm aktif ayarlar (global+local)
+$ git config --list
+user.name=termux
+user.email=community@termux.com
+core.editor=code --wait
+init.defaultbranch=main
+core.autocrlf=true
+color.ui=auto
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global core.editor emacs
+# Belirli bir ayar
+$ git config user.name
+termux
+
+# Ayarın hangi dosyadan geldiğini görme
+$ git config --show-origin user.name
+file:/home/user/.gitconfig  termux
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Git varsayılan editörü görüntülemek için:</strong></li>
+<h4 id='ayar-silme'>Ayar Silme</h4>
+<pre><code class='language-shell' lang='shell'># Bir ayarı sil
+$ git config --global --unset user.name
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git config --global core.editor
+# Bir bölümü tamamen sil
+$ git config --global --remove-section user
 </code></pre>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>Bulunduğun dizinde boş bir git deposu oluşturmak için:</strong></p>
-                <p><code>git init</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>0luşturmuş olduğumuz deponun güncel durum bilgisini görüntülemek için kullanabilirsiniz. Bu
-                        komut ile hangi branch&#39;te olduğumuz veya hangi dosyaların staging alanında (index bölgesi)
-                        olduğu gibi bilgiler verir.</strong></p>
-                <p><code>git status</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>İsmi verilen tek bir dosyayı staging alanına eklemek için:</strong></p>
-                <p><code>git add &lt;file_name&gt;</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>Tüm dosyaları staging alanına eklemek için:</strong></p>
-                <p><code>git add .</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>Staging alanına eklemeden önce dosyada yapılan son değişiklikleri geri almak için:</strong>
-                </p>
-                <p><code>git restore &lt;file_name&gt;</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li>
-                <p><strong>Dosyayı staging alanından çıkarmak için:</strong></p>
-                <p><code>git restore --staged &lt;file_name&gt;</code> | <code>git reset HEAD &lt;file_name&gt;</code> |
-                    <code>git rm --cached &lt;file_name&gt;</code></p>
-            </li>
-
-        </ul>
-    </blockquote>
-    <hr />
-    <figure class='table-figure'>
-        <table>
-            <thead>
-                <tr>
-                    <th>Dosya İşlemleri</th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>git rm &lt;file_name&gt;</code></td>
-                    <td>Dosya silmek için kullanılır</td>
-                </tr>
-                <tr>
-                    <td><code>git rm -r &lt;directory_name&gt;/</code></td>
-                    <td>Dizin silmek için kullanılır</td>
-                </tr>
-                <tr>
-                    <td><code>git mv &lt;file_name&gt; &lt;new_file_name&gt;</code></td>
-                    <td>Dosya adı değiştirmek için kullanılır</td>
-                </tr>
-                <tr>
-                    <td><code>git mv &lt;file_name&gt; &lt;directory_name&gt;/</code></td>
-                    <td>Dosyayı taşımak için kullanılır</td>
-                </tr>
-                <tr>
-                    <td><code>git mv &lt;file_name&gt; &lt;directory_name&gt;/&lt;new_file_name&gt;</code></td>
-                    <td>Dosyayı adını değiştirerek taşımak için kullanılır</td>
-                </tr>
-                <tr>
-                    <td><code>git config --global alias.&lt;kısayol&gt; &lt;komut_adı&gt;</code></td>
-                    <td>Komutları kısaltmak için kullanılır</td>
-                </tr>
-            </tbody>
-        </table>
-    </figure>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir
-                    zamanda geriye dönülerek değişiklikler eski haline getirilebilir.</strong></li>
-
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git commit -m &quot;commit_mesajı&quot;
+<h4 id='alias-kısayollar'>Alias (Kısayollar)</h4>
+<p>Alias&#39;lar, sık kullandığın komutlara kısayol tanımlar. Kısayol tanımlama şekli:</p>
+<pre><code class='language-shell' lang='shell'>$ git config --global alias.&lt;kısayol&gt; &lt;komut_adı&gt;
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><code>git commit -a</code> <strong>: Git add yapmadan direk commit etme işlemi için
-                    kullanabilirsiniz.</strong></li>
-            <li><code>git commit --amend -m &quot;yeni commit mesajı&quot;</code> <strong>: En son yapılan commit
-                    mesajını değiştirmek için kullanılır.</strong></li>
+<p>Örnekler:</p>
+<pre><code class='language-shell' lang='shell'># Kısa log görünümü
+$ git config --global alias.lg &quot;log --oneline --graph --all --decorate&quot;
 
-        </ul>
-    </blockquote>
-    <p>&nbsp;</p>
-    <blockquote>
-        <ul>
-            <li><code>git log</code> <strong>: Yapılan commitleri gösterir.</strong></li>
-            <li><code>git log --oneline</code> <strong>: Yapılan commitleri tek satır şeklinde gösterir.</strong></li>
+# Durum kısayolu
+$ git config --global alias.st &quot;status&quot;
 
-        </ul>
-    </blockquote>
-    <p>&nbsp;</p>
-    <h6
-        id='head--gitin-içinde-bulunduğumuz-konumu-belirten-bir-referanstır-genellikle-en-son-commiti-işaret-eder-bu-nerede-olduğumuzu-ve-hangi-commit-üzerinde-çalıştığımızı-belirlememizi-sağlar'>
-        <code>HEAD</code> : Git&#39;in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son
-        commit&#39;i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
-    </h6>
-    <p>&nbsp;</p>
-    <blockquote>
-        <ul>
-            <li><code>.gitignore</code> <strong>: Git&#39;in, belirtilen dosyaları görmezden gelmesine izin veren bir
-                    dosyadır. Proje kök dizinine eklenir.</strong></li>
-            <li><code>dizin/*</code> <strong>: Dizin klasöründeki tüm dosyaları kapsar.</strong></li>
-            <li><code>!dizin/b</code> <strong>: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.</strong></li>
+# Kısa commit
+$ git config --global alias.cm &quot;commit -m&quot;
 
-        </ul>
-    </blockquote>
-    <p>&nbsp;</p>
-    <blockquote>
-        <ul>
-            <li><strong>Zamanı geri alma yani git deposunda geçmiş tarihli bir commit&#39;e geri gitmemiz için:</strong>
-            </li>
+# Branch listesi
+$ git config --global alias.br &quot;branch&quot;
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git checkout &lt;commit_id&gt;
+# Checkout kısayolu
+$ git config --global alias.co &quot;checkout&quot;
+
+# Son commit&#39;i göster
+$ git config --global alias.last &quot;log -1 HEAD&quot;
+
+# Unstage (staging&#39;den çıkar)
+$ git config --global alias.unstage &quot;restore --staged&quot;
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Gittiğimiz committen geri gelmemize yani son commite geri dönmek için:</strong></li>
+<p>Kullanımı:</p>
+<pre><code class='language-shell' lang='shell'># Artık şunu yazmak yerine:
+$ git log --oneline --graph --all --decorate
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git checkout master || git switch master
+# Şunu yazabilirsin:
+$ git lg
+* a1b2c3d (HEAD -&gt; main) Feature X eklendi
+* d4e5f6g Login sayfası
+* h7i8j9k İlk commit
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Git versiyon değiştirme (silinen tüm dosyaları geri getirmek) için:</strong></li>
+<hr />
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><p><strong>Bulunduğun dizinde boş bir git deposu oluşturmak için:</strong></p>
+<p><code>git init</code></p>
+</li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git checkout &lt;commit id&gt; -- .
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><p><strong>0luşturmuş olduğumuz deponun güncel durum bilgisini görüntülemek için kullanabilirsiniz. Bu komut ile hangi branch&#39;te olduğumuz veya hangi dosyaların staging alanında (index bölgesi) olduğu gibi bilgiler verir.</strong></p>
+<p><code>git status</code></p>
+</li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><p><strong>İsmi verilen tek bir dosyayı staging alanına eklemek için:</strong></p>
+<p><code>git add &lt;file_name&gt;</code></p>
+</li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><p><strong>Tüm dosyaları staging alanına eklemek için:</strong></p>
+<p><code>git add .</code></p>
+</li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><p><strong>Staging alanına eklemeden önce dosyada yapılan son değişiklikleri geri almak için:</strong></p>
+<p><code>git restore &lt;file_name&gt;</code></p>
+</li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><p><strong>Dosyayı staging alanından çıkarmak için:</strong></p>
+<p><code>git restore --staged &lt;file_name&gt;</code> | <code>git reset HEAD &lt;file_name&gt;</code> | <code>git rm --cached &lt;file_name&gt;</code></p>
+</li>
+
+</ul>
+</blockquote>
+<hr />
+<figure class='table-figure'><table>
+<thead>
+<tr><th>Dosya İşlemleri</th><th>&nbsp;</th></tr></thead>
+<tbody><tr><td><code>git rm &lt;file_name&gt;</code></td><td>Dosya silmek için kullanılır</td></tr><tr><td><code>git rm -r &lt;directory_name&gt;/</code></td><td>Dizin silmek için kullanılır</td></tr><tr><td><code>git mv &lt;file_name&gt; &lt;new_file_name&gt;</code></td><td>Dosya adı değiştirmek için kullanılır</td></tr><tr><td><code>git mv &lt;file_name&gt; &lt;directory_name&gt;/</code></td><td>Dosyayı taşımak için kullanılır</td></tr><tr><td><code>git mv &lt;file_name&gt; &lt;directory_name&gt;/&lt;new_file_name&gt;</code></td><td>Dosyayı adını değiştirerek taşımak için kullanılır</td></tr></tbody>
+</table></figure>
+<hr />
+<blockquote><ul>
+<li><strong>Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir zamanda geriye dönülerek değişiklikler eski haline getirilebilir.</strong></li>
+
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git commit -m &quot;commit_mesajı&quot;
 </code></pre>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><code>git diff</code> <strong>: Staging alanına eklenmeden önce tüm dosyalarda yapılan değişiklikleri
-                    gösterir.</strong></li>
-            <li><code>git diff &lt;file_name&gt;</code> <strong>: Staging alanına eklenmeden önce ismi verilen tek bir
-                    dosyada yapılan değişiklikleri gösterir.</strong></li>
-            <li><code>git diff --staged</code> <strong>: Git deposu ile staging alanındaki değişiklikleri
-                    gösterir.</strong></li>
+<blockquote><ul>
+<li><code>git commit -a</code> <strong>: Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.</strong></li>
+<li><code>git commit --amend -m &quot;yeni commit mesajı&quot;</code> <strong>: En son yapılan commit mesajını değiştirmek için kullanılır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <p>&nbsp;</p>
-    <blockquote>
-        <ul>
-            <li><code>git branch</code> <strong>: Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu
-                    gösterir.</strong></li>
-            <li><code>git branch --all</code> <strong>: Yerelimizde ve uzak depodaki tüm dalları gösterir.</strong></li>
-            <li><code>git branch -r</code> <strong>: Uzak depodaki dalları gösterir.</strong></li>
-            <li><code>git branch &lt;branch_name&gt;</code> <strong>: Yeni dal (branch) oluşturmak için
-                    kullanılır.</strong></li>
-            <li><code>git branch -m &lt;branch_name&gt; &lt;new_branch_name&gt;</code> <strong>: Dal adını değiştirir,
-                    ancak yeni isimde bir dal varsa hata verir.</strong></li>
-            <li><code>git branch -M &lt;branch_name&gt; &lt;new_branch_name&gt;</code> <strong>: Dal adını değiştirir,
-                    yeni isimde bir dal varsa üzerine yazar (force).</strong></li>
-            <li><code>git branch -D &lt;branch_name&gt;</code> <strong>: Lokalde ismi verilen bir dalı (branch) silmek
-                    için kullanılır.</strong></li>
+</ul>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote><ul>
+<li><code>git log</code> <strong>: Yapılan commitleri gösterir.</strong></li>
+<li><code>git log --oneline</code> <strong>: Yapılan commitleri tek satır şeklinde gösterir.</strong></li>
 
-        </ul>
-    </blockquote>
-    <p>&nbsp;</p>
-    <blockquote>
-        <ul>
-            <li><code>git switch &lt;branch_name&gt;</code> <strong>: Girilen branch&#39;a geçiş yapar.</strong></li>
-            <li><code>git checkout &lt;branch_name&gt;</code> <strong>: Uzak depodan yerel depoya indirilen branch&#39;a
-                    geçiş yapar.</strong></li>
+</ul>
+</blockquote>
+<p>&nbsp;</p>
+<p><code>HEAD</code> : Git&#39;in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit&#39;i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.</p>
+<p>&nbsp;</p>
+<blockquote><ul>
+<li><code>.gitignore</code> <strong>: Git&#39;in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.</strong></li>
+<li><code>dizin/*</code>      <strong>: Dizin klasöründeki tüm dosyaları kapsar.</strong></li>
+<li><code>!dizin/b</code>    <strong>: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git merge &lt;branch_name&gt;</code> <strong>: Master branch&#39;ındayken ismi verilen diğer
-                    branch&#39;ı master branch&#39;ıyla birleştirmek için kullanılır.</strong></li>
+</ul>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote><ul>
+<li><strong>Zamanı geri alma yani git deposunda geçmiş tarihli bir commit&#39;e geri gitmemiz için:</strong></li>
 
-        </ul>
-    </blockquote>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><code>git stash</code> <strong>: Git versiyon kontrol sistemi kullanılarak yapılan değişiklikleri geçici
-                    olarak kaydetmenizi sağlayan bir özelliktir. Bu, henüz tamamlanmayan bir iş üzerinde çalışırken veya
-                    bir dal üzerinde çalışırken aniden başka bir acil işle ilgilenmeniz gerektiğinde özellikle
-                    kullanışlıdır.</strong></li>
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git checkout &lt;commit_id&gt;
+</code></pre>
+<blockquote><ul>
+<li><strong>Gittiğimiz committen geri gelmemize yani son commite geri dönmek için:</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git stash list</code> <strong>: Kaydedilen tüm stash&#39;leri listeler.</strong></li>
-            <li><code>stash@{0}</code> <strong>: Git stash listesi içerisindeki ilk yani en son eklenen geçici
-                    değişiklikler listesindeki kaydedilmiş çalışma dizininin (working directory) saklandığı referans
-                    adıdır.</strong></li>
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git checkout master || git switch master
+</code></pre>
+<blockquote><ul>
+<li><strong>Git versiyon değiştirme (silinen tüm dosyaları geri getirmek) için:</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git stash apply</code> <strong>: En son kaydedilen stash&#39;i geri yükler.</strong></li>
-            <li><code>git stash apply stash@{n}</code> <strong>: Belirtilen numaralı stash&#39;i geri yükler.</strong>
-            </li>
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git checkout &lt;commit id&gt; -- .
+</code></pre>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><code>git diff</code> <strong>: Staging alanına eklenmeden önce tüm dosyalarda yapılan değişiklikleri gösterir.</strong></li>
+<li><code>git diff &lt;file_name&gt;</code> <strong>: Staging alanına eklenmeden önce ismi verilen tek bir dosyada yapılan değişiklikleri gösterir.</strong></li>
+<li><code>git diff --staged</code> <strong>: Git deposu ile staging alanındaki değişiklikleri gösterir.</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git stash drop</code> <strong>: En son kaydedilen stash&#39;i siler.</strong></li>
-            <li><code>git stash drop stash@{n}</code> <strong>: Belirtilen numaralı stash&#39;i siler.</strong></li>
+</ul>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote><ul>
+<li><code>git branch</code> <strong>: Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu gösterir.</strong></li>
+<li><code>git branch --all</code> <strong>: Yerelimizde ve uzak depodaki tüm dalları gösterir.</strong></li>
+<li><code>git branch -r</code> <strong>: Uzak depodaki dalları gösterir.</strong></li>
+<li><code>git branch &lt;branch_name&gt;</code>  <strong>:  Yeni dal (branch) oluşturmak için kullanılır.</strong></li>
+<li><code>git branch -m &lt;branch_name&gt; &lt;new_branch_name&gt;</code> <strong>: Dal adını değiştirir, ancak yeni isimde bir dal varsa hata verir.</strong></li>
+<li><code>git branch -M &lt;branch_name&gt; &lt;new_branch_name&gt;</code> <strong>: Dal adını değiştirir, yeni isimde bir dal varsa üzerine yazar (force).</strong></li>
+<li><code>git branch -D &lt;branch_name&gt;</code> <strong>: Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git stash pop</code> <strong>: Komutu, en son kaydedilen stash girdisini alır ve bu değişiklikleri
-                    uygular (apply) ve stash havuzundan (stash pool) kaldırır. Yani, pop işlemi stash havuzundan en son
-                    eklenen stash girdisini çıkarır ve çalışma dizinindeki değişiklikleri bu girdiye göre
-                    günceller.</strong></li>
+</ul>
+</blockquote>
+<p>&nbsp;</p>
+<blockquote><ul>
+<li><code>git switch &lt;branch_name&gt;</code> <strong>: Girilen branch&#39;a  geçiş yapar.</strong></li>
+<li><code>git checkout &lt;branch_name&gt;</code> <strong>: Uzak depodan yerel depoya indirilen branch&#39;a geçiş yapar.</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git stash clear</code> <strong>: Komutu ise stash havuzundaki tüm stash girdilerini
-                    siler.</strong></li>
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git merge &lt;branch_name&gt;</code> <strong>: Master branch&#39;ındayken ismi verilen diğer branch&#39;ı master branch&#39;ıyla birleştirmek için kullanılır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><code>git reset &lt;commit_id&gt;</code> <strong>: Belirtilen bir commit&#39;e geri dönmeyi sağlar ve bu
-                    işlem esnasında commit&#39;ler silinir değişiklikler kalır.</strong></li>
-            <li><code>git reset --hard &lt;commit_id&gt;</code> <strong>: Belirtilen bir commit&#39;e geri dönmeyi
-                    sağlar ve bu işlem esnasında commit&#39;ler ve değişiklikler silinir.</strong></li>
+</ul>
+</blockquote>
+<hr />
+<blockquote><ul>
+<li><code>git stash</code> <strong>: Git versiyon kontrol sistemi kullanılarak yapılan değişiklikleri geçici olarak kaydetmenizi sağlayan bir özelliktir. Bu, henüz tamamlanmayan bir iş üzerinde çalışırken veya bir dal üzerinde çalışırken aniden başka bir acil işle ilgilenmeniz gerektiğinde özellikle kullanışlıdır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <blockquote>
-        <ul>
-            <li><code>git revert &lt;commit_id&gt;</code> <strong>: Belirli bir commit&#39;i geri alırsınız ve bu işlem
-                    sonucunda yeni bir commit oluşur. Bu sayede, Git geçmişi değiştirilmez, ancak istenmeyen
-                    değişiklikler geri alınmış olur.</strong></li>
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git stash list</code> <strong>: Kaydedilen tüm stash&#39;leri listeler.</strong></li>
+<li><code>stash@{0}</code> <strong>: Git stash listesi içerisindeki ilk yani en son eklenen geçici değişiklikler listesindeki kaydedilmiş çalışma dizininin (working directory) saklandığı referans adıdır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <hr />
-    <blockquote>
-        <ul>
-            <li>
-                <p><code>git rebase</code> <strong>komutu, git’te branch (dal) yönetiminde kullanılır ve commit
-                        geçmişini düzenlemeye yarar. Temel amacı, bir branch’in temelini başka bir branch’in en son
-                        haliyle değiştirmek ve daha &quot;düzgün&quot; bir commit geçmişi oluşturmaktır.</strong></p>
-                <p><strong>Yani:</strong></p>
-                <ul>
-                    <li><strong>Branch’inizdeki commitleri, hedef branch’in en güncel commitlerinin üstüne
-                            &quot;taşır&quot;.</strong></li>
-                    <li><strong>Genellikle</strong> <code>git merge</code> <strong>ile benzer problemlere çözüm getirir
-                            ama geçmişi daha lineer hale getirir.</strong></li>
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git stash apply</code> <strong>: En son kaydedilen stash&#39;i geri yükler.</strong></li>
+<li><code>git stash apply stash@{n}</code> <strong>: Belirtilen numaralı stash&#39;i geri yükler.</strong></li>
 
-                </ul>
-                <p><strong>En yaygın kullanım:</strong></p>
-                <pre><code class='language-shell' lang='shell'>git checkout feature-branch
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git stash drop</code> <strong>: En son kaydedilen stash&#39;i siler.</strong></li>
+<li><code>git stash drop stash@{n}</code> <strong>: Belirtilen numaralı stash&#39;i siler.</strong></li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git stash pop</code> <strong>: Komutu, en son kaydedilen stash girdisini alır ve bu değişiklikleri uygular (apply) ve stash havuzundan (stash pool) kaldırır. Yani, pop işlemi stash havuzundan en son eklenen stash girdisini çıkarır ve çalışma dizinindeki değişiklikleri bu girdiye göre günceller.</strong></li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git stash clear</code> <strong>: Komutu ise stash havuzundaki tüm stash girdilerini siler.</strong></li>
+
+</ul>
+</blockquote>
+<hr />
+<blockquote><ul>
+<li><code>git reset &lt;commit_id&gt;</code> <strong>: Belirtilen bir commit&#39;e geri dönmeyi sağlar ve bu işlem esnasında commit&#39;ler silinir değişiklikler kalır.</strong></li>
+<li><code>git reset --hard &lt;commit_id&gt;</code> <strong>: Belirtilen bir commit&#39;e geri dönmeyi sağlar ve bu işlem esnasında commit&#39;ler ve değişiklikler silinir.</strong></li>
+
+</ul>
+</blockquote>
+<blockquote><ul>
+<li><code>git revert &lt;commit_id&gt;</code> <strong>: Belirli bir commit&#39;i geri alırsınız ve bu işlem sonucunda yeni bir commit oluşur. Bu sayede, Git geçmişi değiştirilmez, ancak istenmeyen değişiklikler geri alınmış olur.</strong></li>
+
+</ul>
+</blockquote>
+<hr />
+<blockquote><ul>
+<li><p><code>git rebase</code> <strong>komutu, git’te branch  (dal) yönetiminde kullanılır ve commit geçmişini düzenlemeye yarar.  Temel amacı, bir branch’in temelini başka bir branch’in en son haliyle  değiştirmek ve daha &quot;düzgün&quot; bir commit geçmişi oluşturmaktır.</strong></p>
+<p><strong>Yani:</strong></p>
+<ul>
+<li><strong>Branch’inizdeki commitleri, hedef branch’in en güncel commitlerinin üstüne &quot;taşır&quot;.</strong></li>
+<li><strong>Genellikle</strong> <code>git merge</code> <strong>ile benzer problemlere çözüm getirir ama geçmişi daha lineer hale getirir.</strong></li>
+
+</ul>
+<p><strong>En yaygın kullanım:</strong></p>
+<pre><code class='language-shell' lang='shell'>git checkout feature-branch
 git rebase main
 </code></pre>
-                <p><strong>Bu komut,</strong> <code>feature-branch</code> <strong>dalındaki değişiklikleri,</strong>
-                    <code>main</code> <strong>dalının en güncel halinin üzerine taşır.</strong></p>
-                <p><strong>Faydaları:</strong></p>
-                <ul>
-                    <li><strong>Commit geçmişi daha temiz ve düz olur.</strong></li>
-                    <li><strong>Ortak bir temel üzerinde çalışmayı kolaylaştırır.</strong></li>
-                    <li><strong>Merge commitleri oluşturmaz (tüm commitler tek bir çizgide görünür).</strong></li>
+<p><strong>Bu komut,</strong> <code>feature-branch</code> <strong>dalındaki değişiklikleri,</strong> <code>main</code> <strong>dalının en güncel halinin üzerine taşır.</strong></p>
+<p><strong>Faydaları:</strong></p>
+<ul>
+<li><strong>Commit geçmişi daha temiz ve düz olur.</strong></li>
+<li><strong>Ortak bir temel üzerinde çalışmayı kolaylaştırır.</strong></li>
+<li><strong>Merge commitleri oluşturmaz (tüm commitler tek bir çizgide görünür).</strong></li>
 
-                </ul>
-                <p><strong>Dikkat edilmesi gereken noktalar:</strong></p>
-                <ul>
-                    <li><strong>Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde
-                            kullanırken dikkatli olunmalıdır.</strong></li>
-                    <li><strong>Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.</strong></li>
+</ul>
+<p><strong>Dikkat edilmesi gereken noktalar:</strong></p>
+<ul>
+<li><strong>Rebase işlemi, var olan commitleri yeniden yazdığı için, paylaşılan branch’lerde kullanırken dikkatli olunmalıdır.</strong></li>
+<li><strong>Başkaları tarafından erişilen branch’lerde rebase yapılmamalı.</strong></li>
 
-                </ul>
-                <p><strong>Kısaca,</strong> <code>git rebase</code> <strong>, branch’leri birleştirirken temiz ve
-                        düzenli bir commit geçmişi sağlar.</strong></p>
-            </li>
+</ul>
+<p><strong>Kısaca,</strong> <code>git rebase</code> <strong>, branch’leri birleştirirken temiz ve düzenli bir commit geçmişi sağlar.</strong></p>
+</li>
 
-        </ul>
-    </blockquote>
-    <hr />
-    <p>&nbsp;</p>
-    <h3 id='remote'>Remote</h3>
-    <p><strong>Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:</strong>
-        <code>git remote add &lt;remote_name&gt; https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git</code>
-        <strong>komutunda</strong> <code>&lt;remote_name&gt;</code> <strong>kısmına istediğiniz ismi verebilirsiniz.
-            Yani</strong> <code>&lt;remote_name&gt;</code> <strong>dediğimizde</strong>
-        <code>https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git</code> <strong>bu url temsil
-            edilmektedir.</strong></p>
-    <p>&nbsp;</p>
-    <hr />
-    <h3 id='githubda-yeni-bir-repo-depo-oluşturmak-için-aşağıdaki-adımları-takip-edebilirsiniz'>GitHub’da yeni bir repo
-        (depo) oluşturmak için aşağıdaki adımları takip edebilirsiniz:</h3>
-    <ol start=''>
-        <li>
-            <p><strong>GitHub Hesabınıza Giriş Yapın:</strong>
-                <a href='https://github.com/'>https://github.com</a> adresine gidin ve hesabınıza giriş yapın.
-            </p>
-        </li>
-        <li>
-            <p><strong>Yeni Depo Oluşturma Sayfasına Gidin:</strong>
-                Sağ üst köşedeki “+” simgesine tıklayın ve açılan menüden “New repository” (Yeni depo) seçeneğini seçin.
-                Alternatif: <a href='https://github.com/new' target='_blank' class='url'>https://github.com/new</a>
-                adresine doğrudan gidebilirsiniz.</p>
-        </li>
-        <li>
-            <p><strong>Depo Bilgilerini Doldurun:</strong></p>
-            <ul>
-                <li>
-                    <p><strong>Owner (Sahip):</strong> Depoyu kendi hesabınızda mı yoksa bir organizasyonda mı
-                        oluşturmak istediğinizi seçin.</p>
-                </li>
-                <li>
-                    <p><strong>Repository Name (Depo Adı):</strong> Depoya benzersiz bir isim verin.</p>
-                </li>
-                <li>
-                    <p><strong>Description (Açıklama):</strong> (İsteğe bağlı) Depo hakkında kısa bir açıklama yazın.
-                    </p>
-                </li>
-                <li>
-                    <p>Visibility (Görünürlük):</p>
-                    <ul>
-                        <li><strong>Public:</strong> Herkes görebilir.</li>
-                        <li><strong>Private:</strong> Sadece siz ve davet ettikleriniz görebilir.</li>
+</ul>
+</blockquote>
+<hr />
+<p>&nbsp;</p>
+<h3 id='remote'>Remote</h3>
+<p><strong>Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:</strong>                                       <code>git remote add &lt;remote_name&gt; https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git</code> <strong>komutunda</strong> <code>&lt;remote_name&gt;</code> <strong>kısmına istediğiniz ismi verebilirsiniz. Yani</strong> <code>&lt;remote_name&gt;</code> <strong>dediğimizde</strong> <code>https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git</code> <strong>bu url temsil edilmektedir.</strong></p>
+<p>&nbsp;</p>
+<hr />
+<h3 id='githubda-yeni-bir-repo-depo-oluşturmak-için-aşağıdaki-adımları-takip-edebilirsiniz'>GitHub’da yeni bir repo (depo) oluşturmak için aşağıdaki adımları takip edebilirsiniz:</h3>
+<ol start='' >
+<li><p><strong>GitHub Hesabınıza Giriş Yapın:</strong>
+<a href='https://github.com/'>https://github.com</a> adresine gidin ve hesabınıza giriş yapın.</p>
+</li>
+<li><p><strong>Yeni Depo Oluşturma Sayfasına Gidin:</strong>
+Sağ üst köşedeki “+” simgesine tıklayın ve açılan menüden “New repository” (Yeni depo) seçeneğini seçin.
+Alternatif: <a href='https://github.com/new' target='_blank' class='url'>https://github.com/new</a> adresine doğrudan gidebilirsiniz.</p>
+</li>
+<li><p><strong>Depo Bilgilerini Doldurun:</strong></p>
+<ul>
+<li><p><strong>Owner (Sahip):</strong> Depoyu kendi hesabınızda mı yoksa bir organizasyonda mı oluşturmak istediğinizi seçin.</p>
+</li>
+<li><p><strong>Repository Name (Depo Adı):</strong> Depoya benzersiz bir isim verin.</p>
+</li>
+<li><p><strong>Description (Açıklama):</strong> (İsteğe bağlı) Depo hakkında kısa bir açıklama yazın.</p>
+</li>
+<li><p>Visibility (Görünürlük):</p>
+<ul>
+<li><strong>Public:</strong> Herkes görebilir.</li>
+<li><strong>Private:</strong> Sadece siz ve davet ettikleriniz görebilir.</li>
 
-                    </ul>
-                </li>
+</ul>
+</li>
 
-            </ul>
-        </li>
-        <li>
-            <p><strong>İlk Ayarları Yapın (Opsiyonel):</strong></p>
-            <ul>
-                <li>“Add a README file” kutucuğunu işaretleyerek başlangıçta bir README dosyası oluşturabilirsiniz.</li>
-                <li>.gitignore ve lisans eklemek için uygun seçenekleri belirleyebilirsiniz.</li>
+</ul>
+</li>
+<li><p><strong>İlk Ayarları Yapın (Opsiyonel):</strong></p>
+<ul>
+<li>“Add a README file” kutucuğunu işaretleyerek başlangıçta bir README dosyası oluşturabilirsiniz.</li>
+<li>.gitignore ve lisans eklemek için uygun seçenekleri belirleyebilirsiniz.</li>
 
-            </ul>
-        </li>
-        <li>
-            <p><strong>“Create Repository” Butonuna Tıklayın:</strong>
-                Sayfanın en altında yeşil renkli “Create repository” butonuna tıklayın.</p>
-        </li>
-        <li>
-            <p><strong>(Opsiyonel) Depoyu Bilgisayarınıza Klonlayın:</strong>
-                Oluşturduğunuz repoyu kendi bilgisayarınıza kopyalamak için “Code” butonuna tıklayın ve bağlantıyı
-                kopyalayıp terminalde şu komutu kullanın:</p>
-            <pre><code class='language-shell' lang='shell'>git clone https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
+</ul>
+</li>
+<li><p><strong>“Create Repository” Butonuna Tıklayın:</strong>
+Sayfanın en altında yeşil renkli “Create repository” butonuna tıklayın.</p>
+</li>
+<li><p><strong>(Opsiyonel) Depoyu Bilgisayarınıza Klonlayın:</strong>
+Oluşturduğunuz repoyu kendi bilgisayarınıza kopyalamak için “Code” butonuna tıklayın ve bağlantıyı kopyalayıp terminalde şu komutu kullanın:</p>
+<pre><code class='language-shell' lang='shell'>git clone https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
 </code></pre>
-        </li>
+</li>
 
-    </ol>
-    <p>&nbsp;</p>
-    <hr />
-    <p><img src="../images/new-repo.png"></p>
-    <hr />
-    <p><img src="../images/create-new-repo.png"></p>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Yereldeki repoya uzak sunucudaki repoyu ilişkilendirmek için uzak repo adresini https protokolü
-                    ile ekliyoruz.</strong></li>
+</ol>
+<p>&nbsp;</p>
+<hr />
+<p><img src="../images/new-repo.png"></p>
+<hr />
+<p><img src="../images/create-new-repo.png"></p>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><strong>Yereldeki repoya uzak sunucudaki repoyu  ilişkilendirmek için uzak repo adresini https protokolü ile ekliyoruz.</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git remote add &lt;remote_name&gt; https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git remote add &lt;remote_name&gt; https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
 </code></pre>
-    <p>&nbsp;</p>
-    <h3 id='pat-personal-access-token-nedir-ne-i̇çin-kullanılır'>PAT (Personal Access Token) Nedir, Ne İçin Kullanılır?
-    </h3>
-    <p><strong>PAT (Personal Access Token) GitHub, GitLab gibi platformlarda kullanıcıların hesabına komut satırı (CLI)
-            veya üçüncü parti uygulamalar üzerinden erişim sağlamak için kullandığı bir kimlik doğrulama yöntemidir.
-            Özellikle şifre ile kimlik doğrulama devre dışı bırakıldığından, HTTPS ile erişimlerde şifre yerine PAT
-            kullanılır.</strong></p>
-    <p><strong>Kullanım amaçları:</strong></p>
-    <ul>
-        <li><strong>Komut satırı veya uygulamalar üzerinden kimlik doğrulama yapmak</strong></li>
-        <li><strong>Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak</strong></li>
-        <li><strong>Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek</strong></li>
+<p>&nbsp;</p>
+<h3 id='pat-personal-access-token-nedir-ne-i̇çin-kullanılır'>PAT (Personal Access Token) Nedir, Ne İçin Kullanılır?</h3>
+<p><strong>PAT (Personal Access Token) GitHub, GitLab gibi platformlarda kullanıcıların hesabına komut satırı (CLI) veya üçüncü parti uygulamalar üzerinden erişim sağlamak için kullandığı bir kimlik doğrulama yöntemidir. Özellikle şifre ile kimlik doğrulama devre dışı bırakıldığından, HTTPS ile erişimlerde şifre yerine PAT kullanılır.</strong></p>
+<p><strong>Kullanım amaçları:</strong></p>
+<ul>
+<li><strong>Komut satırı veya uygulamalar üzerinden kimlik doğrulama yapmak</strong></li>
+<li><strong>Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak</strong></li>
+<li><strong>Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek</strong></li>
 
-    </ul>
-    <p>&nbsp;</p>
-    <hr />
-    <h3 id='pat-nasıl-oluşturulur'>PAT Nasıl Oluşturulur?</h3>
-    <p><strong>1. GitHub hesabına giriş yap</strong>
-        <strong>Sağ üstteki profil fotoğrafına tıkla</strong> → <em>Settings</em> <strong>menüsüne gir.</strong>
-    </p>
-    <p><strong>2. Developer settings → Personal access tokens başlığına gel.</strong></p>
-    <p><strong>3.</strong> <em>Tokens (classic)</em> <strong>veya</strong> <em>Fine-grained tokens</em>
-        <strong>sekmesini seç.</strong></p>
-    <p><strong>4. Generate new token butonuna tıkla.</strong></p>
-    <p><strong>5. Açılan formda:</strong></p>
-    <ul>
-        <li><strong>Token&#39;a bir isim ver (ör: &quot;CLI erişimi için&quot;)</strong></li>
-        <li><strong>Erişim süresi (expiration) belirle</strong></li>
-        <li><strong>Hangi izinlere sahip olacağını seç (repo, workflow, user, vs.)</strong></li>
+</ul>
+<p>&nbsp;</p>
+<hr />
+<h3 id='pat-nasıl-oluşturulur'>PAT Nasıl Oluşturulur?</h3>
+<p><strong>1. GitHub hesabına giriş yap</strong>
+   <strong>Sağ üstteki profil fotoğrafına tıkla</strong> → <em>Settings</em> <strong>menüsüne gir.</strong></p>
+<p><strong>2. Developer settings → Personal access tokens başlığına gel.</strong></p>
+<p><strong>3.</strong> <em>Tokens (classic)</em> <strong>veya</strong> <em>Fine-grained tokens</em> <strong>sekmesini seç.</strong></p>
+<p><strong>4. Generate new token butonuna tıkla.</strong></p>
+<p><strong>5. Açılan formda:</strong></p>
+<ul>
+<li><strong>Token&#39;a bir isim ver (ör: &quot;CLI erişimi için&quot;)</strong></li>
+<li><strong>Erişim süresi (expiration) belirle</strong></li>
+<li><strong>Hangi izinlere sahip olacağını seç (repo, workflow, user, vs.)</strong></li>
 
-    </ul>
-    <p><strong>6. Generate token diyerek token&#39;ı oluştur.</strong>
-        <strong>Oluşan token&#39;ı güvenli bir yere kopyala (çünkü bir daha gösterilmez).</strong>
-    </p>
-    <p>&nbsp;</p>
-    <hr />
-    <h3 id='komut-satırında-pat-ile-kimlik-doğrulama'>Komut Satırında PAT ile Kimlik Doğrulama</h3>
-    <blockquote>
-        <ul>
-            <li><strong>PAT’i kullanarak HTTPS ile push/pull işlemi yapmak için:</strong></li>
+</ul>
+<p><strong>6. Generate token diyerek token&#39;ı oluştur.</strong>
+   <strong>Oluşan token&#39;ı güvenli bir yere kopyala (çünkü bir daha gösterilmez).</strong></p>
+<p>&nbsp;</p>
+<hr />
+<h3 id='komut-satırında-pat-ile-kimlik-doğrulama'>Komut Satırında PAT ile Kimlik Doğrulama</h3>
+<blockquote><ul>
+<li><strong>PAT’i kullanarak HTTPS ile push/pull işlemi yapmak için:</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git remote set-url &lt;remote_name&gt; https://&lt;github_username&gt;:&lt;pat&gt;@github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git remote set-url &lt;remote_name&gt; https://&lt;github_username&gt;:&lt;pat&gt;@github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
 </code></pre>
-    <h6
-        id='not--kısacası-pat-güvenli-ve-modern-bir-kimlik-doğrulama-yöntemidir-ve-github-gibi-platformlarda-şifreyle-girişin-yerini-almıştır'>
-        Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle
-        girişin yerini almıştır.</h6>
-    <p>&nbsp;</p>
-    <hr />
-    <h3 id='komut-satırında-ssh-ile-kimlik-doğrulama'>Komut Satırında SSH ile Kimlik Doğrulama</h3>
-    <p><strong>1.SSH anahtarınızı oluşturmak için:</strong>
-        <code>ssh-keygen -t ed25519 -C &quot;email@adresiniz.com&quot;</code>
-        <strong>Varsayılan dosya yolunu (Enter’a basarak) ve bir şifre girip girmemeyi seçebilirsiniz.</strong>
-    </p>
-    <p><strong>2.Genel anahtarı kopyalamak için:</strong>
-        <code>cat ~/.ssh/id_ed25519.pub</code>
-        <strong>Çıkan anahtarı kopyalayın.</strong>
-    </p>
-    <p><strong>3.Genel anahtarı GitHub’a ekleyin:</strong>
-        <strong>GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key.</strong>
-        <strong>Title kısmına bir isim verin, kopyaladığınız anahtarı “Key” alanına yapıştırın ve kaydedin.</strong>
-    </p>
-    <p><strong>4.Bağlantıyı test edin:</strong>
-        <code>ssh -T git@github.com</code>
-        <strong>İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın.
-            “Hi username! You&#39;ve successfully authenticated...” mesajı görmelisiniz.</strong>
-    </p>
-    <p><strong>5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:</strong>
-        <code>git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git</code>
-    </p>
-    <p><strong>6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:</strong>
-        <code>git remote set-url &lt;remote_name&gt; git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git</code>
-    </p>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><code>git remote -v</code> <strong>: Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi
-                    hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için
-                    kullanılır.</strong></li>
+<p><small>Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.</small></p>
+<p>&nbsp;</p>
+<hr />
+<h3 id='komut-satırında-ssh-ile-kimlik-doğrulama'>Komut Satırında SSH ile Kimlik Doğrulama</h3>
+<p><strong>1.SSH anahtarınızı oluşturmak için:</strong>
+<code>ssh-keygen -t ed25519 -C &quot;email@adresiniz.com&quot;</code>
+<strong>Varsayılan dosya yolunu (Enter’a basarak) ve bir şifre girip girmemeyi seçebilirsiniz.</strong></p>
+<p><strong>2.Genel anahtarı kopyalamak için:</strong>
+<code>cat ~/.ssh/id_ed25519.pub</code>
+<strong>Çıkan anahtarı kopyalayın.</strong></p>
+<p><strong>3.Genel anahtarı GitHub’a ekleyin:</strong>
+<strong>GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key.</strong>
+<strong>Title kısmına bir isim verin, kopyaladığınız anahtarı “Key” alanına yapıştırın ve kaydedin.</strong></p>
+<p><strong>4.Bağlantıyı test edin:</strong>
+<code>ssh -T git@github.com</code>
+<strong>İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You&#39;ve successfully authenticated...” mesajı görmelisiniz.</strong></p>
+<p><strong>5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:</strong>
+<code>git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git</code></p>
+<p><strong>6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:</strong>
+<code>git remote set-url &lt;remote_name&gt; git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git</code></p>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><code>git remote -v</code> <strong>: Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için kullanılır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Uzak sunucudaki repoya yapılan commitleri göndermek için kullanabilirsiniz.</strong></li>
+</ul>
+</blockquote>
+<hr />
+<blockquote><ul>
+<li><strong>Uzak sunucudaki repoya yapılan commitleri göndermek için kullanabilirsiniz.</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git push -u &lt;remote_name&gt; &lt;branch_name&gt;
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git push -u &lt;remote_name&gt; &lt;branch_name&gt;
 </code></pre>
-    <h6
-        id='not---u-upstream-ifadesi-varsayılan-yukarı-akış-depoya-remotename-ve-ana-dal-branchname-için-bir-yer-işaretçisi-belirler-bu-işaretçi-sayesinde-bir-sonraki-git-push-komutunu-çağırdığınızda-git-remotename-ve-branchname-argümanlarını-tekrarlamak-yerine-bu-yer-işaretçisini-kullanarak-sadece-git-push-komutu-ile-aynı-işlemi-yapabilirsiniz'>
-        Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer
-        işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve
-        (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece <code>git push</code>
-        komutu ile aynı işlemi yapabilirsiniz.</h6>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Fetch işlemi, uzak depodaki yeni değişiklikleri lokal depoya indirir ancak lokaldeki çalışma
-                    dizinine (working directory) birleştirmez. Bu işlem, uzak depodaki değişikliklerin var olup
-                    olmadığını kontrol etmek için kullanır.</strong></li>
+<p><small>Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece <code>git push</code> komutu ile aynı işlemi yapabilirsiniz.</small></p>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><strong>Fetch işlemi, uzak depodaki yeni değişiklikleri lokal depoya indirir ancak lokaldeki çalışma dizinine (working directory) birleştirmez. Bu işlem, uzak depodaki değişikliklerin var olup olmadığını kontrol etmek için kullanır.</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git fetch &lt;remote_name&gt; &lt;branch_name&gt;
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git fetch &lt;remote_name&gt; &lt;branch_name&gt;
 </code></pre>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Pull işlemi, uzak depodaki yeni değişiklikleri hem indirir hem de lokaldeki değişikliklerle
-                    birleştirir. Bu işlem, uzak depodaki değişiklikleri lokaldeki çalışma dizinine (working directory)
-                    eklemek istediğinizde kullanılır.</strong>
-                <strong>git pull = git fetch + git merge</strong>
-            </li>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><strong>Pull işlemi, uzak depodaki yeni değişiklikleri hem indirir hem de lokaldeki değişikliklerle birleştirir. Bu işlem, uzak depodaki değişiklikleri lokaldeki çalışma dizinine (working directory) eklemek istediğinizde kullanılır.</strong>
+<strong>git pull = git fetch + git merge</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git pull &lt;remote_name&gt; &lt;branch_name&gt;
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git pull &lt;remote_name&gt; &lt;branch_name&gt;
 </code></pre>
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-    <hr />
-    <blockquote>
-        <ul>
-            <li><strong>Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı https protokolü ile kopyalar
-                    ve lokalde yeni bir git deposu oluşturur.</strong></li>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr />
+<blockquote><ul>
+<li><strong>Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı https protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git clone https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git clone https://github.com/&lt;github_username&gt;/&lt;repo_name&gt;.git
 </code></pre>
-    <blockquote>
-        <ul>
-            <li><strong>Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı ssh protokolü ile kopyalar ve
-                    lokalde yeni bir git deposu oluşturur.</strong></li>
+<p><small>Not: Bu işlem sonucunda username ve password giriși için username kısmına kullanıcıadı şifre kısmına ise oluşturduğunuz pat girilir. Yalnız bu kullanımda her <code>push</code> için giriş gerekir.</small></p>
+<p>&nbsp;</p>
+<p>Çözüm için klonlama yaparken:</p>
+<pre><code class='language-shell' lang='shell'>git clone https://&lt;username&gt;:&lt;pat&gt;@github.com/&lt;username&gt;/&lt;repo_name&gt;.git
+</code></pre>
+<blockquote><ul>
+<li><strong>Bu komut, uzak depodaki tüm dosyaları, tarihçeyi ve yapılandırmayı ssh protokolü ile kopyalar ve lokalde yeni bir git deposu oluşturur.</strong></li>
 
-        </ul>
-    </blockquote>
-    <pre><code class='language-shell' lang='shell'>git clone git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git
+</ul>
+</blockquote>
+<pre><code class='language-shell' lang='shell'>git clone git@github.com:&lt;github_username&gt;/&lt;repo_name&gt;.git
 </code></pre>
-    <p>&nbsp;</p>
-    <hr />
-    <h3 align="center">Git Sistemi (Git System)
-        <h3 />
-        <p><img src="../images/git-system.png"></p>
-        <p>&nbsp;</p>
-        </div>
+<p>&nbsp;</p>
+<hr />
+<h3 align="center">Git Sistemi (Git System)<h3/>
+<p><img src="../images/git-system.png"></p>
+<p>&nbsp;</p>
 </body>
-
 </html>
