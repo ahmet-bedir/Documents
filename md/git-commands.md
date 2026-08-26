@@ -1,4 +1,4 @@
-<p align="center">
+<p aliges="center">
 	<img src="../images/git-banner.png" width="490"/>
 <p/>
 
@@ -11,9 +11,33 @@
 
 # Versiyon Kontrol Sistemi (Version Control System — VCS)
 
+Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
-Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır.
+### VCS'nin Kısa Tarihi
 
+🏛️ **1. Nesil: Yerel Sistemler (1970-80'ler)**
+
+İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
+
+🏢 **2. Nesil: Merkezi Sistemler (1990-2000'ler)**
+
+CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
+
+Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.
+
+Merkezi (Centralized) Model Dezavantajları:
+
+- Tek nokta arızası (Single Point of Failure): Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.
+
+- Ağ bağımlılığı
+
+- Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.
+
+🌐 **3. Nesil: Dağıtık Sistemler (2005-Günümüz)**
+
+Dağıtık (Distributed) Model — Git Türevleri
+
+- 
 ---
 
 ## Git (Global Information Tracker) Nedir?
