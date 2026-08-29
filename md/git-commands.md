@@ -9,17 +9,17 @@
 
 ---
 
-## Versiyon Kontrol Sistemi (Version Control System — VCS)
+### Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
-### VCS'nin Kısa Tarihi
+#### VCS'nin Kısa Tarihi
 
-#### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
+##### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 
 İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
 
-#### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
+##### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
 
 CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
 
@@ -35,7 +35,7 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 - Geliştiricilerde sadece dosyaların son hali vardı.
 
-#### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
+##### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
 **Dağıtık (Distributed) Model — Git ve Türevleri**
 
@@ -47,11 +47,11 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 ---
 
-### Git (Global Information Tracker) Nedir?
+#### Git (Global Information Tracker) Nedir?
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
-#### Üç Alan: Working Directory, Staging Area, Repository
+##### Üç Alan: Working Directory, Staging Area, Repository
 
 ```text
 text

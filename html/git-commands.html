@@ -11,38 +11,35 @@
 <p>&nbsp;</p>
 <h6 id='son-güncelleme--082026'>Son güncelleme : 08/2026</h6>
 <hr />
-<h2 id='versiyon-kontrol-sistemi-version-control-system-----vcs'>Versiyon Kontrol Sistemi (Version Control System — VCS)</h2>
+<h3 id='versiyon-kontrol-sistemi-version-control-system-----vcs'>Versiyon Kontrol Sistemi (Version Control System — VCS)</h3>
 <p>Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.</p>
-<h3 id='vcsnin-kısa-tarihi'>VCS&#39;nin Kısa Tarihi</h3>
-<h4 id='🏛️-1-nesil-yerel-sistemler-1970-80ler'>🏛️ 1. Nesil: Yerel Sistemler (1970-80&#39;ler)</h4>
+<h4 id='vcsnin-kısa-tarihi'>VCS&#39;nin Kısa Tarihi</h4>
+<h5 id='🏛️-1-nesil-yerel-sistemler-1970-80ler'>🏛️ 1. Nesil: Yerel Sistemler (1970-80&#39;ler)</h5>
 <p>İlk VCS&#39;ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)</p>
-<h4 id='🏢-2-nesil-merkezi-sistemler-1990-2000ler'>🏢 2. Nesil: Merkezi Sistemler (1990-2000&#39;ler)</h4>
+<h5 id='🏢-2-nesil-merkezi-sistemler-1990-2000ler'>🏢 2. Nesil: Merkezi Sistemler (1990-2000&#39;ler)</h5>
 <p>CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.</p>
 <p>Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.</p>
-<p>Merkezi (Centralized) Model Dezavantajları:</p>
+<p><strong>Merkezi (Centralized) Model Dezavantajları:</strong></p>
 <ul>
 <li>Tek nokta arızası (Single Point of Failure): Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.</li>
-<li>Ağ bağımlılığı</li>
+<li>Ağ bağımlılığı.</li>
 <li>Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.</li>
+<li>Geliştiricilerde sadece dosyaların son hali vardı.</li>
 
 </ul>
-<h4 id='🌐-3-nesil-dağıtık-sistemler-2005-günümüz'>🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)</h4>
-<p>Dağıtık (Distributed) Model — Git Türevleri</p>
+<h5 id='🌐-3-nesil-dağıtık-sistemler-2005-günümüz'>🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)</h5>
+<p><strong>Dağıtık (Distributed) Model — Git ve Türevleri</strong></p>
 <ul>
-<li></li>
+<li>Her geliştirici, projenin tam kopyasına sahip.</li>
+<li>İnternetsiz çalışabilirsin.</li>
+<li>Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.</li>
 
 </ul>
 <hr />
-<h3 id='git-global-information-tracker-nedir'>Git (Global Information Tracker) Nedir?</h3>
-<p>Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler.</p>
-<h4 id='üç-alan-working-directory-staging-area-repository'>Üç Alan: Working Directory, Staging Area, Repository</h4>
+<h4 id='git-global-information-tracker-nedir'>Git (Global Information Tracker) Nedir?</h4>
+<p>Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit&#39;te projenin tamamının anlık görüntüsünü (snapshot) saklar.</p>
+<h5 id='üç-alan-working-directory-staging-area-repository'>Üç Alan: Working Directory, Staging Area, Repository</h5>
 <pre><code class='language-text' lang='text'>text
-</code></pre>
-<pre><code class='language-ini' lang='ini'>ini
-</code></pre>
-<pre><code class='language-shell' lang='shell'>bash
-</code></pre>
-<pre><code class='language-shell' lang='shell'>shell
 </code></pre>
 <p>&nbsp;</p>
 <h5 id='1-working-directory-çalışma-dizini'>1. Working Directory (Çalışma Dizini)</h5>
