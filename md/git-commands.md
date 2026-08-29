@@ -25,41 +25,36 @@ CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
 
 Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.
 
-Merkezi (Centralized) Model Dezavantajları:
+**Merkezi (Centralized) Model Dezavantajları:**
 
 - Tek nokta arızası (Single Point of Failure): Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.
 
-- Ağ bağımlılığı
+- Ağ bağımlılığı.
 
 - Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.
 
+- Geliştiricilerde sadece dosyaların son hali vardı.
+
 #### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
-Dağıtık (Distributed) Model — Git Türevleri
+**Dağıtık (Distributed) Model — Git ve Türevleri**
 
-- 
+- Her geliştirici, projenin tam kopyasına sahip.
+
+- İnternetsiz çalışabilirsin.
+
+- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.
+
 ---
 
 ### Git (Global Information Tracker) Nedir?
 
-Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler.
+Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
 #### Üç Alan: Working Directory, Staging Area, Repository
 
 ```text
 text
-```
-
-```ini
-ini
-```
-
-```bash
-bash
-```
-
-```shell
-shell
 ```
 
 
