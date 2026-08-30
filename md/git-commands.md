@@ -59,10 +59,10 @@ Git, dosyalarını üç temel alanda yönetir.
 ┌──────────────┐     ┌──────────────┐      ┌──────────────┐
 │   Working    │     │   Staging    │      │  Repository  │
 │  Directory   │────▶│    Area      │─────▶│   (.git)     │
-│              │ add │  (Index)     │commit│              │
-│  Dosyalarını │     │  Sahneye     │      │  Kalıcı      │
-│  düzenlediğin│     │  hazırladığın│      │  kayıt       │
-│  yer         │     │  yer         │      │              │
+│              │ add │   (Index)    │commit│              │
+│ Dosyalarını  │     │   Sahneye    │      │    Kalıcı    │
+│ düzenlediğin │     │ hazırladığın │      │    kayıt     │
+│     yer      │     │     yer      │      │              │
 └──────────────┘     └──────────────┘      └──────────────┘
 ```
 
