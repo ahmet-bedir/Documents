@@ -56,14 +56,14 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 Git, dosyalarını üç temel alanda yönetir.
 
 ```text
-┌──────────────┐     ┌──────────────┐     ┌──────────────┐
-│   Working    │     │   Staging    │     │  Repository  │
-│  Directory   │────▶│    Area      │────▶│   (.git)     │
+┌──────────────┐     ┌──────────────┐      ┌──────────────┐
+│   Working    │     │   Staging    │      │  Repository  │
+│  Directory   │────▶│    Area      │─────▶│   (.git)     │
 │              │ add │  (Index)     │commit│              │
-│  Dosyalarını │     │  Sahneye     │     │  Kalıcı      │
-│  düzenlediğin│     │  hazırladığın│     │  kayıt       │
-│  yer         │     │  yer         │     │              │
-└──────────────┘     └──────────────┘     └──────────────┘
+│  Dosyalarını │     │  Sahneye     │      │  Kalıcı      │
+│  düzenlediğin│     │  hazırladığın│      │  kayıt       │
+│  yer         │     │  yer         │      │              │
+└──────────────┘     └──────────────┘      └──────────────┘
 ```
 
 ##### 1. Working Directory (Çalışma Dizini)
