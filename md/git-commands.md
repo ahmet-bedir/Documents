@@ -137,7 +137,7 @@ Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Norm
 
 Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
 
-###### Üç Alanın Akışı
+##### Üç Alanın Akışı
 
 ```text
   Working Directory          Staging Area            Repository
@@ -221,10 +221,6 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 │  └──────────────────────────────────────────────┘    │
 └──────────────────────────────────────────────────────┘
 ```
-
-
-
-
 
 **Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
