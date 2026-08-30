@@ -51,6 +51,30 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
+##### Git Ekosistemi
+
+```tex
+                         ┌───────────────────┐
+                         │      Git CLI      │
+                         │  (Komut Satırı)   │
+                         └────────┬──────────┘
+                                  │
+                 ┌────────────────┼────────────────┐
+                 │                │                │
+          ┌──────┴──────┐   ┌─────┴──────┐  ┌──────┴──────┐
+          │   GUI'ler   │   │  Hosting   │  │   CI/CD     │
+          │             │   │            │  │             │
+          │ VS Code Git │   │ GitHub     │  │ GitHub      │
+          │ GitKraken   │   │ GitLab     │  │ Actions     │
+          │ Sourcetree  │   │ Bitbucket  │  │ Jenkins     │
+          │ Fork        │   │ Gitea      │  │ GitLab CI   │
+          └─────────────┘   └────────────┘  └─────────────┘
+```
+
+- **GUI Araçları:** Komut satırına alternatif olarak grafik arayüzler var.
+- **Hosting:** Kodunu bulutta tutmak, paylaşmak, işbirliği yapmak için.
+- **CI/CD:** Kodun her push'ta otomatik test edilmesi, derlenmesi, deploy edilmesi.
+
 ##### Üç Alan (Three States): Working Directory, Staging Area, Repository
 
 Git, dosyalarını üç temel alanda yönetir.
