@@ -161,6 +161,8 @@ Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir sn
                     (Commit'teki hali geri getirir)
 ```
 
+Bu akışın CLI komutları:
+
 ```bash
 # 1. Dosya oluştur (Working Directory'de)
 $ echo "Merhaba Dünya" > merhaba.txt
