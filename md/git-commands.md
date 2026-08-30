@@ -233,8 +233,6 @@ git config --global user.email "user_email"
 
 <small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
 
-
-
 **Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
 ```bash
