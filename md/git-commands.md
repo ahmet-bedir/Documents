@@ -53,11 +53,18 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 ##### Üç Alan: Working Directory, Staging Area, Repository
 
+Git, dosyalarını üç temel alanda yönetir.
+
 ```text
-text
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│   Working    │     │   Staging    │     │  Repository  │
+│  Directory   │────▶│    Area      │────▶│   (.git)     │
+│              │ add │  (Index)     │commit│              │
+│  Dosyalarını │     │  Sahneye     │     │  Kalıcı      │
+│  düzenlediğin│     │  hazırladığın│     │  kayıt       │
+│  yer         │     │  yer         │     │              │
+└──────────────┘     └──────────────┘     └──────────────┘
 ```
-
-
 
 ##### 1. Working Directory (Çalışma Dizini)
 
@@ -86,7 +93,7 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 ##### 3. Repository (.git dizini)
 
-Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde .git adlı gizli bir dizin barındırmasıdır.
+Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
 
 İki tür repository vardır:
 
