@@ -1,4 +1,4 @@
-<p aliges="center">
+<p align="center">
 	<img src="../images/git-banner.png" width="490"/>
 <p/>
 
@@ -703,10 +703,9 @@ git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<git
 
 GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrulamalısın. İki yol var:
 
-1. **HTTPS:** Her seferinde kullanıcı adı/şifre veya token girersin
-2. **SSH:** Bir kere anahtar çifti oluşturursun, sonra şifresiz bağlanırsın
+1. **HTTPS:** Her seferinde kullanıcı adı/şifre veya token girersin.
 
-SSH, hem daha güvenli hem daha pratik. Bir kere ayarla, bir daha dokunma.
+2. **SSH:** Bir kere anahtar çifti oluşturursun, sonra şifresiz bağlanırsın.
 
 ### SSH Nasıl Çalışır?
 
@@ -741,7 +740,7 @@ Terminalde:
 ```text
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/home/tolgahan/.ssh/id_ed25519): 
-# Enter'a bas — varsayılan konum iyi
+# Enter'a bas — varsayılan konum
 
 Enter passphrase (empty for no passphrase): 
 # Güçlü bir parola gir (önerilir) veya boş bırak
@@ -749,10 +748,10 @@ Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 # Aynı parolayı tekrar gir
 
-Your identification has been saved in /home/tolgahan/.ssh/id_ed25519
-Your public key has been saved in /home/tolgahan/.ssh/id_ed25519.pub
+Your identification has been saved in /home/kullanıcı/.ssh/id_ed25519
+Your public key has been saved in /home/kullanıcı/.ssh/id_ed25519.pub
 The key fingerprint is:
-SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx tolgahan@example.com
+SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx email@adresiniz.com
 The key's randomart image is:
 +--[ED25519 256]--+
 |        .oo.     |
