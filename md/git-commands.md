@@ -712,22 +712,23 @@ SSH, hem daha güvenli hem daha pratik. Bir kere ayarla, bir daha dokunma.
 
 ```text
 ┌──────────────────────────────────────────────────────┐
-│                   SSH Key Çifti                       │
+│                   SSH Key Çifti                      │
 │                                                      │
 │  🔑 Private Key (Özel Anahtar)                       │
 │  ~/.ssh/id_ed25519                                   │
-│  ❌ KİMSEYLE PAYLAŞMA! Bilgisayarında kalır.        │
+│  ❌ KİMSEYLE PAYLAŞMA! Bilgisayarında kalır.         │
 │                                                      │
 │  🔓 Public Key (Genel Anahtar)                       │
 │  ~/.ssh/id_ed25519.pub                               │
-│  ✅ GitHub'a, GitLab'a ekle. Paylaşılabilir.        │
+│  ✅ GitHub'a, GitLab'a ekle. Paylaşılabilir.         │
 │                                                      │
-│  Mantık: Kapının kilidi (public) herkeste olabilir   │
+│  Not: Kapının kilidi (public) herkeste olabilir      │
 │  ama anahtarı (private) sadece sende.                │
 └──────────────────────────────────────────────────────┘
 ```
 
-
+- **Public key** = açık asma kilit — GitHub'a veriyorsun, "benim mesajlarımı bununla kilitle" diyorsun
+- **Private key** = anahtarın — sadece sen açabilirsin
 
 ### Komut Satırında SSH ile Kimlik Doğrulama
 
