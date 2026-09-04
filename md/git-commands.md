@@ -733,12 +733,47 @@ SSH, hem daha güvenli hem daha pratik. Bir kere ayarla, bir daha dokunma.
 ### Komut Satırında SSH ile Kimlik Doğrulama
 
 **1.SSH anahtarınızı oluşturmak için:**
-`ssh-keygen -t ed25519 -C "email@adresiniz.com"`
-**Varsayılan dosya yolunu (Enter’a basarak) ve bir şifre girip girmemeyi seçebilirsiniz.**
+
+`ssh-keygen -t ed25519 -C "email@adresiniz.com"` (ed25519 algoritması ile modern, güvenli, hızlı)
+
+Terminalde:
+
+```text
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/tolgahan/.ssh/id_ed25519): 
+# Enter'a bas — varsayılan konum iyi
+
+Enter passphrase (empty for no passphrase): 
+# Güçlü bir parola gir (önerilir) veya boş bırak
+
+Enter same passphrase again:
+# Aynı parolayı tekrar gir
+
+Your identification has been saved in /home/tolgahan/.ssh/id_ed25519
+Your public key has been saved in /home/tolgahan/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx tolgahan@example.com
+The key's randomart image is:
++--[ED25519 256]--+
+|        .oo.     |
+|       . o.o     |
+|        = +.o    |
+|       . B.=     |
+|      . S.=.o    |
+|     . + o.+.    |
+|      + o.+.     |
+|     . +.o.+     |
+|      o.oo=.     |
++----[SHA256]-----+
+```
+
+
 
 **2.Genel anahtarı kopyalamak için:**
+
 `cat ~/.ssh/id_ed25519.pub`
-**Çıkan anahtarı kopyalayın.**
+
+
 
 **3.Genel anahtarı GitHub’a ekleyin:**
 **GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key.**
