@@ -739,8 +739,8 @@ Terminalde:
 
 ```text
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/home/tolgahan/.ssh/id_ed25519): 
-# Enter'a bas — varsayılan konum
+Enter file in which to save the key (/home/kullanıcı/.ssh/id_ed25519): 
+# Varsayılan konum için enter'a bas veya yeni bir konum gir
 
 Enter passphrase (empty for no passphrase): 
 # Güçlü bir parola gir (önerilir) veya boş bırak
@@ -765,8 +765,6 @@ The key's randomart image is:
 |      o.oo=.     |
 +----[SHA256]-----+
 ```
-
-
 
 **2.Genel anahtarı kopyalamak için:**
 
