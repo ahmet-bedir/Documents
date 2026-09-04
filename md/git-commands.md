@@ -697,6 +697,38 @@ git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<git
 
 ---
 
+## SSH Key Oluşturma ve Yapılandırma
+
+### SSH Neden Gerekli?
+
+GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrulamalısın. İki yol var:
+
+1. **HTTPS:** Her seferinde kullanıcı adı/şifre veya token girersin
+2. **SSH:** Bir kere anahtar çifti oluşturursun, sonra şifresiz bağlanırsın
+
+SSH, hem daha güvenli hem daha pratik. Bir kere ayarla, bir daha dokunma.
+
+### SSH Nasıl Çalışır?
+
+```text
+┌──────────────────────────────────────────────────────┐
+│                   SSH Key Çifti                       │
+│                                                      │
+│  🔑 Private Key (Özel Anahtar)                       │
+│  ~/.ssh/id_ed25519                                   │
+│  ❌ KİMSEYLE PAYLAŞMA! Bilgisayarında kalır.        │
+│                                                      │
+│  🔓 Public Key (Genel Anahtar)                       │
+│  ~/.ssh/id_ed25519.pub                               │
+│  ✅ GitHub'a, GitLab'a ekle. Paylaşılabilir.        │
+│                                                      │
+│  Mantık: Kapının kilidi (public) herkeste olabilir   │
+│  ama anahtarı (private) sadece sende.                │
+└──────────────────────────────────────────────────────┘
+```
+
+
+
 ### Komut Satırında SSH ile Kimlik Doğrulama
 
 **1.SSH anahtarınızı oluşturmak için:**
