@@ -733,7 +733,11 @@ GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrul
 
 **1.SSH anahtarınızı oluşturmak için:**
 
-`ssh-keygen -t ed25519 -C "email@adresiniz.com"` (ed25519 algoritması ile modern, güvenli, hızlı)
+```bash
+ssh-keygen -t ed25519 -C "email@adresiniz.com"
+```
+
+Not: Ssh key anahtarı ed25519 algoritması ile modern, güvenli, hızlı.
 
 Terminalde:
 
@@ -768,29 +772,48 @@ The key's randomart image is:
 
 **2.Genel anahtarı kopyalamak için:**
 
-`cat ~/.ssh/id_ed25519.pub`
+```bash
+$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
 
-
+# çıktının tamamını kopyala
+```
 
 **3.Genel anahtarı GitHub’a ekleyin:**
-**GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key.**
-**Title kısmına bir isim verin, kopyaladığınız anahtarı “Key” alanına yapıştırın ve kaydedin.**
+
+1.GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key
+
+2.Title: "Kişisel Laptop" kTitle kısmına bir isim verin)
+
+3.Key type: "Authentication Key"
+
+4.Key: Kopyaladığın public key'i yapıştır
+
+5.Add SSH key butonuna tıkla
 
 **4.Bağlantıyı test edin:**
-`ssh -T git@github.com`
-**İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.**
+
+```bash
+ssh -T git@github.com
+```
+
+İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.
 
 **5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:**
-`git@github.com:<github_username>/<repo_name>.git`
+
+```bash
+git@github.com:<github_username>/<repo_name>.git
+```
 
 **6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:**
-`git remote set-url <remote_name> git@github.com:<github_username>/<repo_name>.git`
 
-
+```bash
+git remote set-url <remote_name> git@github.com:<github_username>/<repo_name>.git
+```
 
 ---
 
-> - `git remote -v` **: Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için kullanılır.**
+**`git remote -v`**: Yerele indirdiğiniz (klonladığınız) bir github deposunun hangi hesaptan veya hangi url üzerinden klonlandığını ve hangi yöntem ile bağlantı kulduğunu öğrenmek için kullanılır.
 
 ---
 
