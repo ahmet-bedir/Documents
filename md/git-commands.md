@@ -799,6 +799,13 @@ ssh -T git@github.com
 
 İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.
 
+Hata alırsan:
+
+```bash
+# Detaylı debug modu (Doğru key kullanılıyor mu?)
+$ ssh -vT git@github.com
+```
+
 **5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:**
 
 ```bash
