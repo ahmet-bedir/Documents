@@ -224,6 +224,8 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
+
+
 **Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
 ```bash
