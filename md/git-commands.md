@@ -741,7 +741,7 @@ ssh-keygen -t ed25519 -C "email@adresiniz.com"
 
 Not: Ssh key anahtarı ed25519 algoritması ile modern, güvenli, hızlı.
 
-Terminalde:
+Terminalde size bazı sorular sorar:
 
 ```text
 Generating public/private ed25519 key pair.
@@ -783,15 +783,15 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
 
 **3.Genel anahtarı GitHub’a ekleyin:**
 
-1.GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key
+- GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key
 
-2.Title: "Kişisel Laptop" kTitle kısmına bir isim verin)
+- Title: "Kişisel Laptop" kTitle kısmına bir isim verin)
 
-3.Key type: "Authentication Key"
+- Key type: "Authentication Key"
 
-4.Key: Kopyaladığın public key'i yapıştır
+- Key: Kopyaladığın public key'i yapıştır
 
-5.Add SSH key butonuna tıkla
+- Add SSH key butonuna tıkla
 
 **4.Bağlantıyı test edin:**
 
@@ -804,7 +804,7 @@ ssh -T git@github.com
 Hata alırsan:
 
 ```bash
-# Detaylı debug modu (Doğru key kullanılıyor mu?)
+# Detaylı debug modu (doğru key kullanılıyor mu?)
 $ ssh -vT git@github.com
 ```
 
