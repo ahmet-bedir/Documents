@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="475"/>
+	<img src="../images/git-banner.png" width="451"/>
 <p/>
+
 
 
 
@@ -10,7 +11,7 @@
 
 ---
 
-### Versiyon Kontrol Sistemi (Version Control System — VCS)
+#### Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
@@ -46,7 +47,7 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 - Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.
 
----
+
 
 #### Git (Global Information Tracker) Nedir?
 
@@ -76,6 +77,8 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 - **Hosting:** Kodunu bulutta tutmak, paylaşmak, işbirliği yapmak için.
 - **CI/CD:** Kodun her push'ta otomatik test edilmesi, derlenmesi, deploy edilmesi.
 
+
+
 ##### Üç Alan (Three States): Working Directory, Staging Area, Repository
 
 Git, dosyalarını üç temel alanda yönetir.
@@ -90,6 +93,8 @@ Git, dosyalarını üç temel alanda yönetir.
 │     yer      │     │     yer      │      │              │
 └──────────────┘     └──────────────┘      └──────────────┘
 ```
+
+
 
 ##### 1. Working Directory (Çalışma Dizini)
 
@@ -107,6 +112,8 @@ Working Directory'deki dosya durumları:
 └──────────────┘
 ```
 
+
+
 ##### 2. Staging Area (Hazırlık Alanı / Index)
 
 Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
@@ -115,6 +122,8 @@ Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
 git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
 git commit             # sepetteki her şeyi satın al (commit'le)
 ```
+
+
 
 ##### 3. Repository (.git dizini)
 
@@ -137,6 +146,8 @@ Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Norm
 ```
 
 Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
+
+
 
 ##### Üç Alanın Akışı
 
@@ -884,11 +895,4 @@ git clone https://<username>:<pat>@github.com/<username>/<repo_name>.git
 git clone git@github.com:<github_username>/<repo_name>.git
 ```
 
-
-
----
-
-<h3 align="center">Git Sistemi (Git System)<h3/>
-
-![](../images/git-system.png)
 
