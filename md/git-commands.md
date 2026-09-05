@@ -1,11 +1,12 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="490"/>
+	<img src="../images/git-banner.png" width="475"/>
 <p/>
 
 
 
 
-###### Son güncelleme : 08/2026
+
+###### Son güncelleme : 09/2026
 
 ---
 
