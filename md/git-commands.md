@@ -129,6 +129,8 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
 
+`.git` dizini = Tüm commit geçmişi, branch'ler, ayarlar bu dizinde saklanır. Bu dizini silersen, git geçmişi kaybolur (dosyalar kalır ama geçmiş gider).
+
 İki tür repository vardır:
 
 ```text
