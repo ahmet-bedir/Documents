@@ -112,10 +112,43 @@ Working Directory'deki dosya durumları:
 └──────────────┘
 ```
 
+**Dosya Durumları:**
+
 - Untracked (İzlenmeyen): Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
 
-- Staged (Hazırlanmış): git add ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
+```bash
+$ touch yeni_dosya.txt
+$ git status
+Untracked files:
+        yeni_dosya.txt
+```
 
+- Staged (Hazırlanmış): `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
+
+```bash
+$ git add yeni_dosya.txt
+$ git status
+Changes to be committed:
+        new file:   yeni_dosya.txt
+```
+
+- Unmodified (Değişmemiş): Commit'lenmiş ve o zamandan beri dokunulmamış.
+
+```bash
+$ git commit -m "Yeni dosya eklendi"
+$ git status
+nothing to commit, working tree clean
+# Tüm dosyalar "unmodified" durumunda
+```
+
+- Modified (Değişmiş): Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
+
+```bash
+$ echo "yeni satır" >> yeni_dosya.txt
+$ git status
+Changes not staged for commit:
+        modified:   yeni_dosya.txt
+```
 
 ##### 2. Staging Area (Hazırlık Alanı / Index)
 
@@ -417,10 +450,10 @@ $ git config --global alias.unstage "restore --staged"
 Kullanımı:
 
 ```bash
-# Artık şunu yazmak yerine:
+# Artık komutu uzun yazmak yerine:
 $ git log --oneline --graph --all --decorate
 
-# Şunu yazabilirsin:
+# Kısa yazabilirsin:
 $ git lg
 * a1b2c3d (HEAD -> main) Feature X eklendi
 * d4e5f6g Login sayfası
@@ -429,39 +462,130 @@ $ git lg
 
 ---
 
+#### Adım 1: Repository Oluşturma | `git init`
+
+**Bulunduğun dizinde boş bir git deposu oluşturmak için:**
+
+```bash
+# Proje klasörü oluştur
+$ mkdir web-projem
+$ cd web-projem
+
+# Git repository'si başlat
+$ git init
+Initialized empty Git repository in /home/kullanıcı/web-projem/.git/
+```
+
+> ⚠️ Dikkat: `git init` komutu mevcut dosyaları silmez veya değiştirmez. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` gizli dizinini ekler. Bu yüzden güvenle kullanabilirsin.
+
+#### Adım 2: Durum Kontrolü | `git status`
+
+0luşturmuş olduğumuz deponun güncel durum bilgisini görüntülemek için **`git status`** komutunu kullanabilirsiniz. Bu komut ile hangi branch'te olduğumuz veya hangi dosyaların staging alanında (index bölgesi) olduğu gibi bilgiler verir.
+
+Daha kompakt bir çıktı istersen:
+
+```bash
+$ git status -s
+?? app.js
+?? index.html
+?? style.css
+```
+
+- `??` = untracked
+- `M` = modified
+- `A` = added
+- `D` = deleted
+
+#### Adim 3: Staging'e Alma | `git add`
+
+Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi.
+
+Tek bir dosyayı staging alanına eklemek için:
+
+```bash
+$ git add <file_name>
+
+# Veya hepsini bir seferde
+$ git add .
+# Nokta (.) = "bu klasördeki tüm değişiklikleri ekle"
+
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   app.js
+        new file:   index.html
+```
+
+> İki dosya da staging'de, commit'e hazır.
+
+`git add` Varyasyonları
+
+```bash
+git add dosya.txt          # Tek dosya
+git add dosya1.txt dosya2.txt  # Birden fazla dosya
+git add .                  # Tüm değişiklikler (bu klasör ve alt)
+git add -A                 # Tüm değişiklikler (tüm repo)
+git add *.css              # Pattern ile (tüm CSS dosyaları)
+git add src/               # Klasör ve içindekiler
+```
+
+- Dosyayı staging alanından çıkarmak için `git restore --staged <file_name>` komutu kullanılır.
+
+- Takip edilen daha önce commit'lenmiş bir dosyayı staging'den çıkarmak için `git rm --cached <file_name>`komutu kullanılır.
+
+Dosya staging'den çıkarıldı ama silinmedi.
+
+#### Adım 4: İlk Commit | `git commit`
+
+Staging'deki dosyaları kalıcı olarak kaydetmk için commit gerekli:
 
 
+```bash
+# Commit oluştur
+$ git commit -m "İlk commit: Proje yapısı oluşturuldu"
+[main (root-commit) a1b2c3d] İlk commit: Proje yapısı oluşturuldu
+ 3 files changed, 24 insertions(+)
+ create mode 100644 app.js
+ create mode 100644 index.html
+ create mode 100644 style.css
+```
+
+- main — hangi branch'te
+
+- (root-commit) — ilk commi
+
+- a1b2c3d — commit hash'inin kısa hali
+
+- 3 files changed, 24 insertions — 3 dosya eklendi, toplam 24 satır
 
 
+```bash
+$ git status
+On branch main
+nothing to commit, working tree clean
+```
 
+Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
 
+Not: `-m` ile tek satırlık mesaj yazarsın. Bu kısa değişiklikler için idealdir:
 
+```bash
+git commit -m "Başlık rengi güncellendi"
+```
 
----
+**Uzun mesaj yazmak** istersen, `-m` olmadan çalıştır:
 
-> - **Bulunduğun dizinde boş bir git deposu oluşturmak için:**
->
->   `git init`
-
-> - **0luşturmuş olduğumuz deponun güncel durum bilgisini görüntülemek için kullanabilirsiniz. Bu komut ile hangi branch'te olduğumuz veya hangi dosyaların staging alanında (index bölgesi) olduğu gibi bilgiler verir.**
->
->   `git status`
-
-> - **İsmi verilen tek bir dosyayı staging alanına eklemek için:**
->
->   `git add <file_name>`
-
-> - **Tüm dosyaları staging alanına eklemek için:**
->
->   `git add .`
-
-> - **Staging alanına eklemeden önce dosyada yapılan son değişiklikleri geri almak için:**
->
->   `git restore <file_name>`
-
-> - **Dosyayı staging alanından çıkarmak için:**
->
->   `git restore --staged <file_name>` | `git reset HEAD <file_name>` | `git rm --cached <file_name>`
+```bash
+$ git commit
+# Editör açılır (VS Code, Nano, vs.)
+# İlk satır: Kısa özet (50 karakter)
+# Boş satır
+# Detaylı açıklama (72 karakter genişlik)
+```
 
 ---
 
@@ -475,11 +599,6 @@ $ git lg
 
 ---
 
-> - **Git ile yapılan değişikliklerin kaydedildiği bir işlemdir. Bu işlem sayesinde herhangi bir zamanda geriye dönülerek değişiklikler eski haline getirilebilir.**
-
-```shell
-git commit -m "commit_mesajı"
-```
 
 > - `git commit -a` **: Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.**
 >
