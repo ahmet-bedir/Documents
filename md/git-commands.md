@@ -112,6 +112,9 @@ Working Directory'deki dosya durumları:
 └──────────────┘
 ```
 
+- Untracked (İzlenmeyen): Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
+
+- Staged (Hazırlanmış): git add ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
 
 
 ##### 2. Staging Area (Hazırlık Alanı / Index)
@@ -123,7 +126,25 @@ git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
 git commit             # sepetteki her şeyi satın al (commit'le)
 ```
 
+**Neden böyle bir ara katman var**
 
+Çünkü her değişikliği aynı commit'e koymak istemezsin. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek isteyebilirsin:
+
+```bash
+# Bug fix'i staging'e al
+$ git add login.js
+
+# Commit 1: Sadece bug fix
+$ git commit -m "fix: Login hata mesajı düzeltildi"
+
+# Yeni özelliği staging'e al
+$ git add dashboard.js
+
+# Commit 2: Sadece yeni özellik
+$ git commit -m "feat: Dashboard widget eklendi"
+```
+
+Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
 
 ##### 3. Repository (.git dizini)
 
