@@ -462,9 +462,11 @@ $ git lg
 
 ---
 
+### İlk Repository
+
 #### Adım 1: Repository Oluşturma | `git init`
 
-**Bulunduğun dizinde boş bir git deposu oluşturmak için:**
+Bulunduğun dizinde boş bir git deposu oluşturmak için:
 
 ```bash
 # Proje klasörü oluştur
@@ -496,7 +498,7 @@ $ git status -s
 - `A` = added
 - `D` = deleted
 
-#### Adim 3: Staging'e Alma | `git add`
+#### Adım 3: Staging'e Alma | `git add`
 
 Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi.
 
@@ -522,7 +524,7 @@ Changes to be committed:
 
 > İki dosya da staging'de, commit'e hazır.
 
-`git add` Varyasyonları
+**`git add` Varyasyonları**
 
 ```bash
 git add dosya.txt          # Tek dosya
@@ -537,7 +539,7 @@ git add src/               # Klasör ve içindekiler
 
 - Takip edilen daha önce commit'lenmiş bir dosyayı staging'den çıkarmak için `git rm --cached <file_name>`komutu kullanılır.
 
-Dosya staging'den çıkarıldı ama silinmedi.
+Dosya staging'den çıkarılır ama silinmez.
 
 #### Adım 4: İlk Commit | `git commit`
 
@@ -1036,5 +1038,4 @@ git clone https://<username>:<pat>@github.com/<username>/<repo_name>.git
 ```shell
 git clone git@github.com:<github_username>/<repo_name>.git
 ```
-
 
