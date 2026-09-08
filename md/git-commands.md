@@ -650,6 +650,43 @@ Date:   Mon Mar 1 10:00:00 2026 +0300
     İlk commit: Proje yapısı oluşturuldu
 ```
 
+**`git log` Varyasyonları**
+
+```bash
+# Tek satırlık özet
+$ git log --oneline
+b2c3d4e (HEAD -> main) Navigasyon menüsü eklendi
+a1b2c3d İlk commit: Proje yapısı oluşturuldu
+
+# Grafiksel gösterim (branch'lerle birlikte)
+$ git log --oneline --graph --all
+* b2c3d4e (HEAD -> main) Navigasyon menüsü eklendi
+* a1b2c3d İlk commit: Proje yapısı oluşturuldu
+
+# Son N commit
+$ git log -2        # Son 2 commit
+$ git log -1        # Sadece son commit
+
+# Hangi dosyalar değişmiş
+$ git log --stat
+commit b2c3d4e (HEAD -> main)
+    Navigasyon menüsü eklendi
+
+ index.html | 10 ++++++++--
+ style.css  |  7 +++++++
+ 2 files changed, 15 insertions(+), 2 deletions(-)
+
+# Değişiklikleri satır satır göster
+$ git log -p
+# Her commit'in diff'ini gösterir (çok detaylı)
+
+# Belirli bir dosyanın geçmişi
+$ git log -- index.html
+# Sadece index.html'i etkileyen commit'ler
+```
+
+> Not: `git log --oneline --graph` komutu branch'lerle birlikte çok kullanışlıdır.
+
 
 
 
