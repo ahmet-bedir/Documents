@@ -520,19 +520,20 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   app.js
         new file:   index.html
+        new file:   style.css
 ```
 
-> İki dosya da staging'de, commit'e hazır.
+> Üç dosya da staging'de, commit'e hazır.
 
 **`git add` Varyasyonları**
 
 ```bash
-git add dosya.txt          # Tek dosya
-git add dosya1.txt dosya2.txt  # Birden fazla dosya
-git add .                  # Tüm değişiklikler (bu klasör ve alt)
-git add -A                 # Tüm değişiklikler (tüm repo)
-git add *.css              # Pattern ile (tüm CSS dosyaları)
-git add src/               # Klasör ve içindekiler
+git add dosya.txt          		# Tek dosya
+git add dosya1.txt dosya2.txt   # Birden fazla dosya
+git add .                       # Tüm değişiklikler (bu klasör ve alt)
+git add -A                      # Tüm değişiklikler (tüm repo)
+git add *.css                   # Pattern ile (tüm CSS dosyaları)
+git add src/                    # Klasör ve içindekiler
 ```
 
 - Dosyayı staging alanından çıkarmak için `git restore --staged <file_name>` komutu kullanılır.
