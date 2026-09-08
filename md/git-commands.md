@@ -601,7 +601,7 @@ $ git commit
 
 #### Adım 5: Değişiklik Yapma ve Yeni Commit
 
-`index.html` ve `style.css` dosyalarına bazı eklemeler yapalım:
+`index.html` ve `style.css` dosyalarına bazı eklemeler yapıp durum kontrolü:
 
 ```bash
 $ git status
@@ -625,9 +625,13 @@ $ git commit -m "Navigasyon menüsü eklendi"
  2 files changed, 15 insertions(+), 1 deletion(-)
 ```
 
+> - `git commit -am "commit mesajı"` : Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.
+>
+> - `git commit --amend -m "yeni commit mesajı"` : En son yapılan commit mesajını değiştirmek için kullanılır.
 
+<small>⚠️ **Dikkat:** `git commit -a` sadece **zaten izlenen** dosyaları otomatik ekler. **Yeni oluşturulan** (untracked) dosyaları eklemez! Yeni dosya varsa önce `git add` yapmalısın.</small>
 
-
+#### Adım 6: Geçmişi İnceleme | `git log`
 
 ---
 
@@ -640,13 +644,6 @@ $ git commit -m "Navigasyon menüsü eklendi"
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 
 ---
-
-
-> - `git commit -a` **: Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.**
->
-> - `git commit --amend -m "yeni commit mesajı"` **: En son yapılan commit mesajını değiştirmek için kullanılır.**
-
-
 
 > - `git log` **: Yapılan commitleri gösterir.**
 >
