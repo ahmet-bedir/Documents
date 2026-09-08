@@ -677,7 +677,7 @@ commit b2c3d4e (HEAD -> main)
  2 files changed, 15 insertions(+), 2 deletions(-)
 
 # Değişiklikleri satır satır göster
-$ git log -p
+$ git log -patur
 # Her commit'in diff'ini gösterir (çok detaylı)
 
 # Belirli bir dosyanın geçmişi
@@ -700,10 +700,6 @@ $ git log -- index.html
 | `git mv <file_name> <new_file_name>`                  | Dosya adı değiştirmek için kullanılır              |
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
-
-
-
-> - `git log --oneline` **: Yapılan commitleri tek satır şeklinde gösterir.**
 
 
 
