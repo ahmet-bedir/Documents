@@ -633,6 +633,27 @@ $ git commit -m "Navigasyon menüsü eklendi"
 
 #### Adım 6: Geçmişi İnceleme | `git log`
 
+Yapılan commitleri görüntülemek için:
+
+```bash
+$ git log
+commit b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1 (HEAD -> main)
+Author: kullanıcı <email@adresiniz.com>
+Date:   Mon Mar 1 10:30:00 2026 +0300
+
+    Navigasyon menüsü eklendi
+
+commit a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0 
+Author: kullanıcı <email@adresiniz.com>
+Date:   Mon Mar 1 10:00:00 2026 +0300
+
+    İlk commit: Proje yapısı oluşturuldu
+```
+
+
+
+
+
 ---
 
 | Dosya İşlemleri                                       |                                                    |
@@ -643,10 +664,8 @@ $ git commit -m "Navigasyon menüsü eklendi"
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 
----
 
-> - `git log` **: Yapılan commitleri gösterir.**
->
+
 > - `git log --oneline` **: Yapılan commitleri tek satır şeklinde gösterir.**
 
 
