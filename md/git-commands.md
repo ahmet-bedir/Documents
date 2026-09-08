@@ -587,7 +587,44 @@ $ git commit
 # İlk satır: Kısa özet (50 karakter)
 # Boş satır
 # Detaylı açıklama (72 karakter genişlik)
+
+# Editör'de yazacağın mesaj:
+
+# Kullanıcı giriş formunu ekle
+
+# - Email ve şifre alanları eklendi
+# - Form validasyonu yapıldı
+# - Hata mesajları Türkçeleştirildi
+# - Responsive tasarım uygulandı
 ```
+
+#### Adım 5: Değişiklik Yapma ve Yeni Commit
+
+```bash
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+        modified:   style.css
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+İki dosya **modified** — değişmiş ama staging'e alınmamış.
+
+```bash
+# Değişiklikleri staging'e al ve commit'le
+$ git add .
+$ git commit -m "Navigasyon menüsü eklendi"
+[main b2c3d4e] Navigasyon menüsü eklendi
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+```
+
+
+
+
 
 ---
 
