@@ -601,6 +601,8 @@ $ git commit
 
 #### Adım 5: Değişiklik Yapma ve Yeni Commit
 
+`index.html` ve `style.css` dosyalarına bazı eklemeler yapalım:
+
 ```bash
 $ git status
 On branch main
