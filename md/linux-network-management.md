@@ -626,13 +626,43 @@ This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
-Not: Hedef bilgisayarların lokal ağdaki ip adresini bilmemiz ve her iki bilgisayarlarında ssh servisinin aktif olması gerekir.
+Not: Hedef bilgisayarların lokal ağdaki ip adresini bilmemiz ve her iki bilgisayarlarında ssh servisinin aktif olması gerekir. Dizin kopyalama için `-r` parametresi kullanılır.
 
 Ayrıca mevcut makinden hedef makineye gönderilebileceği gibi, hedefteki makineden mevcut makineye de dosya çekilebilir. Bunun için; hedefteki kullanıcı adı ve ip adresiyle birlikte hangi dosya alınacaksa tam olarak o dosyanın konumu belirtilir. Ve bu dosyanın mevcut makinede hangi dizine kopyalanacağı da tam dizin yolu olarak belirtilir.
 
+```bash
+$ scp pc@192.168.1.12:/home/pc/rocky-linux.txt /home/user/rocky-linuxtan-gelen.txt
 ```
-$ scp pc@192.168.1.12:/home/pc/rocky-linux.txt /home/taylan/rocky-linuxtan-gelen.txt
-pc@192.168.1.12
+
+### rsync
+
+Farklı host’lardan veri kopyalamak için kullanılan bir diğer araç rsync’tir (remote synchronization’ın kısaltması). Rsync, scp’ye çok benzer, ancak büyük bir farkı vardır. Rsync, kopyalamaya çalıştığınız yerde zaten veri olup olmadığını önceden kontrol eden özel bir algoritma kullanır ve yalnızca farkları kopyalar. Örneğin, bir dosyayı kopyalıyordunuz ve ağınız kesildi, dolayısıyla kopyalama işlemi yarıda kaldı. Her şeyi baştan kopyalamak yerine rsync sadece kopyalanmamış kısımları kopyalar.
+
+Ayrıca kopyaladığınız bir dosyanın bütünlüğünü checksums ile doğrular. Bu küçük optimizasyonlar daha esnek dosya transferine olanak verir ve rsync’i uzaktan ve yerel dizin senkronizasyonu, veri yedekleme, büyük veri transferleri ve daha fazlası için ideal hale getirir.
+
+Sık kullanılan rsync seçenekleri:
+
+* **v** - verbose output
+* **r** - recursive into directories
+* **h** - human readable output
+* **z** - yavaş bağlantılar için harika olan sıkıştırılmış transfer
+
+Aynı host üzerinde dosyaları kopyala/senkronize et:
+
+```bash
+$ rsync -zvr /my/local/directory/one /my/local/directory/two
+```
+
+Uzak host’tan yerel host’a dosyaları kopyala/senkronize et:
+
+```bash
+$ rsync /local/directory username@remotehost.com:/remote/directory
+```
+
+Yerel host’tan uzak host’a dosyaları kopyala/senkronize et:
+
+```bash
+$ rsync username@remotehost.com:/remote/directory /local/directory
 ```
 
 ---
