@@ -685,7 +685,9 @@ $ git log -- index.html
 
 > Not: `git log --oneline --graph` komutu branch'lerle birlikte çok kullanışlıdır.
 
+---
 
+## .gitignore — Neyi İzlememeliyiz?
 
 
 
