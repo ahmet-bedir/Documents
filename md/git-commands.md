@@ -684,10 +684,17 @@ $ git log -- index.html
 ```
 
 > Not: `git log --oneline --graph` komutu branch'lerle birlikte çok kullanışlıdır.
+>
+> `HEAD` : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
 
 ---
 
-## .gitignore — Neyi İzlememeliyiz?
+### `.gitignore` — Neyi İzlememeliyiz?
+
+Git'e koymak istemediğiniz proje dosyasını yani izlenmesini istenmeyen dosyalar veya  dizinler `.gitignore` dosyasında belirtilerek bu dosyalar görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.
+
+- `dizin/*`      **: Dizin klasöründeki tüm dosyaları kapsar.**
+- `!dizin/b`    **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
 
 
 
@@ -702,16 +709,6 @@ $ git log -- index.html
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 
 
-
-`HEAD` : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
-
-
-
-> - `.gitignore` **: Git'in, belirtilen dosyaları görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.**
->
-> - `dizin/*`      **: Dizin klasöründeki tüm dosyaları kapsar.**
->
-> - `!dizin/b`    **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
 
 
 
