@@ -726,13 +726,52 @@ npm-debug.log*
 EOF
 
 # Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar
-$ !dizin/b
+!dizin/b
 
 $ git add .gitignore
 $ git commit -m "chore: .gitignore dosyası eklendi"
 [main 4d5e6f7] chore: .gitignore dosyası eklendi
  1 file changed, 23 insertions(+)
 ```
+
+Belirli bir commit'te ne olduğunu görmek için:
+
+```bash
+$ git show 2b3c4d5
+commit 2b3c4d5...
+Author: Tolgahan Kaya <tolgahan@example.com>
+Date:   Mon Mar 1 10:15:00 2026 +0300
+
+    feat: Hakkımda bölümü eklendi
+
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -13,5 +13,9 @@
+     </header>
++    <section id="about">
++        <h2>Hakkımda</h2>
++        <p>5 yıllık deneyime sahip bir yazılım geliştiriciyim.</p>
++    </section>
+     <script src="js/main.js"></script>
+     
+# En son commit'i görmek için:
+$ git show HEAD
+# veya
+$ git show
+# (parametre olmadan HEAD'i gösterir)
+```
+
+#### Özet
+
+- `git init` ile boş bir repository oluşturursun — `.git` dizini eklenir, dosyalara dokunulmaz
+- `git status` ile projenin durumunu kontrol edersin — bu en sık kullanacağın komut
+- `git add` ile değişiklikleri staging area'ya alırsın — commit'e hazırlarsın
+- `git commit -m "mesaj"` ile staging'dekileri kalıcı olarak kaydedersin — projenin fotoğrafını çekersin
+- `git log` ile commit geçmişini incelersin — `--oneline` ve `--graph` en faydalı bayraklar
+- `.gitignore` ile izlenmemesi gereken dosyaları belirlersin — `node_modules`, `.env`, IDE dosyaları
+
+---
 
 
 
