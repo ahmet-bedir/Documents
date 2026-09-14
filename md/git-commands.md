@@ -691,10 +691,48 @@ $ git log -- index.html
 
 ### `.gitignore` — Neyi İzlememeliyiz?
 
-Git'e koymak istemediğiniz proje dosyasını yani izlenmesini istenmeyen dosyalar veya  dizinler `.gitignore` dosyasında belirtilerek bu dosyalar görmezden gelmesine izin veren bir dosyadır. Proje kök dizinine eklenir.
+Git'e koymak istemediğiniz proje dosyasını yani izlenmesini istenmeyen dosyalar veya dizinler `.gitignore` dosyasında belirtilerek bu dosyalar görmezden gelmesine izin verilebilinir. Proje kök dizinine eklenir.
 
-- `dizin/*`      **: Dizin klasöründeki tüm dosyaları kapsar.**
-- `!dizin/b`    **: Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar.**
+```bash
+# .gitignore dosyası oluştur
+$ cat > .gitignore << 'EOF'
+# Bağımlılıklar
+node_modules/
+vendor/
+
+# Ortam değişkenleri
+.env
+.env.local
+
+# IDE dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+
+# Build çıktıları
+dist/
+build/
+*.min.js
+*.min.css
+
+# Log dosyaları
+*.log
+npm-debug.log*
+EOF
+
+# Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar
+$ !dizin/b
+
+$ git add .gitignore
+$ git commit -m "chore: .gitignore dosyası eklendi"
+[main 4d5e6f7] chore: .gitignore dosyası eklendi
+ 1 file changed, 23 insertions(+)
+```
 
 
 
