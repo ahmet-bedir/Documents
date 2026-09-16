@@ -157,7 +157,7 @@ git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
 git commit             # sepetteki her şeyi satın al (commit'le)
 ```
 
-**Neden böyle bir ara katman var**
+**Neden böyle bir ara katman var?**
 
 Çünkü her değişikliği aynı commit'e koymak istemezsin. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek isteyebilirsin:
 
@@ -557,7 +557,7 @@ $ git commit -m "İlk commit: Proje yapısı oluşturuldu"
 
 - main — hangi branch'te
 
-- (root-commit) — ilk commi
+- (root-commit) — ilk commit
 
 - a1b2c3d — commit hash'inin kısa hali
 
