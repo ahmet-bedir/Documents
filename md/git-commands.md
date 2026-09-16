@@ -521,7 +521,7 @@ Changes to be committed:
         new file:   style.css
 ```
 
-> Üç dosya da staging'de, commit'e hazır.
+> Not: Üç dosya da staging'de, commit'e hazır.
 
 **`git add` Varyasyonları**
 
@@ -772,6 +772,8 @@ $ git show
 - `.gitignore` ile izlenmemesi gereken dosyaları belirlersin — `node_modules`, `.env`, IDE dosyaları
 
 ---
+
+
 
 
 
