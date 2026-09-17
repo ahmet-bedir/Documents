@@ -538,7 +538,7 @@ git add src/                    # Klasör ve içindekiler
 
 - Takip edilen daha önce commit'lenmiş bir dosyayı staging'den çıkarmak için `git rm --cached <file_name>`komutu kullanılır.
 
-Dosya staging'den çıkarılır ama silinmez.
+- Dosya staging'den çıkarılır ama silinmez.
 
 #### Adım 4: İlk Commit | `git commit`
 
