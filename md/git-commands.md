@@ -540,6 +540,31 @@ git add src/                    # Klasör ve içindekiler
 
 - Dosya staging'den çıkarılır ama silinmez.
 
+**`git add .` vs `git add -A` — Farkı**
+
+```bash
+# Proje yapısı:
+my-project/
+├── src/
+│   ├── app.js (modified)
+│   └── utils.js (new)
+├── README.md (deleted)
+└── test.js (modified)
+
+# src/ dizinindeyken:
+$ cd src/
+$ git add .
+# Sadece src/ altındaki değişiklikleri ekler
+# README.md'nin silinmesi EKLENMEMİŞ olabilir (eski Git versiyonlarında)
+
+# Herhangi bir yerden:
+$ git add -A
+# Tüm repo genelindeki tüm değişiklikleri ekler
+# Silme, ekleme, düzenleme — hepsi
+```
+
+Not: Modern Git versiyonlarında (2.x+) `git add .` da silinmeleri ekler. Ama alışkanlık olarak `-A` daha güvenlidir.
+
 #### Adım 4: İlk Commit | `git commit`
 
 Staging'deki dosyaları kalıcı olarak kaydetmk için commit gerekli:
