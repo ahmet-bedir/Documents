@@ -45,4 +45,3 @@ Commit Zinciri (Commit History):
 
 ---
 
-
