@@ -3,8 +3,9 @@
 </p>
 
 
+<h1 style="font-size: 2.9rem">Linux İşletim Sistemi</h1>
 
-# Linux İşletim Sistemi
+
 
 ###### Son güncelleme : 06/2026
 
