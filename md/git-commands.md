@@ -13,13 +13,13 @@
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
-#### VCS'nin Kısa Tarihi
+### VCS'nin Kısa Tarihi
 
-##### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
+#### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 
 İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
 
-##### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
+#### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
 
 CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
 
@@ -35,7 +35,7 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 - Geliştiricilerde sadece dosyaların son hali vardı.
 
-##### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
+#### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
 **Dağıtık (Distributed) Model — Git ve Türevleri**
 
@@ -47,11 +47,11 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 
 
-#### Git (Global Information Tracker) Nedir?
+# Git (Global Information Tracker) Nedir?
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
-##### Git Ekosistemi
+### Git Ekosistemi
 
 ```tex
                          ┌───────────────────┐
@@ -77,7 +77,7 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 
 
-##### Üç Alan (Three States): Working Directory, Staging Area, Repository
+### Üç Alan (Three States): Working Directory, Staging Area, Repository
 
 Git, dosyalarını üç temel alanda yönetir.
 
@@ -94,7 +94,7 @@ Git, dosyalarını üç temel alanda yönetir.
 
 
 
-##### 1. Working Directory (Çalışma Dizini)
+#### 1. Working Directory (Çalışma Dizini)
 
 Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
 
@@ -148,7 +148,7 @@ Changes not staged for commit:
         modified:   yeni_dosya.txt
 ```
 
-##### 2. Staging Area (Hazırlık Alanı / Index)
+#### 2. Staging Area (Hazırlık Alanı / Index)
 
 Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
 
@@ -177,7 +177,7 @@ $ git commit -m "feat: Dashboard widget eklendi"
 
 Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
 
-##### 3. Repository (.git dizini)
+#### 3. Repository (.git dizini)
 
 Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
 
