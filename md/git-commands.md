@@ -9,6 +9,14 @@
 
 ---
 
+<a id="basa-don"></a>
+
+**İçindekiler:**
+
+▪ [**Git Nedir?**](#git)
+
+---
+
 ## Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
@@ -45,9 +53,13 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 - Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.
 
+<a id="git"></a>
 
+---
 
 # Git (Global Information Tracker) Nedir?
+
+[⬆️ **Başa Dön**](#basa-don)
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
