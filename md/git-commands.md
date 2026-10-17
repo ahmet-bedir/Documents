@@ -14,6 +14,7 @@
 **İçindekiler:**
 
 ▪ [**Git Nedir?**](#git)
+▪ [**Git Yapılandırma**](#git-config)
 
 ---
 
@@ -65,7 +66,7 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 ### Git Ekosistemi
 
-```tex
+```text
                          ┌───────────────────┐
                          │      Git CLI      │
                          │  (Komut Satırı)   │
