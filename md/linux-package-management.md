@@ -1,10 +1,13 @@
 <p align="center">
-  <img src="../images/linux-package.png" width="627" />
+  <img src="../images/linux-package.png" width="500" />
 <p/>
 
 
 
-# Linux Paket Yönetimi
+
+<h1 style="font-size: 2.7rem">Linux Paket Yönetimi</h1>
+
+
 
 ###### Son güncelleme : 02/2026
 
@@ -49,7 +52,7 @@ dpkg -L <paket_adı>
 dpkg -r <paket_adı>
 ```
 
-> ###### *Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.*
+> ###### Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz
 >
 > ---
 
