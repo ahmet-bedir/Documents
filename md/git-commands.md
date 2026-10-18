@@ -11,7 +11,7 @@
 
 <a id="basa-don"></a>
 
-**İçindekiler:**
+**İçindekiler**
 
 ▪ [**Git Nedir?**](#git)
 ▪ [**Git Yapılandırma**](#git-config)
