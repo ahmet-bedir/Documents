@@ -1,12 +1,20 @@
 <p align="center">
-	<img src="../images/network-technology.png" width="575"/>
+	<img src="../images/network-technology.png" width="450" />
 <p/>
 
 
 
-## 🖧 Linux Ağ Yönetimi (Network Management)
+###### Son güncelleme : 09/2026
+
+---
+
+
+
+<h1 style="font-size: 2.1rem">🖧 Linux Ağ Yönetimi (Network Management)</h1>
 
 Linux ağ yönetimi, sistemin ağ arayüzlerini (network interfaces), IP yapılandırmasını, yönlendirme (routing) ve bağlantı servislerini kontrol etme sürecidir. Hem statik hem dinamik (DHCP) ağ yapılandırmaları desteklenir.
+
+
 
 <a id="basa-don"><a />
 
