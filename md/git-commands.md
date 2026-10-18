@@ -24,11 +24,11 @@ Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafınd
 
 ## VCS'nin Kısa Tarihi
 
-#### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
+### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 
 İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
 
-#### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
+### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
 
 CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
 
@@ -44,7 +44,7 @@ Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sun
 
 - Geliştiricilerde sadece dosyaların son hali vardı.
 
-#### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
+### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
 **Dağıtık (Distributed) Model — Git ve Türevleri**
 
