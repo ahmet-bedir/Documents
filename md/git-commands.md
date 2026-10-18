@@ -13,7 +13,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br />▪ [**Git Yapılandırma**](#git-config)<br />▪ [**Git Yapılandırma**](#git-config)
+▪ [**Git Nedir?**](#git)<br />▪ [**Git Yapılandırma**](#git-config)<br />▪ [**Git Yapılandırma**](#git-config)<br />
 
 ---
 
