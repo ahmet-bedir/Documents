@@ -18,11 +18,11 @@
 
 ---
 
-## Versiyon Kontrol Sistemi (Version Control System — VCS)
+# Versiyon Kontrol Sistemi (Version Control System — VCS)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
-### VCS'nin Kısa Tarihi
+## VCS'nin Kısa Tarihi
 
 #### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 

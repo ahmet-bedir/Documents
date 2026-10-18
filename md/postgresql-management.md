@@ -3,7 +3,9 @@
 <p/>
 
 
-<h1 style="font-size: 2.5em">Linux Sistemlerde PostgreSQL Yönetimi<h1>
+<h1 style="font-size: 2.5rem">Linux Sistemlerde PostgreSQL Yönetimi</h1>
+
+
 
 ###### Son güncelleme: 07/2026
 
