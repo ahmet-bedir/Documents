@@ -14,6 +14,7 @@
 **İçindekiler**
 
 ▪ [**Git Nedir?**](#git)
+
 ▪ [**Git Yapılandırma**](#git-config)
 
 ▪ [**Git Yapılandırma**](#git-config)
