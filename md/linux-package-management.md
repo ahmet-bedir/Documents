@@ -32,9 +32,7 @@ Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut o
 dpkg -i <paket_adı.deb>
 ```
 
-> ###### *Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.*
->
-> ---
+> Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.
 
 ▪ Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
 
@@ -78,7 +76,7 @@ dpkg -I <paket_adı.deb>
 
 ▸ `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
-> ###### *Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)*
+> Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)
 >
 > ---
 
