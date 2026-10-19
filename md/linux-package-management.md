@@ -50,9 +50,8 @@ dpkg -L <paket_adı>
 dpkg -r <paket_adı>
 ```
 
-> Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz
->
-> ---
+> Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
+
 
 #### Kalıntıların Kaldırılması
 
@@ -77,8 +76,7 @@ dpkg -I <paket_adı.deb>
 ▸ `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
 > Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)
->
-> ---
+
 
 #### Paketlerin Listelenmesi
 
@@ -135,9 +133,8 @@ Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmi�
 
 ▸ `apt-get upgrade` | `apt upgrade` : Yazılım paketlerini en güncel sürümlerine yükseltmek için kullanılır. Yani paketleri güncellemek için kullanıyoruz.
 
-> ###### *Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.*
->
-> ---
+> Eğer amacınız tüm paketleri değil de spesifik olarak bazı paketleri güncellemek ise, güncellemek istediğiniz paketi tekrar kurmak üzere `apt install <paket_adı>` şeklinde komutunuzu girebilirsiniz. Bu sayede ilgili aracın en son sürümüne güncelleme yapılacaktır. Zaten `apt` aracı sistemde aynı isimli paket olduğunu fark edeceği için yalnızca ilgili paketi üst sürüme yükseltmeyi teklif ediyor. `apt --only-upgrade install <paket_adı>` komutu ile de tek bir paket güncelleyebilirsiniz.
+
 
 #### Paketlerin Araştırılması
 
@@ -155,9 +152,8 @@ Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmi�
 
 ▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` : Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.
 
-> ###### *Not : Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.*
->
-> ---
+> Not : Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.
+
 
 ▸ `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` : Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.
 
