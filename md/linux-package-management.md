@@ -274,14 +274,13 @@ sudo apt autopurge
 ### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
 #### 🔍 1. Bozuk Paket Var mı Kontrol Et.
->
-> ```bash
-> sudo apt --fix-broken install
-> ```
->
->**➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.**
->
-> ------
+
+```bash
+sudo apt --fix-broken install
+```
+
+>➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.
+
 
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
 >
