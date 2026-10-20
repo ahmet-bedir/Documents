@@ -116,7 +116,7 @@ dpkg-reconfigure <paket_adı>
 
 Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmiş paket aracı**” ifadesinin kısaltmasından geliyor. `apt` aracı repolarda paket arama ve otomatik bağımlılık çözümleme gibi özellikleri ile paket yönetimini bizler için oldukça kolay hale getiren gelişmiş paket yönetim aracıdır. Bu araç `dpkg` aracına oranla, kullanıcının işlerini daha da kolaylaştırmak üzere geliştirilmiştir. `apt` aracı paketlerin uzak sunucundan bağımlılıkları ile birlikte indirip kurulmasını sağlıyor. Ve diğer paket yönetim işlerini de bu araç üzerinden gerçekleştirebiliyoruz. `apt` aracı aslında kurulum ve kaldırma gibi paket yönetimi işleri için arka planda `dpkg` aracını kullanıyor. `apt` aracının avantajı, kurmak istediğimiz aracın paketini **repo** üzerinden otomatik bulması ve bu aracın ihtiyaç duyduğu diğer ek paketleri yani bağımlılıklarını da çözümleyip bunları da bulup kurmasıdır. Bu sayede biz bağlandığımız uzak sunucu depolarında olduğu sürece istediğimiz aracı kolayca kurabiliyoruz. Zaten repolar da bir aracın kurulması için gereken tüm bağımlılıkları içerecek şekilde düzenlendiği için `apt` aracı bütüncül olarak bizlere oldukça kolay bir paket yönetim imkanı sunuyor.
 
-➜ `apt` yönetimi için birden fazla yardımcı araç bulunuyor, örneğin bu araçlardan başlıcaları; `apt-get` `apt-cache` ve `apt-file` araçlarıdır. Kısaca açıklamamız gerekirse;
+➜ `apt` yönetimi için birden fazla yardımcı araç bulunuyor, örneğin bu araçlardan başlıcaları; `apt-get` `apt-cache` ve `apt-file` araçlarıdır.
 
 › `apt-get`: aracını, paketleri indirmek, kurmak, güncellemek ve silmek için kullanıyoruz.
 
@@ -151,7 +151,7 @@ Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmi�
 
 ▸ `apt-get remove <paket_adı>` | `apt remove <paket_adı>` : Sistemimize kurmuş olduğumuz paketi kaldırmak için kullanılır.
 
-> Not : Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.
+> Not: Sistemdeki tüm paketleri tarar ve başka bir araç tarafından kullanılmayan, artık gerek duyulmayan bağımlılıklarının da kaldırılması için `apt autoremove` komutu kullanılır. Eğer bu komutun sonuna `-y` argümanını eklersem bana sorulmadan ilgili işlem gerçekleşmiş olacaktı.
 
 
 ▸ `apt-get remove --purge <paket_adı>` | `apt purge <paket_adı>` : Paketi ve konfigürasyon dosyalarını sistemden tamamen kaldırmak için.
@@ -282,55 +282,55 @@ sudo apt --fix-broken install
 
 
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
->
-> ```bash
-> sudo dpkg --configure -a
-> ```
-> **➡ Yarım kalan kurulumları tamamlar.**
->
-> ------
+
+```bash
+sudo dpkg --configure -a
+```
+> ➡ Yarım kalan kurulumları tamamlar.
+
+------
 
 #### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
->
-> ```bash
-> sudo apt install -f
-> ```
->
-> **➡ Eksik bağımlılık varsa otomatik kurar.**
->
-> ------
+
+```bash
+sudo apt install -f
+```
+
+> ➡ Eksik bağımlılık varsa otomatik kurar.
+
+------
 
 #### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
->
-> ```bash
-> apt-mark showhold
-> ```
->
-> **➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.**
->
-> ------
+
+```bash
+apt-mark showhold
+```
+
+> ➡ Burada bir şey çıkıyorsa, paket güncellenemiyordur.
+
+------
 
 #### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
->
-> ```bash
-> sudo apt autoremove --purge
-> ```
->
-> **➡ Bu kaldırma işlemi yapar ama listelemeden kaldırmaz, önce liste görmek istersen:**
->
-> ```bash
-> sudo apt autoremove --dry-run
-> ```
->
-> ------
+
+```bash
+sudo apt autoremove --purge
+```
+
+> ➡ Bu kaldırma işlemi yapar ama listelemeden kaldırmaz, önce liste görmek istersen:
+
+```bash
+sudo apt autoremove --dry-run
+```
+
+------
 
 #### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
->
-> ```bash
-> sudo apt update --fix-missing
-> ```
->
-> ------
+
+```bash
+sudo apt update --fix-missing
+```
+
+------
 
 #### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
 >
