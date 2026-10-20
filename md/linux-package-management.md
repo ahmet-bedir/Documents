@@ -1,7 +1,6 @@
 <p align="center">
   <img src="../images/linux-package.png" width="500" />
-<p/>
-
+</p>
 
 
 
@@ -32,7 +31,7 @@ Yalnızca indirmiş olduğumuz yani **lokal olarak** bilgisayarımızda mevcut o
 dpkg -i <paket_adı.deb>
 ```
 
-> Not : Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.
+> Not: Aracın doğru şekilde çalışması için gereken ek paketler yani bağımlılıkları tek tek internetten indirip kurmamız gerekir.
 
 ▪ Kurulan paketin kurulum yerlerini detaylı görüntülemek için:
 
@@ -50,7 +49,7 @@ dpkg -L <paket_adı>
 dpkg -r <paket_adı>
 ```
 
-> Not : Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
+> Not: Kaldırılan paket başka araç tarafından kullanılıyorsa hata alırız. Yine de diğer aracın bozulması pahasına paketi kaldırmak isiyorsanız `--force-all` yani zorlama seçeneğini kullanarak `dpkg --force-all -r <paket_adı>` komutu ile ilgili paketi kaldırmaya zorlayabilirsiniz.
 
 
 #### Kalıntıların Kaldırılması
@@ -75,7 +74,7 @@ dpkg -I <paket_adı.deb>
 
 ▸ `dpkg -S dosya_yolu` (`--search`) komutu, bir dosyanın hangi debian paketi tarafından kurulduğunu bulmak için kullanılır.
 
-> Kullanım Şekli : `dpkg -S /dosya/yolu` (örn : `dpkg -S /usr/bin/firefox`)
+> Kullanım şekli: `dpkg -S /dosya/yolu` (örn: `dpkg -S /usr/bin/firefox`)
 
 
 #### Paketlerin Listelenmesi
