@@ -9,7 +9,7 @@
 
 
 
-###### Son güncelleme : 02/2026
+###### Son güncelleme : 10/2026
 
 ---
 
