@@ -51,7 +51,8 @@ Otomatik tamlama sadece **komutlar** için değil **dosya** veya **dizinler** i�
 
 > Geçmiş listesi her bir kullanıcının kendi ev dizininde `.bash_history` isimli dosyada tutuluyor.  Boşluk bırakılarak girilen komutlar bu listeye dahil edilmez.
 >
-> ---
+
+---
 
 ## Alias (Takma İsim)
 
@@ -65,7 +66,7 @@ Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıy
 
 > Mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek `alias` komutunu kullanmamız yeterli.
 
-> Mevcut kabuktan bir takma isimi kaldırmak isterseniz `unalias` komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.
+> Bulunduğunuz kabuktan bir takma isimi kaldırmak isterseniz `unalias` komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.
 
 ---
 
@@ -90,13 +91,11 @@ Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıy
 | `Alt + A` | Panodan yapıştırır |
 | `Ctrl + _`              | Belirli bir satıra git       |
 
-###### Not : Nano aracından çıkmadan dosyayı kaydedeceğimiz dizini belirlemek için dosya sistemi hiyerarşisinde `Ctrl + T` tuşuna basıp gezinebiliriz. Bunun için öncelikle dosyayı kaydetmek istediğimizi `Ctrl + O` tuşu ile belirtmemiz gerekir.
+> Not: Nano aracından çıkmadan dosyayı kaydedeceğimiz dizini belirlemek için dosya sistemi hiyerarşisinde `Ctrl + T` tuşuna basıp gezinebiliriz. Bunun için öncelikle dosyayı kaydetmek istediğimizi `Ctrl + O` tuşu ile belirtmemiz gerekir.
 
 ![](../images/nano-save.webp)
 
-###### Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, `Ctrl + T` tuşu ile dosya sistemi üzerinde gezinebiliriz.
-
-###### Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kullanablirsiniz.
+> Bize dosyayı hangi isimde kaydetmek istediğimiz sorulurken, `Ctrl + T` tuşu ile dosya sistemi üzerinde gezinebiliriz. Sayfada hızlı gezinti yapmak için `Ctrl` tuşuna basıp yön tuşlarını kullanablirsiniz.
 
 ---
 
@@ -109,7 +108,7 @@ Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıy
 
 İmlecimizin bulunduğu satırdan itibaren ekranımıza sığacak kadarlık dosya içeriğinin devamına atlamak için yani bir sayfa ileri atlamak için “**f**orward” yani “ileri” ifadesinin kısaltmasından gelen `Ctrl + f` kısayolunu kullanabiliyoruz. Benzer şekilde birer sayfa geri atlamak için de “**b**ackward” yani “geri” ifadesinin kısaltmasından gelen `Ctrl + b` kısayolunu kullanabiliyoruz.
 
-###### Komut modundayken dosya içeriğine yeni veri girişi yapamıyoruz. Metin içerisine yeni veri eklemek için “insert” yani “ekleme moduna” geçiş yapmalıyız. Bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli.
+Komut modundayken dosya içeriğine yeni veri girişi yapamıyoruz. Metin içerisine yeni veri eklemek için “insert” yani “ekleme moduna” geçiş yapmalıyız. Bu moda geçiş yapmak için de `i` tuşuna basmamız yeterli.
 
 | Kısayol           | Açıklama                                                     |
 | ----------------- | ------------------------------------------------------------ |
@@ -133,7 +132,7 @@ Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıy
 | `gg`              | Dosyanın başına git                                          |
 | `G`               | Dosyanın sonuna git                                          |
 
-###### Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştirebiliyoruz.
+> Not : Seçtiğin kısmı kesmek, kopyalamak ve yapıştırmak için `v` tuşuna basıp görsel (visual) moda geçiş yapıp kesme (`d`), kopyalama (`y`), yapıştırma (`p`) işlemlerini gerçekleştirebiliyoruz.
 
 ---
 
