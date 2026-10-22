@@ -124,7 +124,7 @@ Apt aracının ismi, “**a**dvanced **p**ackage **t**ool” yani “**gelişmi�
 
 › `apt-file`: aracını ise paketlerin içindeki dosyaları aramak için kullanıyoruz.
 
-> Ayrıca sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta birleştiren `apt` adlı bir yardımcı araç da bulunuyor. Yani `apt-get` ve `apt-cache` komutları ile uzun uzadıya komut girmek yerine yalnızca `apt` komutu ile aynı işlevleri de yerine getirebiliyoruz.
+> Sık kullanılan `apt-get` ve `apt-cache` araçlarını tek bir araçta birleştiren `apt` adlı bir yardımcı araç da bulunuyor. Yani `apt-get` ve `apt-cache` komutları ile uzun uzadıya komut girmek yerine yalnızca `apt` komutu ile aynı işlevleri de yerine getirebiliyoruz.
 
 #### Paket Listesinin Güncellenmesi
 
@@ -195,7 +195,7 @@ sudo apt purge <paket_adı>
 
 🛑 Dikkat etmen gereken tek şey `purge` evdeki dosyaları silmez, sadece programın **sistem ayarlarını** siler.
 
-Güvenlidir ama şu paketleri `purge` etme:
+Güvenlidir ama şu paketleri `purge` etmek risklidir:
 
 > ❌ systemd<br />❌ kali-desktop-\*<br />❌ linux-image-\* (kernel)<br />❌ apt veya dpkg<br />❌ python3 (sistem bileşeni)
 
@@ -278,7 +278,7 @@ sudo apt autopurge
 sudo apt --fix-broken install
 ```
 
->➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.
+> ➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.
 
 
 #### 🔎 2. Kırık Bağımlılıkları Kontrol Et
@@ -333,12 +333,12 @@ sudo apt update --fix-missing
 ------
 
 #### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
->
-> ```bash
-> sudo apt clean
-> sudo apt update
-> ```
->
+
+```bash
+sudo apt clean
+sudo apt update
+```
+
 > ------
 
 🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
@@ -371,9 +371,9 @@ apt policy <paket_adı>
 ⬧ `apt --fix-broken install` | `apt-get install -f` : APT'yi mevcut kırık paketleri düzeltmeye ve farkında olmadan bozduğumuz ya da sildiğimiz paketleri gerekirse eksik bağımlılıkları yüklemeye yönlendirir, bağımlılıkları çözülmemiş veya eksik olan paketleri belirleyip tekrar yükler.
 
 ⬧ `apt-get dist-upgrade` : Komutu ile sistemde yüklü bulunan bir paketin **bağımlılıkları arttıysa veya azaldıysa** güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.
->###### *Not : `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.*
->
-> ---
+
+> Not: `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
+>---
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
@@ -422,8 +422,8 @@ debtree ./<paket_adı.deb>
 > - Sistemde hiçbir dosya değişmez
 
 Yani **offline kurulum** için paketleri önceden indirme komutudur.
->
->- İnternet yokken apt, “**önceden indirilmiş**” diyerek yeniden indirmez.
+
+> - İnternet yokken apt, “**önceden indirilmiş**” diyerek yeniden indirmez.
 
 > ------
 
@@ -433,7 +433,7 @@ APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo ad
 
 Debian tabanlı dağıtımlarda kaynak listesi `/etc/apt` dizini altındaki `sources.list` isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu `sources.list` dosyası içinde tanımlanmıştır.
 
-### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları
+### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları:
 
 #### ✅ LOCAL REPO (dpkg-scanpackages)
 
@@ -441,7 +441,7 @@ Bu yöntem APT’nin anlayacağı basit bir depo oluşturur. `.deb` dosyaların�
 
 ------
 
-#### ➤ 1. Klasör oluştur
+##### ➤ 1. Klasör oluştur
 
 ```bash
 mkdir -p ~/localrepo
@@ -449,7 +449,7 @@ mkdir -p ~/localrepo
 
 ------
 
-#### ➤ **2. Eklemek istediğin .deb dosyalarını bu klasöre koy**
+##### ➤ 2. Eklemek istediğin `.deb` dosyalarını bu klasöre koy
 
 Örnek:
 
@@ -459,7 +459,7 @@ cp paket1.deb paket2.deb ~/localrepo/
 
 ------
 
-#### ➤ **3. Depoyu oluşturmak için gerekli araçları yükle**
+##### ➤ 3. Depoyu oluşturmak için gerekli araçları yükle
 
 ```bash
 sudo apt install dpkg-dev
@@ -467,7 +467,7 @@ sudo apt install dpkg-dev
 
 ------
 
-#### ➤ **4. Packages dosyasını oluştur (APT’nin okuduğu index)**
+##### ➤ 4. Packages dosyasını oluştur (APT’nin okuduğu index)
 
 ```bash
 cd ~/localrepo
@@ -479,7 +479,7 @@ Sonuç:
 
 ------
 
-#### ➤ **5. Bu repo’yu APT kaynaklarına ekle**
+##### ➤ 5. Bu repo’yu APT kaynaklarına ekle
 
 Bir repo kaynağı dosyası oluştur:
 
@@ -499,7 +499,7 @@ Kaydet.
 
 ------
 
-#### ➤ **6. APT’yi güncelle**
+##### ➤ 6. APT’yi güncelle
 
 ```bash
 sudo apt update
@@ -509,7 +509,7 @@ sudo apt update
 
 ------
 
-#### ➤ **7. Paketi normal apt komutu ile kur**
+##### ➤ 7. Paketi normal apt komutu ile kur
 
 Örneğin:
 
@@ -519,11 +519,7 @@ sudo apt install paket1
 
 APT artık `.deb` dosyasını **internet yerine yerel repo’dan** alır.
 
-------
-
-#### ⛳ NOT
-
-Her yeni `.deb` eklediğinde tekrar şu komutu çalıştırırsın:
+> ⛳ Not: Her yeni `.deb` eklediğinde tekrar şu komutu çalıştırılır:
 
 ```bash
 cd ~/localrepo

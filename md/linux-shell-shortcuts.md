@@ -50,7 +50,7 @@ Otomatik tamlama sadece **komutlar** için değil **dosya** veya **dizinler** i�
 | `Ctrl + G`  | Geçmiş listesi aramasını sonlandırır              |
 
 > Geçmiş listesi her bir kullanıcının kendi ev dizininde `.bash_history` isimli dosyada tutuluyor.  Boşluk bırakılarak girilen komutlar bu listeye dahil edilmez.
->
+
 
 ---
 
@@ -64,9 +64,7 @@ alias bas="echo 'bunu epey uzun bir komut olarak varsayın'"
 
 Konsola `bas` yazdığımda buradaki `echo` komutu çalışıp konsola çıktıyı bastıracak. Tanımlamış olduğumuz takma isim sadece geçerli konsol içindir. Sistemi yeniden başlattığımızdada bu takma isim geçersizdir. Örneğin kendi kullanıcı hesabımdaki tüm etkileşimli kabuklarda bu takma isim geçerli olsun istersem, kendi ev dizinimdeki `.bashrc` dosyasına bu takma ismi eklemem gerekiyor. Benzer şekilde tüm kullanıcılarda geçerli olması için de `/etc/bash.bashrc` ya da `/etc/bashrc` dosyalarından hangisi mevcutsa ona ekleyip, tanımladığım takma isimin tüm kullanıcılar tarafından ortak şekilde kullanılabilmesini sağlayabiliriz.
 
-> Mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek `alias` komutunu kullanmamız yeterli.
-
-> Bulunduğunuz kabuktan bir takma isimi kaldırmak isterseniz `unalias` komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.
+> Mevcut kabuk üzerinde tanımlı olan takma isimleri görmek istersek `alias` komutun kullanılır. Bulunduğunuz kabuktan bir takma isimi kaldırmak isterseniz `unalias` komutunun ardından kaldırmak istediğiniz takma isimi girmeniz yeterli.
 
 ---
 
