@@ -23,13 +23,9 @@ Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafınd
 
 #### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 
-İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
+İlk VCS'ler tek bir bilgisayarda çalışıyordu.
 
 **RCS (Revision Control System, 1982):** Dosyaların değişiklik geçmişini yerel olarak saklıyordu. Tek bir kullanıcı, tek bir bilgisayar.
-
-text
-
-Kopyala
 
 ```text
 ┌──────────────────────────────┐
@@ -40,13 +36,33 @@ Kopyala
 └──────────────────────────────┘
 ```
 
-**Sorun:** Ekip çalışması yok. Herkes kendi makinesinde. Dosyaları paylaşmak için USB bellek veya e-posta gerekiyor. Evet, insanlar gerçekten bunu yapıyordu.
+> **Sorun:** Ekip çalışması yok. Herkes kendi makinesinde. Dosyaları paylaşmak için USB bellek veya e-posta gerekiyor.
 
 #### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
 
-CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
+CVS (1990) ve Subversion/SVN (2000) ile merkezi model.
 
-Burada tek bir sunucu var. Herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.
+Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya gönderiyor, sunucudan alıyor.
+
+```text
+                ┌──────────────┐
+                │   SUNUCU     │
+                │  (Merkezi    │
+                │   Depo)      │
+                └──────┬───────┘
+                       │
+            ┌──────────┼──────────┐
+            │          │          │
+       ┌────┴───┐  ┌───┴────┐  ┌──┴──────┐
+       │ Ali'nin│  │Ayşe'nin│  │Mehmet'in│
+       │   PC   │  │   PC   │  │   PC    │
+       └────────┘  └────────┘  └─────────┘
+
+       Her PC'de sadece dosyaların SON HALİ var.
+       Geçmiş? Sadece sunucuda.
+```
+
+**İyileştirme:** Artık ekip çalışması mümkün. Ali ve Ayşe aynı projede çalışabiliyor.
 
 **Merkezi (Centralized) Model Dezavantajları:**
 
