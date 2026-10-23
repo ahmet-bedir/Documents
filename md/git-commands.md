@@ -64,7 +64,7 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 > **İyileştirme:** Artık ekip çalışması mümkün. Ali ve Ayşe aynı projede çalışabiliyor.
 
-##### Merkezi (Centralized) Model Dezavantajları:
+**Merkezi (Centralized) Model Dezavantajları:**
 
 - **Tek nokta arızası (Single Point of Failure):** Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.
 - **Ağ bağımlılığı:** İnternetsiz commit bile yapamazsın.
@@ -80,6 +80,82 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 - İnternetsiz çalışabilirsin.
 
 - Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.
+
+---
+
+### Merkezi vs Dağıtık: Temel Fark
+
+**Merkezi (Centralized) Model — SVN Tarzı**
+
+```text
+                    ┌──────────────────┐
+                    │    SUNUCU (SVN)  │
+                    │                  │
+                    │  Tüm geçmiş      │
+                    │  Tüm branch'ler  │
+                    │  Tüm commit'ler  │
+                    └────────┬─────────┘
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+         ┌────┴────┐    ┌────┴────┐    ┌────┴────┐
+         │   Ali   │    │  Ayşe   │    │  Mehmet │
+         │         │    │         │    │         │
+         │ Sadece  │    │ Sadece  │    │ Sadece  │
+         │ son hal │    │ son hal │    │ son hal │
+         └─────────┘    └─────────┘    └─────────┘
+```
+
+- Sunucu = tek gerçek kaynak (single source of truth)
+- Geliştiricilerde sadece dosyaların son hali var
+- Geçmişe bakmak, branch açmak için → sunucuya bağlanma gerek
+- Sunucu çökerse tüm geçmiş kaybolabilir
+
+### Dağıtık (Distributed) Model — Git Tarzı
+
+text
+
+Kopyala
+
+```text
+    ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+    │     Ali       │    │    Ayşe      │    │    Mehmet     │
+    │               │    │              │    │              │
+    │ TÜM geçmiş  │    │ TÜM geçmiş  │    │ TÜM geçmiş  │
+    │ TÜM branch  │    │ TÜM branch  │    │ TÜM branch  │
+    │ TÜM commit  │    │ TÜM commit  │    │ TÜM commit  │
+    └──────┬───────┘    └──────┬───────┘    └──────┬───────┘
+           │                   │                   │
+           └───────────────────┼───────────────────┘
+                               │
+                    ┌──────────┴──────────┐
+                    │   GitHub / GitLab   │
+                    │   (Uzak Depo —      │
+                    │    isteğe bağlı)    │
+                    └─────────────────────┘
+```
+
+- Her geliştirici, projenin **tam kopyasına** sahip
+- İnternetsiz çalışabilirsin: commit at, branch aç, geçmişe bak
+- GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
+- Sunucu çökerse? Herkesin yedeği var. Ali'nin bilgisayarından komple geri yükleme yapılabilir.
+
+### Pratik Fark Tablosu
+
+| Özellik         | Merkezi (SVN)     | Dağıtık (Git)             |
+| :-------------- | :---------------- | :------------------------ |
+| Offline çalışma | ❌ Hayır           | ✅ Tam destek              |
+| Hız             | 🐌 Ağa bağlı       | ⚡ Yerel, çok hızlı        |
+| Yedekleme       | 😰 Tek nokta       | 😎 Her kopya bir yedek     |
+| Branch açma     | 🐌 Yavaş, zahmetli | ⚡ Saniyenin altında       |
+| Geçmişe bakma   | 🐌 Sunucuya bağlan | ⚡ Hep yerel               |
+| Öğrenme eğrisi  | 📉 Daha basit      | 📈 Daha dik ama daha güçlü |
+
+------
+
+## Git'in Temel Felsefesi
+
+Git'i kullanırken "neden böyle?" diye soracağın anlar olacak. Bu felsefeyi bilmek, cevapları kendinin bulmasını sağlar.
 
 <a id="git"></a>
 
