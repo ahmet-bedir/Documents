@@ -272,7 +272,7 @@ sudo apt autopurge
 
 ### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-#### 🔍 1. Sistemde Bozuk Paket Kontrolü
+#### 🔍 1. Sistemde bozuk paket kontrolü
 
 ```bash
 sudo apt --fix-broken install
@@ -281,7 +281,7 @@ sudo apt --fix-broken install
 > ➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.
 
 
-#### 🔎 2. Kırık Bağımlılıkları Kontrol Etme
+#### 🔎 2. Kırık bağımlılıkları kontrol etme
 
 ```bash
 sudo dpkg --configure -a
@@ -290,7 +290,7 @@ sudo dpkg --configure -a
 
 ------
 
-#### 📦 3. Eksik veya Kırık Dosyaları Detaylı Tespit Etme
+#### 📦 3. Eksik veya kırık dosyaları detaylı tespit etme
 
 ```bash
 sudo apt install -f
@@ -310,7 +310,7 @@ apt-mark showhold
 
 ------
 
-#### 🧹 5. Bozuk / Artık Kullanılmayan Paketleri Listele
+#### 🧹 5. Bozuk / artık kullanılmayan paketleri listeleme
 
 ```bash
 sudo apt autoremove --purge
@@ -324,7 +324,7 @@ sudo apt autoremove --dry-run
 
 ------
 
-#### 🛑 6. Depolardaki tutarsızlık hatalarını kontrol et
+#### 🛑 6. Depolardaki tutarsızlık hatalarının kontrolü
 
 ```bash
 sudo apt update --fix-missing
@@ -332,14 +332,14 @@ sudo apt update --fix-missing
 
 ------
 
-#### 🧰 7. APT’nin Cache’inde bozuk `.deb` dosyası var mı?
+#### 🧰 7. APT’nin cache’inde bozuk `.deb` dosyası kontrolü
 
 ```bash
 sudo apt clean
 sudo apt update
 ```
 
-> ------
+------
 
 🛡 **Bi paketi yüklemeden önce güvenli olup olmadığı, hangi repoda bulunduğu gibi bilgiler şu komutla kontrol edilir.**
 
@@ -374,7 +374,7 @@ apt policy <paket_adı>
 
 > Not: `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
 
-> ---
+---
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
@@ -503,7 +503,7 @@ Kaydet.
 sudo apt update
 ```
 
-› Ve artık sistem senin klasörü **depo gibi** görüyor.
+› Artık sistem, senin klasörü **depo gibi** görüyor.
 
 ------
 
@@ -532,7 +532,7 @@ dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 
 > **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
 
-> **Kurulu tüm paketleri görmek için:**
+Kurulu tüm paketleri görmek için:
 
 ```bash
 rpm -qa | less
