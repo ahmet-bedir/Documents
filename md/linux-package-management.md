@@ -472,7 +472,8 @@ dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
 Sonuç:
- › `~/localrepo/` içinde **Packages.gz** oluşur → APT’nin görmek istediği şey.
+
+ › `~/localrepo/` içinde **Packages.gz** oluşur.
 
 ------
 
@@ -502,11 +503,11 @@ Kaydet.
 sudo apt update
 ```
 
-› Artık sistem, senin klasörü **depo gibi** görüyor.
+› Artık sistem, senin klasörü **depo gibi** görür.
 
 ------
 
-##### ➤ 7. Paketi normal apt komutu ile kur
+##### ➤ 7. Paket normal `apt` komutu ile kurulur
 
 Örneğin:
 
@@ -529,7 +530,7 @@ dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 
 ## Red Hat Tabanlı Dağıtımlarda Paket Yönetimi
 
-> **Debian tabanlı dağıtımlarda kullandığımız** `dpkg` **ve** `apt` **araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla** `rpm` **ve** `yum` **araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler** `.deb` **uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler** `.rpm` **.** `.rpm` **uzantılı paketleri yönetmek için de** `rpm` **aracını kullanıyoruz.** `rpm` **aracı tıpkı** `dpkg` **aracı gibi paketlerin lokal olarak yönetilebilmesini sağlıyor.** `yum` **aracı ise tıpkı** `apt` **aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor.** `yum` **aracı da aslında arkaplanda** `rpm` **aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.**
+Debian tabanlı dağıtımlarda kullandığımız `dpkg` ve `apt` araçlarının Red Hat tabanlı dağıtımlardaki karşılığı sırasıyla `rpm` ve `yum` araçlarıdır. Debian tabanlı dağıtımlar için hazırlanmış olan paketler `.deb` uzantılı iken, Red Hat tabanlı dağıtımlar için hazırlanmış olan paketler `.rpm` uzantılıdır. Bu `.rpm` uzantılı paketleri yönetmek için de `rpm` aracı kullanılır. `rpm` aracı tıpkı `dpkg` aracı gibi paketlerin lokal olarak yönetilebilmesini sağlar. `yum` aracı ise tıpkı `apt` aracı gibi repolar üzerinden paketlerin ve bağımlılıkların kolayca yönetilebilmesini sağlıyor. `yum` aracı da aslında arkaplanda `rpm` aracını kullanarak repolardan paketlerin bulunması bağımlılıkların otomatik olarak çözümlenmesi gibi pek çok faydalı işlevi sunan üst seviyeli bir paket yönetim aracıdır.
 
 Kurulu tüm paketleri görmek için:
 
@@ -537,31 +538,28 @@ Kurulu tüm paketleri görmek için:
 rpm -qa | less
 ```
 
-> `rpm -i <paket_adı.rpm>` **: Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.**
+> `rpm -i <paket_adı.rpm>` : Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.
 
-> **Sistemde kurulu olan bir paketi kaldırmak için** `rpm` **komutunun** `-e` **seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki** `e` **seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.**
+> Sistemde kurulu olan bir **paketi kaldırmak** için `rpm` komutunun **`-e`** seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki `e` seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.
 
-> **Eğer işlemler hakkında detaylıca çıktı almak istersek “verbose” ifadesinin kısaltması olan** `v` **seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.**
+> Eğer işlemler hakkında detaylıca çıktı almak istersek **“verbose”** ifadesinin kısaltması olan **`v`** seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.
 
 ---
 
 ### YUM ve DNF
 
-> `yum` **aracı tıpkı** `apt` **aracı gibi paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması gibi paket yönetimi işlerini bizler için kolay hale getiren Red Hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan** `dnf` **aracını öğrenmek daha makul bir yaklaşım olacaktır.**
+Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması** gibi **paket yönetimi** işlerini bizler için kolay hale getiren red hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan **`dnf`** aracını öğrenmek daha makul bir yaklaşım olacaktır.
 
-> **Repolardaki paketlerde araştırma yapmak için** `dnf search <paket-adı>` **komutu kullanılır.**
+> - Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.
 
-> **Depodan paket kurmak için** `dnf install <paket-adı>` **şeklinde komut girebiliyoruz.**
+> - Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
 
-> `dnf check-update` **: Sistemde kurulu paketlerin güncellemelerini kontrol etmek için kullanılır. Tüm paketleri kontrol etmek yerine dilersek** `check-update` **komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.**
+> - Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutu kullanılır. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.
+> - Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz.
+> - Spesifik olarak tek bir paketi güncellemek istersek `dnf install <paket-adı>` komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.
 
-> **Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak** `dnf update` **komutunu kullanabiliyoruz.**
->
-> **Spesifik olarak tek bir paketi güncellemek istersek** `sudo dnf install <paket-adı>` **komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.**
-
-> `dnf remove <paket-adı>` **: Paket kaldırmak için bu komut kullanılır.**
-
-> **Gereksiz paketler kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi için** `sudo dnf clean all` **komutunu kullanabiliyoruz.**
+> - `dnf remove <paket-adı>` : Paket kaldırmak için bu komut kullanılır.
+> - Kurulmak üzere indirilen ve artık ihtiyaç duyulamayan paketlerin silinmesi için `dnf clean all` komutu kullanılır.
 
 ---
 
@@ -601,16 +599,16 @@ sudo make install
 
 ---
 
-### Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.
+##### Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.
 
 
-#### 🧩 1.Depodan (APT, DNF vs.) Kurulan Programlar:
+🧩 **1.Depodan (APT, DNF vs.) Kurulan Programlar:**
 
 ```bash
 sudo apt install <paket_adı>
 ```
 
-🔹 **Bu programlar paket yöneticisi tarafından sistem standart dizinlerine kurulur:**
+🔹 Bu programlar paket yöneticisi tarafından sistem standart dizinlerine kurulur:
 
 | Tür                       | Dizin                    | Açıklama                                             |
 | ------------------------- | ------------------------ | ---------------------------------------------------- |
@@ -620,21 +618,21 @@ sudo apt install <paket_adı>
 | Veri / kaynak dosyaları   | `/usr/share/`            | İkonlar, temalar, yardım dosyaları                   |
 | Man sayfaları             | `/usr/share/man/`        | `man program-adı` komutu için içerikler                     |
 
-> 💡 **Paket yöneticisi (ör. `apt`, `dnf`) tüm dosyaları bilir, bu yüzden kaldırmak için:**
+> 💡 Paket yöneticisi (ör. `apt`, `dnf`) tüm dosyaları bilir, bu yüzden kaldırmak için:
 
 ```bash
-sudo apt remove <paket_adı>
+apt remove <paket_adı>
 ```
 
 ------
 
-#### 📦 2.`.deb` Dosyasından Kurulan Programlar:
+📦 **2.`.deb` Dosyasından Kurulan Programlar:**
 
 ```bash
 sudo dpkg -i <paket_adı.deb>
 ```
 
-🔹 `.deb` **paketleri de aynı dizin yapısını kullanır, çünkü** `dpkg` **sistemin kendi paket yöneticisidir. Yani genelde yine şu klasörler kullanılır:**
+> 🔹 `.deb` paketleri de aynı dizin yapısını kullanır, çünkü `dpkg` sistemin kendi paket yöneticisidir. Yani genelde yine şu klasörler kullanılır:
 
 - `/usr/bin/` → çalıştırılabilir dosyalar
 - `/usr/share/` → ikonlar, dil dosyaları
@@ -642,22 +640,21 @@ sudo dpkg -i <paket_adı.deb>
 - `/etc/` → ayarlar
 
 
+> 💡 `.deb` dosyası sistemde hangi dosyaları nereye koyduğunu görmek için:
 
-> 💡 `.deb` **dosyası sistemde hangi dosyaları nereye koyduğunu görmek için:**
->
-> ```bash
-> dpkg -c <paket_adı.deb>
-> ```
->
-> veya kurulduktan sonra:
->
-> ```bash
-> dpkg -L <paket_adı>
-> ```
+```bash
+dpkg -c <paket_adı.deb>
+```
+
+> Kurulduktan sonra:
+
+```bash
+dpkg -L <paket_adı>
+```
 
 ------
 
-#### ⚙️ 3.Kaynak koddan (örneğin `./configure && make && make install` adımlarıyla) derleyip kurduğun programlar:
+⚙️ **3.Kaynak koddan (örneğin `./configure && make && make install` adımlarıyla) derleyip kurduğun programlar:**
 
 ```bash
 ./configure
@@ -665,7 +662,7 @@ make
 sudo make install
 ```
 
-🔹 **Bu yöntem sistem paket yöneticisini bypass eder (haber vermez), bu yüzden nereye kurulduğunu manuel takip etmek gerekir. Varsayılan dizinler genelde:**
+> 🔹 Bu yöntem sistem paket yöneticisini bypass eder (haber vermez), bu yüzden nereye kurulduğunu manuel takip etmek gerekir. Varsayılan dizinler genelde:
 
 | Tür                       | Dizin               | Açıklama                                          |
 | ------------------------- | ------------------- | ------------------------------------------------- |
@@ -674,7 +671,7 @@ sudo make install
 | Ayarlar                   | `/usr/local/etc/`   |                                                   |
 | Veri / kaynak dosyaları   | `/usr/local/share/` |                                                   |
 
-🔹 **Kurulum dizininde** `uninstall` **varsa yani** `Makefile` **içinde bir** `uninstall` **hedefi varsa kurulan dosyaları aşağıdaki komut sistemden kaldırır.**
+> 🔹 Kurulum dizininde `uninstall` varsa yani `Makefile` içinde bir `uninstall` hedefi varsa kurulan dosyaları aşağıdaki komut sistemden kaldırır.
 
 ```bash
 sudo make uninstall
@@ -682,7 +679,7 @@ sudo make uninstall
 
 ------
 
-> 📁 **Genellikle kaynak koddan derlenen programlar** `/usr/local/` **altına kurulur. Kurarken hangi dosyalar nereye gittiğini görmek için:**
+> 📁 Genellikle kaynak koddan derlenen programlar `/usr/local/` altına kurulur. Kurarken hangi dosyalar nereye gittiğini görmek için:
 
 ```bash
 sudo make install > install.log
@@ -690,13 +687,13 @@ sudo make install > install.log
 
 ------
 
-🧠 **Eğer program** `sudo make install` **komutu yerine** `sudo checkinstall` **komutu ile kurulduysa (yani** `.deb` **paketi oluşturup yükler dolayısıyla yazılım paket yöneticisine kayıt olur, aşağıdaki komutla kaldırabilirsiniz):**
+> 🧠 Eğer program `sudo make install` komutu yerine `sudo checkinstall` komutu ile kurulduysa (yani `.deb` paketi oluşturup yükler dolayısıyla yazılım paket yöneticisine kayıt olur, aşağıdaki komutla kaldırabilirsiniz):
 
-```shell
+```bash
 sudo apt remove <paket_adı>
 ```
 
-> 🔹 **Bu yöntem Debian/Pardus/Ubuntu tabanlı sistemlerde çok daha kontrollüdür, çünkü sistem paket yöneticisine kaydedilir.**
+> 🔹 Bu yöntem Debian/Pardus/Ubuntu tabanlı sistemlerde çok daha kontrollüdür, çünkü sistem paket yöneticisine kaydedilir.
 
 ------
 
@@ -721,13 +718,13 @@ which nginx
 # /usr/sbin/nginx
 ```
 
-Bu yol, paketi bulmak için ana girdidir.
+> Bu yol, paketi bulmak için ana girdidir.
 
 ------
 
 #### Debian / Ubuntu / Kali (apt / dpkg)
 
-**Dosya Hangi Pakete Ait?***
+**Dosya Hangi Pakete Ait?**
 
 ```bash
 dpkg -S /usr/sbin/nginx
@@ -735,7 +732,7 @@ dpkg -S /usr/sbin/nginx
 
 **Çıktı:**
 
-```bash
+```text
 nginx-core: /usr/sbin/nginx
 ```
 
