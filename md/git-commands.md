@@ -53,10 +53,10 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
                        │
             ┌──────────┼──────────┐
             │          │          │
-       ┌────┴───┐  ┌───┴────┐  ┌──┴──────┐
-       │ Ali'nin│  │Ayşe'nin│  │Mehmet'in│
-       │   PC   │  │   PC   │  │   PC    │
-       └────────┘  └────────┘  └─────────┘
+       ┌────┴────┐  ┌───┴────┐  ┌──┴──────┐
+       │ Ali'nin │  │Ayşe'nin│  │Mehmet'in│
+       │   PC    │  │   PC   │  │   PC    │
+       └─────────┘  └────────┘  └─────────┘
 
        Her PC'de sadece dosyaların SON HALİ var.
        Geçmiş? Sadece sunucuda.
