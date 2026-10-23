@@ -373,7 +373,7 @@ apt policy <paket_adı>
 ⬧ `apt-get dist-upgrade` : Komutu ile sistemde yüklü bulunan bir paketin **bağımlılıkları arttıysa veya azaldıysa** güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.
 
 > Not: `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
-> 
+
 > ---
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
@@ -382,7 +382,7 @@ apt policy <paket_adı>
 
 ---
 
-▪ Eğer indirmiş olduğumuz `.deb` uzantılı paketi `apt` aracı ile kurarsak, internet bağlantımız da olduğu için `apt` aracı bu paketin bağımlılıklarını da otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi `apt` aracı ile kurabiliyoruz.
+▪ Eğer indirmiş olduğumuz `.deb` uzantılı paketi `apt` aracı ile kurarsak, internet bağlantımız da olduğu için `apt` aracı bu paketin bağımlılıklarını da depodan otomatik çözümleyip kuracak. Yani lokal olarak bulunan paketleri dahi `apt` aracı ile kurabiliyoruz.
 
 ```bash
 apt install ~/Downloads/<paket_adı.deb>
@@ -392,7 +392,6 @@ apt install ~/Downloads/<paket_adı.deb>
 
 ▪ `apt-cache depends <paket_adı>` : Paketin çalışması için gerekli olan bağımlılıkları listeler.
 
----
 
 ▪ `.deb` dosyasını kurmadan bağımlılıkların sistemde eksik olup olmadığını kontrol etmek için:
 
@@ -439,8 +438,6 @@ Debian tabanlı dağıtımlarda kaynak listesi `/etc/apt` dizini altındaki `sou
 #### ✅ LOCAL REPO (dpkg-scanpackages)
 
 Bu yöntem APT’nin anlayacağı basit bir depo oluşturur. `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
-
-------
 
 ##### ➤ 1. Klasör oluştur
 
