@@ -136,7 +136,7 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 - GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
 - Sunucu çökerse? Yedekten geri alınabilir.
 
-### Pratik Fark Tablosu
+**Fark Tablosu**
 
 | Özellik         | Merkezi (SVN)     | Dağıtık (Git)             |
 | :-------------- | :---------------- | :------------------------ |
@@ -147,15 +147,9 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 | Geçmişe bakma   | 🐌 Sunucuya bağlan | ⚡ Hep yerel               |
 | Öğrenme eğrisi  | 📉 Daha basit      | 📈 Daha dik ama daha güçlü |
 
-------
-
-## Git'in Temel Felsefesi
-
-Git'i kullanırken "neden böyle?" diye soracağın anlar olacak. Bu felsefeyi bilmek, cevapları kendinin bulmasını sağlar.
+---
 
 <a id="git"></a>
-
----
 
 # Git (Global Information Tracker) Nedir?
 
