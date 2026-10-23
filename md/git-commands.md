@@ -48,31 +48,28 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
                 ┌──────────────┐
                 │   SUNUCU     │
                 │  (Merkezi    │
-                │   Depo)      │
+                │    Depo)     │
                 └──────┬───────┘
                        │
             ┌──────────┼──────────┐
             │          │          │
-       ┌────┴────┐  ┌───┴────┐  ┌──┴──────┐
-       │ Ali'nin │  │Ayşe'nin│  │Mehmet'in│
-       │   PC    │  │   PC   │  │   PC    │
-       └─────────┘  └────────┘  └─────────┘
+       ┌────┴────┐ ┌───┴────┐  ┌──┴──────┐
+       │ Ali'nin │ │Ayşe'nin│  │Mehmet'in│
+       │   PC    │ │   PC   │  │   PC    │
+       └─────────┘ └────────┘  └─────────┘
 
        Her PC'de sadece dosyaların SON HALİ var.
        Geçmiş? Sadece sunucuda.
 ```
 
-**İyileştirme:** Artık ekip çalışması mümkün. Ali ve Ayşe aynı projede çalışabiliyor.
+> **İyileştirme:** Artık ekip çalışması mümkün. Ali ve Ayşe aynı projede çalışabiliyor.
 
-**Merkezi (Centralized) Model Dezavantajları:**
+##### Merkezi (Centralized) Model Dezavantajları:
 
-- Tek nokta arızası (Single Point of Failure): Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.
-
-- Ağ bağımlılığı.
-
-- Yavaşlık: Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.
-
-- Geliştiricilerde sadece dosyaların son hali vardı.
+- **Tek nokta arızası (Single Point of Failure):** Sunucu çökerse? Kimse çalışamaz. Geçmiş kaybolabilir.
+- **Ağ bağımlılığı:** İnternetsiz commit bile yapamazsın.
+- **Yavaşlık:** Her işlem sunucuyla iletişim gerektirdiği için log bakmak bile ağ hızına bağlıydı.
+- **Branching:** SVN'de branch açmak çok yavaş ve karmaşıktı.
 
 #### 🌐 3. Nesil: Dağıtık Sistemler (2005-Günümüz)
 
