@@ -25,6 +25,23 @@ Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafınd
 
 İlk VCS'ler tek bir bilgisayarda çalışıyordu. (RCS - Revision Control System, 1982)
 
+**RCS (Revision Control System, 1982):** Dosyaların değişiklik geçmişini yerel olarak saklıyordu. Tek bir kullanıcı, tek bir bilgisayar.
+
+text
+
+Kopyala
+
+```text
+┌──────────────────────────────┐
+│         Bilgisayarım         │
+│                              │
+│  dosya.c  ←→  RCS veritabanı │
+│              (değişiklikler) │
+└──────────────────────────────┘
+```
+
+**Sorun:** Ekip çalışması yok. Herkes kendi makinesinde. Dosyaları paylaşmak için USB bellek veya e-posta gerekiyor. Evet, insanlar gerçekten bunu yapıyordu.
+
 #### 🏢 2. Nesil: Merkezi Sistemler (1990-2000'ler)
 
 CVS (1990) ve Subversion/SVN (2000) ile merkezi model doğdu.
