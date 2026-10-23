@@ -86,7 +86,6 @@ dpkg -I <paket_adı.deb>
 ```
 
 > - `dpkg -l <paket_adı>` : Belirtilen paketin sistemde kurulu olup olmadığını sorgulamak için bu komut kullanılır.
-
 > - `dpkg -l | grep <paket_adı>` : `grep` komutu ile belirtilen paketin adında yada açıklamasının herhangi bir yerinde geçen paket yada paketlerin sistemde kurulu olup olmadığını sorgular.
 
 <img src="../images/dpkg-l.png" width="740" />
@@ -249,9 +248,9 @@ sudo apt autopurge
 Yani:
 
 > ✓ Artık kullanılmayan bağımlılıkları kaldırır
-
+>
 > ✓ Onların config dosyalarını da siler
-
+>
 > ✓ `autopurge` yalnızca otomatik kurulan (“auto-installed”) ve şuan kullanılmayan paketlere işlem yapar. Bu yüzden yanlış paketi silmez, tıpkı `autoremove` gibi güvenlidir.
 
 🌿 Güvenli tercih
