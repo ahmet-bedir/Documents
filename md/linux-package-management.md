@@ -272,7 +272,7 @@ sudo apt autopurge
 
 ### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-#### 🔍 1. Bozuk Paket Var mı Kontrol Et.
+#### 🔍 1. Sistemde Bozuk Paket Kontrolü
 
 ```bash
 sudo apt --fix-broken install
@@ -281,7 +281,7 @@ sudo apt --fix-broken install
 > ➡ Bozuk veya yarım kalmış paket varsa gösterir ve düzeltir.
 
 
-#### 🔎 2. Kırık Bağımlılıkları Kontrol Et
+#### 🔎 2. Kırık Bağımlılıkları Kontrol Etme
 
 ```bash
 sudo dpkg --configure -a
@@ -290,7 +290,7 @@ sudo dpkg --configure -a
 
 ------
 
-#### 📦 3. Eksik veya Kırık Dosyaları Tespit Et (detaylı)
+#### 📦 3. Eksik veya Kırık Dosyaları Detaylı Tespit Etme
 
 ```bash
 sudo apt install -f
@@ -300,7 +300,7 @@ sudo apt install -f
 
 ------
 
-#### 🗂 4. Depoda “tutulmuş” yani kilitli paket var mı?
+#### 🗂 4. Depoda “tutulmuş” yani kilitli paket kontrolü
 
 ```bash
 apt-mark showhold
@@ -373,7 +373,8 @@ apt policy <paket_adı>
 ⬧ `apt-get dist-upgrade` : Komutu ile sistemde yüklü bulunan bir paketin **bağımlılıkları arttıysa veya azaldıysa** güncelleme yapılırken aynı zamanda varsa yeni paketlerin kurulması ve ayrıca artık gerekli olmayan paketlerin de kaldırılması mümkün oluyor.
 
 > Not: `apt full-upgrade` komutu sayesindede güncelleme esnasında bağımlılık sorunlarının ilgili paket için otomatik olarak çözülmesi sağlanır.
->---
+> 
+> ---
 
 ### 🧹 Gereksiz Paketlerin Silinmesi
 
