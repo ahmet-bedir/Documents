@@ -79,7 +79,7 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 - İnternetsiz çalışabilirsin.
 
-- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayarından komple geri yükleme yapılabilir.
+- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayardan komple geri yükleme yapılabilir.
 
 ---
 
@@ -111,19 +111,15 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 - Geçmişe bakmak, branch açmak için → sunucuya bağlanma gerek
 - Sunucu çökerse tüm geçmiş kaybolabilir
 
-### Dağıtık (Distributed) Model — Git Tarzı
-
-text
-
-Kopyala
+**Dağıtık (Distributed) Model — Git Tarzı**
 
 ```text
     ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-    │     Ali       │    │    Ayşe      │    │    Mehmet     │
-    │               │    │              │    │              │
-    │ TÜM geçmiş  │    │ TÜM geçmiş  │    │ TÜM geçmiş  │
-    │ TÜM branch  │    │ TÜM branch  │    │ TÜM branch  │
-    │ TÜM commit  │    │ TÜM commit  │    │ TÜM commit  │
+    │     Ali      │    │    Ayşe      │    │    Mehmet    │
+    │              │    │              │    │              │
+    │  TÜM geçmiş  │    │  TÜM geçmiş  │    │  TÜM geçmiş  │
+    │  TÜM branch  │    │  TÜM branch  │    │  TÜM branch  │
+    │  TÜM commit  │    │  TÜM commit  │    │  TÜM commit  │
     └──────┬───────┘    └──────┬───────┘    └──────┬───────┘
            │                   │                   │
            └───────────────────┼───────────────────┘
@@ -138,7 +134,7 @@ Kopyala
 - Her geliştirici, projenin **tam kopyasına** sahip
 - İnternetsiz çalışabilirsin: commit at, branch aç, geçmişe bak
 - GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
-- Sunucu çökerse? Herkesin yedeği var. Ali'nin bilgisayarından komple geri yükleme yapılabilir.
+- Sunucu çökerse? Yedekten geri alınabilir.
 
 ### Pratik Fark Tablosu
 
