@@ -157,7 +157,26 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
-### Git Ekosistemi
+#### Git Kullanım Senaryoları
+
+##### 1. Zaman Yolculuğu
+
+```bash
+# 3 ay önceki projenin haline bak
+git log --oneline
+# a1b2c3d Login sayfası eklendi
+# d4e5f6g Veritabanı bağlantısı
+# h7i8j9k Proje başlatıldı
+
+git checkout h7i8j9k    # Projeyi ilk haline geri götür
+git checkout main       # Tekrar bugüne dön
+```
+
+
+
+
+
+#### Git Ekosistemi
 
 ```text
                          ┌───────────────────┐
