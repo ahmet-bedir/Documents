@@ -265,7 +265,7 @@ sudo apt autopurge
 
 #### Bozuk paketleri tespit etmek, düzeltmek ve temizlemek için kullanılan komutlar.
 
-##### 🔍 1. Sistemde bozuk paket kontrolü
+#### 🔍 1. Sistemde bozuk paket kontrolü
 
 ```bash
 sudo apt --fix-broken install
@@ -275,7 +275,7 @@ sudo apt --fix-broken install
 
 ---
 
-##### 🔎 2. Kırık bağımlılıkları kontrol etme
+#### 🔎 2. Kırık bağımlılıkları kontrol etme
 
 ```bash
 sudo dpkg --configure -a
@@ -284,7 +284,7 @@ sudo dpkg --configure -a
 
 ------
 
-##### 📦 3. Eksik veya kırık dosyaları detaylı tespit etme
+#### 📦 3. Eksik veya kırık dosyaları detaylı tespit etme
 
 ```bash
 sudo apt install -f
@@ -294,7 +294,7 @@ sudo apt install -f
 
 ------
 
-##### 🗂 4. Depoda “tutulmuş” yani kilitli paket kontrolü
+#### 🗂 4. Depoda “tutulmuş” yani kilitli paket kontrolü
 
 ```bash
 apt-mark showhold
@@ -304,7 +304,7 @@ apt-mark showhold
 
 ------
 
-##### 🧹 5. Bozuk / artık kullanılmayan paketleri listeleme
+#### 🧹 5. Bozuk / artık kullanılmayan paketleri listeleme
 
 ```bash
 sudo apt autoremove --purge
@@ -318,7 +318,7 @@ sudo apt autoremove --dry-run
 
 ------
 
-##### 🛑 6. Depolardaki tutarsızlık hatalarının kontrolü
+#### 🛑 6. Depolardaki tutarsızlık hatalarının kontrolü
 
 ```bash
 sudo apt update --fix-missing
@@ -326,7 +326,7 @@ sudo apt update --fix-missing
 
 ------
 
-##### 🧰 7. APT’nin cache’inde bozuk `.deb` dosyası kontrolü
+#### 🧰 7. APT’nin cache’inde bozuk `.deb` dosyası kontrolü
 
 ```bash
 sudo apt clean
