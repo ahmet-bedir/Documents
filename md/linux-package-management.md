@@ -691,19 +691,19 @@ sudo apt remove <paket_adı>
 
 ##### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
 
-**Programın Yolunu Bulma**
+Programın Yolunu Bulma:
 
 ```bash
 which program_adı
 ```
 
-**veya**
+veya
 
 ```bash
 whereis program_adı
 ```
 
-**Örnek:**
+Örnek:
 
 ```bash
 which nginx
@@ -716,25 +716,25 @@ which nginx
 
 ##### Debian / Ubuntu / Kali (apt / dpkg)
 
-**Dosya Hangi Pakete Ait?**
+Dosya Hangi Pakete Ait?
 
 ```bash
 dpkg -S /usr/sbin/nginx
 ```
 
-**Çıktı:**
+Çıktı:
 
 ```text
 nginx-core: /usr/sbin/nginx
 ```
 
-**Paket Kurulu mu?**
+Paket Kurulu mu?
 
 ```bash
 dpkg -l | grep nginx
 ```
 
-**Paket Bilgisi**
+Paket Bilgisi
 
 ```bash
 apt show nginx
@@ -748,7 +748,7 @@ apt show nginx
 rpm -qf /usr/sbin/nginx
 ```
 
-**Paket detayları:**
+Paket detayları:
 
 ```bash
 rpm -qi nginx 
