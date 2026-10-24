@@ -172,9 +172,59 @@ git checkout h7i8j9k    # Projeyi ilk haline geri götür
 git checkout main       # Tekrar bugüne dön
 ```
 
+##### 2. Paralel Geliştirme
 
+```bash
+# Ana projeden bağımsız, yeni özellik geliştir
+git branch yeni-ozellik
+git checkout yeni-ozellik
+# ... kodla, test et, dene ...
+# Hazır olunca ana projeye birleştir
+git checkout main
+git merge yeni-ozellik
+```
 
+##### 3. Ekip Çalışması
 
+bash
+
+Kopyala
+
+```bash
+# Arkadaşının değişikliklerini al
+git pull origin main
+# Kendi değişikliklerini gönder
+git push origin main
+```
+
+##### 4. Güvenli Deneme
+
+bash
+
+Kopyala
+
+```bash
+# Radikal bir değişiklik denemek istiyorsun
+git branch deney
+git checkout deney
+# ... her şeyi alt üst et ...
+# Olmadı mı? Sil gitsin
+git checkout main
+git branch -D deney
+# Ana proje tertemiz, hiç dokunulmamış
+```
+
+##### 5. Bug Avı
+
+```bash
+# Hangi commit ile bug girmiş? Git bulsun:
+git bisect start
+git bisect bad          # Şu an bozuk
+git bisect good v1.0    # v1.0'da çalışıyordu
+# Git, binary search ile sorumlu commit'i bulur
+```
+
+---
 
 #### Git Ekosistemi
 
