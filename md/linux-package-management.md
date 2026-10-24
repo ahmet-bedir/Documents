@@ -589,7 +589,7 @@ sudo make install
 
 ---
 
-##### Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.
+**Linux’ta programın sisteme nasıl kurulduğuna göre dosyalar farklı dizinlere gider.**
 
 
 🧩 **1.Depodan (APT, DNF vs.) Kurulan Programlar:**
@@ -687,7 +687,7 @@ sudo apt remove <paket_adı>
 
 ------
 
-##### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
+**Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:**
 
 Programın Yolunu Bulma:
 
