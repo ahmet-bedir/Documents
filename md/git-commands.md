@@ -459,8 +459,6 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
-
-
 **Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
 ```bash
@@ -485,8 +483,6 @@ git config --global --list
 > Not: Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları, tüm ayarlar için `git config --local --list` komutu kullanılır.
 
 ---
-
-
 
 #### Varsayılan Editör
 
@@ -513,8 +509,6 @@ git config --global --list
 - Sublime Text  ayarlamak için:
 
    `git config --global core.editor "subl -n -w"`
-
-
 
 **Git varsayılan editörü görüntülemek için:**
 
