@@ -546,7 +546,7 @@ rpm -qa | less
 Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması** gibi **paket yönetimi** işlerini bizler için kolay hale getiren red hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan **`dnf`** aracını öğrenmek daha makul bir yaklaşım olacaktır.
 
 > - Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.
-> -  Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
+> - Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
 
 > - Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutu kullanılır. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.
 > - Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz.
@@ -557,8 +557,8 @@ Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketl
 
 ---
 
-> **Alien komutu ile deb/rpm paket dönüşümü yapılabilmektedir.**
-> **Bir yazılımın** `rpm` **paketi var fakat** `deb` **formatında paketi yoksa** `alien` **komutu sayesinde** `rpm` **paketinden** `deb` **paketine dönüşüm yapılabilir. Tam tersi olarak** `deb` **paketinden de** `rpm` **paketi yapılabilmektedir.**
+🖥️ **Alien komutu ile deb/rpm paket dönüşümü yapılabilmektedir.**
+> Bir yazılımın `rpm` paketi var fakat `deb` formatında paketi yoksa **`alien`** komutu sayesinde `rpm` paketinden `deb` paketine dönüşüm yapılabilir. Tam tersi olarak `deb` paketinden de `rpm` paketi yapılabilmektedir.
 
 | İşlem                      | Komut                                                        | Açıklama                               |
 | -------------------------- | ------------------------------------------------------------ | -------------------------------------- |
@@ -569,7 +569,7 @@ Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketl
 
 ### Kaynak Koddan Derleyerek Kurulum
 
-Kuracak olduğumuz yazılımın `.tar.gz` uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu `install` veya `readme` gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan `configure` dosyası ve kurulum işlemini kolaylaştıran genellikle `install.sh` isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için `configure` dosyasını çalıştırıyoruz. Ayrıca buradaki `makefile` dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.
+Kuracak olduğumuz yazılımın **`.tar.gz`** uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “**README**” ve “**INSTALL**” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu **`install`** veya **`readme`** gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan **`configure`** dosyası ve kurulum işlemini kolaylaştıran genellikle **`install.sh`** isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için **`configure`** dosyasını çalıştırıyoruz. Ayrıca buradaki **`makefile`** dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.
 
 > - İlk olarak sıkıştırılmış dosyayı açıyoruz. Açılan klasörün içine girip, orada ilk olarak `./configure` komutu ile "configure" dosyasını çalıştırıyoruz.
 > - İlk olarak konfigürasyon dosyasını çalıştırdığımız için mevcut sistemin derleme işlemine uygun olup olmadığı kontrol ediliyor. Dolayısıyla uyumlu değilse hata çıktısında belirtilen uyarıları araştırıp çözdükten sonra derleme adımlarına devam etmelisiniz.
