@@ -99,8 +99,6 @@ Paketin **mevcut durumunu** gösteren durum kodları aşağıdaki gibidir:
 | **un**  | **u**nknown **n**ot-installed | Paket sistem tarafından biliniyor ama hiç kurulmamış.        |
 | **hi**  | **h**old **i**nstalled        | Paket kurulu ancak güncellenmemesi için "beklemeye" (hold) alınmış. |
 
----
-
 #### Kurulu Paketleri Yeniden Yapılandırma
 
 ✓ Aracı kurduktan sonra **konfigürasyonları** hatalı veya eksik uygulandıysa tekrar ilgili aracı baştan kurmadan yalnızca konfigürasyonların tekrar yapılmasını sağlamak, **konfigürasyon** dosyaları bozulmuş veya konfigürasyonu için sorulan sorulara yeniden farklı şekilde yanıt vererek yeniden konfigure etmek için aşağıdaki komut kullanılır.
@@ -432,9 +430,9 @@ APT aracının doğru paketleri bulabilmesi için, APT aracının ilgili repo ad
 
 Debian tabanlı dağıtımlarda kaynak listesi `/etc/apt` dizini altındaki `sources.list` isimli dosyadır. Bu dosyada apt aracının paketleri edinmek için hangi adreslere bakması gerektiğini belirten bağlantılar vardır. Yani repoların adresi bu `sources.list` dosyası içinde tanımlanmıştır.
 
-### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları:
+#### Debian/Kali/Ubuntu için “LOCAL REPO (yerel depo)” oluşturma adımları:
 
-#### ✅ LOCAL REPO (dpkg-scanpackages)
+#### ✅ LOCAL REPO (`dpkg-scanpackages`)
 
 Bu yöntem APT’nin anlayacağı basit bir depo oluşturur. `.deb` dosyalarını bir klasöre koyarsın → APT bunu depo gibi görür.
 
@@ -538,11 +536,9 @@ Kurulu tüm paketleri görmek için:
 rpm -qa | less
 ```
 
-> `rpm -i <paket_adı.rpm>` : Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.
-
-> Sistemde kurulu olan bir **paketi kaldırmak** için `rpm` komutunun **`-e`** seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki `e` seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.
-
-> Eğer işlemler hakkında detaylıca çıktı almak istersek **“verbose”** ifadesinin kısaltması olan **`v`** seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.
+> - `rpm -i <paket_adı.rpm>` : Lokalde var olan `rpm` uzantılı bir paketi kurmak için kullanılır.
+> - Sistemde kurulu olan bir **paketi kaldırmak** için `rpm` komutunun **`-e`** seçeneğinden sonra ilgili paketin ismini girmemiz yeterli. Buradaki `e` seçeneği “erase” yani “silmek” ifadesinin kısaltmasıdır.
+> - İşlemler hakkında detaylıca çıktı almak istersek **“verbose”** ifadesinin kısaltması olan **`v`** seçeneğini kullanabiliriz. Eğer bu seçeneği eklemezseniz araç silinir ancak herhangi bir çıktı almazsınız.
 
 ---
 
@@ -551,10 +547,9 @@ rpm -qa | less
 Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması** gibi **paket yönetimi** işlerini bizler için kolay hale getiren red hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan **`dnf`** aracını öğrenmek daha makul bir yaklaşım olacaktır.
 
 > - Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.
-
 > - Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
-
 > - Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutu kullanılır. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.
+
 > - Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz.
 > - Spesifik olarak tek bir paketi güncellemek istersek `dnf install <paket-adı>` komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.
 
