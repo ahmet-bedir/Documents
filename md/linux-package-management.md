@@ -466,9 +466,7 @@ cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
-Sonuç:
-
- › `~/localrepo/` içinde **Packages.gz** oluşur.
+> ›  Sonuç: `~/localrepo/` içinde **Packages.gz** oluşur.
 
 ------
 
@@ -498,7 +496,7 @@ Kaydet.
 sudo apt update
 ```
 
-› Artık sistem, senin klasörü **depo gibi** görür.
+> ›  Artık sistem, senin klasörü **depo gibi** görür.
 
 ------
 
@@ -519,7 +517,7 @@ cd ~/localrepo
 dpkg-scanpackages . /dev/null | gzip -9c > Packages.gz
 ```
 
-> › APT listeyi günceller ve yeni paketler görünür.
+> ›  APT listeyi günceller ve yeni paketler görünür.
 
 ---
 
