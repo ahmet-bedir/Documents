@@ -575,21 +575,21 @@ Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketl
 
 ### Kaynak Koddan Derleyerek Kurulum
 
-> **Kuracak olduğumuz yazılımın** `.tar.gz` **uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu** `install` **veya** `readme` **gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan** `configure` **dosyası ve kurulum işlemini kolaylaştıran genellikle** `install.sh` **isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için** `configure` **dosyasını çalıştırıyoruz. Ayrıca buradaki** `makefile` **dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.**
+Kuracak olduğumuz yazılımın `.tar.gz` uzantılı arşiv dosyasını temin etdikten sonra dosyayı klasöre çıkarıyoruz. Burada “README” ve “INSTALL” gibi isimlerde metin dosyaları bulunuyor. İstisnalar hariç neredeyse tüm araçların kaynak kodlarında, aracın kurulumu ve konfigürasyonları ile ilgili bilgi sunan bu tür dosyalar zaten geliyor. Genel olarak kurulumu ele alıyorum ancak daha önce de söylediğim şekilde en doğru bilgiyi geliştiricinin sunduğu `install` veya `readme` gibi dosyalardan öğrenebilirsiniz. Burada listelenen dosyalar elbette ilgili yazılıma göre değişiklik gösterir. Ancak genel olarak bilgi içeren metin dosyalarının yanında kurulum için ön ayarlamaları yapan `configure` dosyası ve kurulum işlemini kolaylaştıran genellikle `install.sh` isminde kurulum betiği ile karşılaşırsınız. Konfigürasyonlar için `configure` dosyasını çalıştırıyoruz. Ayrıca buradaki `makefile` dosyaları da gerekli konfigürasyon ayarlamaları yapıldıktan sonra ilgili aracın derlenip kurulması için kullanılıyor.
 
-> - **İlk olarak sıkıştırılmış dosyayı açıyoruz. Açılan klasörün içine girip, orada ilk olarak** `./configure` **komutu ile "configure" dosyasını çalıştırıyoruz.**
->   - **İlk olarak konfigürasyon dosyasını çalıştırdığımız için mevcut sistemin derleme işlemine uygun olup olmadığı kontrol ediliyor. Dolayısıyla uyumlu değilse hata çıktısında belirtilen uyarıları araştırıp çözdükten sonra derleme adımlarına devam etmelisiniz.**
->   - **Bu işlem sonucunda bulunulan dizinde inşa işleminin nasıl yürüyeceğini tarif eden `Makefile` adlı bir dosya oluşur.**
-> - `make` **komutu ile derleme işlemini gerçekleştiyoruz.**
->   - **Burada aslında** `./configure` **komutu ile oluşan** `Makefile` **adlı dosyayı** `make` **adlı bir program aracılığıyla çalıştırmış oluyoruz.** `make` **bir sistem komutudur. Bu komutu yukarıdaki gibi parametresiz olarak çalıştırdığımızda** `make` **komutu, o anda içinde bulunduğumuz dizinde bir** `Makefile` **dosyası arar ve eğer böyle bir dosya varsa onu çalıştırır. Eğer bir önceki adımda çalıştırdığımız** `./configure` **komutu başarısız olduysa, dizinde bir** `Makefile` **dosyası oluşmayacağı için yukarıdaki** `make` **komutu da çalışmayacaktır. O yüzden derleme işlemi sırasında verdiğimiz komutların çıktılarını takip edip, bir sonraki aşamaya geçmeden önce komutun düzgün sonlanıp sonlanmadığından emin olmamız gerekiyor.**
->   - `make` **komutunun yaptığı iş, programın sisteminize kurulması esnasında sistemin çeşitli yerlerine kopyalanacak olan dosyaları inşa edip oluşturmaktır.**
-> - **Şimdi derlenmiş olanları kurmak için** `sudo make install` **komutunu girmeliyiz.**
->   - **Kuracak olduğumuz programın eski sürümü de sistemde kalsın istiyorsak** `make install` **yerine** `make altinstall` **komutu kullanılır.** `make altinstall` **komutu, program kurulurken klasör ve dosyalara sürüm numarasının da eklenmesini sağlar. Böylece yeni kurduğunuz program, sistemdeki eski sürümü silip üzerine yazmamış olur ve iki farklı sürüm yan yana varolabilir. Eğer** `make altinstall` **yerine** `make install` **komutunu verirseniz sisteminizde zaten varolan eski bir sürüme ait dosya ve dizinlerin üzerine yazıp silerek o sürümü kullanılamaz hale getirebilirsiniz.**
-> - **Kurulum için derlenmiş ama artık ihtiyaç duymadığımız dosyaları** `make clean` **komutu ile temizleyebiliriz.**
+> - İlk olarak sıkıştırılmış dosyayı açıyoruz. Açılan klasörün içine girip, orada ilk olarak `./configure` komutu ile "configure" dosyasını çalıştırıyoruz.
+> - İlk olarak konfigürasyon dosyasını çalıştırdığımız için mevcut sistemin derleme işlemine uygun olup olmadığı kontrol ediliyor. Dolayısıyla uyumlu değilse hata çıktısında belirtilen uyarıları araştırıp çözdükten sonra derleme adımlarına devam etmelisiniz.
+> - Bu işlem sonucunda bulunulan dizinde inşa işleminin nasıl yürüyeceğini tarif eden `Makefile` adlı bir dosya oluşur.
+> - `make` komutu ile derleme işlemini gerçekleştiyoruz.
+> - Burada aslında `./configure` komutu ile oluşan `Makefile` adlı dosyayı `make` adlı bir program aracılığıyla çalıştırmış oluyoruz. `make` bir sistem komutudur. Bu komutu yukarıdaki gibi parametresiz olarak çalıştırdığımızda `make` komutu, o anda içinde bulunduğumuz dizinde bir `Makefile` dosyası arar ve eğer böyle bir dosya varsa onu çalıştırır. Eğer bir önceki adımda çalıştırdığımız `./configure` komutu başarısız olduysa, dizinde bir `Makefile` dosyası oluşmayacağı için yukarıdaki `make` komutu da çalışmayacaktır. O yüzden derleme işlemi sırasında verdiğimiz komutların çıktılarını takip edip, bir sonraki aşamaya geçmeden önce komutun düzgün sonlanıp sonlanmadığından emin olmamız gerekiyor.
+> - `make` komutunun yaptığı iş, programın sisteminize kurulması esnasında sistemin çeşitli yerlerine kopyalanacak olan dosyaları inşa edip oluşturmaktır.
+> - Şimdi derlenmiş olanları kurmak için `sudo make install` komutunu girmeliyiz.
+> - Kuracak olduğumuz programın eski sürümü de sistemde kalsın istiyorsak `make install` yerine `make altinstall` komutu kullanılır. `make altinstall` komutu, program kurulurken klasör ve dosyalara sürüm numarasının da eklenmesini sağlar. Böylece yeni kurduğunuz program, sistemdeki eski sürümü silip üzerine yazmamış olur ve iki farklı sürüm yan yana varolabilir. Eğer `make altinstall` yerine `make install` komutunu verirseniz sisteminizde zaten varolan eski bir sürüme ait dosya ve dizinlerin üzerine yazıp silerek o sürümü kullanılamaz hale getirebilirsiniz.
+> - Kurulum için derlenmiş ama artık ihtiyaç duymadığımız dosyaları `make clean` komutu ile temizleyebiliriz.
 
 ---
 
-> **Kaynak koddan kurulum yaparken** `--prefix` **parametresiyle programı istediğin yere kurabilirsiniz:**
+> Kaynak koddan kurulum yaparken `--prefix` parametresiyle programı istediğin yere kurabilirsiniz:
 
 ```bash
 ./configure --prefix=$HOME/
@@ -608,7 +608,7 @@ sudo make install
 sudo apt install <paket_adı>
 ```
 
-🔹 Bu programlar paket yöneticisi tarafından sistem standart dizinlerine kurulur:
+> 🔹 Bu programlar paket yöneticisi tarafından sistem standart dizinlerine kurulur:
 
 | Tür                       | Dizin                    | Açıklama                                             |
 | ------------------------- | ------------------------ | ---------------------------------------------------- |
@@ -646,7 +646,7 @@ sudo dpkg -i <paket_adı.deb>
 dpkg -c <paket_adı.deb>
 ```
 
-> Kurulduktan sonra:
+Kurulduktan sonra:
 
 ```bash
 dpkg -L <paket_adı>
@@ -697,7 +697,7 @@ sudo apt remove <paket_adı>
 
 ------
 
-#### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
+##### Linux’ta kurulu bir programın hangi paket ile kurulduğunu öğrenmek için:
 
 **Programın Yolunu Bulma**
 
@@ -722,7 +722,7 @@ which nginx
 
 ------
 
-#### Debian / Ubuntu / Kali (apt / dpkg)
+##### Debian / Ubuntu / Kali (apt / dpkg)
 
 **Dosya Hangi Pakete Ait?**
 
@@ -750,7 +750,7 @@ apt show nginx
 
 ------
 
-#### Red Hat / CentOS / Fedora (dnf / rpm)
+##### Red Hat / CentOS / Fedora (dnf / rpm)
 
 ```bash
 rpm -qf /usr/sbin/nginx
