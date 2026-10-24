@@ -11,7 +11,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br />▪ [**Git Yapılandırma**](#git-config)<br />▪ [**Git Yapılandırma**](#git-config)<br />
+▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Temel Kavramlar**](#git-config)<br/>
 
 ---
 
@@ -28,12 +28,12 @@ Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafınd
 **RCS (Revision Control System, 1982):** Dosyaların değişiklik geçmişini yerel olarak saklıyordu. Tek bir kullanıcı, tek bir bilgisayar.
 
 ```text
-┌──────────────────────────────┐
-│         Bilgisayarım         │
-│                              │
-│  dosya.c  ←→  RCS veritabanı │
-│              (değişiklikler) │
-└──────────────────────────────┘
+┌───────────────────────────────┐
+│         Bilgisayarım          │
+│                               │
+│  dosya.c  ←→  RCS veritabanı  │
+│               (değişiklikler) │
+└───────────────────────────────┘
 ```
 
 > **Sorun:** Ekip çalışması yok. Herkes kendi makinesinde. Dosyaları paylaşmak için USB bellek veya e-posta gerekiyor.
@@ -433,7 +433,11 @@ nothing to commit, working tree clean
 
 ---
 
-#### Git Yapılandırması | `git config`
+<a id="git-config"></a>
+
+# Git Yapılandırması | `git config`
+
+[**⬆ Başa Dön**](#basa-don)
 
 Git'in üç farklı yapılandırma seviyesi vardır:
 
