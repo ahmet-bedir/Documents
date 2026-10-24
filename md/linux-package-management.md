@@ -712,7 +712,7 @@ which nginx
 
 ------
 
-##### Debian / Ubuntu / Kali (apt / dpkg)
+**Debian / Ubuntu / Kali (apt / dpkg)**
 
 Dosya Hangi Pakete Ait?
 
@@ -740,7 +740,7 @@ apt show nginx
 
 ------
 
-##### Red Hat / CentOS / Fedora (dnf / rpm)
+**Red Hat / CentOS / Fedora (dnf / rpm)**
 
 ```bash
 rpm -qf /usr/sbin/nginx
