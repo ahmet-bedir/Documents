@@ -188,10 +188,6 @@ git merge yeni-ozellik
 
 ##### 3. Ekip Çalışması
 
-bash
-
-Kopyala
-
 ```bash
 # Arkadaşının değişikliklerini al
 git pull origin main
@@ -200,10 +196,6 @@ git push origin main
 ```
 
 ##### 4. Güvenli Deneme
-
-bash
-
-Kopyala
 
 ```bash
 # Radikal bir değişiklik denemek istiyorsun
