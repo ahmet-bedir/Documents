@@ -246,11 +246,11 @@ git bisect good v1.0    # v1.0'da çalışıyordu
           └─────────────┘   └────────────┘  └─────────────┘
 ```
 
-- **GUI Araçları:** Komut satırına alternatif olarak grafik arayüzler var.
-- **Hosting:** Kodunu bulutta tutmak, paylaşmak, işbirliği yapmak için.
-- **CI/CD:** Kodun her push'ta otomatik test edilmesi, derlenmesi, deploy edilmesi.
+> - **GUI Araçları:** Komut satırına alternatif olarak grafik arayüzler var.
+> - **Hosting:** Kodunu bulutta tutmak, paylaşmak, işbirliği yapmak için.
+> - **CI/CD:** Kodun her push'ta otomatik test edilmesi, derlenmesi, deploy edilmesi.
 
-
+---
 
 ### Üç Alan (Three States): Working Directory, Staging Area, Repository
 
