@@ -547,9 +547,9 @@ rpm -qa | less
 Red hat tabanlı dağıtımlarda `yum` aracı tıpkı `apt` aracı gibi **paketlerin bulunması, kurulması, bağımlılıklarının otomatik olarak çözümlenmesi, güncellenmesi, kaldırılması** gibi **paket yönetimi** işlerini bizler için kolay hale getiren red hat tabanlı dağıtımlarda kullanılan kararlı yapıdaki paket yönetim aracıdır. Fakat bu aracın daha gelişmiş versiyonu olan **`dnf`** aracını öğrenmek daha makul bir yaklaşım olacaktır.
 
 > - Repolardaki paketlerde araştırma yapmak için `dnf search <paket-adı>` komutu kullanılır.
-> - Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
-> - Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutu kullanılır. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.
+> -  Depodan paket kurmak için `dnf install <paket-adı>` şeklinde komut girilir.
 
+>- Sistemde kurulu paketlerin güncellemelerini kontrol etmek için `dnf check-update` komutu kullanılır. Tüm paketleri kontrol etmek yerine dilersek `check-update` komutundan sonra paket ismi girip spesifik paket güncellemesini de kontrol edebiliriz.
 > - Eğer yalnızca kontrol etmek yerine güncellemelerin yüklenmesini de istiyorsak `dnf update` komutunu kullanabiliyoruz.
 > - Spesifik olarak tek bir paketi güncellemek istersek `dnf install <paket-adı>` komutu ile varsa ilgili aracın güncelleştirilmesini sağlayabiliriz.
 
