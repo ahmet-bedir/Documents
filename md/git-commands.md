@@ -157,6 +157,8 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
+> Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapaar.
+
 #### Git Kullanım Senaryoları
 
 ##### 1. Zaman Yolculuğu
@@ -267,8 +269,6 @@ Git, dosyalarını üç temel alanda yönetir.
 └──────────────┘     └──────────────┘      └──────────────┘
 ```
 
-
-
 #### 1. Working Directory (Çalışma Dizini)
 
 Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
@@ -352,7 +352,7 @@ $ git commit -m "feat: Dashboard widget eklendi"
 
 Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
 
-#### 3. Repository (.git dizini)
+#### 3. Repository (`.git` dizini)
 
 Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
 
@@ -375,8 +375,6 @@ Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Norm
 ```
 
 Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
-
-
 
 ##### Üç Alanın Akışı
 
