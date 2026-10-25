@@ -591,18 +591,24 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
-Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:
+- **System:** Bilgisayardaki tüm kullanıcılar için. Nadiren dokunursun.
+- **Global:** Senin kullanıcı hesabın için. En çok bunu kullanacağız.
+- **Local:** Sadece o repo için. Farklı projeler için farklı ayar gerektiğinde.
+
+---
+
+**Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
 
 ```bash
 git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
 
+> ⚠️ Dikkat: Bu bilgiler önemli? Çünkü her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
+>
 > Not: Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
 
-<small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
-
-Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:
+**Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
 ```bash
 git config --global user.name
