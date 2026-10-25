@@ -3,6 +3,11 @@
 <p/>
 
 
+
+# Git (Global Information Tracker)
+
+
+
 ###### Son güncelleme : 09/2026
 
 ---
@@ -150,7 +155,7 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 <a id="git"></a>
 
-# Git (Global Information Tracker) Nedir?
+## Git Nedir?
 
 [**⬆ Başa Dön**](#basa-don)
 
@@ -434,7 +439,7 @@ nothing to commit, working tree clean
 
 <a id="git-config"></a>
 
-# Git Kurulumu
+## Git Kurulumu
 
 [**⬆ Başa Dön**](#basa-don)
 
@@ -472,10 +477,6 @@ Kurulum Ekranları — Önerilen Seçimler:
 
 **Adım 4:** Kurulumu tamamla ve terminali aç:
 
-bash
-
-Kopyala
-
 ```bash
 # Git Bash'i aç (veya PowerShell/CMD)
 $ git --version
@@ -488,10 +489,6 @@ git version 2.43.0.windows.1
 
 Mac'te Git'in zaten kurulu olma ihtimali yüksek. Kontrol edelim:
 
-bash
-
-Kopyala
-
 ```bash
 $ git --version
 git version 2.39.3 (Apple Git-145)
@@ -502,10 +499,6 @@ Eğer kurulu değilse, macOS sana **Xcode Command Line Tools** yüklemeyi önere
 **Alternatif: Homebrew ile kurulum (önerilen)**
 
 Homebrew, macOS'un paket yöneticisidir. Git'in en güncel versiyonunu almak için:
-
-bash
-
-Kopyala
 
 ```bash
 # Homebrew yoksa önce onu kur
@@ -523,11 +516,7 @@ git version 2.43.0
 
 ### Linux'ta Git Kurulumu
 
-Dağıtıma göre değişir ama hepsi çok basit:
-
-bash
-
-Kopyala
+Dağıtıma göre değişir:
 
 ```bash
 # Ubuntu / Debian
@@ -550,10 +539,6 @@ git version 2.43.0
 
 **En güncel versiyon için (Ubuntu):**
 
-bash
-
-Kopyala
-
 ```bash
 $ sudo add-apt-repository ppa:git-core/ppa
 $ sudo apt update
@@ -564,7 +549,7 @@ git version 2.43.0
 
 ------
 
-# Git Yapılandırma | `git config`
+## Git Yapılandırma | `git config`
 
 [**⬆ Başa Dön**](#basa-don)
 
@@ -605,7 +590,7 @@ git config --global user.email "user_email"
 
 > ⚠️ Dikkat: Bu bilgiler önemli? Çünkü her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
 >
-> Not: Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
+> Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
 
 **Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 

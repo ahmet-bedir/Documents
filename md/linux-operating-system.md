@@ -3,6 +3,7 @@
 </p>
 
 
+
 <h1 style="font-size: 2.5rem">Linux İşletim Sistemi</h1>
 
 
@@ -16,7 +17,6 @@
 **İçindekiler**
 
 ▸ [**Komut Satırı**](#komut)<br />▸ [**Metin İşlemleri**](#metin)<br />▸ [**Gelişmiş Metin İşlemleri**](#metin2)<br />▸ [**Bilgi Alma Komutları**](#bilgi)<br />▸ [**Kullanıcı Yönetimi**](#kullanici)<br />▸ [**İzinler**](#izinler)<br />▸ [**Disk Yönetimi**](#disk)<br />▸ [**İşlem Yönetimi**](#islem)<br />▸ [**Çalışma Seviyeleri (Runlevels)**](#seviye)<br />▸ [**Servis Yönetimi**](#servis)<br />▸ [**Zamanlanmış Görevler**](#zaman)
-
 
 ---
 

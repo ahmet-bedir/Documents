@@ -3,6 +3,7 @@
 <p/>
 
 
+
 <h1 style="font-size: 2.1rem">Linux Sistemlerde PostgreSQL Yönetimi</h1>
 
 
@@ -11,7 +12,7 @@
 
 ---
 
-<a id="basa-don"><a/>
+<a id="basa-don"></a>
 
 **İçindekiler**
 
@@ -3661,4 +3662,3 @@ Kelime | Anlam |
 **Statement** | Deyim |
 
 ---
-

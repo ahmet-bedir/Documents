@@ -3,6 +3,7 @@
 </p>
 
 
+
 <h1 style="font-size: 2.5rem">Linux Paket Yönetimi</h1>
 
 
