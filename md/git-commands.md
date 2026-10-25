@@ -284,7 +284,7 @@ Working Directory'deki dosya durumları:
 
 **Dosya Durumları:**
 
-- Untracked (İzlenmeyen): Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
+> - Untracked (İzlenmeyen): Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
 
 ```bash
 $ touch yeni_dosya.txt
@@ -293,7 +293,7 @@ Untracked files:
         yeni_dosya.txt
 ```
 
-- Staged (Hazırlanmış): `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
+> - Staged (Hazırlanmış): `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
 
 ```bash
 $ git add yeni_dosya.txt
@@ -302,7 +302,7 @@ Changes to be committed:
         new file:   yeni_dosya.txt
 ```
 
-- Unmodified (Değişmemiş): Commit'lenmiş ve o zamandan beri dokunulmamış.
+> - Unmodified (Değişmemiş): Commit'lenmiş ve o zamandan beri dokunulmamış.
 
 ```bash
 $ git commit -m "Yeni dosya eklendi"
@@ -311,7 +311,7 @@ nothing to commit, working tree clean
 # Tüm dosyalar "unmodified" durumunda
 ```
 
-- Modified (Değişmiş): Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
+> - Modified (Değişmiş): Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
 
 ```bash
 $ echo "yeni satır" >> yeni_dosya.txt
@@ -347,7 +347,7 @@ $ git add dashboard.js
 $ git commit -m "feat: Dashboard widget eklendi"
 ```
 
-Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
+> Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
 
 #### 3. Repository (`.git` dizini)
 
@@ -371,7 +371,7 @@ Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Norm
 └──────────────────────────┘    └──────────────────────────┘
 ```
 
-Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
+> Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
 
 ### Üç Alanın Akışı
 
@@ -593,6 +593,21 @@ git config --global user.email "user_email"
 >
 > Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
 
+**Farklı proje için farklı kimlik:**
+
+Diyelim ki kişisel projelerinde `tolgahan@gmail.com` ama iş projelerinde `tolgahan@sirket.com` kullanmak istiyorsun:
+
+```bash
+# Global ayar (varsayılan)
+$ git config --global user.email "tolgahan@gmail.com"
+
+# Sadece iş projesinde (o repoda)
+$ cd ~/work/sirket-projesi
+$ git config --local user.email "tolgahan@sirket.com"
+```
+
+> Local ayar, global'i ezer. O repoda yaptığın commit'ler iş e-postanla kayıt olur.
+
 **Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
 ```bash
@@ -633,7 +648,7 @@ git config --global --list
 
    `git config --global core.editor "subl -n -w"`
 
-Git varsayılan editörü görüntülemek için:
+**Git varsayılan editörü görüntülemek için:**
 
 ```bash
 git config --global core.editor
@@ -746,7 +761,9 @@ $ git lg
 
 ---
 
-### İlk Repository
+## İlk Repository
+
+[**⬆ Başa Dön**](#basa-don)
 
 #### Adım 1: Repository Oluşturma | `git init`
 
