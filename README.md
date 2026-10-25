@@ -17,7 +17,7 @@ Commit Zinciri (Commit History):
 
 ## Linux İşletim Sistemi
 
-**Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.**
+Linux, açık kaynak kodlu ve özgür bir işletim sistemi çekirdeği üzerine kuruludur; sunuculardan masaüstüne, gömülü sistemlerden mobil cihazlara kadar geniş bir kullanım alanına sahiptir. Çok kullanıcılı ve çok görevli yapısı sayesinde güvenlik, kararlılık ve performans açısından güçlüdür.
 
 
 » [**Linux İşletim Sistemi**](md/linux-operating-system.md)
@@ -32,14 +32,15 @@ Commit Zinciri (Commit History):
 
 ## Linux Sistemlerde PostgreSQL Yönetimi
 
-**PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.**
+PostgreSQL, tüm dünyada popüler olan açık kaynak kodlu, platform bağımsız gelişmiş bir nesne ilişkisel (ORDBMS) veritabanı yönetim sistemidir.
 
 » [**PostgreSQL**](md/postgresql-management.md)
 
 ---
 
 ## Sık Kullanılan Git Komutları
-**Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.**
+
+Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. Yazılım geliştirme sürecinde kullanılır ve kod değişikliklerinin izlenmesine, takibine, yönetilmesine ve işbirliği yapılmasına olanak tanır.
 
 » [**Git Komutları**](md/git-commands.md)
 
