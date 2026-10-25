@@ -106,10 +106,10 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
          └─────────┘    └─────────┘    └─────────┘
 ```
 
-- Sunucu = tek gerçek kaynak (single source of truth)
-- Geliştiricilerde sadece dosyaların son hali var
-- Geçmişe bakmak, branch açmak için → sunucuya bağlanma gerek
-- Sunucu çökerse tüm geçmiş kaybolabilir
+> - Sunucu = tek gerçek kaynak (single source of truth)
+> - Geliştiricilerde sadece dosyaların son hali var
+> - Geçmişe bakmak, branch açmak için → sunucuya bağlanma gerek
+> - Sunucu çökerse tüm geçmiş kaybolabilir
 
 **Dağıtık (Distributed) Model — Git Tarzı**
 
@@ -130,11 +130,10 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
                     │    isteğe bağlı)    │
                     └─────────────────────┘
 ```
-
-- Her geliştirici, projenin **tam kopyasına** sahip
-- İnternetsiz çalışabilirsin: commit at, branch aç, geçmişe bak
-- GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
-- Sunucu çökerse? Yedekten geri alınabilir.
+> - Her geliştirici, projenin **tam kopyasına** sahip
+> - İnternetsiz çalışabilirsin: commit at, branch aç, geçmişe bak
+> - GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
+> - Sunucu çökerse? Yedekten geri alınabilir.
 
 **Fark Tablosu**
 
@@ -159,7 +158,7 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 > Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve Git bu fotoğrafları çok verimli bir şekilde saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
 
-#### Git Kullanım Senaryoları
+### Git Kullanım Senaryoları
 
 ##### 1. Zaman Yolculuğu
 
@@ -220,7 +219,7 @@ git bisect good v1.0    # v1.0'da çalışıyordu
 
 ---
 
-#### Git Ekosistemi
+### Git Ekosistemi
 
 ```text
                          ┌───────────────────┐
