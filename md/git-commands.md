@@ -682,6 +682,20 @@ $ git config --global core.autocrlf input
 # Checkout: dokunma, Commit: CRLF → LF (yanlışlıkla CRLF girdiyse düzelt)
 ```
 
+### Renklendirme
+
+Git çıktılarını renkli görmek okunaklığı artırır:
+
+bash
+
+Kopyala
+
+```bash
+$ git config --global color.ui auto
+```
+
+Bu genelde varsayılan olarak açıktır ama emin olmak için ayarla.
+
 #### Tüm Ayarları Görüntüleme
 
 ```bash
@@ -1532,3 +1546,6 @@ git clone https://<username>:<pat>@github.com/<username>/<repo_name>.git
 git clone git@github.com:<github_username>/<repo_name>.git
 ```
 
+---
+
+<img src="../images/yapım-asaması_.png" width="600" />
