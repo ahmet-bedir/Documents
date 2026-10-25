@@ -773,6 +773,179 @@ $ git lg
 * h7i8j9k İlk commit
 ```
 
+### Yapılandırma Dosyasını Doğrudan Düzenleme
+
+Tüm global ayarlar `~/.gitconfig` dosyasında saklanır. İstersen doğrudan düzenleyebilirsin:
+
+bash
+
+Kopyala
+
+```bash
+$ git config --global --edit
+```
+
+veya
+
+bash
+
+Kopyala
+
+```bash
+$ cat ~/.gitconfig
+[user]
+    name = Tolgahan Kaya
+    email = tolgahan@example.com
+[core]
+    editor = code --wait
+    autocrlf = input
+[init]
+    defaultBranch = main
+[color]
+    ui = auto
+[pull]
+    rebase = true
+[push]
+    default = current
+[alias]
+    st = status
+    cm = commit -m
+    co = checkout
+    br = branch
+    lg = log --oneline --graph --all --decorate
+    last = log -1 HEAD
+    unstage = restore --staged
+```
+
+Bu bir INI dosya formatı. Elle düzenleme de çok kolay.
+
+------
+
+## Kurulumu Doğrulama: Kontrol Listesi
+
+Her şeyin doğru ayarlandığından emin olalım:
+
+bash
+
+Kopyala
+
+```bash
+# 1. Git versiyonu
+$ git --version
+git version 2.43.0  ✅
+
+# 2. İsim ayarı
+$ git config user.name
+Tolgahan Kaya  ✅
+
+# 3. E-posta ayarı
+$ git config user.email
+tolgahan@example.com  ✅
+
+# 4. Editör
+$ git config core.editor
+code --wait  ✅
+
+# 5. Varsayılan branch
+$ git config init.defaultBranch
+main  ✅
+
+# 6. SSH key var mı?
+$ ls ~/.ssh/id_ed25519.pub
+/home/tolgahan/.ssh/id_ed25519.pub  ✅
+
+# 7. GitHub SSH bağlantısı
+$ ssh -T git@github.com
+Hi tolgahan! You've been successfully authenticated...  ✅
+```
+
+Yedi adım da tamam mı? Mükemmel. Git'e hazırsın.
+
+------
+
+## Sık Karşılaşılan Kurulum Sorunları
+
+### 1. "git: command not found"
+
+Git kurulmamış veya PATH'e eklenmemiş.
+
+bash
+
+Kopyala
+
+```bash
+# Linux: Kur
+$ sudo apt install git
+
+# Mac: Xcode tools yükle
+$ xcode-select --install
+
+# Windows: Git for Windows'u yeniden kur, 
+# "Git from the command line" seçeneğini seç
+```
+
+### 2. SSH: "Permission denied (publickey)"
+
+bash
+
+Kopyala
+
+```bash
+# Key agent'ta var mı?
+$ ssh-add -l
+# Eğer "The agent has no identities" diyorsa:
+$ ssh-add ~/.ssh/id_ed25519
+
+# Key GitHub'a eklenmiş mi?
+# GitHub → Settings → SSH keys → kontrol et
+
+# Doğru key kullanılıyor mu?
+$ ssh -vT git@github.com
+# "Offering public key" satırını ara
+```
+
+### 3. "warning: LF will be replaced by CRLF"
+
+bash
+
+Kopyala
+
+```bash
+# Bu sadece bir uyarı — tehlikeli değil
+# Windows'ta autocrlf ayarını kontrol et:
+$ git config core.autocrlf
+true  # Bu doğru
+```
+
+### 4. Vim'den çıkamıyorum!
+
+text
+
+Kopyala
+
+```text
+# Vim'den çıkış:
+# 1. ESC tuşuna bas
+# 2. :q! yaz ve Enter'a bas (kaydetmeden çık)
+# 3. Gelecekte başına gelmesin diye editörü değiştir:
+$ git config --global core.editor "code --wait"
+```
+
+------
+
+## Özet
+
+- Git'i **Windows** (Git for Windows), **macOS** (Homebrew), **Linux** (apt/dnf/pacman) ile kurabilirsin
+- `git config --global` ile **isim**, **e-posta** ve **editör** ayarla — bu üçü zorunlu
+- Yapılandırma üç seviyede çalışır: **system < global < local** — spesifik olan kazanır
+- **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girmekten kurtul
+- **Alias**'lar tanımla — sık kullandığın komutları kısalt, zamanından kazan
+- Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
+
+------
+
+*Bir sonraki der
+
 ---
 
 ## İlk Repository
