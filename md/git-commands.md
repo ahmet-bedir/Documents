@@ -368,7 +368,7 @@ Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Norm
 
 Commit'lediğin her şey burada **kalıcı olarak** saklanır. Her commit bir snapshot gibi ve bu snapshot'lar zincir gibi birbirine bağlı.
 
-##### Üç Alanın Akışı
+### Üç Alanın Akışı
 
 ```text
   Working Directory          Staging Area            Repository
@@ -435,7 +435,137 @@ nothing to commit, working tree clean
 
 <a id="git-config"></a>
 
-# Git Yapılandırması | `git config`
+## Git Kurulumu
+
+### Windows'ta Git Kurulumu
+
+Windows'ta Git'i kurmanın en yaygın yolu **Git for Windows** paketini kullanmaktır.
+
+**Adım 1:** https://git-scm.com adresine git ve "Download for Windows" butonuna tıkla.
+
+**Adım 2:** İndirilen `.exe` dosyasını çalıştır.
+
+**Adım 3:** Kurulum sihirbazında önemli seçenekler:
+
+```text
+Kurulum Ekranları — Önerilen Seçimler:
+
+1. Components: ✅ Git Bash Here (sağ tık menüsüne ekler)
+               ✅ Git GUI Here
+               ✅ Git LFS
+
+2. Default Editor: "Use Visual Studio Code as Git's default editor"
+   (Varsayılan )
+
+3. Default Branch: "Override the default branch name: main"
+   (Eski varsayılan branch "master" yerine "main" kullan)
+
+4. PATH: "Git from the command line and also from 3rd-party software"
+   (Git'i her yerden kullanabilmek için)
+
+5. SSH: "Use bundled OpenSSH"
+
+6. Line Endings: "Checkout Windows-style, commit Unix-style"
+   (Windows'ta CRLF, commit'te LF — en güvenli seçenek)
+```
+
+**Adım 4:** Kurulumu tamamla ve terminali aç:
+
+bash
+
+Kopyala
+
+```bash
+# Git Bash'i aç (veya PowerShell/CMD)
+$ git --version
+git version 2.43.0.windows.1
+```
+
+> ⚠️ **Dikkat:** Windows'ta **Git Bash** kullanmanı öneriyorum. Bash, Linux/Mac komutlarıyla çalışır ve internet üzerindeki Git kaynaklarının çoğu Bash komutları gösterir. PowerShell veya CMD de çalışır ama bazı komutlar farklı olabilir.
+
+### macOS'ta Git Kurulumu
+
+Mac'te Git'in zaten kurulu olma ihtimali yüksek. Kontrol edelim:
+
+bash
+
+Kopyala
+
+```bash
+$ git --version
+git version 2.39.3 (Apple Git-145)
+```
+
+Eğer kurulu değilse, macOS sana **Xcode Command Line Tools** yüklemeyi önerecektir. Kabul et.
+
+**Alternatif: Homebrew ile kurulum (önerilen)**
+
+Homebrew, macOS'un paket yöneticisidir. Git'in en güncel versiyonunu almak için:
+
+bash
+
+Kopyala
+
+```bash
+# Homebrew yoksa önce onu kur
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Git'i kur
+$ brew install git
+
+# Versiyonu kontrol et
+$ git --version
+git version 2.43.0
+```
+
+> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` ile güncelleme de kolay.
+
+### Linux'ta Git Kurulumu
+
+Dağıtıma göre değişir ama hepsi çok basit:
+
+bash
+
+Kopyala
+
+```bash
+# Ubuntu / Debian
+$ sudo apt update
+$ sudo apt install git
+
+# Fedora
+$ sudo dnf install git
+
+# Arch Linux
+$ sudo pacman -S git
+
+# CentOS / RHEL
+$ sudo yum install git
+
+# Kurulumu doğrula
+$ git --version
+git version 2.43.0
+```
+
+**En güncel versiyon için (Ubuntu):**
+
+bash
+
+Kopyala
+
+```bash
+$ sudo add-apt-repository ppa:git-core/ppa
+$ sudo apt update
+$ sudo apt install git
+$ git --version
+git version 2.43.0
+```
+
+------
+
+## Git Yapılandır
+
+# Git Yapılandırma | `git config`
 
 [**⬆ Başa Dön**](#basa-don)
 
