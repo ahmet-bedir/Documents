@@ -569,6 +569,8 @@ git version 2.43.0
 
 [**⬆ Başa Dön**](#basa-don)
 
+### Yapılandırma Seviyeleri
+
 Git'in üç farklı yapılandırma seviyesi vardır:
 
 ```text 
@@ -646,11 +648,11 @@ Git varsayılan editörü görüntülemek için:
 git config --global core.editor
 ```
 
-> <small>💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.</small>
+> 💡 İpucu: Git, editörü açar ve senin düzenleme yapıp kaydetmeni bekler. `--wait` bayrağı olmadan git hemen devam eder ve boş mesaj alır.
 
 ---
 
-#### Varsayılan Branch İsmi
+### Varsayılan Branch İsmi
 
 Varsayılan brach ismini değiştirmek için:
 
@@ -658,9 +660,9 @@ Varsayılan brach ismini değiştirmek için:
 git config --global init.defaultBranch main
 ```
 
-> <small>💡 İpucu: Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.</small>
+> 💡 İpucu: Bu ayardan sonra `git init` ile oluşturulan tüm yeni repolar `main` branch'i ile başlar.
 
-#### Satır Sonu Ayarları (Line Endings)
+### Satır Sonu Ayarları (Line Endings)
 
 Windows `CRLF` (\r\n), Linux/Mac `LF` (\n) kullanır. Ekipte karışık işletim sistemi varsa sorun olur.
 
