@@ -1,4 +1,4 @@
-#### Bu proje kapsamındaki belgeler aşağıdaki koşullarda kullanıma sunulmuştur:
+### Bu proje kapsamındaki belgeler aşağıdaki koşullarda kullanıma sunulmuştur:
 
 #### Lisans: Creative Commons Zero v1.0 Universal (CC0 1.0)
 
