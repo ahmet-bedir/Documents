@@ -1,6 +1,6 @@
-## Bu proje kapsamındaki belgeler aşağıdaki koşullarda kullanıma sunulmuştur:
+#### Bu proje kapsamındaki belgeler aşağıdaki koşullarda kullanıma sunulmuştur:
 
-## Lisans: Creative Commons Zero v1.0 Universal (CC0 1.0)
+#### Lisans: Creative Commons Zero v1.0 Universal (CC0 1.0)
 
 **1. Kopyalayabilir, değiştirebilir, dağıtabilir ve kullanabilirsiniz.** *(You can copy, modify, distribute, and use the file)*
 
