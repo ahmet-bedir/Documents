@@ -435,7 +435,9 @@ nothing to commit, working tree clean
 
 <a id="git-config"></a>
 
-## Git Kurulumu
+# Git Kurulumu
+
+[**⬆ Başa Dön**](#basa-don)
 
 ### Windows'ta Git Kurulumu
 
@@ -563,8 +565,6 @@ git version 2.43.0
 
 ------
 
-## Git Yapılandır
-
 # Git Yapılandırma | `git config`
 
 [**⬆ Başa Dön**](#basa-don)
@@ -589,7 +589,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
-**Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:**
+Git'in sistemine kullanıcıadımızı ve e-mail adresimizi tanımlamak için:
 
 ```bash
 git config --global user.name "user_name"
@@ -600,7 +600,7 @@ git config --global user.email "user_email"
 
 <small>⚠️ Dikkat: Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)</small>
 
-**Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
+Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:
 
 ```bash
 git config --global user.name
@@ -614,7 +614,7 @@ git config --global --list
 
 ---
 
-#### Varsayılan Editör
+### Varsayılan Editör
 
 - VS Code ayarlamak için:git config --global user.name
   
@@ -640,7 +640,7 @@ git config --global --list
 
    `git config --global core.editor "subl -n -w"`
 
-**Git varsayılan editörü görüntülemek için:**
+Git varsayılan editörü görüntülemek için:
 
 ```bash
 git config --global core.editor
