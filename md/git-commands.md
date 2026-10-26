@@ -17,7 +17,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#repo)<br/>
+▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#git-repo)<br/>
 
 ---
 
@@ -405,7 +405,7 @@ Bu akışın CLI komutları:
 
 ```bash
 # 1. Dosya oluştur (Working Directory'de)
-$ echo "Merhaba Dünya" > merhaba.txt
+$ echo "Merhaba Git" > merhaba.txt
 
 # 2. Git'in durumuna bak
 $ git status
@@ -428,7 +428,7 @@ Changes to be committed:
 # "Changes to be committed" = Staging'de, commit'e hazır
 
 # 4. Commit'le
-$ git commit -m "İlk dosya eklendi"
+$ git commit -m "İlk dosya eklendi..."
 [main abc1234] İlk dosya eklendi
  1 file changed, 1 insertion(+)
  create mode 100644 merhaba.txt
@@ -517,7 +517,7 @@ $ git --version
 git version 2.43.0
 ```
 
-> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` komutu ile güncelleme yapılabilinir.
+> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` komutu ile güncelleme yapılır.
 
 ### Linux'ta Git Kurulumu
 
@@ -542,7 +542,7 @@ $ git --version
 git version 2.43.0
 ```
 
-En güncel versiyon için: Ubuntu veya Debian tabanlı Linux dağıtımlarına Git sürüm kontrol sisteminin resmi bakımcıları (Git Core ekibi) tarafından yönetilen PPA (Personal Package Archive / Kişisel Paket Arşivi) deposunu ekle:
+En güncel versiyon için ubuntu veya debian tabanlı linux dağıtımlarına git sürüm kontrol sisteminin resmi bakımcıları (git core ekibi) tarafından yönetilen PPA (Personal Package Archive / Kişisel Paket Arşivi) deposunu ekle:
 
 ```bash
 $ sudo add-apt-repository ppa:git-core/ppa
@@ -1777,7 +1777,7 @@ Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile c
 
 ---
 
-<a id="repo"></a>
+<a id="git-repo"></a>
 
 ## Repository Oluşturma
 
