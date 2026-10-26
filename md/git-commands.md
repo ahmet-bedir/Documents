@@ -5,7 +5,7 @@
 
 
 
-# Git (Global Information Tracker – )
+# Git (Global Information Tracker – Küresel Bilgi İzleyici)
 
 
 
@@ -162,11 +162,11 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
 
-> Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve Git bu fotoğrafları çok verimli bir şekilde saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
+> Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve git bu fotoğrafları saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
 
 ### Git Kullanım Senaryoları
 
-##### 1. Zaman Yolculuğu
+#### 1. Zaman Yolculuğu
 
 ```bash
 # 3 ay önceki projenin haline bak
@@ -176,36 +176,42 @@ git log --oneline
 # h7i8j9k Proje başlatıldı
 
 git checkout h7i8j9k    # Projeyi ilk haline geri götür
-git checkout main       # Tekrar bugüne dön
+git checkout main         # Tekrar bugüne dön
 ```
 
-##### 2. Paralel Geliştirme
+#### 2. Paralel Geliştirme
 
 ```bash
 # Ana projeden bağımsız, yeni özellik geliştir
 git branch yeni-ozellik
 git checkout yeni-ozellik
+
 # ... kodla, test et, dene ...
 # Hazır olunca ana projeye birleştir
-git checkout main
-git merge yeni-ozellik
+git checkout main            # Önce ana branch'e geç
+git merge yeni-ozellik     # Sonra yeni branch'i birleştir
 ```
 
-##### 3. Ekip Çalışması
+#### 3. Ekip Çalışması
 
 ```bash
 # Arkadaşının değişikliklerini al
 git pull origin main
+
 # Kendi değişikliklerini gönder
 git push origin main
 ```
 
-##### 4. Güvenli Deneme
+#### 4. Güvenli Deneme
 
 ```bash
 # Radikal bir değişiklik denemek istiyorsun
+# Yeni branch aç
 git branch deney
+
+# Yeni branch'e geç
 git checkout deney
+
 # ... her şeyi alt üst et ...
 # Olmadı mı? Sil gitsin
 git checkout main
@@ -213,7 +219,7 @@ git branch -D deney
 # Ana proje tertemiz, hiç dokunulmamış
 ```
 
-##### 5. Bug Avı
+#### 5. Bug Avı
 
 ```bash
 # Hangi commit ile bug girmiş? Git bulsun:
