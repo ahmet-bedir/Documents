@@ -134,10 +134,11 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
                     │    isteğe bağlı)    │
                     └─────────────────────┘
 ```
+
 > - Her geliştirici, projenin **tam kopyasına** sahip
 > - İnternetsiz çalışabilirsin: commit at, branch aç, geçmişe bak
 > - GitHub/GitLab var ama "merkez" değil — sadece kolaylık sağlayan bir paylaşım noktası
-> - Sunucu çökerse? Yedekten geri alınabilir.
+> - Sunucu çökerse? Yedekten geri alınabilir
 
 **Fark Tablosu**
 
@@ -168,36 +169,36 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 ```bash
 # 3 ay önceki projenin haline bak
-git log --oneline
+$ git log --oneline
 # a1b2c3d Login sayfası eklendi
 # d4e5f6g Veritabanı bağlantısı
 # h7i8j9k Proje başlatıldı
 
-git checkout h7i8j9k    # Projeyi ilk haline geri götür
-git checkout main         # Tekrar bugüne dön
+$ git checkout h7i8j9k    # Projeyi ilk haline geri götür
+$ git checkout main         # Tekrar bugüne dön
 ```
 
 #### 2. Paralel Geliştirme
 
 ```bash
 # Ana projeden bağımsız, yeni özellik geliştir
-git branch yeni-ozellik
-git checkout yeni-ozellik
+$ git branch yeni-ozellik         # Yeni branch aç
+$ git checkout yeni-ozellik     # Yeni branch'e geç
 
-# ... kodla, test et, dene ...
+# ... Kodla, test et, dene ...
 # Hazır olunca ana projeye birleştir
-git checkout main            # Önce ana branch'e geç
-git merge yeni-ozellik     # Sonra yeni branch'i birleştir
+$ git checkout main            # Önce ana branch'e geç
+$ git merge yeni-ozellik     # Sonra yeni branch'i birleştir
 ```
 
 #### 3. Ekip Çalışması
 
 ```bash
 # Arkadaşının değişikliklerini al
-git pull origin main
+$ git pull origin main
 
 # Kendi değişikliklerini gönder
-git push origin main
+$ git push origin main
 ```
 
 #### 4. Güvenli Deneme
@@ -205,15 +206,14 @@ git push origin main
 ```bash
 # Radikal bir değişiklik denemek istiyorsun
 # Yeni branch aç
-git branch deney
+$ git branch deney
 
-# Yeni branch'e geç
-git checkout deney
+$ git checkout deney      # Yeni branch'e geç
 # ... Yeni değişiklikler yap ...
 
 # Olmadı mı? Sil
-git checkout main
-git branch -D deney
+$ git checkout main       # Önce ana branch'e geç
+$ git branch -D deney   # Sonra yeni branch'i sil
 # Ana proje tertemiz, hiç dokunulmamış
 ```
 
@@ -221,9 +221,9 @@ git branch -D deney
 
 ```bash
 # Hangi commit ile bug girmiş? Git bulsun:
-git bisect start
-git bisect bad                # Şu an bozuk
-git bisect good v1.0    # v1.0'da çalışıyordu
+$ git bisect start
+$ git bisect bad                # Şu an bozuk
+$ git bisect good v1.0    # v1.0'da çalışıyordu
 # Git, binary search ile sorumlu commit'i bulur
 ```
 
