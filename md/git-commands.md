@@ -17,7 +17,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Temel Kavramlar**](#git-config)<br/>
+▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#repo)<br/>
 
 ---
 
@@ -25,7 +25,7 @@
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
-### VCS'nin Kısa Tarihi
+### 📅 VCS'nin Tarihi
 
 #### 🏛️ 1. Nesil: Yerel Sistemler (1970-80'ler)
 
@@ -82,10 +82,8 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 **Dağıtık (Distributed) Model — Git ve Türevleri**
 
 - Her geliştirici, projenin tam kopyasına sahip.
-
 - İnternetsiz çalışabilirsin.
-
-- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayardan komple geri yükleme yapılabilir.
+- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayardan geri yükleme yapılabilir.
 
 ---
 
@@ -160,9 +158,9 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 [**⬆ Başa Dön**](#basa-don)
 
-Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan dağıtık bir versiyon kontrol sistemidir. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak veri kaybını önler. Git, her commit'te projenin tamamının anlık görüntüsünü (snapshot) saklar.
+Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde kaydetmek ve takip etmek için kullanılan **dağıtık bir versiyon kontrol sistemidir**. Aynı proje üzerinde çalışan birden fazla yazılımcının kodları birbirine karıştırmadan, eş zamanlı ve düzenli bir şekilde geliştirmesini sağlar. Hatalı güncellemelerde projenin eski sürümlerine kolayca geri dönülmesine imkan tanıyarak **veri kaybını önler**. Git, her commit'te projenin tamamının **anlık görüntüsünü (snapshot)** saklar.
 
-> Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve git bu fotoğrafları saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
+> Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve git bu fotoğrafları verimli bir şekilde saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
 
 ### Git Kullanım Senaryoları
 
@@ -1779,7 +1777,9 @@ Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile c
 
 ---
 
-## İlk Repository
+<a id="repo"></a>
+
+## Repository Oluşturma
 
 [**⬆ Başa Dön**](#basa-don)
 
