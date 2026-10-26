@@ -211,9 +211,9 @@ git branch deney
 
 # Yeni branch'e geç
 git checkout deney
+# ... Yeni değişiklikler yap ...
 
-# ... her şeyi alt üst et ...
-# Olmadı mı? Sil gitsin
+# Olmadı mı? Sil
 git checkout main
 git branch -D deney
 # Ana proje tertemiz, hiç dokunulmamış
@@ -224,7 +224,7 @@ git branch -D deney
 ```bash
 # Hangi commit ile bug girmiş? Git bulsun:
 git bisect start
-git bisect bad          # Şu an bozuk
+git bisect bad                # Şu an bozuk
 git bisect good v1.0    # v1.0'da çalışıyordu
 # Git, binary search ile sorumlu commit'i bulur
 ```
@@ -337,7 +337,7 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 **Neden böyle bir ara katman var?**
 
-Çünkü her değişikliği aynı commit'e koymak istemezsin. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek isteyebilirsin:
+Her değişikliği aynı commit'e koymamak için. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek için:
 
 ```bash
 # Bug fix'i staging'e al
@@ -468,7 +468,7 @@ Kurulum Ekranları — Önerilen Seçimler:
                ✅ Git LFS
 
 2. Default Editor: "Use Visual Studio Code as Git's default editor"
-   (Varsayılan )
+   (Varsayılan editör seçimi)
 
 3. Default Branch: "Override the default branch name: main"
    (Eski varsayılan branch "master" yerine "main" kullan)
@@ -479,7 +479,7 @@ Kurulum Ekranları — Önerilen Seçimler:
 5. SSH: "Use bundled OpenSSH"
 
 6. Line Endings: "Checkout Windows-style, commit Unix-style"
-   (Windows'ta CRLF, commit'te LF — en güvenli seçenek)
+   (Satır sonu windows'ta CRLF, commit'te LF — en güvenli seçenek)
 ```
 
 **Adım 4:** Kurulumu tamamla ve terminali aç:
@@ -501,11 +501,11 @@ $ git --version
 git version 2.39.3 (Apple Git-145)
 ```
 
-Eğer kurulu değilse, macOS sana **Xcode Command Line Tools** yüklemeyi önerecektir. Kabul et.
+> Eğer kurulu değilse, macOS sana **Xcode Command Line Tools** yüklemeyi önerecektir. Kabul et.
 
 **Alternatif: Homebrew ile kurulum (önerilen)**
 
-Homebrew, macOS'un paket yöneticisidir. Git'in en güncel versiyonunu almak için:
+> **Homebrew, macOS'un paket yöneticisidir**. Git'in en güncel versiyonunu almak için:
 
 ```bash
 # Homebrew yoksa önce onu kur
@@ -519,11 +519,11 @@ $ git --version
 git version 2.43.0
 ```
 
-> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` ile güncelleme de kolay.
+> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` komutu ile güncelleme yapılabilinir.
 
 ### Linux'ta Git Kurulumu
 
-Dağıtıma göre değişir:
+Dağıtıma göre farklı komut1larla git kurulumu:
 
 ```bash
 # Ubuntu / Debian
@@ -544,7 +544,7 @@ $ git --version
 git version 2.43.0
 ```
 
-**En güncel versiyon için (Ubuntu):**
+En güncel versiyon için: Ubuntu veya Debian tabanlı Linux dağıtımlarına Git sürüm kontrol sisteminin resmi bakımcıları (Git Core ekibi) tarafından yönetilen PPA (Personal Package Archive / Kişisel Paket Arşivi) deposunu ekle:
 
 ```bash
 $ sudo add-apt-repository ppa:git-core/ppa
@@ -582,9 +582,9 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
-- **System:** Bilgisayardaki tüm kullanıcılar için. Nadiren dokunursun.
-- **Global:** Senin kullanıcı hesabın için. En çok bunu kullanacağız.
-- **Local:** Sadece o repo için. Farklı projeler için farklı ayar gerektiğinde.
+> - **System:** Bilgisayardaki tüm kullanıcılar için. Nadiren dokunursun.
+> - **Global:** Senin kullanıcı hesabın için. En çok bunu kullanacağız.
+> - **Local:** Sadece o repo için. Farklı projeler için farklı ayar gerektiğinde.
 
 ---
 
@@ -595,21 +595,21 @@ git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
 
-> ⚠️ Dikkat: Bu bilgiler önemli? Çünkü her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
->
 > Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
+>
+> ⚠️ Dikkat: Bu bilgiler önemli? Çünkü her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
 
 **Farklı proje için farklı kimlik:**
 
-Diyelim ki kişisel projelerinde `tolgahan@gmail.com` ama iş projelerinde `tolgahan@sirket.com` kullanmak istiyorsun:
+Diyelim ki kişisel projelerinde `user@gmail.com` ama iş projelerinde `user@sirket.com` kullanmak istiyorsun:
 
 ```bash
 # Global ayar (varsayılan)
-$ git config --global user.email "tolgahan@gmail.com"
+$ git config --global user.email "user@gmail.com"
 
 # Sadece iş projesinde (o repoda)
 $ cd ~/work/sirket-projesi
-$ git config --local user.email "tolgahan@sirket.com"
+$ git config --local user.email "user@sirket.com"
 ```
 
 > Local ayar, global'i ezer. O repoda yaptığın commit'ler iş e-postanla kayıt olur.
