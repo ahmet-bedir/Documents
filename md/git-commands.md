@@ -5,7 +5,7 @@
 
 
 
-# Git (Global Information Tracker)
+# Git (Global Information Tracker – )
 
 
 
@@ -21,7 +21,7 @@
 
 ---
 
-## Versiyon Kontrol Sistemi (Version Control System – VCS)
+## VCS (Version Control System – Versiyon Kontrol Sistemi)
 
 Bir proje geliştirirken yaptığın her değişikliğin ne zaman, kim tarafından, neden yapıldığını kaydetmek ve istediğin ana geri dönmek için kullanılır. Dosyalardaki değişikliklerin geçmişini takip eden ve geri dönüş imkânı veren bir sistemdir.
 
