@@ -521,7 +521,7 @@ git version 2.43.0
 
 ### Linux'ta Git Kurulumu
 
-Dağıtıma göre farklı komut1larla git kurulumu:
+Dağıtıma göre farklı komutlarla git kurulumu:
 
 ```bash
 # Ubuntu / Debian
@@ -610,7 +610,7 @@ $ cd ~/work/sirket-projesi
 $ git config --local user.email "user@sirket.com"
 ```
 
-> Local ayar, global'i ezer. O repoda yaptığın commit'ler iş e-postanla kayıt olur.
+> Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler iş e-postanla kayıt olur.
 
 **Tanımlamış olduğumuz kullanıcı adını veya email adresini görüntülemek için:**
 
@@ -628,29 +628,29 @@ git config --global --list
 
 ### Varsayılan Editör
 
-- VS Code ayarlamak için:git config --global user.name
-  
-   `git config --global core.editor "code --wait"`
+> - VS Code ayarlamak için:
+>  
+>    `git config --global core.editor "code --wait"`
 
-- Nano ayarlamak için:
+> - Nano ayarlamak için:
+>
+>    `git config --global core.editor "nano -w"`
 
-   `git config --global core.editor "nano -w"`
+> - Vim ayarlamak için:
+>
+>    `git config --global core.editor "vim"`
 
-- Vim ayarlamak için:
+> - Gedit (linux) ayarlamak için:
+>
+>    `git config --global core.editor "gedit --wait --new-window"`
 
-   `git config --global core.editor "vim"`
+> - Emacs ayarlamak için:
+>
+>    `git config --global core.editor emacs`
 
-- Gedit (linux) ayarlamak için:
-
-   `git config --global core.editor "gedit --wait --new-window"`
-
-- Emacs ayarlamak için:
-
-   `git config --global core.editor emacs`
-
-- Sublime Text  ayarlamak için:
-
-   `git config --global core.editor "subl -n -w"`
+> - Sublime Text  ayarlamak için:
+>
+>    `git config --global core.editor "subl -n -w"`
 
 **Git varsayılan editörü görüntülemek için:**
 
@@ -690,17 +690,13 @@ $ git config --global core.autocrlf input
 
 Git çıktılarını renkli görmek okunaklığı artırır:
 
-bash
-
-Kopyala
-
 ```bash
 $ git config --global color.ui auto
 ```
 
-Bu genelde varsayılan olarak açıktır ama emin olmak için ayarla.
+> Bu ayar genelde varsayılan olarak açıktır.
 
-#### Tüm Ayarları Görüntüleme
+### Tüm Ayarları Görüntüleme
 
 ```bash
 # Tüm aktif ayarlar (global+local)
@@ -721,7 +717,7 @@ $ git config --show-origin user.name
 file:/home/user/.gitconfig  termux
 ```
 
-#### Ayar Silme
+### Ayar Silme
 
 ```bash
 # Bir ayarı sil
@@ -731,7 +727,7 @@ $ git config --global --unset user.name
 $ git config --global --remove-section user
 ```
 
-#### Alias (Kısayollar)
+### Alias (Kısayollar)
 
 Alias'lar, sık kullandığın komutlara kısayol tanımlar. Kısayol tanımlama şekli:
 
@@ -777,23 +773,132 @@ $ git lg
 * h7i8j9k İlk commit
 ```
 
+### SSH Key Oluşturma ve Yapılandırma
+
+#### SSH Neden Gerekli?
+
+GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrulamalısın. İki yol var:
+
+1. **HTTPS:** Her seferinde kullanıcı adı/şifre veya token girersin.
+
+2. **SSH:** Bir kere anahtar çifti oluşturursun, sonra şifresiz bağlanırsın.
+
+#### SSH Nasıl Çalışır?
+
+```text
+┌──────────────────────────────────────────────────────┐
+│                   SSH Key Çifti                      │
+│                                                      │
+│  🔑 Private Key (Özel Anahtar)                       │
+│  ~/.ssh/id_ed25519                                   │
+│  ❌ KİMSEYLE PAYLAŞMA! Bilgisayarında kalır.         │
+│                                                      │
+│  🔓 Public Key (Genel Anahtar)                       │
+│  ~/.ssh/id_ed25519.pub                               │
+│  ✅ GitHub'a, GitLab'a ekle. Paylaşılabilir.         │
+│                                                      │
+│  Not: Kapının kilidi (public) herkeste olabilir      │
+│  ama anahtarı (private) sadece sende.                │
+└──────────────────────────────────────────────────────┘
+```
+
+> - **Public key** = açık asma kilit — GitHub'a veriyorsun, "benim mesajlarımı bununla kilitle" diyorsun
+> - **Private key** = sadece senin anahtarın
+
+#### Komut Satırında SSH ile Kimlik Doğrulama
+
+1.SSH anahtarınızı oluşturmak için:
+
+```bash
+ssh-keygen -t ed25519 -C "email@adresiniz.com"
+```
+
+Not: Ssh key anahtarı ed25519 algoritması ile modern, güvenli, hızlı.
+
+Terminalde size bazı sorular sorar:
+
+```text
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/kullanıcı/.ssh/id_ed25519): 
+# Varsayılan konum için enter'a bas veya yeni bir konum gir
+
+Enter passphrase (empty for no passphrase): 
+# Güçlü bir parola gir (önerilir) veya boş bırak
+
+Enter same passphrase again:
+# Aynı parolayı tekrar gir
+
+Your identification has been saved in /home/kullanıcı/.ssh/id_ed25519
+Your public key has been saved in /home/kullanıcı/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx email@adresiniz.com
+The key's randomart image is:
++--[ED25519 256]--+
+|        .oo.     |
+|       . o.o     |
+|        = +.o    |
+|       . B.=     |
+|      . S.=.o    |
+|     . + o.+.    |
+|      + o.+.     |
+|     . +.o.+     |
+|      o.oo=.     |
++----[SHA256]-----+
+```
+
+2.Genel anahtarı kopyalamak için:
+
+```bash
+$ cat ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
+
+# çıktının tamamını kopyala
+```
+
+3.Genel anahtarı GitHub’a ekleyin:
+
+> - GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key
+> - Title: "Kişisel Laptop" kTitle kısmına bir isim verin)
+> - Key type: "Authentication Key"
+> - Key: Kopyaladığın public key'i yapıştır
+> - Add SSH key butonuna tıkla
+
+4.Bağlantıyı test edin:
+
+```bash
+ssh -T git@github.com
+```
+
+İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.
+
+Hata alırsan:
+
+```bash
+# Detaylı debug modu (doğru key kullanılıyor mu?)
+$ ssh -vT git@github.com
+```
+
+5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:
+
+```bash
+git@github.com:<github_username>/<repo_name>.git
+```
+
+6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:
+
+```bash
+git remote set-url <remote_name> git@github.com:<github_username>/<repo_name>.git
+```
+
 ### Yapılandırma Dosyasını Doğrudan Düzenleme
 
-Tüm global ayarlar `~/.gitconfig` dosyasında saklanır. İstersen doğrudan düzenleyebilirsin:
-
-bash
-
-Kopyala
+Tüm global ayarlar `~/.gitconfig` dosyasında saklanır. Doğrudan düzenlenebilir:
 
 ```bash
 $ git config --global --edit
 ```
 
 veya
-
-bash
-
-Kopyala
 
 ```bash
 $ cat ~/.gitconfig
@@ -821,17 +926,11 @@ $ cat ~/.gitconfig
     unstage = restore --staged
 ```
 
-Bu bir INI dosya formatı. Elle düzenleme de çok kolay.
+> Bu bir INI dosya formatı. Elle düzenleme yapılabilir.
 
 ------
 
-## Kurulumu Doğrulama: Kontrol Listesi
-
-Her şeyin doğru ayarlandığından emin olalım:
-
-bash
-
-Kopyala
+### Kurulumu Doğrulama
 
 ```bash
 # 1. Git versiyonu
@@ -863,8 +962,6 @@ $ ssh -T git@github.com
 Hi tolgahan! You've been successfully authenticated...  ✅
 ```
 
-Yedi adım da tamam mı? Mükemmel. Git'e hazırsın.
-
 ------
 
 ## Sık Karşılaşılan Kurulum Sorunları
@@ -872,10 +969,6 @@ Yedi adım da tamam mı? Mükemmel. Git'e hazırsın.
 ### 1. "git: command not found"
 
 Git kurulmamış veya PATH'e eklenmemiş.
-
-bash
-
-Kopyala
 
 ```bash
 # Linux: Kur
@@ -889,10 +982,6 @@ $ xcode-select --install
 ```
 
 ### 2. SSH: "Permission denied (publickey)"
-
-bash
-
-Kopyala
 
 ```bash
 # Key agent'ta var mı?
@@ -910,10 +999,6 @@ $ ssh -vT git@github.com
 
 ### 3. "warning: LF will be replaced by CRLF"
 
-bash
-
-Kopyala
-
 ```bash
 # Bu sadece bir uyarı — tehlikeli değil
 # Windows'ta autocrlf ayarını kontrol et:
@@ -922,10 +1007,6 @@ true  # Bu doğru
 ```
 
 ### 4. Vim'den çıkamıyorum!
-
-text
-
-Kopyala
 
 ```text
 # Vim'den çıkış:
