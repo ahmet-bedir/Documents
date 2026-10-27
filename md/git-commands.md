@@ -813,7 +813,7 @@ GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrul
 ssh-keygen -t ed25519 -C "email@adresiniz.com"
 ```
 
-Not: Ssh key anahtarı ed25519 algoritması ile modern, güvenli, hızlı.
+> Not: Ssh key anahtarı `ed25519` algoritması ile modern, güvenli, hızlı.
 
 Terminalde size bazı sorular sorar:
 
@@ -869,7 +869,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
 ssh -T git@github.com
 ```
 
-İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.
+> İlk seferde “Are you sure you want to continue connecting (yes/no/[fingerprint])?” sorusuna yes yazın. “Hi username! You've successfully authenticated...” mesajı görmelisiniz.
 
 Hata alırsan:
 
@@ -903,8 +903,8 @@ veya
 ```bash
 $ cat ~/.gitconfig
 [user]
-    name = Tolgahan Kaya
-    email = tolgahan@example.com
+    name = user name
+    email = user email
 [core]
     editor = code --wait
     autocrlf = input
@@ -2487,7 +2487,7 @@ GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrul
 ssh-keygen -t ed25519 -C "email@adresiniz.com"
 ```
 
-Not: Ssh key anahtarı ed25519 algoritması ile modern, güvenli, hızlı.
+> Not: Ssh key anahtarı `ed25519` algoritması ile modern, güvenli, hızlı.
 
 Terminalde size bazı sorular sorar:
 
