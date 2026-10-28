@@ -357,7 +357,17 @@ $ git commit -m "feat: Dashboard widget eklendi"
 
 Repository (kısaca repo), git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
 
-`.git` dizini = Tüm commit geçmişi, branch'ler, ayarlar bu dizinde saklanır. Bu dizini silersen, git geçmişi kaybolur (dosyalar kalır ama geçmiş gider).
+
+```text
+Sıradan bir klasör:             Git Repository:
+my-project/                     my-project/
+├── index.html                  ├── .git/          ← Git'in beyni
+├── style.css                   ├── index.html
+└── app.js                      ├── style.css
+                                └── app.js
+```
+
+> `.git` dizini = Tüm commit geçmişi, branch'ler, ayarlar bu dizinde saklanır. Bu dizini silersen, git geçmişi kaybolur (dosyalar kalır ama geçmiş gider).
 
 İki tür repository vardır:
 
@@ -439,6 +449,113 @@ nothing to commit, working tree clean
 
 # "Clean" = Her şey commit'lenmiş, değişiklik yok
 ```
+
+### Commit Nedir?
+
+Commit, projenin **belirli bir andaki tam fotoğrafı** (snapshot) alır. Bir commit şunları içerir:
+
+```text
+┌──────────────────────────────────────────────┐
+│              Commit Nesnesi                   │
+│                                              │
+│  SHA-1: a1b2c3d4e5f6...                     │
+│                                              │
+│  Tree: (dosya/klasör ağacının snapshot'ı)    │
+│  Parent: d4e5f6g7h8i9... (önceki commit)    │
+│  Author: <user> <email>              │
+│  Date: 2026-03-01 10:00:00                  │
+│  Message: "Login sayfası eklendi"            │
+└──────────────────────────────────────────────┘
+```
+
+### SHA-1 Hash: Commit'in Kimlik Numarası
+
+Her commit'in benzersiz bir kimliği var — **SHA-1 hash**:
+
+```bash
+$ git log --oneline
+d4e5f6g (HEAD -> main) CSS düzeltmesi yapıldı
+a1b2c3d Login sayfası eklendi
+h7i8j9k Proje başlatıldı
+```
+
+> Buradaki `d4e5f6g` aslında 40 karakterlik hash'in kısaltması:
+
+```text
+d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3
+```
+
+Bu hash, commit'in **içeriğinden** üretilir. İçerik değişirse hash değişir. Bu sayede:
+
+- Her commit benzersizdir
+- Geçmişle oynanırsa anında anlaşılır
+- İki farklı bilgisayardaki aynı commit → aynı hash
+
+> 💡 **İpucu:** Commit hash'inin tamamını yazmana gerek yok. İlk 7 karakter genelde yeterli: `git show d4e5f6g`. Git, benzersiz olduğu sürece kısa hash kabul eder.
+
+------
+
+## HEAD: "Nerede Olduğunu Gösterir"
+
+**HEAD**, Git'in **"şu anda hangi commit'e bakıyorsun?"** sorusunun cevabı.
+
+### HEAD Normalde Bir Branch'i Gösterir
+
+```text
+                    main
+                      │
+                      ▼
+[Commit A] ← [Commit B] ← [Commit C]
+                                ▲
+                                │
+                              HEAD
+```
+
+HEAD → main → Commit C
+
+Bu durumda HEAD, `main` branch'ini gösterir; `main` de en son commit'i (C) gösterir. Yeni bir commit yaptığında:
+
+```text
+                              main
+                                │
+                                ▼
+[Commit A] ← [Commit B] ← [Commit C] ← [Commit D]
+                                              ▲
+                                              │
+                                            HEAD
+```
+
+HEAD hâlâ `main`'i gösterir, `main` ise artık D'yi gösterir. Branch ilerler, HEAD branch'i takip eder.
+
+### Detached HEAD
+
+Bazen HEAD doğrudan bir commit'i gösterir (branch yerine). Buna **detached HEAD** denir:
+
+```bash
+$ git checkout a1b2c3d    # Eski bir commit'e git
+Note: switching to 'a1b2c3d'.
+You are in 'detached HEAD' state.
+```
+
+```text
+                    main
+                      │
+                      ▼
+[Commit A] ← [Commit B] ← [Commit C]
+      ▲
+      │
+    HEAD (detached!)
+```
+
+Bu durumda gezinebilirsin ama commit yapman önerilmez (commit'ler kaybolabilir).
+
+```bash
+# Tekrar main'e dön
+$ git checkout main
+Switched to branch 'main'
+```
+
+> ⚠️ **Dikkat:** "Detached HEAD" uyarısı sadece bakınıyorsan (eski bir commit'e göz atıyorsan) sorun yok. Ama o durumda yeni commit yapma — kaybolur.
 
 ---
 
@@ -1029,578 +1146,30 @@ $ ssh -vT git@github.com
 #### 3. "warning: LF will be replaced by CRLF"
 
 ```bash
-# Bu sadece bir uyarı — tehlikeli değil
-# Windows'ta autocrlf ayarını kontrol et:
+# Uyarı: windows'ta autocrlf ayarını kontrol et:
 $ git config core.autocrlf true 
 ```
 
 ------
 
-## Özet
+### Özet
 
 - Git'i **Windows** (Git for Windows), **macOS** (Homebrew), **Linux** (apt/dnf/pacman) ile kurabilirsin
 - `git config --global` ile **isim**, **e-posta** ve **editör** ayarla — bu üçü zorunlu
-- Yapılandırma üç seviyede çalışır: **system < global < local** — spesifik olan kazanır
-- **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girmekten kurtul
-- **Alias**'lar tanımla — sık kullandığın komutları kısalt, zamanından kazan
+- Yapılandırma üç seviyede çalışır: **system < global < local**
+- **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girme
+- **Alias**'lar tanımla — sık kullandığın komutları kısalt
 - Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
 
 ---
 
 # Temel Kavramlar
 
-## Giriş: Neden Kavramlarla Başlıyoruz?
-
-Git'i kullanmaya başlamadan önce bir dakika durup "Git dünyayı nasıl görüyor?" sorusuna cevap vermemiz gerekiyor. Neden? Çünkü Git komutlarını ezberlemek yetersiz. Komutları anlaman gerekiyor.
-
-Ezbere `git add .` ve `git commit -m "fix"` yazan biri, ilk sorunla karşılaştığında donar. Ama Git'in kafasının içini anlayan biri, hiç görmediği bir durumla karşılaşsa bile mantık yürüterek çözer.
-
-Bu derste öğreneceğin kavramlar, kurstan sonra da seninle kalacak:
-
-- Repository nedir?
-- Working Directory, Staging Area ve Repository üçlüsü
-- Commit'in anatomisi
-- HEAD nedir ve nereyi gösterir?
-- `.git` dizininin içinde neler var?
-
-------
-
-## 🎬 Analoji: Bir Film Yapım Stüdyosu
-
-Git'in çalışma modelini bir **film yapım stüdyosuna** benzetebiliriz. Bu analoji, tüm kavramları bir arada anlamak için çok güçlü:
-
-text
-
-Kopyala
-
-```text
-┌──────────────────────────────────────────────────────────────────┐
-│                    FİLM YAPIM STÜDYOSU                          │
-│                                                                  │
-│  🎬 SET (Working Directory)                                     │
-│  Oyuncuların dolaştığı, sahne dekorlarının olduğu alan.         │
-│  Burada denemeler yaparsın, değiştirirsin, bozarsın.            │
-│  Hiçbir şey kayıt altında değil — sadece çalışma alanı.        │
-│                                                                  │
-│  📋 SAHNE LİSTESİ (Staging Area / Index)                       │
-│  "Bu sahneleri çekeceğiz" dediğin liste.                        │
-│  Set'teki her şeyi çekmezsin — seçersin.                       │
-│  Hazır olduğunda "Kamera! Motor! Çekim!" dersin.               │
-│                                                                  │
-│  🎞️ ARŞİV (Repository / .git)                                  │
-│  Çekilmiş, kurgulanmış, etiketlenmiş sahneler.                 │
-│  Kalıcı kayıt. Silinmez, değişmez.                             │
-│  İstediğin sahneye geri dönebilirsin.                           │
-│                                                                  │
-│  🎥 KAMERA POZİSYONU (HEAD)                                    │
-│  "Şu anda hangi sahneyi izliyoruz?"                             │
-│  Kameranın baktığı yer = HEAD'in gösterdiği commit              │
-└──────────────────────────────────────────────────────────────────┘
-```
-
-Bu analojiyi ders boyunca kullanacağız. Şimdi her kavramı tek tek açalım.
-
-------
-
-## Repository (Depo) Nedir?
-
-**Repository** (kısaca **repo**), Git tarafından izlenen bir proje klasörüdür. Normal bir klasörden farkı, içinde `.git` adlı gizli bir dizin barındırmasıdır.
-
-text
-
-Kopyala
-
-```text
-Sıradan bir klasör:             Git Repository:
-my-project/                     my-project/
-├── index.html                  ├── .git/          ← Git'in beyni
-├── style.css                   ├── index.html
-└── app.js                      ├── style.css
-                                └── app.js
-```
-
-`.git` dizini = Git'in beyni. Tüm commit geçmişi, branch'ler, ayarlar burada saklanır. Bu dizini silersen, Git geçmişi kaybolur (dosyalar kalır ama geçmiş gider).
-
-### İki Tür Repository
-
-text
-
-Kopyala
-
-```text
-┌──────────────────────────┐    ┌──────────────────────────┐
-│    Yerel Repo (Local)    │    │    Uzak Repo (Remote)    │
-│                          │    │                          │
-│  Senin bilgisayarında    │    │  GitHub, GitLab, vb.     │
-│  git init ile oluşturur  │    │  İnternette barınır      │
-│  veya git clone ile      │    │  Ekip paylaşımı için     │
-│  kopyalarsın             │    │                          │
-│                          │◄──►│                          │
-│  Commit, branch,         │    │  push/pull/fetch ile     │
-│  her şeyi yaparsın       │    │  senkronize olur         │
-└──────────────────────────┘    └──────────────────────────┘
-```
-
-Yerel repo'da istediğini yap — commit at, branch aç, dene, boz. Hazır olunca uzak repo'ya gönder. Bu dağıtık yapının güzelliği.
-
-------
-
-## Üç Alan: Working Directory, Staging Area, Repository
-
-Bu, Git'in **en temel konsepti**. Bunu anlamadan Git kullanmak, gözü kapalı araba sürmek gibidir.
-
-### 1. Working Directory (Çalışma Dizini)
-
-Dosyalarını düzenlediğin, kodlarını yazdığın yer. Git'in gözünde bu alan "kontrol dışı" — yani burada ne yaparsan yap, henüz kayıt altına alınmadı.
-
-text
-
-Kopyala
-
-```text
-Working Directory'deki dosya durumları:
-
-┌──────────────┐
-│  Untracked   │  Git bu dosyayı hiç bilmiyor (yeni eklendi)
-├──────────────┤
-│  Modified    │  Git tanıyor ama son commit'ten beri değişmiş
-├──────────────┤
-│  Unmodified  │  Git tanıyor ve değişmemiş (commit'teki haliyle aynı)
-└──────────────┘
-```
-
-### 2. Staging Area (Hazırlık Alanı / Index)
-
-Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı. Bir **alışveriş sepeti** gibi düşün:
-
-Marketteyken raftan ürün alıp sepete koyarsın. Kasaya geldiğinde sepettekiler satın alınır, rafta kalanlar değil.
-
-bash
-
-Kopyala
-
-```bash
-git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
-git commit             # sepetteki her şeyi satın al (commit'le)
-```
-
-**Neden böyle bir ara katman var?**
-
-Çünkü her değişikliği aynı commit'e koymak istemezsin. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek isteyebilirsin:
-
-bash
-
-Kopyala
-
-```bash
-# Bug fix'i staging'e al
-$ git add login.js
-
-# Commit 1: Sadece bug fix
-$ git commit -m "fix: Login hata mesajı düzeltildi"
-
-# Yeni özelliği staging'e al
-$ git add dashboard.js
-
-# Commit 2: Sadece yeni özellik
-$ git commit -m "feat: Dashboard widget eklendi"
-```
-
-Bu sayede commit geçmişin temiz, anlaşılır ve geri alınabilir olur.
-
-### 3. Repository (.git dizini)
-
-Commit'lediğin her şey burada **kalıcı olarak** saklanır. Silmek çok zor (imkânsız değil ama zor). Her commit bir snapshot ve bu snapshot'lar zincir gibi birbirine bağlı.
-
-### Üç Alanın Akışı
-
-text
-
-Kopyala
-
-```text
-  Working Directory          Staging Area            Repository
-  (Çalışma Alanı)           (Hazırlık)              (.git)
-  ─────────────────         ──────────────          ──────────────
-                    
-  dosya.txt [değişti]
-          │
-          │  git add dosya.txt
-          ▼
-                            dosya.txt [hazır]
-                                    │
-                                    │  git commit -m "mesaj"
-                                    ▼
-                                                    Commit #abc123
-                                                    dosya.txt kaydedildi
-
-
-  ◄─────────────────────────────────────────────────────────
-                    git checkout / git restore
-                    (Commit'teki hali geri getirir)
-```
-
-Bu akışı somutlaştıralım:
-
-bash
-
-Kopyala
-
-```bash
-# 1. Dosya oluştur (Working Directory'de)
-$ echo "Merhaba Dünya" > merhaba.txt
-
-# 2. Git'in durumuna bak
-$ git status
-On branch main
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        merhaba.txt
-
-# "Untracked" = Git bu dosyayı tanımıyor, izlemiyor
-
-# 3. Staging'e al
-$ git add merhaba.txt
-
-$ git status
-On branch main
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        new file:   merhaba.txt
-
-# "Changes to be committed" = Staging'de, commit'e hazır
-
-# 4. Commit'le
-$ git commit -m "İlk dosya eklendi"
-[main abc1234] İlk dosya eklendi
- 1 file changed, 1 insertion(+)
- create mode 100644 merhaba.txt
-
-$ git status
-On branch main
-nothing to commit, working tree clean
-
-# "Clean" = Her şey commit'lenmiş, değişiklik yok
-```
-
-------
-
-## Commit Nedir?
-
-Commit, projenin **belirli bir andaki tam fotoğrafı** (snapshot). Bir commit şunları içerir:
-
-text
-
-Kopyala
-
-```text
-┌──────────────────────────────────────────────┐
-│              Commit Nesnesi                   │
-│                                              │
-│  SHA-1: a1b2c3d4e5f6...                     │
-│                                              │
-│  Tree: (dosya/klasör ağacının snapshot'ı)    │
-│  Parent: d4e5f6g7h8i9... (önceki commit)    │
-│  Author: Tolgahan Kaya <email>              │
-│  Date: 2026-03-01 10:00:00                  │
-│  Message: "Login sayfası eklendi"            │
-└──────────────────────────────────────────────┘
-```
-
-### Commit Zinciri
-
-Her commit, kendinden önceki commit'e bir referans (pointer) tutar. Bu, bir **linked list** (bağlı liste) oluşturur:
-
-text
-
-Kopyala
-
-```text
-Commit Zinciri (Commit History):
-
-[Commit A] ← [Commit B] ← [Commit C] ← [Commit D]
-  "init"      "login"      "database"    "css fix"
-                                              ▲
-                                              │
-                                            HEAD
-                                          (şu an buradasın)
-```
-
-Her commit öncekini "bilir" ama sonrakini bilmez. Yani D, C'yi bilir; C, B'yi bilir; B, A'yı bilir. Ama A, B'den habersiz.
-
-**İlk commit özeldir:** Parent'ı yoktur. Git tarihinde "root commit" denir.
-
-### SHA-1 Hash: Commit'in Kimlik Numarası
-
-Her commit'in benzersiz bir kimliği var — **SHA-1 hash**:
-
-bash
-
-Kopyala
-
-```bash
-$ git log --oneline
-d4e5f6g (HEAD -> main) CSS düzeltmesi yapıldı
-a1b2c3d Login sayfası eklendi
-h7i8j9k Proje başlatıldı
-```
-
-Buradaki `d4e5f6g` aslında 40 karakterlik hash'in kısaltması:
-
-text
-
-Kopyala
-
-```text
-d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3
-```
-
-Bu hash, commit'in **içeriğinden** üretilir. İçerik değişirse hash değişir. Bu sayede:
-
-- Her commit benzersizdir
-- Geçmişle oynanırsa anında anlaşılır
-- İki farklı bilgisayardaki aynı commit → aynı hash
-
-> 💡 **İpucu:** Commit hash'inin tamamını yazmana gerek yok. İlk 7 karakter genelde yeterli: `git show d4e5f6g`. Git, benzersiz olduğu sürece kısa hash kabul eder.
-
-------
-
-## HEAD: "Şu An Neredesin?"
-
-**HEAD**, Git'in **"şu anda hangi commit'e bakıyorsun?"** sorusunun cevabı. Bir GPS işaretçisi gibi düşün — konumun her zaman HEAD'dir.
-
-### HEAD Normalde Bir Branch'i Gösterir
-
-text
-
-Kopyala
-
-```text
-                    main
-                      │
-                      ▼
-[Commit A] ← [Commit B] ← [Commit C]
-                                ▲
-                                │
-                              HEAD
-```
-
-HEAD → main → Commit C
-
-Bu durumda HEAD, `main` branch'ini gösterir; `main` de en son commit'i (C) gösterir. Yeni bir commit yaptığında:
-
-text
-
-Kopyala
-
-```text
-                              main
-                                │
-                                ▼
-[Commit A] ← [Commit B] ← [Commit C] ← [Commit D]
-                                              ▲
-                                              │
-                                            HEAD
-```
-
-HEAD hâlâ `main`'i gösterir, `main` ise artık D'yi gösterir. Branch ilerler, HEAD branch'i takip eder.
-
-### Detached HEAD
-
-Bazen HEAD doğrudan bir commit'i gösterir (branch yerine). Buna **detached HEAD** denir:
-
-bash
-
-Kopyala
-
-```bash
-$ git checkout a1b2c3d    # Eski bir commit'e git
-Note: switching to 'a1b2c3d'.
-You are in 'detached HEAD' state.
-```
-
-text
-
-Kopyala
-
-```text
-                    main
-                      │
-                      ▼
-[Commit A] ← [Commit B] ← [Commit C]
-      ▲
-      │
-    HEAD (detached!)
-```
-
-Bu durumda gezinebilirsin ama commit yapman önerilmez (commit'ler kaybolabilir). İleriki derslerde bunu detaylı göreceğiz.
-
-bash
-
-Kopyala
-
-```bash
-# Tekrar main'e dön
-$ git checkout main
-Switched to branch 'main'
-```
-
-> ⚠️ **Dikkat:** "Detached HEAD" uyarısı gördüğünde panikle değil ama dikkatli ol. Sadece bakınıyorsan (eski bir commit'e göz atıyorsan) sorun yok. Ama o durumda yeni commit yapma — kaybolur.
-
-------
-
-## .git Dizini: Git'in Beyni
-
-Bir repository oluşturduğunda Git, `.git` adlı gizli bir klasör oluşturur. Bu klasör Git'in tüm verisini tutar. İçine bakalım:
-
-bash
-
-Kopyala
-
-```bash
-$ ls -la .git/
-total 40
-drwxr-xr-x  8 tolgahan staff  256 Mar  1 10:00 .
-drwxr-xr-x  5 tolgahan staff  160 Mar  1 10:00 ..
--rw-r--r--  1 tolgahan staff   23 Mar  1 10:00 HEAD
-drwxr-xr-x  2 tolgahan staff   64 Mar  1 10:00 branches
--rw-r--r--  1 tolgahan staff   92 Mar  1 10:00 config
--rw-r--r--  1 tolgahan staff   73 Mar  1 10:00 description
-drwxr-xr-x 14 tolgahan staff  448 Mar  1 10:00 hooks
--rw-r--r--  1 tolgahan staff  137 Mar  1 10:00 index
-drwxr-xr-x  3 tolgahan staff   96 Mar  1 10:00 info
-drwxr-xr-x  4 tolgahan staff  128 Mar  1 10:00 objects
-drwxr-xr-x  4 tolgahan staff  128 Mar  1 10:00 refs
-```
-
-Her birinin ne olduğunu anlayalım:
-
-text
-
-Kopyala
-
-```text
-.git/
-├── HEAD            # Şu anda hangi branch/commit'tesin?
-│                   # İçeriği genelde: ref: refs/heads/main
-│
-├── config          # Bu repo'ya özel ayarlar (local config)
-│
-├── objects/        # TÜM VERİ burada: commit'ler, dosyalar, ağaçlar
-│   ├── pack/       # Sıkıştırılmış nesneler (packfiles)
-│   └── info/
-│
-├── refs/           # Branch ve tag referansları
-│   ├── heads/      # Yerel branch'ler
-│   │   └── main    # main branch'in gösterdiği commit hash
-│   ├── remotes/    # Uzak branch'ler
-│   │   └── origin/
-│   └── tags/       # Tag'ler
-│
-├── index           # Staging area (binary format)
-│
-├── hooks/          # Otomatik çalışan scriptler
-│   ├── pre-commit.sample
-│   ├── commit-msg.sample
-│   └── ...
-│
-├── info/           # Repo bilgileri
-│   └── exclude     # Global .gitignore benzeri
-│
-└── description     # GitWeb için açıklama (genelde kullanılmaz)
-```
-
-### HEAD Dosyasının İçeriği
-
-bash
-
-Kopyala
-
-```bash
-$ cat .git/HEAD
-ref: refs/heads/main
-```
-
-Bu, HEAD'in `main` branch'ini gösterdiğini söylüyor. `main`'in gösterdiği commit'i görelim:
-
-bash
-
-Kopyala
-
-```bash
-$ cat .git/refs/heads/main
-d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3
-```
-
-İşte bu kadar! Branch dediğimiz şey, **sadece bir dosya** ve o dosyanın içinde **sadece bir hash** var. Bu yüzden Git'te branch oluşturmak neredeyse bedava — 41 byte'lık bir dosya.
-
-### Objects Dizini: Git'in Kalbi
-
-Git'in tüm verisi `objects/` dizininde saklanır. Dört tür nesne var:
-
-text
-
-Kopyala
-
-```text
-Git Nesneleri (Objects):
-
-1. blob   → Dosya içeriği (sadece içerik, isim yok)
-2. tree   → Klasör yapısı (hangi dosyalar var, isimleri ve blob referansları)
-3. commit → Snapshot (tree referansı + parent + author + message)
-4. tag    → İsimlendirilmiş commit referansı (annotated tag)
-
-Örnek yapı:
-
-Commit abc123
-├── Tree def456
-│   ├── blob 111aaa → index.html ("<!DOCTYPE html>...")
-│   ├── blob 222bbb → style.css ("body { margin: 0; }...")
-│   └── Tree ghi789
-│       └── blob 333ccc → app.js ("console.log('hi')")
-```
-
-Bu yapıyı gerçekten görebilirsin:
-
-bash
-
-Kopyala
-
-```bash
-# Commit'in içeriğine bak
-$ git cat-file -p HEAD
-tree d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3
-parent a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0
-author Tolgahan Kaya <email> 1709283600 +0300
-committer Tolgahan Kaya <email> 1709283600 +0300
-
-Login sayfası eklendi
-
-# Tree'nin içeriğine bak
-$ git cat-file -p d4e5f6g
-100644 blob 111aaabbb   index.html
-100644 blob 222bbbccc   style.css
-040000 tree ghi789jkl   src/
-
-# Blob'un içeriğine bak (dosya içeriği)
-$ git cat-file -p 111aaabbb
-<!DOCTYPE html>
-<html>
-  <head><title>Merhaba</title></head>
-</html>
-```
-
-> 💡 **İpucu:** `git cat-file -p` komutu Git'in iç yapısını keşfetmek için harika. `-p` = "pretty-print" (güzel yazdır). `-t` ile nesne türünü görebilirsin: `git cat-file -t abc123` → "commit", "tree", "blob" gibi sonuç verir.
-
 ------
 
 ## Dosya Durumları: Yaşam Döngüsü
 
 Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git status` çıktılarını okumak için şart:
-
-text
-
-Kopyala
 
 ```text
                     Untracked    Unmodified    Modified     Staged
@@ -1625,183 +1194,9 @@ Kopyala
                         │            │            │            │
 ```
 
-Her durumu açıklayalım:
-
-### Untracked (İzlenmeyen)
-
-Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `add` edilmemiş.
-
-bash
-
-Kopyala
-
-```bash
-$ touch yeni_dosya.txt
-$ git status
-Untracked files:
-        yeni_dosya.txt
-```
-
-### Staged (Hazırlanmış)
-
-`git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
-
-bash
-
-Kopyala
-
-```bash
-$ git add yeni_dosya.txt
-$ git status
-Changes to be committed:
-        new file:   yeni_dosya.txt
-```
-
-### Unmodified (Değişmemiş)
-
-Commit'lenmiş ve o zamandan beri dokunulmamış.
-
-bash
-
-Kopyala
-
-```bash
-$ git commit -m "Yeni dosya eklendi"
-$ git status
-nothing to commit, working tree clean
-# Tüm dosyalar "unmodified" durumunda
-```
-
-### Modified (Değişmiş)
-
-Commit'lenmiş ama sonra düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
-
-bash
-
-Kopyala
-
-```bash
-$ echo "yeni satır" >> yeni_dosya.txt
-$ git status
-Changes not staged for commit:
-        modified:   yeni_dosya.txt
-```
-
-------
-
-## Pratik: Kavramları Gözlemleyelim
-
-Tüm kavramları bir arada görelim. Bir terminal açıp adım adım takip edebilirsin:
-
-bash
-
-Kopyala
-
-```bash
-# 1. Yeni bir repo oluştur
-$ mkdir kavram-lab && cd kavram-lab
-$ git init
-Initialized empty Git repository in /home/tolgahan/kavram-lab/.git/
-
-# 2. .git dizinini incele
-$ ls -la .git/
-# HEAD, objects, refs, config... hepsi burada
-
-$ cat .git/HEAD
-ref: refs/heads/main
-# HEAD → main (ama main henüz yok çünkü hiç commit yok)
-
-# 3. Bir dosya oluştur
-$ echo "Git kavramlarını öğreniyorum" > notlar.txt
-
-# 4. Durum kontrolü
-$ git status
-On branch main
-
-No commits yet
-
-Untracked files:
-        notlar.txt
-
-# notlar.txt "Untracked" — Git onu tanımıyor
-
-# 5. Staging'e al
-$ git add notlar.txt
-
-$ git status
-Changes to be committed:
-        new file:   notlar.txt
-
-# Artık "Staged" — commit'e hazır
-
-# 6. Staging area'yı sorgula
-$ git ls-files --stage
-100644 a1b2c3d4e5f6... 0       notlar.txt
-# Index'te (staging area) dosyanın blob hash'ini görebilirsin
-
-# 7. İlk commit
-$ git commit -m "Notlar dosyası eklendi"
-[main (root-commit) abc1234] Notlar dosyası eklendi
- 1 file changed, 1 insertion(+)
- create mode 100644 notlar.txt
-
-# 8. HEAD'i kontrol et
-$ cat .git/HEAD
-ref: refs/heads/main
-
-$ cat .git/refs/heads/main
-abc12345678...
-# main artık ilk commit'i gösteriyor
-
-# 9. Commit nesnesini incele
-$ git cat-file -p HEAD
-tree def4567890...
-author Tolgahan Kaya <email> 1709283600 +0300
-committer Tolgahan Kaya <email> 1709283600 +0300
-
-Notlar dosyası eklendi
-
-# parent yok → bu ilk commit (root commit)
-
-# 10. Dosyayı düzenle
-$ echo "Staging area öğrendim" >> notlar.txt
-
-$ git status
-Changes not staged for commit:
-        modified:   notlar.txt
-
-# "Modified" ama henüz "Staged" değil
-
-# 11. Farkı gör
-$ git diff
-diff --git a/notlar.txt b/notlar.txt
---- a/notlar.txt
-+++ b/notlar.txt
-@@ -1 +1,2 @@
- Git kavramlarını öğreniyorum
-+Staging area öğrendim
-
-# 12. Stage ve commit
-$ git add notlar.txt
-$ git commit -m "Staging area notu eklendi"
-[main def5678] Staging area notu eklendi
- 1 file changed, 1 insertion(+)
-
-# 13. Log'a bak — commit zinciri
-$ git log --oneline
-def5678 (HEAD -> main) Staging area notu eklendi
-abc1234 Notlar dosyası eklendi
-
-# İki commit, HEAD → main → def5678
-```
-
 ------
 
 ## Büyük Resim: Her Şey Bir Arada
-
-text
-
-Kopyala
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -1863,7 +1258,7 @@ Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile c
 
 ------
 
-## Özet
+### Özet
 
 - **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
 - Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
