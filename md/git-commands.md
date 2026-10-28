@@ -802,12 +802,12 @@ GitHub, GitLab gibi platformlara kodu göndermek (push) için kimliğini doğrul
 └──────────────────────────────────────────────────────┘
 ```
 
-> - **Public key** = açık asma kilit — GitHub'a veriyorsun, "benim mesajlarımı bununla kilitle" diyorsun
-> - **Private key** = sadece senin anahtarın
+> - **Public key** =  Mesajlarını kilitlemek için GitHub'a tanımla
+> - **Private key** = Sadece senin anahtarın
 
 #### Komut Satırında SSH ile Kimlik Doğrulama
 
-1.SSH anahtarınızı oluşturmak için:
+» SSH anahtarınızı oluşturmak için:
 
 ```bash
 ssh-keygen -t ed25519 -C "email@adresiniz.com"
@@ -846,7 +846,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-2.Genel anahtarı kopyalamak için:
+» Genel anahtarı kopyalamak için:
 
 ```bash
 $ cat ~/.ssh/id_ed25519.pub
@@ -855,7 +855,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
 # çıktının tamamını kopyala
 ```
 
-3.Genel anahtarı GitHub’a ekleyin:
+» Genel anahtarı GitHub’a ekleyin:
 
 > - GitHub’da sağ üstte profil fotoğrafınıza tıklayın → Settings → SSH and GPG keys → New SSH key
 > - Title: "Kişisel Laptop" kTitle kısmına bir isim verin)
@@ -863,7 +863,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG... email@adresiniz.com
 > - Key: Kopyaladığın public key'i yapıştır
 > - Add SSH key butonuna tıkla
 
-4.Bağlantıyı test edin:
+» Bağlantıyı test edin:
 
 ```bash
 ssh -T git@github.com
@@ -878,16 +878,45 @@ Hata alırsan:
 $ ssh -vT git@github.com
 ```
 
-5.Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:
+» Depoyu SSH ile kullanmak için depo bağlantı adresiniz şu şekilde olmalı:
 
 ```bash
 git@github.com:<github_username>/<repo_name>.git
 ```
 
-6.Var olan bir depoyu HTTPS’i SSH’ye çevirmek için:
+### Önerilen Global Yapılandırma
 
 ```bash
-git remote set-url <remote_name> git@github.com:<github_username>/<repo_name>.git
+# Kimlik
+git config --global user.name "Adın Soyadın"
+git config --global user.email "email@example.com"
+
+# Editör
+git config --global core.editor "code --wait"
+
+# Varsayılan branch
+git config --global init.defaultBranch main
+
+# Satır sonu (Windows: true, Mac/Linux: input)
+git config --global core.autocrlf input
+
+# Renklendirme
+git config --global color.ui auto
+
+# Pull stratejisi (merge yerine rebase — temiz geçmiş)
+git config --global pull.rebase true
+
+# Push davranışı (sadece aktif branch'i push'la)
+git config --global push.default current
+
+# Alias'lar
+git config --global alias.st "status"
+git config --global alias.cm "commit -m"
+git config --global alias.co "checkout"
+git config --global alias.br "branch"
+git config --global alias.lg "log --oneline --graph --all --decorate"
+git config --global alias.last "log -1 HEAD"
+git config --global alias.unstage "restore --staged"
 ```
 
 ### Yapılandırma Dosyasını Doğrudan Düzenleme
@@ -964,9 +993,9 @@ Hi tolgahan! You've been successfully authenticated...  ✅
 
 ------
 
-## Sık Karşılaşılan Kurulum Sorunları
+### Sık Karşılaşılan Kurulum Sorunları
 
-### 1. "git: command not found"
+#### 1. "git: command not found"
 
 Git kurulmamış veya PATH'e eklenmemiş.
 
@@ -981,7 +1010,7 @@ $ xcode-select --install
 # "Git from the command line" seçeneğini seç
 ```
 
-### 2. SSH: "Permission denied (publickey)"
+#### 2. SSH: "Permission denied (publickey)"
 
 ```bash
 # Key agent'ta var mı?
@@ -997,23 +1026,12 @@ $ ssh -vT git@github.com
 # "Offering public key" satırını ara
 ```
 
-### 3. "warning: LF will be replaced by CRLF"
+#### 3. "warning: LF will be replaced by CRLF"
 
 ```bash
 # Bu sadece bir uyarı — tehlikeli değil
 # Windows'ta autocrlf ayarını kontrol et:
-$ git config core.autocrlf
-true  # Bu doğru
-```
-
-### 4. Vim'den çıkamıyorum!
-
-```text
-# Vim'den çıkış:
-# 1. ESC tuşuna bas
-# 2. :q! yaz ve Enter'a bas (kaydetmeden çık)
-# 3. Gelecekte başına gelmesin diye editörü değiştir:
-$ git config --global core.editor "code --wait"
+$ git config core.autocrlf true 
 ```
 
 ------
@@ -1027,9 +1045,7 @@ $ git config --global core.editor "code --wait"
 - **Alias**'lar tanımla — sık kullandığın komutları kısalt, zamanından kazan
 - Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
 
-------
-
-
+---
 
 # Temel Kavramlar
 
