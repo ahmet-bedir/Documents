@@ -1,13 +1,14 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="400" />
+	<img src="../images/git-banner.png" width="470" />
 <p/>
+
 
 
 # Git (Global Information Tracker – Küresel Bilgi İzleyici)
 
 
 
-###### Son güncelleme : 09/2026
+###### Son güncelleme : 11/2026
 
 ---
 
@@ -286,7 +287,7 @@ Working Directory'deki dosya durumları:
 
 **Dosya Durumları:**
 
-> - Untracked (İzlenmeyen): Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
+> - **Untracked (İzlenmeyen)**: Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
 
 ```bash
 $ touch yeni_dosya.txt
@@ -295,7 +296,7 @@ Untracked files:
         yeni_dosya.txt
 ```
 
-> - Staged (Hazırlanmış): `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
+> - **Staged (Hazırlanmış)**: `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
 
 ```bash
 $ git add yeni_dosya.txt
@@ -304,7 +305,7 @@ Changes to be committed:
         new file:   yeni_dosya.txt
 ```
 
-> - Unmodified (Değişmemiş): Commit'lenmiş ve o zamandan beri dokunulmamış.
+> - **Unmodified (Değişmemiş)**: Commit'lenmiş ve o zamandan beri dokunulmamış.
 
 ```bash
 $ git commit -m "Yeni dosya eklendi"
@@ -313,7 +314,7 @@ nothing to commit, working tree clean
 # Tüm dosyalar "unmodified" durumunda
 ```
 
-> - Modified (Değişmiş): Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
+> - **Modified (Değişmiş)**: Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
 
 ```bash
 $ echo "yeni satır" >> yeni_dosya.txt
