@@ -3,8 +3,6 @@
 <p/>
 
 
-
-
 # Git (Global Information Tracker – Küresel Bilgi İzleyici)
 
 
