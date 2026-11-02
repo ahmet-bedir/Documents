@@ -1,8 +1,9 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="470" />
+	<img src="../images/git-banner.png" width="440" />
 <p/>
 
 
+***
 
 # Git (Global Information Tracker – Küresel Bilgi İzleyici)
 
@@ -287,7 +288,7 @@ Working Directory'deki dosya durumları:
 
 **Dosya Durumları:**
 
-⬥ **Untracked (İzlenmeyen)**: Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
+⬥ **Untracked (İzlenmeyen):** Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
 
 ```bash
 $ touch yeni_dosya.txt
