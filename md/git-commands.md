@@ -3,8 +3,6 @@
 <p/>
 
 
-***
-
 # Git (Global Information Tracker – Küresel Bilgi İzleyici)
 
 
@@ -456,14 +454,14 @@ Commit, projenin **belirli bir andaki tam fotoğrafı** (snapshot) alır. Bir co
 
 ```text
 ┌──────────────────────────────────────────────┐
-│              Commit Nesnesi                   │
+│              Commit Nesnesi                  │
 │                                              │
-│  SHA-1: a1b2c3d4e5f6...                     │
+│  SHA-1: a1b2c3d4e5f6...                      │
 │                                              │
 │  Tree: (dosya/klasör ağacının snapshot'ı)    │
-│  Parent: d4e5f6g7h8i9... (önceki commit)    │
-│  Author: <user> <email>              │
-│  Date: 2026-03-01 10:00:00                  │
+│  Parent: d4e5f6g7h8i9... (önceki commit)     │
+│  Author: <user> <email>                      │
+│  Date: 2026-03-01 10:00:00                   │
 │  Message: "Login sayfası eklendi"            │
 └──────────────────────────────────────────────┘
 ```
