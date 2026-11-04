@@ -79,9 +79,9 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 **Dağıtık (Distributed) Model — Git ve Türevleri**
 
-- Her geliştirici, projenin tam kopyasına sahip.
-- İnternetsiz çalışabilirsin.
-- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayardan geri yükleme yapılabilir.
+- Her geliştirici, projenin tam kopyasına sahip
+- İnternetsiz çalışabilirsin
+- Sunucu çökerse? Herkesin yedeği var. Diğer bilgisayardan geri yükleme yapılabilir
 
 ---
 
