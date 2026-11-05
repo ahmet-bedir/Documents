@@ -467,7 +467,7 @@ Commit, projenin **belirli bir andaki tam fotoğrafı** (snapshot) alır. Bir co
 └──────────────────────────────────────────────┘
 ```
 
-### SHA-1 Hash: Commit'in Kimlik Numarası
+#### SHA-1 Hash: Commit'in Kimlik Numarası
 
 Her commit'in benzersiz bir kimliği var — **SHA-1 hash**:
 
@@ -494,11 +494,11 @@ Bu hash, commit'in **içeriğinden** üretilir. İçerik değişirse hash deği�
 
 ------
 
-## HEAD: "Nerede Olduğunu Gösterir"
+### HEAD: "Nerede Olduğunu Gösterir"
 
 **HEAD**, Git'in **"şu anda hangi commit'e bakıyorsun?"** sorusunun cevabı.
 
-### HEAD Normalde Bir Branch'i Gösterir
+**HEAD Normalde Bir Branch'i Gösterir**
 
 ```text
                     main
@@ -526,7 +526,7 @@ Bu durumda HEAD, `main` branch'ini gösterir; `main` de en son commit'i (C) gös
 
 HEAD hâlâ `main`'i gösterir, `main` ise artık D'yi gösterir. Branch ilerler, HEAD branch'i takip eder.
 
-### Detached HEAD
+#### Detached HEAD
 
 Bazen HEAD doğrudan bir commit'i gösterir (branch yerine). Buna **detached HEAD** denir:
 
@@ -1149,7 +1149,7 @@ $ git config core.autocrlf true
 
 ------
 
-### Özet
+#### Özet
 
 - Git'i **Windows** (Git for Windows), **macOS** (Homebrew), **Linux** (apt/dnf/pacman) ile kurabilirsin
 - `git config --global` ile **isim**, **e-posta** ve **editör** ayarla — bu üçü zorunlu
@@ -1158,13 +1158,9 @@ $ git config core.autocrlf true
 - **Alias**'lar tanımla — sık kullandığın komutları kısalt
 - Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
 
----
-
-# Temel Kavramlar
-
 ------
 
-## Dosya Durumları: Yaşam Döngüsü
+### Dosya Durumları: Yaşam Döngüsü
 
 Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git status` çıktılarını okumak için şart:
 
