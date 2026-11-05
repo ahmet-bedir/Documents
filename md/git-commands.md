@@ -3,6 +3,7 @@
 <p/>
 
 
+
 # Git (Global Information Tracker)
 
 
@@ -15,7 +16,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#git-repo)<br/>
+▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#git-repo)
 
 ---
 
