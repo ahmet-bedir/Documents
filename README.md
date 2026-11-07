@@ -45,3 +45,5 @@ Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. 
 » [**Git Komutları**](md/git-commands.md)
 
 ---
+
+
