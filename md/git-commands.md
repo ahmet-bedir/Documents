@@ -1189,13 +1189,13 @@ Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git stat
 
 ------
 
-## Büyük Resim: Her Şey Bir Arada
+## Git Çalışma Sistemi 
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │                         GIT YAPISI                          │
 │                                                             │
-│  ┌─────────────┐   git add   ┌─────────────┐   git commit  │
+│  ┌─────────────┐   git add   ┌─────────────┐   git commit   │
 │  │   Working   │────────────►│   Staging   │──────────────► │
 │  │  Directory  │             │    Area     │                │
 │  │             │◄────────────│  (Index)    │                │
@@ -1208,7 +1208,7 @@ Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git stat
 │  ┌─────┴──────────────────────────────────────────────┐     │
 │  │              Repository (.git)                     │     │
 │  │                                                    │     │
-│  │  [Commit A] ← [Commit B] ← [Commit C]            │     │
+│  │  [Commit A] ← [Commit B] ← [Commit C]              │     │
 │  │                                   ▲                │     │
 │  │                                   │                │     │
 │  │                                 main               │     │
@@ -1217,8 +1217,8 @@ Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git stat
 │  │                                 HEAD               │     │
 │  └────────────────────────────────────────────────────┘     │
 │                                                             │
-│  refs/heads/main → Commit C hash'i                         │
-│  HEAD → ref: refs/heads/main                               │
+│  refs/heads/main → Commit C hash'i                          │
+│  HEAD → ref: refs/heads/main                                │
 └─────────────────────────────────────────────────────────────┘
 ```
 
