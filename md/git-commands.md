@@ -1152,44 +1152,15 @@ $ git config core.autocrlf true
 #### Özet
 
 - Git'i **Windows** (Git for Windows), **macOS** (Homebrew), **Linux** (apt/dnf/pacman) ile kurabilirsin
-- `git config --global` ile **isim**, **e-posta** ve **editör** ayarla — bu üçü zorunlu
+- `git config --global` ile **isim**, **e-posta** ve **editör** ayarlayabilirsiniz 
 - Yapılandırma üç seviyede çalışır: **system < global < local**
-- **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girme
+- **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girmek zorunda kalmazsınız 
 - **Alias**'lar tanımla — sık kullandığın komutları kısalt
 - Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
 
-------
+---
 
-### Dosya Durumları: Yaşam Döngüsü
-
-Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git status` çıktılarını okumak için şart:
-
-```text
-                    Untracked    Unmodified    Modified     Staged
-                        │            │            │            │
-                        │            │            │            │
-  Dosya oluştur ───────►│            │            │            │
-                        │            │            │            │
-                        │  git add   │            │            │
-                        │───────────►│────────────┼───────────►│
-                        │            │            │            │
-                        │            │  Düzenle   │            │
-                        │            │───────────►│            │
-                        │            │            │            │
-                        │            │            │  git add   │
-                        │            │            │───────────►│
-                        │            │            │            │
-                        │            │            │  git commit│
-                        │            │◄───────────┼────────────│
-                        │            │            │            │
-                        │  git rm    │            │            │
-                        │◄───────────│            │            │
-                        │            │            │            │
-```
-
-------
-
-## Git Çalışma Sistemi 
+### Git Çalışma Yapısı
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
@@ -1222,43 +1193,12 @@ Git'te her dosyanın bir yaşam döngüsü var. Bu döngüyü anlamak, `git stat
 └─────────────────────────────────────────────────────────────┘
 ```
 
-------
-
-## Sık Sorulan Sorular
-
-### "Neden staging area var? Direkt commit etsek olmaz mı?"
-
-Olabilir — bazı VCS'ler öyle çalışıyor (Mercurial gibi). Ama staging area büyük bir esneklik sağlıyor:
-
-1. **Seçici commit:** 5 dosya değişti ama sadece 3'ünü commit'lemek istiyorsun
-2. **Parça parça commit:** Aynı dosyanın bazı satırlarını commit'le, diğerlerini atla (`git add -p`)
-3. **Review:** Commit'lemeden önce ne göndereceğini kontrol et
-
-### "Untracked dosyalar neden var? Git neden her şeyi otomatik izlemiyor?"
-
-Çünkü izlemek istemediğin dosyalar var:
-
-- `node_modules/` — binlerce bağımlılık dosyası
-- `.env` — API anahtarları, şifreler
-- `*.log` — log dosyaları
-- Build çıktıları, geçici dosyalar...
-
-Git'in varsayılan olarak hiçbir şeyi izlememesi, **senin seçmeni** sağlar. Ve `.gitignore` ile "bunları asla izleme" diyebilirsin.
-
-### "Commit'ler gerçekten silinmez mi?"
-
-Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile commit object'i `objects/` dizininde bir süre kalır. `git reflog` ile geri getirebilirsin. Ancak `git gc` (garbage collection) çalıştığında erişilemeyen nesneler temizlenebilir (genelde 30 gün sonra).
-
-------
-
-### Özet
-
-- **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
-- Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
-- **Commit**, projenin belirli bir andaki tam fotoğrafıdır (snapshot) — benzersiz SHA-1 hash ile tanımlanır
-- **HEAD**, "şu an neredesin?" sorusunun cevabıdır — genelde aktif branch'i gösterir
-- `.git/objects` tüm veriyi, `.git/refs` tüm referansları, `.git/HEAD` mevcut konumu saklar
-- Dosyalar **Untracked → Staged → Unmodified → Modified → Staged** döngüsünde yaşar
+> - **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
+> - Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
+> - **Commit**, projenin belirli bir andaki tam fotoğrafıdır (snapshot) — benzersiz SHA-1 hash ile tanımlanır
+> - **HEAD**, "şu an neredesin?" sorusunun cevabıdır — genelde aktif branch'i gösterir
+> - `.git/objects` tüm veriyi, `.git/refs` tüm referansları, `.git/HEAD` mevcut konumu saklar
+> - Dosyalar **Untracked → Staged → Unmodified → Modified → Staged** döngüsünde yaşar
 
 ---
 
