@@ -47,3 +47,5 @@ Git, bir versiyon kontrol sistemi VCS (Version Control System) yazılımıdır. 
 ---
 
 
+
+
