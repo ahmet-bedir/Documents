@@ -606,7 +606,7 @@ $ git --version
 git version 2.43.0.windows.1
 ```
 
-> ⚠️ **Dikkat:** Windows'ta **Git Bash** kullanmanı öneriyorum. Bash, Linux/Mac komutlarıyla çalışır ve internet üzerindeki Git kaynaklarının çoğu Bash komutları gösterir. PowerShell veya CMD de çalışır ama bazı komutlar farklı olabilir.
+> ⚠️ **Dikkat:** Windows'ta **Git Bash** kullanılırsa, Bash Linux/Mac komutlarıyla çalışır ve internet üzerindeki Git kaynaklarının çoğu Bash komutları gösterir. PowerShell veya CMD de çalışır ama bazı komutlar farklı olabilir.
 
 ### macOS'ta Git Kurulumu
 
@@ -617,9 +617,9 @@ $ git --version
 git version 2.39.3 (Apple Git-145)
 ```
 
-> Eğer kurulu değilse,**Xcode Command Line Tools** ile kurulur.
+> Eğer kurulu değilse, **Xcode Command Line Tools** ile kurulabilinir.
 
-#### Alternatif: Homebrew ile kurulum (önerilen)
+#### Homebrew ile kurulum
 
 **Homebrew, macOS'un paket yöneticisidir**. Git'in en güncel versiyonunu almak için:
 
