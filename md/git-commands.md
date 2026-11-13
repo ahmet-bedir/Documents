@@ -6,7 +6,7 @@
 
 # Git (Global Information Tracker)
 
-xx
+xxx
 
 ###### Son güncelleme: 11/2026
 
