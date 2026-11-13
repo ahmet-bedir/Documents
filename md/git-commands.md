@@ -617,7 +617,7 @@ $ git --version
 git version 2.39.3 (Apple Git-145)
 ```
 
-> Eğer kurulu değilse, **Xcode Command Line Tools** ile kurulabilinir.
+> Eğer kurulu değilse, **Xcode Command Line Tools** ile kurulabilir.
 
 #### Homebrew ile kurulum
 
