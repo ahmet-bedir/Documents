@@ -1,12 +1,13 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="350" />
+	<img src="../images/git-banner.png" width="320" />
 <p/>
+
 
 
 
 # Git (Global Information Tracker)
 
-xxx
+
 
 ###### Son güncelleme: 11/2026
 
