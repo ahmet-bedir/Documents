@@ -1,6 +1,7 @@
 <p align="center">
-	<img src="../images/git-banner.png" width="320" />
+	<img src="../images/git-banner.png" width="340" />
 <p/>
+
 
 
 
@@ -609,18 +610,18 @@ git version 2.43.0.windows.1
 
 ### macOS'ta Git Kurulumu
 
-Mac'te Git'in zaten kurulu olma ihtimali yüksek. Kontrol edelim:
+Mac'te Git'in kurulu olma durumunu kontrol için:
 
 ```bash
 $ git --version
 git version 2.39.3 (Apple Git-145)
 ```
 
-> Eğer kurulu değilse, macOS sana **Xcode Command Line Tools** yüklemeyi önerecektir. Kabul et.
+> Eğer kurulu değilse,**Xcode Command Line Tools** ile kurulur.
 
-**Alternatif: Homebrew ile kurulum (önerilen)**
+#### Alternatif: Homebrew ile kurulum (önerilen)
 
-> **Homebrew, macOS'un paket yöneticisidir**. Git'in en güncel versiyonunu almak için:
+**Homebrew, macOS'un paket yöneticisidir**. Git'in en güncel versiyonunu almak için:
 
 ```bash
 # Homebrew yoksa önce onu kur
@@ -659,7 +660,7 @@ $ git --version
 git version 2.43.0
 ```
 
-En güncel versiyon için ubuntu veya debian tabanlı linux dağıtımlarına git sürüm kontrol sisteminin resmi bakımcıları (git core ekibi) tarafından yönetilen PPA (Personal Package Archive / Kişisel Paket Arşivi) deposunu ekle:
+En güncel versiyon için **ubuntu** veya **debian** tabanlı linux dağıtımlarına git sürüm kontrol sisteminin resmi bakımcıları (git core ekibi) tarafından yönetilen **PPA (Personal Package Archive / Kişisel Paket Arşivi)** deposunu ekle:
 
 ```bash
 $ sudo add-apt-repository ppa:git-core/ppa
