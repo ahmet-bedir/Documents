@@ -817,20 +817,39 @@ $ git config --global color.ui auto
 ```bash
 # Tüm aktif ayarlar (global+local)
 $ git config --list
-user.name=termux
 user.email=community@termux.com
-core.editor=code --wait
-init.defaultbranch=main
-core.autocrlf=true
-color.ui=auto
+user.name=Termux
+core.editor=nano
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=https://ahmet-bedir:ghp_xxxxxxx@github.com/ahmet-bedir/Documents.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+
+# Local ayarlar (sadece o repo için)
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=https://ahmet-bedir:ghp_xxxxxxx@github.com/ahmet-bedir/Documents.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
 
 # Belirli bir ayar
 $ git config user.name
-termux
+Termux
 
 # Ayarın hangi dosyadan geldiğini görme
 $ git config --show-origin user.name
-file:/home/user/.gitconfig  termux
+file:/home/user/.gitconfig  Termux
 ```
 
 ### Ayar Silme
