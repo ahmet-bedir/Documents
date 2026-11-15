@@ -604,7 +604,7 @@ $ git --version
 git version 2.43.0.windows.1
 ```
 
-> ⚠️ **Dikkat:** Windows'ta **Git Bash** kullanılırsa, Bash Linux/Mac komutlarıyla çalışır ve internet üzerindeki Git kaynaklarının çoğu Bash komutları gösterir. PowerShell veya CMD de çalışır ama bazı komutlar farklı olabilir.
+> ⚠️ **Dikkat:** Windows'ta **Git Bash** kullanılırsa, bash Linux/Mac komutlarıyla çalışır ve internet üzerindeki git kaynaklarının çoğu bash komutları gösterir. PowerShell veya CMD de çalışır ama bazı komutlar farklı olabilir.
 
 ### macOS'ta Git Kurulumu
 
@@ -633,7 +633,7 @@ $ git --version
 git version 2.43.0
 ```
 
-> 💡 **İpucu:** Apple'ın kendi Git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` komutu ile güncelleme yapılır.
+> 💡 **İpucu:** Apple'ın kendi git versiyonu genelde biraz geride kalır. Homebrew ile kurduğunda her zaman en güncel versiyonu alırsın. `brew upgrade git` komutu ile güncelleme yapılır.
 
 ### Linux'ta Git Kurulumu
 
@@ -658,7 +658,7 @@ $ git --version
 git version 2.43.0
 ```
 
-En güncel versiyon için **ubuntu** veya **debian** tabanlı linux dağıtımlarına git sürüm kontrol sisteminin resmi bakımcıları (git core ekibi) tarafından yönetilen **PPA (Personal Package Archive / Kişisel Paket Arşivi)** deposunu ekle:
+▫ En güncel versiyon için **ubuntu** veya **debian** tabanlı linux dağıtımlarına git sürüm kontrol sisteminin resmi bakımcıları (git core ekibi) tarafından yönetilen **PPA (Personal Package Archive / Kişisel Paket Arşivi)** deposunu ekle:
 
 ```bash
 $ sudo add-apt-repository ppa:git-core/ppa
@@ -696,7 +696,7 @@ Git'in üç farklı yapılandırma seviyesi vardır:
 └──────────────────────────────────────────────────────┘
 ```
 
-> **Windows'da** kullanıcı repoları için  global `.gitconfig` dosyası `c:\users\user_name\` yolunda bulunur.
+> **▸ Windows'da** kullanıcı repoları için  global `.gitconfig` dosyası `c:\users\user_name\` yolunda bulunur.
 
 ---
 
@@ -707,13 +707,13 @@ git config --global user.name "user_name"
 git config --global user.email "user_email"
 ```
 
-> Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
->
-> ⚠️ Dikkat: Bu bilgiler önemli? Çünkü her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
+> ► Depoya özgü yani local kullanıcıadı ve email tanımlama işlemi için `--global` anahtarının belirtilmemesi veya `--global` anahtarı yerine `--local` anahtarı yazılması gerekir. Local ayar, global'den önceliklidir. O repoda yaptığın commit'ler `--local` anahtarı ile tanımladığın kullanıcı bilgileri ile kayıt olur.
+
+⚠️ Dikkat: Bu bilgiler her commit'te gözükür. Bu ayarları yapmazsan, commit atarken seni uyarır veya sistemin hostname ve kullanıcı adını kullanır. (user.name "root" ve user.email "root@localhost" olarak gözükür.)
 
 **Farklı proje için farklı kimlik:**
 
-Diyelim ki kişisel projelerinde `user@gmail.com` ama iş projelerinde `user@sirket.com` kullanmak istiyorsun:
+Kişisel projelerinde `user@gmail.com` ama iş projelerinde `user@sirket.com` kullanmak istiyorsun:
 
 ```bash
 # Global ayar (varsayılan)
@@ -736,7 +736,7 @@ git config --global user.email
 git config --global --list
 ```
 
-> Not: Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları, tüm ayarlar için `git config --local --list` komutu kullanılır.
+> Depoya özgü yani local konfigurasyonlar için `git config user.name` veya `git config user.email` komutları, tüm ayarlar için `git config --local --list` komutu kullanılır.
 
 ---
 
@@ -788,7 +788,7 @@ git config --global init.defaultBranch main
 
 ### Satır Sonu Ayarları (Line Endings)
 
-Windows `CRLF` (\r\n), Linux/Mac `LF` (\n) kullanır. Ekipte karışık işletim sistemi varsa sorun olur.
+Windows `CRLF` (\r\n), Linux/Mac `LF` (\n) kullanır.
 
 ```bash
 # Windows'ta:
@@ -799,6 +799,8 @@ $ git config --global core.autocrlf true
 $ git config --global core.autocrlf input
 # Checkout: dokunma, Commit: CRLF → LF (yanlışlıkla CRLF girdiyse düzelt)
 ```
+
+> Ekipte karışık işletim sistemi varsa sorun olabilir.
 
 ### Renklendirme
 
