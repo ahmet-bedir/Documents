@@ -325,7 +325,7 @@ Changes not staged for commit:
 
 #### 2. Staging Area (Hazırlık Alanı / Index)
 
-Staging area, "bir sonraki commit'e neleri dahil edeceğim?" sorusunun cevabı.
+Staging area, bir sonraki commit'e nelerin dahil edeceğinin belirlenmesi.
 
 ```text
 git add dosya.txt      # dosya.txt'yi sepete koy (staging'e al)
@@ -334,7 +334,7 @@ git commit             # sepetteki her şeyi satın al (commit'le)
 
 **Neden böyle bir ara katman var?**
 
-Her değişikliği aynı commit'e koymamak için. Diyelim ki bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek için:
+Her değişikliği aynı commit'e koymamak için. Bir dosyada hem bug fix yaptın hem yeni özellik ekledin. Bunları ayrı commit'lemek için:
 
 ```bash
 # Bug fix'i staging'e al
@@ -451,7 +451,7 @@ nothing to commit, working tree clean
 
 ### Commit Nedir?
 
-Commit, projenin **belirli bir andaki tam fotoğrafı** (snapshot) alır. Bir commit şunları içerir:
+Commit, projenin **belirli bir andaki tam fotoğraf**ını (snapshot) alır. Bir commit şunları içerir:
 
 ```text
 ┌──────────────────────────────────────────────┐
@@ -496,9 +496,9 @@ Bu hash, commit'in **içeriğinden** üretilir. İçerik değişirse hash deği�
 
 ### HEAD: "Nerede Olduğunu Gösterir"
 
-**HEAD**, Git'in **"şu anda hangi commit'e bakıyorsun?"** sorusunun cevabı.
+**HEAD**, Git'in **"şu anda hangi commit'e olduğunu gösterir"**
 
-**HEAD Normalde Bir Branch'i Gösterir**
+HEAD Normalde Bir Branch'i Gösterir
 
 ```text
                     main
@@ -554,7 +554,108 @@ $ git checkout main
 Switched to branch 'main'
 ```
 
-> ⚠️ **Dikkat:** "Detached HEAD" uyarısı sadece bakınıyorsan (eski bir commit'e göz atıyorsan) sorun yok. Ama o durumda yeni commit yapma — kaybolur.
+> ⚠️ **Dikkat:** "Detached HEAD" uyarısı sadece bakınıyorsan (eski bir commit'e göz atıyorsan) sorun yok. Ama o durumda yeni commit yapman önerilmez.
+
+Tüm kavramları bir arada görelim\. Bir terminal açıp adım adım takip edebilirsin\:
+
+bash
+
+Kopyala
+\# 1\. Yeni bir repo oluştur
+\$ mkdir kavram\-lab \&\& cd kavram\-lab
+\$ git init
+Initialized empty Git repository in \/home\/tolgahan\/kavram\-lab\/\.git\/
+
+\# 2\. \.git dizinini incele
+\$ ls \-la \.git\/
+\# HEAD\, objects\, refs\, config\.\.\. hepsi burada
+
+\$ cat \.git\/HEAD
+ref\: refs\/heads\/main
+\# HEAD → main \(ama main henüz yok çünkü hiç commit yok\)
+
+\# 3\. Bir dosya oluştur
+\$ echo \"Git kavramlarını öğreniyorum\" \> notlar\.txt
+
+\# 4\. Durum kontrolü
+\$ git status
+On branch main
+
+No commits yet
+
+Untracked files\:
+        notlar\.txt
+
+\# notlar\.txt \"Untracked\" — Git onu tanımıyor
+
+\# 5\. Staging\'e al
+\$ git add notlar\.txt
+
+\$ git status
+Changes to be committed\:
+        new file\:   notlar\.txt
+
+\# Artık \"Staged\" — commit\'e hazır
+
+\# 6\. Staging area\'yı sorgula
+\$ git ls\-files \-\-stage
+100644 a1b2c3d4e5f6\.\.\. 0       notlar\.txt
+\# Index\'te \(staging area\) dosyanın blob hash\'ini görebilirsin
+
+\# 7\. İlk commit
+\$ git commit \-m \"Notlar dosyası eklendi\"
+\[main \(root\-commit\) abc1234\] Notlar dosyası eklendi
+ 1 file changed\, 1 insertion\(\+\)
+ create mode 100644 notlar\.txt
+
+\# 8\. HEAD\'i kontrol et
+\$ cat \.git\/HEAD
+ref\: refs\/heads\/main
+
+\$ cat \.git\/refs\/heads\/main
+abc12345678\.\.\.
+\# main artık ilk commit\'i gösteriyor
+
+\# 9\. Commit nesnesini incele
+\$ git cat\-file \-p HEAD
+tree def4567890\.\.\.
+author Tolgahan Kaya \<email\> 1709283600 \+0300
+committer Tolgahan Kaya \<email\> 1709283600 \+0300
+
+Notlar dosyası eklendi
+
+\# parent yok → bu ilk commit \(root commit\)
+
+\# 10\. Dosyayı düzenle
+\$ echo \"Staging area öğrendim\" \>\> notlar\.txt
+
+\$ git status
+Changes not staged for commit\:
+        modified\:   notlar\.txt
+
+\# \"Modified\" ama henüz \"Staged\" değil
+
+\# 11\. Farkı gör
+\$ git diff
+diff \-\-git a\/notlar\.txt b\/notlar\.txt
+\-\-\- a\/notlar\.txt
+\+\+\+ b\/notlar\.txt
+\@\@ \-1 \+1\,2 \@\@
+ Git kavramlarını öğreniyorum
+\+Staging area öğrendim
+
+\# 12\. Stage ve commit
+\$ git add notlar\.txt
+\$ git commit \-m \"Staging area notu eklendi\"
+\[main def5678\] Staging area notu eklendi
+ 1 file changed\, 1 insertion\(\+\)
+
+\# 13\. Log\'a bak — commit zinciri
+\$ git log \-\-oneline
+def5678 \(HEAD \-\> main\) Staging area notu eklendi
+abc1234 Notlar dosyası eklendi
+
+\# İki commit\, HEAD → main → def5678
 
 ---
 
@@ -1243,7 +1344,7 @@ $ git init
 Initialized empty Git repository in /home/kullanıcı/web-projem/.git/
 ```
 
-> ⚠️ Dikkat: `git init` komutu mevcut dosyaları silmez veya değiştirmez. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` gizli dizinini ekler. Bu yüzden güvenle kullanabilirsin.
+> ⚠️ Dikkat: `git init` komutu mevcut dosyaları silmez veya değiştirmez. Dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` gizli dizinini ekler. Bu yüzden güvenle kullanabilirsin.
 
 #### Adım 2: Durum Kontrolü | `git status`
 
