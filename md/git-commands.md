@@ -674,6 +674,46 @@ abc1234 Notlar dosyası eklendi
 # İki commit, HEAD → main → def5678
 ```
 
+### Git Çalışma Yapısı
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│                         GIT YAPISI                          │
+│                                                             │
+│  ┌─────────────┐   git add   ┌─────────────┐   git commit   │
+│  │   Working   │────────────►│   Staging   │──────────────► │
+│  │  Directory  │             │    Area     │                │
+│  │             │◄────────────│  (Index)    │                │
+│  │  Dosyaları  │  git restore│             │                │
+│  │  düzenle    │  --staged   │  "Sepet"    │                │
+│  └─────────────┘             └─────────────┘                │
+│        ▲                                                    │
+│        │ git checkout / git restore                         │
+│        │                                                    │
+│  ┌─────┴──────────────────────────────────────────────┐     │
+│  │              Repository (.git)                     │     │
+│  │                                                    │     │
+│  │  [Commit A] ← [Commit B] ← [Commit C]              │     │
+│  │                                   ▲                │     │
+│  │                                   │                │     │
+│  │                                 main               │     │
+│  │                                   ▲                │     │
+│  │                                   │                │     │
+│  │                                 HEAD               │     │
+│  └────────────────────────────────────────────────────┘     │
+│                                                             │
+│  refs/heads/main → Commit C hash'i                          │
+│  HEAD → ref: refs/heads/main                                │
+└─────────────────────────────────────────────────────────────┘
+```
+
+> - **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
+> - Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
+> - **Commit**, projenin belirli bir andaki tam fotoğrafıdır (snapshot) — benzersiz SHA-1 hash ile tanımlanır
+> - **HEAD**, "şu an neredesin?" sorusunun cevabıdır — genelde aktif branch'i gösterir
+> - `.git/objects` tüm veriyi, `.git/refs` tüm referansları, `.git/HEAD` mevcut konumu saklar
+> - Dosyalar **Untracked → Staged → Unmodified → Modified → Staged** döngüsünde yaşar
+
 ---
 
 <a id="git-config"></a>
@@ -1297,48 +1337,6 @@ $ git config core.autocrlf true
 - **SSH key** oluştur ve GitHub'a ekle — her push'ta şifre girmek zorunda kalmazsınız 
 - **Alias**'lar tanımla — sık kullandığın komutları kısalt
 - Tüm ayarlar `~/.gitconfig` dosyasında saklanır — istersen elle de düzenleyebilirsin
-
----
-
-### Git Çalışma Yapısı
-
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                         GIT YAPISI                          │
-│                                                             │
-│  ┌─────────────┐   git add   ┌─────────────┐   git commit   │
-│  │   Working   │────────────►│   Staging   │──────────────► │
-│  │  Directory  │             │    Area     │                │
-│  │             │◄────────────│  (Index)    │                │
-│  │  Dosyaları  │  git restore│             │                │
-│  │  düzenle    │  --staged   │  "Sepet"    │                │
-│  └─────────────┘             └─────────────┘                │
-│        ▲                                                    │
-│        │ git checkout / git restore                         │
-│        │                                                    │
-│  ┌─────┴──────────────────────────────────────────────┐     │
-│  │              Repository (.git)                     │     │
-│  │                                                    │     │
-│  │  [Commit A] ← [Commit B] ← [Commit C]              │     │
-│  │                                   ▲                │     │
-│  │                                   │                │     │
-│  │                                 main               │     │
-│  │                                   ▲                │     │
-│  │                                   │                │     │
-│  │                                 HEAD               │     │
-│  └────────────────────────────────────────────────────┘     │
-│                                                             │
-│  refs/heads/main → Commit C hash'i                          │
-│  HEAD → ref: refs/heads/main                                │
-└─────────────────────────────────────────────────────────────┘
-```
-
-> - **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
-> - Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
-> - **Commit**, projenin belirli bir andaki tam fotoğrafıdır (snapshot) — benzersiz SHA-1 hash ile tanımlanır
-> - **HEAD**, "şu an neredesin?" sorusunun cevabıdır — genelde aktif branch'i gösterir
-> - `.git/objects` tüm veriyi, `.git/refs` tüm referansları, `.git/HEAD` mevcut konumu saklar
-> - Dosyalar **Untracked → Staged → Unmodified → Modified → Staged** döngüsünde yaşar
 
 ---
 
