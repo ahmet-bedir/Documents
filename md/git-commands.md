@@ -162,10 +162,9 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 > Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve git bu fotoğrafları verimli bir şekilde saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
 
-> Git = GitHub ❌
+**Git ile GitHub aynı değildir.**
 
 > ▸ **Git** = versiyon kontrol yazılımı. Bilgisayarında çalışır. Ücretsiz, açık kaynak.
-
 > ▸ **GitHub** = Git depolarını barındıran web servisi. Microsoft'a ait. Sosyal kodlama platformu.
 
 ```text
