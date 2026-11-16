@@ -314,7 +314,7 @@ Untracked files:
         yeni_dosya.txt
 ```
 
-⬥ **Staged (Hazırlanmış)**: `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
+⬥ **Staged (Hazırlanmış):** `git add` ile staging area'ya alınmış. Bir sonraki commit'e dahil edilecek.
 
 ```bash
 $ git add yeni_dosya.txt
@@ -323,7 +323,7 @@ Changes to be committed:
         new file:   yeni_dosya.txt
 ```
 
-⬥ **Unmodified (Değişmemiş)**: Commit'lenmiş ve o zamandan beri dokunulmamış.
+⬥ **Unmodified (Değişmemiş):** Commit'lenmiş ve o zamandan beri dokunulmamış.
 
 ```bash
 $ git commit -m "Yeni dosya eklendi"
@@ -332,7 +332,7 @@ nothing to commit, working tree clean
 # Tüm dosyalar "unmodified" durumunda
 ```
 
-⬥ **Modified (Değişmiş)**: Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
+⬥ **Modified (Değişmiş):** Commit'lenmiş ama sonra tekrar  düzenlenmiş. Git farkı biliyor ama henüz staging'e alınmamış.
 
 ```bash
 $ echo "yeni satır" >> yeni_dosya.txt
@@ -574,106 +574,105 @@ Switched to branch 'main'
 
 > ⚠️ **Dikkat:** "Detached HEAD" uyarısı sadece bakınıyorsan (eski bir commit'e göz atıyorsan) sorun yok. Ama o durumda yeni commit yapman önerilmez.
 
-Tüm kavramları bir arada görelim\. Bir terminal açıp adım adım takip edebilirsin\:
+### Kavramları Gözlemleyelim
 
-bash
+```bash
+# 1. Yeni bir repo oluştur
+$ mkdir kavram-lab && cd kavram-lab
+$ git init
+Initialized empty Git repository in /home/tolgahan/kavram-lab/.git/
 
-Kopyala
-\# 1\. Yeni bir repo oluştur
-\$ mkdir kavram\-lab \&\& cd kavram\-lab
-\$ git init
-Initialized empty Git repository in \/home\/tolgahan\/kavram\-lab\/\.git\/
+# 2. .git dizinini incele
+$ ls -la .git/
+# HEAD, objects, refs, config... hepsi burada
 
-\# 2\. \.git dizinini incele
-\$ ls \-la \.git\/
-\# HEAD\, objects\, refs\, config\.\.\. hepsi burada
+$ cat .git/HEAD
+ref: refs/heads/main
+# HEAD → main (ama main henüz yok çünkü hiç commit yok)
 
-\$ cat \.git\/HEAD
-ref\: refs\/heads\/main
-\# HEAD → main \(ama main henüz yok çünkü hiç commit yok\)
+# 3. Bir dosya oluştur
+$ echo "Git kavramlarını öğreniyorum" > notlar.txt
 
-\# 3\. Bir dosya oluştur
-\$ echo \"Git kavramlarını öğreniyorum\" \> notlar\.txt
-
-\# 4\. Durum kontrolü
-\$ git status
+# 4. Durum kontrolü
+$ git status
 On branch main
 
 No commits yet
 
-Untracked files\:
-        notlar\.txt
+Untracked files:
+        notlar.txt
 
-\# notlar\.txt \"Untracked\" — Git onu tanımıyor
+# notlar.txt "Untracked" — Git onu tanımıyor
 
-\# 5\. Staging\'e al
-\$ git add notlar\.txt
+# 5. Staging'e al
+$ git add notlar.txt
 
-\$ git status
-Changes to be committed\:
-        new file\:   notlar\.txt
+$ git status
+Changes to be committed:
+        new file:   notlar.txt
 
-\# Artık \"Staged\" — commit\'e hazır
+# Artık "Staged" — commit'e hazır
 
-\# 6\. Staging area\'yı sorgula
-\$ git ls\-files \-\-stage
-100644 a1b2c3d4e5f6\.\.\. 0       notlar\.txt
-\# Index\'te \(staging area\) dosyanın blob hash\'ini görebilirsin
+# 6. Staging area'yı sorgula
+$ git ls-files --stage
+100644 a1b2c3d4e5f6... 0       notlar.txt
+# Index'te (staging area) dosyanın blob hash'ini görebilirsin
 
-\# 7\. İlk commit
-\$ git commit \-m \"Notlar dosyası eklendi\"
-\[main \(root\-commit\) abc1234\] Notlar dosyası eklendi
- 1 file changed\, 1 insertion\(\+\)
- create mode 100644 notlar\.txt
+# 7. İlk commit
+$ git commit -m "Notlar dosyası eklendi"
+[main (root-commit) abc1234] Notlar dosyası eklendi
+ 1 file changed, 1 insertion(+)
+ create mode 100644 notlar.txt
 
-\# 8\. HEAD\'i kontrol et
-\$ cat \.git\/HEAD
-ref\: refs\/heads\/main
+# 8. HEAD'i kontrol et
+$ cat .git/HEAD
+ref: refs/heads/main
 
-\$ cat \.git\/refs\/heads\/main
-abc12345678\.\.\.
-\# main artık ilk commit\'i gösteriyor
+$ cat .git/refs/heads/main
+abc12345678...
+# main artık ilk commit'i gösteriyor
 
-\# 9\. Commit nesnesini incele
-\$ git cat\-file \-p HEAD
-tree def4567890\.\.\.
-author Tolgahan Kaya \<email\> 1709283600 \+0300
-committer Tolgahan Kaya \<email\> 1709283600 \+0300
+# 9. Commit nesnesini incele
+$ git cat-file -p HEAD
+tree def4567890...
+author Tolgahan Kaya <email> 1709283600 +0300
+committer Tolgahan Kaya <email> 1709283600 +0300
 
 Notlar dosyası eklendi
 
-\# parent yok → bu ilk commit \(root commit\)
+# parent yok → bu ilk commit (root commit)
 
-\# 10\. Dosyayı düzenle
-\$ echo \"Staging area öğrendim\" \>\> notlar\.txt
+# 10. Dosyayı düzenle
+$ echo "Staging area öğrendim" >> notlar.txt
 
-\$ git status
-Changes not staged for commit\:
-        modified\:   notlar\.txt
+$ git status
+Changes not staged for commit:
+        modified:   notlar.txt
 
-\# \"Modified\" ama henüz \"Staged\" değil
+# "Modified" ama henüz "Staged" değil
 
-\# 11\. Farkı gör
-\$ git diff
-diff \-\-git a\/notlar\.txt b\/notlar\.txt
-\-\-\- a\/notlar\.txt
-\+\+\+ b\/notlar\.txt
-\@\@ \-1 \+1\,2 \@\@
+# 11. Farkı gör
+$ git diff
+diff --git a/notlar.txt b/notlar.txt
+--- a/notlar.txt
++++ b/notlar.txt
+@@ -1 +1,2 @@
  Git kavramlarını öğreniyorum
-\+Staging area öğrendim
++Staging area öğrendim
 
-\# 12\. Stage ve commit
-\$ git add notlar\.txt
-\$ git commit \-m \"Staging area notu eklendi\"
-\[main def5678\] Staging area notu eklendi
- 1 file changed\, 1 insertion\(\+\)
+# 12. Stage ve commit
+$ git add notlar.txt
+$ git commit -m "Staging area notu eklendi"
+[main def5678] Staging area notu eklendi
+ 1 file changed, 1 insertion(+)
 
-\# 13\. Log\'a bak — commit zinciri
-\$ git log \-\-oneline
-def5678 \(HEAD \-\> main\) Staging area notu eklendi
+# 13. Log'a bak — commit zinciri
+$ git log --oneline
+def5678 (HEAD -> main) Staging area notu eklendi
 abc1234 Notlar dosyası eklendi
 
-\# İki commit\, HEAD → main → def5678
+# İki commit, HEAD → main → def5678
+```
 
 ---
 
