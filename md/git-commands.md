@@ -1387,6 +1387,51 @@ $ git init
 Initialized empty Git repository in /home/kullanıcı/web-projem/.git/
 ```
 
+Git, `.git` adlı gizli bir klasör oluşturdu:
+
+```bash
+$ ls -la
+total 12
+drwxr-xr-x  3 user staff   96 Mar  1 10:00 .
+drwxr-xr-x  5 tolgahan staff  160 Mar  1 10:00 ..
+drwxr-xr-x  9 tolgahan staff  288 Mar  1 10:00 .git
+
+$ ls .git/
+HEAD  config  description  hooks  info  objects  refs
+```
+
+Proje klasörün artık bir Git repository'si. Dosya henüz yok, commit henüz yok.
+
+> ⚠️ **Dikkat:** `git init` komutu **mevcut dosyaları silmez veya değiştirmez**. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` klasörünü ekler. Bu yüzden güvenle kullanabilirsin.
+
+### Mevcut Projeyi Git'e Almak
+
+Zaten dosyaların olan bir projen varsa:
+
+bash
+
+Kopyala
+
+```bash
+$ cd mevcut-projem
+$ ls
+index.html  style.css  app.js
+
+$ git init
+Initialized empty Git repository in /home/tolgahan/mevcut-projem/.git/
+
+# Dosyalar yerinde, .git eklendi
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+        app.js
+        index.html
+        style.css
+```
+
 > ⚠️ Dikkat: `git init` komutu mevcut dosyaları silmez veya değiştirmez. Dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` gizli dizinini ekler. Bu yüzden güvenle kullanabilirsin.
 
 #### Adım 2: Durum Kontrolü | `git status`
