@@ -930,46 +930,6 @@ $ git config --global color.ui auto
 
 > Bu ayar genelde varsayılan olarak açıktır.
 
-### Tüm Ayarları Görüntüleme
-
-```bash
-# Tüm aktif ayarlar (global+local)
-$ git config --list
-user.email=community@termux.com
-user.name=Termux
-core.editor=nano
-core.repositoryformatversion=0
-core.filemode=false
-core.bare=false
-core.logallrefupdates=true
-core.symlinks=false
-core.ignorecase=true
-remote.origin.url=git@github.com:ahmet-bedir/Documents.git
-remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-branch.master.remote=origin
-branch.master.merge=refs/heads/master
-
-# Local ayarlar (sadece o repo için)
-core.repositoryformatversion=0
-core.filemode=false
-core.bare=false
-core.logallrefupdates=true
-core.symlinks=false
-core.ignorecase=true
-remote.origin.url=git@github.com:ahmet-bedir/Documents.git
-remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-branch.master.remote=origin
-branch.master.merge=refs/heads/master
-
-# Belirli bir ayar
-$ git config user.name
-Termux
-
-# Ayarın hangi dosyadan geldiğini görme
-$ git config --show-origin user.name
-file:/home/user/.gitconfig  Termux
-```
-
 ### Ayar Silme
 
 ```bash
@@ -1135,6 +1095,47 @@ $ ssh -vT git@github.com
 
 ```bash
 git@github.com:<github_username>/<repo_name>.git
+```
+
+### Tüm Ayarları Görüntüleme
+
+```bash
+# Tüm aktif ayarlar (global+local)
+$ git config --list
+user.email=community@termux.com
+user.name=Termux
+core.editor=nano
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=git@github.com:ahmet-bedir/Documents.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+
+# Local ayarlar (sadece o repo için)
+$ git config --local --list
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+remote.origin.url=git@github.com:ahmet-bedir/Documents.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.master.remote=origin
+branch.master.merge=refs/heads/master
+
+# Belirli bir ayar
+$ git config user.name
+Termux
+
+# Ayarın hangi dosyadan geldiğini görme
+$ git config --show-origin user.name
+file:/home/user/.gitconfig  Termux
 ```
 
 ### Önerilen Global Yapılandırma
