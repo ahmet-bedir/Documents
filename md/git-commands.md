@@ -1373,9 +1373,13 @@ $ git config core.autocrlf true
 
 [**⬆ Başa Dön**](#basa-don)
 
-#### Adım 1: Repository Oluşturma | `git init`
+## Adım 1: Repository Oluşturma — `git init`
 
-Bulunduğun dizinde boş bir git deposu oluşturmak için:
+Her şey burada başlar. Yeni bir proje klasörü oluşturup Git'e "bunu izle" diyoruz:
+
+bash
+
+Kopyala
 
 ```bash
 # Proje klasörü oluştur
@@ -1384,15 +1388,19 @@ $ cd web-projem
 
 # Git repository'si başlat
 $ git init
-Initialized empty Git repository in /home/kullanıcı/web-projem/.git/
+Initialized empty Git repository in /home/tolgahan/web-projem/.git/
 ```
 
-Git, `.git` adlı gizli bir klasör oluşturdu:
+Ne oldu? Git, `.git` adlı gizli bir klasör oluşturdu:
+
+bash
+
+Kopyala
 
 ```bash
 $ ls -la
 total 12
-drwxr-xr-x  3 user staff   96 Mar  1 10:00 .
+drwxr-xr-x  3 tolgahan staff   96 Mar  1 10:00 .
 drwxr-xr-x  5 tolgahan staff  160 Mar  1 10:00 ..
 drwxr-xr-x  9 tolgahan staff  288 Mar  1 10:00 .git
 
@@ -1400,7 +1408,7 @@ $ ls .git/
 HEAD  config  description  hooks  info  objects  refs
 ```
 
-Proje klasörün artık bir Git repository'si. Dosya henüz yok, commit henüz yok.
+Bu kadar. Proje klasörün artık bir Git repository'si. Dosya henüz yok, commit henüz yok ama Git hazır ve bekliyor.
 
 > ⚠️ **Dikkat:** `git init` komutu **mevcut dosyaları silmez veya değiştirmez**. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` klasörünü ekler. Bu yüzden güvenle kullanabilirsin.
 
@@ -1432,13 +1440,91 @@ Untracked files:
         style.css
 ```
 
-> ⚠️ Dikkat: `git init` komutu mevcut dosyaları silmez veya değiştirmez. Dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` gizli dizinini ekler. Bu yüzden güvenle kullanabilirsin.
+------
 
-#### Adım 2: Durum Kontrolü | `git status`
+## Adım 2: Dosya Oluşturma ve Durum Kontrolü — `git status`
 
-0luşturmuş olduğumuz deponun güncel durum bilgisini görüntülemek için **`git status`** komutunu kullanabilirsiniz. Bu komut ile hangi branch'te olduğumuz veya hangi dosyaların staging alanında (index bölgesi) olduğu gibi bilgiler verir.
+Şimdi projemize dosyalar ekleyelim:
+
+bash
+
+Kopyala
+
+```bash
+# Ana sayfa oluştur
+$ cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Projem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Merhaba Dünya!</h1>
+    <p>Bu benim ilk Git projemdir.</p>
+    <script src="app.js"></script>
+</body>
+</html>
+EOF
+
+# CSS dosyası
+$ cat > style.css << 'EOF'
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+EOF
+
+# JavaScript dosyası
+$ cat > app.js << 'EOF'
+console.log("Uygulama başlatıldı");
+EOF
+```
+
+Şimdi Git'e soralım: "Durum ne?"
+
+bash
+
+Kopyala
+
+```bash
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        app.js
+        index.html
+        style.css
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+`git status` bize çok şey söylüyor:
+
+- **On branch main:** `main` branch'indesin
+- **No commits yet:** Henüz hiç commit yok
+- **Untracked files:** Git bu dosyaları tanımıyor — henüz izleme altına almadık
+- **"use git add...":** Git sana ne yapman gerektiğini bile söylüyor!
+
+> 💡 **İpucu:** `git status` en çok kullanacağın komutlardan biri. Her komuttan önce ve sonra çalıştır — ne olduğunu anlamak için. "Şüphe duyduğunda `git status`" mottosu seni çok kurtaracak.
+
+### Kısa Status
 
 Daha kompakt bir çıktı istersen:
+
+bash
+
+Kopyala
 
 ```bash
 $ git status -s
@@ -1447,24 +1533,59 @@ $ git status -s
 ?? style.css
 ```
 
-- `??` = untracked
-- `M` = modified
-- `A` = added
-- `D` = deleted
+`??` = untracked. İleride `M` (modified), `A` (added), `D` (deleted) gibi kodlar da göreceksin.
 
-#### Adım 3: Staging'e Alma | `git add`
+------
 
-Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi.
+## Adım 3: Staging'e Alma — `git add`
 
-Tek bir dosyayı staging alanına eklemek için:
+Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi:
+
+### Tek Dosya Ekleme
+
+bash
+
+Kopyala
 
 ```bash
-$ git add <file_name>
+$ git add index.html
+
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   index.html
+
+Untracked files:
+        app.js
+        style.css
+```
+
+Sadece `index.html` staging'de. Diğerleri hâlâ untracked.
+
+### Birden Fazla Dosya Ekleme
+
+bash
+
+Kopyala
+
+```bash
+# Tek tek ekle
+$ git add style.css app.js
 
 # Veya hepsini bir seferde
 $ git add .
 # Nokta (.) = "bu klasördeki tüm değişiklikleri ekle"
+```
 
+bash
+
+Kopyala
+
+```bash
 $ git status
 On branch main
 
@@ -1477,56 +1598,59 @@ Changes to be committed:
         new file:   style.css
 ```
 
-> Not: Üç dosya da staging'de, commit'e hazır.
+Üç dosya da staging'de, commit'e hazır.
 
-**`git add` Varyasyonları**
+### `git add` Varyasyonları
+
+bash
+
+Kopyala
 
 ```bash
-git add dosya.txt          		# Tek dosya
-git add dosya1.txt dosya2.txt   # Birden fazla dosya
-git add .                       # Tüm değişiklikler (bu klasör ve alt)
-git add -A                      # Tüm değişiklikler (tüm repo)
-git add *.css                   # Pattern ile (tüm CSS dosyaları)
-git add src/                    # Klasör ve içindekiler
+git add dosya.txt          # Tek dosya
+git add dosya1.txt dosya2  # Birden fazla dosya
+git add .                  # Tüm değişiklikler (bu klasör ve alt)
+git add -A                 # Tüm değişiklikler (tüm repo)
+git add *.css              # Pattern ile (tüm CSS dosyaları)
+git add src/               # Klasör ve içindekiler
 ```
 
-- Dosyayı staging alanından çıkarmak için `git restore --staged <file_name>` komutu kullanılır.
+### Staging'den Çıkarma
 
-- Takip edilen daha önce commit'lenmiş bir dosyayı staging'den çıkarmak için `git rm --cached <file_name>`komutu kullanılır.
+Yanlışlıkla eklediğin bir dosyayı staging'den çıkarmak için:
 
-- Dosya staging'den çıkarılır ama silinmez.
+bash
 
-**`git add .` vs `git add -A` — Farkı**
+Kopyala
 
 ```bash
-# Proje yapısı:
-my-project/
-├── src/
-│   ├── app.js (modified)
-│   └── utils.js (new)
-├── README.md (deleted)
-└── test.js (modified)
+$ git restore --staged app.js
 
-# src/ dizinindeyken:
-$ cd src/
+$ git status
+Changes to be committed:
+        new file:   index.html
+        new file:   style.css
+
+Untracked files:
+        app.js
+```
+
+`app.js` staging'den çıktı ama dosya silinmedi — sadece sepetten çıkarıldı.
+
+------
+
+## Adım 4: İlk Commit — `git commit`
+
+Staging'deki dosyaları kalıcı olarak kaydetmenin zamanı:
+
+bash
+
+Kopyala
+
+```bash
+# Önce tüm dosyaları staging'e alalım
 $ git add .
-# Sadece src/ altındaki değişiklikleri ekler
-# README.md'nin silinmesi EKLENMEMİŞ olabilir (eski Git versiyonlarında)
 
-# Herhangi bir yerden:
-$ git add -A
-# Tüm repo genelindeki tüm değişiklikleri ekler
-# Silme, ekleme, düzenleme — hepsi
-```
-
-Not: Modern Git versiyonlarında (2.x+) `git add .` da silinmeleri ekler. Ama alışkanlık olarak `-A` daha güvenlidir.
-
-#### Adım 4: İlk Commit | `git commit`
-
-Staging'deki dosyaları kalıcı olarak kaydetmk için commit gerekli:
-
-
-```bash
 # Commit oluştur
 $ git commit -m "İlk commit: Proje yapısı oluşturuldu"
 [main (root-commit) a1b2c3d] İlk commit: Proje yapısı oluşturuldu
@@ -1536,14 +1660,16 @@ $ git commit -m "İlk commit: Proje yapısı oluşturuldu"
  create mode 100644 style.css
 ```
 
-- main — hangi branch'te
+Bu çıktıyı okuyalım:
 
-- (root-commit) — ilk commit
+- **main** — hangi branch'te
+- **(root-commit)** — ilk commit (parent yok)
+- **a1b2c3d** — commit hash'inin kısa hali
+- **3 files changed, 24 insertions** — 3 dosya eklendi, toplam 24 satır
 
-- a1b2c3d — commit hash'inin kısa hali
+bash
 
-- 3 files changed, 24 insertions — 3 dosya eklendi, toplam 24 satır
-
+Kopyala
 
 ```bash
 $ git status
@@ -1551,15 +1677,25 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
+"Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
 
-Not: `-m` ile tek satırlık mesaj yazarsın. Bu kısa değişiklikler için idealdir:
+### `-m` Bayrağı: Commit Mesajı
+
+`-m` ile tek satırlık mesaj yazarsın. Bu kısa değişiklikler için idealdir:
+
+bash
+
+Kopyala
 
 ```bash
-git commit -m "Başlık rengi güncellendi"
+$ git commit -m "Başlık rengi güncellendi"
 ```
 
-**Uzun mesaj yazmak** istersen, `-m` olmadan çalıştır:
+**Uzun mesaj yazmak istersen**, `-m` olmadan çalıştır:
+
+bash
+
+Kopyala
 
 ```bash
 $ git commit
@@ -1567,20 +1703,79 @@ $ git commit
 # İlk satır: Kısa özet (50 karakter)
 # Boş satır
 # Detaylı açıklama (72 karakter genişlik)
-
-# Editör'de yazacağın mesaj:
-
-# Kullanıcı giriş formunu ekle
-
-# - Email ve şifre alanları eklendi
-# - Form validasyonu yapıldı
-# - Hata mesajları Türkçeleştirildi
-# - Responsive tasarım uygulandı
 ```
 
-#### Adım 5: Değişiklik Yapma ve Yeni Commit
+Editör'de yazacağın mesaj:
 
-`index.html` ve `style.css` dosyalarına bazı eklemeler yapıp durum kontrolü:
+text
+
+Kopyala
+
+```text
+Kullanıcı giriş formunu ekle
+
+- Email ve şifre alanları eklendi
+- Form validasyonu yapıldı
+- Hata mesajları Türkçeleştirildi
+- Responsive tasarım uygulandı
+```
+
+> 💡 **İpucu:** İyi commit mesajı yazma alışkanlığını şimdiden edin. "fix" veya "update" gibi anlamsız mesajlar yerine, **ne yaptığını ve neden yaptığını** açıklayan mesajlar yaz. Gelecekteki sen (ve ekip arkadaşların) teşekkür edecek.
+
+------
+
+## Adım 5: Değişiklik Yapma ve Yeni Commit
+
+Projemiz üzerinde çalışmaya devam edelim:
+
+bash
+
+Kopyala
+
+```bash
+# index.html'e navigasyon ekleyelim
+$ cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Projem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <a href="/">Ana Sayfa</a>
+        <a href="/hakkinda">Hakkında</a>
+        <a href="/iletisim">İletişim</a>
+    </nav>
+    <h1>Merhaba Dünya!</h1>
+    <p>Bu benim ilk Git projemdir.</p>
+    <script src="app.js"></script>
+</body>
+</html>
+EOF
+
+# style.css'e nav stilleri ekleyelim
+$ cat >> style.css << 'EOF'
+
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+}
+EOF
+```
+
+Durumu kontrol edelim:
+
+bash
+
+Kopyala
 
 ```bash
 $ git status
@@ -1596,6 +1791,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 İki dosya **modified** — değişmiş ama staging'e alınmamış.
 
+bash
+
+Kopyala
+
 ```bash
 # Değişiklikleri staging'e al ve commit'le
 $ git add .
@@ -1604,32 +1803,54 @@ $ git commit -m "Navigasyon menüsü eklendi"
  2 files changed, 15 insertions(+), 1 deletion(-)
 ```
 
-> - `git commit -am "commit mesajı"` : Git add yapmadan direk commit etme işlemi için kullanabilirsiniz.
->
-> - `git commit --amend -m "yeni commit mesajı"` : En son yapılan commit mesajını değiştirmek için kullanılır.
+### Kısayol: add + commit Bir Arada
 
-<small>⚠️ **Dikkat:** `git commit -a` sadece **zaten izlenen** dosyaları otomatik ekler. **Yeni oluşturulan** (untracked) dosyaları eklemez! Yeni dosya varsa önce `git add` yapmalısın.</small>
+Değiştirilmiş (modified) dosyaları tek komutla staging'e alıp commit'leyebilirsin:
 
-#### Adım 6: Geçmişi İnceleme | `git log`
+bash
 
-Yapılan commitleri görüntülemek için:
+Kopyala
+
+```bash
+$ git commit -am "Küçük düzeltme yapıldı"
+```
+
+`-a` = "tüm **izlenen** (tracked) değişiklikleri otomatik staging'e al" `-m` = "mesaj"
+
+> ⚠️ **Dikkat:** `git commit -a` sadece **zaten izlenen** dosyaları otomatik ekler. **Yeni oluşturulan** (untracked) dosyaları eklemez! Yeni dosya varsa önce `git add` yapman şart.
+
+------
+
+## Adım 6: Geçmişi İnceleme — `git log`
+
+Artık birkaç commit'imiz var. Geçmişe bakalım:
+
+bash
+
+Kopyala
 
 ```bash
 $ git log
 commit b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1 (HEAD -> main)
-Author: kullanıcı <email@adresiniz.com>
+Author: Tolgahan Kaya <tolgahan@example.com>
 Date:   Mon Mar 1 10:30:00 2026 +0300
 
     Navigasyon menüsü eklendi
 
 commit a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0 
-Author: kullanıcı <email@adresiniz.com>
+Author: Tolgahan Kaya <tolgahan@example.com>
 Date:   Mon Mar 1 10:00:00 2026 +0300
 
     İlk commit: Proje yapısı oluşturuldu
 ```
 
-**`git log` Varyasyonları**
+### Log Varyasyonları
+
+`git log` çok güçlü bir komut. İşte en faydalı kullanımları:
+
+bash
+
+Kopyala
 
 ```bash
 # Tek satırlık özet
@@ -1656,7 +1877,7 @@ commit b2c3d4e (HEAD -> main)
  2 files changed, 15 insertions(+), 2 deletions(-)
 
 # Değişiklikleri satır satır göster
-$ git log -patur
+$ git log -p
 # Her commit'in diff'ini gösterir (çok detaylı)
 
 # Belirli bir dosyanın geçmişi
@@ -1664,15 +1885,193 @@ $ git log -- index.html
 # Sadece index.html'i etkileyen commit'ler
 ```
 
-> Not: `git log --oneline --graph` komutu branch'lerle birlikte çok kullanışlıdır.
->
-> `HEAD` : Git'in içinde bulunduğumuz konumu belirten bir referanstır. Genellikle en son commit'i işaret eder. Bu, nerede olduğumuzu ve hangi commit üzerinde çalıştığımızı belirlememizi sağlar.
+### `git log --oneline --graph` — En Sevdiğin Komut Olacak
 
----
+Branch'ler öğrendiğinde bu komut bir sanat eserine dönüşür:
 
-### `.gitignore` — Neyi İzlememeliyiz?
+bash
 
-Git'e koymak istemediğiniz proje dosyasını yani izlenmesini istenmeyen dosyalar veya dizinler `.gitignore` dosyasında belirtilerek bu dosyalar görmezden gelmesine izin verilebilinir. Proje kök dizinine eklenir.
+Kopyala
+
+```bash
+$ git log --oneline --graph --all --decorate
+* d4e5f6g (HEAD -> main) Footer eklendi
+*   c3d4e5f Merge branch 'feature'
+|\
+| * b2c3d4e Feature tamamlandı
+| * a1b2c3d Feature başlatıldı
+|/
+* 9h8i7j6 İlk commit
+```
+
+Alias olarak tanımlamıştık hatırlarsan:
+
+bash
+
+Kopyala
+
+```bash
+$ git config --global alias.lg "log --oneline --graph --all --decorate"
+$ git lg
+# Aynı şeyi kısaca yaz
+```
+
+------
+
+## Adım 7: Pratik Workflow — Gerçek Bir Senaryo
+
+Şimdi öğrendiklerimizi birleştirerek gerçek bir çalışma akışı yapalım. Bir web projesi geliştiriyormuş gibi davranacağız:
+
+bash
+
+Kopyala
+
+```bash
+# === PROJE BAŞLANGICI ===
+$ mkdir portfolio && cd portfolio
+$ git init
+Initialized empty Git repository in /home/tolgahan/portfolio/.git/
+
+# === DOSYA YAPISI ===
+$ mkdir css js images
+
+$ cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyom</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Tolgahan Kaya</h1>
+        <p>Full Stack Developer</p>
+    </header>
+    <script src="js/main.js"></script>
+</body>
+</html>
+EOF
+
+$ cat > css/style.css << 'EOF'
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+EOF
+
+$ cat > js/main.js << 'EOF'
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Portfolio yüklendi');
+});
+EOF
+
+# === İLK COMMIT ===
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+        css/
+        index.html
+        js/
+
+$ git add .
+$ git status
+Changes to be committed:
+        new file:   css/style.css
+        new file:   index.html
+        new file:   js/main.js
+
+$ git commit -m "feat: Proje iskelet yapısı oluşturuldu"
+[main (root-commit) 1a2b3c4] feat: Proje iskelet yapısı oluşturuldu
+ 3 files changed, 35 insertions(+)
+
+# === HAKKINDA BÖLÜMÜ ===
+$ cat >> index.html << 'EOF'
+    <section id="about">
+        <h2>Hakkımda</h2>
+        <p>5 yıllık deneyime sahip bir yazılım geliştiriciyim.</p>
+    </section>
+EOF
+
+$ git add index.html
+$ git commit -m "feat: Hakkımda bölümü eklendi"
+[main 2b3c4d5] feat: Hakkımda bölümü eklendi
+ 1 file changed, 4 insertions(+)
+
+# === İLETİŞİM BÖLÜMÜ ===
+$ cat >> index.html << 'EOF'
+    <section id="contact">
+        <h2>İletişim</h2>
+        <p>Email: tolgahan@example.com</p>
+    </section>
+EOF
+
+$ cat >> css/style.css << 'EOF'
+
+section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+EOF
+
+$ git add .
+$ git commit -m "feat: İletişim bölümü ve section stilleri eklendi"
+[main 3c4d5e6] feat: İletişim bölümü ve section stilleri eklendi
+ 2 files changed, 14 insertions(+)
+
+# === GEÇMİŞİ İNCELE ===
+$ git log --oneline
+3c4d5e6 (HEAD -> main) feat: İletişim bölümü ve section stilleri eklendi
+2b3c4d5 feat: Hakkımda bölümü eklendi
+1a2b3c4 feat: Proje iskelet yapısı oluşturuldu
+
+$ git log --stat --oneline
+3c4d5e6 (HEAD -> main) feat: İletişim bölümü ve section stilleri eklendi
+ css/style.css | 10 ++++++++++
+ index.html    |  4 ++++
+ 2 files changed, 14 insertions(+)
+2b3c4d5 feat: Hakkımda bölümü eklendi
+ index.html | 4 ++++
+ 1 file changed, 4 insertions(+)
+1a2b3c4 feat: Proje iskelet yapısı oluşturuldu
+ css/style.css | 17 +++++++++++++++++
+ index.html    | 15 +++++++++++++++
+ js/main.js    |  3 +++
+ 3 files changed, 35 insertions(+)
+```
+
+------
+
+## Adım 8: .gitignore — Neyi İzlememeliyiz?
+
+Her proje dosyasını Git'e koymak istemezsin. Bazı dosyalar izlenmemeli:
+
+bash
+
+Kopyala
 
 ```bash
 # .gitignore dosyası oluştur
@@ -1706,16 +2105,88 @@ build/
 npm-debug.log*
 EOF
 
-# Dizin klasöründeki b dosyası hariç tüm dosyaları kapsar
-!dizin/b
-
 $ git add .gitignore
 $ git commit -m "chore: .gitignore dosyası eklendi"
 [main 4d5e6f7] chore: .gitignore dosyası eklendi
  1 file changed, 23 insertions(+)
 ```
 
+Artık `.gitignore`'da listelenen dosyalar `git status`'ta gözükmez ve `git add .` ile eklenmez.
+
+bash
+
+Kopyala
+
+```bash
+# Test edelim
+$ echo "SECRET_KEY=abc123" > .env
+$ mkdir node_modules
+$ touch node_modules/package.json
+
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+# .env ve node_modules gözükmüyor! .gitignore çalışıyor.
+```
+
+------
+
+## Günlük Workflow Özeti
+
+Her gün kullanacağın temel akış:
+
+text
+
+Kopyala
+
+```text
+┌─────────────────────────────────────────────────────┐
+│              GÜNLÜk GIT WORKFLOW                    │
+│                                                     │
+│  1. Çalışmaya başla                                 │
+│     $ git status              ← "durumum ne?"      │
+│                                                     │
+│  2. Dosyalarda değişiklik yap                       │
+│     (kodla, test et, düzenle)                       │
+│                                                     │
+│  3. Ne değiştiğine bak                              │
+│     $ git status              ← "ne değiştim?"     │
+│     $ git diff                ← "tam olarak ne?"   │
+│                                                     │
+│  4. Staging'e al                                    │
+│     $ git add .               ← "bunları kaydet"   │
+│     $ git add dosya.txt       ← "sadece bunu"      │
+│                                                     │
+│  5. Commit oluştur                                  │
+│     $ git commit -m "mesaj"   ← "kalıcı kayıt"    │
+│                                                     │
+│  6. Geçmişi kontrol et                              │
+│     $ git log --oneline       ← "ne yaptım?"       │
+│                                                     │
+│  7. Tekrarla (2'ye dön)                             │
+└─────────────────────────────────────────────────────┘
+```
+
+### Ne Sıklıkla Commit Atmalıyım?
+
+- **Çok sık:** Her küçük değişiklikte (her 5 dakikada) → geçmiş çok gürültülü olur
+- **Çok seyrek:** Günde bir kere → geri dönmek zor olur
+- **İdeal:** Her **anlamlı, bağımsız değişiklikte**. Bir özellik tamamlandığında, bir bug düzeltildiğinde, bir refactoring yapıldığında.
+
+Basit kural: "Bu commit tek bir şeyi anlatıyor mu?" Evet ise, iyi commit.
+
+> ⚠️ **Dikkat:** "WIP" (Work In Progress), "misc", "stuff", "asdf" gibi commit mesajları acemilerin en büyük hatası. Her commit mesajı gelecekte birinin (veya senin) okuması gerektiğini düşünerek yaz.
+
+------
+
+## Bonus: `git show` — Belirli Bir Commit'i İncele
+
 Belirli bir commit'te ne olduğunu görmek için:
+
+bash
+
+Kopyala
 
 ```bash
 $ git show 2b3c4d5
@@ -1735,15 +2206,24 @@ diff --git a/index.html b/index.html
 +        <p>5 yıllık deneyime sahip bir yazılım geliştiriciyim.</p>
 +    </section>
      <script src="js/main.js"></script>
-     
-# En son commit'i görmek için:
+```
+
+En son commit'i görmek için:
+
+bash
+
+Kopyala
+
+```bash
 $ git show HEAD
 # veya
 $ git show
 # (parametre olmadan HEAD'i gösterir)
 ```
 
-#### Özet
+------
+
+## Özet
 
 - `git init` ile boş bir repository oluşturursun — `.git` dizini eklenir, dosyalara dokunulmaz
 - `git status` ile projenin durumunu kontrol edersin — bu en sık kullanacağın komut
@@ -1751,10 +2231,6 @@ $ git show
 - `git commit -m "mesaj"` ile staging'dekileri kalıcı olarak kaydedersin — projenin fotoğrafını çekersin
 - `git log` ile commit geçmişini incelersin — `--oneline` ve `--graph` en faydalı bayraklar
 - `.gitignore` ile izlenmemesi gereken dosyaları belirlersin — `node_modules`, `.env`, IDE dosyaları
-
----
-
-
 
 
 
