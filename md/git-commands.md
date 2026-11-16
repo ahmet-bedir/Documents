@@ -162,6 +162,27 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 > Git **snapshot** (anlık görüntü) tabanlıdır, diff (fark) tabanlı değil — bu onu hızlı ve güvenilir yapar. Her görüntü = bir **commit**. Her commit, projenin o andaki tam fotoğrafı. Ve git bu fotoğrafları verimli bir şekilde saklıyor — her seferinde tüm dosyaları kopyalamak yerine, sadece **değişenleri** kaydediyor.
 
+Not: Git = GitHub ❌
+
+Bu en yaygın karışıklık.
+
+**▸ Git** = versiyon kontrol yazılımı. Bilgisayarında çalışır. Ücretsiz, açık kaynak.
+
+**▸ GitHub** = Git depolarını barındıran web servisi. Microsoft'a ait. Sosyal kodlama platformu.
+
+```text
+Git ≠ GitHub
+
+Git = Motor
+GitHub = Otopark + Showroom + Sosyal Klüp
+
+Diğer otoparklar da var:
+- GitLab (self-hosted yapabilirsin)
+- Bitbucket (Atlassian - Jira ile entegre)
+- Gitea (hafif, self-hosted)
+- Azure DevOps (Microsoft)
+```
+
 ### Git Kullanım Senaryoları
 
 #### 1. Zaman Yolculuğu
@@ -927,7 +948,7 @@ core.bare=false
 core.logallrefupdates=true
 core.symlinks=false
 core.ignorecase=true
-remote.origin.url=https://ahmet-bedir:ghp_xxxxxxx@github.com/ahmet-bedir/Documents.git
+remote.origin.url=git@github.com:ahmet-bedir/Documents.git
 remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 branch.master.remote=origin
 branch.master.merge=refs/heads/master
@@ -939,7 +960,7 @@ core.bare=false
 core.logallrefupdates=true
 core.symlinks=false
 core.ignorecase=true
-remote.origin.url=https://ahmet-bedir:ghp_xxxxxxx@github.com/ahmet-bedir/Documents.git
+remote.origin.url=git@github.com:ahmet-bedir/Documents.git
 remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 branch.master.remote=origin
 branch.master.merge=refs/heads/master
