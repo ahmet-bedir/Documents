@@ -2232,7 +2232,831 @@ $ git show
 - `git log` ile commit geçmişini incelersin — `--oneline` ve `--graph` en faydalı bayraklar
 - `.gitignore` ile izlenmemesi gereken dosyaları belirlersin — `node_modules`, `.env`, IDE dosyaları
 
+---
 
+Temel Git Komutları
+
+# Dosya Takibi
+
+## Giriş: Neden Derinlemesine Öğreniyoruz?
+
+Önceki derste `git add .` ile tüm dosyaları staging'e aldık. Çalıştı. Ama gerçek dünyada her zaman "tüm değişiklikleri ekle" demezsin. Bazen:
+
+- Bir dosyanın sadece **belirli satırlarını** commit'lemek istersin
+- Bir dosyayı Git'in izlemesinden **tamamen çıkarmak** istersin
+- Bir dosyayı **taşımak veya yeniden adlandırmak** istersin
+- Belirli dosya türlerini **asla izlememek** istersin
+
+Bu ders, dosya takibinin inceliklerini öğreterek seni "git add ." otomatizminden kurtaracak. Commit'lerini cerrahi hassasiyetle kontrol edebileceksin.
+
+------
+
+## 🎬 Analoji: Bavul Hazırlamak
+
+Tatile gidiyorsun ve bavulunu hazırlıyorsun. İki yaklaşım var:
+
+1. **Tembel yaklaşım:** Dolaptaki her şeyi bavula at → Bavul çok ağır, gereksiz şeyler dolu
+2. **Akıllı yaklaşım:** Tek tek seç — "bu tişörtü al, bu pantolonu al, ceketi bırak" → Bavul düzgün, sadece gereken var
+
+`git add .` = tembel yaklaşım. Her zaman işe yarar ama her zaman doğru değildir.
+
+`git add -p` = akıllı yaklaşım. "Bu değişikliği al, bunu bırak" diyerek parça parça ekleme yaparsın.
+
+------
+
+## git add — Detaylı İnceleme
+
+### Temel Kullanımlar (Hatırlatma)
+
+bash
+
+Kopyala
+
+```bash
+git add dosya.txt          # Tek dosya
+git add dosya1 dosya2      # Birden fazla dosya
+git add .                  # Geçerli dizin ve alt dizinler (tüm değişiklikler)
+git add -A                 # Tüm repo genelinde tüm değişiklikler
+git add *.js               # Glob pattern — tüm .js dosyaları
+git add src/               # Bir klasör ve içindekiler
+```
+
+### `git add .` vs `git add -A` — İnce Fark
+
+bash
+
+Kopyala
+
+```bash
+# Proje yapısı:
+my-project/
+├── src/
+│   ├── app.js (modified)
+│   └── utils.js (new)
+├── README.md (deleted)
+└── test.js (modified)
+
+# src/ dizinindeyken:
+$ cd src/
+$ git add .
+# Sadece src/ altındaki değişiklikleri ekler
+# README.md'nin silinmesi EKLENMEMİŞ olabilir (eski Git versiyonlarında)
+
+# Herhangi bir yerden:
+$ git add -A
+# Tüm repo genelindeki tüm değişiklikleri ekler
+# Silme, ekleme, düzenleme — hepsi
+```
+
+Modern Git versiyonlarında (2.x+) `git add .` da silinmeleri ekler. Ama alışkanlık olarak `-A` daha güvenlidir.
+
+### Interactive Mode: `git add -i`
+
+Git'in interaktif staging modu, bir menü sunar:
+
+bash
+
+Kopyala
+
+```bash
+$ git add -i
+           staged     unstaged path
+  1:    unchanged        +3/-1 index.html
+  2:    unchanged        +7/-0 style.css
+  3:    unchanged        +2/-0 app.js
+
+*** Commands ***
+  1: status       2: update       3: revert       4: add untracked
+  5: patch        6: diff         7: quit         8: help
+What now>
+```
+
+Seçenekler:
+
+- **update (2):** Dosya seçip staging'e al
+- **revert (3):** Staging'den çıkar
+- **patch (5):** Satır satır seçim yap
+- **diff (6):** Staging'deki farkları göster
+
+### Patch Mode: `git add -p` — Cerrah Gibi Commit'le
+
+Bu, Git'in en güçlü ve en az bilinen özelliklerinden biri. Bir dosyadaki değişiklikleri **parça parça (hunk)** seçerek staging'e alabilirsin.
+
+Örnek senaryo: `app.js`'de hem bir bug fix yaptın hem yeni bir özellik ekledin. Bunları ayrı commit'lemek istiyorsun.
+
+bash
+
+Kopyala
+
+```bash
+$ cat app.js
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Uygulama başlatıldı');
+    
+    // Bug fix: null check eklendi
+    const user = getUser();
+    if (user !== null) {
+        displayProfile(user);
+    }
+    
+    // Yeni özellik: Dark mode
+    const darkModeBtn = document.getElementById('dark-mode');
+    darkModeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+    });
+});
+```
+
+bash
+
+Kopyala
+
+```bash
+$ git add -p app.js
+diff --git a/app.js b/app.js
+--- a/app.js
++++ b/app.js
+@@ -1,3 +1,9 @@
+ document.addEventListener('DOMContentLoaded', () => {
+     console.log('Uygulama başlatıldı');
++    
++    // Bug fix: null check eklendi
++    const user = getUser();
++    if (user !== null) {
++        displayProfile(user);
++    }
++    
++    // Yeni özellik: Dark mode
++    const darkModeBtn = document.getElementById('dark-mode');
++    darkModeBtn.addEventListener('click', () => {
++        document.body.classList.toggle('dark');
++    });
+ });
+(1/1) Stage this hunk [y,n,q,a,d,s,e,?]?
+```
+
+Burada Git sana bir "hunk" (değişiklik parçası) gösteriyor ve seçenekler sunuyor:
+
+text
+
+Kopyala
+
+```text
+y = yes, bu hunk'ı staging'e al
+n = no, bu hunk'ı atla
+q = quit, çık (geri kalanları ekleme)
+a = all, bu dosyadaki tüm hunk'ları ekle
+d = bu dosyadaki hiçbir hunk'ı ekleme
+s = split, bu hunk'ı daha küçük parçalara böl
+e = edit, hunk'ı elle düzenle
+? = yardım
+```
+
+**`s` (split)** ile hunk'ı bölersek:
+
+bash
+
+Kopyala
+
+```bash
+(1/1) Stage this hunk [y,n,q,a,d,s,e,?]? s
+Split into 2 hunks.
+
+# Hunk 1: Bug fix
+@@ -1,3 +1,9 @@
+ document.addEventListener('DOMContentLoaded', () => {
+     console.log('Uygulama başlatıldı');
++    
++    // Bug fix: null check eklendi
++    const user = getUser();
++    if (user !== null) {
++        displayProfile(user);
++    }
+(1/2) Stage this hunk [y,n,q,a,d,e,?]? y  ← Bug fix'i al
+
+# Hunk 2: Dark mode
++    
++    // Yeni özellik: Dark mode
++    const darkModeBtn = document.getElementById('dark-mode');
++    darkModeBtn.addEventListener('click', () => {
++        document.body.classList.toggle('dark');
++    });
+(2/2) Stage this hunk [y,n,q,a,d,e,?]? n  ← Bunu şimdilik alma
+```
+
+Şimdi:
+
+bash
+
+Kopyala
+
+```bash
+$ git commit -m "fix: Kullanıcı profili null check eklendi"
+
+# Sonra dark mode'u da commit'le
+$ git add -p app.js
+# Bu sefer dark mode hunk'ını y ile kabul et
+$ git commit -m "feat: Dark mode toggle eklendi"
+```
+
+İki temiz, ayrı commit. Profesyonel!
+
+> 💡 **İpucu:** `git add -p` alışkanlığını erken edin. Başta yavaş hissedebilir ama bir süre sonra doğal gelir. Commit'lerin temiz ve anlamlı olması, code review'da büyük fark yaratır. Ekip arkadaşların sana teşekkür edecek.
+
+------
+
+## git rm — Dosya Silme
+
+Git'ten bir dosyayı silmenin birden fazla yolu var ve aralarındaki farkı bilmek önemli.
+
+### Normal Silme vs Git ile Silme
+
+bash
+
+Kopyala
+
+```bash
+# Yol 1: Önce dosyayı sil, sonra Git'e bildir
+$ rm gereksiz.txt
+$ git add gereksiz.txt        # veya git add -A
+$ git commit -m "gereksiz.txt silindi"
+
+# Yol 2: Git ile bir adımda sil (önerilen)
+$ git rm gereksiz.txt
+rm 'gereksiz.txt'
+$ git commit -m "gereksiz.txt silindi"
+```
+
+`git rm`:
+
+1. Dosyayı diskten siler
+2. Silme işlemini staging'e alır
+
+İki adım yerine bir adım.
+
+### `--cached`: Dosyayı Git'ten Çıkar Ama Diskten Silme
+
+Bazen bir dosyayı Git'in izlemesinden çıkarmak ama diskten **silmemek** istersin:
+
+bash
+
+Kopyala
+
+```bash
+# Yanlışlıkla .env dosyasını commit'lemişsin
+# Git'in izlemesinden çıkar ama dosya kalsın
+$ git rm --cached .env
+rm '.env'
+
+# .gitignore'a ekle (tekrar eklenmesini önle)
+$ echo ".env" >> .gitignore
+
+$ git add .gitignore
+$ git commit -m "chore: .env dosyası izlemeden çıkarıldı"
+```
+
+Bu, **en sık kullanılan** `git rm` kullanımı. Yanlışlıkla izlemeye alınan dosyaları çıkarmak için.
+
+### Klasör Silme
+
+bash
+
+Kopyala
+
+```bash
+# Bir klasörü ve içindekileri sil
+$ git rm -r logs/
+rm 'logs/error.log'
+rm 'logs/access.log'
+
+$ git commit -m "chore: Log klasörü kaldırıldı"
+```
+
+`-r` = recursive (alt klasörlerle birlikte).
+
+> ⚠️ **Dikkat:** `git rm` ile silinen dosyalar commit geçmişinde hâlâ var. Eğer hassas veri (API key, şifre) commit'lediysen, `git rm --cached` yeterli değil — geçmişte hâlâ gözükür. Bunu temizlemek için `git filter-branch` veya `BFG Repo Cleaner` gibi araçlar gerekir (ileri bölümlerde).
+
+------
+
+## git mv — Dosya Taşıma ve Yeniden Adlandırma
+
+Git'te dosya taşımak veya yeniden adlandırmak için `git mv` kullanırız:
+
+bash
+
+Kopyala
+
+```bash
+# Dosyayı yeniden adlandır
+$ git mv eski_isim.txt yeni_isim.txt
+
+$ git status
+On branch main
+Changes to be committed:
+        renamed:    eski_isim.txt -> yeni_isim.txt
+```
+
+Bu aslında üç komutun kısayolu:
+
+bash
+
+Kopyala
+
+```bash
+# git mv'nin yaptığı şey:
+$ mv eski_isim.txt yeni_isim.txt    # 1. Dosyayı taşı
+$ git rm eski_isim.txt              # 2. Eski ismi sil (Git'ten)
+$ git add yeni_isim.txt             # 3. Yeni ismi ekle
+```
+
+### Klasöre Taşıma
+
+bash
+
+Kopyala
+
+```bash
+# Dosyayı başka bir klasöre taşı
+$ git mv app.js src/app.js
+
+$ git status
+Changes to be committed:
+        renamed:    app.js -> src/app.js
+```
+
+### Klasörü Yeniden Adlandırma
+
+bash
+
+Kopyala
+
+```bash
+$ git mv css styles
+
+$ git status
+Changes to be committed:
+        renamed:    css/style.css -> styles/style.css
+```
+
+> 💡 **İpucu:** Git aslında dosya taşımalarını **izlemez** — silme + ekleme olarak görür. Ama Git yeterince akıllıdır: dosya içeriği aynı veya çok benzer ise, "renamed" olarak algılar. `git log --follow dosya.txt` ile taşınma öncesindeki geçmişi de görebilirsin.
+
+------
+
+## .gitignore — Neyi İzlememeliyiz?
+
+`.gitignore`, Git'e "bu dosyaları görmezden gel" diyen bir yapılandırma dosyasıdır.
+
+### Neden Önemli?
+
+Her projede izlenmemesi gereken dosyalar vardır:
+
+- **Bağımlılıklar** (`node_modules/`, `vendor/`) — çok büyük, `npm install` ile yeniden oluşturulabilir
+- **Ortam değişkenleri** (`.env`) — API anahtarları, şifreler
+- **Build çıktıları** (`dist/`, `build/`) — kaynak koddan üretilir
+- **IDE dosyaları** (`.idea/`, `.vscode/`) — kişiye özel
+- **İşletim sistemi dosyaları** (`.DS_Store`, `Thumbs.db`) — gereksiz
+
+### Pattern Sözdizimi
+
+gitignore
+
+Kopyala
+
+```gitignore
+# Yorum satırı
+# Hash (#) ile başlayan satırlar yorum
+
+# Belirli bir dosya
+secret.key
+config.local.php
+
+# Belirli bir uzantı
+*.log
+*.tmp
+*.swp
+
+# Belirli bir klasör
+node_modules/
+vendor/
+dist/
+
+# Klasör içindeki belirli dosya türü
+logs/*.log
+
+# Tüm alt dizinlerdeki belirli dosya türü
+**/*.pyc
+
+# Olumsuzlama (hariç tutma)
+*.log
+!important.log
+# Tüm .log dosyalarını yoksay AMA important.log'u izle
+
+# Belirli bir yol
+/TODO
+# Sadece kök dizindeki TODO'yu yoksay
+# alt_dizin/TODO etkilenmez
+
+# Çift yıldız — herhangi bir derinlik
+**/build/
+# build/ klasörünü nerede olursa olsun yoksay
+
+docs/**/*.pdf
+# docs/ ve tüm alt dizinlerindeki PDF'leri yoksay
+```
+
+### Pratik .gitignore Örnekleri
+
+**Node.js Projesi:**
+
+gitignore
+
+Kopyala
+
+```gitignore
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build
+dist/
+build/
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+```
+
+**Python Projesi:**
+
+gitignore
+
+Kopyala
+
+```gitignore
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Environment
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+```
+
+**Java Projesi:**
+
+gitignore
+
+Kopyala
+
+```gitignore
+# Compiled
+*.class
+*.jar
+*.war
+
+# Build
+target/
+build/
+out/
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Logs
+*.log
+```
+
+### Global .gitignore
+
+Tüm projelerinde geçerli olacak bir global `.gitignore` tanımlayabilirsin:
+
+bash
+
+Kopyala
+
+```bash
+# Global gitignore dosyası oluştur
+$ cat > ~/.gitignore_global << 'EOF'
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Editör yedekleri
+*.bak
+*.orig
+EOF
+
+# Git'e tanıt
+$ git config --global core.excludesfile ~/.gitignore_global
+```
+
+Bu sayede her projede `.DS_Store` veya `.idea/` eklemenize gerek kalmaz.
+
+### Zaten İzlenen Dosyayı .gitignore'a Eklemek
+
+`.gitignore` sadece **henüz izlenmeyen** dosyaları etkiler. Zaten izlenen bir dosyayı sonradan `.gitignore`'a eklemek yetmez:
+
+bash
+
+Kopyala
+
+```bash
+# Dosya zaten izleniyor
+$ git ls-files
+.env
+index.html
+
+# .gitignore'a .env ekle
+$ echo ".env" >> .gitignore
+
+# AMA .env hâlâ izleniyor!
+$ git status
+# .env değişiklikleri gözükmeye devam eder
+
+# Çözüm: Önce izlemeden çıkar
+$ git rm --cached .env
+$ git add .gitignore
+$ git commit -m "chore: .env izlemeden çıkarıldı ve .gitignore güncellendi"
+
+# Artık .env izlenmiyor
+```
+
+> ⚠️ **Dikkat:** `.gitignore`'u projenin **en başında** oluştur. Sonradan eklemek çalışır ama zaten commit'lenmiş dosyaların geçmişi kalır. En iyisi, `git init`'ten hemen sonra `.gitignore` oluşturmaktır.
+
+### .gitignore Debugging
+
+Bir dosyanın neden izlendiğini veya neden yoksayıldığını anlamak için:
+
+bash
+
+Kopyala
+
+```bash
+# Bu dosya neden yoksayılıyor?
+$ git check-ignore -v dosya.txt
+.gitignore:3:*.txt    dosya.txt
+# .gitignore'un 3. satırındaki *.txt kuralı yüzünden
+
+# Bu dosya yoksayılıyor mu?
+$ git check-ignore dosya.txt
+dosya.txt              # Çıktı varsa yoksayılıyor
+                       # Çıktı yoksa izleniyor
+```
+
+------
+
+## git clean — Untracked Dosyaları Temizleme
+
+`git clean`, izlenmeyen (untracked) dosyaları çalışma dizininden siler. Build artifact'ları, geçici dosyalar veya deneme dosyalarını temizlemek için kullanılır:
+
+bash
+
+Kopyala
+
+```bash
+# Neyin silineceğini göster (dry-run, güvenli)
+$ git clean -n
+Would remove temp.txt
+Would remove debug.log
+Would remove test-output/
+
+# Untracked dosyaları sil
+$ git clean -f
+Removing temp.txt
+Removing debug.log
+
+# Untracked dizinleri de sil (-d)
+$ git clean -fd
+Removing temp.txt
+Removing debug.log
+Removing test-output/
+
+# .gitignore'da olan dosyaları da sil (-x)
+$ git clean -fdx
+# node_modules/, .env, build/ dahil HER ŞEYİ siler
+# ⚠️ Dikkatli kullan!
+
+# Interaktif mod (en güvenli)
+$ git clean -i
+Would remove the following items:
+   temp.txt    debug.log    test-output/
+*** Commands ***
+    1: clean     2: filter by pattern
+    3: select by numbers    4: ask each one    5: quit
+What now>
+```
+
+> ⚠️ **Dikkat:** `git clean -f` geri alınamaz! Git tarafından izlenmeyen dosyalar silindiğinde reflog veya başka bir kurtarma yolu yoktur. Her zaman önce `git clean -n` ile neyin silineceğini kontrol edin.
+
+------
+
+## Assume Unchanged — Yerel Değişiklikleri Gizleme
+
+Bazen bir dosyayı yerelde değiştirirsiniz ama Git'in bu değişikliği görmesini istemezsiniz (örneğin yerel konfigürasyon):
+
+bash
+
+Kopyala
+
+```bash
+# Git'e "bu dosya değişmemiş gibi davran" de
+$ git update-index --assume-unchanged config/local.yml
+
+# Geri al
+$ git update-index --no-assume-unchanged config/local.yml
+
+# Hangi dosyalar assume-unchanged?
+$ git ls-files -v | grep "^[a-z]"
+h config/local.yml
+```
+
+Alternatif olarak `--skip-worktree` daha güvenlidir:
+
+bash
+
+Kopyala
+
+```bash
+# skip-worktree (checkout/reset'e dayanıklı)
+$ git update-index --skip-worktree config/local.yml
+$ git update-index --no-skip-worktree config/local.yml
+```
+
+------
+
+## Staging Area'yı İnceleme
+
+Staging area'da ne olduğunu görmek için:
+
+bash
+
+Kopyala
+
+```bash
+# Staging'deki dosyaları listele
+$ git ls-files --stage
+100644 a1b2c3d4... 0    index.html
+100644 e5f6a7b8... 0    style.css
+100644 c9d0e1f2... 0    app.js
+
+# Staging ile son commit arasındaki fark
+$ git diff --staged
+diff --git a/index.html b/index.html
+--- a/index.html
++++ b/index.html
+@@ -10,6 +10,7 @@
+ <body>
++    <footer>© 2026</footer>
+ </body>
+
+# Staging ile working directory arasındaki fark
+$ git diff
+# (staging'e alınmamış değişiklikler)
+```
+
+### `diff --staged` vs `diff` Karşılaştırması
+
+text
+
+Kopyala
+
+```text
+┌────────────────┐        ┌────────────────┐        ┌────────────────┐
+│    Working     │        │    Staging     │        │   Last Commit  │
+│   Directory    │        │     Area      │        │   (HEAD)       │
+└───────┬────────┘        └───────┬────────┘        └───────┬────────┘
+        │                         │                         │
+        │◄── git diff ──────────►│                         │
+        │  (staging'e alınmamış  │                         │
+        │   değişiklikler)       │                         │
+        │                         │◄── git diff --staged ─►│
+        │                         │  (commit'lenecek       │
+        │                         │   değişiklikler)       │
+        │                         │                         │
+        │◄── git diff HEAD ─────────────────────────────► │
+        │  (tüm değişiklikler — staged + unstaged)         │
+```
+
+------
+
+## Pratik Senaryo: Profesyonel Dosya Yönetimi
+
+bash
+
+Kopyala
+
+```bash
+# Senaryo: Bir web projesinde çalışıyorsun
+$ mkdir pro-workflow && cd pro-workflow && git init
+
+# Başlangıç dosyaları
+$ echo "<html><body>Hello</body></html>" > index.html
+$ echo "body { margin: 0; }" > style.css
+$ echo "console.log('app');" > app.js
+$ echo "DB_PASSWORD=secret123" > .env
+$ mkdir logs && echo "error at 10:00" > logs/error.log
+
+$ git add index.html style.css app.js
+$ git commit -m "feat: Proje başlatıldı"
+
+# 1. .env'yi yanlışlıkla eklediniz mi? Hayır, çünkü .gitignore var
+$ cat > .gitignore << 'EOF'
+.env
+logs/
+*.log
+EOF
+
+$ git add .gitignore
+$ git commit -m "chore: .gitignore eklendi"
+
+# 2. Dosya taşıma
+$ mkdir src
+$ git mv app.js src/app.js
+$ git commit -m "refactor: app.js src/ klasörüne taşındı"
+
+# 3. Dosya silme
+$ echo "temp data" > gecici.txt
+$ git add gecici.txt && git commit -m "temp: Geçici dosya"
+$ git rm gecici.txt
+$ git commit -m "chore: Geçici dosya silindi"
+
+# 4. Parçalı staging
+$ echo "// Bug fix" >> src/app.js
+$ echo "h1 { color: blue; }" >> style.css
+$ git add -p
+# Her değişikliği ayrı değerlendir
+
+# 5. Geçmişe bak
+$ git log --oneline --stat
+```
+
+------
+
+## Özet
+
+- `git add -p` ile değişiklikleri **hunk bazında** seçerek staging'e alabilirsin — temiz commit'ler için kritik
+- `git rm` dosyayı hem diskten siler hem staging'e alır; `--cached` ile sadece Git'ten çıkarır
+- `git mv` dosya taşıma ve yeniden adlandırma için kullanılır — Git tarihinde "rename" olarak gözükür
+- `.gitignore` ile izlenmemesi gereken dosyaları belirlersin — projenin başında oluştur
+- Zaten izlenen dosyayı yoksaymak için önce `git rm --cached` ile izlemeden çıkarmalısın
+- `git diff --staged` ile commit'lenecek değişiklikleri, `git diff` ile henüz staging'e alınmamış değişiklikleri görebilirsin
 
 ---
 
