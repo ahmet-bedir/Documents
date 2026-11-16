@@ -707,9 +707,9 @@ abc1234 Notlar dosyası eklendi
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Sık Sorulan Sorular
+### Sık Sorulan Sorular
 
-### "Neden staging area var? Direkt commit etsek olmaz mı?"
+#### "Neden staging area var? Direkt commit etsek olmaz mı?"
 
 Olabilir — bazı VCS'ler öyle çalışıyor (Mercurial gibi). Ama staging area büyük bir esneklik sağlıyor:
 
@@ -717,7 +717,7 @@ Olabilir — bazı VCS'ler öyle çalışıyor (Mercurial gibi). Ama staging are
 2. **Parça parça commit:** Aynı dosyanın bazı satırlarını commit'le, diğerlerini atla (`git add -p`)
 3. **Review:** Commit'lemeden önce ne göndereceğini kontrol et
 
-### "Untracked dosyalar neden var? Git neden her şeyi otomatik izlemiyor?"
+#### "Untracked dosyalar neden var? Git neden her şeyi otomatik izlemiyor?"
 
 Çünkü izlemek istemediğin dosyalar var:
 
@@ -728,11 +728,11 @@ Olabilir — bazı VCS'ler öyle çalışıyor (Mercurial gibi). Ama staging are
 
 Git'in varsayılan olarak hiçbir şeyi izlememesi, **senin seçmeni** sağlar. Ve `.gitignore` ile "bunları asla izleme" diyebilirsin.
 
-### "Commit'ler gerçekten silinmez mi?"
+#### "Commit'ler gerçekten silinmez mi?"
 
 Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile commit object'i `objects/` dizininde bir süre kalır. `git reflog` ile geri getirebilirsin. Ancak `git gc` (garbage collection) çalıştığında erişilemeyen nesneler temizlenebilir (genelde 30 gün sonra).
 
-Özet
+### Özet
 
 > - **Repository**, `.git` dizini içeren bir proje klasörüdür — tüm versiyon geçmişi burada saklanır
 > - Git **üç alan** kullanır: Working Directory (düzenleme), Staging Area (hazırlık), Repository (kalıcı kayıt)
