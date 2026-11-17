@@ -1472,7 +1472,7 @@ console.log("Uygulama başlatıldı!");
 EOF
 ```
 
-Şimdi Git'e soralım: "Durum ne?
+Durum kontrolü için:
 
 ```bash
 $ git status
@@ -1489,22 +1489,16 @@ Untracked files:
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-`git status` bize çok şey söylüyor:
+`git status` komutu:
 
 - **On branch main:** `main` branch'indesin
 - **No commits yet:** Henüz hiç commit yok
-- **Untracked files:** Git bu dosyaları tanımıyor — henüz izleme altına almadık
-- **"use git add...":** Git sana ne yapman gerektiğini bile söylüyor!
+- **Untracked files:** Git bu dosyaları tanımıyor – henüz izleme altına alınmadı
+- **"use git add...":** Git sana ne yapman gerektiğini söylüyor!
 
-> 💡 **İpucu:** `git status` en çok kullanacağın komutlardan biri. Her komuttan önce ve sonra çalıştır — ne olduğunu anlamak için. "Şüphe duyduğunda `git status`" mottosu seni çok kurtaracak.
-
-### Kısa Status
+#### Kısa Status
 
 Daha kompakt bir çıktı istersen:
-
-bash
-
-Kopyala
 
 ```bash
 $ git status -s
@@ -1517,7 +1511,7 @@ $ git status -s
 
 ------
 
-## Adım 3: Staging'e Alma — `git add`
+### Adım 3: Staging'e Alma | `git add`
 
 Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi:
 
