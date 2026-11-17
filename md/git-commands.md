@@ -303,7 +303,7 @@ Working Directory'deki dosya durumları:
 └──────────────┘
 ```
 
-**Dosya Durumları:**
+**Dosya Durumları**
 
 ⬥ **Untracked (İzlenmeyen):** Git bu dosyayı hiç bilmiyor. Yeni oluşturulmuş, hiç `git add` edilmemiş.
 
@@ -1373,13 +1373,9 @@ $ git config core.autocrlf true
 
 [**⬆ Başa Dön**](#basa-don)
 
-## Adım 1: Repository Oluşturma — `git init`
+### Adım 1: Repository Oluşturma | `git init`
 
-Her şey burada başlar. Yeni bir proje klasörü oluşturup Git'e "bunu izle" diyoruz:
-
-bash
-
-Kopyala
+Yeni bir proje klasörü oluşturma:
 
 ```bash
 # Proje klasörü oluştur
@@ -1388,37 +1384,29 @@ $ cd web-projem
 
 # Git repository'si başlat
 $ git init
-Initialized empty Git repository in /home/tolgahan/web-projem/.git/
+Initialized empty Git repository in /home/user/web-projem/.git/
 ```
 
-Ne oldu? Git, `.git` adlı gizli bir klasör oluşturdu:
-
-bash
-
-Kopyala
+> Git, `.git` adlı gizli bir klasör oluşturdu:
 
 ```bash
 $ ls -la
 total 12
-drwxr-xr-x  3 tolgahan staff   96 Mar  1 10:00 .
-drwxr-xr-x  5 tolgahan staff  160 Mar  1 10:00 ..
-drwxr-xr-x  9 tolgahan staff  288 Mar  1 10:00 .git
+drwxr-xr-x  3 user staff   96 Mar  1 10:00 .
+drwxr-xr-x  5 user staff  160 Mar  1 10:00 ..
+drwxr-xr-x  9 user staff  288 Mar  1 10:00 .git
 
 $ ls .git/
 HEAD  config  description  hooks  info  objects  refs
 ```
 
-Bu kadar. Proje klasörün artık bir Git repository'si. Dosya henüz yok, commit henüz yok ama Git hazır ve bekliyor.
+> Proje klasörün artık bir Git repository'si. Dosya henüz yok, commit henüz yok.
 
 > ⚠️ **Dikkat:** `git init` komutu **mevcut dosyaları silmez veya değiştirmez**. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` klasörünü ekler. Bu yüzden güvenle kullanabilirsin.
 
-### Mevcut Projeyi Git'e Almak
+#### Mevcut Projeyi Git'e Almak
 
 Zaten dosyaların olan bir projen varsa:
-
-bash
-
-Kopyala
 
 ```bash
 $ cd mevcut-projem
@@ -1426,9 +1414,9 @@ $ ls
 index.html  style.css  app.js
 
 $ git init
-Initialized empty Git repository in /home/tolgahan/mevcut-projem/.git/
+Initialized empty Git repository in /home/user/mevcut-projem/.git/
 
-# Dosyalar yerinde, .git eklendi
+# Dosyalar yerinde, sadece .git klasörü eklendi
 $ git status
 On branch main
 
@@ -1442,13 +1430,9 @@ Untracked files:
 
 ------
 
-## Adım 2: Dosya Oluşturma ve Durum Kontrolü — `git status`
+### Adım 2: Dosya Oluşturma ve Durum Kontrolü | `git status`
 
-Şimdi projemize dosyalar ekleyelim:
-
-bash
-
-Kopyala
+Projemize dosyalar ekleyelim:
 
 ```bash
 # Ana sayfa oluştur
@@ -1484,15 +1468,11 @@ EOF
 
 # JavaScript dosyası
 $ cat > app.js << 'EOF'
-console.log("Uygulama başlatıldı");
+console.log("Uygulama başlatıldı!");
 EOF
 ```
 
-Şimdi Git'e soralım: "Durum ne?"
-
-bash
-
-Kopyala
+Şimdi Git'e soralım: "Durum ne?
 
 ```bash
 $ git status
