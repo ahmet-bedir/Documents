@@ -1496,7 +1496,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 > - **Untracked files:** Git bu dosyaları tanımıyor – henüz izleme altına alınmadı
 > - **"use git add...":** Git sana ne yapman gerektiğini söylüyor!
 
-#### Kısa Status
+##### Kısa Status
 
 Daha kompakt bir çıktı istersen:
 
@@ -1518,7 +1518,7 @@ $ git status -s
 
 Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi:
 
-#### Tek Dosya Ekleme
+##### Tek Dosya Ekleme
 
 bash
 
@@ -1543,7 +1543,7 @@ Untracked files:
 
 Sadece `index.html` staging'de. Diğerleri hâlâ untracked.
 
-### Birden Fazla Dosya Ekleme
+##### Birden Fazla Dosya Ekleme
 
 bash
 
@@ -1577,7 +1577,7 @@ Changes to be committed:
 
 Üç dosya da staging'de, commit'e hazır.
 
-### `git add` Varyasyonları
+##### `git add` Varyasyonları
 
 bash
 
@@ -1592,7 +1592,7 @@ git add *.css              # Pattern ile (tüm CSS dosyaları)
 git add src/               # Klasör ve içindekiler
 ```
 
-### Staging'den Çıkarma
+##### Staging'den Çıkarma
 
 Yanlışlıkla eklediğin bir dosyayı staging'den çıkarmak için:
 
@@ -1616,7 +1616,7 @@ Untracked files:
 
 ------
 
-## Adım 4: İlk Commit — `git commit`
+#### Adım 4: İlk Commit — `git commit`
 
 Staging'deki dosyaları kalıcı olarak kaydetmenin zamanı:
 
@@ -1656,7 +1656,7 @@ nothing to commit, working tree clean
 
 "Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
 
-### `-m` Bayrağı: Commit Mesajı
+##### `-m` Bayrağı: Commit Mesajı
 
 `-m` ile tek satırlık mesaj yazarsın. Bu kısa değişiklikler için idealdir:
 
@@ -1701,7 +1701,7 @@ Kullanıcı giriş formunu ekle
 
 ------
 
-## Adım 5: Değişiklik Yapma ve Yeni Commit
+#### Adım 5: Değişiklik Yapma ve Yeni Commit
 
 Projemiz üzerinde çalışmaya devam edelim:
 
@@ -1780,7 +1780,7 @@ $ git commit -m "Navigasyon menüsü eklendi"
  2 files changed, 15 insertions(+), 1 deletion(-)
 ```
 
-### Kısayol: add + commit Bir Arada
+##### Kısayol: add + commit Bir Arada
 
 Değiştirilmiş (modified) dosyaları tek komutla staging'e alıp commit'leyebilirsin:
 
@@ -1798,7 +1798,7 @@ $ git commit -am "Küçük düzeltme yapıldı"
 
 ------
 
-## Adım 6: Geçmişi İnceleme — `git log`
+#### Adım 6: Geçmişi İnceleme — `git log`
 
 Artık birkaç commit'imiz var. Geçmişe bakalım:
 
@@ -1821,7 +1821,7 @@ Date:   Mon Mar 1 10:00:00 2026 +0300
     İlk commit: Proje yapısı oluşturuldu
 ```
 
-### Log Varyasyonları
+##### Log Varyasyonları
 
 `git log` çok güçlü bir komut. İşte en faydalı kullanımları:
 
@@ -1862,7 +1862,7 @@ $ git log -- index.html
 # Sadece index.html'i etkileyen commit'ler
 ```
 
-### `git log --oneline --graph` — En Sevdiğin Komut Olacak
+##### `git log --oneline --graph` — En Sevdiğin Komut Olacak
 
 Branch'ler öğrendiğinde bu komut bir sanat eserine dönüşür:
 
@@ -1895,7 +1895,7 @@ $ git lg
 
 ------
 
-## Adım 7: Pratik Workflow — Gerçek Bir Senaryo
+#### Adım 7: Pratik Workflow — Gerçek Bir Senaryo
 
 Şimdi öğrendiklerimizi birleştirerek gerçek bir çalışma akışı yapalım. Bir web projesi geliştiriyormuş gibi davranacağız:
 
@@ -2042,7 +2042,7 @@ $ git log --stat --oneline
 
 ------
 
-## Adım 8: .gitignore — Neyi İzlememeliyiz?
+#### Adım 8: .gitignore — Neyi İzlememeliyiz?
 
 Her proje dosyasını Git'e koymak istemezsin. Bazı dosyalar izlenmemeli:
 
@@ -2109,7 +2109,7 @@ nothing to commit, working tree clean
 
 ------
 
-## Günlük Workflow Özeti
+##### Günlük Workflow Özeti
 
 Her gün kullanacağın temel akış:
 
@@ -2145,7 +2145,7 @@ Kopyala
 └─────────────────────────────────────────────────────┘
 ```
 
-### Ne Sıklıkla Commit Atmalıyım?
+#### Ne Sıklıkla Commit Atmalıyım?
 
 - **Çok sık:** Her küçük değişiklikte (her 5 dakikada) → geçmiş çok gürültülü olur
 - **Çok seyrek:** Günde bir kere → geri dönmek zor olur
@@ -2157,7 +2157,7 @@ Basit kural: "Bu commit tek bir şeyi anlatıyor mu?" Evet ise, iyi commit.
 
 ------
 
-## Bonus: `git show` — Belirli Bir Commit'i İncele
+#### Bonus: `git show` — Belirli Bir Commit'i İncele
 
 Belirli bir commit'te ne olduğunu görmek için:
 
@@ -2200,7 +2200,7 @@ $ git show
 
 ------
 
-## Özet
+#### Özet
 
 - `git init` ile boş bir repository oluşturursun — `.git` dizini eklenir, dosyalara dokunulmaz
 - `git status` ile projenin durumunu kontrol edersin — bu en sık kullanacağın komut
