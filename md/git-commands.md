@@ -1507,7 +1507,9 @@ $ git status -s
 ?? style.css
 ```
 
-`??` = untracked. İleride `M` (modified), `A` (added), `D` (deleted) gibi kodlar da göreceksin.
+- `??` = untracked
+- `M` (modified
+- `A` (added), `D` (deleted) gibi kodlar da göreceksin.
 
 ------
 
