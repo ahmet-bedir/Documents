@@ -1491,10 +1491,10 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 `git status` komutu:
 
-- **On branch main:** `main` branch'indesin
-- **No commits yet:** Henüz hiç commit yok
-- **Untracked files:** Git bu dosyaları tanımıyor – henüz izleme altına alınmadı
-- **"use git add...":** Git sana ne yapman gerektiğini söylüyor!
+> - **On branch main:** `main` branch'indesin
+> - **No commits yet:** Henüz hiç commit yok
+> - **Untracked files:** Git bu dosyaları tanımıyor – henüz izleme altına alınmadı
+> - **"use git add...":** Git sana ne yapman gerektiğini söylüyor!
 
 #### Kısa Status
 
@@ -1507,17 +1507,18 @@ $ git status -s
 ?? style.css
 ```
 
-- `??` = untracked
-- `M` (modified
-- `A` (added), `D` (deleted) gibi kodlar da göreceksin.
+> - `??` = untracked
+> - `M`modified
+> - `A` added
+> - `D` deleted
 
 ------
 
-### Adım 3: Staging'e Alma | `git add`
+#### Adım 3: Staging'e Alma | `git add`
 
 Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koymak gibi:
 
-### Tek Dosya Ekleme
+#### Tek Dosya Ekleme
 
 bash
 
