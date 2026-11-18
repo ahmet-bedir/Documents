@@ -1373,7 +1373,7 @@ $ git config core.autocrlf true
 
 [**⬆ Başa Dön**](#basa-don)
 
-### Adım 1: Repository Oluşturma | `git init`
+#### Adım 1: Repository Oluşturma | `git init`
 
 Yeni bir proje klasörü oluşturma:
 
@@ -1404,7 +1404,7 @@ HEAD  config  description  hooks  info  objects  refs
 
 > ⚠️ **Dikkat:** `git init` komutu **mevcut dosyaları silmez veya değiştirmez**. Zaten dosyaları olan bir klasörde de çalıştırabilirsin. Sadece `.git` klasörünü ekler. Bu yüzden güvenle kullanabilirsin.
 
-#### Mevcut Projeyi Git'e Almak
+##### Mevcut Projeyi Git'e Almak
 
 Zaten dosyaların olan bir projen varsa:
 
@@ -1430,7 +1430,7 @@ Untracked files:
 
 ------
 
-### Adım 2: Dosya Oluşturma ve Durum Kontrolü | `git status`
+#### Adım 2: Dosya Oluşturma ve Durum Kontrolü | `git status`
 
 Projemize dosyalar ekleyelim:
 
