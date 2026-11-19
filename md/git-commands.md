@@ -1596,7 +1596,7 @@ Untracked files:
 
 ------
 
-#### Adım 4: İlk Commit — `git commit`
+#### Adım 4: İlk Commit | `git commit`
 
 Staging'deki dosyaları kalıcı olarak kaydetme:
 
