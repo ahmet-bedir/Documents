@@ -1508,7 +1508,7 @@ $ git status -s
 ```
 
 > - `??` = untracked
-> - `M`modified
+> - `M` modified
 > - `A` added
 > - `D` deleted
 
