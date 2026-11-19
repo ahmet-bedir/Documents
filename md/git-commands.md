@@ -1596,7 +1596,7 @@ Untracked files:
 
 ------
 
-#### Adım 4: İlk Commit | `git commit`
+#### Adım 4: Commit Atma | `git commit`
 
 Staging'deki dosyaları kalıcı olarak kaydetme:
 
@@ -2979,6 +2979,8 @@ $ git log --oneline --stat
 
 ---
 
+
+
 | Dosya İşlemleri                                       |                                                    |
 | ----------------------------------------------------- | -------------------------------------------------- |
 | `git rm <file_name>`                                  | Dosya silmek için kullanılır                       |
@@ -2986,8 +2988,6 @@ $ git log --oneline --stat
 | `git mv <file_name> <new_file_name>`                  | Dosya adı değiştirmek için kullanılır              |
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
-
-
 
 
 
