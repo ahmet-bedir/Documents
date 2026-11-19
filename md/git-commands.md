@@ -16,7 +16,7 @@
 
 **İçindekiler**
 
-▪ [**Git Nedir?**](#git)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-config)<br/>▪ [**Repository Oluşturma**](#git-repo)
+▪ [**Git Nedir?**](#git-nedir)<br/>▪ [**Git Kurulum ve Yapılandırma**](#git-kurulum)<br/>▪ [**Repository Oluşturma**](#git-repo)<br/>▪ [**Temel Git Komutları**](#temel-git)<br/>▪ 
 
 ---
 
@@ -152,7 +152,7 @@ Tek bir sunucu ile herkes bu sunucuya bağlanıyor. Değişiklikleri sunucuya g�
 
 ---
 
-<a id="git"></a>
+<a id="git-nedir"></a>
 
 ## Git Nedir?
 
@@ -743,7 +743,7 @@ Pratik olarak evet — çok zor silinir. `git reset --hard` yaptığında bile c
 
 ---
 
-<a id="git-config"></a>
+<a id="git-kurulum"></a>
 
 ## Git Kurulumu
 
@@ -1769,10 +1769,6 @@ Date:   Mon Mar 1 10:00:00 2026 +0300
 
 `git log` çok güçlü bir komut. İşte en faydalı kullanımları:
 
-bash
-
-Kopyala
-
 ```bash
 # Tek satırlık özet
 $ git log --oneline
@@ -2155,11 +2151,13 @@ $ git show
 
 ---
 
-Temel Git Komutları
+<a href="temel-git"></a>
 
-# Dosya Takibi
+## Temel Git Komutları
 
-## Giriş: Neden Derinlemesine Öğreniyoruz?
+[**⬆ Başa Dön**](#basa-don)
+
+### Dosya Takibi
 
 Önceki derste `git add .` ile tüm dosyaları staging'e aldık. Çalıştı. Ama gerçek dünyada her zaman "tüm değişiklikleri ekle" demezsin. Bazen:
 
