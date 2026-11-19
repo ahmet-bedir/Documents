@@ -1520,10 +1520,6 @@ Dosyaları commit'lemeden önce staging area'ya almamız gerekiyor. Sepete koyma
 
 ##### Tek Dosya Ekleme
 
-bash
-
-Kopyala
-
 ```bash
 $ git add index.html
 
@@ -1541,13 +1537,9 @@ Untracked files:
         style.css
 ```
 
-Sadece `index.html` staging'de. Diğerleri hâlâ untracked.
+> Sadece `index.html` staging'de. Diğerleri hâlâ untracked.
 
 ##### Birden Fazla Dosya Ekleme
-
-bash
-
-Kopyala
 
 ```bash
 # Tek tek ekle
@@ -1557,10 +1549,6 @@ $ git add style.css app.js
 $ git add .
 # Nokta (.) = "bu klasördeki tüm değişiklikleri ekle"
 ```
-
-bash
-
-Kopyala
 
 ```bash
 $ git status
@@ -1575,13 +1563,9 @@ Changes to be committed:
         new file:   style.css
 ```
 
-Üç dosya da staging'de, commit'e hazır.
+> Üç dosya da staging'de, commit'e hazır.
 
 ##### `git add` Varyasyonları
-
-bash
-
-Kopyala
 
 ```bash
 git add dosya.txt          # Tek dosya
@@ -1596,10 +1580,6 @@ git add src/               # Klasör ve içindekiler
 
 Yanlışlıkla eklediğin bir dosyayı staging'den çıkarmak için:
 
-bash
-
-Kopyala
-
 ```bash
 $ git restore --staged app.js
 
@@ -1612,17 +1592,13 @@ Untracked files:
         app.js
 ```
 
-`app.js` staging'den çıktı ama dosya silinmedi — sadece sepetten çıkarıldı.
+> `app.js` staging'den çıktı ama dosya silinmedi — sadece sepetten çıkarıldı.
 
 ------
 
 #### Adım 4: İlk Commit — `git commit`
 
-Staging'deki dosyaları kalıcı olarak kaydetmenin zamanı:
-
-bash
-
-Kopyala
+Staging'deki dosyaları kalıcı olarak kaydetme:
 
 ```bash
 # Önce tüm dosyaları staging'e alalım
@@ -1639,14 +1615,10 @@ $ git commit -m "İlk commit: Proje yapısı oluşturuldu"
 
 Bu çıktıyı okuyalım:
 
-- **main** — hangi branch'te
-- **(root-commit)** — ilk commit (parent yok)
-- **a1b2c3d** — commit hash'inin kısa hali
-- **3 files changed, 24 insertions** — 3 dosya eklendi, toplam 24 satır
-
-bash
-
-Kopyala
+> - **main** — hangi branch'te
+> - **(root-commit)** — ilk commit (parent yok)
+> - **a1b2c3d** — commit hash'inin kısa hali
+> - **3 files changed, 24 insertions** — 3 dosya eklendi, toplam 24 satır
 
 ```bash
 $ git status
@@ -1654,25 +1626,17 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-"Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
+> "Clean" — tüm değişiklikler commit'lendi. Temiz bir sayfa.
 
 ##### `-m` Bayrağı: Commit Mesajı
 
-`-m` ile tek satırlık mesaj yazarsın. Bu kısa değişiklikler için idealdir:
-
-bash
-
-Kopyala
+Tek satırlık mesajlar için `-m` bayrağı kullanılır:
 
 ```bash
 $ git commit -m "Başlık rengi güncellendi"
 ```
 
 **Uzun mesaj yazmak istersen**, `-m` olmadan çalıştır:
-
-bash
-
-Kopyala
 
 ```bash
 $ git commit
@@ -1684,10 +1648,6 @@ $ git commit
 
 Editör'de yazacağın mesaj:
 
-text
-
-Kopyala
-
 ```text
 Kullanıcı giriş formunu ekle
 
@@ -1697,17 +1657,13 @@ Kullanıcı giriş formunu ekle
 - Responsive tasarım uygulandı
 ```
 
-> 💡 **İpucu:** İyi commit mesajı yazma alışkanlığını şimdiden edin. "fix" veya "update" gibi anlamsız mesajlar yerine, **ne yaptığını ve neden yaptığını** açıklayan mesajlar yaz. Gelecekteki sen (ve ekip arkadaşların) teşekkür edecek.
+> 💡 **İpucu:** İyi commit mesajı, **ne yaptığını ve neden yaptığını** açıklayan mesajlar yaz.
 
 ------
 
 #### Adım 5: Değişiklik Yapma ve Yeni Commit
 
 Projemiz üzerinde çalışmaya devam edelim:
-
-bash
-
-Kopyala
 
 ```bash
 # index.html'e navigasyon ekleyelim
@@ -1750,10 +1706,6 @@ EOF
 
 Durumu kontrol edelim:
 
-bash
-
-Kopyala
-
 ```bash
 $ git status
 On branch main
@@ -1766,11 +1718,7 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-İki dosya **modified** — değişmiş ama staging'e alınmamış.
-
-bash
-
-Kopyala
+> İki dosya **modified** — değişmiş ama staging'e alınmamış.
 
 ```bash
 # Değişiklikleri staging'e al ve commit'le
@@ -1783,10 +1731,6 @@ $ git commit -m "Navigasyon menüsü eklendi"
 ##### Kısayol: add + commit Bir Arada
 
 Değiştirilmiş (modified) dosyaları tek komutla staging'e alıp commit'leyebilirsin:
-
-bash
-
-Kopyala
 
 ```bash
 $ git commit -am "Küçük düzeltme yapıldı"
