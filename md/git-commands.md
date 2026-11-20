@@ -1613,7 +1613,7 @@ $ git commit -m "İlk commit: Proje yapısı oluşturuldu"
  create mode 100644 style.css
 ```
 
-Bu çıktıyı okuyalım:
+Çıktı:
 
 > - **main** — hangi branch'te
 > - **(root-commit)** — ilk commit (parent yok)
