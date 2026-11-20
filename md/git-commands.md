@@ -2989,8 +2989,6 @@ $ git log --oneline --stat
 | `git mv <file_name> <directory_name>/`                | Dosyayı taşımak için kullanılır                    |
 | `git mv <file_name> <directory_name>/<new_file_name>` | Dosyayı adını değiştirerek taşımak için kullanılır |
 
-
-
 > - **Zamanı geri alma yani git deposunda geçmiş tarihli bir commit'e geri gitmemiz için:**
 
 ```shell
@@ -3009,8 +3007,6 @@ git checkout master || git switch master
 git checkout <commit id> -- .
 ```
 
-
-
 ---
 
 > - `git diff` **: Staging alanına eklenmeden önce tüm dosyalarda yapılan değişiklikleri gösterir.**
@@ -3020,8 +3016,6 @@ git checkout <commit id> -- .
 > - `git diff --staged` **: Git deposu ile staging alanındaki değişiklikleri gösterir.**
 
 
-
-
 > - `git branch` **: Yerelimizde kaç dal (branch) olduğunu ve hangi dalda bulunduğumuzu gösterir.**
 > - `git branch --all` **: Yerelimizde ve uzak depodaki tüm dalları gösterir.**
 > - `git branch -r` **: Uzak depodaki dalları gösterir.**
@@ -3029,8 +3023,6 @@ git checkout <commit id> -- .
 > - `git branch -m <branch_name> <new_branch_name>` **: Dal adını değiştirir, ancak yeni isimde bir dal varsa hata verir.**
 > - `git branch -M <branch_name> <new_branch_name>` **: Dal adını değiştirir, yeni isimde bir dal varsa üzerine yazar (force).**
 > - `git branch -D <branch_name>` **: Lokalde ismi verilen bir dalı (branch) silmek için kullanılır.**
-
-
 
 
 > - `git switch <branch_name>` **: Girilen branch'a  geçiş yapar.**
@@ -3102,13 +3094,9 @@ git checkout <commit id> -- .
 
 ---
 
-
-
 ### Remote
 
 **Remote uzun linkleri kısaltmamıza ve onları bir isim ile bağdaştırmamızı sağlar. Örneğin:**                                       `git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git` **komutunda** `<remote_name>` **kısmına istediğiniz ismi verebilirsiniz. Yani** `<remote_name>` **dediğimizde** `https://github.com/<github_username>/<repo_name>.git` **bu url temsil edilmektedir.**
-
-
 
 ---
 
@@ -3145,8 +3133,6 @@ git checkout <commit id> -- .
    git clone https://github.com/<github_username>/<repo_name>.git
    ```
 
-
-
 ---
 
 ![](../images/new-repo.png)
@@ -3165,8 +3151,6 @@ git checkout <commit id> -- .
 git remote add <remote_name> https://github.com/<github_username>/<repo_name>.git
 ```
 
-
-
 ### PAT (Personal Access Token) Nedir, Ne İçin Kullanılır?
 
 **PAT (Personal Access Token) GitHub, GitLab gibi platformlarda kullanıcıların hesabına komut satırı (CLI) veya üçüncü parti uygulamalar üzerinden erişim sağlamak için kullandığı bir kimlik doğrulama yöntemidir. Özellikle şifre ile kimlik doğrulama devre dışı bırakıldığından, HTTPS ile erişimlerde şifre yerine PAT kullanılır.**
@@ -3176,8 +3160,6 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 - **Komut satırı veya uygulamalar üzerinden kimlik doğrulama yapmak**
 - **Otomasyon scriptlerinde veya CI/CD süreçlerinde erişim sağlamak**
 - **Klasik şifre ile giriş yerine, daha güvenli ve süreli erişim belirteçleri üretmek**
-
-
 
 ---
 
@@ -3201,8 +3183,6 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 **6. Generate token diyerek token'ı oluştur.**
    **Oluşan token'ı güvenli bir yere kopyala (çünkü bir daha gösterilmez).**
 
-
-
 ---
 
 ### Komut Satırında PAT ile Kimlik Doğrulama
@@ -3213,9 +3193,7 @@ git remote add <remote_name> https://github.com/<github_username>/<repo_name>.gi
 git remote set-url <remote_name> https://<github_username>:<pat>@github.com/<github_username>/<repo_name>.git
 ```
 
-<small>Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.</small>
-
-
+> Not : Kısacası, PAT güvenli ve modern bir kimlik doğrulama yöntemidir ve GitHub gibi platformlarda şifreyle girişin yerini almıştır.
 
 
 ---
@@ -3355,8 +3333,6 @@ git push -u <remote_name> <branch_name>
 
 <small>Not : -u (upstream) ifadesi, varsayılan yukarı akış depoya (remote_name) ve ana dal (branch_name) için bir yer işaretçisi belirler. Bu işaretçi sayesinde, bir sonraki git push komutunu çağırdığınızda, Git (remote_name) ve (branch_name) argümanlarını tekrarlamak yerine bu yer işaretçisini kullanarak sadece `git push` komutu ile aynı işlemi yapabilirsiniz.</small>
 
-
-
 ---
 
 > - **Fetch işlemi, uzak depodaki yeni değişiklikleri lokal depoya indirir ancak lokaldeki çalışma dizinine (working directory) birleştirmez. Bu işlem, uzak depodaki değişikliklerin var olup olmadığını kontrol etmek için kullanır.**
@@ -3364,8 +3340,6 @@ git push -u <remote_name> <branch_name>
 ```shell
 git fetch <remote_name> <branch_name>
 ```
-
-
 
 ---
 
@@ -3375,10 +3349,6 @@ git fetch <remote_name> <branch_name>
 ```shell
 git pull <remote_name> <branch_name>
 ```
-
-
-
-
 
 ---
 
@@ -3406,4 +3376,4 @@ git clone git@github.com:<github_username>/<repo_name>.git
 
 ---
 
-<img src="../images/yapım-asaması_.png" width="600" />
+<img src="../images/yapım-asaması_.png" width="470" />
