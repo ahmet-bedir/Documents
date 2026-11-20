@@ -2097,13 +2097,9 @@ Basit kural: "Bu commit tek bir şeyi anlatıyor mu?" Evet ise, iyi commit.
 
 ------
 
-#### Bonus: `git show` — Belirli Bir Commit'i İncele
+#### Belirli Bir Commit'i İnceleme | `git show`
 
 Belirli bir commit'te ne olduğunu görmek için:
-
-bash
-
-Kopyala
 
 ```bash
 $ git show 2b3c4d5
@@ -2127,10 +2123,6 @@ diff --git a/index.html b/index.html
 
 En son commit'i görmek için:
 
-bash
-
-Kopyala
-
 ```bash
 $ git show HEAD
 # veya
@@ -2151,7 +2143,7 @@ $ git show
 
 ---
 
-<a href="temel-git"></a>
+<a id="temel-git"></a>
 
 ## Temel Git Komutları
 
