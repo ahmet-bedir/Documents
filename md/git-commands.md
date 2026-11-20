@@ -2053,10 +2053,6 @@ nothing to commit, working tree clean
 
 Her gün kullanacağın temel akış:
 
-text
-
-Kopyala
-
 ```text
 ┌─────────────────────────────────────────────────────┐
 │              GÜNLÜk GIT WORKFLOW                    │
