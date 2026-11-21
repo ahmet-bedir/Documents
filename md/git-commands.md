@@ -164,7 +164,7 @@ Git, yazılım geliştirme süreçlerinde kod değişikliklerini zaman içinde k
 
 **Git ile GitHub aynı değildir.**
 
-> ▸ **Git** = versiyon kontrol yazılımı. Bilgisayarında çalışır. Ücretsiz, açık kaynak.
+> ▸ **Git** = Versiyon kontrol yazılımı. Bilgisayarında çalışır. Ücretsiz, açık kaynak.
 > ▸ **GitHub** = Git depolarını barındıran web servisi. Microsoft'a ait. Sosyal kodlama platformu.
 
 ```text
