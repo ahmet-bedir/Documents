@@ -1636,7 +1636,7 @@ Tek satırlık mesajlar için `-m` bayrağı kullanılır:
 $ git commit -m "Başlık rengi güncellendi"
 ```
 
-**Uzun mesaj yazmak istersen**, `-m` olmadan çalıştır:
+**Uzun mesaj yazmak istersen**, `-m` olmadan çalıştırılır:
 
 ```bash
 $ git commit
@@ -1657,7 +1657,7 @@ Kullanıcı giriş formunu ekle
 - Responsive tasarım uygulandı
 ```
 
-> 💡 **İpucu:** İyi commit mesajı, **ne yaptığını ve neden yaptığını** açıklayan mesajlar yaz.
+> 💡 **İpucu:** İyi commit mesajı, **ne yaptığını ve neden yaptığını** açıklayan mesajlar yazılmalı.
 
 ------
 
@@ -1736,38 +1736,33 @@ Değiştirilmiş (modified) dosyaları tek komutla staging'e alıp commit'leyebi
 $ git commit -am "Küçük düzeltme yapıldı"
 ```
 
-`-a` = "tüm **izlenen** (tracked) değişiklikleri otomatik staging'e al" `-m` = "mesaj"
+- `-a` = "tüm **izlenen** (tracked) değişiklikleri otomatik staging'e al"
+- `-m` = "mesaj"
 
-> ⚠️ **Dikkat:** `git commit -a` sadece **zaten izlenen** dosyaları otomatik ekler. **Yeni oluşturulan** (untracked) dosyaları eklemez! Yeni dosya varsa önce `git add` yapman şart.
+> ⚠️ **Dikkat:** `git commit -a` sadece **zaten izlenen** dosyaları otomatik ekler. **Yeni oluşturulan** (untracked) dosyaları eklemez! Yeni dosya varsa önce `git add` yapman gerekiyor.
 
 ------
 
-#### Adım 6: Geçmişi İnceleme — `git log`
+#### Adım 6: Geçmişi İnceleme | `git log`
 
-Artık birkaç commit'imiz var. Geçmişe bakalım:
-
-bash
-
-Kopyala
+Geçmişe bakma:
 
 ```bash
 $ git log
 commit b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1 (HEAD -> main)
-Author: Tolgahan Kaya <tolgahan@example.com>
+Author: user <user@example.com>
 Date:   Mon Mar 1 10:30:00 2026 +0300
 
     Navigasyon menüsü eklendi
 
 commit a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0 
-Author: Tolgahan Kaya <tolgahan@example.com>
+Author: user <user@example.com>
 Date:   Mon Mar 1 10:00:00 2026 +0300
 
     İlk commit: Proje yapısı oluşturuldu
 ```
 
 ##### Log Varyasyonları
-
-`git log` çok güçlü bir komut. İşte en faydalı kullanımları:
 
 ```bash
 # Tek satırlık özet
@@ -1802,13 +1797,7 @@ $ git log -- index.html
 # Sadece index.html'i etkileyen commit'ler
 ```
 
-##### `git log --oneline --graph` — En Sevdiğin Komut Olacak
-
-Branch'ler öğrendiğinde bu komut bir sanat eserine dönüşür:
-
-bash
-
-Kopyala
+> `git log --oneline --graph` :  Branch'ler kullanıldığında bu komut çok kullanışlıdır.
 
 ```bash
 $ git log --oneline --graph --all --decorate
@@ -1821,27 +1810,11 @@ $ git log --oneline --graph --all --decorate
 * 9h8i7j6 İlk commit
 ```
 
-Alias olarak tanımlamıştık hatırlarsan:
-
-bash
-
-Kopyala
-
-```bash
-$ git config --global alias.lg "log --oneline --graph --all --decorate"
-$ git lg
-# Aynı şeyi kısaca yaz
-```
-
 ------
 
 #### Adım 7: Pratik Workflow — Gerçek Bir Senaryo
 
 Şimdi öğrendiklerimizi birleştirerek gerçek bir çalışma akışı yapalım. Bir web projesi geliştiriyormuş gibi davranacağız:
-
-bash
-
-Kopyala
 
 ```bash
 # === PROJE BAŞLANGICI ===
@@ -1982,13 +1955,9 @@ $ git log --stat --oneline
 
 ------
 
-#### Adım 8: .gitignore — Neyi İzlememeliyiz?
+#### Adım 8: İzlenmeyen Dosyalar | `.gitignore`
 
 Her proje dosyasını Git'e koymak istemezsin. Bazı dosyalar izlenmemeli:
-
-bash
-
-Kopyala
 
 ```bash
 # .gitignore dosyası oluştur
@@ -2028,11 +1997,7 @@ $ git commit -m "chore: .gitignore dosyası eklendi"
  1 file changed, 23 insertions(+)
 ```
 
-Artık `.gitignore`'da listelenen dosyalar `git status`'ta gözükmez ve `git add .` ile eklenmez.
-
-bash
-
-Kopyala
+> Artık `.gitignore`'da listelenen dosyalar `git status`'ta gözükmez ve `git add .` ile eklenmez.
 
 ```bash
 # Test edelim
@@ -2049,50 +2014,6 @@ nothing to commit, working tree clean
 
 ------
 
-##### Günlük Workflow Özeti
-
-Her gün kullanacağın temel akış:
-
-```text
-┌─────────────────────────────────────────────────────┐
-│              GÜNLÜk GIT WORKFLOW                    │
-│                                                     │
-│  1. Çalışmaya başla                                 │
-│     $ git status              ← "durumum ne?"      │
-│                                                     │
-│  2. Dosyalarda değişiklik yap                       │
-│     (kodla, test et, düzenle)                       │
-│                                                     │
-│  3. Ne değiştiğine bak                              │
-│     $ git status              ← "ne değiştim?"     │
-│     $ git diff                ← "tam olarak ne?"   │
-│                                                     │
-│  4. Staging'e al                                    │
-│     $ git add .               ← "bunları kaydet"   │
-│     $ git add dosya.txt       ← "sadece bunu"      │
-│                                                     │
-│  5. Commit oluştur                                  │
-│     $ git commit -m "mesaj"   ← "kalıcı kayıt"    │
-│                                                     │
-│  6. Geçmişi kontrol et                              │
-│     $ git log --oneline       ← "ne yaptım?"       │
-│                                                     │
-│  7. Tekrarla (2'ye dön)                             │
-└─────────────────────────────────────────────────────┘
-```
-
-#### Ne Sıklıkla Commit Atmalıyım?
-
-- **Çok sık:** Her küçük değişiklikte (her 5 dakikada) → geçmiş çok gürültülü olur
-- **Çok seyrek:** Günde bir kere → geri dönmek zor olur
-- **İdeal:** Her **anlamlı, bağımsız değişiklikte**. Bir özellik tamamlandığında, bir bug düzeltildiğinde, bir refactoring yapıldığında.
-
-Basit kural: "Bu commit tek bir şeyi anlatıyor mu?" Evet ise, iyi commit.
-
-> ⚠️ **Dikkat:** "WIP" (Work In Progress), "misc", "stuff", "asdf" gibi commit mesajları acemilerin en büyük hatası. Her commit mesajı gelecekte birinin (veya senin) okuması gerektiğini düşünerek yaz.
-
-------
-
 #### Belirli Bir Commit'i İnceleme | `git show`
 
 Belirli bir commit'te ne olduğunu görmek için:
@@ -2100,7 +2021,7 @@ Belirli bir commit'te ne olduğunu görmek için:
 ```bash
 $ git show 2b3c4d5
 commit 2b3c4d5...
-Author: Tolgahan Kaya <tolgahan@example.com>
+Author: user <user@example.com>
 Date:   Mon Mar 1 10:15:00 2026 +0300
 
     feat: Hakkımda bölümü eklendi
