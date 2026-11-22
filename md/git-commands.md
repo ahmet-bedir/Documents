@@ -1820,7 +1820,7 @@ $ git log --oneline --graph --all --decorate
 # === PROJE BAŞLANGICI ===
 $ mkdir portfolio && cd portfolio
 $ git init
-Initialized empty Git repository in /home/tolgahan/portfolio/.git/
+Initialized empty Git repository in /home/user/portfolio/.git/
 
 # === DOSYA YAPISI ===
 $ mkdir css js images
@@ -1909,7 +1909,7 @@ $ git commit -m "feat: Hakkımda bölümü eklendi"
 $ cat >> index.html << 'EOF'
     <section id="contact">
         <h2>İletişim</h2>
-        <p>Email: tolgahan@example.com</p>
+        <p>Email: user@example.com</p>
     </section>
 EOF
 
