@@ -2068,37 +2068,14 @@ $ git show
 
 ### Dosya Takibi
 
-Önceki derste `git add .` ile tüm dosyaları staging'e aldık. Çalıştı. Ama gerçek dünyada her zaman "tüm değişiklikleri ekle" demezsin. Bazen:
-
 - Bir dosyanın sadece **belirli satırlarını** commit'lemek istersin
 - Bir dosyayı Git'in izlemesinden **tamamen çıkarmak** istersin
 - Bir dosyayı **taşımak veya yeniden adlandırmak** istersin
 - Belirli dosya türlerini **asla izlememek** istersin
 
-Bu ders, dosya takibinin inceliklerini öğreterek seni "git add ." otomatizminden kurtaracak. Commit'lerini cerrahi hassasiyetle kontrol edebileceksin.
-
 ------
 
-## 🎬 Analoji: Bavul Hazırlamak
-
-Tatile gidiyorsun ve bavulunu hazırlıyorsun. İki yaklaşım var:
-
-1. **Tembel yaklaşım:** Dolaptaki her şeyi bavula at → Bavul çok ağır, gereksiz şeyler dolu
-2. **Akıllı yaklaşım:** Tek tek seç — "bu tişörtü al, bu pantolonu al, ceketi bırak" → Bavul düzgün, sadece gereken var
-
-`git add .` = tembel yaklaşım. Her zaman işe yarar ama her zaman doğru değildir.
-
-`git add -p` = akıllı yaklaşım. "Bu değişikliği al, bunu bırak" diyerek parça parça ekleme yaparsın.
-
-------
-
-## git add — Detaylı İnceleme
-
-### Temel Kullanımlar (Hatırlatma)
-
-bash
-
-Kopyala
+### Temel Kullanımlar
 
 ```bash
 git add dosya.txt          # Tek dosya
@@ -2109,11 +2086,7 @@ git add *.js               # Glob pattern — tüm .js dosyaları
 git add src/               # Bir klasör ve içindekiler
 ```
 
-### `git add .` vs `git add -A` — İnce Fark
-
-bash
-
-Kopyala
+### `git add .` vs `git add -A`
 
 ```bash
 # Proje yapısı:
@@ -2128,7 +2101,7 @@ my-project/
 $ cd src/
 $ git add .
 # Sadece src/ altındaki değişiklikleri ekler
-# README.md'nin silinmesi EKLENMEMİŞ olabilir (eski Git versiyonlarında)
+# README.md'nin silinmesi eklenmemiş olabilir (eski Git versiyonlarında)
 
 # Herhangi bir yerden:
 $ git add -A
